@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Lesson 1 · What is Frequency? · The Frequency Academy">
+<meta property="og:description" content="Quantum Physics · Module 1 · Lesson 1 · Frequency Charged™">
+<title>Lesson 1 · What is Frequency? · The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #080f2e;
+  --navy-mid: #0d1640;
+  --navy-light: #111d4a;
+  --teal: #00e5cc;
+  --teal-dim: #00b5a0;
+  --teal-glow: rgba(0,229,204,0.15);
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --cream: #f0ece0;
+  --text-dim: #8a9bb5;
+  --border: rgba(0,229,204,0.15);
+  --border-gold: rgba(201,168,76,0.3);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Raleway',sans-serif;background:var(--navy);color:var(--cream);line-height:1.7;overflow-x:hidden;padding-bottom:60px}
+
+/* Progress bar */
+#progress-bar{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--teal-dim),var(--teal));z-index:1000;transition:width .2s ease}
+
+/* Nav */
+nav{position:fixed;top:3px;left:0;right:0;background:rgba(8,15,46,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:999;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav-brand{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.25em;color:var(--teal);text-transform:uppercase}
+.nav-lesson{font-size:10px;letter-spacing:.15em;color:var(--text-dim);text-transform:uppercase}
+#section-indicator{font-size:10px;color:var(--teal);letter-spacing:.1em;opacity:0;transition:opacity .4s;font-family:'Share Tech Mono',monospace}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:80px 2rem 4rem}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%, rgba(0,229,204,0.06) 0%, transparent 65%), radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.04) 0%, transparent 50%)}
+
+/* Animated sine wave canvas */
+#wave-canvas{position:absolute;inset:0;opacity:0.3}
+
+.hero-module{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.3em;color:var(--teal);text-transform:uppercase;margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s ease .3s forwards}
+.hero-number{font-family:'Cinzel',serif;font-size:clamp(60px,12vw,120px);font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(0,229,204,0.3);letter-spacing:.05em;line-height:1;margin-bottom:1rem;opacity:0;animation:fadeUp .8s ease .5s forwards}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,5vw,3.5rem);font-weight:600;color:var(--cream);text-align:center;letter-spacing:.05em;opacity:0;animation:fadeUp .8s ease .7s forwards;max-width:700px}
+.hero-subtitle{font-size:13px;letter-spacing:.2em;color:var(--teal-dim);text-transform:uppercase;margin-top:1rem;opacity:0;animation:fadeUp .8s ease .9s forwards}
+.hero-tesla{margin-top:3rem;padding:1.5rem 2rem;border:1px solid var(--border-gold);background:rgba(201,168,76,0.05);max-width:600px;text-align:center;opacity:0;animation:fadeUp .8s ease 1.1s forwards;position:relative}
+.hero-tesla::before,.hero-tesla::after{content:'';position:absolute;width:8px;height:8px;border-color:var(--gold);border-style:solid}
+.hero-tesla::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.hero-tesla::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+.hero-tesla p{font-style:italic;color:var(--gold-light);font-size:.95rem;font-weight:300;letter-spacing:.05em}
+.hero-tesla cite{display:block;margin-top:.5rem;font-size:.75rem;letter-spacing:.2em;color:var(--gold);font-style:normal;text-transform:uppercase}
+.scroll-cue{margin-top:3rem;opacity:0;animation:fadeUp .8s ease 1.4s forwards;display:flex;flex-direction:column;align-items:center;gap:.5rem;cursor:pointer}
+.scroll-cue span{font-size:10px;letter-spacing:.3em;color:var(--text-dim);text-transform:uppercase}
+.scroll-arrow{width:1px;height:40px;background:linear-gradient(to bottom, var(--teal), transparent);animation:pulse-line 2s ease infinite}
+
+/* Sections */
+.section{max-width:860px;margin:0 auto;padding:5rem 2rem}
+.section-tag{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--teal);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
+.section-tag::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--border),transparent)}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(1.4rem,3vw,2rem);color:var(--cream);margin-bottom:2rem;letter-spacing:.05em}
+.section-body{font-size:1rem;color:#c8d4e8;font-weight:300;line-height:1.9}
+.section-body p{margin-bottom:1.4rem}
+.section-body strong{color:var(--cream);font-weight:600}
+
+/* Key insight callout */
+.insight{margin:2.5rem 0;padding:1.8rem 2rem;background:linear-gradient(135deg,rgba(0,229,204,0.06),rgba(0,229,204,0.02));border-left:2px solid var(--teal);position:relative}
+.insight p{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--teal);letter-spacing:.03em;font-style:italic;margin:0}
+
+/* Frequency reference chart */
+.freq-chart{margin:3rem 0;overflow:hidden;border:1px solid var(--border)}
+.freq-chart-header{background:rgba(0,229,204,0.08);padding:1rem 1.5rem;border-bottom:1px solid var(--border);font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.15em;color:var(--teal);text-transform:uppercase}
+.freq-row{display:grid;grid-template-columns:1fr 120px 1fr;padding:.85rem 1.5rem;border-bottom:1px solid rgba(0,229,204,0.05);align-items:center;transition:background .2s}
+.freq-row:hover{background:rgba(0,229,204,0.04)}
+.freq-row:last-child{border-bottom:none}
+.freq-source{font-size:.9rem;color:var(--cream);font-weight:500}
+.freq-hz{font-family:'Share Tech Mono',monospace;font-size:.85rem;color:var(--teal);text-align:center}
+.freq-note{font-size:.8rem;color:var(--text-dim);text-align:right}
+.freq-bar-wrap{grid-column:1/-1;padding:.3rem 0 .7rem;display:flex;align-items:center;gap:1rem}
+.freq-bar{height:2px;background:linear-gradient(to right,var(--teal-dim),var(--teal));border-radius:2px;transition:width 1s ease}
+
+/* Definitions grid */
+.defs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin:2.5rem 0}
+.def-card{padding:1.5rem;border:1px solid var(--border);background:rgba(0,229,204,0.03);position:relative;transition:border-color .3s,background .3s}
+.def-card:hover{border-color:rgba(0,229,204,0.3);background:rgba(0,229,204,0.06)}
+.def-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,var(--teal),transparent)}
+.def-term{font-family:'Cinzel',serif;font-size:.9rem;color:var(--teal);letter-spacing:.1em;margin-bottom:.6rem;text-transform:uppercase}
+.def-body{font-size:.88rem;color:#a0b0c8;line-height:1.7;font-weight:300}
+
+/* Knowledge check */
+.knowledge-check{margin:3rem 0;padding:2.5rem;border:1px solid var(--border-gold);background:rgba(201,168,76,0.03)}
+.kc-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+.kc-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--border-gold),transparent)}
+
+/* Fill in blank */
+.fill-section{margin-bottom:2rem}
+.fill-q{margin-bottom:1rem;font-size:.9rem;color:#c8d4e8;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.fill-q span{color:var(--text-dim)}
+.blank{display:inline-block;border-bottom:1px solid var(--teal-dim);min-width:140px;padding:.2rem .4rem;background:transparent;color:var(--teal);font-family:'Share Tech Mono',monospace;font-size:.85rem;outline:none;transition:border-color .3s}
+.blank:focus{border-color:var(--teal)}
+.blank.correct{border-color:#4caf50;color:#4caf50}
+.blank.incorrect{border-color:#f44336;color:#f44336;animation:shake .3s ease}
+
+/* True/false */
+.tf-grid{display:grid;gap:1rem;margin-bottom:2rem}
+.tf-item{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--border);background:rgba(255,255,255,0.02)}
+.tf-q{flex:1;font-size:.9rem;color:#c8d4e8}
+.tf-buttons{display:flex;gap:.5rem;flex-shrink:0}
+.tf-btn{padding:.3rem .7rem;border:1px solid var(--border);background:transparent;color:var(--text-dim);font-family:'Share Tech Mono',monospace;font-size:.75rem;cursor:pointer;transition:all .2s;letter-spacing:.1em}
+.tf-btn:hover{border-color:var(--teal);color:var(--teal)}
+.tf-btn.selected-true{border-color:#4caf50;background:rgba(76,175,80,0.15);color:#4caf50}
+.tf-btn.selected-false{border-color:#f44336;background:rgba(244,67,54,0.15);color:#f44336}
+.tf-btn.correct{border-color:#4caf50;background:rgba(76,175,80,0.2);color:#4caf50}
+.tf-btn.wrong{border-color:#f44336;background:rgba(244,67,54,0.2);color:#f44336}
+
+.check-btn{display:block;margin:1.5rem auto 0;padding:.8rem 2.5rem;background:transparent;border:1px solid var(--teal);color:var(--teal);font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.check-btn:hover{background:rgba(0,229,204,0.1)}
+.score-display{text-align:center;margin-top:1.5rem;font-family:'Share Tech Mono',monospace;font-size:1.1rem;color:var(--teal);opacity:0;transition:opacity .4s}
+.score-display.show{opacity:1}
+
+/* Reflection */
+.reflection-grid{display:grid;gap:1.5rem;margin:2rem 0}
+.reflection-item{border:1px solid var(--border);padding:1.5rem}
+.reflection-q{font-size:.85rem;color:var(--gold-light);margin-bottom:.8rem;font-weight:500;letter-spacing:.05em}
+.reflection-hint{font-size:.78rem;color:var(--text-dim);margin-bottom:.8rem;font-style:italic}
+textarea.reflection-input{width:100%;background:rgba(0,0,0,0.2);border:1px solid rgba(0,229,204,0.1);color:var(--cream);font-family:'Raleway',sans-serif;font-size:.88rem;padding:.8rem;resize:vertical;min-height:80px;outline:none;transition:border-color .3s;line-height:1.6}
+textarea.reflection-input:focus{border-color:rgba(0,229,204,0.3)}
+textarea.reflection-input::placeholder{color:var(--text-dim)}
+
+/* 7-day tracker */
+.tracker{margin:2.5rem 0;overflow:hidden;border:1px solid var(--border)}
+.tracker-header{background:rgba(0,229,204,0.06);padding:1rem 1.5rem;border-bottom:1px solid var(--border);font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.2em;color:var(--teal);text-transform:uppercase}
+.tracker-row{display:grid;grid-template-columns:80px 1fr 1fr;border-bottom:1px solid rgba(0,229,204,0.05);align-items:stretch}
+.tracker-row:last-child{border-bottom:none}
+.tracker-day{padding:.8rem 1rem;font-family:'Share Tech Mono',monospace;font-size:.8rem;color:var(--teal);border-right:1px solid var(--border);display:flex;align-items:center}
+.tracker-cell input{width:100%;background:transparent;border:none;border-right:1px solid rgba(0,229,204,0.05);color:var(--cream);font-family:'Raleway',sans-serif;font-size:.82rem;padding:.8rem 1rem;outline:none}
+.tracker-cell input::placeholder{color:rgba(138,155,181,0.4)}
+.tracker-cell:last-child input{border-right:none}
+.tracker-labels{display:grid;grid-template-columns:80px 1fr 1fr;background:rgba(0,0,0,0.2);border-bottom:1px solid var(--border)}
+.tracker-label{padding:.5rem 1rem;font-size:.72rem;letter-spacing:.15em;color:var(--text-dim);text-transform:uppercase}
+
+/* Next lesson */
+.next-lesson{margin:4rem auto;max-width:860px;padding:0 2rem}
+.next-card{border:1px solid var(--border-gold);padding:2.5rem;background:linear-gradient(135deg,rgba(201,168,76,0.05),rgba(201,168,76,0.02));display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.next-label{font-family:'Share Tech Mono',monospace;font-size:.75rem;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem}
+.next-title{font-family:'Cinzel',serif;font-size:1.2rem;color:var(--cream)}
+.next-desc{font-size:.85rem;color:var(--text-dim);margin-top:.4rem}
+.next-arrow{font-size:2rem;color:var(--gold);opacity:.6}
+
+/* Divider */
+.divider{max-width:860px;margin:0 auto 0;padding:0 2rem}
+.divider-line{height:1px;background:linear-gradient(to right,transparent,var(--border),transparent)}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-line{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:var(--border)}
+
+@media(max-width:600px){
+  .freq-row{grid-template-columns:1fr 90px;font-size:.82rem}
+  .freq-note{display:none}
+  .tracker-row{grid-template-columns:60px 1fr 1fr}
+  .next-card{flex-direction:column}
+  nav{padding:0 1rem}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav>
+  <div class="nav-brand">The Frequency Academy</div>
+  <div id="section-indicator">01 · What is Frequency?</div>
+  <div class="nav-lesson">QP · L01</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <canvas id="wave-canvas"></canvas>
+  <div class="hero-module">Module 01 · Quantum Physics · Lesson 1 of 333</div>
+  <div class="hero-number">01</div>
+  <h1 class="hero-title">What is Frequency?</h1>
+  <div class="hero-subtitle">Foundations of Frequency Science</div>
+  <div class="hero-tesla">
+    <p>"If you want to find the secrets of the universe, think in terms of energy, frequency and vibration."</p>
+    <cite>— Nikola Tesla</cite>
+  </div>
+  <div class="scroll-cue" onclick="document.getElementById('section-1').scrollIntoView({behavior:'smooth'})">
+    <span>Begin</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- Section 1: Definition -->
+<section class="section reveal" id="section-1">
+  <div class="section-tag">Section 01</div>
+  <h2 class="section-title">The Basic Definition</h2>
+  <div class="section-body">
+    <p>So what is frequency? At its most basic level, <strong>frequency is simply how many times something cycles or repeats per second.</strong></p>
+    <p>If you tap a table once per second — that's one cycle per second. We have a name for that: <strong>one Hertz</strong>. Written as "Hz." Named after Heinrich Hertz, the physicist who first proved the existence of electromagnetic waves.</p>
+    <p>Twice per second is two Hertz. Three times, three Hertz. Simple as that.</p>
+    <p>Now let's put this in perspective with examples you already experience every day. Your heart is beating right now at somewhere between 60 and 90 times per minute — that works out to about <strong>one to one and a half Hertz</strong>. Your heart has a frequency.</p>
+    <p>The electrical grid powering your home runs at <strong>60 Hertz</strong> in the United States — 60 cycles per second. Sound spans from about 20 Hz, a deep rumble you almost feel more than hear, all the way up to 20,000 Hz at the edge of perception.</p>
+  </div>
+  <div class="insight">
+    <p>"Frequency isn't some abstract concept. It's the pulse of everything around you. And once you start seeing the world this way, you can't unsee it."</p>
+  </div>
+</section>
+
+<!-- Key Definitions -->
+<div class="divider"><div class="divider-line"></div></div>
+<section class="section reveal">
+  <div class="section-tag">Definitions</div>
+  <h2 class="section-title">Key Concepts</h2>
+  <div class="defs-grid">
+    <div class="def-card">
+      <div class="def-term">Frequency</div>
+      <div class="def-body">How many times something cycles or repeats per second. The rate of oscillation of any wave or vibration.</div>
+    </div>
+    <div class="def-card">
+      <div class="def-term">Hertz (Hz)</div>
+      <div class="def-body">The unit of measurement for frequency. Named after physicist Heinrich Hertz. 1 Hz = one cycle per second.</div>
+    </div>
+    <div class="def-card">
+      <div class="def-term">Schumann Resonance</div>
+      <div class="def-body">The Earth's electromagnetic heartbeat, pulsing at 7.83 Hz — in the cavity between Earth's surface and the ionosphere.</div>
+    </div>
+    <div class="def-card">
+      <div class="def-term">Coherence</div>
+      <div class="def-body">When frequencies align harmoniously. In the body, this manifests as health, clarity, and flow.</div>
+    </div>
+    <div class="def-card">
+      <div class="def-term">Dissonance</div>
+      <div class="def-body">When frequencies clash or conflict. In the body, this can manifest as stress, fatigue, or dis-ease.</div>
+    </div>
+    <div class="def-card">
+      <div class="def-term">Coherence vs. Dissonance</div>
+      <div class="def-body">The foundation of frequency healing — aligning your personal field with beneficial frequencies, consciously and intentionally.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Frequency in Nature -->
+<div class="divider"><div class="divider-line"></div></div>
+<section class="section reveal">
+  <div class="section-tag">Section 02</div>
+  <h2 class="section-title">Frequency in Nature</h2>
+  <div class="section-body">
+    <p>The Earth has a heartbeat. It's called the <strong>Schumann Resonance</strong>, and it pulses at 7.83 Hertz — the electromagnetic frequency of the cavity between the Earth's surface and the ionosphere.</p>
+    <p>Think about that. Every living thing that has ever existed on Earth evolved within this frequency field. It's the baseline hum of our home.</p>
+    <p>Every organ in your body has an optimal frequency range. Your brain operates across different frequency bands — <strong>delta, theta, alpha, beta</strong> — each associated with different states of consciousness, from deep sleep to focused alertness. Water responds to frequency. Plants grow differently when exposed to different frequencies. Crystals have their own resonant frequencies, which is why they're used in watches and electronics.</p>
+  </div>
+  <div class="insight">
+    <p>"Nature doesn't speak in words. It speaks in frequency. And your body is designed to listen."</p>
+  </div>
+
+  <!-- Frequency Reference Chart -->
+  <div class="freq-chart">
+    <div class="freq-chart-header">Frequency Reference Chart</div>
+    <div class="freq-row">
+      <div class="freq-source">Human Heart (resting)</div>
+      <div class="freq-hz">1 – 1.5 Hz</div>
+      <div class="freq-note">60–90 beats per minute</div>
+    </div>
+    <div class="freq-row">
+      <div class="freq-source">Schumann Resonance</div>
+      <div class="freq-hz">7.83 Hz</div>
+      <div class="freq-note">Earth's electromagnetic pulse</div>
+    </div>
+    <div class="freq-row">
+      <div class="freq-source">Delta Brainwaves</div>
+      <div class="freq-hz">0.5 – 4 Hz</div>
+      <div class="freq-note">Deep sleep, healing</div>
+    </div>
+    <div class="freq-row">
+      <div class="freq-source">Theta Brainwaves</div>
+      <div class="freq-hz">4 – 8 Hz</div>
+      <div class="freq-note">Deep meditation, creativity</div>
+    </div>
+    <div class="freq-row">
+      <div class="freq-source">Alpha Brainwaves</div>
+      <div class="freq-hz">8 – 12 Hz</div>
+      <div class="freq-note">Relaxed, calm awareness</div>
+    </div>
+    <div class="freq-row">
+      <div class="freq-source">Beta Brainwaves</div>
+      <div class="freq-hz">12 – 30 Hz</div>
+      <div class="freq-note">Active thinking, focus</div>
+    </div>
+    <div class="freq-row">
+      <div class="freq-source">Audible Sound (low)</div>
+      <div class="freq-hz">20 Hz</div>
+      <div class="freq-note">Lowest human hearing</div>
+    </div>
+    <div class="freq-row">
+      <div class="freq-source">Audible Sound (high)</div>
+      <div class="freq-hz">20,000 Hz</div>
+      <div class="freq-note">Highest human hearing</div>
+    </div>
+    <div class="freq-row">
+      <div class="freq-source">US Electrical Grid</div>
+      <div class="freq-hz">60 Hz</div>
+      <div class="freq-note">Standard AC power</div>
+    </div>
+    <div class="freq-row">
+      <div class="freq-source">WiFi (2.4 GHz)</div>
+      <div class="freq-hz">2.4 GHz</div>
+      <div class="freq-note">2.4 billion cycles/second</div>
+    </div>
+    <div class="freq-row">
+      <div class="freq-source">Visible Light</div>
+      <div class="freq-hz">430–770 THz</div>
+      <div class="freq-note">Trillions of cycles/second</div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: Why This Matters -->
+<div class="divider"><div class="divider-line"></div></div>
+<section class="section reveal">
+  <div class="section-tag">Section 03</div>
+  <h2 class="section-title">Why This Matters For You</h2>
+  <div class="section-body">
+    <p>When frequencies align, we call that <strong>coherence</strong>. Coherence in your body feels like health, clarity, flow. Things work. You feel good.</p>
+    <p>When frequencies clash, we call that <strong>dissonance</strong>. Dissonance feels like stress, fatigue, dis-ease. Things struggle. You feel off.</p>
+    <p>Here's the challenge of modern life: we're surrounded by artificial frequencies. WiFi signals. Cell tower radiation. The electromagnetic fields from every device in your home. These didn't exist when your body's systems evolved. Understanding frequency gives you the power to make <strong>conscious choices</strong> about what you resonate with.</p>
+    <p>Over these 333 lessons, you'll learn not just to understand frequency — but to <strong>work with it</strong>. To build devices that generate beneficial frequencies. To structure water. To protect your space. To tune your environment and your own energy field.</p>
+  </div>
+  <div class="insight">
+    <p>"You are not solid matter. You are a symphony of frequencies. And that symphony can be tuned."</p>
+  </div>
+</section>
+
+<!-- Knowledge Check -->
+<div class="divider"><div class="divider-line"></div></div>
+<section class="section reveal">
+  <div class="section-tag">Knowledge Check</div>
+  <h2 class="section-title">Test Your Understanding</h2>
+
+  <div class="knowledge-check">
+    <div class="kc-title">Fill in the Blanks</div>
+    <div class="fill-section">
+      <div class="fill-q"><span>1.</span> Frequency is measured in <input class="blank" data-answer="hz" placeholder="___________"> (the unit of measurement).</div>
+      <div class="fill-q"><span>2.</span> One Hertz equals <input class="blank" data-answer="one cycle" placeholder="___________"> per second.</div>
+      <div class="fill-q"><span>3.</span> The Earth's electromagnetic heartbeat is called the <input class="blank" data-answer="schumann resonance" placeholder="___________">.</div>
+      <div class="fill-q"><span>4.</span> The Schumann Resonance pulses at <input class="blank" data-answer="7.83" placeholder="___"> Hz.</div>
+      <div class="fill-q"><span>5.</span> When frequencies align harmoniously, we call this <input class="blank" data-answer="coherence" placeholder="___________">.</div>
+      <div class="fill-q"><span>6.</span> When frequencies clash or conflict, we call this <input class="blank" data-answer="dissonance" placeholder="___________">.</div>
+    </div>
+
+    <div class="kc-title">True or False</div>
+    <div class="tf-grid">
+      <div class="tf-item">
+        <div class="tf-q">Everything in the physical world is vibrating at some frequency.</div>
+        <div class="tf-buttons">
+          <button class="tf-btn" data-answer="true" onclick="selectTF(this,'true')">T</button>
+          <button class="tf-btn" data-answer="true" onclick="selectTF(this,'false')">F</button>
+        </div>
+      </div>
+      <div class="tf-item">
+        <div class="tf-q">Your heart beats at approximately 60 Hz.</div>
+        <div class="tf-buttons">
+          <button class="tf-btn" data-answer="false" onclick="selectTF(this,'true')">T</button>
+          <button class="tf-btn" data-answer="false" onclick="selectTF(this,'false')">F</button>
+        </div>
+      </div>
+      <div class="tf-item">
+        <div class="tf-q">The human ear can detect frequencies up to 20,000 Hz.</div>
+        <div class="tf-buttons">
+          <button class="tf-btn" data-answer="true" onclick="selectTF(this,'true')">T</button>
+          <button class="tf-btn" data-answer="true" onclick="selectTF(this,'false')">F</button>
+        </div>
+      </div>
+      <div class="tf-item">
+        <div class="tf-q">WiFi signals operate at a lower frequency than audible sound.</div>
+        <div class="tf-buttons">
+          <button class="tf-btn" data-answer="false" onclick="selectTF(this,'true')">T</button>
+          <button class="tf-btn" data-answer="false" onclick="selectTF(this,'false')">F</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="check-btn" onclick="checkAnswers()">Check Answers</button>
+    <div class="score-display" id="score-display"></div>
+  </div>
+</section>
+
+<!-- Reflection -->
+<div class="divider"><div class="divider-line"></div></div>
+<section class="section reveal">
+  <div class="section-tag">Reflection</div>
+  <h2 class="section-title">Go Deeper</h2>
+  <div class="section-body">
+    <p>Take a moment to reflect on what you've learned and how it applies to your life.</p>
+  </div>
+  <div class="reflection-grid">
+    <div class="reflection-item">
+      <div class="reflection-q">1. What artificial frequencies are present in your daily environment?</div>
+      <div class="reflection-hint">Consider: WiFi, cell phones, appliances, electrical wiring, etc.</div>
+      <textarea class="reflection-input" placeholder="Write your reflection here..."></textarea>
+    </div>
+    <div class="reflection-item">
+      <div class="reflection-q">2. When do you feel most "in coherence" — healthy, clear, and in flow?</div>
+      <div class="reflection-hint">Describe the circumstances, environment, and how your body feels.</div>
+      <textarea class="reflection-input" placeholder="Write your reflection here..."></textarea>
+    </div>
+    <div class="reflection-item">
+      <div class="reflection-q">3. When do you feel most "in dissonance" — stressed, fatigued, or off?</div>
+      <div class="reflection-hint">What environments or situations trigger this feeling?</div>
+      <textarea class="reflection-input" placeholder="Write your reflection here..."></textarea>
+    </div>
+  </div>
+</section>
+
+<!-- 7-Day Tracker -->
+<div class="divider"><div class="divider-line"></div></div>
+<section class="section reveal">
+  <div class="section-tag">Practical Application</div>
+  <h2 class="section-title">7-Day Frequency Awareness Exercise</h2>
+  <div class="section-body">
+    <p>For the next 7 days, practice becoming aware of the frequencies around you. Each day, take a few minutes to notice and record what you observe.</p>
+  </div>
+  <div class="tracker">
+    <div class="tracker-header">Frequency Awareness Journal</div>
+    <div class="tracker-labels">
+      <div class="tracker-label">Day</div>
+      <div class="tracker-label">Frequencies I Noticed</div>
+      <div class="tracker-label">How I Felt</div>
+    </div>
+    <div class="tracker-row"><div class="tracker-day">Day 1</div><div class="tracker-cell"><input placeholder="e.g. WiFi, traffic noise, birdsong..."></div><div class="tracker-cell"><input placeholder="e.g. calm, anxious, energized..."></div></div>
+    <div class="tracker-row"><div class="tracker-day">Day 2</div><div class="tracker-cell"><input placeholder="..."></div><div class="tracker-cell"><input placeholder="..."></div></div>
+    <div class="tracker-row"><div class="tracker-day">Day 3</div><div class="tracker-cell"><input placeholder="..."></div><div class="tracker-cell"><input placeholder="..."></div></div>
+    <div class="tracker-row"><div class="tracker-day">Day 4</div><div class="tracker-cell"><input placeholder="..."></div><div class="tracker-cell"><input placeholder="..."></div></div>
+    <div class="tracker-row"><div class="tracker-day">Day 5</div><div class="tracker-cell"><input placeholder="..."></div><div class="tracker-cell"><input placeholder="..."></div></div>
+    <div class="tracker-row"><div class="tracker-day">Day 6</div><div class="tracker-cell"><input placeholder="..."></div><div class="tracker-cell"><input placeholder="..."></div></div>
+    <div class="tracker-row"><div class="tracker-day">Day 7</div><div class="tracker-cell"><input placeholder="..."></div><div class="tracker-cell"><input placeholder="..."></div></div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="reflection-item">
+      <div class="reflection-q">End of Week Reflection</div>
+      <div class="reflection-hint">What patterns did you notice between the frequencies in your environment and how you felt?</div>
+      <textarea class="reflection-input" style="min-height:100px" placeholder="Write your end-of-week reflection here..."></textarea>
+    </div>
+  </div>
+</section>
+
+<!-- Next Lesson -->
+<div class="next-lesson reveal">
+  <div class="next-card">
+    <div>
+      <div class="next-label">Coming Up Next</div>
+      <div class="next-title">Lesson 2: Understanding Vibration</div>
+      <div class="next-desc">Explore vibration — the movement that creates frequency — and how energy, vibration, and frequency form the trinity Tesla said holds the secrets of the universe.</div>
+    </div>
+    <div class="next-arrow">→</div>
+  </div>
+</div>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress-bar').style.width=pct+'%';
+  const ind=document.getElementById('section-indicator');
+  ind.style.opacity=h.scrollTop>200?'1':'0';
+});
+
+// Reveal on scroll
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+},{threshold:0.1});
+reveals.forEach(r=>obs.observe(r));
+
+// Animated sine wave
+const canvas=document.getElementById('wave-canvas');
+const ctx=canvas.getContext('2d');
+let t=0;
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+resize();
+window.addEventListener('resize',resize);
+function drawWave(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const waves=[
+    {amp:40,freq:0.008,speed:0.02,color:'rgba(0,229,204,0.4)',y:0.4},
+    {amp:25,freq:0.012,speed:0.03,color:'rgba(0,181,160,0.25)',y:0.55},
+    {amp:15,freq:0.006,speed:0.015,color:'rgba(201,168,76,0.2)',y:0.65},
+  ];
+  waves.forEach(w=>{
+    ctx.beginPath();
+    ctx.strokeStyle=w.color;
+    ctx.lineWidth=1.5;
+    for(let x=0;x<=canvas.width;x++){
+      const y=canvas.height*w.y+Math.sin(x*w.freq+t*w.speed)*w.amp;
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+  });
+  t++;
+  requestAnimationFrame(drawWave);
+}
+drawWave();
+
+// TF selection
+let tfSelections={};
+function selectTF(btn,choice){
+  const item=btn.closest('.tf-item');
+  const btns=item.querySelectorAll('.tf-btn');
+  btns.forEach(b=>{b.classList.remove('selected-true','selected-false')});
+  btn.classList.add(choice==='true'?'selected-true':'selected-false');
+  const idx=Array.from(document.querySelectorAll('.tf-item')).indexOf(item);
+  tfSelections[idx]=choice;
+}
+
+// Check answers
+function checkAnswers(){
+  let correct=0;let total=0;
+  // Fill blanks
+  document.querySelectorAll('.blank').forEach(b=>{
+    total++;
+    const val=b.value.trim().toLowerCase();
+    const ans=b.dataset.answer.toLowerCase();
+    if(val===ans||val.includes(ans)||ans.includes(val)){
+      b.classList.add('correct');b.classList.remove('incorrect');correct++;
+    } else {
+      b.classList.add('incorrect');b.classList.remove('correct');
+    }
+  });
+  // TF
+  const tfItems=document.querySelectorAll('.tf-item');
+  tfItems.forEach((item,i)=>{
+    total++;
+    const correctAns=item.querySelector('.tf-btn').dataset.answer;
+    const userAns=tfSelections[i];
+    const btns=item.querySelectorAll('.tf-btn');
+    btns.forEach(b=>{b.classList.remove('correct','wrong')});
+    if(userAns===correctAns){correct++;
+      btns.forEach(b=>{if((b.textContent==='T'&&correctAns==='true')||(b.textContent==='F'&&correctAns==='false'))b.classList.add('correct')});
+    } else if(userAns){
+      btns.forEach(b=>{if((b.textContent==='T'&&userAns==='true')||(b.textContent==='F'&&userAns==='false'))b.classList.add('wrong');
+        if((b.textContent==='T'&&correctAns==='true')||(b.textContent==='F'&&correctAns==='false'))b.classList.add('correct')});
+    }
+  });
+  const pct=Math.round((correct/total)*100);
+  const disp=document.getElementById('score-display');
+  disp.textContent=`${correct}/${total} correct — ${pct}%${pct===100?' · Perfect! ✦':''}`;
+  disp.classList.add('show');
+}
+</script>
+</body>
+</html>
