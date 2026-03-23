@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TFA Liaison — Send to Phone</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#080e30;--navy2:#0d1540;--navy3:#111b52;
+  --gold:#c9a84c;--gold2:#e2c06a;
+  --goldf:rgba(201,168,76,0.10);--goldb:rgba(201,168,76,0.28);
+  --white:#f0ede6;--w2:rgba(240,237,230,0.7);--w3:rgba(240,237,230,0.38);--w4:rgba(240,237,230,0.07);
+  --green:#2a8a7a;--red:#b05540;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--navy);color:var(--white);
+  font-family:'Raleway',sans-serif;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px;
+}
+.wrap{width:100%;max-width:520px;display:flex;flex-direction:column;gap:16px}
+
+.logo{text-align:center;margin-bottom:8px}
+.logo h1{font-family:'Cinzel',serif;font-size:20px;color:var(--gold);letter-spacing:0.12em}
+.logo p{font-size:12px;color:var(--w3);margin-top:4px;letter-spacing:0.06em}
+
+.card{background:var(--navy3);border:1px solid var(--goldb);border-radius:12px;padding:18px}
+.card label{display:block;font-family:'Cinzel',serif;font-size:10px;
+  letter-spacing:0.14em;color:var(--gold);margin-bottom:6px}
+.card input{width:100%;background:var(--navy2);border:1px solid var(--goldb);
+  border-radius:7px;padding:10px 13px;color:var(--white);
+  font-family:'Raleway',sans-serif;font-size:12px;outline:none;transition:border-color .2s}
+.card input:focus{border-color:var(--gold)}
+.card input::placeholder{color:var(--w3)}
+
+.btn-row{display:flex;flex-direction:column;gap:10px}
+
+.btn{
+  width:100%;padding:16px;border-radius:10px;border:none;cursor:pointer;
+  font-family:'Cinzel',serif;font-size:13px;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  transition:all .2s;position:relative;overflow:hidden;
+}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-primary:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+.btn-secondary{background:var(--goldf);color:var(--gold);border:1px solid var(--goldb)}
+.btn-secondary:hover{background:rgba(201,168,76,0.18)}
+.btn-secondary:disabled{opacity:0.4;cursor:not-allowed}
+
+.status{
+  padding:14px 16px;border-radius:8px;font-size:13px;line-height:1.65;
+  display:none;
+}
+.status.success{background:rgba(42,138,122,0.12);border:1px solid rgba(42,138,122,0.3);color:#7dd4c8}
+.status.error{background:rgba(176,85,64,0.12);border:1px solid rgba(176,85,64,0.3);color:#e8a090}
+.status.loading{background:var(--goldf);border:1px solid var(--goldb);color:var(--gold)}
+.status.show{display:block}
+
+.msg-box{
+  background:var(--navy2);border:1px solid var(--goldb);border-radius:8px;
+  padding:14px;font-size:12px;color:var(--w2);line-height:1.75;
+  min-height:80px;display:none;white-space:pre-wrap;
+}
+.msg-box.show{display:block}
+
+.divider{text-align:center;color:var(--w3);font-size:11px;
+  font-family:'Cinzel',serif;letter-spacing:0.1em;
+  display:flex;align-items:center;gap:10px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--goldb)}
+
+.type-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.chip{padding:6px 12px;border-radius:20px;font-size:11px;
+  border:1px solid var(--goldb);color:var(--w3);
+  cursor:pointer;transition:all .15s;font-family:'Raleway',sans-serif}
+.chip:hover,.chip.active{background:var(--goldf);color:var(--gold);border-color:var(--gold)}
+
+.save-note{font-size:11px;color:var(--w3);text-align:center;margin-top:4px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="logo">
+    <h1>◈ TFA LIAISON</h1>
+    <p>Generate · Send · Done</p>
+  </div>
+
+  <!-- KEYS -->
+  <div class="card">
+    <label>Anthropic API Key</label>
+    <input type="password" id="apiKey" placeholder="sk-ant-..." oninput="save()">
+    <div style="margin-top:12px">
+      <label>Telegram Bot Token</label>
+      <input type="password" id="tgToken" placeholder="8505361922:AAGc8..." oninput="save()">
+    </div>
+    <div style="margin-top:12px">
+      <label>Telegram Chat ID</label>
+      <input type="text" id="tgChat" placeholder="2132573083" oninput="save()">
+    </div>
+    <p class="save-note" style="margin-top:10px">Keys saved locally in your browser — never sent anywhere</p>
+  </div>
+
+  <!-- MESSAGE TYPE -->
+  <div class="card">
+    <label>What do you want to send?</label>
+    <div class="type-chips">
+      <div class="chip active" onclick="setType(this,'morning')">🌅 Morning Brief</div>
+      <div class="chip" onclick="setType(this,'midday')">☀ Mid-Day Check-In</div>
+      <div class="chip" onclick="setType(this,'evening')">🌙 Evening Recap</div>
+      <div class="chip" onclick="setType(this,'stuck')">💭 I\'m Stuck</div>
+      <div class="chip" onclick="setType(this,'hype')">🔥 Hype Me Up</div>
+      <div class="chip" onclick="setType(this,'focus')">⚡ Best Next Move</div>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="btn-row">
+    <button class="btn btn-primary" id="sendBtn" onclick="generateAndSend()">
+      Generate + Send to Phone
+    </button>
+    <button class="btn btn-secondary" id="previewBtn" onclick="generateOnly()">
+      Preview First (don\'t send yet)
+    </button>
+  </div>
+
+  <!-- STATUS -->
+  <div class="status" id="status"></div>
+
+  <!-- MESSAGE PREVIEW -->
+  <div class="msg-box" id="msgBox"></div>
+
+  <!-- SEND PREVIEW -->
+  <button class="btn btn-primary" id="sendPreviewBtn" style="display:none" onclick="sendPreview()">
+    Send This to My Phone
+  </button>
+
+</div>
+
+<script>
+const PROMPTS = {
+  morning: "Give Keegan Brady his morning brief. He is building The Frequency Academy — a mystery school on Skool. His goal is $10K/month through memberships, Etsy device sales, and ceremonies. TFA launched March 20 2026. Current priorities: build N2 lesson, post 6-8 times daily across 3 Instagram accounts (@babakeegs, @The_Frequency_Academy, @thedragonfrequency), get to 50 Skool members. Give him today's top 3 priorities and one grounding encouraging line. Under 150 words. Warm, ceremonial, no exclamation marks. Speak directly to him like a trusted partner.",
+  midday: "Give Keegan a mid-day check-in. He's building The Frequency Academy. Acknowledge it's midday, ask how the morning went with his priorities, give him one focused nudge for the afternoon. Under 100 words. Grounded and real.",
+  evening: "Give Keegan his evening recap. He's building The Frequency Academy toward $10K/month. Acknowledge what likely moved today, set up tomorrow with one clear intention, close with something grounding. Under 120 words. Ceremonial and warm.",
+  stuck: "Keegan is feeling stuck. He's building The Frequency Academy — a mystery school, sound healing, frequency devices. Remind him of the mission, give him ONE small concrete thing to do right now to get moving. Under 100 words. Real, warm, no fluff.",
+  hype: "Hype Keegan up about The Frequency Academy. He's a sound healer, frequency technologist, ceremonial artist who is building a mystery school that teaches ancient wisdom + modern frequency technology. Remind him of the scale of what he's building and why it matters. Under 120 words. Ceremonial and fired up. No exclamation marks.",
+  focus: "Tell Keegan the single most leveraged thing he can do in the next 2 hours to move The Frequency Academy forward. Consider: building lessons, posting content across 3 Instagram accounts, fulfilling Etsy orders, building devices. Give ONE clear answer with a brief reason why. Under 80 words."
+};
+
+const SYSTEM = "You are the TFA Liaison — Keegan Brady's personal partner in building The Frequency Academy. You speak like a trusted friend who is fully invested in his mission. Warm but grounded. Ceremonial when it fits. Real when he needs it. Never corporate. Never hollow. Never use exclamation marks.";
+
+let currentType = 'morning';
+let lastMessage = '';
+
+// Load saved keys
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = JSON.parse(localStorage.getItem('TFA_LIAISON') || '{}');
+  if (saved.apiKey) document.getElementById('apiKey').value = saved.apiKey;
+  if (saved.tgToken) document.getElementById('tgToken').value = saved.tgToken;
+  if (saved.tgChat) document.getElementById('tgChat').value = saved.tgChat;
+});
+
+function save() {
+  localStorage.setItem('TFA_LIAISON', JSON.stringify({
+    apiKey: document.getElementById('apiKey').value,
+    tgToken: document.getElementById('tgToken').value,
+    tgChat: document.getElementById('tgChat').value
+  }));
+}
+
+function setType(el, type) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  currentType = type;
+  // hide preview if switching type
+  document.getElementById('msgBox').classList.remove('show');
+  document.getElementById('sendPreviewBtn').style.display = 'none';
+}
+
+function showStatus(msg, type) {
+  const el = document.getElementById('status');
+  el.textContent = msg;
+  el.className = 'status show ' + type;
+}
+
+function hideStatus() {
+  document.getElementById('status').className = 'status';
+}
+
+async function callClaude() {
+  const key = document.getElementById('apiKey').value.trim();
+  if (!key) throw new Error('Enter your Anthropic API key above');
+
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'x-api-key': key,
+      'anthropic-version': '2023-06-01',
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 400,
+      system: SYSTEM,
+      messages: [{ role: 'user', content: PROMPTS[currentType] }]
+    })
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error?.message || 'Claude API error ' + res.status);
+  }
+
+  const data = await res.json();
+  return data.content[0].text;
+}
+
+async function sendToTelegram(text) {
+  const token = document.getElementById('tgToken').value.trim();
+  const chatId = document.getElementById('tgChat').value.trim();
+  if (!token || !chatId) throw new Error('Enter your Telegram token and Chat ID above');
+
+  const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' })
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.description || 'Telegram error ' + res.status);
+  }
+  return true;
+}
+
+async function generateAndSend() {
+  const btn = document.getElementById('sendBtn');
+  btn.disabled = true;
+  document.getElementById('sendPreviewBtn').style.display = 'none';
+  document.getElementById('msgBox').classList.remove('show');
+
+  try {
+    showStatus('Generating your message...', 'loading');
+    const message = await callClaude();
+    lastMessage = message;
+
+    showStatus('Sending to your phone...', 'loading');
+    await sendToTelegram(message);
+
+    showStatus('✓ Sent to your phone. Check Telegram now.', 'success');
+    document.getElementById('msgBox').textContent = message;
+    document.getElementById('msgBox').classList.add('show');
+
+  } catch(e) {
+    showStatus('Error: ' + e.message, 'error');
+  }
+
+  btn.disabled = false;
+}
+
+async function generateOnly() {
+  const btn = document.getElementById('previewBtn');
+  btn.disabled = true;
+  document.getElementById('sendPreviewBtn').style.display = 'none';
+  document.getElementById('msgBox').classList.remove('show');
+
+  try {
+    showStatus('Generating preview...', 'loading');
+    const message = await callClaude();
+    lastMessage = message;
+
+    hideStatus();
+    document.getElementById('msgBox').textContent = message;
+    document.getElementById('msgBox').classList.add('show');
+    document.getElementById('sendPreviewBtn').style.display = 'block';
+
+  } catch(e) {
+    showStatus('Error: ' + e.message, 'error');
+  }
+
+  btn.disabled = false;
+}
+
+async function sendPreview() {
+  const btn = document.getElementById('sendPreviewBtn');
+  btn.disabled = true;
+  try {
+    showStatus('Sending to your phone...', 'loading');
+    await sendToTelegram(lastMessage);
+    showStatus('✓ Sent to your phone. Check Telegram now.', 'success');
+  } catch(e) {
+    showStatus('Error: ' + e.message, 'error');
+  }
+  btn.disabled = false;
+}
+</script>
+</body>
+</html>
