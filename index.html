@@ -4,17 +4,259 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Frequency Academy — Lessons</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+:root{
+  --n:#080e30;--n2:#0d1540;--n3:#111b52;
+  --g:#c9a84c;--g2:#e2c06a;
+  --gf:rgba(201,168,76,0.08);--gb:rgba(201,168,76,0.22);
+  --w:#f0ede6;--w2:rgba(240,237,230,0.72);--w3:rgba(240,237,230,0.38);--w4:rgba(240,237,230,0.06);
+  --ok:#2a8a7a;--warn:#c9a84c;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Georgia',serif;background:#0d1240;color:#f5f0e8;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center}
-h1{font-size:1.4rem;letter-spacing:.2em;color:#c9a84c;margin-bottom:1rem;text-transform:uppercase}
-p{color:#a09880;font-size:.9rem;letter-spacing:.1em}
+html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
+body{min-height:100vh}
+
+.bg{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 40% at 20% 10%,rgba(201,168,76,0.06) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 60% at 80% 80%,rgba(90,58,154,0.05) 0%,transparent 55%),
+    radial-gradient(ellipse 100% 100% at 50% 50%,#080e30 0%,#040820 100%)}
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(201,168,76,0.02) 60px),
+  repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(201,168,76,0.02) 60px)}
+
+/* HERO */
+.hero{position:relative;z-index:1;text-align:center;padding:60px 24px 40px}
+.hero-sigil{font-size:48px;opacity:0.35;margin-bottom:16px;
+  animation:pulse 5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:.45}}
+.hero h1{font-family:'Cinzel',serif;font-size:28px;font-weight:700;
+  color:var(--g);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px}
+.hero p{font-size:13px;color:var(--w3);letter-spacing:0.06em;line-height:1.7;max-width:480px;margin:0 auto 24px}
+.hero-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-link{padding:10px 20px;border-radius:8px;font-family:'Cinzel',serif;
+  font-size:11px;font-weight:600;letter-spacing:0.1em;text-decoration:none;
+  transition:all .18s;border:1px solid var(--gb)}
+.hero-link.primary{background:var(--g);color:var(--n);border-color:var(--g)}
+.hero-link.primary:hover{background:var(--g2)}
+.hero-link.secondary{background:var(--gf);color:var(--g)}
+.hero-link.secondary:hover{background:rgba(201,168,76,0.15)}
+
+/* STATS BAR */
+.stats{position:relative;z-index:1;display:flex;justify-content:center;gap:0;
+  border-top:1px solid var(--gb);border-bottom:1px solid var(--gb);
+  background:rgba(8,14,48,0.6);backdrop-filter:blur(8px);margin-bottom:48px}
+.stat{padding:16px 32px;text-align:center;border-right:1px solid var(--gb)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--g)}
+.stat-l{font-size:11px;color:var(--w3);letter-spacing:0.06em;margin-top:2px}
+
+/* MAIN */
+main{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 80px}
+
+/* MODULE SECTION */
+.module-section{margin-bottom:40px}
+.module-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;
+  padding-bottom:10px;border-bottom:1px solid var(--gb)}
+.module-code{font-family:'Cinzel',serif;font-size:11px;font-weight:700;
+  color:var(--n);background:var(--g);padding:4px 10px;border-radius:4px;
+  letter-spacing:0.1em;flex-shrink:0}
+.module-name{font-family:'Cinzel',serif;font-size:15px;color:var(--w);
+  letter-spacing:0.06em;font-weight:600}
+.module-count{margin-left:auto;font-size:11px;color:var(--w3)}
+
+/* LESSON CARDS */
+.lessons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.lesson-card{background:var(--n3);border:1px solid rgba(240,237,230,0.06);
+  border-radius:10px;padding:14px 16px;text-decoration:none;
+  transition:all .18s;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.lesson-card:hover{background:var(--gf);border-color:var(--gb);transform:translateY(-1px)}
+.lesson-card.live{border-left:3px solid var(--ok)}
+.lesson-card.ready{border-left:3px solid var(--warn)}
+.lesson-card.missing{border-left:3px solid rgba(240,237,230,0.1);opacity:0.5;cursor:default}
+.lesson-card.missing:hover{transform:none;background:var(--n3);border-color:rgba(240,237,230,0.06)}
+.lc-top{display:flex;align-items:center;gap:8px}
+.lc-code{font-family:'Cinzel',serif;font-size:10px;color:var(--g);
+  letter-spacing:0.1em;font-weight:600}
+.lc-status{margin-left:auto;font-size:9px;padding:2px 7px;border-radius:8px}
+.s-live{background:rgba(42,138,122,0.2);color:#7dd4c8}
+.s-ready{background:rgba(201,168,76,0.15);color:var(--g)}
+.s-missing{background:rgba(240,237,230,0.06);color:var(--w3)}
+.lc-title{font-size:13px;color:var(--w);line-height:1.4;font-weight:500}
+.lc-sub{font-size:11px;color:var(--w3);line-height:1.4}
+.lc-arrow{position:absolute;right:14px;bottom:14px;color:var(--g);
+  font-size:14px;opacity:0;transition:opacity .18s}
+.lesson-card:hover .lc-arrow{opacity:1}
+
+/* COMING SOON CARD */
+.coming-card{background:var(--w4);border:1px dashed rgba(240,237,230,0.08);
+  border-radius:10px;padding:12px 16px;
+  font-size:11px;color:var(--w3);text-align:center;font-style:italic}
+
+/* COMPANION SECTION */
+.companion-section{background:var(--n3);border:1px solid var(--gb);
+  border-radius:14px;padding:28px;text-align:center;margin-bottom:40px;
+  position:relative;overflow:hidden}
+.companion-section::before{content:'◈';position:absolute;font-size:120px;
+  color:rgba(201,168,76,0.04);top:-20px;left:50%;transform:translateX(-50%);
+  font-family:'Cinzel',serif;pointer-events:none}
+.companion-section h2{font-family:'Cinzel',serif;font-size:16px;color:var(--g);
+  letter-spacing:0.1em;margin-bottom:8px;position:relative}
+.companion-section p{font-size:13px;color:var(--w3);line-height:1.75;
+  max-width:500px;margin:0 auto 18px;position:relative}
+
+/* FOOTER */
+footer{position:relative;z-index:1;text-align:center;padding:24px;
+  border-top:1px solid var(--gb);font-size:11px;color:var(--w3);
+  letter-spacing:0.06em}
 </style>
 </head>
 <body>
-<div>
-<h1>The Frequency Academy</h1>
-<p>Select your lesson from the Skool portal to begin.</p>
+<div class="bg"></div>
+<div class="bg-grid"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-sigil">✦</div>
+  <h1>The Frequency Academy</h1>
+  <p>A living mystery school at the intersection of ancient wisdom and modern frequency science. Select your lesson to begin.</p>
+  <div class="hero-links">
+    <a href="https://www.skool.com/the-frequency-academy" target="_blank" class="hero-link primary">Join the Academy</a>
+    <a href="Companion/Companion.html" class="hero-link secondary">◈ Ask the Academy Guide</a>
+  </div>
 </div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-n">3</div><div class="stat-l">Lessons Live</div></div>
+  <div class="stat"><div class="stat-n">7</div><div class="stat-l">Ready to Deploy</div></div>
+  <div class="stat"><div class="stat-n">16</div><div class="stat-l">Modules</div></div>
+  <div class="stat"><div class="stat-n">450+</div><div class="stat-l">Lessons Coming</div></div>
+</div>
+
+<main>
+
+<!-- COMPANION -->
+<div class="companion-section">
+  <h2>◈ Your Academy Guide</h2>
+  <p>An AI companion that knows the full curriculum, the Dragon lore, the gamification system, and your path through the Academy. Ask it anything.</p>
+  <a href="Companion/Companion.html" class="hero-link primary">Open the Academy Guide</a>
+</div>
+
+<!-- MODULE 1 — QUANTUM PHYSICS -->
+<div class="module-section">
+  <div class="module-head">
+    <div class="module-code">Q</div>
+    <div class="module-name">Quantum Physics & Sciences</div>
+    <div class="module-count">0 of 16 live</div>
+  </div>
+  <div class="lessons-grid">
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">Q1</div><div class="lc-status s-missing">Coming</div></div><div class="lc-title">What Is Quantum Physics</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">Q2</div><div class="lc-status s-ready">Video Ready</div></div><div class="lc-title">The Observer Effect</div></div>
+    <div class="coming-card">+ 14 more lessons coming</div>
+  </div>
+</div>
+
+<!-- MODULE 2 — SYMBOLIC SCIENCES -->
+<div class="module-section">
+  <div class="module-head">
+    <div class="module-code">N</div>
+    <div class="module-name">Symbolic Sciences — Numerology</div>
+    <div class="module-count">1 of 11 live</div>
+  </div>
+  <div class="lessons-grid">
+    <a href="04-symbolic-sciences/numerology/lesson-01-language-of-numbers/" class="lesson-card live">
+      <div class="lc-top"><div class="lc-code">N1</div><div class="lc-status s-live">Live</div></div>
+      <div class="lc-title">The Language of Numbers</div>
+      <div class="lc-sub">Vibration Encoded in Mathematics</div>
+      <div class="lc-arrow">→</div>
+    </a>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">N2</div><div class="lc-status s-missing">Coming</div></div><div class="lc-title">Life Path Number</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">N3</div><div class="lc-status s-missing">Coming</div></div><div class="lc-title">Expression Number</div></div>
+    <div class="coming-card">+ 8 more lessons coming</div>
+  </div>
+</div>
+
+<!-- MODULE 3 — MEDITATIONS -->
+<div class="module-section">
+  <div class="module-head">
+    <div class="module-code">MS</div>
+    <div class="module-name">Meditations & Soundscapes</div>
+    <div class="module-count">1 live · 5 videos ready</div>
+  </div>
+  <div class="lessons-grid">
+    <a href="11-meditations-and-soundscapes/creating-sac..." class="lesson-card live">
+      <div class="lc-top"><div class="lc-code">MS1</div><div class="lc-status s-live">Live</div></div>
+      <div class="lc-title">Creating Sacred Space</div>
+      <div class="lc-sub">The foundation of ceremonial practice</div>
+      <div class="lc-arrow">→</div>
+    </a>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">MS2</div><div class="lc-status s-ready">Video Ready</div></div><div class="lc-title">Breathwork Preparation</div><div class="lc-sub">3 foundational techniques</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">MS3</div><div class="lc-status s-ready">Video Ready</div></div><div class="lc-title">Dropping Into the Heart</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">MS11</div><div class="lc-status s-ready">Video Ready</div></div><div class="lc-title">Late Night Resonance — D Hijaz</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">MS12</div><div class="lc-status s-ready">Video Ready</div></div><div class="lc-title">Late Night Resonance — D Kurd</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">MS13</div><div class="lc-status s-ready">Video Ready</div></div><div class="lc-title">Late Night Resonance — E Amara</div></div>
+    <div class="coming-card">+ 14 more lessons coming</div>
+  </div>
+</div>
+
+<!-- MODULE 4 — BIOALCHEMY -->
+<div class="module-section">
+  <div class="module-head">
+    <div class="module-code">BA</div>
+    <div class="module-name">BioAlchemy: The Living Temple</div>
+    <div class="module-count">1 of 20 live</div>
+  </div>
+  <div class="lessons-grid">
+    <a href="BA1.html" class="lesson-card live">
+      <div class="lc-top"><div class="lc-code">BA1</div><div class="lc-status s-live">Live</div></div>
+      <div class="lc-title">Sacred Secretions</div>
+      <div class="lc-sub">The body as frequency transmitter</div>
+      <div class="lc-arrow">→</div>
+    </a>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">BA2</div><div class="lc-status s-missing">Coming</div></div><div class="lc-title">Nutrition as Frequency</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">BA3</div><div class="lc-status s-missing">Coming</div></div><div class="lc-title">Fasting Protocols</div></div>
+    <div class="coming-card">+ 17 more lessons coming</div>
+  </div>
+</div>
+
+<!-- COMING MODULES -->
+<div class="module-section">
+  <div class="module-head">
+    <div class="module-code">+</div>
+    <div class="module-name">More Modules Loading</div>
+    <div class="module-count">12 modules in development</div>
+  </div>
+  <div class="lessons-grid">
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">HM</div></div><div class="lc-title">High Magic & Sigil Work</div><div class="lc-sub">36 lessons coming</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">C</div></div><div class="lc-title">Frequency Charged™ Methodology</div><div class="lc-sub">27 lessons coming</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">FF</div></div><div class="lc-title">The Frequency Forge</div><div class="lc-sub">31 lessons · device building</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">G</div></div><div class="lc-title">Sacred Geometry & Light Body</div><div class="lc-sub">22 lessons coming</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">CS</div></div><div class="lc-title">Consciousness Sciences</div><div class="lc-sub">35 lessons coming</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">L</div></div><div class="lc-title">The Seven Gates</div><div class="lc-sub">83 lessons · Inanna's descent</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">A</div></div><div class="lc-title">Celestial Sciences</div><div class="lc-sub">38 lessons coming</div></div>
+    <div class="lesson-card missing"><div class="lc-top"><div class="lc-code">🐉</div></div><div class="lc-title">The Dragon's Lair</div><div class="lc-sub">something is hidden here</div></div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  THE FREQUENCY ACADEMY · Technology of Remembrance · <a href="https://www.skool.com/the-frequency-academy" target="_blank" style="color:var(--g);text-decoration:none">Join on Skool</a>
+</footer>
+
+<script>
+// Fix MS1 link — find actual path
+document.querySelectorAll('.lesson-card.live').forEach(card => {
+  if (card.querySelector('.lc-code').textContent === 'MS1') {
+    // Try to find the real path
+    card.href = '11-meditations-and-soundscapes/creating-sacred-space/';
+  }
+  if (card.querySelector('.lc-code') && card.querySelector('.lc-code').textContent === 'BA1') {
+    card.href = 'BA1.html';
+  }
+});
+</script>
 </body>
 </html>
