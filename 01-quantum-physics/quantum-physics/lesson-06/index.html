@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q6 — Quantum Coherence | The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --n:#0a1628;--n2:#0d1e38;--n3:#102040;
+  --g:#4a9edd;--g2:#78b8ee;
+  --gb:rgba(74,158,221,0.22);--gf:rgba(74,158,221,0.08);
+  --w:#e8f0f8;--w2:rgba(232,240,248,0.72);--w3:rgba(232,240,248,0.38);--w4:rgba(232,240,248,0.06);
+  --ok:#2a8a7a;--gold:#c9a84c;--gold2:#e2c06a;
+  --coherent:#2ab8a0;--coherent-bg:rgba(42,184,160,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
+body{min-height:100vh;padding-bottom:80px}
+
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--w4);z-index:200}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--g),var(--coherent));transition:width .4s;width:0%}
+
+header{background:rgba(10,22,40,0.96);border-bottom:1px solid var(--gb);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:100;backdrop-filter:blur(8px)}
+.hd-left{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.12em}
+.hd-right{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em}
+
+.hero{text-align:center;padding:60px 24px 44px;max-width:820px;margin:0 auto}
+.eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.22em;color:var(--g);margin-bottom:18px;opacity:0.8}
+.hero h1{font-family:'Cinzel',serif;font-size:44px;font-weight:700;color:var(--w);line-height:1.12;margin-bottom:12px}
+.hero h1 span{color:var(--coherent)}
+.gold-rule{width:80px;height:2px;background:linear-gradient(90deg,var(--g),var(--coherent));margin:22px auto;opacity:0.7}
+.hero-sub{font-size:16px;color:var(--w3);line-height:1.8;max-width:580px;margin:0 auto}
+
+.video-coming{max-width:840px;margin:0 auto 36px;padding:0 24px}
+.vc-inner{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:14px}
+.vc-icon{font-size:22px;flex-shrink:0}
+.vc-label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.12em;margin-bottom:3px}
+.vc-text{font-size:12px;color:var(--w3);line-height:1.5}
+
+.content{max-width:800px;margin:0 auto;padding:0 24px}
+
+.section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px 32px;margin-bottom:18px}
+.section h2{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.1em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb);text-transform:uppercase}
+.section p{font-size:14px;color:var(--w2);line-height:1.85;margin-bottom:12px}
+.section p:last-child{margin:0}
+.section p strong{color:var(--g2);font-weight:600}
+.section p em{color:var(--coherent);font-style:normal;font-weight:500}
+
+/* COHERENCE PRACTICE TIMER */
+.practice-section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px 32px;margin-bottom:18px}
+.practice-section h2{font-family:'Cinzel',serif;font-size:14px;color:var(--coherent);letter-spacing:0.1em;margin-bottom:6px;text-transform:uppercase}
+.practice-sub{font-size:12px;color:var(--w3);margin-bottom:22px}
+
+/* HRV WAVE DISPLAY */
+.hrv-display{background:rgba(0,0,0,0.3);border:1px solid var(--gb);border-radius:10px;padding:16px;margin-bottom:18px;position:relative;overflow:hidden}
+.hrv-label{font-family:'Cinzel',serif;font-size:10px;color:var(--coherent);letter-spacing:0.12em;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.hrv-state{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--coherent-bg);color:var(--coherent);border:1px solid rgba(42,184,160,0.3)}
+.hrv-canvas{width:100%;height:80px;display:block}
+
+/* BREATH CIRCLE */
+.breath-zone{display:flex;flex-direction:column;align-items:center;margin-bottom:22px}
+.breath-circle{width:180px;height:180px;border-radius:50%;border:2px solid var(--gb);display:flex;align-items:center;justify-content:center;position:relative;transition:all 1.2s ease;margin-bottom:16px}
+.breath-circle.inhale{border-color:var(--g);box-shadow:0 0 40px rgba(74,158,221,0.2);transform:scale(1.12)}
+.breath-circle.hold{border-color:var(--gold);box-shadow:0 0 30px rgba(201,168,76,0.15)}
+.breath-circle.exhale{border-color:var(--coherent);box-shadow:0 0 40px rgba(42,184,160,0.2);transform:scale(0.92)}
+.breath-circle.rest{border-color:var(--gb);transform:scale(1)}
+.breath-inner{text-align:center}
+.breath-phase{font-family:'Cinzel',serif;font-size:14px;color:var(--w);letter-spacing:0.08em}
+.breath-count{font-family:'Cinzel',serif;font-size:44px;color:var(--g);margin-top:4px;font-weight:700}
+.breath-sub{font-size:11px;color:var(--w3);margin-top:4px;letter-spacing:0.06em}
+
+/* TECHNIQUE SELECTOR */
+.technique-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+@media(max-width:540px){.technique-grid{grid-template-columns:1fr}}
+.tech-card{background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:12px;cursor:pointer;transition:all .18s;text-align:center}
+.tech-card:hover{border-color:var(--g)}
+.tech-card.active{border-color:var(--coherent);background:var(--coherent-bg)}
+.tech-name{font-family:'Cinzel',serif;font-size:11px;color:var(--w);letter-spacing:0.06em;margin-bottom:4px}
+.tech-ratio{font-size:11px;color:var(--coherent);margin-bottom:4px}
+.tech-desc{font-size:10px;color:var(--w3);line-height:1.4}
+
+.timer-controls{display:flex;gap:10px;justify-content:center;margin-top:6px}
+.timer-btn{padding:10px 24px;border-radius:8px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:0.1em;cursor:pointer;transition:all .18s;border:none}
+.timer-btn.start{background:var(--coherent);color:#080e30}.timer-btn.start:hover{background:#3dd4bc}
+.timer-btn.stop{background:var(--gf);color:var(--g);border:1px solid var(--gb)}
+.round-info{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.08em;margin-top:12px;text-align:center}
+
+/* CONCEPT GRID */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:580px){.concept-grid{grid-template-columns:1fr}}
+.concept-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px}
+.concept-card h4{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.concept-card p{font-size:12px;color:var(--w3);line-height:1.65;margin:0}
+.concept-card .tfa{font-size:11px;color:var(--coherent);margin-top:7px;padding-top:7px;border-top:1px solid var(--gb);display:block;line-height:1.5}
+
+/* ACCORDION */
+.accordion{margin-top:8px}
+.acc-item{border:1px solid var(--gb);border-radius:8px;margin-bottom:7px;overflow:hidden}
+.acc-head{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.06em;background:var(--gf);transition:background .15s}
+.acc-head:hover{background:rgba(255,255,255,0.04)}
+.acc-body{display:none;padding:14px 16px;font-size:13px;color:var(--w2);line-height:1.75;border-top:1px solid var(--gb)}
+.acc-body.open{display:block}
+.acc-arrow{transition:transform .2s;font-size:11px}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body table{width:100%;border-collapse:collapse;margin-top:6px}
+.acc-body td{padding:8px 10px;font-size:12px;border-bottom:1px solid rgba(232,240,248,0.05)}
+.acc-body td:first-child{color:var(--g2);font-weight:600;min-width:160px;vertical-align:top}
+.acc-body ul{padding-left:16px;margin-top:4px}
+.acc-body li{margin-bottom:7px;line-height:1.6}
+
+/* PRACTICAL */
+.practice-steps{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.ps{display:flex;gap:14px;padding:14px;background:var(--gf);border:1px solid var(--gb);border-radius:8px}
+.ps-n{font-family:'Cinzel',serif;font-size:13px;color:var(--coherent);min-width:28px;font-weight:700;padding-top:1px}
+.ps-t{font-size:13px;color:var(--w2);line-height:1.65}
+.ps-t strong{color:var(--g2);font-weight:600}
+
+/* RESOURCES */
+.res-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(232,240,248,0.05)}
+.res-item:last-child{border:none}
+.res-icon{font-size:15px;flex-shrink:0;padding-top:2px}
+.res-title{font-size:13px;color:var(--w);font-weight:500;margin-bottom:2px}
+.res-auth{font-size:11px;color:var(--coherent);margin-bottom:3px}
+.res-desc{font-size:11px;color:var(--w3);line-height:1.5}
+
+/* REFLECTION */
+.rp{background:var(--n3);border-left:3px solid var(--coherent);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:10px}
+.rp p{font-size:13px;color:var(--w2);line-height:1.65;font-style:italic;margin:0}
+textarea{width:100%;background:var(--w4);border:1px solid var(--gb);border-radius:8px;padding:12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;resize:vertical;min-height:88px;outline:none;line-height:1.6;transition:border-color .2s;margin-top:8px}
+textarea:focus{border-color:var(--coherent)}
+textarea::placeholder{color:var(--w3)}
+
+/* WORKSHOP */
+.workshop{background:var(--gf);border:1px dashed var(--gb);border-radius:12px;padding:22px;text-align:center;margin-bottom:18px}
+.workshop h3{font-family:'Cinzel',serif;font-size:13px;color:var(--coherent);letter-spacing:0.08em;margin-bottom:8px}
+.workshop p{font-size:12px;color:var(--w3);line-height:1.65}
+
+/* COMPLETION */
+.completion{background:var(--gf);border:1px solid var(--gb);border-radius:12px;padding:26px;text-align:center;margin-top:18px}
+.completion h3{font-family:'Cinzel',serif;font-size:14px;color:var(--coherent);letter-spacing:0.08em;margin-bottom:10px}
+.completion p{font-size:13px;color:var(--w3);margin-bottom:16px;line-height:1.6}
+.complete-btn{padding:12px 30px;border-radius:8px;background:var(--coherent);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:0.12em;color:#080e30;transition:all .18s}
+.complete-btn:hover{background:#3dd4bc;transform:scale(1.02)}
+.complete-btn.done{background:var(--ok);cursor:default;transform:none}
+.xp-flash{display:none;margin-top:12px;font-family:'Cinzel',serif;font-size:12px;color:var(--coherent);letter-spacing:0.08em}
+.xp-flash.show{display:block}
+
+.next-lesson{background:var(--n3);border:1px solid var(--gb);border-radius:12px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;margin-top:14px;text-decoration:none;transition:all .18s}
+.next-lesson:hover{background:var(--gf);border-color:var(--coherent);transform:translateX(3px)}
+.next-label{font-size:10px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.12em;margin-bottom:4px;text-transform:uppercase}
+.next-title{font-size:14px;color:var(--w);font-family:'Cinzel',serif;font-weight:600}
+.next-arrow{font-size:22px;color:var(--coherent)}
+
+.save-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,0.97);border-top:1px solid var(--gb);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;backdrop-filter:blur(8px)}
+.save-status{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.08em}
+.save-btns{display:flex;gap:8px}
+.save-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all .15s;border:1px solid var(--gb)}
+.save-btn.primary{background:var(--g);color:#080e30;border-color:var(--g)}.save-btn.primary:hover{background:var(--g2)}
+.save-btn.ghost{background:var(--gf);color:var(--g)}.save-btn.ghost:hover{background:rgba(255,255,255,0.06)}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <div class="hd-left">THE FREQUENCY ACADEMY · QUANTUM PHYSICS & SCIENCES</div>
+  <div class="hd-right">Q6 · LESSON 6 OF 16</div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">QUANTUM PHYSICS & SCIENCES · Q6</div>
+  <h1>Quantum <span>Coherence</span></h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">Coherence is the state where energy moves in alignment — where waves synchronize, where fields lock into phase, where healing becomes possible. This lesson is about why intention is not just a nice idea. It is a physical force that promotes or disrupts coherence at the cellular level.</p>
+</div>
+
+<div class="video-coming">
+  <div class="vc-inner">
+    <div class="vc-icon">🎬</div>
+    <div>
+      <div class="vc-label">Video Lesson Coming</div>
+      <div class="vc-text">Full video transmission for this lesson is in production. The complete interactive lesson is available below now.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- TRANSMISSION -->
+  <div class="section">
+    <h2>The Transmission</h2>
+    <p>There is a state available to you — right now, in this body, in this moment — where your heart and brain synchronize, where your cells emit coherent light, where your electromagnetic field becomes ordered and powerful. Science has a name for it. Ancient traditions have described it for millennia. And it is the single most important variable in any healing or frequency work you will ever do.</p>
+    <p>It is called <em>coherence</em>.</p>
+    <p>Not belief. Not willpower. Not positive thinking. <em>Coherence</em> — a measurable, physical state of synchronized oscillation in which wave patterns reinforce rather than cancel each other, in which information travels with maximum efficiency, in which the body's systems communicate with clarity rather than noise.</p>
+    <p>This lesson is not primarily about biology. It is about understanding why the inner state of the practitioner is the most consequential variable in any session — and giving you the science to back that up when someone asks why it matters that you prepare yourself before you charge a device or run a ceremony.</p>
+    <p>The answer is coherence. And coherence is measurable, trainable, and transformative.</p>
+  </div>
+
+  <!-- THE SCIENCE OF COHERENCE -->
+  <div class="section">
+    <h2>What Quantum Coherence Actually Is</h2>
+    <p>In physics, coherence describes a state in which two or more waves maintain a definite phase relationship — they are synchronized. When waves are coherent, they interfere constructively, amplifying each other. When they are incoherent, they interfere destructively — canceling each other out and producing noise.</p>
+    <p>For a long time, physicists believed quantum coherence — the maintenance of quantum phase relationships — could only exist in extremely cold, isolated systems. The warm, wet, chaotic environment of a living cell seemed like exactly the wrong place for quantum coherence to survive.</p>
+    <p>Then researchers started looking more carefully at photosynthesis.</p>
+    <p><strong>In 2007, Graham Fleming's group at UC Berkeley published a landmark paper</strong> demonstrating quantum coherence in the light-harvesting complexes of green sulfur bacteria. When a photon of light hits the light-harvesting antenna, the energy does not randomly diffuse. It explores all possible pathways to the reaction center simultaneously — quantum mechanically — and finds the most efficient route with near-perfect efficiency. The process is so effective that almost every photon captured is converted to chemical energy.</p>
+    <p>This was shocking. Quantum coherence in a warm biological system. The impossible was happening, continuously, in living cells.</p>
+    <p>Since then, quantum coherence has been proposed as a mechanism in bird navigation (the magnetic compass in European robins may use quantum entanglement), enzyme catalysis, and possibly DNA mutation. Life, it appears, actively exploits quantum mechanics — not despite the warm, wet environment but somehow because of it.</p>
+
+    <p><strong>Fritz-Albert Popp's research on biophotons</strong> adds another dimension. Popp, a German physicist, discovered in the 1970s that living cells emit ultra-weak light — photons in the visible range — at a rate far below what any thermal process could explain. These biophotons are not random noise. They are coherent — laser-like in their phase relationships — and Popp proposed that they function as a cellular communication system, coordinating biological processes across the body at the speed of light.</p>
+    <p>Healthy cells emit coherent biophotons. Stressed or diseased cells emit more photons but with disrupted coherence — the signal becomes noise. Cancer cells, Popp found, emit far more light but with dramatically reduced coherence. The disease is not just chemical. It is a loss of coherent communication.</p>
+    <p>If this is correct, then healing — at the most fundamental level — is a restoration of coherence. And anything that promotes coherent fields in and around the body is participating in that restoration.</p>
+  </div>
+
+  <!-- HEART COHERENCE -->
+  <div class="section">
+    <h2>The Heart as Coherence Generator</h2>
+    <p>The HeartMath Institute in California has spent over 30 years researching what they call <em>heart coherence</em> — a specific psychophysiological state in which the heart rhythm becomes ordered and smooth, producing a measurable change in the electromagnetic field of the body.</p>
+    <p>The heart is the most powerful electromagnetic field generator in the body. Its electrical field is 60 times greater in amplitude than the brain's, and its magnetic field is 100 times stronger — measurable several feet from the body. When the heart enters a coherent state, this field becomes ordered and coherent as well.</p>
+    <p><strong>Heart Rate Variability (HRV)</strong> is the primary measurement tool. In an incoherent state, the heart rhythm is irregular and chaotic — each beat interval varies unpredictably. In a coherent state, the intervals follow a smooth, sine-wave-like pattern. This is not less variability — it is more ordered variability. The difference is immediately visible on a heart rhythm graph and measurable with a simple sensor.</p>
+    <p>What produces heart coherence? HeartMath's research identified several reliable inducers: sustained positive emotions (appreciation, care, compassion), slow rhythmic breathing at approximately 5 breaths per minute, and focused attention on the heart center. These are not vague wellness recommendations. They produce measurable, reproducible changes in HRV, cortisol levels, immune markers, and cognitive function.</p>
+    <p><strong>Rollin McCraty's research</strong> demonstrated that when a person is in heart coherence, the coherent electromagnetic signal from their heart can be detected in the brainwaves of another person nearby — even without physical contact. Coherence is contagious. It transmits field to field.</p>
+    <p>This is the research basis for why the practitioner's inner state matters. A practitioner in heart coherence produces a measurable coherent field that influences the systems of those around them. A practitioner in stress, distraction, or emotional turbulence produces an incoherent field that does the opposite. This is not metaphysics. This is published research.</p>
+    <p><strong>For Frequency Charged™ device building:</strong> the coherence of the practitioner's field during construction is the primary variable that distinguishes a charged device from an uncharged one. The materials are the same. The geometry is the same. What differs is the field coherence imprinted during the construction and charging process. This is not symbolic. It is the mechanism.</p>
+  </div>
+
+  <!-- MASARU EMOTO & WATER -->
+  <div class="section">
+    <h2>Water, Intention, and Structural Coherence</h2>
+    <p>Masaru Emoto's research, while controversial in mainstream science, documents something that deserves serious consideration in the context of coherence: water exposed to coherent human intention — focused prayer, words of appreciation, classical music — forms more geometrically ordered ice crystals than water exposed to incoherent or negative stimuli.</p>
+    <p>The criticism of Emoto's work has focused on replication methodology, and that criticism is valid. But the underlying question — whether coherent intention produces measurable structural changes in water — is one that mainstream physics can no longer dismiss on theoretical grounds. The Zero Point Field lesson established that the quantum vacuum is not passive. The Observer Effect lessons established that observation participates in collapsing quantum states.</p>
+    <p>The human body is approximately 70% water. When you work with water structuring devices — the Water Temple, tensor rings, structured water systems — you are working with a medium that may be exquisitely sensitive to coherent field information. The Schumann resonance frequency of 7.83Hz, which the Water Temple uses, is not arbitrary. It is the fundamental resonant frequency of the Earth's electromagnetic field — the frequency that has been present during all of biological evolution on this planet.</p>
+    <p>Water structured at 7.83Hz may be water that is coherent with the planetary field. What that means for biological systems consuming or being exposed to it is an active area of investigation.</p>
+  </div>
+
+  <!-- INTERACTIVE: COHERENCE PRACTICE TIMER -->
+  <div class="practice-section">
+    <h2>Heart Coherence Practice</h2>
+    <div class="practice-sub">This is the most important interactive element in the Quantum Physics module. Practice coherence breathing now — then bring this state into every session.</div>
+
+    <!-- HRV DISPLAY -->
+    <div class="hrv-display">
+      <div class="hrv-label">
+        <span>HEART RHYTHM</span>
+        <span class="hrv-state" id="hrvState">Baseline</span>
+      </div>
+      <canvas class="hrv-canvas" id="hrvCanvas"></canvas>
+    </div>
+
+    <!-- TECHNIQUE SELECTOR -->
+    <div class="technique-grid">
+      <div class="tech-card active" onclick="selectTech(0,this)">
+        <div class="tech-name">HeartMath Coherence</div>
+        <div class="tech-ratio">5 in · 5 out</div>
+        <div class="tech-desc">The scientifically validated coherence breath. 5 breaths per minute.</div>
+      </div>
+      <div class="tech-card" onclick="selectTech(1,this)">
+        <div class="tech-name">Box Breath</div>
+        <div class="tech-ratio">4 · 4 · 4 · 4</div>
+        <div class="tech-desc">Equal-ratio breathing for nervous system regulation.</div>
+      </div>
+      <div class="tech-card" onclick="selectTech(2,this)">
+        <div class="tech-name">Dragon Breath</div>
+        <div class="tech-ratio">4 in · 2 hold · 8 out</div>
+        <div class="tech-desc">TFA grounding breath. Activates parasympathetic before ceremony.</div>
+      </div>
+    </div>
+
+    <!-- BREATH CIRCLE -->
+    <div class="breath-zone">
+      <div class="breath-circle" id="breathCircle">
+        <div class="breath-inner">
+          <div class="breath-phase" id="breathPhase">Ready</div>
+          <div class="breath-count" id="breathCount">◈</div>
+          <div class="breath-sub" id="breathSub">Select technique and begin</div>
+        </div>
+      </div>
+      <div class="timer-controls">
+        <button class="timer-btn start" id="startBtn" onclick="startBreath()">Begin Practice</button>
+        <button class="timer-btn stop" onclick="stopBreath()">Stop</button>
+      </div>
+      <div class="round-info" id="roundInfo">Rounds completed: 0</div>
+    </div>
+  </div>
+
+  <!-- KEY CONCEPTS -->
+  <div class="section">
+    <h2>Key Concepts</h2>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <h4>Quantum Coherence</h4>
+        <p>A state in which quantum systems maintain a definite phase relationship — allowing wave-like interference effects at larger scales. Proven in photosynthesis and proposed in multiple biological systems.</p>
+        <span class="tfa">→ Life actively uses quantum coherence. Your body is a quantum system.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Decoherence</h4>
+        <p>The process by which quantum coherence is lost through interaction with the environment. Stress, inflammation, and electromagnetic interference all promote decoherence in biological systems.</p>
+        <span class="tfa">→ Understanding decoherence explains why environment and preparation matter so much.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Heart Rate Variability (HRV)</h4>
+        <p>A measure of heart rhythm complexity used by HeartMath to quantify heart coherence. Higher, more ordered HRV correlates with improved immune function, cognitive clarity, and emotional regulation.</p>
+        <span class="tfa">→ HRV is the most accessible measurement of your coherence state before a session.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Biophotons</h4>
+        <p>Ultra-weak coherent light emissions from living cells. Popp proposed they coordinate biological processes as a quantum communication system. Coherence of emission correlates with cellular health.</p>
+        <span class="tfa">→ Frequency devices that promote coherent field states may support biophoton coherence directly.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Coherent Field</h4>
+        <p>A field state in which all oscillating components are synchronized in phase — maximizing constructive interference and information transmission. The heart in coherence generates one.</p>
+        <span class="tfa">→ The goal of every charging session is to generate a coherent field through the device and the practitioner simultaneously.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Intentional Field Effects</h4>
+        <p>McCraty's research showing that the coherent electromagnetic signal from a practitioner's heart can be detected in others' brainwaves without physical contact. Coherence transmits field to field.</p>
+        <span class="tfa">→ This is why experienced practitioners produce different results. The difference is measurable.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE ACCORDION -->
+  <div class="section">
+    <h2>Quick Reference</h2>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">Key Terms <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <table>
+            <tr><td>Quantum Coherence</td><td>A state where quantum systems maintain definite phase relationships — allowing wave-like effects at larger scales.</td></tr>
+            <tr><td>Decoherence</td><td>Loss of quantum coherence through environmental interaction — explaining why quantum effects are hard to observe at macro scales.</td></tr>
+            <tr><td>Heart Rate Variability (HRV)</td><td>Measure of heart rhythm complexity used by HeartMath to quantify coherence — a practical coherence measurement tool.</td></tr>
+            <tr><td>Biophotons</td><td>Ultra-weak coherent light from living cells, theorized to coordinate biological processes through quantum coherence.</td></tr>
+            <tr><td>Coherent Field</td><td>A field state where all oscillating components are synchronized in phase — maximizing constructive interference and information transmission.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">Key Researchers <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <table>
+            <tr><td>Rollin McCraty</td><td>HeartMath Institute — heart coherence research, HRV measurement, field-to-field transmission of coherence.</td></tr>
+            <tr><td>Fritz-Albert Popp</td><td>Biophoton research — coherent light emission from biological cells as quantum communication system.</td></tr>
+            <tr><td>Bruce Lipton</td><td>Epigenetics — how consciousness and intention affect gene expression through membrane receptor signaling.</td></tr>
+            <tr><td>Masaru Emoto</td><td>Water structure response to intention and consciousness — documented through ice crystal photography.</td></tr>
+            <tr><td>Graham Fleming</td><td>Quantum coherence in photosynthesis — first demonstration of quantum effects in warm biological systems (2007).</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">TFA Practice Connections <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <ul>
+            <li><strong>Heart coherence practice is the single most effective preparation for any charging session.</strong> Five minutes of HeartMath-style coherence breathing before device work measurably changes the field you bring to it.</li>
+            <li><strong>Biophoton coherence in your cells responds to the coherence quality of your devices' fields.</strong> A coherent device supports coherent cellular communication. This is the mechanism beneath many reported healing effects.</li>
+            <li><strong>The reason experienced practitioners produce different results than beginners is measurable coherence difference.</strong> Skill in frequency work is substantially skill in maintaining coherent inner states.</li>
+            <li><strong>Group ceremony amplifies coherence.</strong> Multiple practitioners in synchronized heart coherence produce a field effect that no individual generates alone — the mechanism behind why ceremony works differently at scale.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="section">
+    <h2>This Week's Practice</h2>
+    <p>This week you are building a new pre-session ritual based on coherence science. Use it before every device charging session, ceremony, or healing session this week.</p>
+    <div class="practice-steps">
+      <div class="ps"><div class="ps-n">01</div><div class="ps-t"><strong>Five minutes before any session:</strong> Stop. Sit. Put one hand on your heart center. Close your eyes.</div></div>
+      <div class="ps"><div class="ps-n">02</div><div class="ps-t"><strong>Breathe at 5 breaths per minute</strong> — 5 counts in, 5 counts out. Use the timer above. Do this for 3-5 minutes minimum. This is the HeartMath coherence breath — scientifically validated to produce measurable HRV coherence within minutes.</div></div>
+      <div class="ps"><div class="ps-n">03</div><div class="ps-t"><strong>While breathing, activate a genuine positive emotion</strong> — not forced positivity, but a real feeling of appreciation, care, or gratitude. Hold something in your awareness that genuinely evokes this. HeartMath research shows the emotion is essential — the breath alone produces partial coherence; breath plus genuine positive emotion produces full coherence.</div></div>
+      <div class="ps"><div class="ps-n">04</div><div class="ps-t"><strong>When you feel the shift</strong> — a warmth in the chest, a settling of the nervous system, a sense of expanded presence — you are in coherence. This is your baseline for the session. Begin from here.</div></div>
+      <div class="ps"><div class="ps-n">05</div><div class="ps-t"><strong>Track the difference.</strong> Do sessions with this preparation and without it. Notice what changes in your experience and in the responses of those you work with. This is your personal coherence research.</div></div>
+    </div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div class="section">
+    <h2>Go Deeper</h2>
+    <div class="res-item"><div class="res-icon">📚</div><div><div class="res-title">The HeartMath Solution</div><div class="res-auth">Doc Childre & Howard Martin</div><div class="res-desc">Complete guide to heart coherence research and practice. The foundational text for understanding HRV and coherence training.</div></div></div>
+    <div class="res-item"><div class="res-icon">📚</div><div><div class="res-title">The Biology of Belief</div><div class="res-auth">Bruce Lipton</div><div class="res-desc">Epigenetics and the role of consciousness in gene expression. The science of how your beliefs and emotional states change your biology.</div></div></div>
+    <div class="res-item"><div class="res-icon">📚</div><div><div class="res-title">Quantum Coherence in Biology</div><div class="res-auth">Johnjoe McFadden</div><div class="res-desc">Scientific review of quantum coherence in living systems — rigorous and comprehensive for the scientifically inclined.</div></div></div>
+    <div class="res-item"><div class="res-icon">🎬</div><div><div class="res-title">Heart Coherence Explained — HeartMath</div><div class="res-auth">youtube.com/heartmath</div><div class="res-desc">Direct explanation from the researchers. Clear, well-produced, and grounded in decades of peer-reviewed research.</div></div></div>
+    <div class="res-item"><div class="res-icon">🎬</div><div><div class="res-title">Biophotons — The Light in Our Cells</div><div class="res-auth">youtube.com</div><div class="res-desc">Fritz-Albert Popp's research explained. Visual and accessible introduction to biophoton coherence science.</div></div></div>
+    <div class="res-item"><div class="res-icon">🔬</div><div><div class="res-title">HeartMath Institute Research Library</div><div class="res-auth">heartmath.org</div><div class="res-desc">Full access to published research on heart coherence. The most credible bridge between quantum biology and practical frequency work.</div></div></div>
+    <div class="res-item"><div class="res-icon">✦</div><div><div class="res-title">TFA Connections</div><div class="res-auth">The Frequency Academy</div><div class="res-desc">Connects directly to MS2 (Breathwork Preparation — coherence breathing techniques), C6 (Activation Ceremony — coherence as the charging mechanism), and CS_HB1 (HeartMath Science — deep dive module). Q7 — The Double Slit Experiment is next.</div></div></div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="section">
+    <h2>Reflection Journal</h2>
+    <div class="rp"><p>How do you currently prepare your inner state before a charging or healing session? Looking at what you do through the lens of coherence science — what are you already doing well, and what is missing?</p></div>
+    <textarea id="r1" data-key="r1" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+
+    <div class="rp" style="margin-top:16px"><p>What practices in your life consistently bring you into a coherent state — that feeling of settled, expanded, open presence? How often are you practicing them? What prevents you from doing them more consistently?</p></div>
+    <textarea id="r2" data-key="r2" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+
+    <div class="rp" style="margin-top:16px"><p>How does understanding coherence change how you think about group ceremony versus solo work? What becomes possible in ceremony that cannot happen alone — and why, according to this science?</p></div>
+    <textarea id="r3" data-key="r3" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="workshop">
+    <h3>◈ Live Workshop — Coherence Practice & Device Charging</h3>
+    <p>A live workshop on this topic is part of your Academy experience.<br>
+    BabaKeegs will guide a full coherence practice and live device charging session — showing the difference coherence makes in real time.<br>
+    <span style="color:var(--coherent);font-size:11px;margin-top:6px;display:inline-block">Workshop recordings will appear here · Join live on Skool →</span></p>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="completion">
+    <h3>Mark This Lesson Complete</h3>
+    <p>Coherence is not a concept.<br>It is a state. And it is available to you right now.<br>Every session begins here.</p>
+    <button class="complete-btn" id="completeBtn" onclick="markComplete()">Complete Lesson · +10 XP</button>
+    <div class="xp-flash" id="xpFlash">✦ +10 XP Awarded · Q6 Complete · Enter coherence. Begin.</div>
+  </div>
+
+  <a href="https://thefrequencyacademy-lessons.pages.dev/01-quantum-physics/quantum-physics/lesson-07/" class="next-lesson">
+    <div>
+      <div class="next-label">Up Next · Q7</div>
+      <div class="next-title">The Double Slit Experiment</div>
+    </div>
+    <div class="next-arrow">→</div>
+  </a>
+
+</div>
+
+<div class="save-bar">
+  <div class="save-status" id="saveStatus">Last saved: never</div>
+  <div class="save-btns">
+    <button class="save-btn ghost" onclick="exportBackup()">↑ Export Backup</button>
+    <button class="save-btn primary" onclick="saveProgress()">+ Save Progress</button>
+  </div>
+</div>
+
+<script>
+const SAVE_KEY = 'tfa_lesson_Q6';
+
+// ═══ BREATH TECHNIQUES ═══
+const TECHNIQUES = [
+  {name:'HeartMath', phases:[{p:'Inhale',d:5,cls:'inhale'},{p:'Exhale',d:5,cls:'exhale'}]},
+  {name:'Box Breath', phases:[{p:'Inhale',d:4,cls:'inhale'},{p:'Hold',d:4,cls:'hold'},{p:'Exhale',d:4,cls:'exhale'},{p:'Hold',d:4,cls:'rest'}]},
+  {name:'Dragon Breath', phases:[{p:'Inhale',d:4,cls:'inhale'},{p:'Hold',d:2,cls:'hold'},{p:'Exhale',d:8,cls:'exhale'}]}
+];
+let currentTech = 0, running = false, rounds = 0, phaseIdx = 0, countdown = 0, breathTimer = null;
+let coherenceLevel = 0;
+
+function selectTech(i, el) {
+  currentTech = i;
+  document.querySelectorAll('.tech-card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  if(running) stopBreath();
+}
+
+function startBreath() {
+  if(running) return;
+  running = true; rounds = 0; phaseIdx = 0;
+  runPhase();
+  startHRV();
+}
+
+function runPhase() {
+  if(!running) return;
+  const tech = TECHNIQUES[currentTech];
+  const phase = tech.phases[phaseIdx];
+  countdown = phase.d;
+  const circle = document.getElementById('breathCircle');
+  circle.className = 'breath-circle ' + phase.cls;
+  document.getElementById('breathPhase').textContent = phase.p;
+  document.getElementById('breathSub').textContent = tech.name + ' · Round ' + (rounds+1);
+
+  breathTimer = setInterval(() => {
+    document.getElementById('breathCount').textContent = countdown;
+    countdown--;
+    if(countdown < 0) {
+      clearInterval(breathTimer);
+      phaseIdx = (phaseIdx + 1) % TECHNIQUES[currentTech].phases.length;
+      if(phaseIdx === 0) {
+        rounds++;
+        document.getElementById('roundInfo').textContent = 'Rounds completed: ' + rounds;
+        coherenceLevel = Math.min(rounds / 5, 1);
+        updateHRVState();
+      }
+      if(running) runPhase();
+    }
+  }, 1000);
+}
+
+function stopBreath() {
+  running = false;
+  clearInterval(breathTimer);
+  clearInterval(hrvTimer);
+  const circle = document.getElementById('breathCircle');
+  circle.className = 'breath-circle rest';
+  document.getElementById('breathPhase').textContent = 'Rest';
+  document.getElementById('breathCount').textContent = '◈';
+  document.getElementById('breathSub').textContent = 'Practice complete';
+}
+
+// ═══ HRV SIMULATION ═══
+let hrvTimer = null, hrvData = [], hrvTime = 0;
+
+function startHRV() {
+  hrvData = Array(80).fill(0.5);
+  hrv_animate();
+}
+
+function hrv_animate() {
+  if(!running) return;
+  hrvTime += 0.05;
+  const base = 0.5;
+  const coherentWave = Math.sin(hrvTime * 0.3) * 0.3 * coherenceLevel;
+  const noise = (Math.random() - 0.5) * 0.15 * (1 - coherenceLevel * 0.7);
+  const val = base + coherentWave + noise;
+  hrvData.push(Math.max(0.05, Math.min(0.95, val)));
+  if(hrvData.length > 80) hrvData.shift();
+  drawHRV();
+  hrvTimer = requestAnimationFrame(hrv_animate);
+}
+
+function drawHRV() {
+  const canvas = document.getElementById('hrvCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth;
+  canvas.height = 80;
+  ctx.fillStyle = 'rgba(0,0,0,0)';
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  const w = canvas.width, h = canvas.height;
+  const step = w / (hrvData.length - 1);
+
+  ctx.beginPath();
+  ctx.strokeStyle = coherenceLevel > 0.5 ? '#2ab8a0' : '#4a9edd';
+  ctx.lineWidth = 2;
+  ctx.shadowBlur = 6;
+  ctx.shadowColor = coherenceLevel > 0.5 ? '#2ab8a0' : '#4a9edd';
+  hrvData.forEach((v, i) => {
+    const x = i * step;
+    const y = h - v * h;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+}
+
+function updateHRVState() {
+  const state = document.getElementById('hrvState');
+  if(coherenceLevel < 0.2) { state.textContent = 'Baseline'; state.style.color = 'var(--w3)'; }
+  else if(coherenceLevel < 0.5) { state.textContent = 'Entering Coherence'; state.style.color = 'var(--g)'; }
+  else if(coherenceLevel < 0.8) { state.textContent = 'Coherent'; state.style.color = 'var(--coherent)'; }
+  else { state.textContent = '✦ Full Coherence'; state.style.color = 'var(--coherent)'; }
+}
+
+// ═══ ACCORDION ═══
+function toggleAcc(head) {
+  const body = head.nextElementSibling;
+  const arrow = head.querySelector('.acc-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// ═══ SAVE SYSTEM ═══
+function loadSaved() {
+  const d = localStorage.getItem(SAVE_KEY);
+  if(!d) return;
+  try {
+    const data = JSON.parse(d);
+    ['r1','r2','r3'].forEach(k => { if(data[k]) document.getElementById(k).value = data[k]; });
+    if(data.complete) markComplete(true);
+    if(data.savedAt) document.getElementById('saveStatus').textContent = 'Last saved: ' + data.savedAt;
+    updateProgress(data);
+  } catch(e) {}
+}
+
+function getData() {
+  return {
+    r1:document.getElementById('r1').value,
+    r2:document.getElementById('r2').value,
+    r3:document.getElementById('r3').value,
+    complete:document.getElementById('completeBtn').classList.contains('done'),
+    savedAt:new Date().toLocaleString()
+  };
+}
+
+function updateProgress(data) {
+  let p = 10;
+  if(data.r1&&data.r1.length>10) p+=25;
+  if(data.r2&&data.r2.length>10) p+=25;
+  if(data.r3&&data.r3.length>10) p+=25;
+  if(data.complete) p=100;
+  document.getElementById('progressFill').style.width=p+'%';
+}
+
+let saveTimer;
+function autoSave(){clearTimeout(saveTimer);saveTimer=setTimeout(saveProgress,1500);}
+function saveProgress(){const d=getData();localStorage.setItem(SAVE_KEY,JSON.stringify(d));document.getElementById('saveStatus').textContent='Last saved: '+d.savedAt;updateProgress(d);}
+function markComplete(silent){
+  const btn=document.getElementById('completeBtn');
+  btn.textContent='✓ Complete · +10 XP Awarded';
+  btn.classList.add('done');
+  document.getElementById('xpFlash').classList.add('show');
+  document.getElementById('progressFill').style.width='100%';
+  if(!silent) saveProgress();
+}
+function exportBackup(){const d=getData();const blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Q6-backup.json';a.click();}
+
+window.addEventListener('DOMContentLoaded', loadSaved);
+window.addEventListener('beforeunload', saveProgress);
+setInterval(saveProgress, 90000);
+</script>
+</body>
+</html>
