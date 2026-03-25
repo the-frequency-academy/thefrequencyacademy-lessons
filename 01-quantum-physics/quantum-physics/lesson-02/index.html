@@ -3,18 +3,364 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coming Soon · The Frequency Academy</title>
+<title>Q2 — The Observer Effect | The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+:root{--n:#0a1628;--n2:#0d1e38;--n3:#102040;--g:#4a9edd;--g2:#78b8ee;--gb:rgba(74,158,221,0.22);--gf:rgba(74,158,221,0.08);--w:#e8f0f8;--w2:rgba(232,240,248,0.72);--w3:rgba(232,240,248,0.38);--w4:rgba(232,240,248,0.06);--ok:#2a8a7a;}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Georgia',serif;background:#0d1240;color:#f5f0e8;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center}
-h1{font-size:1.2rem;letter-spacing:.2em;color:#c9a84c;margin-bottom:1rem;text-transform:uppercase}
-p{color:#a09880;font-size:.85rem;letter-spacing:.1em}
+html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif}
+body{min-height:100vh;padding-bottom:80px}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--w4);z-index:200}
+.progress-fill{height:100%;background:var(--g);transition:width .4s;width:0%}
+header{background:rgba(10,22,40,0.95);border-bottom:1px solid var(--gb);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:100;backdrop-filter:blur(8px)}
+.hd-left{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.12em}
+.hd-right{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em}
+.hero{text-align:center;padding:60px 24px 40px;max-width:800px;margin:0 auto}
+.eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.2em;color:var(--g);margin-bottom:16px;opacity:0.8}
+.hero h1{font-family:'Cinzel',serif;font-size:42px;font-weight:700;color:var(--w);line-height:1.15;margin-bottom:12px}
+.hero h1 span{color:var(--g)}
+.hero-sub{font-size:16px;color:var(--w3);line-height:1.7;max-width:560px;margin:0 auto 30px}
+.gold-rule{width:80px;height:2px;background:var(--g);margin:24px auto;opacity:0.6}
+.video-wrap{max-width:840px;margin:0 auto 48px;padding:0 24px}
+.video-container{position:relative;padding-bottom:56.25%;border-radius:12px;overflow:hidden;border:1px solid var(--gb);box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.content{max-width:780px;margin:0 auto;padding:0 24px}
+.section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb)}
+.section p{font-size:14px;color:var(--w2);line-height:1.8;margin-bottom:12px}
+.section p:last-child{margin:0}
+.section p strong{color:var(--g2);font-weight:600}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+@media(max-width:600px){.concept-grid{grid-template-columns:1fr}}
+.concept-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:18px}
+.concept-card h4{font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.concept-card p{font-size:12px;color:var(--w3);line-height:1.65;margin:0}
+
+/* EXPERIMENT EXPLORER */
+.experiment-section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px;text-align:center}
+.experiment-section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:6px}
+.exp-sub{font-size:12px;color:var(--w3);margin-bottom:24px}
+.exp-visual{width:100%;max-width:500px;margin:0 auto 20px;background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:24px;position:relative;min-height:160px}
+.slit-wall{width:4px;background:var(--g);height:120px;margin:0 auto;position:relative;border-radius:2px}
+.slit{width:4px;height:20px;background:var(--n3);position:absolute;left:0}
+.slit-1{top:30px}.slit-2{top:70px}
+.particle-label{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em;margin-bottom:12px}
+.screen{width:60px;height:120px;background:var(--n3);border:1px solid var(--gb);border-radius:4px;margin:0 auto;position:relative;overflow:hidden}
+.pattern-line{width:100%;height:3px;background:var(--g);margin-bottom:4px;border-radius:1px}
+.exp-row{display:flex;align-items:center;justify-content:space-around;gap:16px}
+.exp-label{font-size:11px;color:var(--w3);text-align:center;max-width:80px;line-height:1.4}
+.obs-toggle{display:flex;gap:10px;justify-content:center;margin-bottom:16px}
+.obs-btn{padding:8px 20px;border-radius:6px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all .18s;border:1px solid var(--gb);background:var(--gf);color:var(--w3)}
+.obs-btn.active{background:var(--g);color:#080e30;border-color:var(--g)}
+.obs-result{font-size:13px;color:var(--w2);line-height:1.7;margin-top:12px;padding:12px;background:var(--n3);border-radius:8px;border-left:3px solid var(--g)}
+
+/* QUIZ */
+.quiz-section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.quiz-section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:20px}
+.quiz-q{margin-bottom:20px}
+.quiz-q p{font-size:13px;color:var(--w2);margin-bottom:10px;line-height:1.6}
+.quiz-options{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:7px;background:var(--gf);border:1px solid var(--gb);color:var(--w2);font-size:13px;cursor:pointer;transition:all .18s;text-align:left}
+.quiz-opt:hover{border-color:var(--g);color:var(--w)}
+.quiz-opt.correct{background:rgba(42,138,122,0.2);border-color:#2a8a7a;color:#7dd4c8}
+.quiz-opt.wrong{background:rgba(176,85,64,0.15);border-color:#b05540;color:#e8a090}
+
+.reflection-prompt{background:var(--n3);border-left:3px solid var(--g);border-radius:0 8px 8px 0;padding:16px 18px;margin-bottom:12px}
+.reflection-prompt p{font-size:13px;color:var(--w2);line-height:1.65;font-style:italic;margin:0}
+textarea{width:100%;background:var(--w4);border:1px solid var(--gb);border-radius:8px;padding:12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;resize:vertical;min-height:90px;outline:none;line-height:1.6;transition:border-color .2s;margin-top:8px}
+textarea:focus{border-color:var(--g)}
+textarea::placeholder{color:var(--w3)}
+.completion-box{background:var(--gf);border:1px solid var(--gb);border-radius:12px;padding:24px;text-align:center;margin-top:20px}
+.completion-box h3{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.08em;margin-bottom:10px}
+.completion-box p{font-size:13px;color:var(--w3);margin-bottom:16px;line-height:1.6}
+.complete-btn{padding:12px 28px;border-radius:8px;background:var(--g);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:0.1em;color:#080e30;transition:all .15s}
+.complete-btn:hover{background:var(--g2)}.complete-btn.done{background:var(--ok);cursor:default}
+.next-lesson{background:var(--n3);border:1px solid var(--gb);border-radius:12px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;margin-top:20px;text-decoration:none;transition:all .18s}
+.next-lesson:hover{background:var(--gf);border-color:var(--g)}
+.next-label{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.1em;margin-bottom:4px}
+.next-title{font-size:14px;color:var(--w);font-family:'Cinzel',serif}
+.next-arrow{font-size:20px;color:var(--g)}
+.save-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,0.97);border-top:1px solid var(--gb);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;backdrop-filter:blur(8px)}
+.save-status{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.08em}
+.save-btns{display:flex;gap:8px}
+.save-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all .15s;border:1px solid var(--gb)}
+.save-btn.primary{background:var(--g);color:#080e30;border-color:var(--g)}.save-btn.primary:hover{background:var(--g2)}
+.save-btn.ghost{background:var(--gf);color:var(--g)}
 </style>
 </head>
 <body>
-<div>
-<h1>Lesson Coming Soon</h1>
-<p>The Frequency Academy · Check back soon</p>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<header>
+  <div class="hd-left">THE FREQUENCY ACADEMY · QUANTUM PHYSICS & SCIENCES</div>
+  <div class="hd-right">Q2 · LESSON 2 OF 16</div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">QUANTUM PHYSICS & SCIENCES · Q2</div>
+  <h1>The <span>Observer Effect</span></h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">The act of observation changes what is being observed. You are not separate from reality — you are part of the mechanism that creates it.</p>
 </div>
+
+<div class="video-wrap">
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/zlU0HaQWdrM"
+      title="The Observer Effect — The Frequency Academy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <h2>The Transmission</h2>
+    <p>In classical physics, the universe was a machine. Objects existed in definite states. You could measure everything without disturbing it. The observer was irrelevant — a passive witness to a reality that existed independently of being watched.</p>
+    <p>Quantum mechanics dismantled this completely.</p>
+    <p>The Double Slit Experiment — one of the most profound experiments in the history of science — demonstrated something that still challenges every assumption we make about the nature of reality: <strong>the act of observation collapses possibility into actuality.</strong></p>
+    <p>When no one is watching, particles behave as waves — existing in multiple states simultaneously, spreading through space as pure probability. The moment a detector is placed to observe which slit the particle passes through, the wave collapses. The particle becomes a particle. It chooses.</p>
+    <p>The observer does not discover reality. The observer participates in creating it.</p>
+    <p>This is not philosophy. This is experimental fact, replicated thousands of times in laboratories around the world. And it changes everything about what frequency work, intention, and ceremony actually are.</p>
+  </div>
+
+  <div class="section">
+    <h2>The Double Slit Experiment</h2>
+    <p>The experiment that proved observation changes reality — described simply:</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <h4>Without Observation</h4>
+        <p>Particles fired one at a time through two slits create an interference pattern on the screen — as if each particle passes through both slits simultaneously as a wave.</p>
+      </div>
+      <div class="concept-card">
+        <h4>With Observation</h4>
+        <p>Place a detector to measure which slit the particle uses. Immediately the interference pattern vanishes. The particle behaves as a particle — going through one slit only.</p>
+      </div>
+      <div class="concept-card">
+        <h4>The Impossible Part</h4>
+        <p>Even if the detector is placed after the particle has already passed through — and then erased — the pattern changes retroactively. Observation affects the past.</p>
+      </div>
+      <div class="concept-card">
+        <h4>What It Means</h4>
+        <p>Reality exists as probability waves until consciousness interacts with it. The universe is not a collection of things — it is a field of potential awaiting participation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE: OBSERVER EFFECT EXPLORER -->
+  <div class="experiment-section">
+    <h2>Observer Effect Explorer</h2>
+    <div class="exp-sub">Toggle observation on and off — see how it changes what the particle does</div>
+
+    <div class="obs-toggle">
+      <button class="obs-btn active" id="btn-no-obs" onclick="setObs(false)">No Observer</button>
+      <button class="obs-btn" id="btn-obs" onclick="setObs(true)">Observer Present</button>
+    </div>
+
+    <div class="exp-visual">
+      <div class="exp-row">
+        <div>
+          <div class="exp-label">Particle source</div>
+          <div style="font-size:24px;margin-top:8px">⚛</div>
+        </div>
+        <div style="font-size:20px;color:var(--g)">→→→</div>
+        <div>
+          <div class="exp-label">Double slit barrier</div>
+          <div class="slit-wall" style="margin-top:8px">
+            <div class="slit slit-1"></div>
+            <div class="slit slit-2"></div>
+          </div>
+        </div>
+        <div style="font-size:20px;color:var(--g)">→→→</div>
+        <div id="screenWrap">
+          <div class="exp-label">Detection screen</div>
+          <div class="screen" id="screen" style="margin-top:8px">
+            <div id="pattern"></div>
+          </div>
+        </div>
+        <div id="detectorWrap" style="display:none;flex-direction:column;align-items:center">
+          <div class="exp-label">Observer</div>
+          <div style="font-size:28px;margin-top:8px">👁</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="obs-result" id="obsResult">
+      Without an observer, the particle travels as a wave — passing through both slits simultaneously. It creates an interference pattern on the screen. The particle is everywhere and nowhere until measured.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Key Concepts</h2>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <h4>Wave Function Collapse</h4>
+        <p>Before observation, a quantum system exists as a superposition of all possible states. Measurement forces it to "choose" — collapsing infinite possibility into one actuality.</p>
+      </div>
+      <div class="concept-card">
+        <h4>The Measurement Problem</h4>
+        <p>Physics cannot agree on what constitutes "observation." Does it require consciousness? A detector? Interaction? This remains one of the deepest unsolved questions in science.</p>
+      </div>
+      <div class="concept-card">
+        <h4>Non-Locality</h4>
+        <p>Quantum effects can occur instantaneously across any distance. Two entangled particles affect each other faster than light could travel between them.</p>
+      </div>
+      <div class="concept-card">
+        <h4>Retrocausality</h4>
+        <p>The Delayed Choice Quantum Eraser experiment suggests observation can affect events that have already occurred. Time may not be as fixed as we believe.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-section">
+    <h2>Knowledge Check</h2>
+    <div class="quiz-q">
+      <p>In the Double Slit Experiment without observation, particles create:</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="checkQ(this,false)">Two lines on the screen matching the two slits</button>
+        <button class="quiz-opt" onclick="checkQ(this,true)" data-correct="true">An interference pattern — as if each particle passes through both slits</button>
+        <button class="quiz-opt" onclick="checkQ(this,false)">Random scattered dots across the screen</button>
+        <button class="quiz-opt" onclick="checkQ(this,false)">No pattern — particles are absorbed by the barrier</button>
+      </div>
+    </div>
+    <div class="quiz-q">
+      <p>What happens to the interference pattern when a detector is placed to observe which slit the particle uses?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="checkQ(this,false)">It becomes stronger and more defined</button>
+        <button class="quiz-opt" onclick="checkQ(this,false)">Nothing — the pattern stays the same</button>
+        <button class="quiz-opt" onclick="checkQ(this,true)" data-correct="true">It disappears — the particle behaves as a particle, not a wave</button>
+        <button class="quiz-opt" onclick="checkQ(this,false)">The particle stops moving entirely</button>
+      </div>
+    </div>
+    <div class="quiz-q">
+      <p>What does the Observer Effect suggest about the relationship between consciousness and reality?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="checkQ(this,false)">Consciousness has no effect on physical reality</button>
+        <button class="quiz-opt" onclick="checkQ(this,false)">Only scientists can affect quantum systems</button>
+        <button class="quiz-opt" onclick="checkQ(this,true)" data-correct="true">Observation participates in creating reality — the observer is not separate from what is observed</button>
+        <button class="quiz-opt" onclick="checkQ(this,false)">Reality only exists when multiple people observe it simultaneously</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Why This Matters for Frequency Work</h2>
+    <p>If the Observer Effect is real — and it is — then intention is not passive. When you bring focused awareness to a device, a ceremony, a person, or a field, you are not merely noticing what is there. You are participating in what becomes there.</p>
+    <p><strong>Frequency Charged™ devices</strong> are built with sustained, directed intention during construction. From a quantum perspective this is not mysticism — it is the application of the Observer Effect at the scale of material reality.</p>
+    <p><strong>Ceremony</strong> creates a focused field of collective observation. When a group directs unified intention toward an outcome, they are — literally, in quantum terms — collapsing probability fields toward that outcome.</p>
+    <p><strong>Your inner state during practice matters.</strong> The quality of your observation shapes what you receive. A scattered, distracted awareness collapses reality differently than a coherent, intentional one.</p>
+    <p>This is why the inner work and the outer work are the same work.</p>
+  </div>
+
+  <div class="section">
+    <h2>Reflection Journal</h2>
+    <div class="reflection-prompt">
+      <p>Where in your life have you noticed that your attention — the quality of your observation — changed what happened? A relationship, a creative project, a healing process?</p>
+    </div>
+    <textarea id="r1" data-key="r1" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>If observation collapses possibility into actuality — what are you collapsing with your habitual patterns of attention? What possibilities might you be closing down without realizing it?</p>
+    </div>
+    <textarea id="r2" data-key="r2" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>How does understanding the Observer Effect change the way you think about ceremony, intention setting, or the Frequency Charged™ method?</p>
+    </div>
+    <textarea id="r3" data-key="r3" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+  </div>
+
+  <div class="completion-box">
+    <h3>Mark This Lesson Complete</h3>
+    <p>The observer has arrived. Mark it complete and carry this forward.</p>
+    <button class="complete-btn" id="completeBtn" onclick="markComplete()">Complete Lesson · +10 XP</button>
+  </div>
+
+  <a href="https://thefrequencyacademy-lessons.pages.dev/01-quantum-physics/quantum-physics/lesson-03/" class="next-lesson">
+    <div>
+      <div class="next-label">Up Next · Q3</div>
+      <div class="next-title">Wave-Particle Duality</div>
+    </div>
+    <div class="next-arrow">→</div>
+  </a>
+
+</div>
+
+<div class="save-bar">
+  <div class="save-status" id="saveStatus">Last saved: never</div>
+  <div class="save-btns">
+    <button class="save-btn ghost" onclick="exportBackup()">↑ Export Backup</button>
+    <button class="save-btn primary" onclick="saveProgress()">+ Save Progress</button>
+  </div>
+</div>
+
+<script>
+const SAVE_KEY = 'tfa_lesson_Q2';
+
+function setObs(observing) {
+  document.getElementById('btn-no-obs').classList.toggle('active', !observing);
+  document.getElementById('btn-obs').classList.toggle('active', observing);
+  const pattern = document.getElementById('pattern');
+  const detector = document.getElementById('detectorWrap');
+  const result = document.getElementById('obsResult');
+  detector.style.display = observing ? 'flex' : 'none';
+  if(observing) {
+    pattern.innerHTML = '<div style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;gap:28px;padding:8px"><div style="height:4px;background:var(--g);border-radius:2px;opacity:0.9"></div><div style="height:4px;background:var(--g);border-radius:2px;opacity:0.9"></div></div>';
+    result.textContent = 'With an observer present, the interference pattern vanishes. The particle behaves as a particle — passing through one slit only, creating two lines on the screen. The act of observation collapsed the wave function.';
+  } else {
+    pattern.innerHTML = Array.from({length:12},(_,i)=>`<div style="height:3px;background:var(--g);border-radius:1px;margin-bottom:3px;opacity:${Math.round(Math.sin((i-5.5)*0.6)**2*100)/100}"></div>`).join('');
+    result.textContent = 'Without an observer, the particle travels as a wave — passing through both slits simultaneously. It creates an interference pattern on the screen. The particle is everywhere and nowhere until measured.';
+  }
+}
+
+// Init pattern
+setObs(false);
+
+function checkQ(btn, correct) {
+  const opts = btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(o => o.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  if(!correct) opts.forEach(o => { if(o.dataset.correct) o.classList.add('correct'); });
+}
+
+function loadSaved() {
+  const d = localStorage.getItem(SAVE_KEY);
+  if(!d) return;
+  try {
+    const data = JSON.parse(d);
+    ['r1','r2','r3'].forEach(k => { if(data[k]) document.getElementById(k).value = data[k]; });
+    if(data.complete) markComplete(true);
+    if(data.savedAt) document.getElementById('saveStatus').textContent = 'Last saved: ' + data.savedAt;
+    updateProgress(data);
+  } catch(e) {}
+}
+
+function getData() {
+  return {
+    r1: document.getElementById('r1').value,
+    r2: document.getElementById('r2').value,
+    r3: document.getElementById('r3').value,
+    complete: document.getElementById('completeBtn').classList.contains('done'),
+    savedAt: new Date().toLocaleString()
+  };
+}
+
+function updateProgress(data) {
+  let p = 10;
+  if(data.r1 && data.r1.length > 10) p += 25;
+  if(data.r2 && data.r2.length > 10) p += 25;
+  if(data.r3 && data.r3.length > 10) p += 25;
+  if(data.complete) p = 100;
+  document.getElementById('progressFill').style.width = p + '%';
+}
+
+let saveTimer;
+function autoSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveProgress, 1500); }
+function saveProgress() { const d = getData(); localStorage.setItem(SAVE_KEY, JSON.stringify(d)); document.getElementById('saveStatus').textContent = 'Last saved: ' + d.savedAt; updateProgress(d); }
+function markComplete(silent) { const btn = document.getElementById('completeBtn'); btn.textContent = '✓ Complete · +10 XP Awarded'; btn.classList.add('done'); if(!silent) saveProgress(); }
+function exportBackup() { const d = getData(); const blob = new Blob([JSON.stringify(d,null,2)],{type:'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Q2-backup.json'; a.click(); }
+window.addEventListener('DOMContentLoaded', loadSaved);
+window.addEventListener('beforeunload', saveProgress);
+</script>
 </body>
 </html>
