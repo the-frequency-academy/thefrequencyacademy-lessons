@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q5 — The Zero Point Field | The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --n:#0a1628;--n2:#0d1e38;--n3:#102040;
+  --g:#4a9edd;--g2:#78b8ee;--g3:#a8d4f4;
+  --gb:rgba(74,158,221,0.22);--gf:rgba(74,158,221,0.08);
+  --w:#e8f0f8;--w2:rgba(232,240,248,0.72);--w3:rgba(232,240,248,0.38);--w4:rgba(232,240,248,0.06);
+  --ok:#2a8a7a;--gold:#c9a84c;--gold2:#e2c06a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
+body{min-height:100vh;padding-bottom:80px}
+
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--w4);z-index:200}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--g),var(--gold));transition:width .4s;width:0%}
+
+header{background:rgba(10,22,40,0.96);border-bottom:1px solid var(--gb);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:100;backdrop-filter:blur(8px)}
+.hd-left{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.12em}
+.hd-right{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em}
+
+.hero{text-align:center;padding:60px 24px 44px;max-width:820px;margin:0 auto}
+.eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.22em;color:var(--g);margin-bottom:18px;opacity:0.8}
+.hero h1{font-family:'Cinzel',serif;font-size:44px;font-weight:700;color:var(--w);line-height:1.12;margin-bottom:12px}
+.hero h1 span{color:var(--gold)}
+.gold-rule{width:80px;height:2px;background:linear-gradient(90deg,var(--g),var(--gold));margin:22px auto;opacity:0.7}
+.hero-sub{font-size:16px;color:var(--w3);line-height:1.8;max-width:580px;margin:0 auto}
+
+.video-coming{max-width:840px;margin:0 auto 36px;padding:0 24px}
+.vc-inner{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:14px}
+.vc-icon{font-size:22px;flex-shrink:0}
+.vc-label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.12em;margin-bottom:3px}
+.vc-text{font-size:12px;color:var(--w3);line-height:1.5}
+
+.content{max-width:800px;margin:0 auto;padding:0 24px}
+
+.section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px 32px;margin-bottom:18px}
+.section h2{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.1em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb);text-transform:uppercase}
+.section p{font-size:14px;color:var(--w2);line-height:1.85;margin-bottom:12px}
+.section p:last-child{margin:0}
+.section p strong{color:var(--g2);font-weight:600}
+.section p em{color:var(--gold);font-style:normal;font-weight:500}
+
+/* VACUUM VISUALIZER */
+.viz-section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px 32px;margin-bottom:18px}
+.viz-section h2{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.1em;margin-bottom:6px;text-transform:uppercase}
+.viz-sub{font-size:12px;color:var(--w3);margin-bottom:20px}
+
+.vacuum-canvas{position:relative;background:rgba(0,0,0,0.4);border:1px solid var(--gb);border-radius:10px;overflow:hidden;height:220px;margin-bottom:16px;cursor:pointer}
+.vacuum-canvas canvas{display:block;width:100%;height:100%}
+.canvas-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Cinzel',serif;font-size:10px;color:var(--w3);letter-spacing:0.1em;pointer-events:none}
+
+.zpf-controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.zpf-ctrl{background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:14px}
+.zpf-ctrl-label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;margin-bottom:8px;display:block}
+.zpf-slider{width:100%;accent-color:var(--g);margin-bottom:4px}
+.zpf-value{font-size:11px;color:var(--w3)}
+
+.casimir-demo{background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:16px;margin-bottom:14px}
+.casimir-demo h4{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);letter-spacing:0.08em;margin-bottom:12px}
+.plate-viz{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:12px;position:relative;height:80px}
+.plate{width:8px;height:70px;background:var(--g);border-radius:2px;transition:all 0.5s ease;position:relative}
+.plate-gap{background:rgba(201,168,76,0.08);height:70px;transition:all 0.5s ease;display:flex;align-items:center;justify-content:center;border-top:1px dashed rgba(201,168,76,0.2);border-bottom:1px dashed rgba(201,168,76,0.2)}
+.gap-label{font-size:10px;color:var(--gold);font-family:'Cinzel',serif;letter-spacing:0.06em;white-space:nowrap}
+.casimir-force{text-align:center;font-family:'Cinzel',serif;font-size:12px;color:var(--gold);letter-spacing:0.06em;margin-top:8px}
+.casimir-slider{width:100%;accent-color:var(--gold)}
+
+/* CONCEPT GRID */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:580px){.concept-grid{grid-template-columns:1fr}}
+.concept-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px}
+.concept-card h4{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.concept-card p{font-size:12px;color:var(--w3);line-height:1.65;margin:0}
+.concept-card .tfa-link{font-size:11px;color:var(--gold);margin-top:7px;line-height:1.5;padding-top:7px;border-top:1px solid var(--gb);display:block}
+
+/* ACCORDION */
+.accordion{margin-top:8px}
+.acc-item{border:1px solid var(--gb);border-radius:8px;margin-bottom:7px;overflow:hidden}
+.acc-head{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.06em;background:var(--gf);transition:background .15s}
+.acc-head:hover{background:rgba(255,255,255,0.04)}
+.acc-body{display:none;padding:14px 16px;font-size:13px;color:var(--w2);line-height:1.75;border-top:1px solid var(--gb)}
+.acc-body.open{display:block}
+.acc-arrow{transition:transform .2s;font-size:11px}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body table{width:100%;border-collapse:collapse;margin-top:6px}
+.acc-body td{padding:8px 10px;font-size:12px;border-bottom:1px solid rgba(232,240,248,0.05)}
+.acc-body td:first-child{color:var(--g2);font-weight:600;min-width:160px;vertical-align:top}
+.acc-body ul{padding-left:16px;margin-top:4px}
+.acc-body li{margin-bottom:6px;line-height:1.6}
+
+/* PRACTICAL */
+.practice-steps{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.ps{display:flex;gap:14px;padding:14px;background:var(--gf);border:1px solid var(--gb);border-radius:8px}
+.ps-n{font-family:'Cinzel',serif;font-size:13px;color:var(--g);min-width:28px;font-weight:700;padding-top:1px}
+.ps-t{font-size:13px;color:var(--w2);line-height:1.65}
+.ps-t strong{color:var(--g2);font-weight:600}
+
+/* RESOURCES */
+.res-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(232,240,248,0.05)}
+.res-item:last-child{border:none}
+.res-icon{font-size:15px;flex-shrink:0;padding-top:2px}
+.res-title{font-size:13px;color:var(--w);font-weight:500;margin-bottom:2px}
+.res-auth{font-size:11px;color:var(--g);margin-bottom:3px}
+.res-desc{font-size:11px;color:var(--w3);line-height:1.5}
+
+/* REFLECTION */
+.rp{background:var(--n3);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:10px}
+.rp p{font-size:13px;color:var(--w2);line-height:1.65;font-style:italic;margin:0}
+textarea{width:100%;background:var(--w4);border:1px solid var(--gb);border-radius:8px;padding:12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;resize:vertical;min-height:88px;outline:none;line-height:1.6;transition:border-color .2s;margin-top:8px}
+textarea:focus{border-color:var(--g)}
+textarea::placeholder{color:var(--w3)}
+
+/* WORKSHOP */
+.workshop{background:var(--gf);border:1px dashed var(--gb);border-radius:12px;padding:22px;text-align:center;margin-bottom:18px}
+.workshop h3{font-family:'Cinzel',serif;font-size:13px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.workshop p{font-size:12px;color:var(--w3);line-height:1.65}
+
+/* COMPLETION */
+.completion{background:var(--gf);border:1px solid var(--gb);border-radius:12px;padding:26px;text-align:center;margin-top:18px}
+.completion h3{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.08em;margin-bottom:10px}
+.completion p{font-size:13px;color:var(--w3);margin-bottom:16px;line-height:1.6}
+.complete-btn{padding:12px 30px;border-radius:8px;background:var(--g);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:0.12em;color:#080e30;transition:all .18s}
+.complete-btn:hover{background:var(--g2);transform:scale(1.02)}
+.complete-btn.done{background:var(--ok);cursor:default;transform:none}
+.xp-flash{display:none;margin-top:12px;font-family:'Cinzel',serif;font-size:12px;color:#7dd4c8;letter-spacing:0.08em}
+.xp-flash.show{display:block}
+
+.next-lesson{background:var(--n3);border:1px solid var(--gb);border-radius:12px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;margin-top:14px;text-decoration:none;transition:all .18s}
+.next-lesson:hover{background:var(--gf);border-color:var(--g);transform:translateX(3px)}
+.next-label{font-size:10px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.12em;margin-bottom:4px;text-transform:uppercase}
+.next-title{font-size:14px;color:var(--w);font-family:'Cinzel',serif;font-weight:600}
+.next-arrow{font-size:22px;color:var(--g)}
+
+.save-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,0.97);border-top:1px solid var(--gb);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;backdrop-filter:blur(8px)}
+.save-status{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.08em}
+.save-btns{display:flex;gap:8px}
+.save-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all .15s;border:1px solid var(--gb)}
+.save-btn.primary{background:var(--g);color:#080e30;border-color:var(--g)}.save-btn.primary:hover{background:var(--g2)}
+.save-btn.ghost{background:var(--gf);color:var(--g)}.save-btn.ghost:hover{background:rgba(255,255,255,0.06)}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <div class="hd-left">THE FREQUENCY ACADEMY · QUANTUM PHYSICS & SCIENCES</div>
+  <div class="hd-right">Q5 · LESSON 5 OF 16</div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">QUANTUM PHYSICS & SCIENCES · Q5</div>
+  <h1>The Zero <span>Point Field</span></h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">Beneath the apparent emptiness of space is a field of infinite energy — fluctuating, alive, and present everywhere simultaneously. Empty space is not empty. It never was. And your devices interact with it directly.</p>
+</div>
+
+<div class="video-coming">
+  <div class="vc-inner">
+    <div class="vc-icon">🎬</div>
+    <div>
+      <div class="vc-label">Video Lesson Coming</div>
+      <div class="vc-text">Full video transmission for this lesson is in production. Explore the complete interactive lesson below now.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- TRANSMISSION -->
+  <div class="section">
+    <h2>The Transmission</h2>
+    <p>There is no such thing as empty space.</p>
+    <p>This is not a metaphor. This is one of the most rigorously established findings in all of quantum physics. The vacuum — what appears to be nothing, the space between particles, the void between galaxies — is seething with energy. Constantly. Everywhere. At every scale.</p>
+    <p>The ancients knew this. The Vedic tradition called it <em>Akasha</em> — the primordial field from which all form emerges and into which all form returns. The Chinese tradition called it <em>Tao</em> — the ground of being from which the ten thousand things arise. The Hermetic tradition called it the <em>Ether</em> — the subtle medium through which all forces flow. Wilhelm Reich called it <em>Orgone</em> — the life energy he observed accumulating in certain materials and depleting in others.</p>
+    <p>Modern physics calls it the <strong>Zero Point Field</strong> — the quantum vacuum in its ground state, containing the minimum energy possible while still obeying the Heisenberg Uncertainty Principle. And unlike the ancient concepts, we can measure it. We can calculate it. We can demonstrate its effects with precision instruments in controlled laboratories.</p>
+    <p>The convergence is striking. Across thousands of years and dozens of traditions, humans have perceived the same thing: that what appears empty is actually full. That the void is the source. That space itself is alive with potential.</p>
+    <p>This lesson is about understanding that field — what it is, how it works, and why it matters profoundly for everything you build and every practice you engage in.</p>
+  </div>
+
+  <!-- THE SCIENCE -->
+  <div class="section">
+    <h2>The Physics of the Quantum Vacuum</h2>
+    <p>The Zero Point Field emerges directly from the Heisenberg Uncertainty Principle, which we explored in previous lessons. The uncertainty principle states that you cannot simultaneously know both the exact position and exact momentum of a particle. This means that a particle — or a field — can never be in a state of complete stillness. To be perfectly still would require knowing both position and momentum with perfect precision, which the uncertainty principle forbids.</p>
+    <p>Even at absolute zero temperature — the coldest temperature theoretically possible, where all thermal motion ceases — quantum fields still fluctuate. This irreducible minimum of fluctuation is the Zero Point Energy. And it pervades all of space, everywhere, at all times.</p>
+    <p><strong>Virtual particles</strong> are perhaps the most dramatic expression of this. The quantum vacuum is not truly empty but constantly generates particle-antiparticle pairs that pop into existence and annihilate each other almost instantaneously. These are real physical events — not mathematical abstractions — and they have measurable consequences.</p>
+    <p>The most famous consequence is the <strong>Casimir Effect</strong>, first predicted by Dutch physicist Hendrik Casimir in 1948 and experimentally confirmed in 1997. When two uncharged, parallel metal plates are placed very close together in a vacuum, they experience a measurable attractive force. There is nothing between them — no charge, no field, no matter. And yet the force is real and precisely calculable.</p>
+    <p>The explanation: the plates restrict which wavelengths of vacuum fluctuations can exist between them. Outside the plates, all wavelengths are present. Inside, only those that fit in the gap can exist. This creates more vacuum energy pressure outside than inside, pushing the plates together. The force of nothing is measurable. The vacuum has pressure.</p>
+    <p><strong>Hal Puthoff</strong>, the physicist who developed much of the theoretical framework for ZPF applications, has proposed that matter itself may be sustained by the Zero Point Field — that the stability of atoms is maintained by continuous interaction with vacuum fluctuations. In this view, the Zero Point Field is not a background to reality. It is the ground of reality itself.</p>
+    <p><strong>Milo Wolff's Wave Structure of Matter</strong> goes further: proposing that particles are not point-like objects but standing waves in the quantum vacuum. In this model, what we call "matter" is not fundamentally different from the field it exists in — it is a stable pattern of field vibration.</p>
+    <p>If this is correct — and growing evidence suggests it may be — then the boundary between matter and field, between object and space, is far more permeable than classical physics assumed. Your tensor rings. Your orgonite. Your crystals. All of them are patterns of vibration in the same field that fills all of space.</p>
+  </div>
+
+  <!-- ANCIENT CONVERGENCE -->
+  <div class="section">
+    <h2>Where Ancient Wisdom Converges</h2>
+    <p>The convergence between ZPF physics and ancient field concepts is one of the most significant intellectual developments of our time — and it is rarely discussed in either scientific or spiritual communities with the rigor it deserves.</p>
+    <p><em>Akasha</em> in the Vedic tradition is described as the subtlest of the five elements — more fundamental than air, fire, water, or earth. It is the medium through which sound travels, the space in which all things arise, and the record-keeper of all events. The Akashic Records — the idea that all events are somehow encoded in the field of space — maps intriguingly onto what physicists call the holographic principle: the idea that all information about a volume of space is encoded on its boundary surface.</p>
+    <p><em>Wilhelm Reich's Orgone</em> is the most directly relevant to device building. Reich observed that certain materials — particularly alternating layers of organic and metallic materials — seemed to accumulate and concentrate what he called orgone energy. He observed that this energy could be measured with temperature differentials, could affect plant growth and human health, and could be directed with specific geometric configurations. He built devices called orgone accumulators using layered organic and metallic materials.</p>
+    <p>The parallels to modern orgonite construction — alternating organic resin and metallic particles, embedded with crystals and programmed with intention — are not coincidental. The Frequency Charged™ method is, among other things, an evolved application of these principles with modern understanding of geometry, frequency, and quantum field interaction.</p>
+    <p>Neither the ancient frameworks nor the modern physics fully describes the territory. But the fact that independent traditions across thousands of years of human experience converge on the same fundamental insight — that what appears empty is actually the most fundamental substrate of reality — is not something to dismiss.</p>
+  </div>
+
+  <!-- INTERACTIVE: ZPF VISUALIZER -->
+  <div class="viz-section">
+    <h2>Zero Point Field Visualizer</h2>
+    <div class="viz-sub">Explore vacuum fluctuations and the Casimir Effect — the measurable force of empty space</div>
+
+    <div class="vacuum-canvas" id="vacuumCanvas" onclick="addFluctuation(event)" title="Click to add a fluctuation">
+      <canvas id="zpfCanvas"></canvas>
+      <div class="canvas-label">QUANTUM VACUUM · Click anywhere to observe fluctuations</div>
+    </div>
+
+    <div class="zpf-controls">
+      <div class="zpf-ctrl">
+        <label class="zpf-ctrl-label">Vacuum Energy Density</label>
+        <input type="range" class="zpf-slider" id="energySlider" min="1" max="10" value="5" oninput="updateEnergy(this.value)">
+        <div class="zpf-value" id="energyVal">Medium — field fluctuations visible</div>
+      </div>
+      <div class="zpf-ctrl">
+        <label class="zpf-ctrl-label">Observation Frequency</label>
+        <input type="range" class="zpf-slider" id="obsSlider" min="1" max="10" value="3" oninput="updateObs(this.value)">
+        <div class="zpf-value" id="obsVal">Low — particles appear briefly</div>
+      </div>
+    </div>
+
+    <!-- CASIMIR EFFECT DEMO -->
+    <div class="casimir-demo">
+      <h4>The Casimir Effect — Force of the Vacuum</h4>
+      <div class="plate-viz">
+        <div class="plate" id="plateL"></div>
+        <div class="plate-gap" id="plateGap">
+          <div class="gap-label" id="gapLabel">100 nm</div>
+        </div>
+        <div class="plate" id="plateR"></div>
+      </div>
+      <input type="range" class="casimir-slider" id="casimirSlider" min="1" max="100" value="50" oninput="updateCasimir(this.value)">
+      <div class="casimir-force" id="casimirForce">Gap: 50nm · Casimir Force: 1.3 × 10⁻⁴ N/m²</div>
+      <div style="font-size:11px;color:var(--w3);text-align:center;margin-top:6px;line-height:1.6">Drag the slider to change the gap. As plates get closer, the force increases dramatically — powered entirely by the energy of empty space.</div>
+    </div>
+  </div>
+
+  <!-- KEY CONCEPTS -->
+  <div class="section">
+    <h2>Key Concepts</h2>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <h4>Zero Point Field</h4>
+        <p>The lowest possible energy state of a quantum system — not zero energy, but a minimum of quantum fluctuation present even at absolute zero temperature. Space is never truly empty.</p>
+        <span class="tfa-link">→ Your devices exist within and interact with this field at all times</span>
+      </div>
+      <div class="concept-card">
+        <h4>Quantum Vacuum</h4>
+        <p>The "empty" space filled with constant quantum fluctuations, virtual particles, and zero point energy. What appears as void is the most energetically dense state known to physics.</p>
+        <span class="tfa-link">→ Akasha, Ether, Prana, Orgone are all names for experiential encounters with this field</span>
+      </div>
+      <div class="concept-card">
+        <h4>Virtual Particles</h4>
+        <p>Particle-antiparticle pairs that spontaneously appear and annihilate in the quantum vacuum. Real physical events with measurable consequences — not mathematical abstractions.</p>
+        <span class="tfa-link">→ The vacuum is not passive — it is constantly active, constantly creating</span>
+      </div>
+      <div class="concept-card">
+        <h4>Casimir Effect</h4>
+        <p>Measurable attractive force between two uncharged plates in vacuum caused by zero point energy. Experimental proof that vacuum energy is real, physical, and precisely calculable.</p>
+        <span class="tfa-link">→ The force of "nothing" is measurable. The void has pressure and power.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Vacuum Energy Density</h4>
+        <p>The calculated energy density of the quantum vacuum is theoretically enormous — some calculations suggest it may be one of the highest energy densities in the universe.</p>
+        <span class="tfa-link">→ The space your tensor ring encloses is not empty — it is full of this field</span>
+      </div>
+      <div class="concept-card">
+        <h4>Wave Structure of Matter</h4>
+        <p>Milo Wolff's proposal that particles are standing waves in the quantum vacuum — matter as stable field patterns rather than separate objects embedded in a background field.</p>
+        <span class="tfa-link">→ Your devices and the field they interact with may be made of the same substance</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE ACCORDION -->
+  <div class="section">
+    <h2>Quick Reference</h2>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">Key Terms <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <table>
+            <tr><td>Zero Point Field (ZPF)</td><td>The lowest possible energy state of a quantum system — minimum quantum fluctuation energy present even at absolute zero temperature.</td></tr>
+            <tr><td>Quantum Vacuum</td><td>The "empty" space actually filled with constant quantum fluctuations, virtual particles, and zero point energy.</td></tr>
+            <tr><td>Virtual Particles</td><td>Particle-antiparticle pairs that spontaneously appear and annihilate in the quantum vacuum — measurable through the Casimir effect.</td></tr>
+            <tr><td>Casimir Effect</td><td>Measurable physical force between two uncharged plates in vacuum caused by zero point energy — experimental proof ZPF is real.</td></tr>
+            <tr><td>Vacuum Energy Density</td><td>The calculated energy density of the quantum vacuum — theoretically one of the highest energy densities in the universe.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">Key Researchers <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <table>
+            <tr><td>Hal Puthoff</td><td>ZPF theory and applications — proposed matter is sustained by continuous ZPF interaction. Remote viewing research at SRI.</td></tr>
+            <tr><td>Hendrik Casimir</td><td>Predicted the Casimir effect in 1948 — experimental proof of vacuum energy confirmed 1997.</td></tr>
+            <tr><td>Milo Wolff</td><td>Wave Structure of Matter — particles as standing waves in the quantum vacuum.</td></tr>
+            <tr><td>Wilhelm Reich</td><td>Orgone energy — experimental work on vacuum-like life energy accumulation in layered organic/metallic materials.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">Ancient Traditions & ZPF <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <ul>
+            <li><strong>Akasha (Vedic)</strong> — the subtlest element, medium of sound, field of all records. Corresponds to the ZPF as the substrate of all manifestation.</li>
+            <li><strong>Ether (Hermetic)</strong> — the subtle medium through which all forces flow. The field that connects all things.</li>
+            <li><strong>Prana (Yogic)</strong> — the life force that fills and animates space. Breathwork practices are ZPF engagement practices.</li>
+            <li><strong>Orgone (Reich)</strong> — life energy accumulating in layered organic/metallic materials. The direct precursor to orgonite construction.</li>
+            <li><strong>Tao (Taoist)</strong> — the ground of being, the void that is full, the source from which all ten thousand things arise.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">TFA Practice Connections <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>Tensor rings are theorized to interact with the ZPF through their standing columnar wave — the coherent field they generate within their circumference.</li>
+            <li>Orgonite matrix may function as a ZPF transducer — converting vacuum field fluctuations into usable coherent field effects through layered organic/metallic structure.</li>
+            <li>Breathwork practices — particularly pranayama — may be understood as methods of consciously interacting with the life-energy aspect of the ZPF within the body.</li>
+            <li>Sacred geometry in device construction creates specific field geometries that interact with the ZPF in patterned ways.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="section">
+    <h2>This Week's Practice</h2>
+    <p>This practice is a direct perceptual investigation of the Zero Point Field — not as concept but as lived experience.</p>
+    <div class="practice-steps">
+      <div class="ps"><div class="ps-n">01</div><div class="ps-t"><strong>Find a quiet space.</strong> Sit comfortably with your hands in your lap, palms facing up. Close your eyes. Take three full Dragon Breaths to clear the nervous system.</div></div>
+      <div class="ps"><div class="ps-n">02</div><div class="ps-t"><strong>Bring your palms close but not touching</strong> — about 2-3 centimeters apart. Hold them there. Now become very still and very attentive. Notice what you feel between your palms.</div></div>
+      <div class="ps"><div class="ps-n">03</div><div class="ps-t"><strong>Most people feel something</strong> — warmth, pressure, tingling, a subtle resistance. This is your sensory encounter with the biofield — the electromagnetic and quantum field interactions between your hands. What you are feeling is real, measurable, and directly related to the Zero Point Field dynamics in biological tissue.</div></div>
+      <div class="ps"><div class="ps-n">04</div><div class="ps-t"><strong>Now slowly move your palms apart — 10cm, 20cm, 30cm.</strong> At what distance does the sensation change? What does it feel like as the field connection attenuates? This is a direct perceptual experiment in ZPF interaction.</div></div>
+      <div class="ps"><div class="ps-n">05</div><div class="ps-t"><strong>Now hold one of your devices between your palms</strong> — a tensor ring, a crystal, a piece of orgonite. How does the field between your hands change? This is not imagination. This is field research. Write what you observe.</div></div>
+    </div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div class="section">
+    <h2>Go Deeper</h2>
+    <div class="res-item"><div class="res-icon">📚</div><div><div class="res-title">The Field</div><div class="res-auth">Lynne McTaggart</div><div class="res-desc">The most accessible exploration of the Zero Point Field for general readers. Essential reading for anyone working with frequency and healing.</div></div></div>
+    <div class="res-item"><div class="res-icon">📚</div><div><div class="res-title">The Source Field Investigations</div><div class="res-auth">David Wilcock</div><div class="res-desc">Connects ZPF to consciousness, ancient knowledge, and practical applications. Wide-ranging and thought-provoking.</div></div></div>
+    <div class="res-item"><div class="res-icon">📚</div><div><div class="res-title">Torsion Field and ZPF</div><div class="res-auth">Vadim Chernobrov</div><div class="res-desc">Russian research on vacuum field applications — a different scientific tradition approaching the same field phenomena.</div></div></div>
+    <div class="res-item"><div class="res-icon">🔬</div><div><div class="res-title">Hal Puthoff — ZPF Theory Papers</div><div class="res-auth">Hal Puthoff / Institute for Advanced Studies</div><div class="res-desc">The scientific papers by the physicist who developed ZPF theory applications. Rigorous and accessible for motivated readers.</div></div></div>
+    <div class="res-item"><div class="res-icon">🎬</div><div><div class="res-title">Is Empty Space Actually Filled with Energy?</div><div class="res-auth">youtube.com/veritasium</div><div class="res-desc">Veritasium's excellent coverage of vacuum energy — clear, visual, scientifically precise.</div></div></div>
+    <div class="res-item"><div class="res-icon">🎬</div><div><div class="res-title">Casimir Effect Demonstration</div><div class="res-auth">youtube.com</div><div class="res-desc">Visual proof that vacuum energy is real and measurable. Watch the force of nothing at work.</div></div></div>
+    <div class="res-item"><div class="res-icon">✦</div><div><div class="res-title">TFA Connections</div><div class="res-auth">The Frequency Academy</div><div class="res-desc">Connects directly to FF3 (Tensor Ring Foundations — standing waves in ZPF), OG1 (What Is Orgonite — Reich's orgone and ZPF transduction), and C4 (Frequency Programming — intention as ZPF coherence). Q6 — Quantum Coherence in Biology is next.</div></div></div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="section">
+    <h2>Reflection Journal</h2>
+    <div class="rp"><p>How does understanding the Zero Point Field change your perspective on "empty" space — in your devices, in your body, in the space of a ceremony? What shifts when you know the void is full?</p></div>
+    <textarea id="r1" data-key="r1" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+
+    <div class="rp" style="margin-top:16px"><p>If the quantum vacuum contains virtually infinite energy, what does that imply about consciousness and manifestation? What becomes possible when you understand that you are not drawing energy from a limited source but interacting with an infinite field?</p></div>
+    <textarea id="r2" data-key="r2" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+
+    <div class="rp" style="margin-top:16px"><p>How does the ZPF concept connect to your personal experience with tensor rings and orgonite? Has anything in how you work with these devices shifted as a result of this lesson?</p></div>
+    <textarea id="r3" data-key="r3" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="workshop">
+    <h3>◈ Live Workshop — The Zero Point Field & Device Building</h3>
+    <p>A live workshop on this topic is part of your Academy experience.<br>
+    BabaKeegs will go deep on how tensor rings and orgonite interact with the ZPF — the science and the practice together.<br>
+    <span style="color:var(--g);font-size:11px;margin-top:6px;display:inline-block">Workshop recordings will appear here · Join live on Skool →</span></p>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="completion">
+    <h3>Mark This Lesson Complete</h3>
+    <p>The void is not empty.<br>The space between your atoms is alive.<br>The field you build within is infinite.</p>
+    <button class="complete-btn" id="completeBtn" onclick="markComplete()">Complete Lesson · +10 XP</button>
+    <div class="xp-flash" id="xpFlash">✦ +10 XP Awarded · Q5 Complete · The field recognizes you.</div>
+  </div>
+
+  <a href="https://thefrequencyacademy-lessons.pages.dev/01-quantum-physics/quantum-physics/lesson-06/" class="next-lesson">
+    <div>
+      <div class="next-label">Up Next · Q6</div>
+      <div class="next-title">Quantum Coherence in Biology</div>
+    </div>
+    <div class="next-arrow">→</div>
+  </a>
+
+</div>
+
+<div class="save-bar">
+  <div class="save-status" id="saveStatus">Last saved: never</div>
+  <div class="save-btns">
+    <button class="save-btn ghost" onclick="exportBackup()">↑ Export Backup</button>
+    <button class="save-btn primary" onclick="saveProgress()">+ Save Progress</button>
+  </div>
+</div>
+
+<script>
+const SAVE_KEY = 'tfa_lesson_Q5';
+
+// ═══ VACUUM VISUALIZER ═══
+const canvas = document.getElementById('zpfCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let animId;
+let energyLevel = 5;
+let obsLevel = 3;
+
+function resizeCanvas() {
+  const wrap = document.getElementById('vacuumCanvas');
+  canvas.width = wrap.clientWidth;
+  canvas.height = wrap.clientHeight;
+}
+
+function addFluctuation(e) {
+  const rect = document.getElementById('vacuumCanvas').getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  for(let i = 0; i < 3 + energyLevel; i++) {
+    particles.push({
+      x, y,
+      vx: (Math.random()-0.5) * 3,
+      vy: (Math.random()-0.5) * 3,
+      life: 1,
+      maxLife: 0.3 + Math.random() * 0.7,
+      size: 2 + Math.random() * 4,
+      color: Math.random() > 0.5 ? '#4a9edd' : '#c9a84c'
+    });
+  }
+}
+
+function updateEnergy(val) {
+  energyLevel = parseInt(val);
+  const labels = ['Very low','Low','Low-medium','Medium-low','Medium','Medium-high','High','Very high','Extreme','Maximum'];
+  document.getElementById('energyVal').textContent = labels[val-1] + ' — ' + (val < 4 ? 'few fluctuations' : val < 7 ? 'field fluctuations visible' : 'intense vacuum activity');
+}
+
+function updateObs(val) {
+  obsLevel = parseInt(val);
+  const labels = ['Rare','Occasional','Low','Moderate-low','Moderate','Moderate-high','Frequent','Very frequent','Rapid','Constant'];
+  document.getElementById('obsVal').textContent = labels[val-1] + ' — particles ' + (val < 4 ? 'appear briefly' : val < 7 ? 'visible for longer' : 'sustained presence');
+}
+
+function animateVacuum() {
+  resizeCanvas();
+  ctx.fillStyle = 'rgba(10,22,40,0.15)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Spontaneous fluctuations
+  if(Math.random() < 0.02 * energyLevel) {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height;
+    particles.push({
+      x, y,
+      vx: (Math.random()-0.5) * 2,
+      vy: (Math.random()-0.5) * 2,
+      life: 1,
+      maxLife: 0.1 + Math.random() * (obsLevel * 0.1),
+      size: 1 + Math.random() * 3,
+      color: Math.random() > 0.5 ? '#4a9edd' : '#c9a84c',
+      twin: true
+    });
+  }
+
+  // Update and draw particles
+  particles = particles.filter(p => p.life > 0);
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life -= 0.02;
+    const alpha = p.life * 0.8;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = p.color + Math.round(alpha * 255).toString(16).padStart(2,'0');
+    ctx.fill();
+
+    // Draw antiparticle twin
+    if(p.twin) {
+      ctx.beginPath();
+      ctx.arc(p.x - p.vx * 4, p.y - p.vy * 4, p.size * 0.7, 0, Math.PI * 2);
+      ctx.fillStyle = (p.color === '#4a9edd' ? '#c9a84c' : '#4a9edd') + Math.round(alpha * 180).toString(16).padStart(2,'0');
+      ctx.fill();
+    }
+  });
+
+  // Background grid
+  ctx.strokeStyle = 'rgba(74,158,221,0.04)';
+  ctx.lineWidth = 0.5;
+  for(let x = 0; x < canvas.width; x += 40) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+  }
+  for(let y = 0; y < canvas.height; y += 40) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+  }
+
+  animId = requestAnimationFrame(animateVacuum);
+}
+
+// ═══ CASIMIR EFFECT ═══
+function updateCasimir(val) {
+  const gap = parseInt(val);
+  const gapPx = Math.max(8, gap * 1.5);
+  document.getElementById('plateGap').style.width = gapPx + 'px';
+  document.getElementById('gapLabel').textContent = gap + ' nm';
+
+  // Casimir force ~ 1/gap^4
+  const force = (1.3e-4 * Math.pow(50/gap, 4));
+  let forceStr;
+  if(force > 1) forceStr = force.toFixed(1) + ' N/m²';
+  else if(force > 0.001) forceStr = (force * 1000).toFixed(1) + ' × 10⁻³ N/m²';
+  else forceStr = (force * 1e4).toExponential(1) + ' N/m²';
+
+  document.getElementById('casimirForce').textContent =
+    `Gap: ${gap}nm · Casimir Force: ${forceStr} · ${gap < 20 ? 'Extremely strong attraction' : gap < 50 ? 'Strong vacuum force' : 'Measurable vacuum pressure'}`;
+}
+
+// ═══ ACCORDION ═══
+function toggleAcc(head) {
+  const body = head.nextElementSibling;
+  const arrow = head.querySelector('.acc-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// ═══ SAVE SYSTEM ═══
+function loadSaved() {
+  const d = localStorage.getItem(SAVE_KEY);
+  if(!d) return;
+  try {
+    const data = JSON.parse(d);
+    ['r1','r2','r3'].forEach(k => { if(data[k]) document.getElementById(k).value = data[k]; });
+    if(data.complete) markComplete(true);
+    if(data.savedAt) document.getElementById('saveStatus').textContent = 'Last saved: ' + data.savedAt;
+    updateProgress(data);
+  } catch(e) {}
+}
+
+function getData() {
+  return {
+    r1: document.getElementById('r1').value,
+    r2: document.getElementById('r2').value,
+    r3: document.getElementById('r3').value,
+    complete: document.getElementById('completeBtn').classList.contains('done'),
+    savedAt: new Date().toLocaleString()
+  };
+}
+
+function updateProgress(data) {
+  let p = 10;
+  if(data.r1&&data.r1.length>10) p+=25;
+  if(data.r2&&data.r2.length>10) p+=25;
+  if(data.r3&&data.r3.length>10) p+=25;
+  if(data.complete) p=100;
+  document.getElementById('progressFill').style.width=p+'%';
+}
+
+let saveTimer;
+function autoSave(){clearTimeout(saveTimer);saveTimer=setTimeout(saveProgress,1500);}
+function saveProgress(){const d=getData();localStorage.setItem(SAVE_KEY,JSON.stringify(d));document.getElementById('saveStatus').textContent='Last saved: '+d.savedAt;updateProgress(d);}
+function markComplete(silent){
+  const btn=document.getElementById('completeBtn');
+  btn.textContent='✓ Complete · +10 XP Awarded';
+  btn.classList.add('done');
+  document.getElementById('xpFlash').classList.add('show');
+  document.getElementById('progressFill').style.width='100%';
+  if(!silent) saveProgress();
+}
+function exportBackup(){const d=getData();const blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Q5-backup.json';a.click();}
+
+window.addEventListener('DOMContentLoaded', () => {
+  loadSaved();
+  animateVacuum();
+  updateCasimir(50);
+  setInterval(saveProgress, 90000);
+});
+window.addEventListener('beforeunload', saveProgress);
+window.addEventListener('resize', resizeCanvas);
+</script>
+</body>
+</html>
