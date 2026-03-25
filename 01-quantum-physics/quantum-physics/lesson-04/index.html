@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q4 — Quantum Entanglement | The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --n:#0a1628;--n2:#0d1e38;--n3:#102040;
+  --g:#4a9edd;--g2:#78b8ee;
+  --gb:rgba(74,158,221,0.22);--gf:rgba(74,158,221,0.08);
+  --w:#e8f0f8;--w2:rgba(232,240,248,0.72);--w3:rgba(232,240,248,0.38);--w4:rgba(232,240,248,0.06);
+  --ok:#2a8a7a;--purple:#9a6dd4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
+body{min-height:100vh;padding-bottom:80px}
+
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--w4);z-index:200}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--g),var(--purple));transition:width .4s;width:0%}
+
+header{background:rgba(10,22,40,0.95);border-bottom:1px solid var(--gb);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:100;backdrop-filter:blur(8px)}
+.hd-left{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.12em}
+.hd-right{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em}
+
+.hero{text-align:center;padding:60px 24px 44px;max-width:820px;margin:0 auto}
+.eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.22em;color:var(--g);margin-bottom:18px;opacity:0.8}
+.hero h1{font-family:'Cinzel',serif;font-size:44px;font-weight:700;color:var(--w);line-height:1.12;margin-bottom:12px}
+.hero h1 span{color:var(--g)}
+.gold-rule{width:80px;height:2px;background:linear-gradient(90deg,var(--g),var(--purple));margin:22px auto;opacity:0.7}
+.hero-sub{font-size:16px;color:var(--w3);line-height:1.8;max-width:580px;margin:0 auto}
+
+.video-coming{max-width:840px;margin:0 auto 36px;padding:0 24px}
+.vc-inner{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:14px}
+.vc-icon{font-size:22px;flex-shrink:0}
+.vc-label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.12em;margin-bottom:3px}
+.vc-text{font-size:12px;color:var(--w3);line-height:1.5}
+
+.content{max-width:800px;margin:0 auto;padding:0 24px}
+
+.section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px 32px;margin-bottom:18px}
+.section h2{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.1em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb);text-transform:uppercase}
+.section p{font-size:14px;color:var(--w2);line-height:1.85;margin-bottom:12px}
+.section p:last-child{margin:0}
+.section p strong{color:var(--g2);font-weight:600}
+.section p em{color:var(--w3);font-style:italic}
+
+/* ENTANGLEMENT VISUALIZER */
+.visualizer{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px 32px;margin-bottom:18px}
+.visualizer h2{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.1em;margin-bottom:6px;text-transform:uppercase}
+.viz-sub{font-size:12px;color:var(--w3);margin-bottom:22px}
+
+.viz-canvas{background:rgba(0,0,0,0.3);border:1px solid var(--gb);border-radius:10px;padding:24px;margin-bottom:16px;position:relative;min-height:160px}
+.particle-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.particle-zone{text-align:center;flex:1}
+.particle-label{font-family:'Cinzel',serif;font-size:10px;color:var(--w3);letter-spacing:0.1em;margin-bottom:12px}
+.particle{width:52px;height:52px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid var(--gb);transition:all 0.4s ease;position:relative}
+.particle.spin-up{background:rgba(74,158,221,0.2);border-color:var(--g);box-shadow:0 0 20px rgba(74,158,221,0.3)}
+.particle.spin-down{background:rgba(154,109,212,0.2);border-color:var(--purple);box-shadow:0 0 20px rgba(154,109,212,0.3)}
+.particle.unmeasured{background:rgba(255,255,255,0.05);border-color:var(--gb);animation:pulse-particle 2s ease-in-out infinite}
+@keyframes pulse-particle{0%,100%{opacity:0.5;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+.particle-state{font-family:'Cinzel',serif;font-size:11px;margin-top:8px;letter-spacing:0.06em}
+.connection-line{flex:1;height:2px;background:linear-gradient(90deg,var(--g),var(--purple));opacity:0.4;position:relative;transition:opacity 0.4s}
+.connection-line.active{opacity:1;animation:flow 1s linear infinite}
+@keyframes flow{0%{background-position:0 0}100%{background-position:40px 0}}
+.connection-line::after{content:'⚡';position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-size:14px;opacity:0;transition:opacity 0.4s}
+.connection-line.active::after{opacity:1}
+.distance-display{text-align:center;font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.08em;margin-bottom:14px}
+.distance-slider{width:100%;accent-color:var(--g);margin:8px 0}
+.viz-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.viz-btn{padding:9px 18px;border-radius:7px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all .18s;border:1px solid var(--gb);background:var(--gf);color:var(--w3)}
+.viz-btn:hover{border-color:var(--g);color:var(--w)}
+.viz-btn.measuring{background:var(--g);color:#080e30;border-color:var(--g)}
+.viz-result{background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:14px 16px;font-size:13px;color:var(--w2);line-height:1.7;min-height:48px;transition:all 0.3s}
+.viz-result.flash{border-color:var(--g);background:rgba(74,158,221,0.1)}
+
+/* ACCORDION */
+.accordion{margin-top:8px}
+.acc-item{border:1px solid var(--gb);border-radius:8px;margin-bottom:7px;overflow:hidden}
+.acc-head{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.06em;background:var(--gf);transition:background .15s}
+.acc-head:hover{background:rgba(255,255,255,0.04)}
+.acc-body{display:none;padding:14px 16px;font-size:13px;color:var(--w2);line-height:1.75;border-top:1px solid var(--gb)}
+.acc-body.open{display:block}
+.acc-arrow{transition:transform .2s;font-size:11px}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body table{width:100%;border-collapse:collapse;margin-top:8px}
+.acc-body td{padding:8px 10px;font-size:12px;border-bottom:1px solid rgba(232,240,248,0.05)}
+.acc-body td:first-child{color:var(--g2);font-weight:600;min-width:160px}
+
+/* PRACTICAL */
+.practice-steps{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.ps{display:flex;gap:14px;padding:14px;background:var(--gf);border:1px solid var(--gb);border-radius:8px}
+.ps-n{font-family:'Cinzel',serif;font-size:13px;color:var(--g);min-width:28px;font-weight:700;padding-top:1px}
+.ps-t{font-size:13px;color:var(--w2);line-height:1.65}
+.ps-t strong{color:var(--g2);font-weight:600}
+
+/* RESOURCES */
+.res-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(232,240,248,0.05)}
+.res-item:last-child{border:none}
+.res-icon{font-size:15px;flex-shrink:0;padding-top:2px}
+.res-title{font-size:13px;color:var(--w);font-weight:500;margin-bottom:2px}
+.res-auth{font-size:11px;color:var(--g);margin-bottom:3px}
+.res-desc{font-size:11px;color:var(--w3);line-height:1.5}
+
+/* WORKSHOP */
+.workshop{background:var(--gf);border:1px dashed var(--gb);border-radius:12px;padding:22px;text-align:center;margin-bottom:18px}
+.workshop h3{font-family:'Cinzel',serif;font-size:13px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.workshop p{font-size:12px;color:var(--w3);line-height:1.65}
+
+/* REFLECTION */
+.rp{background:var(--n3);border-left:3px solid var(--g);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:10px}
+.rp p{font-size:13px;color:var(--w2);line-height:1.65;font-style:italic;margin:0}
+textarea{width:100%;background:var(--w4);border:1px solid var(--gb);border-radius:8px;padding:12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;resize:vertical;min-height:88px;outline:none;line-height:1.6;transition:border-color .2s;margin-top:8px}
+textarea:focus{border-color:var(--g)}
+textarea::placeholder{color:var(--w3)}
+
+/* COMPLETION */
+.completion{background:var(--gf);border:1px solid var(--gb);border-radius:12px;padding:26px;text-align:center;margin-top:18px}
+.completion h3{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.08em;margin-bottom:10px}
+.completion p{font-size:13px;color:var(--w3);margin-bottom:16px;line-height:1.6}
+.complete-btn{padding:12px 30px;border-radius:8px;background:var(--g);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:0.12em;color:#080e30;transition:all .18s}
+.complete-btn:hover{background:var(--g2);transform:scale(1.02)}
+.complete-btn.done{background:var(--ok);cursor:default;transform:none}
+.xp-flash{display:none;margin-top:12px;font-family:'Cinzel',serif;font-size:12px;color:#7dd4c8;letter-spacing:0.08em}
+.xp-flash.show{display:block}
+
+.next-lesson{background:var(--n3);border:1px solid var(--gb);border-radius:12px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;margin-top:14px;text-decoration:none;transition:all .18s}
+.next-lesson:hover{background:var(--gf);border-color:var(--g);transform:translateX(3px)}
+.next-label{font-size:10px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.12em;margin-bottom:4px;text-transform:uppercase}
+.next-title{font-size:14px;color:var(--w);font-family:'Cinzel',serif;font-weight:600}
+.next-arrow{font-size:22px;color:var(--g)}
+
+.save-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,0.97);border-top:1px solid var(--gb);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;backdrop-filter:blur(8px)}
+.save-status{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.08em}
+.save-btns{display:flex;gap:8px}
+.save-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all .15s;border:1px solid var(--gb)}
+.save-btn.primary{background:var(--g);color:#080e30;border-color:var(--g)}.save-btn.primary:hover{background:var(--g2)}
+.save-btn.ghost{background:var(--gf);color:var(--g)}.save-btn.ghost:hover{background:rgba(255,255,255,0.06)}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <div class="hd-left">THE FREQUENCY ACADEMY · QUANTUM PHYSICS & SCIENCES</div>
+  <div class="hd-right">Q4 · LESSON 4 OF 16</div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">QUANTUM PHYSICS & SCIENCES · Q4</div>
+  <h1>Quantum <span>Entanglement</span></h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">Two particles. Any distance. One is measured — and the other instantly knows. Einstein called it spooky action at a distance. It has since been proven beyond doubt. And it changes everything about what connection, distance healing, and unified field consciousness actually mean.</p>
+</div>
+
+<div class="video-coming">
+  <div class="vc-inner">
+    <div class="vc-icon">🎬</div>
+    <div>
+      <div class="vc-label">Video Lesson Coming</div>
+      <div class="vc-text">Full video transmission for this lesson is in production. Explore the complete interactive lesson below now.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- TRANSMISSION -->
+  <div class="section">
+    <h2>The Transmission</h2>
+    <p>Before quantum mechanics, separation was a fundamental fact of reality. Two objects in different places were simply in different places. Nothing connected them except the physical forces that could travel between them — gravity, electromagnetism — forces that weakened with distance and traveled at finite speed.</p>
+    <p>Quantum entanglement broke this completely.</p>
+    <p>When two particles interact under the right conditions, they become entangled — correlated in a way that transcends space. Measure the spin of one particle and you instantly know the spin of the other, no matter how far apart they are. Not because a signal traveled between them. Not because they somehow communicated. But because they are, in some fundamental sense, <strong>not separate.</strong></p>
+    <p>Einstein hated this. In 1935, he and colleagues Podolsky and Rosen published what they called a paradox — arguing that if entanglement were real, then either physics was incomplete or reality was non-local in a way that violated relativity. They believed they had proven entanglement impossible.</p>
+    <p>They were wrong.</p>
+    <p>In 1964, John Bell devised a mathematical theorem that made entanglement testable. In the decades that followed, experimentalists — culminating in Alain Aspect's landmark 1982 experiments and work recognized by the 2022 Nobel Prize in Physics — proved beyond any reasonable doubt that quantum entanglement is real. Non-locality is a feature of the universe, not a bug.</p>
+    <p><strong>The universe is not made of separate things. It is made of relationships.</strong> And some of those relationships persist regardless of distance.</p>
+  </div>
+
+  <!-- TEACHING: THE SCIENCE -->
+  <div class="section">
+    <h2>How Entanglement Works</h2>
+    <p>Two particles become entangled when they interact in a way that links their quantum states. The most common example involves spin — the intrinsic angular momentum of subatomic particles.</p>
+    <p>Create two particles together such that their total spin must be zero. Before measurement, neither particle has a definite spin — each exists in a superposition of spin-up and spin-down. But their states are correlated: if one is measured as spin-up, the other must be spin-down. Instantly. Regardless of distance.</p>
+    <p><strong>Bell's Theorem</strong> is what makes this remarkable. Bell proved mathematically that if the particles were simply carrying hidden information — like two gloves separated from the same pair, where the "information" about which is left and which is right was always there — then statistical correlations between measurements would obey certain limits. His theorem defined those limits precisely.</p>
+    <p>When the experiments were run, the correlations exceeded Bell's limits. The particles were not carrying hidden information. They were genuinely in superposition until measured, and genuinely correlated across distance in a way that no local, classical mechanism can explain.</p>
+    <p><strong>What entanglement does not do:</strong> it cannot transmit information faster than light. The outcome of any individual measurement is random. You cannot control what result you get, so you cannot send a message. What is non-local is the correlation — the fact that however both measurements come out, they will always be correlated in ways that exceed classical probability.</p>
+    <p>This distinction matters. Entanglement is real. Faster-than-light communication is not. Understanding both is essential to working with this knowledge responsibly.</p>
+  </div>
+
+  <!-- TEACHING: IMPLICATIONS -->
+  <div class="section">
+    <h2>What This Means for Your Practice</h2>
+    <p>The implications of quantum entanglement for frequency work are significant — and they require careful thought, not wishful application.</p>
+    <p><strong>Distance healing and non-local intention.</strong> The HeartMath Institute has documented measurable physiological correlations between people in deep heart-coherent states, even across distance. This is not the same as quantum entanglement at the scale of subatomic particles — biological systems are far more complex and warm than the controlled quantum experiments. But the principle that systems which have been in deep relationship may retain non-local correlations is not scientifically absurd. It deserves serious investigation.</p>
+    <p><strong>The practitioner-device connection.</strong> When you build a Frequency Charged™ device with sustained, focused intention — handling the materials, charging them, programming them with specific frequencies — you are in deep relationship with those materials. The quantum connection between practitioner and device during construction is not merely symbolic. At the level of quantum field interactions, something real occurs when consciousness engages deeply with matter over time.</p>
+    <p><strong>Group ceremony and field coherence.</strong> Research from the Global Consciousness Project has documented statistically significant correlations in random number generators during large-scale global events and synchronized meditation. The mechanism is not fully understood. But entanglement offers one framework for understanding why synchronized, coherent group intention might produce measurable field effects that no individual generates alone.</p>
+    <p><strong>The ancient framework.</strong> Indigenous traditions across the world have described a web of connection underlying all things — the understanding that nothing is truly separate. The Lakota concept of Mitákuye Oyásʼiŋ — "all my relations" — expresses a cosmology in which all beings are fundamentally connected. The Vedic concept of Indra's Net describes a universe where each jewel reflects all others. Quantum entanglement does not prove these traditions right in every detail. But it does demonstrate that the universe has non-local features that classical physics denied — and that the intuition of deep interconnection is not naive.</p>
+  </div>
+
+  <!-- INTERACTIVE: ENTANGLEMENT VISUALIZER -->
+  <div class="visualizer">
+    <h2>Entanglement Visualizer</h2>
+    <div class="viz-sub">Adjust the distance between two entangled particles — then measure one and observe the instant correlation</div>
+
+    <div class="viz-canvas">
+      <div class="particle-row">
+        <div class="particle-zone">
+          <div class="particle-label">PARTICLE A</div>
+          <div class="particle unmeasured" id="particleA">◈</div>
+          <div class="particle-state" id="stateA" style="color:var(--w3)">Superposition</div>
+        </div>
+        <div class="connection-line" id="connLine"></div>
+        <div class="particle-zone">
+          <div class="particle-label">PARTICLE B</div>
+          <div class="particle unmeasured" id="particleB">◈</div>
+          <div class="particle-state" id="stateB" style="color:var(--w3)">Superposition</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="distance-display">
+      Distance between particles: <span id="distLabel" style="color:var(--g);font-weight:700">1 meter</span>
+    </div>
+    <input type="range" class="distance-slider" id="distSlider" min="1" max="7" value="1" oninput="updateDistance(this.value)">
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--w3);margin-bottom:16px;font-family:'Cinzel',serif;letter-spacing:0.06em">
+      <span>1 meter</span><span>Earth → Moon</span><span>Earth → Sun</span><span>Across the galaxy</span>
+    </div>
+
+    <div class="viz-controls">
+      <button class="viz-btn" onclick="resetParticles()">Reset to Superposition</button>
+      <button class="viz-btn measuring" onclick="measureParticle()">Measure Particle A</button>
+    </div>
+
+    <div class="viz-result" id="vizResult">
+      Both particles exist in superposition — neither has a definite spin state. They are entangled: measuring one will instantly determine the other, regardless of the distance between them.
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE ACCORDION -->
+  <div class="section">
+    <h2>Quick Reference</h2>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">Key Terms <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <table>
+            <tr><td>Quantum Entanglement</td><td>Two particles become correlated such that measuring one instantly determines the state of the other, regardless of distance.</td></tr>
+            <tr><td>Non-Locality</td><td>The ability of quantum systems to exhibit instantaneous correlations without any signal traveling between them.</td></tr>
+            <tr><td>Bell's Theorem</td><td>John Bell's 1964 mathematical proof that quantum correlations cannot be explained by local hidden variables.</td></tr>
+            <tr><td>EPR Paradox</td><td>Einstein-Podolsky-Rosen thought experiment challenging entanglement — later proven wrong by Bell test experiments.</td></tr>
+            <tr><td>Bell Test Experiments</td><td>Real-world experiments confirming quantum entanglement. Alain Aspect's work won the 2022 Nobel Prize in Physics.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">Key Researchers <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <table>
+            <tr><td>John Bell</td><td>Bell's theorem — mathematical proof that quantum correlations are real (1964)</td></tr>
+            <tr><td>Alain Aspect</td><td>Definitive Bell test experiments — 2022 Nobel Prize in Physics</td></tr>
+            <tr><td>Anton Zeilinger</td><td>Quantum teleportation research using entanglement — 2022 Nobel Prize</td></tr>
+            <tr><td>HeartMath Institute</td><td>Research on heart-brain coherence and field-to-field synchronization across distance</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">TFA Practice Connections <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p>Distance charging and distance healing may operate through entanglement-like mechanisms at the biological field level.</p>
+          <p>The quantum connection between practitioner and device during construction is not symbolic — deep relationship with matter creates real energetic connection.</p>
+          <p>Group ceremony creates entangled field coherence — the research basis for why group work amplifies individual intention.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="section">
+    <h2>This Week's Practice</h2>
+    <p>Choose someone you are in relationship with — a friend, family member, or student — who is physically distant from you. Do the following practice once this week:</p>
+    <div class="practice-steps">
+      <div class="ps"><div class="ps-n">01</div><div class="ps-t"><strong>Set a time together.</strong> Agree on a specific time when both of you will do this practice simultaneously, each in your own space.</div></div>
+      <div class="ps"><div class="ps-n">02</div><div class="ps-t"><strong>Breathe into heart coherence.</strong> Both of you do 3 minutes of coherence breathing — 5 counts in, 5 counts out, attention on the heart center. This synchronizes your field states.</div></div>
+      <div class="ps"><div class="ps-n">03</div><div class="ps-t"><strong>Hold the connection.</strong> With eyes closed, hold an image or felt sense of the other person. Not a memory — a present-moment sense of their field. Do this for 5 minutes.</div></div>
+      <div class="ps"><div class="ps-n">04</div><div class="ps-t"><strong>Compare notes immediately after.</strong> Call or message each other within 5 minutes. Note any images, sensations, emotions, or thoughts that arose. Track correlations over time.</div></div>
+      <div class="ps"><div class="ps-n">◈</div><div class="ps-t"><em>This is not a test of psychic ability. It is the beginning of a personal investigation into non-local field effects. The data you collect over time is your own empirical research.</em></div></div>
+    </div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div class="section">
+    <h2>Go Deeper</h2>
+    <div class="res-item"><div class="res-icon">📚</div><div><div class="res-title">The God Effect</div><div class="res-auth">Brian Clegg</div><div class="res-desc">Accessible deep dive on quantum entanglement and its implications. The most readable book on the subject.</div></div></div>
+    <div class="res-item"><div class="res-icon">📚</div><div><div class="res-title">Quantum Enigma</div><div class="res-auth">Rosenblum & Kuttner</div><div class="res-desc">Physics professors explore the consciousness-quantum entanglement connection. Rigorous and genuinely open-minded.</div></div></div>
+    <div class="res-item"><div class="res-icon">📚</div><div><div class="res-title">The Entangled Universe</div><div class="res-auth">Menas Kafatos & Robert Nadeau</div><div class="res-desc">Connecting quantum non-locality to consciousness and cosmos. A serious philosophical treatment.</div></div></div>
+    <div class="res-item"><div class="res-icon">🎬</div><div><div class="res-title">Quantum Entanglement & Spooky Action — Veritasium</div><div class="res-auth">youtube.com/veritasium</div><div class="res-desc">Clear explanation with 2022 Nobel Prize context. Watch this after completing the lesson.</div></div></div>
+    <div class="res-item"><div class="res-icon">🔬</div><div><div class="res-title">HeartMath Institute Research</div><div class="res-auth">heartmath.org</div><div class="res-desc">Research on heart-brain coherence and field-to-field synchronization. The scientific bridge between entanglement and healing practice.</div></div></div>
+    <div class="res-item"><div class="res-icon">✦</div><div><div class="res-title">TFA Connections</div><div class="res-auth">The Frequency Academy</div><div class="res-desc">Connects directly to C3 (Frequency Programming), EH10 (Distance Healing), and CS_HB1 (HeartMath Science). Q5 — Zero Point Field is next.</div></div></div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="section">
+    <h2>Reflection Journal</h2>
+    <div class="rp"><p>If quantum entanglement is real and proven — that particles can be correlated across any distance — what does that do to your understanding of non-local healing? Does it prove it, suggest it, or simply leave the door open?</p></div>
+    <textarea id="r1" data-key="r1" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+
+    <div class="rp" style="margin-top:16px"><p>How does understanding entanglement change your approach to sending intentions across distance — to a person, a place, or a device you have built? What changes in how you hold that practice?</p></div>
+    <textarea id="r2" data-key="r2" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+
+    <div class="rp" style="margin-top:16px"><p>What would it mean for your practice if the devices you build retain a quantum connection to you — that your relationship with the materials during construction leaves a real, non-symbolic trace in the field?</p></div>
+    <textarea id="r3" data-key="r3" placeholder="Your reflection..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="workshop">
+    <h3>◈ Live Workshop — Quantum Entanglement & Distance Healing</h3>
+    <p>A live workshop on this topic is part of your Academy experience.<br>
+    BabaKeegs will go deep on the practical applications — distance healing, device charging, group ceremony.<br>
+    <span style="color:var(--g);font-size:11px;margin-top:6px;display:inline-block">Workshop recordings will appear here · Join live on Skool →</span></p>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="completion">
+    <h3>Mark This Lesson Complete</h3>
+    <p>You are not separate from what you observe.<br>You are not separate from what you have loved.<br>Nothing that has been in relationship is ever truly apart.</p>
+    <button class="complete-btn" id="completeBtn" onclick="markComplete()">Complete Lesson · +10 XP</button>
+    <div class="xp-flash" id="xpFlash">✦ +10 XP Awarded · Q4 Complete · The field remembers.</div>
+  </div>
+
+  <a href="https://thefrequencyacademy-lessons.pages.dev/01-quantum-physics/quantum-physics/lesson-05/" class="next-lesson">
+    <div>
+      <div class="next-label">Up Next · Q5</div>
+      <div class="next-title">Zero Point Field</div>
+    </div>
+    <div class="next-arrow">→</div>
+  </a>
+
+</div>
+
+<div class="save-bar">
+  <div class="save-status" id="saveStatus">Last saved: never</div>
+  <div class="save-btns">
+    <button class="save-btn ghost" onclick="exportBackup()">↑ Export Backup</button>
+    <button class="save-btn primary" onclick="saveProgress()">+ Save Progress</button>
+  </div>
+</div>
+
+<script>
+const SAVE_KEY = 'tfa_lesson_Q4';
+const DISTANCES = ['1 meter','1 kilometer','Earth to Moon (384,400 km)','Earth to Sun (150 million km)','To Alpha Centauri (4.37 light years)','To the galactic center (26,000 light years)','Across the observable universe'];
+let measured = false;
+let spinA = null;
+
+function updateDistance(val) {
+  document.getElementById('distLabel').textContent = DISTANCES[val-1];
+  if(measured) resetParticles();
+}
+
+function resetParticles() {
+  measured = false; spinA = null;
+  const pA = document.getElementById('particleA');
+  const pB = document.getElementById('particleB');
+  pA.className = 'particle unmeasured'; pA.textContent = '◈';
+  pB.className = 'particle unmeasured'; pB.textContent = '◈';
+  document.getElementById('stateA').textContent = 'Superposition';
+  document.getElementById('stateA').style.color = 'var(--w3)';
+  document.getElementById('stateB').textContent = 'Superposition';
+  document.getElementById('stateB').style.color = 'var(--w3)';
+  document.getElementById('connLine').classList.remove('active');
+  document.getElementById('vizResult').classList.remove('flash');
+  document.getElementById('vizResult').textContent = 'Both particles exist in superposition — neither has a definite spin state. They are entangled: measuring one will instantly determine the other, regardless of the distance between them.';
+}
+
+function measureParticle() {
+  if(measured) { resetParticles(); return; }
+  measured = true;
+  spinA = Math.random() > 0.5 ? 'up' : 'down';
+  const spinB = spinA === 'up' ? 'down' : 'up';
+  const pA = document.getElementById('particleA');
+  const pB = document.getElementById('particleB');
+  const dist = DISTANCES[document.getElementById('distSlider').value - 1];
+
+  pA.className = 'particle ' + (spinA === 'up' ? 'spin-up' : 'spin-down');
+  pA.textContent = spinA === 'up' ? '↑' : '↓';
+  document.getElementById('stateA').textContent = 'Spin ' + spinA.toUpperCase();
+  document.getElementById('stateA').style.color = spinA === 'up' ? 'var(--g)' : 'var(--purple)';
+
+  document.getElementById('connLine').classList.add('active');
+
+  setTimeout(() => {
+    pB.className = 'particle ' + (spinB === 'up' ? 'spin-up' : 'spin-down');
+    pB.textContent = spinB === 'up' ? '↑' : '↓';
+    document.getElementById('stateB').textContent = 'Spin ' + spinB.toUpperCase() + ' (instant)';
+    document.getElementById('stateB').style.color = spinB === 'up' ? 'var(--g)' : 'var(--purple)';
+    const res = document.getElementById('vizResult');
+    res.classList.add('flash');
+    res.textContent = `Particle A measured as Spin ${spinA.toUpperCase()}. Instantly — across ${dist} — Particle B collapsed to Spin ${spinB.toUpperCase()}. No signal traveled. No information was transmitted. The correlation is non-local. This is quantum entanglement.`;
+  }, 300);
+}
+
+function toggleAcc(head) {
+  const body = head.nextElementSibling;
+  const arrow = head.querySelector('.acc-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+function loadSaved() {
+  const d = localStorage.getItem(SAVE_KEY);
+  if(!d) return;
+  try {
+    const data = JSON.parse(d);
+    ['r1','r2','r3'].forEach(k => { if(data[k]) document.getElementById(k).value = data[k]; });
+    if(data.complete) markComplete(true);
+    if(data.savedAt) document.getElementById('saveStatus').textContent = 'Last saved: ' + data.savedAt;
+    updateProgress(data);
+  } catch(e) {}
+}
+
+function getData() {
+  return {
+    r1:document.getElementById('r1').value,
+    r2:document.getElementById('r2').value,
+    r3:document.getElementById('r3').value,
+    complete:document.getElementById('completeBtn').classList.contains('done'),
+    savedAt:new Date().toLocaleString()
+  };
+}
+
+function updateProgress(data) {
+  let p = 10;
+  if(data.r1&&data.r1.length>10) p+=25;
+  if(data.r2&&data.r2.length>10) p+=25;
+  if(data.r3&&data.r3.length>10) p+=25;
+  if(data.complete) p=100;
+  document.getElementById('progressFill').style.width=p+'%';
+}
+
+let saveTimer;
+function autoSave(){clearTimeout(saveTimer);saveTimer=setTimeout(saveProgress,1500);}
+function saveProgress(){const d=getData();localStorage.setItem(SAVE_KEY,JSON.stringify(d));document.getElementById('saveStatus').textContent='Last saved: '+d.savedAt;updateProgress(d);}
+function markComplete(silent){
+  const btn=document.getElementById('completeBtn');
+  btn.textContent='✓ Complete · +10 XP Awarded';
+  btn.classList.add('done');
+  document.getElementById('xpFlash').classList.add('show');
+  document.getElementById('progressFill').style.width='100%';
+  if(!silent) saveProgress();
+}
+function exportBackup(){const d=getData();const blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Q4-backup.json';a.click();}
+window.addEventListener('DOMContentLoaded',loadSaved);
+window.addEventListener('beforeunload',saveProgress);
+
+// Auto-save interval
+setInterval(saveProgress, 90000);
+</script>
+</body>
+</html>
