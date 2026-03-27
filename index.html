@@ -33,7 +33,7 @@ body{min-height:100vh}
 .btn-gold{background:var(--g);color:var(--n);border-color:var(--g)}.btn-gold:hover{background:var(--g2)}
 .btn-ghost{background:var(--gf);color:var(--g)}.btn-ghost:hover{background:rgba(201,168,76,0.16)}
 
-.stats{position:relative;z-index:2;display:flex;justify-content:center;
+.stats{position:relative;z-index:2;display:flex;justify-content:center;flex-wrap:wrap;
   border-top:1px solid var(--gb);border-bottom:1px solid var(--gb);
   background:rgba(8,14,48,0.6);backdrop-filter:blur(8px);margin-bottom:48px}
 .stat{padding:16px 32px;text-align:center;border-right:1px solid var(--gb)}
@@ -41,9 +41,22 @@ body{min-height:100vh}
 .stat-n{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--g)}
 .stat-l{font-size:11px;color:var(--w3);letter-spacing:0.06em;margin-top:2px}
 
+/* SEARCH / FILTER BAR */
+.toolbar{position:relative;z-index:2;max-width:1100px;margin:0 auto 32px;padding:0 24px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search-wrap{flex:1;min-width:200px;position:relative}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--w3);font-size:13px;pointer-events:none}
+#search{width:100%;background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:9px 12px 9px 32px;color:var(--w);font-family:'Raleway',sans-serif;font-size:12px;outline:none;transition:border-color .2s}
+#search:focus{border-color:var(--g)}
+#search::placeholder{color:var(--w3)}
+.filter-btns{display:flex;gap:6px;flex-wrap:wrap}
+.filter-btn{padding:7px 14px;border-radius:6px;font-size:10px;font-family:'Cinzel',serif;letter-spacing:0.08em;border:1px solid var(--gb);background:var(--w4);color:var(--w3);cursor:pointer;transition:all .15s}
+.filter-btn.active,.filter-btn:hover{background:var(--gf);color:var(--g);border-color:var(--g)}
+#no-results{display:none;text-align:center;padding:48px;color:var(--w3);font-size:13px;font-style:italic;position:relative;z-index:2}
+
 main{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 24px 120px}
 
-.mod{margin-bottom:40px}
+.mod{margin-bottom:40px;transition:opacity .2s}
+.mod.hidden{display:none}
 .mod-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb)}
 .mod-code{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--n);background:var(--g);padding:4px 10px;border-radius:4px;letter-spacing:0.1em;flex-shrink:0}
 .mod-name{font-family:'Cinzel',serif;font-size:15px;color:var(--w);letter-spacing:0.06em;font-weight:600}
@@ -51,10 +64,11 @@ main{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 24px 1
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
 .card{background:var(--n3);border:1px solid rgba(240,237,230,0.06);border-radius:10px;padding:14px 16px;text-decoration:none;transition:all .18s;display:flex;flex-direction:column;gap:5px;position:relative;overflow:hidden}
-.card.live{border-left:3px solid var(--ok);cursor:pointer;position:relative;z-index:2}.card.live:hover{background:var(--gf);border-color:var(--gb);transform:translateY(-1px)}
+.card.live{border-left:3px solid var(--ok);cursor:pointer}.card.live:hover{background:var(--gf);border-color:var(--gb);transform:translateY(-1px)}
 .card.ready{border-left:3px solid var(--g);opacity:0.7;cursor:default;pointer-events:none}
 .card.coming{border-left:3px solid rgba(240,237,230,0.08);opacity:0.4;cursor:default;pointer-events:none}
 .card.dragon{border-left:3px solid #8b4513;opacity:0.75;cursor:default;pointer-events:none}
+.card.vip{border-left:3px solid var(--g);cursor:pointer}.card.vip:hover{background:var(--gf);border-color:var(--gb);transform:translateY(-1px)}
 .ct{display:flex;align-items:center;gap:8px}
 .cc{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;font-weight:600}
 .cs{margin-left:auto;font-size:9px;padding:2px 7px;border-radius:8px}
@@ -62,14 +76,22 @@ main{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 24px 1
 .s-ready{background:rgba(201,168,76,0.15);color:var(--g)}
 .s-coming{background:rgba(240,237,230,0.05);color:var(--w3)}
 .s-dragon{background:rgba(139,69,19,0.25);color:#c8855a}
+.s-vip{background:rgba(201,168,76,0.2);color:var(--g2)}
 .cn{font-size:13px;color:var(--w);line-height:1.4;font-weight:500}
 .cd{font-size:11px;color:var(--w3);line-height:1.4}
 .ca{position:absolute;right:14px;bottom:14px;color:var(--g);font-size:14px;opacity:0;transition:opacity .18s}
-.card.live:hover .ca{opacity:1}
+.card.live:hover .ca,.card.vip:hover .ca{opacity:1}
 .more{background:var(--w4);border:1px dashed rgba(240,237,230,0.08);border-radius:10px;padding:12px 16px;font-size:11px;color:var(--w3);text-align:center;font-style:italic;display:flex;align-items:center;justify-content:center}
+.more a{color:var(--g);text-decoration:none}
+
+/* LOADING STATE */
+#loading{position:relative;z-index:2;text-align:center;padding:80px 24px;color:var(--w3)}
+.ld-sigil{font-size:36px;opacity:0.3;animation:pulse 2s ease-in-out infinite;display:block;margin-bottom:12px}
+.ld-txt{font-size:12px;letter-spacing:0.1em}
 
 footer{position:relative;z-index:2;text-align:center;padding:24px;border-top:1px solid var(--gb);font-size:11px;color:var(--w3);letter-spacing:0.06em}
 footer a{color:var(--g);text-decoration:none}
+.footer-updated{font-size:10px;color:rgba(240,237,230,0.2);margin-top:6px}
 
 /* FLOATING CHAT */
 .fab{position:fixed;bottom:28px;right:28px;z-index:999;width:58px;height:58px;border-radius:50%;background:var(--g);border:none;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 28px rgba(201,168,76,0.4);transition:all .2s;color:var(--n)}
@@ -78,7 +100,6 @@ footer a{color:var(--g);text-decoration:none}
 .cpanel{position:fixed;bottom:100px;right:28px;z-index:998;width:370px;height:500px;background:var(--n2);border:1px solid var(--gb);border-radius:16px;display:none;flex-direction:column;box-shadow:0 8px 48px rgba(0,0,0,0.6);overflow:hidden}
 .cpanel.open{display:flex;animation:su .22s ease}
 @keyframes su{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-
 .cph{padding:13px 15px;border-bottom:1px solid var(--gb);display:flex;align-items:center;gap:10px;background:rgba(8,14,48,0.85);flex-shrink:0}
 .cph-av{width:32px;height:32px;border-radius:50%;background:var(--gf);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
 .cph-info{flex:1}
@@ -86,11 +107,9 @@ footer a{color:var(--g);text-decoration:none}
 .cph-sub{font-size:10px;color:var(--w3);margin-top:1px}
 .cph-x{background:none;border:none;color:var(--w3);cursor:pointer;font-size:20px;line-height:1;padding:2px;transition:color .15s}
 .cph-x:hover{color:var(--w)}
-
 .cmsgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
 .cmsgs::-webkit-scrollbar{width:3px}
 .cmsgs::-webkit-scrollbar-thumb{background:var(--gb);border-radius:2px}
-
 .cwelcome{text-align:center;padding:14px 6px}
 .cwelcome .wsig{font-size:28px;opacity:0.35;margin-bottom:8px}
 .cwelcome h3{font-family:'Cinzel',serif;font-size:13px;color:var(--g);letter-spacing:0.06em;margin-bottom:6px}
@@ -98,7 +117,6 @@ footer a{color:var(--g);text-decoration:none}
 .cstarts{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;justify-content:center}
 .cstart{padding:5px 10px;border-radius:14px;background:var(--w4);border:1px solid var(--gb);color:var(--w2);font-size:10px;cursor:pointer;transition:all .15s}
 .cstart:hover{background:var(--gf);border-color:var(--g);color:var(--w)}
-
 .cm{display:flex;gap:7px}
 .cm.u{flex-direction:row-reverse}
 .cmav{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px}
@@ -114,7 +132,6 @@ footer a{color:var(--g);text-decoration:none}
 .td{width:4px;height:4px;border-radius:50%;background:var(--g);opacity:.3;animation:blink 1.2s infinite}
 .td:nth-child(2){animation-delay:.2s}.td:nth-child(3){animation-delay:.4s}
 @keyframes blink{0%,100%{opacity:.2}50%{opacity:.8}}
-
 .cinp-row{padding:10px 12px;border-top:1px solid var(--gb);display:flex;gap:6px;align-items:flex-end;flex-shrink:0;background:rgba(8,14,48,0.5)}
 .cinp{flex:1;background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:8px 11px;resize:none;color:var(--w);font-family:'Raleway',sans-serif;font-size:12px;outline:none;min-height:36px;max-height:80px;overflow-y:auto;line-height:1.4;transition:border-color .2s}
 .cinp:focus{border-color:var(--g)}
@@ -138,105 +155,37 @@ footer a{color:var(--g);text-decoration:none}
 </div>
 
 <div class="stats">
-  <div class="stat"><div class="stat-n" id="liveStat">2</div><div class="stat-l">Lessons Live</div></div>
-  <div class="stat"><div class="stat-n">4</div><div class="stat-l">Videos Ready</div></div>
-  <div class="stat"><div class="stat-n">16</div><div class="stat-l">Modules</div></div>
-  <div class="stat"><div class="stat-n">450+</div><div class="stat-l">Lessons Coming</div></div>
+  <div class="stat"><div class="stat-n" id="stat-live">—</div><div class="stat-l">Lessons Live</div></div>
+  <div class="stat"><div class="stat-n" id="stat-ready">—</div><div class="stat-l">Videos Ready</div></div>
+  <div class="stat"><div class="stat-n" id="stat-modules">—</div><div class="stat-l">Modules</div></div>
+  <div class="stat"><div class="stat-n" id="stat-coming">—</div><div class="stat-l">Lessons Coming</div></div>
 </div>
 
-<main>
-
-<!-- NUMEROLOGY -->
-<div class="mod">
-  <div class="mod-head"><div class="mod-code">N</div><div class="mod-name">Symbolic Sciences — Numerology</div><div class="mod-ct">1 of 11 live</div></div>
-  <div class="grid">
-    <a href="https://thefrequencyacademy-lessons.pages.dev/04-symbolic-sciences/numerology/lesson-01-language-of-numbers/" class="card live">
-      <div class="ct"><div class="cc">N1</div><div class="cs s-live">Live</div></div>
-      <div class="cn">The Language of Numbers</div><div class="cd">Vibration Encoded in Mathematics</div>
-      <div class="ca">→</div>
-    </a>
-    <div class="card coming"><div class="ct"><div class="cc">N2</div><div class="cs s-coming">Coming Soon</div></div><div class="cn">Life Path Number</div></div>
-    <div class="card coming"><div class="ct"><div class="cc">N3</div><div class="cs s-coming">Coming Soon</div></div><div class="cn">Expression Number</div></div>
-    <div class="more">+ 8 more numerology lessons coming</div>
+<div class="toolbar">
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="search" placeholder="Search lessons, modules, topics..." oninput="filterLessons()">
+  </div>
+  <div class="filter-btns">
+    <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" data-filter="live" onclick="setFilter('live',this)">Live</button>
+    <button class="filter-btn" data-filter="ready" onclick="setFilter('ready',this)">Video Ready</button>
+    <button class="filter-btn" data-filter="coming" onclick="setFilter('coming',this)">Coming Soon</button>
   </div>
 </div>
 
-<!-- MEDITATIONS -->
-<div class="mod">
-  <div class="mod-head"><div class="mod-code">MS</div><div class="mod-name">Meditations & Soundscapes</div><div class="mod-ct">3 live</div></div>
-  <div class="grid">
-    <a href="https://thefrequencyacademy-lessons.pages.dev/11-meditations-and-soundscapes/creating-sacred-space/lesson-01/" class="card live">
-      <div class="ct"><div class="cc">MS1</div><div class="cs s-live">Live</div></div>
-      <div class="cn">Creating Sacred Space</div><div class="cd">The foundation of ceremonial practice</div>
-      <div class="ca">→</div>
-    </a>
-    <a href="https://thefrequencyacademy-lessons.pages.dev/11-meditations-and-soundscapes/breathwork/lesson-1/" class="card live">
-      <div class="ct"><div class="cc">MS2</div><div class="cs s-live">Live</div></div>
-      <div class="cn">Breathwork Preparation</div><div class="cd">3 foundational techniques</div>
-      <div class="ca">→</div>
-    </a>
-    <a href="https://thefrequencyacademy-lessons.pages.dev/11-meditations-and-soundscapes/dropping%20into%20the%20heart/" class="card live">
-      <div class="ct"><div class="cc">MS3</div><div class="cs s-live">Live</div></div>
-      <div class="cn">Dropping Into the Heart</div>
-      <div class="ca">→</div>
-    </a>
-    <div class="more">+ 17 more meditation lessons coming</div>
-  </div>
+<div id="loading">
+  <span class="ld-sigil">✦</span>
+  <div class="ld-txt">Loading curriculum...</div>
 </div>
 
-<!-- QUANTUM -->
-<div class="mod">
-  <div class="mod-head"><div class="mod-code">Q</div><div class="mod-name">Quantum Physics & Sciences</div><div class="mod-ct">1 of 16 live</div></div>
-  <div class="grid">
-    <a href="https://thefrequencyacademy-lessons.pages.dev/01-quantum-physics/quantum-physics/lesson-01/" class="card live">
-      <div class="ct"><div class="cc">Q1</div><div class="cs s-live">Live</div></div>
-      <div class="cn">What Is Quantum Physics</div>
-      <div class="ca">→</div>
-    </a>
-    <div class="card ready"><div class="ct"><div class="cc">Q2</div><div class="cs s-ready">Video Ready</div></div><div class="cn">The Observer Effect</div></div>
-    <div class="more">+ 14 more quantum lessons coming</div>
-  </div>
-</div>
+<main id="main" style="display:none"></main>
+<div id="no-results">No lessons match your search. Try a different term.</div>
 
-<!-- BIOALCHEMY -->
-<div class="mod">
-  <div class="mod-head"><div class="mod-code">BA</div><div class="mod-name">BioAlchemy: The Living Temple</div><div class="mod-ct">0 of 20 live</div></div>
-  <div class="grid">
-    <div class="card coming"><div class="ct"><div class="cc">BA1</div><div class="cs s-coming">Coming Soon</div></div><div class="cn">Sacred Secretions</div><div class="cd">The body as frequency transmitter</div></div>
-    <div class="card coming"><div class="ct"><div class="cc">BA2</div><div class="cs s-coming">Coming Soon</div></div><div class="cn">Nutrition as Frequency</div></div>
-    <div class="more">+ 18 more BioAlchemy lessons coming</div>
-  </div>
-</div>
-
-<!-- DRAGON'S LAIR -->
-<div class="mod">
-  <div class="mod-head"><div class="mod-code">🐉</div><div class="mod-name">The Dragon's Lair</div><div class="mod-ct">Skool exclusive</div></div>
-  <div class="grid">
-    <div class="card dragon"><div class="ct"><div class="cc">DL1</div><div class="cs s-dragon">🐉 Exclusive</div></div><div class="cn">Late Night Resonance — D Hijaz</div><div class="cd">Unreleased handpan · Skool members only</div></div>
-    <div class="card dragon"><div class="ct"><div class="cc">DL2</div><div class="cs s-dragon">🐉 Exclusive</div></div><div class="cn">Late Night Resonance — D Kurd</div><div class="cd">Unreleased handpan · Skool members only</div></div>
-    <div class="card dragon"><div class="ct"><div class="cc">DL3</div><div class="cs s-dragon">🐉 Exclusive</div></div><div class="cn">Late Night Resonance — E Amara</div><div class="cd">Unreleased handpan · Skool members only</div></div>
-    <div class="more">something is hidden here. <a href="https://www.skool.com/the-frequency-academy-3454/about" target="_blank" style="color:var(--g);text-decoration:none">Enter the Lair →</a></div>
-  </div>
-</div>
-
-<!-- MORE MODULES -->
-<div class="mod">
-  <div class="mod-head"><div class="mod-code">+</div><div class="mod-name">More Modules Loading</div><div class="mod-ct">12 modules in development</div></div>
-  <div class="grid">
-    <div class="card coming"><div class="ct"><div class="cc">HM</div></div><div class="cn">High Magic & Sigil Work</div><div class="cd">36 lessons coming</div></div>
-    <div class="card coming"><div class="ct"><div class="cc">C</div></div><div class="cn">Frequency Charged™ Methodology</div><div class="cd">27 lessons coming</div></div>
-    <div class="card coming"><div class="ct"><div class="cc">FF</div></div><div class="cn">The Frequency Forge</div><div class="cd">31 lessons · device building</div></div>
-    <div class="card coming"><div class="ct"><div class="cc">G</div></div><div class="cn">Sacred Geometry & Light Body</div><div class="cd">22 lessons coming</div></div>
-    <div class="card coming"><div class="ct"><div class="cc">CS</div></div><div class="cn">Consciousness Sciences</div><div class="cd">35 lessons coming</div></div>
-    <div class="card coming"><div class="ct"><div class="cc">L</div></div><div class="cn">The Seven Gates</div><div class="cd">83 lessons · Inanna's descent</div></div>
-    <div class="card coming"><div class="ct"><div class="cc">A</div></div><div class="cn">Celestial Sciences</div><div class="cd">38 lessons coming</div></div>
-    <div class="card coming"><div class="ct"><div class="cc">E</div></div><div class="cn">Embodiment</div><div class="cd">25 lessons coming</div></div>
-  </div>
-</div>
-
-</main>
-
-<footer>THE FREQUENCY ACADEMY · Technology of Remembrance · <a href="https://www.skool.com/the-frequency-academy-3454/about" target="_blank">Join on Skool</a></footer>
+<footer>
+  THE FREQUENCY ACADEMY · Technology of Remembrance · <a href="https://www.skool.com/the-frequency-academy-3454/about" target="_blank">Join on Skool</a>
+  <div class="footer-updated" id="footer-updated"></div>
+</footer>
 
 <!-- FLOATING CHAT BUTTON -->
 <button class="fab" onclick="toggleChat()" id="fab">◈</button>
@@ -260,8 +209,8 @@ footer a{color:var(--g);text-decoration:none}
         <div class="cstart" onclick="cask('Where should I start in the Academy?')">Where do I start?</div>
         <div class="cstart" onclick="cask('What is Frequency Charged™?')">Frequency Charged™</div>
         <div class="cstart" onclick="cask('Tell me about the Dragon lore')">Dragon lore 🐉</div>
-        <div class="cstart" onclick="cask('How does the XP system work?')">XP & rewards</div>
         <div class="cstart" onclick="cask('What lessons are live right now?')">What\'s live?</div>
+        <div class="cstart" onclick="cask('Tell me about The Sovereign Path mentorship')">Sovereign Path ✦</div>
       </div>
     </div>
   </div>
@@ -273,18 +222,227 @@ footer a{color:var(--g);text-decoration:none}
 </div>
 
 <script>
-// Worker URL — your API key is hidden server-side
+// ─────────────────────────────────────────────
+// CONFIGURATION
+// ─────────────────────────────────────────────
 const WORKER_URL = 'https://tfa-guide.kcbhealth.workers.dev';
+const BASE_URL   = 'https://thefrequencyacademy-lessons.pages.dev';
 
+// ─────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────
+let DATA        = null;   // full lessons.json
+let activeFilter = 'all';
+
+// ─────────────────────────────────────────────
+// BOOTSTRAP — fetch lessons.json then render
+// ─────────────────────────────────────────────
+async function init() {
+  try {
+    // Cache-bust so Cloudflare always serves latest
+    const res = await fetch('./lessons.json?v=' + Date.now());
+    if (!res.ok) throw new Error('Could not load lessons.json');
+    DATA = await res.json();
+    renderAll();
+  } catch(e) {
+    document.getElementById('loading').innerHTML =
+      '<span class="ld-sigil">✦</span><div class="ld-txt" style="color:var(--miss)">Could not load curriculum data. Please refresh.</div>';
+  }
+}
+
+// ─────────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────────
+function renderAll() {
+  const main = document.getElementById('main');
+  main.innerHTML = '';
+
+  // Stats — auto-calculated from data
+  let liveCount = 0, readyCount = 0, comingCount = 0;
+  DATA.modules.forEach(mod => {
+    mod.lessons.forEach(l => {
+      if (l.status === 'live') liveCount++;
+      else if (l.status === 'ready') readyCount++;
+      else if (l.status === 'coming') comingCount++;
+    });
+  });
+  document.getElementById('stat-live').textContent    = liveCount;
+  document.getElementById('stat-ready').textContent   = readyCount;
+  document.getElementById('stat-modules').textContent = DATA.modules.length;
+  document.getElementById('stat-coming').textContent  = comingCount + '+';
+
+  // Footer timestamp
+  if (DATA.meta?.lastUpdated) {
+    document.getElementById('footer-updated').textContent =
+      'Curriculum last updated: ' + DATA.meta.lastUpdated;
+  }
+
+  // Render each module
+  DATA.modules.forEach(mod => {
+    const section = buildModule(mod);
+    main.appendChild(section);
+  });
+
+  // Hide loader, show main
+  document.getElementById('loading').style.display = 'none';
+  main.style.display = 'block';
+}
+
+function buildModule(mod) {
+  const liveLessons  = mod.lessons.filter(l => l.status === 'live').length;
+  const totalPlanned = mod.totalPlanned || mod.lessons.length;
+  const hiddenCount  = totalPlanned - mod.lessons.length;
+
+  // Status label for header
+  let statusLabel;
+  if (mod.skoolOnly) statusLabel = 'Skool exclusive';
+  else if (mod.vip)  statusLabel = 'VIP Mentorship';
+  else if (liveLessons === 0) statusLabel = `0 of ${totalPlanned} live`;
+  else statusLabel = `${liveLessons} of ${totalPlanned} live`;
+
+  const section = document.createElement('div');
+  section.className = 'mod';
+  section.dataset.modCode  = mod.code.toLowerCase();
+  section.dataset.modTitle = mod.title.toLowerCase();
+
+  // Header
+  const head = document.createElement('div');
+  head.className = 'mod-head';
+  head.innerHTML = `
+    <div class="mod-code" style="background:${mod.color || 'var(--g)'}">${mod.code}</div>
+    <div class="mod-name">${mod.title}</div>
+    <div class="mod-ct">${statusLabel}</div>`;
+  section.appendChild(head);
+
+  // Grid
+  const grid = document.createElement('div');
+  grid.className = 'grid';
+
+  mod.lessons.forEach(lesson => {
+    const card = buildCard(lesson, mod);
+    card.dataset.lessonTitle = lesson.title.toLowerCase();
+    card.dataset.lessonId    = lesson.id.toLowerCase();
+    card.dataset.status      = lesson.status;
+    grid.appendChild(card);
+  });
+
+  // "X more coming" stub
+  if (hiddenCount > 0) {
+    const more = document.createElement('div');
+    more.className = 'more';
+    if (mod.skoolOnly) {
+      more.innerHTML = `something is hidden here. <a href="${DATA.meta.skoolUrl}" target="_blank">Enter the Lair →</a>`;
+    } else {
+      more.textContent = `+ ${hiddenCount} more ${mod.title.toLowerCase()} lessons coming`;
+    }
+    grid.appendChild(more);
+  }
+
+  section.appendChild(grid);
+  return section;
+}
+
+function buildCard(lesson, mod) {
+  const isLink   = lesson.status === 'live' || lesson.status === 'vip';
+  const tag      = isLink ? 'a' : 'div';
+  const card     = document.createElement(tag);
+  card.className = 'card ' + lesson.status;
+
+  if (isLink && lesson.path) {
+    card.href = BASE_URL + lesson.path;
+    card.target = '_blank';
+  }
+
+  const statusLabels = {
+    live:   '<div class="cs s-live">Live</div>',
+    ready:  '<div class="cs s-ready">Video Ready</div>',
+    coming: '<div class="cs s-coming">Coming Soon</div>',
+    dragon: '<div class="cs s-dragon">🐉 Exclusive</div>',
+    vip:    '<div class="cs s-vip">✦ VIP</div>'
+  };
+
+  card.innerHTML = `
+    <div class="ct">
+      <div class="cc">${lesson.id}</div>
+      ${statusLabels[lesson.status] || ''}
+    </div>
+    <div class="cn">${lesson.title}</div>
+    ${lesson.description ? `<div class="cd">${lesson.description}</div>` : ''}
+    ${isLink ? '<div class="ca">→</div>' : ''}`;
+
+  return card;
+}
+
+// ─────────────────────────────────────────────
+// SEARCH & FILTER
+// ─────────────────────────────────────────────
+let activeFilterMode = 'all';
+
+function setFilter(mode, btn) {
+  activeFilterMode = mode;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterLessons();
+}
+
+function filterLessons() {
+  if (!DATA) return;
+  const query = document.getElementById('search').value.toLowerCase().trim();
+  const mods  = document.querySelectorAll('.mod');
+  let anyVisible = false;
+
+  mods.forEach(modEl => {
+    const modCode  = modEl.dataset.modCode  || '';
+    const modTitle = modEl.dataset.modTitle || '';
+    const cards    = modEl.querySelectorAll('.card');
+    let modHasMatch = false;
+
+    cards.forEach(card => {
+      const lessonTitle = card.dataset.lessonTitle || '';
+      const lessonId    = card.dataset.lessonId    || '';
+      const status      = card.dataset.status      || '';
+
+      // Filter by status
+      const statusOk = activeFilterMode === 'all' || status === activeFilterMode ||
+                       (activeFilterMode === 'coming' && status === 'dragon');
+
+      // Filter by search
+      const searchOk = !query ||
+        lessonTitle.includes(query) ||
+        lessonId.includes(query)    ||
+        modTitle.includes(query)    ||
+        modCode.includes(query);
+
+      const show = statusOk && searchOk;
+      card.style.display = show ? '' : 'none';
+      if (show) modHasMatch = true;
+    });
+
+    // Also match module-level search (show all module's cards if module name matches)
+    if (query && (modTitle.includes(query) || modCode.includes(query))) {
+      cards.forEach(card => { card.style.display = ''; });
+      modHasMatch = true;
+    }
+
+    modEl.classList.toggle('hidden', !modHasMatch);
+    if (modHasMatch) anyVisible = true;
+  });
+
+  document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
+}
+
+// ─────────────────────────────────────────────
+// CHAT
+// ─────────────────────────────────────────────
 const hist = [];
 let busy = false;
-let open = false;
+let chatOpen = false;
 
-function openChat() { if (!open) toggleChat(); }
+function openChat()   { if (!chatOpen) toggleChat(); }
 function toggleChat() {
-  open = !open;
-  document.getElementById('cpanel').classList.toggle('open', open);
-  if (open) setTimeout(() => document.getElementById('cinp').focus(), 150);
+  chatOpen = !chatOpen;
+  document.getElementById('cpanel').classList.toggle('open', chatOpen);
+  if (chatOpen) setTimeout(() => document.getElementById('cinp').focus(), 150);
 }
 
 function hw() { const w = document.getElementById('cwelcome'); if (w) w.style.display = 'none'; }
@@ -294,7 +452,7 @@ function addMsg(role, text) {
   const c = document.getElementById('cmsgs');
   const d = document.createElement('div'); d.className = 'cm ' + (role === 'u' ? 'u' : 'b');
   const av = document.createElement('div'); av.className = 'cmav'; av.textContent = role === 'u' ? 'Y' : '✦';
-  const b = document.createElement('div'); b.className = 'cmbub';
+  const b  = document.createElement('div'); b.className = 'cmbub';
   b.innerHTML = role === 'u' ? esc(text) : fmt(text);
   d.appendChild(av); d.appendChild(b); c.appendChild(d); c.scrollTop = c.scrollHeight;
 }
@@ -330,13 +488,12 @@ async function csend() {
   showTyping();
   try {
     const res = await fetch(WORKER_URL, {
-      method: 'POST',
-      headers: {'content-type': 'application/json'},
+      method:'POST', headers:{'content-type':'application/json'},
       body: JSON.stringify({messages: hist})
     });
     rmTyping();
     if (!res.ok) { const e = await res.json().catch(()=>({})); throw new Error(e.error?.message || 'Error ' + res.status); }
-    const data = await res.json();
+    const data  = await res.json();
     const reply = data.content[0].text;
     hist.push({role:'assistant', content:reply});
     addMsg('b', reply);
@@ -349,8 +506,13 @@ async function csend() {
 }
 
 function cask(txt) { openChat(); document.getElementById('cinp').value = txt; csend(); }
-function ckey(e) { if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); csend(); } }
-function cresize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,80)+'px'; }
+function ckey(e)   { if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); csend(); } }
+function cresize(el){ el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,80)+'px'; }
+
+// ─────────────────────────────────────────────
+// BOOT
+// ─────────────────────────────────────────────
+init();
 </script>
 </body>
 </html>
