@@ -1,0 +1,571 @@
+{
+  "meta": {
+    "lastUpdated": "2026-03-26",
+    "totalModules": 16,
+    "skoolUrl": "https://www.skool.com/the-frequency-academy-3454/about",
+    "baseUrl": "https://thefrequencyacademy-lessons.pages.dev"
+  },
+  "modules": [
+    {
+      "code": "Q",
+      "number": "01",
+      "title": "Quantum Physics & Sciences",
+      "folder": "01-quantum-physics",
+      "color": "#4a90d9",
+      "totalPlanned": 16,
+      "lessons": [
+        {
+          "id": "Q1",
+          "title": "What Is Quantum Physics",
+          "description": "The foundation of frequency science",
+          "path": "/01-quantum-physics/quantum-physics/lesson-01/",
+          "status": "live"
+        },
+        {
+          "id": "Q2",
+          "title": "The Observer Effect",
+          "description": "How consciousness shapes reality",
+          "path": "",
+          "status": "ready"
+        },
+        {
+          "id": "Q3",
+          "title": "Wave-Particle Duality",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q4",
+          "title": "Quantum Entanglement",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q5",
+          "title": "Superposition & Collapse",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q6",
+          "title": "Zero Point Field",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q7",
+          "title": "The Measurement Problem",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q8",
+          "title": "Quantum Biology",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q9",
+          "title": "Wave Mechanics",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q10",
+          "title": "Cymatics",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q11",
+          "title": "Resonance",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q12",
+          "title": "Electromagnetic Spectrum",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q13",
+          "title": "Scalar Waves",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q14",
+          "title": "Torsion Fields",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q15",
+          "title": "Bioelectromagnetics",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "Q16",
+          "title": "Structured Water",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "CS",
+      "number": "02",
+      "title": "Consciousness Sciences",
+      "folder": "02-consciousness-sciences",
+      "color": "#8b5cf6",
+      "totalPlanned": 35,
+      "lessons": [
+        {
+          "id": "CS1",
+          "title": "What Is Consciousness",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS2",
+          "title": "Levels of Awareness",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "A",
+      "number": "03",
+      "title": "Celestial Sciences",
+      "folder": "03-celestial-sciences",
+      "color": "#1e6b8c",
+      "totalPlanned": 38,
+      "lessons": [
+        {
+          "id": "A1",
+          "title": "Astrology as Frequency",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "SS",
+      "number": "04",
+      "title": "Symbolic Sciences — Numerology",
+      "folder": "04-symbolic-sciences",
+      "color": "#c9a84c",
+      "totalPlanned": 11,
+      "lessons": [
+        {
+          "id": "N1",
+          "title": "The Language of Numbers",
+          "description": "Vibration Encoded in Mathematics",
+          "path": "/04-symbolic-sciences/numerology/lesson-01-language-of-numbers/",
+          "status": "live"
+        },
+        {
+          "id": "N2",
+          "title": "Life Path Number",
+          "description": "Your soul's blueprint",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N3",
+          "title": "Expression Number",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N4",
+          "title": "Soul Urge Number",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N5",
+          "title": "Master Numbers",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N6",
+          "title": "Numerology & Frequency",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N7",
+          "title": "Personal Year Cycles",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N8",
+          "title": "Name Numerology",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N9",
+          "title": "Sacred Number Patterns",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N10",
+          "title": "Numerology in Practice",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N11",
+          "title": "Integration & Application",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "AL",
+      "number": "05",
+      "title": "Alchemical Materials",
+      "folder": "05-alchemical-materials",
+      "color": "#c0803a",
+      "totalPlanned": 24,
+      "lessons": [
+        {
+          "id": "AL1",
+          "title": "The Alchemical Tradition",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "HM",
+      "number": "08",
+      "title": "High Magic & Sigil Work",
+      "folder": "08-high-magic-and-sigil-work",
+      "color": "#6b3fa0",
+      "totalPlanned": 36,
+      "lessons": [
+        {
+          "id": "HM1",
+          "title": "The Nature of Magic",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "HM2",
+          "title": "Sigil Creation",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM1",
+          "title": "Technomancy — Introduction",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM2",
+          "title": "Digital Ritual Space",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM3",
+          "title": "Technology as Wand",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM4",
+          "title": "Sacred Broadcast",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM5",
+          "title": "Internet as Sacred Broadcast",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM6",
+          "title": "Memes, Reification & Memetic Magic",
+          "description": "@thedragonfrequency case study",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "FC",
+      "number": "09",
+      "title": "Frequency Charged™ Methodology",
+      "folder": "09-frequency-charged-methodology",
+      "color": "#2a8a7a",
+      "totalPlanned": 27,
+      "lessons": [
+        {
+          "id": "FC1",
+          "title": "What Is Frequency Charged™",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "E",
+      "number": "10",
+      "title": "Embodiment",
+      "folder": "10-embodiment",
+      "color": "#3a7a4a",
+      "totalPlanned": 25,
+      "lessons": [
+        {
+          "id": "E1",
+          "title": "The Body as Instrument",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "MS",
+      "number": "11",
+      "title": "Meditations & Soundscapes",
+      "folder": "11-meditations-and-soundscapes",
+      "color": "#1a6b8a",
+      "totalPlanned": 20,
+      "lessons": [
+        {
+          "id": "MS1",
+          "title": "Creating Sacred Space",
+          "description": "The foundation of ceremonial practice",
+          "path": "/11-meditations-and-soundscapes/creating-sacred-space/lesson-01/",
+          "status": "live"
+        },
+        {
+          "id": "MS2",
+          "title": "Breathwork Preparation",
+          "description": "3 foundational techniques",
+          "path": "/11-meditations-and-soundscapes/breathwork/lesson-1/",
+          "status": "live"
+        },
+        {
+          "id": "MS3",
+          "title": "Dropping Into the Heart",
+          "description": "Heart coherence meditation",
+          "path": "/11-meditations-and-soundscapes/dropping%20into%20the%20heart/",
+          "status": "live"
+        },
+        {
+          "id": "MS4",
+          "title": "Morning Activation",
+          "description": "Free gift meditation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MS5",
+          "title": "Theta Wave Journey",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "R",
+      "number": "12",
+      "title": "Realms of Being",
+      "folder": "12-realms-of-being",
+      "color": "#5a3a8a",
+      "totalPlanned": 28,
+      "lessons": [
+        {
+          "id": "R1",
+          "title": "The Planes of Existence",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "SG",
+      "number": "13",
+      "title": "The Seven Gates",
+      "folder": "13-the-seven-gates",
+      "color": "#8a3a6a",
+      "totalPlanned": 83,
+      "lessons": [
+        {
+          "id": "SG1",
+          "title": "Inanna's Descent — Gate One",
+          "description": "The Crown",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "DL",
+      "number": "14",
+      "title": "The Dragon's Lair",
+      "folder": "14-the-dragons-lair",
+      "color": "#8b4513",
+      "totalPlanned": 20,
+      "skoolOnly": true,
+      "lessons": [
+        {
+          "id": "DL1",
+          "title": "Late Night Resonance — D Hijaz",
+          "description": "Unreleased handpan · Skool members only",
+          "path": "",
+          "status": "dragon"
+        },
+        {
+          "id": "DL2",
+          "title": "Late Night Resonance — D Kurd",
+          "description": "Unreleased handpan · Skool members only",
+          "path": "",
+          "status": "dragon"
+        },
+        {
+          "id": "DL3",
+          "title": "Late Night Resonance — E Amara",
+          "description": "Unreleased handpan · Skool members only",
+          "path": "",
+          "status": "dragon"
+        }
+      ]
+    },
+    {
+      "code": "FF",
+      "number": "15",
+      "title": "The Frequency Forge",
+      "folder": "15-short-form-content",
+      "color": "#b05540",
+      "totalPlanned": 31,
+      "lessons": [
+        {
+          "id": "FF1",
+          "title": "Introduction to Device Building",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    },
+    {
+      "code": "L",
+      "number": "16",
+      "title": "Liaison Bots",
+      "folder": "16-Liason-Bots",
+      "color": "#2a6a8a",
+      "totalPlanned": 10,
+      "lessons": [
+        {
+          "id": "L1",
+          "title": "Academy Companion",
+          "description": "Your AI guide through the curriculum",
+          "path": "/Companion/Companion.html",
+          "status": "live"
+        }
+      ]
+    },
+    {
+      "code": "SP",
+      "number": "17",
+      "title": "The Sovereign Path",
+      "folder": "17-TheSovereignPath",
+      "color": "#c9a84c",
+      "totalPlanned": 5,
+      "vip": true,
+      "lessons": [
+        {
+          "id": "SP1",
+          "title": "Welcome to The Sovereign Path",
+          "description": "VIP 1:1 Mentorship with BabaKeegs",
+          "path": "/17-TheSovereignPath/lesson-01-welcome/",
+          "status": "live"
+        }
+      ]
+    },
+    {
+      "code": "BA",
+      "number": "18",
+      "title": "BioAlchemy: The Living Temple",
+      "folder": "BA",
+      "color": "#4a8a3a",
+      "totalPlanned": 20,
+      "lessons": [
+        {
+          "id": "BA1",
+          "title": "Sacred Secretions",
+          "description": "The body as frequency transmitter",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "BA2",
+          "title": "Nutrition as Frequency",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "BA3",
+          "title": "Structured Water & the Body",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        }
+      ]
+    }
+  ]
+}
