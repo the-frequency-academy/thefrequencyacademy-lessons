@@ -25,36 +25,36 @@
           "id": "Q2",
           "title": "The Observer Effect",
           "description": "How consciousness shapes reality",
-          "path": "",
-          "status": "ready"
+          "path": "/01-quantum-physics/quantum-physics/lesson-02/",
+          "status": "live"
         },
         {
           "id": "Q3",
           "title": "Wave-Particle Duality",
           "description": "",
-          "path": "",
-          "status": "coming"
+          "path": "/01-quantum-physics/quantum-physics/lesson-03/",
+          "status": "live"
         },
         {
           "id": "Q4",
           "title": "Quantum Entanglement",
           "description": "",
-          "path": "",
-          "status": "coming"
+          "path": "/01-quantum-physics/quantum-physics/lesson-04/",
+          "status": "live"
         },
         {
           "id": "Q5",
           "title": "Superposition & Collapse",
           "description": "",
-          "path": "",
-          "status": "coming"
+          "path": "/01-quantum-physics/quantum-physics/lesson-05/",
+          "status": "live"
         },
         {
           "id": "Q6",
           "title": "Zero Point Field",
           "description": "",
-          "path": "",
-          "status": "coming"
+          "path": "/01-quantum-physics/quantum-physics/lesson-06/",
+          "status": "live"
         },
         {
           "id": "Q7",
@@ -172,7 +172,7 @@
     {
       "code": "SS",
       "number": "04",
-      "title": "Symbolic Sciences — Numerology",
+      "title": "Symbolic Sciences \u2014 Numerology",
       "folder": "04-symbolic-sciences",
       "color": "#c9a84c",
       "totalPlanned": 11,
@@ -297,7 +297,7 @@
         },
         {
           "id": "TM1",
-          "title": "Technomancy — Introduction",
+          "title": "Technomancy \u2014 Introduction",
           "description": "",
           "path": "",
           "status": "coming"
@@ -342,14 +342,14 @@
     {
       "code": "FC",
       "number": "09",
-      "title": "Frequency Charged™ Methodology",
+      "title": "Frequency Charged\u2122 Methodology",
       "folder": "09-frequency-charged-methodology",
       "color": "#2a8a7a",
       "totalPlanned": 27,
       "lessons": [
         {
           "id": "FC1",
-          "title": "What Is Frequency Charged™",
+          "title": "What Is Frequency Charged\u2122",
           "description": "",
           "path": "",
           "status": "coming"
@@ -445,7 +445,7 @@
       "lessons": [
         {
           "id": "SG1",
-          "title": "Inanna's Descent — Gate One",
+          "title": "Inanna's Descent \u2014 Gate One",
           "description": "The Crown",
           "path": "",
           "status": "coming"
@@ -463,22 +463,22 @@
       "lessons": [
         {
           "id": "DL1",
-          "title": "Late Night Resonance — D Hijaz",
-          "description": "Unreleased handpan · Skool members only",
+          "title": "Late Night Resonance \u2014 D Hijaz",
+          "description": "Unreleased handpan \u00b7 Skool members only",
           "path": "",
           "status": "dragon"
         },
         {
           "id": "DL2",
-          "title": "Late Night Resonance — D Kurd",
-          "description": "Unreleased handpan · Skool members only",
+          "title": "Late Night Resonance \u2014 D Kurd",
+          "description": "Unreleased handpan \u00b7 Skool members only",
           "path": "",
           "status": "dragon"
         },
         {
           "id": "DL3",
-          "title": "Late Night Resonance — E Amara",
-          "description": "Unreleased handpan · Skool members only",
+          "title": "Late Night Resonance \u2014 E Amara",
+          "description": "Unreleased handpan \u00b7 Skool members only",
           "path": "",
           "status": "dragon"
         }
@@ -549,7 +549,7 @@
           "title": "Sacred Secretions",
           "description": "The body as frequency transmitter",
           "path": "",
-          "status": "coming"
+          "status": "ready"
         },
         {
           "id": "BA2",
