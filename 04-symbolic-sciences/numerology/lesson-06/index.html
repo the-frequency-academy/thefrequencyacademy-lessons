@@ -1,1 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N6: Numerology in Sound & Music — The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ── TFA LESSON SHELL v1.0 · N6 ── */
+:root{
+  --bg:#0d1a3a;--accent:#c9a84c;--accent2:#dfc472;
+  --text:#f0ede6;--dim:rgba(240,237,230,0.60);
+  --card:rgba(0,0,0,0.28);--border:rgba(201,168,76,0.14);--glow:rgba(201,168,76,0.20);
+  --r:12px;--rl:18px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse at 15% 10%,rgba(201,168,76,0.09) 0%,transparent 55%),radial-gradient(ellipse at 85% 90%,rgba(13,26,58,0.8) 0%,transparent 50%);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 8% 12%,rgba(255,255,255,.65) 0%,transparent 100%),radial-gradient(1px 1px at 23% 38%,rgba(255,255,255,.45) 0%,transparent 100%),radial-gradient(1px 1px at 44% 7%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 66% 26%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 81% 15%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 34% 63%,rgba(201,168,76,.4) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 87% 36%,rgba(201,168,76,.28) 0%,transparent 100%)}
 
+/* ── PROGRESS ── */
+#prog-wrap{position:fixed;top:0;left:0;right:0;z-index:200;height:3px;background:rgba(5,10,28,.9)}
+#prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease;box-shadow:0 0 10px var(--glow)}
+
+/* ── NAV ── */
+.top-nav{position:fixed;top:3px;left:0;right:0;z-index:199;display:flex;align-items:center;justify-content:space-between;padding:13px 32px;background:rgba(8,14,42,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1)}
+.nav-brand{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--accent);opacity:.8}
+.nav-crumb{font-size:10px;color:var(--dim);letter-spacing:2px}
+.nav-xp{font-family:'Cinzel',serif;font-size:11px;color:var(--accent);letter-spacing:2px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 14px}
+
+/* ── MAIN ── */
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:88px 24px 140px}
+
+/* ── REVEAL ── */
+.ls{margin-bottom:68px;opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.ls.visible{opacity:1;transform:translateY(0)}
+
+/* ── HERO ── */
+.hero{text-align:center;padding:76px 0 56px}
+.hero-eye{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.hero-code{font-family:'Cinzel',serif;font-size:88px;font-weight:900;line-height:1;color:transparent;background:linear-gradient(145deg,var(--accent2) 0%,var(--accent) 55%,rgba(201,168,76,.3) 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,168,76,.2));margin-bottom:10px}
+.hero-title{font-family:'Cinzel',serif;font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:8px}
+.hero-sub{font-size:15px;font-weight:300;font-style:italic;color:var(--dim);letter-spacing:2px;margin-bottom:36px}
+.hero-rule{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 36px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.22);border-radius:30px;padding:7px 22px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent)}
+#wave-canvas{display:block;width:100%;height:100px;margin:34px 0;opacity:.75}
+
+/* ── SEC HEADER ── */
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.sh-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.6;white-space:nowrap}
+.sh-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--glow),transparent)}
+.st{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+
+/* ── TX ── */
+.tx{background:linear-gradient(135deg,rgba(0,0,0,.36),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--accent);border-radius:var(--r);padding:38px 44px;position:relative;overflow:hidden}
+.tx::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.tx-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.tx p{font-size:16px;line-height:1.95;color:rgba(240,237,230,.78);font-style:italic;font-weight:300}
+.tx p+p{margin-top:14px}
+.tx strong{color:var(--accent2);font-style:normal;font-weight:600}
+
+/* ── CARD ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 34px;margin-bottom:18px}
+.card p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.card p:last-child{margin-bottom:0}
+
+/* ── CALLOUT ── */
+.callout{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:24px 32px;margin:22px 0;text-align:center}
+.callout p{font-family:'Cinzel',serif;font-size:14px;line-height:1.8;color:var(--accent2);letter-spacing:.5px}
+
+/* ── DEFS TABLE ── */
+.defs-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.defs-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 18px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.defs-t th:last-child{border-right:none}
+.defs-t td{background:rgba(0,0,0,.2);padding:13px 18px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.65}
+.defs-t td:last-child{border-right:none}
+.defs-t td:first-child{color:var(--accent);font-style:italic;font-weight:500;white-space:nowrap}
+
+/* ── 432 vs 440 COMPARISON ── */
+.hz-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin:20px 0;border-radius:var(--r);overflow:hidden;border:1px solid rgba(201,168,76,.2)}
+.hz-side{padding:28px 24px;text-align:center}
+.hz-side.left{background:rgba(0,0,0,.35)}
+.hz-side.right{background:rgba(201,168,76,.06)}
+.hz-vs{display:flex;align-items:center;justify-content:center;background:rgba(201,168,76,.1);padding:0 14px;font-family:'Cinzel',serif;font-size:12px;color:var(--accent);letter-spacing:2px;writing-mode:vertical-lr}
+.hz-num{font-family:'Cinzel',serif;font-size:52px;font-weight:900;line-height:1;margin-bottom:8px;filter:drop-shadow(0 0 15px rgba(201,168,76,.2))}
+.hz-side.left .hz-num{color:rgba(201,168,76,.55)}
+.hz-side.right .hz-num{color:var(--accent2)}
+.hz-ds{font-size:12px;color:var(--dim);margin-bottom:6px;font-style:italic}
+.hz-vib{font-family:'Cinzel',serif;font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:14px}
+.hz-facts{list-style:none;text-align:left}
+.hz-facts li{font-size:12px;color:var(--dim);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);line-height:1.5}
+.hz-facts li:last-child{border-bottom:none}
+.hz-facts li::before{content:'· ';color:var(--accent)}
+
+/* ── COMPARE TABLE ── */
+.cmp-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.cmp-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 16px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.cmp-t th:last-child{border-right:none}
+.cmp-t td{background:rgba(0,0,0,.2);padding:12px 16px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.6}
+.cmp-t td:last-child{border-right:none;color:var(--accent2)}
+.cmp-t td:first-child{color:var(--accent);font-weight:500}
+
+/* ── SOLFEGGIO CARDS ── */
+.solf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.solf-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all .25s}
+.solf-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-2px)}
+.solf-card.open{border-color:var(--accent)}
+.solf-hd{padding:18px 16px}
+.solf-hz{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--accent);line-height:1;filter:drop-shadow(0 0 8px rgba(201,168,76,.2));margin-bottom:4px}
+.solf-name{font-family:'Cinzel',serif;font-size:12px;color:var(--text);letter-spacing:1px;margin-bottom:3px}
+.solf-sub{font-size:11px;color:var(--accent);font-style:italic;opacity:.8;margin-bottom:8px}
+.solf-ds{font-size:10px;color:var(--dim);font-family:'Cinzel',serif;letter-spacing:1px}
+.solf-body{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+.solf-card.open .solf-body{max-height:300px}
+.solf-content{padding:0 16px 16px;border-top:1px solid rgba(201,168,76,.1);padding-top:14px;font-size:13px;color:var(--dim);line-height:1.75}
+.solf-content strong{color:var(--accent2)}
+.solf-tag{display:inline-block;font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;padding:3px 8px;border-radius:10px;border:1px solid rgba(201,168,76,.2);color:var(--accent);margin-top:10px}
+
+/* ── OCTAVE TABLE ── */
+.oct-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.oct-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 16px;text-align:center;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.oct-t th:last-child{border-right:none}
+.oct-t td{background:rgba(0,0,0,.2);padding:12px 16px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);text-align:center;line-height:1.5}
+.oct-t td:last-child{border-right:none;font-family:'Cinzel',serif;font-size:16px;color:var(--accent);font-weight:700}
+.oct-t td:nth-child(2){color:var(--accent2);font-family:'Cinzel',serif;font-size:15px}
+
+/* ── INTERVALS TABLE ── */
+.int-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.int-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 14px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.int-t th:last-child{border-right:none}
+.int-t td{background:rgba(0,0,0,.2);padding:12px 14px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.6}
+.int-t td:last-child{border-right:none;color:var(--dim)}
+.int-t td:first-child{color:var(--accent);font-weight:600;font-family:'Cinzel',serif}
+.int-t td:nth-child(2){text-align:center;font-family:'Cinzel',serif;font-size:15px;color:var(--accent2)}
+
+/* ── TIME SIGNATURES ── */
+.ts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.ts-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 14px;text-align:center;transition:all .2s}
+.ts-card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-1px)}
+.ts-sig{font-family:'Cinzel',serif;font-size:24px;font-weight:900;color:var(--accent);margin-bottom:6px}
+.ts-red{font-size:11px;color:var(--dim);font-style:italic;margin-bottom:4px}
+.ts-vib{font-family:'Cinzel',serif;font-size:10px;color:var(--accent2);letter-spacing:1px;margin-bottom:6px}
+.ts-desc{font-size:11px;color:var(--dim);line-height:1.55}
+
+/* ══════════════════════════════════
+   INTERACTIVE: SOLFEGGIO EXPLORER + 7-DAY JOURNAL
+══════════════════════════════════ */
+.explorer{background:#050d20;border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);overflow:hidden;margin:24px 0}
+.ex-hd{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.12);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ex-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--accent)}
+.ex-tabs{display:flex;gap:6px}
+.etab{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:7px 14px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;background:transparent;border-color:rgba(201,168,76,.2);color:var(--dim)}
+.etab.active{background:rgba(201,168,76,.18);border-color:var(--accent);color:var(--accent)}
+.ex-body{padding:28px}
+.ep{display:none}.ep.active{display:block}
+
+/* Frequency Explorer Tab */
+.freq-btns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.freq-btn{font-family:'Cinzel',serif;font-size:13px;font-weight:700;padding:10px 16px;border-radius:var(--r);border:1px solid rgba(201,168,76,.2);background:transparent;color:var(--dim);cursor:pointer;transition:all .2s;line-height:1}
+.freq-btn:hover,.freq-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(201,168,76,.1)}
+.freq-result{display:none}.freq-result.show{display:block}
+.freq-big{font-family:'Cinzel',serif;font-size:72px;font-weight:900;color:var(--accent2);text-align:center;filter:drop-shadow(0 0 20px rgba(201,168,76,.3));line-height:1;margin-bottom:4px}
+.freq-name{font-family:'Cinzel',serif;font-size:16px;color:var(--text);text-align:center;letter-spacing:2px;margin-bottom:4px}
+.freq-sub{font-size:13px;color:var(--accent);text-align:center;font-style:italic;margin-bottom:20px}
+.freq-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.fd-box{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:14px 16px}
+.fd-lbl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.fd-val{font-size:13px;color:var(--text);line-height:1.65}
+.freq-waveform{height:60px;margin-bottom:16px;border-radius:var(--r);overflow:hidden;background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.1)}
+.freq-q{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:var(--r);padding:14px 18px;font-size:13px;color:var(--accent2);line-height:1.7;font-style:italic}
+
+/* 432 Calculator Tab */
+.calc-432{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.c432-field label{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+.c432-field input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.14);border-radius:8px;padding:11px 14px;color:var(--text);font-family:'Cinzel',serif;font-size:18px;letter-spacing:2px;text-align:center;outline:none;transition:border-color .2s}
+.c432-field input:focus{border-color:rgba(201,168,76,.4)}
+.c432-results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+.c432-box{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.14);border-radius:var(--r);padding:14px 12px;text-align:center}
+.c432-box.hi{border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.07)}
+.c432-lbl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;color:var(--accent);opacity:.65;margin-bottom:8px}
+.c432-val{font-family:'Cinzel',serif;font-size:26px;font-weight:700;color:var(--accent2);line-height:1;filter:drop-shadow(0 0 10px rgba(201,168,76,.2))}
+.c432-sub{font-size:11px;color:var(--dim);margin-top:5px;line-height:1.5}
+
+/* 7-Day Journal Tab */
+.journal-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden}
+.journal-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);padding:10px 8px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.journal-t th:last-child{border-right:none}
+.journal-t td{background:rgba(0,0,0,.2);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);padding:0;vertical-align:top}
+.journal-t td:last-child{border-right:none}
+.journal-t td:first-child{background:rgba(201,168,76,.06);font-family:'Cinzel',serif;font-size:16px;color:var(--accent);text-align:center;padding:12px 6px;font-weight:700;min-width:36px}
+.jta{width:100%;background:transparent;border:none;padding:8px 10px;color:var(--text);font-family:'Raleway',sans-serif;font-size:12px;line-height:1.6;resize:none;min-height:48px;outline:none}
+.jta::placeholder{color:rgba(240,237,230,.18);font-style:italic}
+.j-freq-sel{width:100%;background:transparent;border:none;padding:8px 10px;color:var(--accent);font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;outline:none;cursor:pointer}
+.j-freq-sel option{background:var(--bg);color:var(--text)}
+.j-summary{margin-top:16px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:var(--r);padding:14px 18px}
+.j-summary label{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+.j-summary textarea{width:100%;background:transparent;border:none;color:var(--text);font-family:'Raleway',sans-serif;font-size:13px;line-height:1.7;resize:none;min-height:60px;outline:none}
+.j-summary textarea::placeholder{color:rgba(240,237,230,.2);font-style:italic}
+
+/* ── QUIZ ── */
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;margin-bottom:14px;transition:border-color .3s}
+.quiz-item.correct{border-color:rgba(90,184,122,.45);background:rgba(90,184,122,.06)}
+.quiz-item.wrong{border-color:rgba(200,80,80,.4);background:rgba(200,80,80,.05)}
+.quiz-q{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:14px}
+.quiz-q strong{color:var(--accent2)}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:11px 16px;font-size:13px;color:var(--dim);cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:hover{border-color:rgba(201,168,76,.25);color:var(--text);background:rgba(201,168,76,.07)}
+.quiz-opt.ok{border-color:rgba(90,184,122,.5);background:rgba(90,184,122,.1);color:#6fda9a}
+.quiz-opt.no{border-color:rgba(200,80,80,.5);background:rgba(200,80,80,.08);color:#e07070}
+.quiz-opt.show-ok{border-color:rgba(90,184,122,.35);color:#6fda9a}
+.quiz-fb{margin-top:12px;font-size:13px;line-height:1.6;padding:10px 14px;border-radius:8px;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.correct{background:rgba(90,184,122,.08);color:#6fda9a}
+.quiz-fb.wrong{background:rgba(200,80,80,.06);color:#e07070}
+.quiz-score{text-align:center;font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--accent);padding:20px;display:none}
+.quiz-score.show{display:block}
+
+/* ── ACCORDION ── */
+.acc-item{margin-bottom:10px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.acc-hd{width:100%;background:var(--card);border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;transition:background .2s}
+.acc-hd:hover{background:rgba(0,0,0,.38)}
+.acc-ht{font-family:'Cinzel',serif;font-size:13px;color:var(--text);letter-spacing:1px}
+.acc-hs{font-size:11px;color:var(--dim);margin-top:2px}
+.acc-ic{font-size:18px;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-ic{transform:rotate(45deg)}
+.acc-bd{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-item.open .acc-bd{max-height:600px}
+.acc-ct{padding:20px 22px;font-size:13px;line-height:1.85;color:var(--dim);border-top:1px solid rgba(255,255,255,.04)}
+.acc-ct strong{color:var(--accent2)}
+
+/* ── REFLECTION ── */
+.ref-q{font-family:'Cinzel',serif;font-size:14px;color:var(--accent2);line-height:1.75;margin-bottom:14px;letter-spacing:.5px}
+.ref-ta{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:18px 22px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;line-height:1.85;resize:vertical;min-height:110px;outline:none;transition:border-color .25s;margin-bottom:26px}
+.ref-ta:focus{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.32)}
+.ref-ta::placeholder{color:rgba(240,237,230,.2)}
+
+/* ── NAV CARDS ── */
+.nav-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nav-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:22px 26px;cursor:pointer;transition:all .3s;text-decoration:none}
+.nav-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.nav-card.prev{flex-direction:row-reverse}
+.nav-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.nav-title{font-family:'Cinzel',serif;font-size:15px;color:var(--text);letter-spacing:1px}
+.nav-arr{font-size:26px;color:var(--accent);opacity:.5;flex-shrink:0}
+
+/* ── WORKSHOP / COMPLETION ── */
+.ws{background:rgba(0,0,0,.3);border:1px dashed rgba(201,168,76,.2);border-radius:var(--rl);padding:40px;text-align:center}
+.ws-ic{font-size:34px;margin-bottom:14px;opacity:.45}
+.ws-t{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:var(--accent);margin-bottom:8px;opacity:.6}
+.ws-s{font-size:13px;color:var(--dim)}
+.comp-wrap{background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(0,0,0,.4));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:48px;text-align:center}
+.comp-t{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--text);margin-bottom:8px}
+.comp-s{font-size:13px;color:var(--dim);margin-bottom:28px}
+.comp-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:40px;padding:17px 44px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.comp-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.28)}
+.comp-btn.done{background:linear-gradient(135deg,#5ab87a,#7de09a)}
+.xp-pop{display:none;font-family:'Cinzel',serif;font-size:14px;color:var(--accent);margin-top:22px;letter-spacing:2px}
+.xp-pop.show{display:block;animation:fadeUp .7s ease}
+
+/* ── SAVE BAR ── */
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(5,10,28,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(201,168,76,.12);padding:13px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.sv-status{font-size:11px;color:var(--dim);letter-spacing:1px}
+.sv-status span{color:var(--accent);font-family:'Cinzel',serif}
+.sv-actions{display:flex;gap:10px}
+.sv-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.sv-btn.pri{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.3);color:var(--accent)}
+.sv-btn.pri:hover{background:rgba(201,168,76,.2)}
+.sv-btn.sec{background:transparent;border-color:rgba(255,255,255,.1);color:var(--dim)}
+.sv-btn.sec:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+#imp-file{display:none}
+
+/* ── TOAST / CONFETTI ── */
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(8,14,42,.96);border:1px solid rgba(201,168,76,.28);border-radius:30px;padding:11px 26px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.cf{position:fixed;top:-20px;z-index:9999;border-radius:2px;pointer-events:none;animation:fall 2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:660px){.hero-code{font-size:60px}.hero-title{font-size:17px}.solf-grid{grid-template-columns:1fr 1fr}.ts-grid{grid-template-columns:1fr 1fr}.freq-detail-grid{grid-template-columns:1fr}.calc-432{grid-template-columns:1fr}.c432-results{grid-template-columns:1fr 1fr}.hz-compare{grid-template-columns:1fr}.hz-vs{writing-mode:horizontal-tb;padding:10px;border-top:1px solid rgba(201,168,76,.15);border-bottom:1px solid rgba(201,168,76,.15)}.nav-cards{grid-template-columns:1fr}.top-nav{padding:12px 16px}.nav-crumb{display:none}main{padding-left:16px;padding-right:16px}.tx{padding:26px 22px}}
+</style>
+</head>
+<body>
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+<div class="top-nav">
+  <div class="nav-brand">THE FREQUENCY ACADEMY</div>
+  <div class="nav-crumb">NUMEROLOGY · N6</div>
+  <div class="nav-xp" id="xp-display">0 XP</div>
+</div>
+<div class="toast" id="toast"></div>
+<main>
+
+  <!-- HERO -->
+  <div class="ls hero visible">
+    <div class="hero-eye">Symbolic Sciences · Numerology</div>
+    <div class="hero-code">N6</div>
+    <div class="hero-title">Numerology in Sound & Music</div>
+    <div class="hero-sub">432 Hz · 440 Hz · Solfeggio Frequencies · The Numbers in Every Note</div>
+    <div class="hero-rule"></div>
+    <div class="hero-tag">⟡ ~15 Min</div>
+    <canvas id="wave-canvas"></canvas>
+  </div>
+
+  <!-- TRANSMISSION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">TRANSMISSION</div><div class="sh-rule"></div></div>
+    <div class="tx">
+      <div class="tx-lbl">Opening Transmission · N6</div>
+      <p>Every song ever written is a mathematical event. The note you hear is not just sound — it is a <strong>specific number of vibration cycles per second</strong>, landing on your body, entering your cells, tuning your field. The chord that moves you to tears is a ratio. The rhythm that makes you move is a time signature encoding a numerological vibration. <strong>Music is number made audible.</strong></p>
+      <p>The ancient world knew this. The Pythagoreans built their entire cosmology on musical ratios. The mystery school singers chanted in frequencies whose digit sums all reduced to 3, 6, and 9 — <em>the same mathematical architecture we've been building throughout this module</em>. What they called sacred song, we now call the Solfeggio frequencies.</p>
+      <p>This lesson changes how you hear. <strong>You will never listen to music the same way again.</strong></p>
+    </div>
+  </div>
+
+  <!-- CORE CONCEPT -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">01</div><div class="sh-rule"></div></div>
+    <div class="st">Sound Is Number</div>
+    <div class="card">
+      <p>Sound is vibration — and vibration is number. Every musical note is a specific frequency measured in <strong style="color:var(--accent2)">Hertz (Hz)</strong> — the number of complete vibration cycles per second. When you hear the note A4, you are hearing 432 (or 440) air pressure waves hitting your eardrum every single second. The number determines the note. Change the number, change the note.</p>
+      <p>This is not metaphor. This is physics. And because numerology is the study of the vibrational meaning of numbers, <strong style="color:var(--accent2)">every musical note is a numerological event</strong>. The frequency it vibrates at, the interval relationships it creates, the time signature it moves in — all of it is number. All of it carries vibrational character.</p>
+    </div>
+    <div class="callout"><p>"Every song ever recorded is a numerological event.<br>The frequency it was tuned to, the intervals it uses,<br>the time signature it moves in — all of it is number. All of it is vibration."</p></div>
+    <div class="card" style="margin-top:18px">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:14px">KEY DEFINITIONS</p>
+      <table class="defs-t">
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Hertz (Hz)</td><td>The unit of frequency measurement — the number of complete vibration cycles per second. 432 Hz = 432 cycles per second.</td></tr>
+          <tr><td>Concert Pitch</td><td>The agreed reference pitch for tuning instruments. Currently standardised at A4 = 440 Hz (ISO 16, 1955). Before 1939, there was no universal standard.</td></tr>
+          <tr><td>Solfeggio Frequencies</td><td>Ancient sacred tones used in Gregorian chants. Every one of the six core frequencies reduces to 3, 6, or 9.</td></tr>
+          <tr><td>Cymatics</td><td>The study of visible sound patterns. Frequencies applied to sand or water form geometric patterns unique to each frequency.</td></tr>
+          <tr><td>Harmonic Series</td><td>The natural series of overtones produced by any vibrating object. Ratios between harmonics (2:1 octave, 3:2 fifth) are universal mathematical relationships.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 432 VS 440 -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">02</div><div class="sh-rule"></div></div>
+    <div class="st">432 Hz vs 440 Hz — The Tuning Debate</div>
+    <div class="card"><p>Both are real frequencies. Both produce real music. The question is which one you want anchoring your practice, your devices, and your personal frequency work — and what the numerological difference between them actually means.</p></div>
+
+    <div class="hz-compare">
+      <div class="hz-side left">
+        <div class="hz-num">440</div>
+        <div class="hz-ds">4+4+0 = 8</div>
+        <div class="hz-vib">Power · Material World</div>
+        <ul class="hz-facts">
+          <li>ISO 16 standard since 1955</li>
+          <li>Established at 1939 conference</li>
+          <li>All octaves reduce to 8</li>
+          <li>880, 220, 110 Hz → all → 8</li>
+          <li>No strong natural alignments identified</li>
+          <li>Widely reported as more activating</li>
+        </ul>
+      </div>
+      <div class="hz-vs">VS</div>
+      <div class="hz-side right">
+        <div class="hz-num">432</div>
+        <div class="hz-ds">4+3+2 = 9</div>
+        <div class="hz-vib">Completion · Natural Harmony · Tesla Trinity</div>
+        <ul class="hz-facts">
+          <li>Used by Verdi, pre-1939 instruments</li>
+          <li>Evidence in ancient Egyptian instruments</li>
+          <li>All octaves reduce to 9</li>
+          <li>864, 216, 108 Hz → all → 9</li>
+          <li>Related to Schumann Resonance via octave series</li>
+          <li>Widely reported as warmer, more resonant</li>
+        </ul>
+      </div>
+    </div>
+
+    <table class="cmp-t">
+      <thead><tr><th>Dimension</th><th>440 Hz</th><th>432 Hz</th></tr></thead>
+      <tbody>
+        <tr><td>Digit Sum</td><td>8 — material/power vibration</td><td>9 — Tesla trinity, natural harmony</td></tr>
+        <tr><td>Standardisation</td><td>ISO 16 (1955), global standard</td><td>Verdi's natural pitch, pre-1939</td></tr>
+        <tr><td>Mathematical links</td><td>Clean industrial standard</td><td>Schumann Resonance, Great Pyramid</td></tr>
+        <tr><td>Listener experience</td><td>Mentally activating, slightly tense</td><td>Warmer, body-centred, more resonant</td></tr>
+        <tr><td>Octave reduction</td><td>880, 220, 110 → all reduce to 8</td><td>864, 216, 108 → all reduce to 9</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SOLFEGGIO -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">03</div><div class="sh-rule"></div></div>
+    <div class="st">The Six Solfeggio Frequencies</div>
+    <div class="callout"><p>★ KEY INSIGHT: Every single Solfeggio frequency reduces to 3, 6, or 9.<br>The entire system sits inside the Tesla trinity.<br><span style="font-size:11px;opacity:.7;font-style:normal;letter-spacing:1px">This is not coincidence — it is deliberate sacred architecture.</span></p></div>
+    <div class="solf-grid" id="solf-grid"></div>
+  </div>
+
+  <!-- MUSICAL SCALE NUMBERS -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">04</div><div class="sh-rule"></div></div>
+    <div class="st">The Numbers in the Musical Scale</div>
+    <div class="card"><p>The number structure of Western music is not arbitrary. Every fundamental interval and structural element encodes sacred number relationships. When you know what to look for, <strong style="color:var(--accent2)">every chord is a numerological statement</strong>.</p></div>
+
+    <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin:20px 0 12px">THE OCTAVE — 432 Hz TUNING</p>
+    <div class="card" style="margin-bottom:14px"><p style="font-size:13px">When A4 is tuned to 432 Hz, every octave above and below preserves the 9 vibration — the vibrational identity is maintained across the entire frequency range.</p></div>
+    <table class="oct-t">
+      <thead><tr><th>Note</th><th>Frequency (432 Hz)</th><th>Digit Sum</th><th>Reduces To</th></tr></thead>
+      <tbody>
+        <tr><td>A6</td><td>1728 Hz</td><td>1+7+2+8 = 18 → 9</td><td>9</td></tr>
+        <tr><td>A5</td><td>864 Hz</td><td>8+6+4 = 18 → 9</td><td>9</td></tr>
+        <tr style="background:rgba(201,168,76,.06)"><td style="color:var(--accent);font-weight:700">A4</td><td style="color:var(--accent2);font-size:16px;font-family:'Cinzel',serif">432 Hz ★</td><td>4+3+2 = 9</td><td>9</td></tr>
+        <tr><td>A3</td><td>216 Hz</td><td>2+1+6 = 9</td><td>9</td></tr>
+        <tr><td>A2</td><td>108 Hz</td><td>1+0+8 = 9</td><td>9</td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin:24px 0 12px">SACRED INTERVALS & THEIR NUMEROLOGICAL IDENTITY</p>
+    <table class="int-t">
+      <thead><tr><th>Interval</th><th>Ratio</th><th>Numerological Identity</th><th>Quality / Character</th></tr></thead>
+      <tbody>
+        <tr><td>Octave</td><td>2:1</td><td>2 = partnership; 1 = unity. The same thing doubled, completing a cycle</td><td>Perfect consonance. The same note at higher vibration.</td></tr>
+        <tr><td>Perfect 5th</td><td>3:2</td><td>3 = creation; 2 = balance. Creative principle in balanced partnership</td><td>The most universally beautiful interval. Pythagoras' foundation.</td></tr>
+        <tr><td>Perfect 4th</td><td>4:3</td><td>4 = structure; 3 = expression. Structured creativity</td><td>Stable, open, supportive. The complement of the fifth.</td></tr>
+        <tr><td>Major 3rd</td><td>5:4</td><td>5 = change; 4 = foundation. Change built on structure</td><td>Bright, joyful. The defining interval of a major chord.</td></tr>
+        <tr><td>Minor 3rd</td><td>6:5</td><td>6 = love; 5 = freedom. Love expressed through movement</td><td>Emotive, introspective. The defining interval of a minor chord.</td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin:24px 0 12px">TIME SIGNATURES — NUMBER IN RHYTHM</p>
+    <div class="ts-grid" id="ts-grid"></div>
+  </div>
+
+  <!-- INTERACTIVE EXPLORER -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">INTERACTIVE</div><div class="sh-rule"></div></div>
+    <div class="st">Frequency & Sound Explorer</div>
+    <div class="explorer">
+      <div class="ex-hd">
+        <div class="ex-title">⟡ Sound & Frequency Tools</div>
+        <div class="ex-tabs">
+          <button class="etab active" onclick="switchETab('fe',this)">Solfeggio Explorer</button>
+          <button class="etab" onclick="switchETab('c4',this)">432 Hz Calculator</button>
+          <button class="etab" onclick="switchETab('j7',this)">7-Day Journal</button>
+        </div>
+      </div>
+      <div class="ex-body">
+
+        <!-- SOLFEGGIO EXPLORER -->
+        <div class="ep active" id="ep-fe">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:18px">Tap any frequency to explore its vibrational signature, Tesla family connection, and application guidance.</p>
+          <div class="freq-btns" id="freq-btns"></div>
+          <div class="freq-result" id="freq-result">
+            <canvas class="freq-waveform" id="freq-wave"></canvas>
+            <div class="freq-big" id="fr-hz"></div>
+            <div class="freq-name" id="fr-name"></div>
+            <div class="freq-sub" id="fr-sub"></div>
+            <div class="freq-detail-grid">
+              <div class="fd-box"><div class="fd-lbl">DIGIT SUM</div><div class="fd-val" id="fr-ds"></div></div>
+              <div class="fd-box"><div class="fd-lbl">TESLA FAMILY</div><div class="fd-val" id="fr-fam"></div></div>
+              <div class="fd-box"><div class="fd-lbl">VIBRATIONAL ESSENCE</div><div class="fd-val" id="fr-ess"></div></div>
+              <div class="fd-box"><div class="fd-lbl">WHEN TO USE</div><div class="fd-val" id="fr-use"></div></div>
+            </div>
+            <div class="freq-q" id="fr-q"></div>
+          </div>
+        </div>
+
+        <!-- 432 CALCULATOR -->
+        <div class="ep" id="ep-c4">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:18px">Enter any frequency and see its 432 Hz tuning equivalent, digit sum, and octave relationships.</p>
+          <div class="calc-432">
+            <div class="c432-field"><label>ENTER FREQUENCY (Hz)</label><input type="number" id="c4-in" placeholder="e.g. 440" oninput="calc432()"></div>
+            <div class="c432-field"><label>OR SELECT NOTE</label>
+              <select onchange="document.getElementById('c4-in').value=this.value;calc432()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.14);border-radius:8px;padding:11px 14px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none">
+                <option value="">Choose a note...</option>
+                <option value="432">A4 (432 Hz)</option>
+                <option value="440">A4 (440 Hz)</option>
+                <option value="528">528 Hz (Solfeggio)</option>
+                <option value="396">396 Hz (Solfeggio)</option>
+                <option value="417">417 Hz (Solfeggio)</option>
+                <option value="639">639 Hz (Solfeggio)</option>
+                <option value="741">741 Hz (Solfeggio)</option>
+                <option value="852">852 Hz (Solfeggio)</option>
+                <option value="7.83">7.83 Hz (Schumann)</option>
+              </select>
+            </div>
+          </div>
+          <div class="c432-results">
+            <div class="c432-box hi"><div class="c432-lbl">DIGIT SUM</div><div class="c432-val" id="c4-ds">—</div><div class="c432-sub" id="c4-ds-sub"></div></div>
+            <div class="c432-box"><div class="c432-lbl">OCTAVE UP (×2)</div><div class="c432-val" id="c4-up">—</div><div class="c432-sub" id="c4-up-sub"></div></div>
+            <div class="c432-box"><div class="c432-lbl">OCTAVE DOWN (÷2)</div><div class="c432-val" id="c4-dn">—</div><div class="c432-sub" id="c4-dn-sub"></div></div>
+          </div>
+          <div id="c4-analysis" style="margin-top:16px;display:none;font-size:13px;color:var(--dim);background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);border-radius:var(--r);padding:16px 18px;line-height:1.8"></div>
+        </div>
+
+        <!-- 7-DAY JOURNAL -->
+        <div class="ep" id="ep-j7">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:6px">Choose one Solfeggio frequency per day, listen for 20 minutes with headphones, eyes closed. Record your experience below.</p>
+          <p style="font-size:11px;color:var(--accent);font-style:italic;margin-bottom:18px;opacity:.8">All entries save automatically.</p>
+          <table class="journal-t" id="journal-t"></table>
+          <div class="j-summary" style="margin-top:16px">
+            <label>AFTER 7 DAYS — Which frequency had the most noticeable effect? What surprised you?</label>
+            <textarea id="j-summary-ta" placeholder="Your 7-day reflection..." oninput="autoSave()"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">QUICK REF</div><div class="sh-rule"></div></div>
+    <div class="st">Sound, Number & Practice</div>
+    <div id="accordion"></div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">KNOWLEDGE CHECK</div><div class="sh-rule"></div></div>
+    <div class="st">Test Your Understanding</div>
+    <div id="quiz"></div>
+    <div class="quiz-score" id="quiz-score"></div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">PRACTICE</div><div class="sh-rule"></div></div>
+    <div class="st">This Week: Listen With Numbers</div>
+    <div class="tx">
+      <div class="tx-lbl">Practical Application · Do This</div>
+      <p><strong>Step 1 — Start the 7-Day Solfeggio Practice.</strong> Use the journal tab above. Choose a different Solfeggio frequency each day, listen for at least 20 minutes with headphones, eyes closed. Record what you notice — physical sensations, emotional shifts, mental clarity. The data you collect over 7 days will be more valuable than any theory in this lesson.</p>
+      <p><strong>Step 2 — Switch one playlist to 432 Hz.</strong> Search Spotify, YouTube, or your preferred platform for "432 Hz" versions of music you love. Listen for one week exclusively in 432 Hz. At the end of the week, notice: does anything feel different? More resonant? More body-centred?</p>
+      <p><strong>Step 3 — Digit-sum the songs you love most.</strong> Find the key and BPM (beats per minute) of a song that moves you deeply. Digit-sum the BPM. Look at the key — what note is the root? Research the frequency of that note. What do the numbers tell you?</p>
+      <p><strong>Step 4 — Create something intentionally.</strong> If you make music, set your DAW to 432 Hz. Choose a time signature whose digit sum aligns with your intention (528 Hz drone in 6/8 for transformation and flow, for example). Use the frequency as a numerological decision, not just a sonic one.</p>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">REFLECTION</div><div class="sh-rule"></div></div>
+    <div class="st">Reflection Journal</div>
+    <div class="callout" style="margin-bottom:24px"><p>Let these questions move you.<br>The best answers will come from listening first, then writing.</p></div>
+    <div class="ref-q">1 — Think of a piece of music that has had a deep emotional effect on you. What time signature does it use? What key? If you can find its tuning standard — what does the numerology tell you about why it affects you the way it does?</div>
+    <textarea class="ref-ta" id="ref-1" placeholder="A song that moved you, and what the numbers reveal about why..." oninput="autoSave()"></textarea>
+    <div class="ref-q">2 — Every Solfeggio frequency reduces to 3, 6, or 9 — the Tesla trinity we've encountered throughout this module. What does it mean to you that ancient sacred music encoded the same mathematical architecture Tesla called the key to the universe?</div>
+    <textarea class="ref-ta" id="ref-2" placeholder="The ancients encoded it in song. Tesla encoded it in mathematics. Both arrived at the same architecture..." oninput="autoSave()"></textarea>
+    <div class="ref-q">3 — Sound is number. Number is the language of the universe. Drawing on everything you've learned across this numerology module — what does that mean to you now, in your own words?</div>
+    <textarea class="ref-ta" id="ref-3" placeholder="In your own words, what does it mean that sound and number are the same thing..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">LIVE WORKSHOP</div><div class="sh-rule"></div></div>
+    <div class="st">Live Session</div>
+    <div class="ws"><div class="ws-ic">⟡</div><div class="ws-t">Live Workshop: Numerology in Sound & Music</div><div class="ws-s">Coming soon — recordings and live session links will appear here once scheduled.<br>Check The Frequency Academy community for announcements.</div></div>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="ls">
+    <div class="comp-wrap">
+      <div class="comp-t">SEAL THIS LESSON</div>
+      <div class="comp-s">Complete your reflections and 7-day listening journal, then seal this lesson.</div>
+      <button class="comp-btn" id="comp-btn" onclick="markComplete()">⟡ Mark Complete · +10 XP</button>
+      <div class="xp-pop" id="xp-pop">✦ +10 XP Awarded · N6 Complete ✦</div>
+    </div>
+  </div>
+
+  <!-- NAVIGATE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">NAVIGATE</div><div class="sh-rule"></div></div>
+    <div class="st">Continue the Journey</div>
+    <div class="nav-cards">
+      <a class="nav-card prev" href="../lesson-05/"><div class="nav-arr">←</div><div><div class="nav-lbl">PREVIOUS · N5</div><div class="nav-title">Timing With Numbers</div></div></a>
+      <a class="nav-card" href="../lesson-07/"><div><div class="nav-lbl">NEXT · N7</div><div class="nav-title">Numerology & the Human Body</div></div><div class="nav-arr">→</div></a>
+    </div>
+  </div>
+
+</main>
+
+<div id="save-bar">
+  <div class="sv-status">Auto-save: <span id="save-time">—</span></div>
+  <div class="sv-actions">
+    <input type="file" id="imp-file" accept=".json" onchange="importData(event)">
+    <button class="sv-btn sec" onclick="document.getElementById('imp-file').click()">Import</button>
+    <button class="sv-btn pri" onclick="exportData()">Export Backup</button>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+const SOLF = {
+  396:{name:'Liberation',sub:'Fear & Guilt Release',ds:'3+9+6=18→9',fam:'Tesla Trinity — 9 (Completion)',ess:'The letting-go frequency. Liberates from fear, guilt, and grief — the emotional frequencies that hold people in the past.',use:'When processing old emotional patterns, grief, shame, or anything anchoring you to the past. Morning or evening meditation.',q:'Where in your body do you hold your oldest grief? What would it feel like to let that frequency go?'},
+  417:{name:'Transformation',sub:'Change & Breaking Patterns',ds:'4+1+7=12→3',fam:'Tesla Trinity — 3 (Creation)',ess:'Dissolves stagnant energy, breaks up old structures, and facilitates transformation. When life isn\'t moving, this moves it.',use:'When something in your life is stuck and needs to shift. Use before initiating major change or when feeling blocked.',q:'What pattern in your life has overstayed its welcome? What would it sound like for that pattern to dissolve?'},
+  528:{name:'Miracle',sub:'DNA Repair & Transformation',ds:'5+2+8=15→6',fam:'Tesla Trinity — 6 (Life/Carbon)',ess:'The most widely researched Solfeggio. Associated with DNA integrity, cellular regeneration, and deep transformation. Reduces to 6 — the carbon/life frequency.',use:'Healing work, device charging, meditation, morning practice. Use when you want to support biological vitality and deep cellular restoration.',q:'If 528 Hz resonates with the architecture of life itself, what does it mean to bathe your cells in this frequency daily?'},
+  639:{name:'Connection',sub:'Relationships & Communication',ds:'6+3+9=18→9',fam:'Tesla Trinity — 9 (Completion)',ess:'Associated with reconnecting, healing relationships, enhancing communication, and building bridges between divided energies.',use:'Relationship healing, before difficult conversations, for reconciliation, community work, or any time communication has broken down.',q:'Which relationship in your life most needs the frequency of reconnection right now?'},
+  741:{name:'Intuition',sub:'Awakening & Expression',ds:'7+4+1=12→3',fam:'Tesla Trinity — 3 (Creation)',ess:'Expands consciousness, awakens intuition, and supports solving complex problems. Associated with self-expression and truth-telling.',use:'Creative work, problem-solving, before writing or speaking your truth. Some research links it to detoxification at the emotional level.',q:'What truth have you been holding back that wants to be expressed? What would it sound like to speak it freely?'},
+  852:{name:'Spiritual Order',sub:'Soul Reconnection',ds:'8+5+2=15→6',fam:'Tesla Trinity — 6 (Life/Carbon)',ess:'Associated with awakening to higher consciousness, reconnecting with spiritual order, and the return to the soul\'s deeper knowing.',use:'Deep meditation, spiritual practice, inner work, and any time you feel disconnected from your larger purpose or sense of spiritual identity.',q:'When did you last feel completely aligned with your soul\'s deeper knowing? What brought you back to yourself?'}
+};
+
+const TS_DATA = [
+  {sig:'4/4',red:'4+4=8→8',vib:'Power, Authority, Structure',desc:'The most common time in Western music. Pop, rock, classical. The default pulse of modernity.'},
+  {sig:'3/4',red:'3+4=7→7',vib:'Mysticism, Inner Movement',desc:'The waltz. Flowing, circular, deeply emotive. Beethoven, Chopin. The waltz of the soul.'},
+  {sig:'6/8',red:'6+8=14→5',vib:'Change, Organic Flow',desc:'Flowing compound rhythm — lilting, natural, feels like breathing or gentle waves.'},
+  {sig:'5/4',red:'5+4=9→9',vib:'Completion, Unresolved Beauty',desc:'Slightly unresolved — jazz and progressive music. Dave Brubeck\'s Take Five.'},
+  {sig:'9/8',red:'9+8=17→8',vib:'Power Through 9-Pulse',desc:'Complex compound rhythm, meditative yet driving. Found in Celtic and Indian classical music.'},
+  {sig:'12/8',red:'1+2+8=11→2',vib:'Balance, Divine Timing',desc:'Slow blues, gospel, shuffle rhythms. 12 beats — the full organisational cycle in rhythm.'}
+];
+
+// ── BUILD SOLFEGGIO CARDS ──
+(function buildSolfCards(){
+  const g=document.getElementById('solf-grid');
+  Object.entries(SOLF).forEach(([hz,d])=>{
+    const c=document.createElement('div');c.className='solf-card';
+    c.innerHTML=`<div class="solf-hd"><div class="solf-hz">${hz} Hz</div><div class="solf-name">${d.name}</div><div class="solf-sub">${d.sub}</div><div class="solf-ds">${d.ds}</div></div><div class="solf-body"><div class="solf-content"><strong>Essence:</strong> ${d.ess}<br><br><strong>When to use:</strong> ${d.use}<span class="solf-tag">${d.fam}</span></div></div>`;
+    c.onclick=()=>{const wasOpen=c.classList.contains('open');document.querySelectorAll('.solf-card').forEach(x=>x.classList.remove('open'));if(!wasOpen)c.classList.add('open');};
+    g.appendChild(c);
+  });
+})();
+
+// ── BUILD TIME SIGNATURE GRID ──
+(function buildTS(){
+  const g=document.getElementById('ts-grid');
+  TS_DATA.forEach(d=>{
+    const c=document.createElement('div');c.className='ts-card';
+    c.innerHTML=`<div class="ts-sig">${d.sig}</div><div class="ts-red">${d.red}</div><div class="ts-vib">${d.vib}</div><div class="ts-desc">${d.desc}</div>`;
+    g.appendChild(c);
+  });
+})();
+
+// ── BUILD FREQ EXPLORER BUTTONS ──
+(function buildFreqBtns(){
+  const c=document.getElementById('freq-btns');
+  Object.keys(SOLF).forEach(hz=>{
+    const b=document.createElement('button');b.className='freq-btn';b.textContent=hz+' Hz';
+    b.onclick=()=>{loadFreq(hz);document.querySelectorAll('.freq-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');};
+    c.appendChild(b);
+  });
+})();
+
+// ── LOAD FREQUENCY RESULT ──
+let waveAnim;
+function loadFreq(hz){
+  const d=SOLF[hz];if(!d)return;
+  document.getElementById('fr-hz').textContent=hz+' Hz';
+  document.getElementById('fr-name').textContent=d.name;
+  document.getElementById('fr-sub').textContent=d.sub;
+  document.getElementById('fr-ds').textContent=d.ds;
+  document.getElementById('fr-fam').textContent=d.fam;
+  document.getElementById('fr-ess').textContent=d.ess;
+  document.getElementById('fr-use').textContent=d.use;
+  document.getElementById('fr-q').textContent=d.q;
+  document.getElementById('freq-result').classList.add('show');
+  drawWave(parseInt(hz));
+}
+
+function drawWave(hz){
+  const canvas=document.getElementById('freq-wave');
+  const ctx=canvas.getContext('2d');
+  canvas.width=canvas.offsetWidth*Math.min(devicePixelRatio,2);
+  canvas.height=60*Math.min(devicePixelRatio,2);
+  ctx.scale(Math.min(devicePixelRatio,2),Math.min(devicePixelRatio,2));
+  const w=canvas.offsetWidth,h=60;
+  let t=0;
+  if(waveAnim)cancelAnimationFrame(waveAnim);
+  const cycles=hz/100;
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    ctx.beginPath();
+    for(let x=0;x<=w;x+=1){
+      const y=h/2+Math.sin((x/w)*Math.PI*2*cycles+t)*20+Math.sin((x/w)*Math.PI*4*cycles+t*1.3)*6;
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    const grad=ctx.createLinearGradient(0,0,w,0);
+    grad.addColorStop(0,'rgba(201,168,76,0)');
+    grad.addColorStop(0.5,'rgba(201,168,76,0.7)');
+    grad.addColorStop(1,'rgba(201,168,76,0)');
+    ctx.strokeStyle=grad;ctx.lineWidth=1.5;ctx.stroke();
+    t+=0.03;
+    waveAnim=requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// ── 432 CALCULATOR ──
+function reduce(n){
+  let s=String(Math.round(n)).split('').reduce((a,d)=>a+parseInt(d),0);
+  while(s>9&&s!==11&&s!==22&&s!==33){s=String(s).split('').reduce((a,d)=>a+parseInt(d),0);}
+  return s;
+}
+
+function calc432(){
+  const v=parseFloat(document.getElementById('c4-in').value);
+  if(!v||v<=0){
+    ['c4-ds','c4-up','c4-dn'].forEach(id=>document.getElementById(id).textContent='—');
+    ['c4-ds-sub','c4-up-sub','c4-dn-sub'].forEach(id=>document.getElementById(id).textContent='');
+    document.getElementById('c4-analysis').style.display='none';
+    return;
+  }
+  const ds=reduce(v);
+  const up=v*2;const dn=v/2;
+  const dsUp=reduce(up);const dsDn=reduce(dn);
+  document.getElementById('c4-ds').textContent=ds;
+  document.getElementById('c4-up').textContent=up%1===0?up+'Hz':(up.toFixed(2)+'Hz');
+  document.getElementById('c4-dn').textContent=dn%1===0?dn+'Hz':(dn.toFixed(2)+'Hz');
+  document.getElementById('c4-ds-sub').textContent=ds===9?'Tesla Trinity ★':ds===6?'Life/Carbon ★':ds===3?'Creative ★':'Outside Tesla family';
+  document.getElementById('c4-up-sub').textContent='DS: '+dsUp;
+  document.getElementById('c4-dn-sub').textContent='DS: '+dsDn;
+  const inTesla=[3,6,9].includes(ds);
+  const analysis=document.getElementById('c4-analysis');
+  analysis.style.display='block';
+  const solfMatch=Object.keys(SOLF).find(hz=>Math.abs(parseInt(hz)-v)<0.5);
+  analysis.innerHTML=`<strong style="color:var(--accent2)">${v} Hz</strong> digit-sums to <strong style="color:var(--accent)">${ds}</strong>${inTesla?' — inside the Tesla trinity (3-6-9 family)':' — outside the Tesla trinity'}. Octave up: ${up.toFixed(1)} Hz (DS: ${dsUp}). Octave down: ${dn.toFixed(1)} Hz (DS: ${dsDn}).${solfMatch?` <br>This frequency matches the Solfeggio <strong style="color:var(--accent2)">${solfMatch} Hz (${SOLF[solfMatch].name})</strong>.`:''}`;
+  autoSave();
+}
+
+// ── BUILD 7-DAY JOURNAL ──
+(function buildJournal(){
+  const t=document.getElementById('journal-t');
+  t.innerHTML=`<thead><tr><th style="width:36px">Day</th><th>Frequency</th><th>Intention</th><th>Physical</th><th>Emotional / Mental</th><th>Rating</th></tr></thead><tbody id="journal-body"></tbody>`;
+  const tb=t.querySelector('tbody');
+  for(let i=1;i<=7;i++){
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${i}</td><td><select class="j-freq-sel" id="jf${i}" onchange="autoSave()"><option value="">— Hz</option>${Object.keys(SOLF).map(hz=>`<option value="${hz}">${hz} Hz · ${SOLF[hz].name}</option>`).join('')}</select></td><td><textarea class="jta" id="ji${i}" placeholder="Why this frequency..." oninput="autoSave()"></textarea></td><td><textarea class="jta" id="jp${i}" placeholder="Body sensations..." oninput="autoSave()"></textarea></td><td><textarea class="jta" id="je${i}" placeholder="Emotional shifts..." oninput="autoSave()"></textarea></td><td><textarea class="jta" id="jr${i}" placeholder="1–10" style="min-height:32px" oninput="autoSave()"></textarea></td>`;
+    tb.appendChild(tr);
+  }
+})();
+
+// ── SWITCH TABS ──
+function switchETab(id,btn){
+  document.querySelectorAll('.etab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.ep').forEach(p=>p.classList.remove('active'));
+  document.getElementById('ep-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── ACCORDION ──
+const ACC=[
+  {t:'Why Tuning Matters in Frequency Work',s:'The anchor frequency changes everything downstream',c:'When you tune your reference pitch, every single note in the scale shifts simultaneously. It\'s not just one note changing — it\'s the entire musical system moving. A device charged with music, a ceremony held with live music, a healing session with sound — all of these are affected by the tuning of the instrument. <strong>If you are using music as a frequency delivery vehicle in any context, the tuning standard is a foundational decision</strong>, not an afterthought. 432 Hz tuning will align every note with the Tesla trinity octave reduction. 440 Hz will align every note with the 8 vibration.'},
+  {t:'How to Listen at Solfeggio Frequencies',s:'Practical guidance for your 7-day practice',c:'Find Solfeggio frequency music on YouTube, Spotify, or dedicated apps. Search "[frequency] Hz" (e.g., "528 Hz healing"). Choose recordings without lyrics — pure tones, singing bowls, or instrumental music tuned to the frequency. <strong>Use headphones for full effect</strong>. Sit or lie comfortably, close your eyes, and simply receive. Do not try to analyse or force an experience. Notice what arises without grasping it. 20 minutes minimum per session. Consistency across 7 days reveals more than any single session.'},
+  {t:'The Chromatic Scale & the Number 12',s:'Why 12 notes is not arbitrary',c:'Western music uses a 12-note chromatic scale. From the N4 lesson, we know that 12 organises cycles across every domain — 12 months, 12 hours, 12 zodiac signs, 12 faces of a dodecahedron. <strong>The 12-note chromatic scale is the same organisational principle expressed in sound</strong>. Within it are the 7-note diatonic scale (sacred geometry: 7 is the seeker, the mystic number), the perfect fifth cycle that repeats itself in exactly 12 steps (the circle of fifths), and the octave which doubles in both direction indefinitely.'},
+  {t:'Music as Frequency Delivery Vehicle',s:'How BabaKeegs uses music in ceremony and charging',c:'Music has always been the most efficient frequency delivery vehicle available. The body responds to sound faster than almost any other input — the nervous system, the vagus nerve, the fascia, all resonate with and respond to sonic frequency. In ceremony work, <strong>the selection of key, time signature, and tuning are intentional decisions</strong> — not aesthetic preferences. A piece played in D (the note of connection) in 3/4 time (flowing, mystical) at 432 Hz creates a very different field than the same melody in 4/4 at 440 Hz. Every musical parameter is a frequency decision.'},
+  {t:'Finding Numerological Meaning in Music You Love',s:'How to decode songs that move you',c:'To decode a piece of music numerologically: find the <strong>key</strong> (the root note determines the base frequency), the <strong>time signature</strong> (digit-sum it for its vibrational character), and the <strong>BPM</strong> (digit-sum the tempo — 108 BPM digit-sums to 9, the Tesla completion number, and is one of the most common meditation music tempos). Then ask: is the music tuned to 432 or 440? Many streaming services now offer 432 Hz versions. The combination of these three data points gives you a complete numerological profile of any piece of music.'}
+];
+(function buildAcc(){const c=document.getElementById('accordion');ACC.forEach(item=>{const el=document.createElement('div');el.className='acc-item';el.innerHTML=`<button class="acc-hd" onclick="this.closest('.acc-item').classList.toggle('open')"><div><div class="acc-ht">${item.t}</div><div class="acc-hs">${item.s}</div></div><span class="acc-ic">+</span></button><div class="acc-bd"><div class="acc-ct">${item.c}</div></div>`;c.appendChild(el);});})();
+
+// ── QUIZ ──
+const QD=[
+  {q:'432 Hz digit-sums to:',opts:['8 — material/power','6 — life/carbon','9 — Tesla trinity, natural harmony','3 — creative principle'],ans:2,fb:'4+3+2=9. 432 Hz sits inside the Tesla trinity alongside 3 and 6. Every octave of A in 432 Hz tuning also reduces to 9.'},
+  {q:'Every Solfeggio frequency reduces to:',opts:['1, 3, or 5','2, 4, or 8','3, 6, or 9','9 only'],ans:2,fb:'Every single Solfeggio frequency — all six — reduces to 3, 6, or 9. The entire system encodes the Tesla trinity. This is deliberate sacred architecture.'},
+  {q:'The Solfeggio frequency associated with DNA repair and cellular transformation is:',opts:['396 Hz','417 Hz','528 Hz','639 Hz'],ans:2,fb:'528 Hz is the Miracle frequency — associated with DNA integrity and cellular regeneration. It reduces to 6, the carbon/life number (6 protons, 6 neutrons, 6 electrons).'},
+  {q:'The perfect fifth has a frequency ratio of:',opts:['2:1','3:2','4:3','5:4'],ans:1,fb:'3:2 — the creative principle (3) in balanced partnership (2). Pythagoras identified this as the foundation of all musical harmony.'},
+  {q:'The time signature 4/4 digit-sums to:',opts:['4','7','8','9'],ans:2,fb:'4+4=8. This is the most common time signature in Western music — power, authority, and structure. The default pulse of modernity, anchored to the 8 vibration.'},
+  {q:'440 Hz digit-sums to:',opts:['9 — Tesla trinity','8 — material/power','6 — life/carbon','3 — creation'],ans:1,fb:'4+4+0=8. 440 Hz carries the 8 vibration — material power. Only 432 Hz is in the Tesla trinity. This is the numerological basis of the tuning debate.'},
+  {q:'639 Hz is the Solfeggio frequency associated with:',opts:['Liberation from fear and guilt','DNA repair and transformation','Relationships, communication and reconnection','Awakening intuition and expanding consciousness'],ans:2,fb:'639 Hz — the Connection frequency. Associated with healing relationships, enhancing communication, and rebuilding bridges. Reduces to 9.'},
+];
+let qA=0,qC=0;
+(function buildQ(){const c=document.getElementById('quiz');QD.forEach((q,qi)=>{const d=document.createElement('div');d.className='quiz-item';d.id='qi-'+qi;d.innerHTML=`<div class="quiz-q">${qi+1}. ${q.q}</div><div class="quiz-opts">${q.opts.map((o,oi)=>`<button class="quiz-opt" onclick="ansQ(${qi},${oi})">${o}</button>`).join('')}</div><div class="quiz-fb" id="qf-${qi}"></div>`;c.appendChild(d);});})();
+function ansQ(qi,chosen){const item=document.getElementById('qi-'+qi);if(item.dataset.done)return;item.dataset.done='1';const q=QD[qi];item.querySelectorAll('.quiz-opt').forEach(o=>o.disabled=true);const fb=document.getElementById('qf-'+qi);if(chosen===q.ans){item.classList.add('correct');item.querySelectorAll('.quiz-opt')[chosen].classList.add('ok');fb.className='quiz-fb correct show';fb.textContent='✓ '+q.fb;qC++;}else{item.classList.add('wrong');item.querySelectorAll('.quiz-opt')[chosen].classList.add('no');item.querySelectorAll('.quiz-opt')[q.ans].classList.add('show-ok');fb.className='quiz-fb wrong show';fb.textContent='✗ '+q.fb;}qA++;if(qA===QD.length){const s=document.getElementById('quiz-score');s.className='quiz-score show';const p=Math.round(qC/QD.length*100);s.innerHTML=`You answered <strong style="color:var(--accent)">${qC} of ${QD.length}</strong> correctly (${p}%).${p>=80?' Sound is becoming your numerological language.':' Review and return when ready.'}`;}autoSave();}
+
+// ── WAVE CANVAS HERO ──
+const wc=document.getElementById('wave-canvas'),wctx=wc.getContext('2d');let wt=0;
+function resWC(){wc.width=wc.offsetWidth*Math.min(devicePixelRatio,2);wc.height=100*Math.min(devicePixelRatio,2);wctx.scale(Math.min(devicePixelRatio,2),Math.min(devicePixelRatio,2))}resWC();window.addEventListener('resize',resWC);
+const FREQS=[432,528,396,639];let fIdx=0,fTimer=0;
+function animWave(){
+  const w=wc.offsetWidth,h=100;
+  wctx.clearRect(0,0,w,h);wt+=0.015;fTimer++;
+  if(fTimer>200){fIdx=(fIdx+1)%FREQS.length;fTimer=0;}
+  const hz=FREQS[fIdx];const cycles=hz/120;
+  [0.08,0.05,0.03].forEach((alpha,li)=>{
+    wctx.beginPath();
+    for(let x=0;x<=w;x+=2){
+      const y=h/2+Math.sin((x/w)*Math.PI*2*cycles+wt*(1+li*0.3))*(18-li*4)+Math.sin((x/w)*Math.PI*4*cycles+wt*0.7)*5;
+      x===0?wctx.moveTo(x,y):wctx.lineTo(x,y);
+    }
+    const grad=wctx.createLinearGradient(0,0,w,0);
+    grad.addColorStop(0,'rgba(201,168,76,0)');
+    grad.addColorStop(0.5,`rgba(201,168,76,${alpha})`);
+    grad.addColorStop(1,'rgba(201,168,76,0)');
+    wctx.strokeStyle=grad;wctx.lineWidth=1.5;wctx.stroke();
+  });
+  // floating hz numbers
+  [432,528,396].forEach((n,i)=>{
+    const x=(i/3)*w+60+Math.sin(wt*0.5+i)*20;
+    const y=h/2+Math.cos(wt*0.4+i*2)*15;
+    const p=0.5+0.5*Math.sin(wt*0.8+i);
+    wctx.font=`${11+i*2}px 'Cinzel',serif`;
+    wctx.fillStyle=`rgba(201,168,76,${0.06+p*0.1})`;
+    wctx.textAlign='center';
+    wctx.fillText(n,x,y);
+  });
+  requestAnimationFrame(animWave);
+}
+animWave();
+
+// ── PROGRESS ──
+window.addEventListener('scroll',()=>{const p=Math.min(scrollY/(document.body.scrollHeight-innerHeight)*100,100);document.getElementById('prog-fill').style.width=p+'%'},{passive:true});
+
+// ── REVEAL ──
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.07});
+document.querySelectorAll('.ls').forEach(s=>io.observe(s));
+
+// ── SAVE / LOAD ──
+const KEY='tfa_lesson_N6';let xp=0,saveT;
+function getJournalData(){
+  const j={};
+  for(let i=1;i<=7;i++){
+    j[i]={
+      freq:document.getElementById('jf'+i)?.value||'',
+      int:document.getElementById('ji'+i)?.value||'',
+      phys:document.getElementById('jp'+i)?.value||'',
+      emo:document.getElementById('je'+i)?.value||'',
+      rate:document.getElementById('jr'+i)?.value||''
+    };
+  }
+  j.summary=document.getElementById('j-summary-ta')?.value||'';
+  return j;
+}
+function getData(){
+  return{version:'1.0',lesson:'N6',ts:new Date().toISOString(),
+    reflections:{r1:document.getElementById('ref-1').value,r2:document.getElementById('ref-2').value,r3:document.getElementById('ref-3').value},
+    journal:getJournalData(),xp,completed:document.getElementById('comp-btn').classList.contains('done')};
+}
+function loadData(){
+  try{
+    const raw=localStorage.getItem(KEY);
+    if(!raw)return;
+    const d=JSON.parse(raw);
+    if(d.reflections){
+      document.getElementById('ref-1').value=d.reflections.r1||'';
+      document.getElementById('ref-2').value=d.reflections.r2||'';
+      document.getElementById('ref-3').value=d.reflections.r3||'';
+    }
+    if(d.journal){
+      setTimeout(()=>{
+        for(let i=1;i<=7;i++){
+          const j=d.journal[i];
+          if(!j)continue;
+          if(document.getElementById('jf'+i))document.getElementById('jf'+i).value=j.freq||'';
+          if(document.getElementById('ji'+i))document.getElementById('ji'+i).value=j.int||'';
+          if(document.getElementById('jp'+i))document.getElementById('jp'+i).value=j.phys||'';
+          if(document.getElementById('je'+i))document.getElementById('je'+i).value=j.emo||'';
+          if(document.getElementById('jr'+i))document.getElementById('jr'+i).value=j.rate||'';
+        }
+        if(document.getElementById('j-summary-ta'))document.getElementById('j-summary-ta').value=d.journal.summary||'';
+      },150);
+    }
+    if(d.xp){xp=d.xp;updXP();}
+    if(d.completed)applyDone();
+    document.getElementById('save-time').textContent=fmtT(d.ts);
+  }catch(e){}
+}
+function saveData(){localStorage.setItem(KEY,JSON.stringify(getData()));document.getElementById('save-time').textContent='just now';}
+function autoSave(){clearTimeout(saveT);saveT=setTimeout(saveData,1200);}
+setInterval(saveData,90000);
+function exportData(){
+  const b=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);
+  a.download='tfa_N6_'+new Date().toISOString().slice(0,10)+'.json';a.click();
+  toast('Listening journal exported ✦');
+}
+function importData(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    try{
+      const d=JSON.parse(ev.target.result);
+      localStorage.setItem(KEY,JSON.stringify(d));
+      loadData();toast('Session restored ✦');
+    }catch(err){toast('Invalid file');}
+  };
+  r.readAsText(f);e.target.value='';
+}
+function fmtT(iso){try{return new Date(iso).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}catch(e){return'—';}}
+function updXP(){document.getElementById('xp-display').textContent=xp+' XP';}
+function applyDone(){const b=document.getElementById('comp-btn');b.classList.add('done');b.textContent='✦ Lesson Sealed';document.getElementById('xp-pop').classList.add('show');}
+function markComplete(){if(document.getElementById('comp-btn').classList.contains('done'))return;xp+=10;updXP();applyDone();saveData();confetti();toast('✦ +10 XP · N6 Sealed ✦');}
+function confetti(){
+  const cols=['#c9a84c','#dfc472','#f0ede6','#9aa0c8'];
+  for(let i=0;i<60;i++){
+    const el=document.createElement('div');el.className='cf';
+    el.style.cssText='left:'+Math.random()*100+'%;top:-20px;background:'+cols[Math.floor(Math.random()*cols.length)]+';animation-delay:'+Math.random()*.8+'s;animation-duration:'+(1.5+Math.random())+'s;transform:rotate('+Math.random()*360+'deg);width:'+(4+Math.random()*8)+'px;height:'+(4+Math.random()*8)+'px;border-radius:'+(Math.random()>.5?'50%':'2px');
+    document.body.appendChild(el);setTimeout(()=>el.remove(),2800);
+  }
+}
+let toastT;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3000);}
+loadData();
+</script>
+</body>
+</html>
