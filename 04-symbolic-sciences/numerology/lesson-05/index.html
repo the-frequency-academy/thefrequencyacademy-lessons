@@ -1,1 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N5: Timing With Numbers — The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ── TFA LESSON SHELL v1.0 · N5 ── */
+:root{
+  --bg:#0d1a3a;--accent:#c9a84c;--accent2:#dfc472;
+  --text:#f0ede6;--dim:rgba(240,237,230,0.60);
+  --card:rgba(0,0,0,0.28);--border:rgba(201,168,76,0.14);--glow:rgba(201,168,76,0.20);
+  --r:12px;--rl:18px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse at 20% 8%,rgba(201,168,76,0.08) 0%,transparent 55%),radial-gradient(ellipse at 80% 92%,rgba(13,26,58,0.8) 0%,transparent 50%);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 8% 13%,rgba(255,255,255,.65) 0%,transparent 100%),radial-gradient(1px 1px at 24% 40%,rgba(255,255,255,.45) 0%,transparent 100%),radial-gradient(1px 1px at 45% 9%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 67% 28%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 82% 17%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 94% 56%,rgba(255,255,255,.35) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 36% 65%,rgba(201,168,76,.4) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 88% 37%,rgba(201,168,76,.28) 0%,transparent 100%)}
 
+/* ── PROGRESS ── */
+#prog-wrap{position:fixed;top:0;left:0;right:0;z-index:200;height:3px;background:rgba(5,10,28,.9)}
+#prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease;box-shadow:0 0 10px var(--glow)}
+
+/* ── NAV ── */
+.top-nav{position:fixed;top:3px;left:0;right:0;z-index:199;display:flex;align-items:center;justify-content:space-between;padding:13px 32px;background:rgba(8,14,42,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1)}
+.nav-brand{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--accent);opacity:.8}
+.nav-crumb{font-size:10px;color:var(--dim);letter-spacing:2px}
+.nav-xp{font-family:'Cinzel',serif;font-size:11px;color:var(--accent);letter-spacing:2px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 14px}
+
+/* ── MAIN ── */
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:88px 24px 140px}
+
+/* ── REVEAL ── */
+.ls{margin-bottom:68px;opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.ls.visible{opacity:1;transform:translateY(0)}
+
+/* ── HERO ── */
+.hero{text-align:center;padding:76px 0 56px}
+.hero-eye{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.hero-code{font-family:'Cinzel',serif;font-size:88px;font-weight:900;line-height:1;color:transparent;background:linear-gradient(145deg,var(--accent2) 0%,var(--accent) 55%,rgba(201,168,76,.3) 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,168,76,.2));margin-bottom:10px}
+.hero-title{font-family:'Cinzel',serif;font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:8px}
+.hero-sub{font-size:15px;font-weight:300;font-style:italic;color:var(--dim);letter-spacing:2px;margin-bottom:36px}
+.hero-rule{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 36px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.22);border-radius:30px;padding:7px 22px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent)}
+#num-canvas{display:block;width:100%;height:100px;margin:34px 0;opacity:.7}
+
+/* ── SEC HEADER ── */
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.sh-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.6;white-space:nowrap}
+.sh-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--glow),transparent)}
+.st{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+
+/* ── TX ── */
+.tx{background:linear-gradient(135deg,rgba(0,0,0,.36),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--accent);border-radius:var(--r);padding:38px 44px;position:relative;overflow:hidden}
+.tx::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.tx-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.tx p{font-size:16px;line-height:1.95;color:rgba(240,237,230,.78);font-style:italic;font-weight:300}
+.tx p+p{margin-top:14px}
+.tx strong{color:var(--accent2);font-style:normal;font-weight:600}
+
+/* ── CARD ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 34px;margin-bottom:18px}
+.card p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.card p:last-child{margin-bottom:0}
+
+/* ── CALLOUT ── */
+.callout{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:24px 32px;margin:22px 0;text-align:center}
+.callout p{font-family:'Cinzel',serif;font-size:14px;line-height:1.8;color:var(--accent2);letter-spacing:.5px}
+
+/* ── DEFS TABLE ── */
+.defs-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.defs-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 18px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.defs-t th:last-child{border-right:none}
+.defs-t td{background:rgba(0,0,0,.2);padding:13px 18px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.65}
+.defs-t td:last-child{border-right:none}
+.defs-t td:first-child{color:var(--accent);font-style:italic;font-weight:500;white-space:nowrap}
+
+/* ── UNIVERSAL YEAR TABLE ── */
+.uni-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.uni-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 16px;text-align:center;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.uni-t th:last-child{border-right:none}
+.uni-t td{background:rgba(0,0,0,.2);padding:12px 16px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);text-align:center;line-height:1.5}
+.uni-t td:last-child{border-right:none;font-family:'Cinzel',serif;font-size:18px;color:var(--accent);font-weight:700}
+.uni-t tr.cur td{background:rgba(201,168,76,.08)}
+
+/* ── 9 YEAR CYCLE CARDS ── */
+.cycle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.yr-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 16px;transition:all .25s;cursor:default;position:relative;overflow:hidden}
+.yr-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-2px)}
+.yr-card.current-year{border-color:var(--accent);box-shadow:0 0 20px rgba(201,168,76,.15)}
+.yr-card.current-year::before{content:'← YOU ARE HERE';position:absolute;top:8px;right:8px;font-family:'Cinzel',serif;font-size:7px;letter-spacing:2px;color:var(--accent);opacity:.7}
+.yr-n{font-family:'Cinzel',serif;font-size:36px;font-weight:900;color:var(--accent);line-height:1;filter:drop-shadow(0 0 10px rgba(201,168,76,.2));margin-bottom:8px}
+.yr-name{font-family:'Cinzel',serif;font-size:12px;color:var(--text);letter-spacing:1px;margin-bottom:4px}
+.yr-sub{font-size:11px;color:var(--accent);font-style:italic;margin-bottom:8px;opacity:.8}
+.yr-body{font-size:12px;color:var(--dim);line-height:1.65}
+.yr-asks{font-size:11px;color:var(--accent2);margin-top:8px;font-style:italic;line-height:1.5}
+.yr-phase{margin-top:10px}
+.yr-phase-tag{display:inline-block;font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;padding:3px 8px;border-radius:10px;border:1px solid rgba(201,168,76,.2);color:var(--accent);opacity:.7}
+
+/* ── ARC ── */
+.arc-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0}
+.arc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;text-align:center}
+.arc-n{font-family:'Cinzel',serif;font-size:13px;color:var(--accent);letter-spacing:2px;margin-bottom:6px}
+.arc-yrs{font-family:'Cinzel',serif;font-size:22px;color:var(--text);margin-bottom:6px}
+.arc-desc{font-size:12px;color:var(--dim);line-height:1.6}
+
+/* ══════════════════════════════════
+   INTERACTIVE: TIMING CALCULATOR
+══════════════════════════════════ */
+.calc-wrap{background:#050d20;border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);overflow:hidden;margin:24px 0}
+.calc-hd{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.12);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.calc-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--accent)}
+.calc-tabs{display:flex;gap:6px}
+.ctab{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:7px 14px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;background:transparent;border-color:rgba(201,168,76,.2);color:var(--dim)}
+.ctab.active{background:rgba(201,168,76,.18);border-color:var(--accent);color:var(--accent)}
+.calc-body{padding:28px}
+.cp{display:none}.cp.active{display:block}
+
+/* Personal Year Calc */
+.py-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+.cf label{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+.cf input,.cf select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.14);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.cf input:focus,.cf select:focus{border-color:rgba(201,168,76,.4)}
+.cf select option{background:var(--bg)}
+.py-steps{font-size:12px;color:var(--dim);font-style:italic;margin-bottom:16px;min-height:22px;line-height:1.8}
+
+/* Results */
+.py-results{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.py-box{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.14);border-radius:var(--r);padding:14px 12px;text-align:center}
+.py-box.hi{border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.07)}
+.py-lbl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;color:var(--accent);opacity:.65;margin-bottom:8px}
+.py-val{font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:var(--accent2);line-height:1;filter:drop-shadow(0 0 12px rgba(201,168,76,.22))}
+.py-sub{font-size:11px;color:var(--dim);margin-top:5px;line-height:1.5}
+
+/* Year card result */
+.yr-result{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:var(--r);padding:20px 24px;display:none}
+.yr-result.show{display:block}
+.yr-res-name{font-family:'Cinzel',serif;font-size:16px;color:var(--text);letter-spacing:1px;margin-bottom:4px}
+.yr-res-sub{font-size:12px;color:var(--accent);font-style:italic;margin-bottom:10px}
+.yr-res-body{font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:10px}
+.yr-res-asks{font-size:13px;color:var(--accent2);font-style:italic;line-height:1.6}
+
+/* 3-Year Planner Tab */
+.planner-grid{display:grid;gap:16px}
+.plan-year{background:rgba(0,0,0,.25);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.plan-yr-hd{background:rgba(201,168,76,.08);padding:14px 18px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border)}
+.plan-yr-n{font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:var(--accent);min-width:30px}
+.plan-yr-info{flex:1}
+.plan-yr-cal{font-family:'Cinzel',serif;font-size:12px;color:var(--text);letter-spacing:1px}
+.plan-yr-theme{font-size:11px;color:var(--accent2);font-style:italic;margin-top:2px}
+.plan-yr-uni{font-size:11px;color:var(--dim);margin-top:2px}
+.plan-rows{padding:14px 18px;display:grid;gap:8px}
+.plan-row{display:grid;grid-template-columns:1.2fr 1.5fr 1.5fr;gap:8px;align-items:start}
+.plan-area{font-size:12px;color:var(--dim);padding-top:8px}
+.plan-input{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);border-radius:6px;padding:7px 10px;color:var(--text);font-family:'Raleway',sans-serif;font-size:12px;outline:none;resize:none;min-height:32px;line-height:1.5}
+.plan-input:focus{border-color:rgba(201,168,76,.3)}
+.plan-input::placeholder{color:rgba(240,237,230,.18);font-style:italic}
+.plan-hdr{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.6;padding-bottom:6px;border-bottom:1px solid rgba(201,168,76,.08)}
+
+/* Universal Year Tab */
+.uy-display{text-align:center;padding:24px 0}
+.uy-big{font-family:'Cinzel',serif;font-size:80px;font-weight:900;color:var(--accent2);filter:drop-shadow(0 0 20px rgba(201,168,76,.3));line-height:1}
+.uy-year{font-size:13px;color:var(--dim);margin-top:6px;letter-spacing:2px}
+.uy-theme{font-family:'Cinzel',serif;font-size:15px;color:var(--text);letter-spacing:1px;margin-top:8px}
+.uy-desc{font-size:13px;color:var(--dim);line-height:1.75;margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto}
+.uy-table-wrap{margin-top:20px}
+
+/* ── ACCORDION ── */
+.acc-item{margin-bottom:10px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.acc-hd{width:100%;background:var(--card);border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;transition:background .2s}
+.acc-hd:hover{background:rgba(0,0,0,.38)}
+.acc-ht{font-family:'Cinzel',serif;font-size:13px;color:var(--text);letter-spacing:1px}
+.acc-hs{font-size:11px;color:var(--dim);margin-top:2px}
+.acc-ic{font-size:18px;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-ic{transform:rotate(45deg)}
+.acc-bd{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-item.open .acc-bd{max-height:600px}
+.acc-ct{padding:20px 22px;font-size:13px;line-height:1.85;color:var(--dim);border-top:1px solid rgba(255,255,255,.04)}
+.acc-ct strong{color:var(--accent2)}
+
+/* ── QUIZ ── */
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;margin-bottom:14px;transition:border-color .3s}
+.quiz-item.correct{border-color:rgba(90,184,122,.45);background:rgba(90,184,122,.06)}
+.quiz-item.wrong{border-color:rgba(200,80,80,.4);background:rgba(200,80,80,.05)}
+.quiz-q{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:14px}
+.quiz-q strong{color:var(--accent2)}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:11px 16px;font-size:13px;color:var(--dim);cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:hover{border-color:rgba(201,168,76,.25);color:var(--text);background:rgba(201,168,76,.07)}
+.quiz-opt.ok{border-color:rgba(90,184,122,.5);background:rgba(90,184,122,.1);color:#6fda9a}
+.quiz-opt.no{border-color:rgba(200,80,80,.5);background:rgba(200,80,80,.08);color:#e07070}
+.quiz-opt.show-ok{border-color:rgba(90,184,122,.35);color:#6fda9a}
+.quiz-fb{margin-top:12px;font-size:13px;line-height:1.6;padding:10px 14px;border-radius:8px;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.correct{background:rgba(90,184,122,.08);color:#6fda9a}
+.quiz-fb.wrong{background:rgba(200,80,80,.06);color:#e07070}
+.quiz-score{text-align:center;font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--accent);padding:20px;display:none}
+.quiz-score.show{display:block}
+
+/* ── REFLECTION ── */
+.ref-q{font-family:'Cinzel',serif;font-size:14px;color:var(--accent2);line-height:1.75;margin-bottom:14px;letter-spacing:.5px}
+.ref-ta{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:18px 22px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;line-height:1.85;resize:vertical;min-height:110px;outline:none;transition:border-color .25s;margin-bottom:26px}
+.ref-ta:focus{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.32)}
+.ref-ta::placeholder{color:rgba(240,237,230,.2)}
+
+/* ── NAV ── */
+.nav-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nav-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:22px 26px;cursor:pointer;transition:all .3s;text-decoration:none}
+.nav-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.nav-card.prev{flex-direction:row-reverse}
+.nav-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.nav-title{font-family:'Cinzel',serif;font-size:15px;color:var(--text);letter-spacing:1px}
+.nav-arr{font-size:26px;color:var(--accent);opacity:.5;flex-shrink:0}
+
+/* ── WORKSHOP / COMPLETION ── */
+.ws{background:rgba(0,0,0,.3);border:1px dashed rgba(201,168,76,.2);border-radius:var(--rl);padding:40px;text-align:center}
+.ws-ic{font-size:34px;margin-bottom:14px;opacity:.45}
+.ws-t{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:var(--accent);margin-bottom:8px;opacity:.6}
+.ws-s{font-size:13px;color:var(--dim)}
+.comp-wrap{background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(0,0,0,.4));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:48px;text-align:center}
+.comp-t{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--text);margin-bottom:8px}
+.comp-s{font-size:13px;color:var(--dim);margin-bottom:28px}
+.comp-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:40px;padding:17px 44px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.comp-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.28)}
+.comp-btn.done{background:linear-gradient(135deg,#5ab87a,#7de09a)}
+.xp-pop{display:none;font-family:'Cinzel',serif;font-size:14px;color:var(--accent);margin-top:22px;letter-spacing:2px}
+.xp-pop.show{display:block;animation:fadeUp .7s ease}
+
+/* ── SAVE BAR ── */
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(5,10,28,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(201,168,76,.12);padding:13px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.sv-status{font-size:11px;color:var(--dim);letter-spacing:1px}
+.sv-status span{color:var(--accent);font-family:'Cinzel',serif}
+.sv-actions{display:flex;gap:10px}
+.sv-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.sv-btn.pri{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.3);color:var(--accent)}
+.sv-btn.pri:hover{background:rgba(201,168,76,.2)}
+.sv-btn.sec{background:transparent;border-color:rgba(255,255,255,.1);color:var(--dim)}
+.sv-btn.sec:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+#imp-file{display:none}
+
+/* ── TOAST / CONFETTI ── */
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(8,14,42,.96);border:1px solid rgba(201,168,76,.28);border-radius:30px;padding:11px 26px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.cf{position:fixed;top:-20px;z-index:9999;border-radius:2px;pointer-events:none;animation:fall 2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:660px){.hero-code{font-size:60px}.hero-title{font-size:17px}.cycle-grid{grid-template-columns:1fr 1fr}.py-grid{grid-template-columns:1fr}.py-results{grid-template-columns:1fr 1fr}.arc-row{grid-template-columns:1fr}.plan-row{grid-template-columns:1fr}.nav-cards{grid-template-columns:1fr}.top-nav{padding:12px 16px}.nav-crumb{display:none}main{padding-left:16px;padding-right:16px}.tx{padding:26px 22px}}
+</style>
+</head>
+<body>
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+<div class="top-nav">
+  <div class="nav-brand">THE FREQUENCY ACADEMY</div>
+  <div class="nav-crumb">NUMEROLOGY · N5</div>
+  <div class="nav-xp" id="xp-display">0 XP</div>
+</div>
+<div class="toast" id="toast"></div>
+<main>
+
+  <!-- HERO -->
+  <div class="ls hero visible">
+    <div class="hero-eye">Symbolic Sciences · Numerology</div>
+    <div class="hero-code">N5</div>
+    <div class="hero-title">Timing With Numbers</div>
+    <div class="hero-sub">Personal Year · Universal Year · The 9-Year Cycle</div>
+    <div class="hero-rule"></div>
+    <div class="hero-tag">⟡ ~15 Min</div>
+    <canvas id="num-canvas"></canvas>
+  </div>
+
+  <!-- TRANSMISSION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">TRANSMISSION</div><div class="sh-rule"></div></div>
+    <div class="tx">
+      <div class="tx-lbl">Opening Transmission · N5</div>
+      <p>There is a reason some years feel like pushing a boulder uphill while others feel like riding a current downstream. There is a reason some years bring beginnings that arrive almost effortlessly, while others demand a kind of surrender you didn't know you were capable of. <strong>Time is not neutral.</strong></p>
+      <p>The universe moves in cycles. Nine years. Planting, building, harvesting, releasing. And within each year: twelve months. Within each month: thirty days. Each layer carries its own numerical frequency, its own distinct energetic invitation. <strong>The ancients built their entire calendars and ritual systems around this understanding.</strong></p>
+      <p>You are never behind. You are never ahead of time. You are always <strong>exactly where your cycle has brought you.</strong> The only question worth asking is: what does this moment ask of you?</p>
+    </div>
+  </div>
+
+  <!-- CORE CONCEPT -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">01</div><div class="sh-rule"></div></div>
+    <div class="st">Time Has a Number</div>
+    <div class="card">
+      <p>Just as your birth date encodes a Life Path number — the frequency you were born to travel — <strong style="color:var(--accent2)">every calendar year carries its own numerical vibration</strong>. This is not metaphor. It is the same Pythagorean reduction applied to time itself.</p>
+      <p>There are two layers operating simultaneously: the <strong style="color:var(--accent2)">Universal Year</strong> — the collective backdrop that affects everyone on Earth — and your <strong style="color:var(--accent2)">Personal Year</strong> — your individual experience within that collective field. Understanding both gives you a map of extraordinary precision.</p>
+    </div>
+    <div class="card">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:14px">KEY DEFINITIONS</p>
+      <table class="defs-t">
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Personal Year</td><td>Your individual numerological year energy. Calculated from birth day + birth month + current year. Shifts January 1st.</td></tr>
+          <tr><td>Universal Year</td><td>The collective numerological energy of the current calendar year. Calculated by digit-summing the year. Affects everyone simultaneously.</td></tr>
+          <tr><td>9-Year Cycle</td><td>The complete numerological cycle from Year 1 (initiation) through Year 9 (completion). After Year 9, a new cycle begins.</td></tr>
+          <tr><td>Personal Month</td><td>Your Personal Year number + current calendar month number, reduced. The sub-frequency within your year.</td></tr>
+          <tr><td>Personal Day</td><td>Your Personal Month + current calendar day number, reduced. The most granular timing layer.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- HOW TO CALCULATE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">02</div><div class="sh-rule"></div></div>
+    <div class="st">How to Calculate Your Numbers</div>
+
+    <div class="card">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:14px">STEP 1 — UNIVERSAL YEAR</p>
+      <p>Digit-sum the current calendar year to a single digit. This is the collective frequency everyone on Earth is navigating together.</p>
+      <table class="uni-t" style="margin-top:14px">
+        <thead><tr><th>Year</th><th>Calculation</th><th>Universal Year</th></tr></thead>
+        <tbody>
+          <tr><td>2024</td><td>2+0+2+4 = 8</td><td>8</td></tr>
+          <tr><td>2025</td><td>2+0+2+5 = 9</td><td>9</td></tr>
+          <tr class="cur"><td>2026</td><td>2+0+2+6 = 10 → 1+0 = 1</td><td>1</td></tr>
+          <tr><td>2027</td><td>2+0+2+7 = 11 → 1+1 = 2</td><td>2</td></tr>
+          <tr><td>2028</td><td>2+0+2+8 = 12 → 1+2 = 3</td><td>3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:14px">STEP 2 — PERSONAL YEAR</p>
+      <p>Add your reduced birth day + reduced birth month + reduced current year. The Personal Year is your individual frequency within the collective field.</p>
+      <div class="callout" style="margin:16px 0"><p style="font-size:13px">Birth Day (reduced) + Birth Month (reduced) + Current Year (reduced) = <strong>Personal Year</strong></p></div>
+      <p style="font-size:13px;color:var(--dim);font-style:italic">Worked example: Birthday November 28th, year 2026<br>Day: 28→10→1 · Month: 11→2 · Year: 2026→10→1 · Total: 1+2+1=4 → <strong style="color:var(--accent)">Personal Year 4</strong></p>
+    </div>
+
+    <div class="card">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:14px">STEP 3 — PERSONAL MONTH & DAY</p>
+      <p>Personal Month = Personal Year + current calendar month number, reduced.<br>Personal Day = Personal Month + current calendar day number, reduced.</p>
+      <p style="margin-top:10px;font-size:13px;color:var(--dim);font-style:italic">Example: Personal Year 4, March (month 3): 4+3=7 → <strong style="color:var(--accent)">Personal Month 7</strong> — a month of inner work within a year of building.</p>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE CALCULATOR -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">INTERACTIVE</div><div class="sh-rule"></div></div>
+    <div class="st">Your Timing Calculator</div>
+
+    <div class="calc-wrap">
+      <div class="calc-hd">
+        <div class="calc-title">⟡ Personal Timing Calculator</div>
+        <div class="calc-tabs">
+          <button class="ctab active" onclick="switchTab('py',this)">Personal Year</button>
+          <button class="ctab" onclick="switchTab('uy',this)">Universal Year</button>
+          <button class="ctab" onclick="switchTab('pl',this)">3-Year Planner</button>
+        </div>
+      </div>
+      <div class="calc-body">
+
+        <!-- PERSONAL YEAR TAB -->
+        <div class="cp active" id="cp-py">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:18px">Enter your birth date and the year you want to calculate. Today is automatically used if you leave the year blank.</p>
+          <div class="py-grid">
+            <div class="cf"><label>BIRTH MONTH</label>
+              <select id="py-m" onchange="calcPY()">
+                <option value="">Month</option>
+                <option value="1">January (1)</option><option value="2">February (2)</option>
+                <option value="3">March (3)</option><option value="4">April (4)</option>
+                <option value="5">May (5)</option><option value="6">June (6)</option>
+                <option value="7">July (7)</option><option value="8">August (8)</option>
+                <option value="9">September (9)</option><option value="10">October (10)</option>
+                <option value="11">November (11★)</option><option value="12">December (12)</option>
+              </select>
+            </div>
+            <div class="cf"><label>BIRTH DAY</label><input type="number" id="py-d" placeholder="e.g. 28" min="1" max="31" oninput="calcPY()"></div>
+            <div class="cf"><label>CALCULATE FOR YEAR</label><input type="number" id="py-y" placeholder="e.g. 2026" min="2020" max="2040" oninput="calcPY()"></div>
+          </div>
+          <div class="py-steps" id="py-steps"></div>
+          <div class="py-results">
+            <div class="py-box"><div class="py-lbl">DAY REDUCED</div><div class="py-val" id="r-day">—</div></div>
+            <div class="py-box"><div class="py-lbl">MONTH REDUCED</div><div class="py-val" id="r-mon">—</div></div>
+            <div class="py-box"><div class="py-lbl">YEAR REDUCED</div><div class="py-val" id="r-yr">—</div></div>
+            <div class="py-box hi"><div class="py-lbl">PERSONAL YEAR</div><div class="py-val" id="r-py" style="font-size:44px">—</div></div>
+          </div>
+          <div class="py-results" style="grid-template-columns:1fr 1fr;margin-bottom:0">
+            <div class="py-box"><div class="py-lbl">PERSONAL MONTH (current)</div><div class="py-val" id="r-pm">—</div><div class="py-sub" id="r-pm-sub"></div></div>
+            <div class="py-box"><div class="py-lbl">UNIVERSAL YEAR</div><div class="py-val" id="r-uy">—</div><div class="py-sub" id="r-uy-sub"></div></div>
+          </div>
+          <div class="yr-result" id="yr-result" style="margin-top:16px">
+            <div class="yr-res-name" id="yr-res-name"></div>
+            <div class="yr-res-sub" id="yr-res-sub"></div>
+            <div class="yr-res-body" id="yr-res-body"></div>
+            <div class="yr-res-asks" id="yr-res-asks"></div>
+          </div>
+        </div>
+
+        <!-- UNIVERSAL YEAR TAB -->
+        <div class="cp" id="cp-uy">
+          <div class="uy-display">
+            <div class="uy-big" id="uy-big">1</div>
+            <div class="uy-year" id="uy-year-lbl">2026 UNIVERSAL YEAR</div>
+            <div class="uy-theme" id="uy-theme">The New Beginning</div>
+            <div class="uy-desc" id="uy-desc">2026 is a Universal Year 1 — a year of new beginnings, fresh starts, and collective initiation. The world is planting seeds for the next 9-year cycle. This is an auspicious year to begin, to initiate, to set new intentions at a global scale. What is collectively beginning that hasn't begun in 9 years?</div>
+          </div>
+          <div class="uy-table-wrap">
+            <table class="uni-t">
+              <thead><tr><th>Year</th><th>Universal Year</th><th>Collective Theme</th></tr></thead>
+              <tbody id="uy-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3-YEAR PLANNER TAB -->
+        <div class="cp" id="cp-pl">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:6px">Enter your birth date in the Personal Year tab first to populate your years. Then map your timing intentions below.</p>
+          <p style="font-size:11px;color:var(--accent);font-style:italic;margin-bottom:18px;opacity:.8">All entries save automatically to your lesson journal.</p>
+          <div class="planner-grid" id="planner-grid"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 9-YEAR CYCLE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">03</div><div class="sh-rule"></div></div>
+    <div class="st">The 9-Year Cycle — Complete Reference</div>
+
+    <div class="arc-row">
+      <div class="arc-card"><div class="arc-n">PLANTING</div><div class="arc-yrs">Years 1–3</div><div class="arc-desc">Initiation, patience, emergence. Seeds planted here grow through the full cycle.</div></div>
+      <div class="arc-card"><div class="arc-n">BUILDING</div><div class="arc-yrs">Years 4–6</div><div class="arc-desc">Foundation, freedom, responsibility. Where the visible work gets done.</div></div>
+      <div class="arc-card"><div class="arc-n">HARVESTING</div><div class="arc-yrs">Years 7–9</div><div class="arc-desc">Wisdom, abundance, completion. What was built is now received — and released.</div></div>
+    </div>
+
+    <div class="cycle-grid" id="cycle-grid"></div>
+  </div>
+
+  <!-- ACCORDION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">QUICK REF</div><div class="sh-rule"></div></div>
+    <div class="st">Working With Your Cycle</div>
+    <div id="accordion"></div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">KNOWLEDGE CHECK</div><div class="sh-rule"></div></div>
+    <div class="st">Test Your Understanding</div>
+    <div id="quiz"></div>
+    <div class="quiz-score" id="quiz-score"></div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">PRACTICE</div><div class="sh-rule"></div></div>
+    <div class="st">This Week: Map Your Cycle</div>
+    <div class="tx">
+      <div class="tx-lbl">Practical Application · Do This</div>
+      <p><strong>Step 1 — Calculate all three numbers</strong> using the calculator above: your Personal Year, Personal Month, and Universal Year for 2026. Write them down. Read each one's description in the cycle reference above.</p>
+      <p><strong>Step 2 — Look back.</strong> Identify the last time you were in a Personal Year 1 (9 years ago). What began that year? Then find your Personal Year 9 (one year before the 1). What ended? Trace the arc of that completed cycle and notice how the theme held.</p>
+      <p><strong>Step 3 — Use the 3-Year Planner</strong> to map this year, next year, and the year after. For each area of life (launches, relationships, inner work, financial moves, creative projects, rest), write what the cycle is asking — and what specific intention or action you can align to it.</p>
+      <p><strong>Step 4 — Share your Personal Year</strong> with someone close to you and find out theirs. Notice how your cycles interact — where you're aligned and where you're in different phases. This is the beginning of relational timing awareness.</p>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">REFLECTION</div><div class="sh-rule"></div></div>
+    <div class="st">Reflection Journal</div>
+    <div class="callout" style="margin-bottom:24px"><p>Calculate your Personal Year before writing.<br>Numerological timing only becomes useful when applied honestly to your own life.</p></div>
+    <div class="ref-q">1 — Look back at a year in your life that felt particularly significant — a breakthrough or a major challenge. Calculate what Personal Year you were in at that time. Does the cycle description match what you experienced?</div>
+    <textarea class="ref-ta" id="ref-1" placeholder="What Personal Year were you in? What was the cycle asking?" oninput="autoSave()"></textarea>
+    <div class="ref-q">2 — You are currently in a Personal Year ___. Read its description again. What is this year genuinely asking of you that you may have been resisting, ignoring, or not fully leaning into?</div>
+    <textarea class="ref-ta" id="ref-2" placeholder="What is this year asking of you..." oninput="autoSave()"></textarea>
+    <div class="ref-q">3 — The lesson states: "You are never behind. You are always exactly where your cycle has brought you." How does holding this frame shift the way you see where you are right now?</div>
+    <textarea class="ref-ta" id="ref-3" placeholder="What shifts when you trust the timing of the cycle..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">LIVE WORKSHOP</div><div class="sh-rule"></div></div>
+    <div class="st">Live Session</div>
+    <div class="ws"><div class="ws-ic">⟡</div><div class="ws-t">Live Workshop: Timing With Numbers</div><div class="ws-s">Coming soon — recordings and live session links will appear here once scheduled.<br>Check The Frequency Academy community for announcements.</div></div>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="ls">
+    <div class="comp-wrap">
+      <div class="comp-t">SEAL THIS LESSON</div>
+      <div class="comp-s">Complete your reflections, 3-year planner, and knowledge check above, then seal this lesson.</div>
+      <button class="comp-btn" id="comp-btn" onclick="markComplete()">⟡ Mark Complete · +10 XP</button>
+      <div class="xp-pop" id="xp-pop">✦ +10 XP Awarded · N5 Complete ✦</div>
+    </div>
+  </div>
+
+  <!-- NAVIGATE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">NAVIGATE</div><div class="sh-rule"></div></div>
+    <div class="st">Continue the Journey</div>
+    <div class="nav-cards">
+      <a class="nav-card prev" href="../lesson-04/"><div class="nav-arr">←</div><div><div class="nav-lbl">PREVIOUS · N4</div><div class="nav-title">Sacred Numbers in Device Work</div></div></a>
+      <a class="nav-card" href="../lesson-06/"><div><div class="nav-lbl">NEXT · N6</div><div class="nav-title">Numerology in Sound & Music</div></div><div class="nav-arr">→</div></a>
+    </div>
+  </div>
+
+</main>
+
+<div id="save-bar">
+  <div class="sv-status">Auto-save: <span id="save-time">—</span></div>
+  <div class="sv-actions">
+    <input type="file" id="imp-file" accept=".json" onchange="importData(event)">
+    <button class="sv-btn sec" onclick="document.getElementById('imp-file').click()">Import</button>
+    <button class="sv-btn pri" onclick="exportData()">Export Backup</button>
+  </div>
+</div>
+
+<script>
+// ── CYCLE DATA ──
+const CYCLE = {
+  1:{name:'The New Beginning',sub:'Initiation · Courage · Independence',phase:'PLANTING',body:'The start of a brand new 9-year cycle. Fresh energy, forward momentum, full of potential. This is the year to plant seeds, initiate new projects, relationships, and directions. The choices made in a Year 1 set the tone for the entire next cycle.',asks:'Courage, clarity, and bold initiation. Don\'t sleepwalk through this year.'},
+  2:{name:'Patience & Partnership',sub:'Cooperation · Trust · Sensitivity',phase:'PLANTING',body:'The seeds planted in Year 1 are germinating underground — invisible but active. This is the year of relationships, partnerships, and above all, patience. Do not force outcomes. Tend, listen, and build relational foundations.',asks:'Trust the process. Slow down. Tend the seeds you can\'t yet see.'},
+  3:{name:'Creative Expression',sub:'Joy · Creativity · Visibility',phase:'PLANTING',body:'One of the most joyful years in the cycle. Things begin to emerge. This is a year of expression, creativity, communication, and social expansion. Lean into visibility. Share your work. Celebrate. If you go quiet in a Year 3, you work against the current.',asks:'Express. Create. Show up. Lean into joy and visibility.'},
+  4:{name:'Foundation & Structure',sub:'Discipline · Systems · Work',phase:'BUILDING',body:'Where the real work gets done. Year 4 asks for discipline, structure, and honest effort. The work may feel heavy or unsexy — but this is the year you build what\'s sustainable. The foundation laid in Year 4 becomes the bedrock of the Year 5 breakthrough.',asks:'Consistency, systems, and unglamorous foundational work. Don\'t skip it.'},
+  5:{name:'Freedom & Change',sub:'Movement · Disruption · Opportunity',phase:'BUILDING',body:'The pivot point of the cycle. Year 5 breaks things open — unexpected opportunities arrive, situations that needed to shift, shift. Life speeds up. The changes that arrive are redirections, not obstacles. Move with the current, not against it.',asks:'Adaptability and openness. Trust the movement. Release the grip.'},
+  6:{name:'Responsibility & Nurturing',sub:'Home · Love · Commitment',phase:'BUILDING',body:'After the disruption of Year 5, Year 6 brings settling and responsibility. Home, family, community, and meaningful relationships are the focus. Significant relationship decisions are often made in a Year 6. The creativity here is oriented toward building something beautiful and sustainable.',asks:'Show up generously for the people and commitments that matter most.'},
+  7:{name:'Inner Work & Wisdom',sub:'Solitude · Study · Spiritual Depth',phase:'HARVESTING',body:'The most introspective year of the cycle. Not a year for aggressive external activity. Rest, study, spiritual deepening, and inner integration are what this year asks. If you push hard outwardly in a Year 7, mysterious obstacles often arise — the universe is redirecting you inward. The wisdom of Year 7 becomes the power of Year 8.',asks:'Surrender the need to produce and be seen. Go inward. Trust the stillness.'},
+  8:{name:'Power & Abundance',sub:'Harvest · Recognition · Authority',phase:'HARVESTING',body:'The year of harvest. After the inner work of Year 7, the Year 8 brings material momentum, financial flow, recognition, and the full expression of earned power. Step fully into your authority. Make the big moves. The energy of 8 rewards decisive, confident action from a place of genuine capability.',asks:'Step up. Own your power. Claim what you\'ve built. Receive without apology.'},
+  9:{name:'Completion & Release',sub:'Endings · Forgiveness · Clearing',phase:'HARVESTING',body:'The final year of the cycle — and one of the most spiritually significant. Everything reaches culmination. Everything that no longer belongs in your next chapter needs to be released. Forgive. Complete. Say the goodbyes that need to be said. The bigger the release, the bigger the Year 1 beginning that follows.',asks:'Let go. Complete. Release. The clearing you do now determines the scale of what\'s next.'}
+};
+
+const UY_THEMES = {1:'New Beginnings — collective initiation, fresh starts globally',2:'Partnership & Balance — cooperation and relational focus',3:'Creative Expression — global creativity and communication',4:'Foundation & Structure — collective building and discipline',5:'Freedom & Change — global disruption and transformation',6:'Responsibility & Love — home, community, and care',7:'Wisdom & Depth — collective introspection and seeking',8:'Power & Abundance — global harvest and material momentum',9:'Completion & Release — collective endings and forgiveness'};
+
+// ── REDUCTION ──
+function reduce(n){while(n>9&&n!==11&&n!==22&&n!==33){n=String(n).split('').reduce((a,d)=>a+parseInt(d),0);}return n;}
+function rdPart(n){let s=String(n).split('').reduce((a,d)=>a+parseInt(d),0);while(s>9&&s!==11&&s!==22&&s!==33){s=String(s).split('').reduce((a,d)=>a+parseInt(d),0);}return s;}
+
+// ── BUILD CYCLE GRID ──
+let currentPY = null;
+(function buildCycleGrid(){
+  const g=document.getElementById('cycle-grid');
+  for(let i=1;i<=9;i++){
+    const d=CYCLE[i];
+    const c=document.createElement('div');c.className='yr-card';c.id='yr-card-'+i;
+    c.innerHTML=`<div class="yr-n">${i}</div><div class="yr-name">${d.name}</div><div class="yr-sub">${d.sub}</div><div class="yr-body">${d.body}</div><div class="yr-asks"><em>Asks: ${d.asks}</em></div><div class="yr-phase"><span class="yr-phase-tag">${d.phase}</span></div>`;
+    g.appendChild(c);
+  }
+})();
+
+// ── BUILD UNIVERSAL YEAR TABLE ──
+(function buildUYTable(){
+  const tbody=document.getElementById('uy-table-body');
+  for(let y=2024;y<=2032;y++){
+    const uy=reduce(String(y).split('').reduce((a,d)=>a+parseInt(d),0));
+    const tr=document.createElement('tr');
+    if(y===2026)tr.className='cur';
+    tr.innerHTML=`<td>${y}${y===2026?' ★':''}</td><td style="font-family:'Cinzel',serif;font-size:18px;color:var(--accent);font-weight:700">${uy}</td><td style="text-align:left;font-size:12px">${CYCLE[uy]?.name||'—'}</td>`;
+    tbody.appendChild(tr);
+  }
+})();
+
+// ── PERSONAL YEAR CALC ──
+function calcPY(){
+  const m=parseInt(document.getElementById('py-m').value)||0;
+  const d=parseInt(document.getElementById('py-d').value)||0;
+  const y=parseInt(document.getElementById('py-y').value)||new Date().getFullYear();
+  if(!m||!d){['r-day','r-mon','r-yr','r-py','r-pm','r-uy'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('yr-result').classList.remove('show');document.getElementById('py-steps').textContent='';return;}
+
+  const rd=rdPart(d);
+  const rm=rdPart(m);
+  const ry=rdPart(String(y).split('').reduce((a,c2)=>a+parseInt(c2),0));
+  const total=rd+rm+ry;
+  const py=rdPart(total);
+  const uy=rdPart(String(y).split('').reduce((a,c2)=>a+parseInt(c2),0));
+  const curMonth=new Date().getMonth()+1;
+  const pm=rdPart(py+curMonth);
+
+  document.getElementById('r-day').textContent=rd;
+  document.getElementById('r-mon').textContent=rm;
+  document.getElementById('r-yr').textContent=ry;
+  document.getElementById('r-py').textContent=py;
+  document.getElementById('r-pm').textContent=pm;
+  document.getElementById('r-pm-sub').textContent=CYCLE[pm]?.name||'';
+  document.getElementById('r-uy').textContent=uy;
+  document.getElementById('r-uy-sub').textContent=CYCLE[uy]?.name||'';
+  document.getElementById('py-steps').textContent=`Day ${d}→${rd}  +  Month ${m}→${rm}  +  Year ${y}→${ry}  =  ${total}→${py}`;
+
+  const c=CYCLE[py];
+  if(c){
+    const res=document.getElementById('yr-result');
+    res.classList.add('show');
+    document.getElementById('yr-res-name').textContent=`Personal Year ${py} — ${c.name}`;
+    document.getElementById('yr-res-sub').textContent=c.sub;
+    document.getElementById('yr-res-body').textContent=c.body;
+    document.getElementById('yr-res-asks').textContent='Asks: '+c.asks;
+  }
+
+  // Highlight cycle grid
+  document.querySelectorAll('.yr-card').forEach(el=>el.classList.remove('current-year'));
+  const card=document.getElementById('yr-card-'+py);
+  if(card){card.classList.add('current-year');card.scrollIntoView({behavior:'smooth',block:'nearest'});}
+
+  currentPY=py;
+  buildPlanner(py,y,uy);
+  autoSave();
+}
+
+// ── 3-YEAR PLANNER ──
+const PLAN_AREAS=['Launches / New Projects','Relationships / Partnerships','Inner Work / Study','Financial / Material Moves','Creative Work','Rest / Release'];
+
+function buildPlanner(basePY, baseYear, baseUY){
+  const g=document.getElementById('planner-grid');
+  g.innerHTML='';
+  for(let offset=0;offset<3;offset++){
+    const calYear=baseYear+offset;
+    const py=((basePY-1+offset)%9)+1;
+    const uy=rdPart(String(calYear).split('').reduce((a,c2)=>a+parseInt(c2),0));
+    const c=CYCLE[py];
+    const div=document.createElement('div');div.className='plan-year';
+    div.innerHTML=`<div class="plan-yr-hd"><div class="plan-yr-n">${py}</div><div class="plan-yr-info"><div class="plan-yr-cal">${calYear}${offset===0?' (This Year)':offset===1?' (Next Year)':' (Year After)'}</div><div class="plan-yr-theme">${c.name} · ${c.sub}</div><div class="plan-yr-uni">Universal Year ${uy}: ${CYCLE[uy]?.name||''}</div></div></div><div class="plan-rows"><div class="plan-row"><div class="plan-hdr">AREA OF LIFE</div><div class="plan-hdr">TIMING GUIDANCE</div><div class="plan-hdr">MY INTENTIONS</div></div>${PLAN_AREAS.map((a,ai)=>`<div class="plan-row"><div class="plan-area">${a}</div><div><textarea class="plan-input" id="pl-${offset}-${ai}-g" placeholder="What this year says about ${a.toLowerCase()}..." oninput="autoSave()">${getPlannerGuidance(py,a)}</textarea></div><div><textarea class="plan-input" id="pl-${offset}-${ai}-i" placeholder="Your specific intention..." oninput="autoSave()"></textarea></div></div>`).join('')}</div>`;
+    g.appendChild(div);
+  }
+}
+
+function getPlannerGuidance(py,area){
+  const g={
+    1:{l:'Plant seeds boldly — Year 1 initiates a new 9-year arc',r:'Open new partnerships, don\'t let fear hold back connection',s:'Courage over comfort — this is not a year for excessive introspection',f:'Launch financial seeds — choices now shape the next 9 years',c:'This year strongly supports new creative directions',re:'Rest is required between cycles before initiating'},
+    2:{l:'Wait — growth is underground; don\'t force visible results',r:'Year 2 is for deepening existing bonds, not starting new ones',s:'This is ideal for dedicated study and skill development',f:'Hold steady — financial moves need more patience this year',c:'Collaborate creatively rather than solo',re:'Prioritise relational rest and tending'},
+    3:{l:'Visibility is your assignment — launch, share, promote',r:'Social expansion and joy in connection — celebrate together',s:'Creative learning and expressive courses thrive this year',f:'Income through creative expression is supported',c:'Your most fertile creative year — lean in fully',re:'Rest IS the release — joyful expression restores you'},
+    4:{l:'Build systems and infrastructure — not the glamorous launch',r:'Relationships need reliability and commitment this year',s:'Deep focused study — Year 4 supports mastery',f:'Financial systems, savings, and structure — build the foundation',c:'Creative work that requires discipline and structure',re:'Rest as fuel for the work ahead — don\'t skip recovery'},
+    5:{l:'Unexpected opportunities — stay flexible on timing',r:'Relationship shakeups are redirections — trust the movement',s:'Fast, varied learning — follow what sparks curiosity',f:'Financial shifts incoming — stay adaptable and responsive',c:'Experimental, novel creative directions are supported',re:'Movement IS rest for a Year 5 — change of scene'},
+    6:{l:'Launch things that serve your community',r:'Deepest relational commitments and decisions happen here',s:'Study that serves others — healing arts, service work',f:'Financial focus on home, family, and beauty investments',c:'Creative work that nurtures others',re:'Home and family time is sacred this year'},
+    7:{l:'Minimal launches — this is incubation, not action',r:'Solitude and selective connection — quality over quantity',s:'This is THE year for deep spiritual study and inner work',f:'Avoid major financial risk — this is consolidation time',c:'Inner creative work, journalling, private creative projects',re:'This entire year IS the rest — surrender to it'},
+    8:{l:'Make the big moves — harvest is ready to be claimed',r:'Step into leadership roles — relationships support your ascent',s:'Apply accumulated wisdom through teaching or high-level study',f:'This is your year for major financial moves and manifestation',c:'Share and monetise your creative work — claim your authority',re:'Recharge between the big moves — you\'re building momentum'},
+    9:{l:'Complete and release — don\'t start what you\'re finishing',r:'Complete relationship cycles — forgive and let go',s:'Integrate and synthesise — this is completion not accumulation',f:'Clear financial debts and obligations — complete the cycle',c:'Finish creative projects — honour completions',re:'Release actively — clearing is the work of Year 9'}
+  };
+  const aKey={l:'Launches / New Projects',r:'Relationships / Partnerships',s:'Inner Work / Study',f:'Financial / Material Moves',c:'Creative Work',re:'Rest / Release'};
+  const match=Object.keys(aKey).find(k=>aKey[k]===area);
+  return match&&g[py]?g[py][match]:'';
+}
+
+// ── ACCORDION ──
+const ACC=[
+  {t:'When Does Your Personal Year Actually Start?',s:'January 1st — not your birthday',c:'This is one of the most common misconceptions in numerology. Your Personal Year does <strong>not</strong> shift on your birthday. It shifts on January 1st each year — the same as the calendar year. This means everyone on Earth transitions into their new Personal Year simultaneously, even though each person\'s number is different. However, many numerologists observe that the energy of the incoming year begins to be felt in the final 3 months of the current year — particularly October through December of a Year 9 often carry strong completion energy, and October through December of a Year 9 predecessor can feel like the new Year 1 is already arriving.'},
+  {t:'What If My Personal Year Is a Master Number?',s:'11 or 22 — intensified and preserved',c:'Personal Year 11 and 22 are possible and should be preserved, not reduced to 2 or 4. A <strong>Personal Year 11</strong> carries the intensified energy of the 2 year — partnership, balance, and trust — but amplified to a spiritually significant degree. These are often years of heightened intuition, spiritual acceleration, and a sense of destiny-level relational connections. A <strong>Personal Year 22</strong> carries amplified 4 energy — foundational building — but at a scale that can feel monumental. These years often involve building something of lasting significance, sometimes beyond the scope of one\'s ordinary life.'},
+  {t:'Using Personal Month & Day Timing',s:'The sub-frequencies within your year',c:'Personal Month and Personal Day add extraordinary granularity to timing decisions. <strong>Personal Month</strong>: add your Personal Year number to the current calendar month number and reduce. A Personal Month 1 within any Personal Year is always a mini-initiation — good for starting new things within the year\'s overall theme. A Personal Month 9 is always a completion window, even in a Year 1. <strong>Personal Day</strong>: add your Personal Month to the current calendar day and reduce. These fine-grained calculations are most useful for specific decision timing — signing agreements, making big moves, beginning projects.'},
+  {t:'How Personal Year Interacts with Universal Year',s:'Your individual frequency within the collective field',c:'You are always experiencing both your Personal Year energy and the Universal Year energy simultaneously. Sometimes they harmonise — if you\'re in a Personal Year 1 during a Universal Year 1 (as some people are in 2026), the initiation energy is doubled and extraordinarily potent. Sometimes they contrast — if you\'re in a Personal Year 7 (inner work) during a Universal Year 8 (collective material momentum), you may feel out of step with the world\'s pace. That contrast is information: <strong>your inner work this year may be exactly what prepares you to receive what the world is harvesting</strong>.'},
+  {t:'The Transition Zone — Years 9 into 1',s:'The most significant passage in the cycle',c:'The transition from Personal Year 9 into Personal Year 1 is the most significant passage in the 9-year cycle. Year 9 is a year of clearing, completion, and release — and the quality of that release directly determines the scale of what becomes possible in Year 1. The most common mistake is to rush through Year 9, resisting its calls to let go, and then wondering why the Year 1 feels flat or lacks momentum. <strong>The bigger the release in Year 9, the bigger the beginning in Year 1.</strong> If you are in a Year 9 right now, your primary assignment is not to build — it is to clear.'}
+];
+(function buildAcc(){const c=document.getElementById('accordion');ACC.forEach(item=>{const el=document.createElement('div');el.className='acc-item';el.innerHTML=`<button class="acc-hd" onclick="this.closest('.acc-item').classList.toggle('open')"><div><div class="acc-ht">${item.t}</div><div class="acc-hs">${item.s}</div></div><span class="acc-ic">+</span></button><div class="acc-bd"><div class="acc-ct">${item.c}</div></div>`;c.appendChild(el);});})();
+
+// ── QUIZ ──
+const QD=[
+  {q:'Your Personal Year shifts on:',opts:['Your birthday','January 1st each year','The spring equinox','The day you calculate it'],ans:1,fb:'Personal Year shifts on January 1st — not your birthday. Everyone transitions simultaneously, though each person\'s number is unique.'},
+  {q:'The Universal Year for 2026 is:',opts:['8','9','1','2'],ans:2,fb:'2+0+2+6=10→1+0=1. We are in a Universal Year 1 — collective new beginnings, global initiation of a fresh 9-year cycle.'},
+  {q:'To calculate your Personal Month, you:',opts:['Add your Life Path to the month','Add your Personal Year to the current calendar month and reduce','Subtract your birth month from the current month','Digit-sum the current date'],ans:1,fb:'Personal Year + current calendar month, reduced. Example: Personal Year 4 + March (3) = 7 → Personal Month 7.'},
+  {q:'Personal Year 7 is best described as:',opts:['A year of harvest and material abundance','A year of creative expression and visibility','The most introspective year — inner work and spiritual depth','A year of bold initiation and new beginnings'],ans:2,fb:'Year 7 is the most introspective year of the cycle. Pushing hard outwardly in a Year 7 often brings mysterious obstacles — the universe is redirecting you inward.'},
+  {q:'After Personal Year 9 completes, the next year is:',opts:['Year 10','Year 0','Year 1 — a brand new cycle begins','Year 9 again'],ans:2,fb:'After Year 9, the cycle resets to Year 1. The bigger the release and completion in Year 9, the more potent the new beginning in Year 1.'},
+  {q:'Years 4–6 are known as the ___ phase of the cycle:',opts:['Planting','Building','Harvesting','Releasing'],ans:1,fb:'Years 4–6 are the Building phase: foundation (4), freedom and pivot (5), responsibility and love (6). Where the visible work gets done.'},
+  {q:'Personal Year 8 is known as:',opts:['The initiation year','The harvest year — material momentum and authority','The completion year','The inner work year'],ans:1,fb:'Year 8 is the Harvest year. After the inner work of Year 7, Year 8 brings material flow, recognition, and the full expression of earned power.'},
+];
+let qA=0,qC=0;
+(function buildQ(){const c=document.getElementById('quiz');QD.forEach((q,qi)=>{const d=document.createElement('div');d.className='quiz-item';d.id='qi-'+qi;d.innerHTML=`<div class="quiz-q">${qi+1}. ${q.q}</div><div class="quiz-opts">${q.opts.map((o,oi)=>`<button class="quiz-opt" onclick="ansQ(${qi},${oi})">${o}</button>`).join('')}</div><div class="quiz-fb" id="qf-${qi}"></div>`;c.appendChild(d);});})();
+function ansQ(qi,chosen){const item=document.getElementById('qi-'+qi);if(item.dataset.done)return;item.dataset.done='1';const q=QD[qi];item.querySelectorAll('.quiz-opt').forEach(o=>o.disabled=true);const fb=document.getElementById('qf-'+qi);if(chosen===q.ans){item.classList.add('correct');item.querySelectorAll('.quiz-opt')[chosen].classList.add('ok');fb.className='quiz-fb correct show';fb.textContent='✓ '+q.fb;qC++;}else{item.classList.add('wrong');item.querySelectorAll('.quiz-opt')[chosen].classList.add('no');item.querySelectorAll('.quiz-opt')[q.ans].classList.add('show-ok');fb.className='quiz-fb wrong show';fb.textContent='✗ '+q.fb;}qA++;if(qA===QD.length){const s=document.getElementById('quiz-score');s.className='quiz-score show';const p=Math.round(qC/QD.length*100);s.innerHTML=`You answered <strong style="color:var(--accent)">${qC} of ${QD.length}</strong> correctly (${p}%).${p>=80?' Your cycle is coming into focus.':' Review the sections above and return.'}`;}autoSave();}
+
+// ── TAB SWITCH ──
+function switchTab(id,btn){document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.cp').forEach(p=>p.classList.remove('active'));document.getElementById('cp-'+id).classList.add('active');btn.classList.add('active');}
+
+// ── CANVAS ──
+const nc=document.getElementById('num-canvas'),nctx=nc.getContext('2d');let nt=0;
+const floaters=Array.from({length:20},(_,i)=>({n:[1,2,3,4,5,6,7,8,9][i%9],x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.1,vy:(Math.random()-.5)*.065,size:11+Math.random()*16,alpha:.08+Math.random()*.22,phase:Math.random()*Math.PI*2}));
+function resNC(){nc.width=nc.offsetWidth*Math.min(devicePixelRatio,2);nc.height=100*Math.min(devicePixelRatio,2);nctx.scale(Math.min(devicePixelRatio,2),Math.min(devicePixelRatio,2))}resNC();window.addEventListener('resize',resNC);
+function animNC(){const w=nc.offsetWidth,h=100;nctx.clearRect(0,0,w,h);nt+=.01;floaters.forEach((f,i)=>{f.x+=f.vx*.01;f.y+=f.vy*.01;if(f.x<0)f.x=1;if(f.x>1)f.x=0;if(f.y<0)f.y=1;if(f.y>1)f.y=0;const p=.55+.45*Math.sin(nt*1.1+f.phase);nctx.font=`${f.size}px 'Cinzel',serif`;nctx.fillStyle=`rgba(201,168,76,${f.alpha*p})`;nctx.textAlign='center';nctx.fillText(f.n,f.x*w,f.y*h+f.size*.4);});requestAnimationFrame(animNC);}animNC();
+
+// ── PROGRESS ──
+window.addEventListener('scroll',()=>{const p=Math.min(scrollY/(document.body.scrollHeight-innerHeight)*100,100);document.getElementById('prog-fill').style.width=p+'%'},{passive:true});
+
+// ── REVEAL ──
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.07});
+document.querySelectorAll('.ls').forEach(s=>io.observe(s));
+
+// ── SAVE ──
+const KEY='tfa_lesson_N5';let xp=0,saveT;
+function getPlannerSave(){const p={};for(let o=0;o<3;o++){for(let a=0;a<PLAN_AREAS.length;a++){const el=document.getElementById(`pl-${o}-${a}-i`);if(el)p[`${o}-${a}`]=el.value;}}return p;}
+function getData(){return{version:'1.0',lesson:'N5',ts:new Date().toISOString(),reflections:{r1:document.getElementById('ref-1').value,r2:document.getElementById('ref-2').value,r3:document.getElementById('ref-3').value},calc:{m:document.getElementById('py-m').value,d:document.getElementById('py-d').value,y:document.getElementById('py-y').value},planner:getPlannerSave(),xp,completed:document.getElementById('comp-btn').classList.contains('done')}}
+function loadData(){try{const raw=localStorage.getItem(KEY);if(!raw)return;const d=JSON.parse(raw);if(d.reflections){document.getElementById('ref-1').value=d.reflections.r1||'';document.getElementById('ref-2').value=d.reflections.r2||'';document.getElementById('ref-3').value=d.reflections.r3||'';}if(d.calc){if(d.calc.m)document.getElementById('py-m').value=d.calc.m;if(d.calc.d)document.getElementById('py-d').value=d.calc.d;if(d.calc.y)document.getElementById('py-y').value=d.calc.y;if(d.calc.m&&d.calc.d)calcPY();}if(d.xp){xp=d.xp;updXP();}if(d.completed)applyDone();document.getElementById('save-time').textContent=fmtT(d.ts);if(d.planner){setTimeout(()=>{for(let o=0;o<3;o++){for(let a=0;a<PLAN_AREAS.length;a++){const el=document.getElementById('pl-'+o+'-'+a+'-i');if(el&&d.planner[o+'-'+a])el.value=d.planner[o+'-'+a];}}},100);}}catch(e){}}
+function saveData(){localStorage.setItem(KEY,JSON.stringify(getData()));document.getElementById('save-time').textContent='just now'}
+function autoSave(){clearTimeout(saveT);saveT=setTimeout(saveData,1200)}
+setInterval(saveData,90000);
+function exportData(){const b=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`tfa_N5_${new Date().toISOString().slice(0,10)}.json`;a.click();toast('Timing plan exported ✦')}
+function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const d=JSON.parse(ev.target.result);localStorage.setItem(KEY,JSON.stringify(d));loadData();toast('Session restored ✦');}catch(err){toast('Invalid file')}};r.readAsText(f);e.target.value=''}
+function fmtT(iso){try{return new Date(iso).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}catch(e){return'—'}}
+function updXP(){document.getElementById('xp-display').textContent=xp+' XP'}
+function applyDone(){const b=document.getElementById('comp-btn');b.classList.add('done');b.textContent='✦ Lesson Sealed';document.getElementById('xp-pop').classList.add('show')}
+function markComplete(){if(document.getElementById('comp-btn').classList.contains('done'))return;xp+=10;updXP();applyDone();saveData();confetti();toast('✦ +10 XP · N5 Sealed ✦')}
+function confetti(){const cols=['#c9a84c','#dfc472','#f0ede6','#9aa0c8'];for(let i=0;i<60;i++){const el=document.createElement('div');el.className='cf';el.style.cssText=`left:${Math.random()*100}%;top:-20px;background:${cols[Math.floor(Math.random()*cols.length)]};animation-delay:${Math.random()*.8}s;animation-duration:${1.5+Math.random()}s;transform:rotate(${Math.random()*360}deg);width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;border-radius:${Math.random()>.5?'50%':'2px'}`;document.body.appendChild(el);setTimeout(()=>el.remove(),2800)}}
+let toastT;function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3000)}
+
+// Auto-set current year
+document.getElementById('py-y').value=new Date().getFullYear();
+loadData();
+</script>
+</body>
+</html>
