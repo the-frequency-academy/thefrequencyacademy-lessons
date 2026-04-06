@@ -3,1352 +3,609 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>N2: Personal Numerology · Your Four Core Numbers — The Frequency Academy</title>
+<title>N2: Personal Numerology — The Frequency Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
+/* ── TFA LESSON SHELL v1.0 ── */
 :root {
-  --bg: #0d1a3a;
-  --accent: #c9a84c;
+  --bg:      #0d1a3a;
+  --accent:  #c9a84c;
   --accent2: #dfc472;
-  --text: #f0ede6;
-  --text-dim: rgba(240,237,230,0.65);
-  --card: rgba(0,0,0,0.28);
-  --card-border: rgba(201,168,76,0.14);
-  --card-hover: rgba(0,0,0,0.38);
-  --gold-glow: rgba(201,168,76,0.22);
-  --radius: 12px;
-  --radius-lg: 18px;
+  --text:    #f0ede6;
+  --dim:     rgba(240,237,230,0.60);
+  --card:    rgba(0,0,0,0.28);
+  --border:  rgba(201,168,76,0.14);
+  --glow:    rgba(201,168,76,0.20);
+  --r:       12px;
+  --rl:      18px;
 }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse at 18% 12%,rgba(201,168,76,0.07) 0%,transparent 55%),radial-gradient(ellipse at 82% 88%,rgba(13,26,58,0.8) 0%,transparent 50%);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 9% 14%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 25% 41%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 44% 8%,rgba(255,255,255,.8) 0%,transparent 100%),radial-gradient(1px 1px at 66% 31%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 80% 17%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 93% 57%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 14% 75%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 37% 63%,rgba(201,168,76,.45) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 89% 36%,rgba(201,168,76,.3) 0%,transparent 100%)}
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* ── PROGRESS ── */
+#prog-wrap{position:fixed;top:0;left:0;right:0;z-index:200;height:3px;background:rgba(5,10,28,.9)}
+#prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease;box-shadow:0 0 10px var(--glow)}
 
-body {
-  background: var(--bg);
-  background-image:
-    radial-gradient(ellipse at 15% 10%, rgba(201,168,76,0.07) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 90%, rgba(13,26,58,0.8) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(5,10,28,0.4) 0%, transparent 80%);
-  color: var(--text);
-  font-family: 'Raleway', sans-serif;
-  font-weight: 400;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* ── STARS ── */
-body::before {
-  content: '';
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  background-image:
-    radial-gradient(1px 1px at 8% 12%, rgba(255,255,255,0.7) 0%,transparent 100%),
-    radial-gradient(1px 1px at 22% 38%, rgba(255,255,255,0.5) 0%,transparent 100%),
-    radial-gradient(1px 1px at 41% 7%, rgba(255,255,255,0.8) 0%,transparent 100%),
-    radial-gradient(1px 1px at 63% 29%, rgba(255,255,255,0.6) 0%,transparent 100%),
-    radial-gradient(1px 1px at 78% 15%, rgba(255,255,255,0.7) 0%,transparent 100%),
-    radial-gradient(1px 1px at 91% 55%, rgba(255,255,255,0.5) 0%,transparent 100%),
-    radial-gradient(1px 1px at 12% 72%, rgba(255,255,255,0.6) 0%,transparent 100%),
-    radial-gradient(1px 1px at 56% 81%, rgba(255,255,255,0.4) 0%,transparent 100%),
-    radial-gradient(1.5px 1.5px at 33% 61%, rgba(201,168,76,0.5) 0%,transparent 100%),
-    radial-gradient(1.5px 1.5px at 87% 33%, rgba(201,168,76,0.35) 0%,transparent 100%);
-}
-
-/* ── PROGRESS BAR ── */
-#prog-wrap {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  height: 3px;
-  background: rgba(5,10,28,0.9);
-}
-#prog-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  transition: width 0.3s ease;
-  box-shadow: 0 0 10px var(--gold-glow);
-}
-
-/* ── TOP NAV ── */
-.top-nav {
-  position: fixed; top: 3px; left: 0; right: 0; z-index: 199;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 13px 32px;
-  background: rgba(8,14,42,0.92);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(201,168,76,0.1);
-}
-.nav-brand { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px; color: var(--accent); opacity: 0.8; }
-.nav-meta { font-size: 10px; color: var(--text-dim); letter-spacing: 2px; }
-.nav-xp {
-  font-family: 'Cinzel', serif; font-size: 11px; color: var(--accent); letter-spacing: 2px;
-  background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
-  border-radius: 20px; padding: 4px 14px;
-}
+/* ── NAV ── */
+.top-nav{position:fixed;top:3px;left:0;right:0;z-index:199;display:flex;align-items:center;justify-content:space-between;padding:13px 32px;background:rgba(8,14,42,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1)}
+.nav-brand{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--accent);opacity:.8}
+.nav-crumb{font-size:10px;color:var(--dim);letter-spacing:2px}
+.nav-xp{font-family:'Cinzel',serif;font-size:11px;color:var(--accent);letter-spacing:2px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 14px}
 
 /* ── MAIN ── */
-main {
-  position: relative; z-index: 1;
-  max-width: 880px; margin: 0 auto;
-  padding: 90px 24px 140px;
-}
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:88px 24px 140px}
 
-/* ── SECTIONS ── */
-.lesson-section {
-  margin-bottom: 72px;
-  opacity: 0; transform: translateY(22px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-.lesson-section.visible { opacity: 1; transform: translateY(0); }
-
-/* ── SECTION HEADER ── */
-.sec-header {
-  display: flex; align-items: center; gap: 16px;
-  margin-bottom: 28px;
-}
-.sec-tag {
-  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px;
-  color: var(--accent); opacity: 0.65; white-space: nowrap;
-}
-.sec-rule { flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-glow), transparent); }
-.sec-title {
-  font-family: 'Cinzel', serif; font-size: 19px; font-weight: 700;
-  color: var(--text); letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 20px;
-}
+/* ── SECTION REVEAL ── */
+.ls{margin-bottom:68px;opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.ls.visible{opacity:1;transform:translateY(0)}
 
 /* ── HERO ── */
-.hero { text-align: center; padding: 80px 0 60px; }
-.hero-eyebrow { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 5px; color: var(--accent); opacity: 0.65; margin-bottom: 18px; }
-.hero-code {
-  font-family: 'Cinzel', serif; font-size: 88px; font-weight: 900; line-height: 1;
-  color: transparent;
-  background: linear-gradient(145deg, var(--accent2) 0%, var(--accent) 55%, rgba(201,168,76,0.35) 100%);
-  -webkit-background-clip: text; background-clip: text;
-  filter: drop-shadow(0 0 40px rgba(201,168,76,0.2));
-  margin-bottom: 10px;
-}
-.hero-title { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
-.hero-sub { font-size: 15px; font-weight: 300; font-style: italic; color: var(--text-dim); letter-spacing: 2px; margin-bottom: 36px; }
-.hero-divider { width: 180px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 0 auto 36px; }
-.hero-tag {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(201,168,76,0.09); border: 1px solid rgba(201,168,76,0.22);
-  border-radius: 30px; padding: 7px 22px;
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; color: var(--accent);
-}
+.hero{text-align:center;padding:76px 0 56px}
+.hero-eye{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.hero-code{font-family:'Cinzel',serif;font-size:88px;font-weight:900;line-height:1;color:transparent;background:linear-gradient(145deg,var(--accent2) 0%,var(--accent) 55%,rgba(201,168,76,.3) 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,168,76,.2));margin-bottom:10px}
+.hero-title{font-family:'Cinzel',serif;font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:8px}
+.hero-sub{font-size:15px;font-weight:300;font-style:italic;color:var(--dim);letter-spacing:2px;margin-bottom:36px}
+.hero-rule{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 36px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.22);border-radius:30px;padding:7px 22px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent)}
 
-/* ── ANIMATED NUMBER CANVAS ── */
-#num-canvas {
-  display: block; width: 100%; height: 100px;
-  margin: 36px 0;
-  opacity: 0.7;
-}
+/* ── CANVAS ── */
+#num-canvas{display:block;width:100%;height:100px;margin:34px 0;opacity:.7}
+
+/* ── SECTION HEADER ── */
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.sh-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.6;white-space:nowrap}
+.sh-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--glow),transparent)}
+.st{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
 
 /* ── TRANSMISSION ── */
-.transmission {
-  background: linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(201,168,76,0.04) 100%);
-  border: 1px solid rgba(201,168,76,0.18); border-left: 3px solid var(--accent);
-  border-radius: var(--radius); padding: 38px 44px; position: relative; overflow: hidden;
-}
-.transmission::after {
-  content: '';
-  position: absolute; top: -60px; right: -60px;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
-  border-radius: 50%; pointer-events: none;
-}
-.tx-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 5px; color: var(--accent); opacity: 0.6; margin-bottom: 18px; }
-.transmission p { font-size: 16px; line-height: 1.95; color: rgba(240,237,230,0.78); font-style: italic; font-weight: 300; }
-.transmission p + p { margin-top: 14px; }
-.transmission strong { color: var(--accent2); font-style: normal; font-weight: 600; }
+.tx{background:linear-gradient(135deg,rgba(0,0,0,.36) 0%,rgba(201,168,76,.04) 100%);border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--accent);border-radius:var(--r);padding:38px 44px;position:relative;overflow:hidden}
+.tx::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.tx-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.tx p{font-size:16px;line-height:1.95;color:rgba(240,237,230,.78);font-style:italic;font-weight:300}
+.tx p+p{margin-top:14px}
+.tx strong{color:var(--accent2);font-style:normal;font-weight:600}
 
-/* ── CARDS ── */
-.card {
-  background: var(--card); border: 1px solid var(--card-border);
-  border-radius: var(--radius); padding: 30px 34px; margin-bottom: 20px;
-}
-.card p { font-size: 15px; line-height: 1.9; color: var(--text); margin-bottom: 14px; }
-.card p:last-child { margin-bottom: 0; }
+/* ── CARD ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 34px;margin-bottom:18px}
+.card p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.card p:last-child{margin-bottom:0}
 
 /* ── CALLOUT ── */
-.callout {
-  background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.25);
-  border-radius: var(--radius); padding: 24px 32px; margin: 24px 0; text-align: center;
-}
-.callout p { font-family: 'Cinzel', serif; font-size: 14px; line-height: 1.8; color: var(--accent2); letter-spacing: 0.5px; }
+.callout{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:24px 32px;margin:22px 0;text-align:center}
+.callout p{font-family:'Cinzel',serif;font-size:14px;line-height:1.8;color:var(--accent2);letter-spacing:.5px}
 
-/* ── FOUR CORES GRID ── */
-.cores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
-.core-card {
-  background: var(--card); border: 1px solid var(--card-border);
-  border-radius: var(--radius); padding: 24px 26px;
-  transition: border-color 0.3s, transform 0.3s;
-  cursor: default;
-}
-.core-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-2px); }
-.core-num {
-  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 3px;
-  color: var(--accent); margin-bottom: 10px;
-}
-.core-name { font-family: 'Cinzel', serif; font-size: 16px; color: var(--text); font-weight: 700; margin-bottom: 4px; }
-.core-from { font-size: 11px; color: var(--text-dim); letter-spacing: 1px; margin-bottom: 10px; }
-.core-reveals { font-size: 13px; color: var(--text); line-height: 1.6; }
-.core-tag {
-  display: inline-block; margin-top: 10px;
-  background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
-  border-radius: 20px; padding: 3px 12px;
-  font-size: 10px; letter-spacing: 1px; color: var(--accent);
-}
+/* ── FOUR CORES ── */
+.cores{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+.core-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;transition:all .25s}
+.core-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-2px)}
+.core-n{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent);margin-bottom:8px}
+.core-name{font-family:'Cinzel',serif;font-size:15px;color:var(--text);font-weight:700;margin-bottom:4px}
+.core-from{font-size:11px;color:var(--dim);letter-spacing:1px;margin-bottom:8px}
+.core-rv{font-size:13px;color:var(--text);line-height:1.6}
+.core-tag{display:inline-block;margin-top:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:3px 12px;font-size:10px;letter-spacing:1px;color:var(--accent)}
 
 /* ── PYTHAGOREAN TABLE ── */
-.pyth-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: var(--radius); overflow: hidden; margin: 20px 0; }
-.pyth-table th {
-  background: rgba(201,168,76,0.14); font-family: 'Cinzel', serif;
-  font-size: 18px; font-weight: 700; color: var(--accent); padding: 14px 10px; text-align: center;
-  border-right: 1px solid rgba(201,168,76,0.1);
-}
-.pyth-table td {
-  background: rgba(0,0,0,0.22); padding: 12px 8px; text-align: center;
-  font-family: 'Cinzel', serif; font-size: 13px; color: var(--text-dim);
-  letter-spacing: 3px; border-right: 1px solid rgba(255,255,255,0.04);
-  border-top: 1px solid rgba(255,255,255,0.04);
-}
-.pyth-table th:last-child, .pyth-table td:last-child { border-right: none; }
+.pyth{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.pyth th{background:rgba(201,168,76,.14);font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:var(--accent);padding:14px 10px;text-align:center;border-right:1px solid rgba(201,168,76,.1)}
+.pyth td{background:rgba(0,0,0,.22);padding:12px 8px;text-align:center;font-family:'Cinzel',serif;font-size:13px;color:var(--dim);letter-spacing:3px;border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04)}
+.pyth th:last-child,.pyth td:last-child{border-right:none}
 
-/* ── STEP BLOCKS ── */
-.steps { margin: 20px 0; }
-.step {
-  display: flex; gap: 16px; margin-bottom: 16px;
-  background: var(--card); border: 1px solid var(--card-border);
-  border-radius: var(--radius); padding: 18px 22px;
-}
-.step-n {
-  font-family: 'Cinzel', serif; font-size: 13px; color: var(--accent);
-  font-weight: 700; flex-shrink: 0; margin-top: 2px;
-  width: 28px; text-align: center;
-}
-.step-body { font-size: 14px; line-height: 1.8; color: var(--text); }
-.step-body strong { color: var(--accent2); }
+/* ── STEPS ── */
+.steps{margin:18px 0}
+.step{display:flex;gap:16px;margin-bottom:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px}
+.step-n{font-family:'Cinzel',serif;font-size:13px;color:var(--accent);font-weight:700;flex-shrink:0;margin-top:2px;width:26px;text-align:center}
+.step-b{font-size:14px;line-height:1.8;color:var(--text)}
+.step-b strong{color:var(--accent2)}
 
-/* ── WORKED EXAMPLE TABLE ── */
-.worked-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 20px 0; border-radius: var(--radius); overflow: hidden; }
-.worked-table th {
-  background: rgba(201,168,76,0.1); font-family: 'Cinzel', serif;
-  font-size: 10px; letter-spacing: 3px; color: var(--accent); padding: 14px 18px; text-align: left;
-  border-bottom: 1px solid rgba(201,168,76,0.18);
-}
-.worked-table td { background: rgba(0,0,0,0.22); padding: 14px 18px; font-size: 13px; color: var(--text); border-bottom: 1px solid rgba(255,255,255,0.04); line-height: 1.5; }
-.worked-table tr:last-child td { border-bottom: none; background: rgba(201,168,76,0.06); color: var(--accent2); font-weight: 600; }
-.worked-table td.result { color: var(--accent); font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; }
+/* ── WORKED TABLE ── */
+.wt{width:100%;border-collapse:separate;border-spacing:0;margin:18px 0;border-radius:var(--r);overflow:hidden}
+.wt th{background:rgba(201,168,76,.1);font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent);padding:14px 18px;text-align:left;border-bottom:1px solid rgba(201,168,76,.18)}
+.wt td{background:rgba(0,0,0,.22);padding:14px 18px;font-size:13px;color:var(--text);border-bottom:1px solid rgba(255,255,255,.04);line-height:1.5}
+.wt tr:last-child td{border-bottom:none;background:rgba(201,168,76,.06);color:var(--accent2);font-weight:600}
+.wt td.r{color:var(--accent);font-family:'Cinzel',serif;font-size:16px;font-weight:700}
 
-/* ── MEANINGS REFERENCE ── */
-.meanings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
-.meaning-card {
-  background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
-  padding: 16px 18px; transition: all 0.25s;
-}
-.meaning-card:hover { border-color: rgba(201,168,76,0.3); background: var(--card-hover); }
-.meaning-num { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 900; color: var(--accent); margin-bottom: 6px; }
-.meaning-num.master { color: var(--accent2); font-size: 18px; }
-.meaning-theme { font-family: 'Cinzel', serif; font-size: 11px; color: var(--text); margin-bottom: 4px; letter-spacing: 1px; }
-.meaning-gift { font-size: 11px; color: var(--text-dim); margin-bottom: 3px; }
-.meaning-desire { font-size: 11px; color: var(--accent); font-style: italic; opacity: 0.8; }
+/* ── CALCULATOR ── */
+.calc{background:#050d20;border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);overflow:hidden;margin:24px 0}
+.calc-hd{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.12);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.calc-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--accent)}
+.calc-tabs{display:flex;gap:6px}
+.ctab{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:7px 16px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;background:transparent;border-color:rgba(201,168,76,.2);color:var(--dim)}
+.ctab.active{background:rgba(201,168,76,.18);border-color:var(--accent);color:var(--accent)}
+.calc-body{padding:28px}
+.cp{display:none}.cp.active{display:block}
 
-/* ══════════════════════════════════════
-   INTERACTIVE CALCULATOR
-══════════════════════════════════════ */
-.calc-wrap {
-  background: #050d20;
-  border: 1px solid rgba(201,168,76,0.2); border-radius: var(--radius-lg);
-  overflow: hidden; margin: 28px 0;
-}
-.calc-header {
-  background: rgba(201,168,76,0.07); border-bottom: 1px solid rgba(201,168,76,0.12);
-  padding: 16px 26px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-}
-.calc-title { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 3px; color: var(--accent); }
-.calc-tabs { display: flex; gap: 6px; }
-.calc-tab {
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; padding: 7px 16px;
-  border-radius: 20px; border: 1px solid; cursor: pointer; transition: all 0.2s;
-  background: transparent; border-color: rgba(201,168,76,0.2); color: var(--text-dim);
-}
-.calc-tab.active { background: rgba(201,168,76,0.18); border-color: var(--accent); color: var(--accent); }
-.calc-body { padding: 28px; }
-.calc-pane { display: none; }
-.calc-pane.active { display: block; }
+.lf-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+.cf label{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+.cf input,.cf select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.14);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.cf input:focus,.cf select:focus{border-color:rgba(201,168,76,.4)}
+.cf select option{background:var(--bg)}
 
-/* Life Path Calc */
-.lp-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 22px; }
-.lp-field label {
-  display: block; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px;
-  color: var(--accent); margin-bottom: 8px;
-}
-.lp-field input, .lp-field select {
-  width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.14);
-  border-radius: 8px; padding: 10px 14px; color: var(--text);
-  font-family: 'Raleway', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s;
-}
-.lp-field input:focus, .lp-field select:focus { border-color: rgba(201,168,76,0.4); }
-.lp-field select option { background: var(--bg); }
+.nf{margin-bottom:14px}
+.nf label{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+.nf input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.14);border-radius:8px;padding:11px 16px;color:var(--text);font-family:'Cinzel',serif;font-size:16px;letter-spacing:4px;text-transform:uppercase;outline:none;transition:border-color .2s}
+.nf input:focus{border-color:rgba(201,168,76,.4)}
+.nf input::placeholder{font-family:'Raleway',sans-serif;font-size:13px;letter-spacing:1px;text-transform:none;color:rgba(240,237,230,.25)}
 
-/* Name Calc */
-.name-field { margin-bottom: 16px; }
-.name-field label { display: block; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; color: var(--accent); margin-bottom: 8px; }
-.name-field input {
-  width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.14);
-  border-radius: 8px; padding: 11px 16px; color: var(--text);
-  font-family: 'Cinzel', serif; font-size: 16px; letter-spacing: 4px; text-transform: uppercase;
-  outline: none; transition: border-color 0.2s;
-}
-.name-field input:focus { border-color: rgba(201,168,76,0.4); }
-.name-field input::placeholder { font-family: 'Raleway', sans-serif; font-size: 13px; letter-spacing: 1px; text-transform: none; color: rgba(240,237,230,0.25); }
+.lc-wrap{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0;min-height:40px}
+.lc{display:flex;flex-direction:column;align-items:center;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:5px 9px;min-width:30px}
+.lc.v{border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.1)}
+.lc-ch{font-family:'Cinzel',serif;font-size:14px;color:var(--text)}
+.lc.v .lc-ch{color:var(--accent)}
+.lc-vl{font-size:10px;color:var(--dim);margin-top:2px}
 
-/* Letter display */
-.letter-display {
-  display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; min-height: 44px;
-}
-.letter-chip {
-  display: flex; flex-direction: column; align-items: center;
-  background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 6px; padding: 6px 10px; min-width: 32px;
-}
-.letter-chip.vowel { border-color: rgba(201,168,76,0.35); background: rgba(201,168,76,0.1); }
-.letter-chip.consonant { border-color: rgba(100,150,255,0.2); }
-.letter-char { font-family: 'Cinzel', serif; font-size: 15px; color: var(--text); }
-.letter-chip.vowel .letter-char { color: var(--accent); }
-.letter-val { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+.res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.rb{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.14);border-radius:var(--r);padding:16px 12px;text-align:center}
+.rb.hi{border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.07)}
+.rl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;color:var(--accent);opacity:.7;margin-bottom:8px}
+.rn{font-family:'Cinzel',serif;font-size:34px;font-weight:900;color:var(--accent2);line-height:1;filter:drop-shadow(0 0 12px rgba(201,168,76,.22))}
+.rm{font-size:11px;color:var(--dim);margin-top:6px;line-height:1.5}
+.lp-steps-txt{font-size:12px;color:var(--dim);margin-bottom:16px;font-style:italic;line-height:1.8;min-height:22px}
 
-/* Results panel */
-.calc-results {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px;
-}
-.result-box {
-  background: rgba(0,0,0,0.3); border: 1px solid rgba(201,168,76,0.14);
-  border-radius: var(--radius); padding: 18px 14px; text-align: center;
-}
-.result-box.highlight { border-color: rgba(201,168,76,0.35); background: rgba(201,168,76,0.07); }
-.result-label { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 3px; color: var(--accent); opacity: 0.7; margin-bottom: 8px; }
-.result-number { font-family: 'Cinzel', serif; font-size: 36px; font-weight: 900; color: var(--accent2); line-height: 1; filter: drop-shadow(0 0 14px rgba(201,168,76,0.25)); }
-.result-meaning { font-size: 11px; color: var(--text-dim); margin-top: 6px; line-height: 1.5; }
-.result-steps { font-size: 11px; color: var(--text-dim); margin-top: 8px; font-style: italic; }
+.calc-btn{width:100%;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;padding:14px;border-radius:30px;border:1px solid var(--accent);background:rgba(201,168,76,.12);color:var(--accent);cursor:pointer;transition:all .25s;margin:14px 0 0;text-transform:uppercase}
+.calc-btn:hover{background:rgba(201,168,76,.22);box-shadow:0 0 20px rgba(201,168,76,.15)}
 
-/* Calc button */
-.calc-btn {
-  width: 100%; font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 3px;
-  padding: 14px; border-radius: 30px; border: 1px solid var(--accent);
-  background: rgba(201,168,76,0.12); color: var(--accent);
-  cursor: pointer; transition: all 0.25s; margin: 16px 0 0; text-transform: uppercase;
-}
-.calc-btn:hover { background: rgba(201,168,76,0.22); box-shadow: 0 0 20px rgba(201,168,76,0.15); }
+/* ── MEANINGS GRID ── */
+.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.mc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;transition:all .25s}
+.mc:hover{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.38);transform:translateY(-2px)}
+.mn{font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:var(--accent);margin-bottom:6px}
+.mn.m{color:var(--accent2);font-size:18px}
+.mth{font-family:'Cinzel',serif;font-size:11px;color:var(--text);margin-bottom:4px;letter-spacing:1px}
+.mgift{font-size:11px;color:var(--dim);margin-bottom:3px}
+.mdes{font-size:11px;color:var(--accent);font-style:italic;opacity:.8}
 
-/* ── KNOWLEDGE CHECK QUIZ ── */
-.quiz-wrap { margin: 20px 0; }
-.quiz-item {
-  background: var(--card); border: 1px solid var(--card-border);
-  border-radius: var(--radius); padding: 22px 26px; margin-bottom: 14px;
-  transition: border-color 0.3s;
-}
-.quiz-item.correct { border-color: rgba(90,184,122,0.45); background: rgba(90,184,122,0.06); }
-.quiz-item.wrong { border-color: rgba(200,80,80,0.4); background: rgba(200,80,80,0.05); }
-.quiz-q { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 14px; }
-.quiz-q strong { color: var(--accent2); }
-.quiz-opts { display: flex; flex-direction: column; gap: 8px; }
-.quiz-opt {
-  background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 8px; padding: 11px 16px; font-size: 13px; color: var(--text-dim);
-  cursor: pointer; transition: all 0.2s; text-align: left;
-}
-.quiz-opt:hover { border-color: rgba(201,168,76,0.25); color: var(--text); background: rgba(201,168,76,0.07); }
-.quiz-opt.selected-correct { border-color: rgba(90,184,122,0.5); background: rgba(90,184,122,0.1); color: #6fda9a; }
-.quiz-opt.selected-wrong { border-color: rgba(200,80,80,0.5); background: rgba(200,80,80,0.08); color: #e07070; }
-.quiz-opt.show-correct { border-color: rgba(90,184,122,0.35); color: #6fda9a; }
-.quiz-opt[disabled] { cursor: default; }
-.quiz-feedback { margin-top: 12px; font-size: 13px; line-height: 1.6; padding: 10px 14px; border-radius: 8px; display: none; }
-.quiz-feedback.show { display: block; }
-.quiz-feedback.correct { background: rgba(90,184,122,0.08); color: #6fda9a; }
-.quiz-feedback.wrong { background: rgba(200,80,80,0.06); color: #e07070; }
-.quiz-score {
-  text-align: center; font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px;
-  color: var(--accent); padding: 20px; display: none;
-}
-.quiz-score.show { display: block; }
+/* ── WISDOM GRID ── */
+.wg{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);overflow:hidden;margin:20px 0}
+.wc{background:rgba(13,18,64,.9);padding:16px 18px}
+.wc.hd{background:rgba(201,168,76,.08);font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent);text-transform:uppercase}
+.wc p{font-size:13px;line-height:1.7}
+.wc.an p{color:rgba(240,237,230,.72);font-style:italic}
+.wc.sc p{color:#7ec8f0}
 
-/* ── ACCORDION (Quick Reference) ── */
-.accordion { margin: 16px 0; }
-.acc-item { margin-bottom: 10px; border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; }
-.acc-header {
-  width: 100%; background: var(--card); border: none; padding: 18px 22px;
-  display: flex; align-items: center; justify-content: space-between;
-  cursor: pointer; text-align: left; transition: background 0.2s;
-}
-.acc-header:hover { background: var(--card-hover); }
-.acc-header-text { font-family: 'Cinzel', serif; font-size: 13px; color: var(--text); letter-spacing: 1px; }
-.acc-header-sub { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
-.acc-icon { font-family: 'Cinzel', serif; font-size: 18px; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
-.acc-item.open .acc-icon { transform: rotate(45deg); }
-.acc-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease, padding 0.3s; }
-.acc-item.open .acc-body { max-height: 600px; }
-.acc-content { padding: 20px 22px; font-size: 13px; line-height: 1.85; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.04); }
-.acc-content strong { color: var(--accent2); }
-.acc-content em { color: var(--text); font-style: italic; }
+/* ── ACCORDION ── */
+.acc-item{margin-bottom:10px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.acc-hd{width:100%;background:var(--card);border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;transition:background .2s}
+.acc-hd:hover{background:rgba(0,0,0,.38)}
+.acc-ht{font-family:'Cinzel',serif;font-size:13px;color:var(--text);letter-spacing:1px}
+.acc-hs{font-size:11px;color:var(--dim);margin-top:2px}
+.acc-ic{font-size:18px;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-ic{transform:rotate(45deg)}
+.acc-bd{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-item.open .acc-bd{max-height:600px}
+.acc-ct{padding:20px 22px;font-size:13px;line-height:1.85;color:var(--dim);border-top:1px solid rgba(255,255,255,.04)}
+.acc-ct strong{color:var(--accent2)}
+
+/* ── QUIZ ── */
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;margin-bottom:14px;transition:border-color .3s}
+.quiz-item.correct{border-color:rgba(90,184,122,.45);background:rgba(90,184,122,.06)}
+.quiz-item.wrong{border-color:rgba(200,80,80,.4);background:rgba(200,80,80,.05)}
+.quiz-q{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:14px}
+.quiz-q strong{color:var(--accent2)}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:11px 16px;font-size:13px;color:var(--dim);cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:hover{border-color:rgba(201,168,76,.25);color:var(--text);background:rgba(201,168,76,.07)}
+.quiz-opt.ok{border-color:rgba(90,184,122,.5);background:rgba(90,184,122,.1);color:#6fda9a}
+.quiz-opt.no{border-color:rgba(200,80,80,.5);background:rgba(200,80,80,.08);color:#e07070}
+.quiz-opt.show-ok{border-color:rgba(90,184,122,.35);color:#6fda9a}
+.quiz-fb{margin-top:12px;font-size:13px;line-height:1.6;padding:10px 14px;border-radius:8px;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.correct{background:rgba(90,184,122,.08);color:#6fda9a}
+.quiz-fb.wrong{background:rgba(200,80,80,.06);color:#e07070}
+.quiz-score{text-align:center;font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--accent);padding:20px;display:none}
+.quiz-score.show{display:block}
 
 /* ── REFLECTION ── */
-.reflection-q { font-family: 'Cinzel', serif; font-size: 14px; color: var(--accent2); line-height: 1.75; margin-bottom: 14px; letter-spacing: 0.5px; }
-.reflection-field {
-  width: 100%; background: rgba(0,0,0,0.25); border: 1px solid rgba(201,168,76,0.12);
-  border-radius: var(--radius); padding: 18px 22px; color: var(--text);
-  font-family: 'Raleway', sans-serif; font-size: 14px; line-height: 1.85;
-  resize: vertical; min-height: 110px; outline: none; transition: border-color 0.25s, background 0.25s;
-  margin-bottom: 28px;
-}
-.reflection-field:focus { border-color: rgba(201,168,76,0.3); background: rgba(0,0,0,0.32); }
-.reflection-field::placeholder { color: rgba(240,237,230,0.2); }
+.ref-q{font-family:'Cinzel',serif;font-size:14px;color:var(--accent2);line-height:1.75;margin-bottom:14px;letter-spacing:.5px}
+.ref-ta{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:18px 22px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;line-height:1.85;resize:vertical;min-height:110px;outline:none;transition:border-color .25s,background .25s;margin-bottom:26px}
+.ref-ta:focus{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.32)}
+.ref-ta::placeholder{color:rgba(240,237,230,.2)}
 
-/* ── NEXT LESSON ── */
-.next-card {
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
-  background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(201,168,76,0.05) 100%);
-  border: 1px solid rgba(201,168,76,0.2); border-radius: var(--radius-lg);
-  padding: 32px 36px; cursor: pointer; transition: all 0.3s;
-}
-.next-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
-.next-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px; color: var(--accent); opacity: 0.65; margin-bottom: 8px; }
-.next-title { font-family: 'Cinzel', serif; font-size: 18px; color: var(--text); letter-spacing: 2px; margin-bottom: 6px; }
-.next-sub { font-size: 13px; color: var(--text-dim); }
-.next-arrow { font-size: 30px; color: var(--accent); opacity: 0.55; }
+/* ── NEXT / PREV ── */
+.nav-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nav-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:22px 26px;cursor:pointer;transition:all .3s;text-decoration:none}
+.nav-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.nav-card.prev{flex-direction:row-reverse}
+.nav-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.nav-title{font-family:'Cinzel',serif;font-size:15px;color:var(--text);letter-spacing:1px}
+.nav-arr{font-size:26px;color:var(--accent);opacity:.5;flex-shrink:0}
 
-/* ── WORKSHOP SLOT ── */
-.workshop-slot {
-  background: rgba(0,0,0,0.3); border: 1px dashed rgba(201,168,76,0.2);
-  border-radius: var(--radius-lg); padding: 40px; text-align: center;
-}
-.ws-icon { font-size: 36px; margin-bottom: 16px; opacity: 0.5; }
-.ws-title { font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 3px; color: var(--accent); margin-bottom: 8px; opacity: 0.65; }
-.ws-sub { font-size: 13px; color: var(--text-dim); }
+/* ── WORKSHOP ── */
+.ws{background:rgba(0,0,0,.3);border:1px dashed rgba(201,168,76,.2);border-radius:var(--rl);padding:40px;text-align:center}
+.ws-ic{font-size:34px;margin-bottom:14px;opacity:.45}
+.ws-t{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:var(--accent);margin-bottom:8px;opacity:.6}
+.ws-s{font-size:13px;color:var(--dim)}
 
 /* ── COMPLETION ── */
-.completion-wrap {
-  background: linear-gradient(135deg, rgba(201,168,76,0.07), rgba(0,0,0,0.4));
-  border: 1px solid rgba(201,168,76,0.2); border-radius: var(--radius-lg);
-  padding: 48px; text-align: center;
-}
-.completion-title { font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 3px; color: var(--text); margin-bottom: 8px; }
-.completion-sub { font-size: 13px; color: var(--text-dim); margin-bottom: 30px; }
-.complete-btn {
-  display: inline-flex; align-items: center; gap: 12px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  border: none; border-radius: 40px; padding: 17px 44px;
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 3px;
-  color: #0a1025; font-weight: 700; cursor: pointer; transition: all 0.3s;
-  text-transform: uppercase;
-}
-.complete-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(201,168,76,0.28); }
-.complete-btn.done { background: linear-gradient(135deg, #5ab87a, #7de09a); }
-.xp-pop { display: none; font-family: 'Cinzel', serif; font-size: 14px; color: var(--accent); margin-top: 22px; letter-spacing: 2px; }
-.xp-pop.show { display: block; animation: fadeUp 0.7s ease; }
-
-/* ── CELEBRATION ── */
-.confetti-piece {
-  position: fixed; top: -20px; width: 8px; height: 8px; z-index: 9999;
-  border-radius: 2px; pointer-events: none; animation: confettiFall 2s linear forwards;
-}
-@keyframes confettiFall {
-  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-}
+.comp-wrap{background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(0,0,0,.4));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:48px;text-align:center}
+.comp-t{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--text);margin-bottom:8px}
+.comp-s{font-size:13px;color:var(--dim);margin-bottom:28px}
+.comp-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:40px;padding:17px 44px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.comp-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.28)}
+.comp-btn.done{background:linear-gradient(135deg,#5ab87a,#7de09a)}
+.xp-pop{display:none;font-family:'Cinzel',serif;font-size:14px;color:var(--accent);margin-top:22px;letter-spacing:2px}
+.xp-pop.show{display:block;animation:fadeUp .7s ease}
 
 /* ── SAVE BAR ── */
-#save-bar {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-  background: rgba(5,10,28,0.95); backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(201,168,76,0.12);
-  padding: 13px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-}
-.save-status { font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
-.save-status span { color: var(--accent); font-family: 'Cinzel', serif; }
-.save-actions { display: flex; gap: 10px; }
-.save-btn {
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px;
-  padding: 8px 18px; border-radius: 20px; border: 1px solid; cursor: pointer;
-  transition: all 0.2s; text-transform: uppercase;
-}
-.save-btn.primary { background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: var(--accent); }
-.save-btn.primary:hover { background: rgba(201,168,76,0.2); }
-.save-btn.secondary { background: transparent; border-color: rgba(255,255,255,0.1); color: var(--text-dim); }
-.save-btn.secondary:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
-#import-file { display: none; }
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(5,10,28,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(201,168,76,.12);padding:13px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.sv-status{font-size:11px;color:var(--dim);letter-spacing:1px}
+.sv-status span{color:var(--accent);font-family:'Cinzel',serif}
+.sv-actions{display:flex;gap:10px}
+.sv-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.sv-btn.pri{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.3);color:var(--accent)}
+.sv-btn.pri:hover{background:rgba(201,168,76,.2)}
+.sv-btn.sec{background:transparent;border-color:rgba(255,255,255,.1);color:var(--dim)}
+.sv-btn.sec:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+#imp-file{display:none}
 
 /* ── TOAST ── */
-.toast {
-  position: fixed; bottom: 72px; left: 50%; transform: translateX(-50%) translateY(16px);
-  background: rgba(8,14,42,0.96); border: 1px solid rgba(201,168,76,0.28);
-  border-radius: 30px; padding: 11px 26px;
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; color: var(--accent);
-  z-index: 300; opacity: 0; transition: all 0.3s; pointer-events: none; white-space: nowrap;
-}
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(8,14,42,.96);border:1px solid rgba(201,168,76,.28);border-radius:30px;padding:11px 26px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes pulse { 0%,100%{opacity:0.7} 50%{opacity:1} }
+/* ── CONFETTI ── */
+.cf{position:fixed;top:-20px;width:8px;height:8px;z-index:9999;border-radius:2px;pointer-events:none;animation:fall 2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── RESPONSIVE ── */
-@media (max-width: 660px) {
-  .hero-code { font-size: 60px; }
-  .hero-title { font-size: 18px; }
-  .cores-grid { grid-template-columns: 1fr; }
-  .lp-inputs { grid-template-columns: 1fr; }
-  .calc-results { grid-template-columns: 1fr 1fr; }
-  .meanings-grid { grid-template-columns: 1fr 1fr; }
-  .top-nav { padding: 12px 16px; }
-  .nav-meta { display: none; }
-  main { padding-left: 16px; padding-right: 16px; }
-  .transmission { padding: 26px 22px; }
-  .save-bar { padding: 12px 16px; }
-}
-@media (max-width: 420px) {
-  .calc-results { grid-template-columns: 1fr; }
-}
+@media(max-width:660px){.hero-code{font-size:60px}.hero-title{font-size:18px}.cores{grid-template-columns:1fr}.lf-grid{grid-template-columns:1fr}.res-grid{grid-template-columns:1fr 1fr}.mg{grid-template-columns:1fr 1fr}.wg{grid-template-columns:1fr}.nav-cards{grid-template-columns:1fr}.top-nav{padding:12px 16px}.nav-crumb{display:none}main{padding-left:16px;padding-right:16px}.tx{padding:26px 22px}}
 </style>
 </head>
 <body>
 
-<!-- Progress -->
 <div id="prog-wrap"><div id="prog-fill"></div></div>
 
-<!-- Nav -->
 <div class="top-nav">
   <div class="nav-brand">THE FREQUENCY ACADEMY</div>
-  <div class="nav-meta">NUMEROLOGY · N2</div>
+  <div class="nav-crumb">NUMEROLOGY · N2</div>
   <div class="nav-xp" id="xp-display">0 XP</div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <main>
 
-  <!-- ══ HERO ══ -->
-  <div class="lesson-section hero visible">
-    <div class="hero-eyebrow">Symbolic Sciences · Module I · Numerology</div>
+  <!-- HERO -->
+  <div class="ls hero visible">
+    <div class="hero-eye">Symbolic Sciences · Module I · Numerology</div>
     <div class="hero-code">N2</div>
     <div class="hero-title">Personal Numerology</div>
     <div class="hero-sub">Your Four Core Numbers</div>
-    <div class="hero-divider"></div>
+    <div class="hero-rule"></div>
     <div class="hero-tag">⟡ Module 2 of 333 · ~15 Min</div>
     <canvas id="num-canvas"></canvas>
   </div>
 
-  <!-- ══ 1. OPENING TRANSMISSION ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">TRANSMISSION</div><div class="sec-rule"></div></div>
-    <div class="transmission">
-      <div class="tx-label">Opening Transmission · N2</div>
+  <!-- TRANSMISSION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">TRANSMISSION</div><div class="sh-rule"></div></div>
+    <div class="tx">
+      <div class="tx-lbl">Opening Transmission · N2</div>
       <p>Before your name was given to you, <strong>the universe already knew your number.</strong> Encoded in the moment of your birth — in the precise arrangement of day, month, and year — is a vibrational signature as unique as your fingerprint and as ancient as mathematics itself.</p>
-      <p>The ancients didn't separate number from spirit. Pythagoras taught that number is the <strong>language through which the divine speaks to matter.</strong> The mystery schools encoded entire cosmologies in numerical relationships. What modern numerology calls your "chart," the initiates called your <em>sacred frequency map</em> — the blueprint your soul chose before it arrived.</p>
+      <p>The ancients didn't separate number from spirit. Pythagoras taught that number is the <strong>language through which the divine speaks to matter.</strong> What modern numerology calls your "chart," the initiates called your <em>sacred frequency map</em> — the blueprint your soul chose before it arrived.</p>
       <p>Today, you decode four of those numbers. Not to be defined by them — but to be <strong>confirmed by them.</strong></p>
     </div>
   </div>
 
-  <!-- ══ 2. CORE CONCEPT ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">01</div><div class="sec-rule"></div></div>
-    <div class="sec-title">What Is Personal Numerology?</div>
-
-    <div class="card">
-      <p>Numerology is the study of the relationship between numbers and the events, energies, and characteristics of life. Every letter in every language has a numerical value. Every date can be reduced to a single digit. And in that reduction — that distillation of complexity to essence — something remarkable emerges: <strong style="color:var(--accent2)">pattern</strong>.</p>
-      <p>Personal numerology identifies four core numbers that together form your <em>vibrational blueprint</em> — a map of your soul's journey, your natural gifts, your deepest desires, and how you present yourself to the world. These are not predictions. They are mirrors.</p>
-    </div>
-
-    <div class="callout">
-      <p>"Know thyself — and the numbers will confirm what you already feel."<br><span style="font-size:11px;opacity:0.7;font-style:normal;letter-spacing:2px">— The Frequency Academy</span></p>
-    </div>
-
-    <div class="cores-grid">
-      <div class="core-card">
-        <div class="core-num">NUMBER ONE</div>
-        <div class="core-name">Life Path</div>
-        <div class="core-from">From: Full birth date</div>
-        <div class="core-reveals">Your soul's core journey — the road you were born to travel. Life lessons, natural strengths, and overarching life theme.</div>
-        <span class="core-tag">Core Purpose</span>
-      </div>
-      <div class="core-card">
-        <div class="core-num">NUMBER TWO</div>
-        <div class="core-name">Expression</div>
-        <div class="core-from">From: Full birth name (all letters)</div>
-        <div class="core-reveals">Your talents, abilities, and the direction your life is naturally destined to unfold. Also called the Destiny Number.</div>
-        <span class="core-tag">Natural Gifts</span>
-      </div>
-      <div class="core-card">
-        <div class="core-num">NUMBER THREE</div>
-        <div class="core-name">Soul Urge</div>
-        <div class="core-from">From: Vowels in your birth name</div>
-        <div class="core-reveals">Your heart's deepest desire — what you truly crave at your core, your innermost motivations, what makes your soul feel alive.</div>
-        <span class="core-tag">Inner Desire</span>
-      </div>
-      <div class="core-card">
-        <div class="core-num">NUMBER FOUR</div>
-        <div class="core-name">Personality</div>
-        <div class="core-from">From: Consonants in your birth name</div>
-        <div class="core-reveals">The first impression you give others before they truly know you. How you present yourself to the world — your public mask.</div>
-        <span class="core-tag">Outer Mask</span>
-      </div>
+  <!-- CORE CONCEPT -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">01</div><div class="sh-rule"></div></div>
+    <div class="st">Your Four Core Numbers</div>
+    <div class="card"><p>Personal numerology identifies four core numbers that together form your <strong style="color:var(--accent2)">vibrational blueprint</strong> — a map of your soul's journey, your natural gifts, your deepest desires, and how you present yourself to the world.</p></div>
+    <div class="callout"><p>"Know thyself — and the numbers will confirm what you already feel."<br><span style="font-size:11px;opacity:.7;font-style:normal;letter-spacing:2px">— The Frequency Academy</span></p></div>
+    <div class="cores">
+      <div class="core-card"><div class="core-n">NUMBER ONE</div><div class="core-name">Life Path</div><div class="core-from">From: Full birth date</div><div class="core-rv">Your soul's core journey — the road you were born to travel. Life lessons, natural strengths, and overarching theme.</div><span class="core-tag">Core Purpose</span></div>
+      <div class="core-card"><div class="core-n">NUMBER TWO</div><div class="core-name">Expression</div><div class="core-from">From: Full birth name (all letters)</div><div class="core-rv">Your talents, abilities, and the direction your life is naturally destined to unfold.</div><span class="core-tag">Natural Gifts</span></div>
+      <div class="core-card"><div class="core-n">NUMBER THREE</div><div class="core-name">Soul Urge</div><div class="core-from">From: Vowels in your birth name</div><div class="core-rv">Your heart's deepest desire — what you truly crave at your core, your innermost motivations.</div><span class="core-tag">Inner Desire</span></div>
+      <div class="core-card"><div class="core-n">NUMBER FOUR</div><div class="core-name">Personality</div><div class="core-from">From: Consonants in your birth name</div><div class="core-rv">The first impression you give others before they truly know you. How you present yourself to the world.</div><span class="core-tag">Outer Mask</span></div>
     </div>
   </div>
 
-  <!-- ══ 3. THE PYTHAGOREAN SYSTEM ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">02</div><div class="sec-rule"></div></div>
-    <div class="sec-title">The Pythagorean Number System</div>
-
-    <div class="card">
-      <p>All name-based calculations use the Pythagorean system, in which the letters A–Z are assigned values 1–9 cyclically. Pythagoras believed nine was the number of completion — the universe's fundamental cycle — and that all complexity returns to these nine essences.</p>
-    </div>
-
-    <table class="pyth-table">
-      <thead>
-        <tr><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>A J S</td><td>B K T</td><td>C L U</td><td>D M V</td><td>E N W</td><td>F O X</td><td>G P Y</td><td>H Q Z</td><td>I R</td></tr>
-      </tbody>
-    </table>
-
-    <div class="card" style="margin-top:20px">
-      <p>A=1, B=2, C=3 ... I=9, then the cycle resets: J=1, K=2 ... R=9, then again: S=1, T=2 ... Z=8. The letter Y is treated as a vowel when it functions as one — for example, in names like <em>Lynn</em> or <em>Kylie</em> where Y carries the vowel sound.</p>
-      <p><strong style="color:var(--accent2)">Master Numbers 11, 22, and 33</strong> are never reduced in your chart — they carry amplified, spiritually significant vibrations that exist outside the 1–9 system.</p>
-    </div>
+  <!-- PYTHAGOREAN -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">02</div><div class="sh-rule"></div></div>
+    <div class="st">The Pythagorean System</div>
+    <div class="card"><p>All name-based calculations use the Pythagorean system — the alphabet assigned values 1–9 in a repeating cycle. Commit this table to memory. You will use it for every name calculation in this module.</p></div>
+    <table class="pyth"><thead><tr><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr></thead><tbody><tr><td>A J S</td><td>B K T</td><td>C L U</td><td>D M V</td><td>E N W</td><td>F O X</td><td>G P Y</td><td>H Q Z</td><td>I R</td></tr></tbody></table>
+    <div class="card" style="margin-top:14px"><p>A=1, B=2 ... I=9, then J=1, K=2 ... R=9, then S=1 ... Z=8. <strong style="color:var(--accent2)">Master Numbers 11, 22, 33</strong> are never reduced in your chart. Y is a vowel when it carries the vowel sound in a syllable (e.g. Lynn, Mary).</p></div>
   </div>
 
-  <!-- ══ 4A. LIFE PATH ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">03</div><div class="sec-rule"></div></div>
-    <div class="sec-title">The Life Path Number</div>
-
-    <div class="card">
-      <p>Your Life Path is your most important number. Derived from your full birth date, it describes the road you were born to travel — your core lessons, your natural strengths, and the overarching theme woven through every chapter of your life. While other numbers describe your gifts or desires, the Life Path is the <em>journey itself</em>.</p>
-    </div>
-
+  <!-- LIFE PATH -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">03</div><div class="sh-rule"></div></div>
+    <div class="st">The Life Path Number</div>
+    <div class="card"><p>Your most important number. Derived from your full birth date — each part reduced separately, then combined. Describes the road you were born to travel.</p></div>
     <div class="steps">
-      <div class="step"><div class="step-n">1</div><div class="step-body">Write your full birth date as <strong>Month / Day / Year</strong></div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-body">Reduce each part <strong>separately</strong> to a single digit — unless it produces 11, 22, or 33 (preserve these)</div></div>
-      <div class="step"><div class="step-n">3</div><div class="step-body">Add the three reduced numbers together</div></div>
-      <div class="step"><div class="step-n">4</div><div class="step-body">Reduce the total to a single digit — unless it is <strong>11, 22, or 33</strong></div></div>
+      <div class="step"><div class="step-n">1</div><div class="step-b">Write your birth date as <strong>Month / Day / Year</strong></div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-b">Reduce each part <strong>separately</strong> to a single digit (preserve 11, 22, 33)</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-b">Add the three results together, then reduce once more</div></div>
     </div>
-
     <div class="card">
-      <p style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;color:var(--accent);margin-bottom:12px">WORKED EXAMPLE · Birth date: November 28, 1984</p>
-      <table class="worked-table">
-        <thead><tr><th>Part</th><th>Calculation</th><th>Result</th></tr></thead>
-        <tbody>
-          <tr><td>Month: November = 11</td><td>1 + 1</td><td class="result">2</td></tr>
-          <tr><td>Day: 28</td><td>2 + 8 = 10 → 1 + 0</td><td class="result">1</td></tr>
-          <tr><td>Year: 1984</td><td>1+9+8+4 = 22 → 2+2</td><td class="result">4</td></tr>
-          <tr><td>Total</td><td>2 + 1 + 4 = 7</td><td class="result" style="font-size:22px">7</td></tr>
-        </tbody>
-      </table>
-      <p style="margin-top:14px;font-style:italic;color:var(--text-dim);font-size:13px">Life Path 7 = The Seeker. A life of wisdom, introspection, and spiritual truth.</p>
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:12px">WORKED EXAMPLE · November 28, 1984</p>
+      <table class="wt"><thead><tr><th>Part</th><th>Calculation</th><th>Result</th></tr></thead><tbody><tr><td>Month: November = 11</td><td>1+1</td><td class="r">2</td></tr><tr><td>Day: 28</td><td>2+8=10 → 1+0</td><td class="r">1</td></tr><tr><td>Year: 1984</td><td>1+9+8+4=22 → 2+2</td><td class="r">4</td></tr><tr><td>Total</td><td>2+1+4=7</td><td class="r" style="font-size:22px">7</td></tr></tbody></table>
+      <p style="margin-top:12px;font-style:italic;color:var(--dim);font-size:13px">Life Path 7 = The Seeker. A life of wisdom, introspection, and spiritual truth.</p>
     </div>
   </div>
 
-  <!-- ══ 4B. EXPRESSION ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">04</div><div class="sec-rule"></div></div>
-    <div class="sec-title">The Expression Number</div>
-
-    <div class="card">
-      <p>Also called the Destiny Number. It reveals the talents and abilities you were born with and the direction your life is naturally destined to unfold. Use your <strong style="color:var(--accent2)">full name exactly as it appears on your birth certificate</strong> — including middle name. Do not use a married or preferred name.</p>
+  <!-- EXPRESSION + SOUL URGE + PERSONALITY -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">04</div><div class="sh-rule"></div></div>
+    <div class="st">Expression, Soul Urge & Personality</div>
+    <div class="card"><p>All three are derived from your <strong style="color:var(--accent2)">full birth name exactly as it appears on your birth certificate</strong>. Always use your birth name — not married, preferred, or nickname.</p></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0">
+      <div class="card" style="margin-bottom:0"><p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">EXPRESSION</p><p style="font-size:13px">Assign a number to <strong style="color:var(--accent2)">every letter</strong>. Sum each name separately, reduce, then add the name totals and reduce again.</p></div>
+      <div class="card" style="margin-bottom:0"><p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">SOUL URGE</p><p style="font-size:13px">Use only the <strong style="color:var(--accent2)">vowels</strong> (A, E, I, O, U). Sum all vowel values across the full name, then reduce.</p></div>
+      <div class="card" style="margin-bottom:0"><p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">PERSONALITY</p><p style="font-size:13px">Use only the <strong style="color:var(--accent2)">consonants</strong>. Sum all consonant values across the full name, then reduce.</p></div>
     </div>
-
-    <div class="steps">
-      <div class="step"><div class="step-n">1</div><div class="step-body">Write out your full birth name</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-body">Using the Pythagorean table, <strong>assign a number to every letter</strong></div></div>
-      <div class="step"><div class="step-n">3</div><div class="step-body">Add all numbers in <strong>each name separately</strong>, then reduce each name's total (preserve 11, 22, 33)</div></div>
-      <div class="step"><div class="step-n">4</div><div class="step-body">Add the name totals together and reduce to a single digit (or master number)</div></div>
-    </div>
-
-    <div class="card">
-      <p style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;color:var(--accent);margin-bottom:12px">WORKED EXAMPLE · Name: JOHN DAVID LEE</p>
-      <table class="worked-table">
-        <thead><tr><th>Name</th><th>Letter Values</th><th>Sum</th><th>Reduced</th></tr></thead>
-        <tbody>
-          <tr><td>JOHN</td><td>J(1)+O(6)+H(8)+N(5)</td><td>20</td><td class="result">2</td></tr>
-          <tr><td>DAVID</td><td>D(4)+A(1)+V(4)+I(9)+D(4)</td><td>22</td><td class="result">22 ★</td></tr>
-          <tr><td>LEE</td><td>L(3)+E(5)+E(5)</td><td>13</td><td class="result">4</td></tr>
-          <tr><td>Total</td><td>2 + 22 + 4 = 28 → 10 → 1+0</td><td></td><td class="result" style="font-size:22px">1</td></tr>
-        </tbody>
-      </table>
-      <p style="margin-top:12px;font-size:12px;color:var(--text-dim);font-style:italic">★ When a name sub-total equals a master number (11, 22, 33), preserve it before adding to the total.</p>
-    </div>
+    <div class="callout"><p>The gap between your Soul Urge and Personality numbers reveals the distance between your inner world and your outer presentation.<br>That gap is itself a teaching.</p></div>
   </div>
 
-  <!-- ══ 4C. SOUL URGE + PERSONALITY ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">05</div><div class="sec-rule"></div></div>
-    <div class="sec-title">Soul Urge & Personality Numbers</div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
-      <div class="card">
-        <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:14px">SOUL URGE · Vowels Only</p>
-        <p>Also called the Heart's Desire. Use only the <strong style="color:var(--accent2)">vowels</strong> (A, E, I, O, U) from your full birth name. Assign each a number, sum them, and reduce.</p>
-        <p style="margin-top:12px;font-size:12px;font-style:italic;color:var(--text-dim)">Example · JOHN DAVID LEE<br>O(6)+A(1)+I(9)+E(5)+E(5) = 26 → 8</p>
-      </div>
-      <div class="card">
-        <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:14px">PERSONALITY · Consonants Only</p>
-        <p>The mask you wear in public. Use only the <strong style="color:var(--accent2)">consonants</strong> from your full birth name. Assign each a number, sum them, and reduce.</p>
-        <p style="margin-top:12px;font-size:12px;font-style:italic;color:var(--text-dim)">Example · JOHN DAVID LEE<br>J(1)+H(8)+N(5)+D(4)+V(4)+D(4)+L(3) = 29 → 11</p>
-      </div>
-    </div>
-
-    <div class="callout">
-      <p>The Soul Urge and Personality together reveal the gap between your inner world and your outer presentation.<br>The distance between them — or the alignment — is itself a teaching.</p>
-    </div>
-  </div>
-
-  <!-- ══ 5. INTERACTIVE CALCULATOR ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">INTERACTIVE</div><div class="sec-rule"></div></div>
-    <div class="sec-title">Calculate Your Core Numbers</div>
-
-    <div class="calc-wrap">
-      <div class="calc-header">
+  <!-- CALCULATOR -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">INTERACTIVE</div><div class="sh-rule"></div></div>
+    <div class="st">Calculate Your Core Numbers</div>
+    <div class="calc">
+      <div class="calc-hd">
         <div class="calc-title">⟡ Personal Numerology Calculator</div>
         <div class="calc-tabs">
-          <button class="calc-tab active" onclick="switchTab('lp')">Life Path</button>
-          <button class="calc-tab" onclick="switchTab('name')">Name Numbers</button>
+          <button class="ctab active" onclick="switchTab('lp',this)">Life Path</button>
+          <button class="ctab" onclick="switchTab('nm',this)">Name Numbers</button>
         </div>
       </div>
       <div class="calc-body">
-
-        <!-- LIFE PATH TAB -->
-        <div class="calc-pane active" id="tab-lp">
-          <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px">Enter your birth date to calculate your Life Path Number. Each part is reduced separately, then combined.</p>
-          <div class="lp-inputs">
-            <div class="lp-field">
-              <label>Birth Month</label>
-              <select id="lp-month" onchange="calcLifePath()">
-                <option value="">Month</option>
-                <option value="1">January (1)</option>
-                <option value="2">February (2)</option>
-                <option value="3">March (3)</option>
-                <option value="4">April (4)</option>
-                <option value="5">May (5)</option>
-                <option value="6">June (6)</option>
-                <option value="7">July (7)</option>
-                <option value="8">August (8)</option>
-                <option value="9">September (9)</option>
-                <option value="10">October (10 → 1)</option>
-                <option value="11">November (11 ★)</option>
-                <option value="12">December (12 → 3)</option>
-              </select>
-            </div>
-            <div class="lp-field">
-              <label>Birth Day</label>
-              <input type="number" id="lp-day" placeholder="e.g. 28" min="1" max="31" oninput="calcLifePath()">
-            </div>
-            <div class="lp-field">
-              <label>Birth Year</label>
-              <input type="number" id="lp-year" placeholder="e.g. 1984" min="1900" max="2025" oninput="calcLifePath()">
-            </div>
+        <!-- LIFE PATH -->
+        <div class="cp active" id="cp-lp">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:18px">Enter your birth date. Each part reduces separately — master numbers (11, 22, 33) are preserved automatically.</p>
+          <div class="lf-grid">
+            <div class="cf"><label>Birth Month</label><select id="lp-m" onchange="calcLP()"><option value="">Month</option><option value="1">January (1)</option><option value="2">February (2)</option><option value="3">March (3)</option><option value="4">April (4)</option><option value="5">May (5)</option><option value="6">June (6)</option><option value="7">July (7)</option><option value="8">August (8)</option><option value="9">September (9)</option><option value="10">October (10→1)</option><option value="11">November (11★)</option><option value="12">December (12→3)</option></select></div>
+            <div class="cf"><label>Birth Day</label><input type="number" id="lp-d" placeholder="e.g. 28" min="1" max="31" oninput="calcLP()"></div>
+            <div class="cf"><label>Birth Year</label><input type="number" id="lp-y" placeholder="e.g. 1984" min="1900" max="2025" oninput="calcLP()"></div>
           </div>
-          <div id="lp-steps" style="font-size:12px;color:var(--text-dim);margin-bottom:16px;font-style:italic;line-height:1.8;min-height:24px"></div>
-          <div class="calc-results" style="grid-template-columns:1fr 1fr 1fr">
-            <div class="result-box" id="lp-m-box"><div class="result-label">MONTH REDUCED</div><div class="result-number" id="lp-m">—</div></div>
-            <div class="result-box" id="lp-d-box"><div class="result-label">DAY REDUCED</div><div class="result-number" id="lp-d">—</div></div>
-            <div class="result-box" id="lp-y-box"><div class="result-label">YEAR REDUCED</div><div class="result-number" id="lp-y">—</div></div>
+          <div class="lp-steps-txt" id="lp-steps"></div>
+          <div class="res-grid" style="grid-template-columns:1fr 1fr 1fr">
+            <div class="rb"><div class="rl">MONTH</div><div class="rn" id="r-m">—</div></div>
+            <div class="rb"><div class="rl">DAY</div><div class="rn" id="r-d">—</div></div>
+            <div class="rb"><div class="rl">YEAR</div><div class="rn" id="r-y">—</div></div>
           </div>
-          <div class="result-box highlight" style="margin-top:14px;text-align:center">
-            <div class="result-label">YOUR LIFE PATH NUMBER</div>
-            <div class="result-number" id="lp-result" style="font-size:56px">—</div>
-            <div class="result-meaning" id="lp-meaning"></div>
+          <div class="rb hi" style="margin-top:12px;text-align:center">
+            <div class="rl">YOUR LIFE PATH NUMBER</div>
+            <div class="rn" id="r-lp" style="font-size:54px">—</div>
+            <div class="rm" id="r-lp-m"></div>
           </div>
         </div>
-
-        <!-- NAME TAB -->
-        <div class="calc-pane" id="tab-name">
-          <p style="font-size:13px;color:var(--text-dim);margin-bottom:18px">Enter your full birth name as it appears on your birth certificate. Letters are colour-coded: <span style="color:var(--accent)">gold = vowels</span>, blue = consonants.</p>
-          <div class="name-field"><label>First Name</label><input type="text" id="n-first" placeholder="First name" oninput="calcName()"></div>
-          <div class="name-field"><label>Middle Name (leave blank if none)</label><input type="text" id="n-mid" placeholder="Middle name (optional)" oninput="calcName()"></div>
-          <div class="name-field"><label>Last Name</label><input type="text" id="n-last" placeholder="Last name" oninput="calcName()"></div>
-
-          <div id="letter-display-wrap" style="display:none">
-            <p style="font-size:11px;letter-spacing:2px;color:var(--accent);margin:18px 0 10px;font-family:'Cinzel',serif">LETTER BREAKDOWN</p>
-            <div class="letter-display" id="letter-chips"></div>
-          </div>
-
-          <div class="calc-results" id="name-results" style="margin-top:16px">
-            <div class="result-box highlight" id="expr-box">
-              <div class="result-label">EXPRESSION</div>
-              <div class="result-number" id="expr-num">—</div>
-              <div class="result-meaning" id="expr-mean"></div>
-            </div>
-            <div class="result-box" id="soul-box">
-              <div class="result-label">SOUL URGE</div>
-              <div class="result-number" id="soul-num">—</div>
-              <div class="result-meaning" id="soul-mean"></div>
-            </div>
-            <div class="result-box" id="pers-box">
-              <div class="result-label">PERSONALITY</div>
-              <div class="result-number" id="pers-num">—</div>
-              <div class="result-meaning" id="pers-mean"></div>
-            </div>
-            <div class="result-box" id="synth-box" style="display:none">
-              <div class="result-label">SYNTHESIS</div>
-              <div class="result-steps" id="synth-text" style="font-size:12px;color:var(--text-dim)"></div>
-            </div>
+        <!-- NAME -->
+        <div class="cp" id="cp-nm">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:16px">Enter your full birth name. <span style="color:var(--accent)">Gold = vowels</span>, white = consonants.</p>
+          <div class="nf"><label>First Name</label><input type="text" id="n-first" placeholder="First name" oninput="calcName()"></div>
+          <div class="nf"><label>Middle Name (leave blank if none)</label><input type="text" id="n-mid" placeholder="Middle name (optional)" oninput="calcName()"></div>
+          <div class="nf"><label>Last Name</label><input type="text" id="n-last" placeholder="Last name" oninput="calcName()"></div>
+          <div id="lc-wrap" style="display:none"><p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin:16px 0 10px">LETTER BREAKDOWN</p><div class="lc-wrap" id="lc-chips"></div></div>
+          <div class="res-grid" id="nm-results" style="margin-top:14px">
+            <div class="rb hi"><div class="rl">EXPRESSION</div><div class="rn" id="r-expr">—</div><div class="rm" id="r-expr-m"></div></div>
+            <div class="rb"><div class="rl">SOUL URGE</div><div class="rn" id="r-soul">—</div><div class="rm" id="r-soul-m"></div></div>
+            <div class="rb"><div class="rl">PERSONALITY</div><div class="rn" id="r-pers">—</div><div class="rm" id="r-pers-m"></div></div>
+            <div class="rb" id="r-synth-box" style="display:none"><div class="rl">WORKING</div><div style="font-size:11px;color:var(--dim);line-height:1.7;margin-top:6px" id="r-synth"></div></div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- ══ 6. MEANINGS REFERENCE ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">REFERENCE</div><div class="sec-rule"></div></div>
-    <div class="sec-title">Core Number Meanings</div>
-    <div class="card" style="margin-bottom:20px">
-      <p>These meanings apply across all four numbers — Life Path, Expression, Soul Urge, and Personality. A number 7 Life Path seeks wisdom through introspection; a number 7 Soul Urge craves understanding at the level of soul. Same frequency, different domain.</p>
+  <!-- MEANINGS -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">REFERENCE</div><div class="sh-rule"></div></div>
+    <div class="st">Core Number Meanings</div>
+    <div class="card"><p>These meanings apply across all four numbers. A Life Path 7 seeks wisdom through the journey; a Soul Urge 7 craves understanding at the level of the heart. Same frequency, different domain.</p></div>
+    <div class="mg" id="mg"></div>
+  </div>
+
+  <!-- ANCIENT WISDOM -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">05</div><div class="sh-rule"></div></div>
+    <div class="st">Ancient Knowing · Modern Proof</div>
+    <div class="card"><p>The mystery schools did not lack this knowledge. They held it in a different vessel — encoded in ritual and sacred language. What numerology calls your vibrational blueprint, the Egyptians called your <em>Ka</em>. What we call Life Path, the Vedic seers called <em>dharma</em>. Same truth, different language.</p></div>
+    <div class="wg">
+      <div class="wc hd">Ancient Teaching</div><div class="wc hd">Modern Numerology</div>
+      <div class="wc an"><p>The soul chooses its path before birth</p></div><div class="wc sc"><p>Life Path number encoded in your birth date</p></div>
+      <div class="wc an"><p>Each person carries a sacred name</p></div><div class="wc sc"><p>Expression number derived from birth name</p></div>
+      <div class="wc an"><p>The inner life is hidden from the world</p></div><div class="wc sc"><p>Soul Urge (inner) vs Personality (outer)</p></div>
+      <div class="wc an"><p>Numbers are living forces, not abstractions</p></div><div class="wc sc"><p>Each number carries a vibrational archetype</p></div>
     </div>
-    <div class="meanings-grid" id="meanings-grid"></div>
   </div>
 
-  <!-- ══ 7. QUICK REFERENCE ACCORDION ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">QUICK REF</div><div class="sec-rule"></div></div>
-    <div class="sec-title">Rules & Edge Cases</div>
-    <div class="accordion" id="accordion"></div>
+  <!-- QUICK REF ACCORDION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">QUICK REF</div><div class="sh-rule"></div></div>
+    <div class="st">Rules & Edge Cases</div>
+    <div id="accordion"></div>
   </div>
 
-  <!-- ══ 8. KNOWLEDGE CHECK ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">KNOWLEDGE CHECK</div><div class="sec-rule"></div></div>
-    <div class="sec-title">Test Your Understanding</div>
-    <div class="quiz-wrap" id="quiz"></div>
+  <!-- KNOWLEDGE CHECK -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">KNOWLEDGE CHECK</div><div class="sh-rule"></div></div>
+    <div class="st">Test Your Understanding</div>
+    <div id="quiz"></div>
     <div class="quiz-score" id="quiz-score"></div>
   </div>
 
-  <!-- ══ 9. PRACTICAL APPLICATION ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">PRACTICE</div><div class="sec-rule"></div></div>
-    <div class="sec-title">This Week: Your Blueprint</div>
-
-    <div class="transmission">
-      <div class="tx-label">Practical Application · Do This</div>
-      <p><strong>Step 1 — Calculate all four numbers</strong> using the calculator above. Write them down in your journal or on paper. Don't rush. Allow each number to land.</p>
-      <p><strong>Step 2 — Sit with your Life Path first.</strong> Read its meaning slowly. Notice what resonates — not what you wish were true, but what you recognise as already true. The number is a mirror, not a prescription.</p>
-      <p><strong>Step 3 — Look for the gap.</strong> Compare your Soul Urge to your Personality number. Where are they aligned? Where do they differ? This gap often reveals where your inner life and outer presentation have diverged — and where your most important integration work lives.</p>
+  <!-- PRACTICAL APPLICATION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">PRACTICE</div><div class="sh-rule"></div></div>
+    <div class="st">This Week: Your Blueprint</div>
+    <div class="tx">
+      <div class="tx-lbl">Practical Application · Do This</div>
+      <p><strong>Step 1 — Calculate all four numbers</strong> using the calculator above. Write them down by hand. Don't rush. Allow each number to land before moving to the next.</p>
+      <p><strong>Step 2 — Sit with your Life Path first.</strong> Read its meaning slowly. Notice what resonates — not what you wish were true, but what you already recognise as true.</p>
+      <p><strong>Step 3 — Look for the gap.</strong> Compare your Soul Urge to your Personality number. Where are they aligned? Where do they differ? This gap often reveals your most important integration work.</p>
       <p><strong>Step 4 — Tell someone your Life Path number</strong> and invite them to share theirs. Notice how naturally the conversation deepens. Numbers are a shared language for self-disclosure.</p>
     </div>
   </div>
 
-  <!-- ══ 10. REFLECTION ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">07</div><div class="sec-rule"></div></div>
-    <div class="sec-title">Reflection Journal</div>
-
-    <div class="callout" style="margin-bottom:28px"><p>Calculate your four numbers before writing. Let the numbers settle for a moment before putting pen to page — or finger to keyboard.</p></div>
-
-    <div class="reflection-q">1 — Which of your four numbers resonates with you most strongly right now? What does it confirm that you already knew — or sensed — about yourself?</div>
-    <textarea class="reflection-field" id="ref-1" placeholder="Write freely. There is no wrong answer here..." oninput="autoSave()"></textarea>
-
-    <div class="reflection-q">2 — Is there a number in your chart that surprises you, challenges you, or feels difficult to claim? What might that resistance be protecting?</div>
-    <textarea class="reflection-field" id="ref-2" placeholder="Let the question settle before you answer..." oninput="autoSave()"></textarea>
-
-    <div class="reflection-q">3 — Looking at your Soul Urge alongside your Personality: is there a gap between what you crave inwardly and how others perceive you? How does that gap feel — and what might it be asking of you?</div>
-    <textarea class="reflection-field" id="ref-3" placeholder="The gap between inner and outer is where the real work lives..." oninput="autoSave()"></textarea>
+  <!-- REFLECTION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">REFLECTION</div><div class="sh-rule"></div></div>
+    <div class="st">Reflection Journal</div>
+    <div class="callout" style="margin-bottom:24px"><p>Calculate your four numbers first. Let them settle for a moment before writing.</p></div>
+    <div class="ref-q">1 — Which of your four numbers resonates most strongly right now? What does it confirm that you already knew about yourself?</div>
+    <textarea class="ref-ta" id="ref-1" placeholder="Write freely..." oninput="autoSave()"></textarea>
+    <div class="ref-q">2 — Is there a number in your chart that surprises you or feels difficult to claim? What might that resistance be protecting?</div>
+    <textarea class="ref-ta" id="ref-2" placeholder="Let the question settle before you answer..." oninput="autoSave()"></textarea>
+    <div class="ref-q">3 — Looking at your Soul Urge alongside your Personality: is there a gap between what you crave inwardly and how others perceive you? What is that gap asking of you?</div>
+    <textarea class="ref-ta" id="ref-3" placeholder="The gap between inner and outer is where the real work lives..." oninput="autoSave()"></textarea>
   </div>
 
-  <!-- ══ 11. WORKSHOP SLOT ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">LIVE WORKSHOP</div><div class="sec-rule"></div></div>
-    <div class="sec-title">Live Session</div>
-    <div class="workshop-slot">
-      <div class="ws-icon">⟡</div>
-      <div class="ws-title">Live Workshop on Personal Numerology</div>
-      <div class="ws-sub">Coming soon — recordings and live session links will appear here once scheduled.<br>Check The Frequency Academy community for announcements.</div>
-    </div>
+  <!-- WORKSHOP -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">LIVE WORKSHOP</div><div class="sh-rule"></div></div>
+    <div class="st">Live Session</div>
+    <div class="ws"><div class="ws-ic">⟡</div><div class="ws-t">Live Workshop: Personal Numerology</div><div class="ws-s">Coming soon — recordings and live session links will appear here once scheduled.<br>Check The Frequency Academy community for announcements.</div></div>
   </div>
 
-  <!-- ══ 12. COMPLETION ══ -->
-  <div class="lesson-section">
-    <div class="completion-wrap">
-      <div class="completion-title">SEAL THIS LESSON</div>
-      <div class="completion-sub">Complete your reflections above, then mark the lesson complete to record your progress.</div>
-      <button class="complete-btn" id="complete-btn" onclick="markComplete()">⟡ Mark Complete · +10 XP</button>
+  <!-- COMPLETION -->
+  <div class="ls">
+    <div class="comp-wrap">
+      <div class="comp-t">SEAL THIS LESSON</div>
+      <div class="comp-s">Complete your reflections above, then seal this lesson to record your progress.</div>
+      <button class="comp-btn" id="comp-btn" onclick="markComplete()">⟡ Mark Complete · +10 XP</button>
       <div class="xp-pop" id="xp-pop">✦ +10 XP Awarded · N2 Complete ✦</div>
     </div>
   </div>
 
-  <!-- ══ 13. UP NEXT ══ -->
-  <div class="lesson-section">
-    <div class="sec-header"><div class="sec-tag">UP NEXT</div><div class="sec-rule"></div></div>
-    <div class="sec-title">Continue the Journey</div>
-    <div class="next-card" onclick="toast('N3 — The Personal Year Cycle coming soon')">
-      <div>
-        <div class="next-label">NEXT · N3</div>
-        <div class="next-title">The Personal Year Cycle</div>
-        <div class="next-sub">Discover how numerology maps time itself. Calculate your Personal Year Number to understand the energetic theme governing your current year — and learn how to work with the 9-year cycle for powerful life planning.</div>
-      </div>
-      <div class="next-arrow">→</div>
+  <!-- UP NEXT / PREV -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">NAVIGATE</div><div class="sh-rule"></div></div>
+    <div class="st">Continue the Journey</div>
+    <div class="nav-cards">
+      <a class="nav-card prev" href="/n1/">
+        <div class="nav-arr">←</div>
+        <div><div class="nav-lbl">PREVIOUS · N1</div><div class="nav-title">The Language of Numbers</div></div>
+      </a>
+      <a class="nav-card" href="/n3/">
+        <div><div class="nav-lbl">NEXT · N3</div><div class="nav-title">The Personal Year Cycle</div></div>
+        <div class="nav-arr">→</div>
+      </a>
     </div>
   </div>
 
 </main>
 
-<!-- Save Bar -->
 <div id="save-bar">
-  <div class="save-status">Auto-save: <span id="save-time">—</span></div>
-  <div class="save-actions">
-    <input type="file" id="import-file" accept=".json" onchange="importData(event)">
-    <button class="save-btn secondary" onclick="document.getElementById('import-file').click()">Import</button>
-    <button class="save-btn primary" onclick="exportData()">Export Backup</button>
+  <div class="sv-status">Auto-save: <span id="save-time">—</span></div>
+  <div class="sv-actions">
+    <input type="file" id="imp-file" accept=".json" onchange="importData(event)">
+    <button class="sv-btn sec" onclick="document.getElementById('imp-file').click()">Import</button>
+    <button class="sv-btn pri" onclick="exportData()">Export Backup</button>
   </div>
 </div>
 
 <script>
-// ══════════════════════════════════════
-// DATA
-// ══════════════════════════════════════
-const MEANINGS = {
-  1:  { theme:'Leadership & Independence', gift:'Pioneer, Innovator', desire:'To lead and create', desc:'The Leader. Original, pioneering, self-reliant. Born to initiate and stand alone when necessary.' },
-  2:  { theme:'Partnership & Balance', gift:'Diplomat, Peacemaker', desire:'To love and connect', desc:'The Mediator. Sensitive, cooperative, intuitive. Thrives in partnership and behind-the-scenes harmony.' },
-  3:  { theme:'Expression & Creativity', gift:'Communicator, Artist', desire:'To create and inspire', desc:'The Communicator. Joyful, expressive, creative. Born to bring beauty and upliftment through self-expression.' },
-  4:  { theme:'Stability & Discipline', gift:'Builder, Organiser', desire:'To create lasting order', desc:'The Builder. Methodical, honest, reliable. Creates the foundations that hold the world together.' },
-  5:  { theme:'Freedom & Change', gift:'Adventurer, Teacher', desire:'To experience life fully', desc:'The Adventurer. Versatile, freedom-loving, dynamic. Learns through experience and needs constant movement.' },
-  6:  { theme:'Responsibility & Love', gift:'Nurturer, Healer', desire:'To love and be loved', desc:'The Nurturer. Caring, responsible, idealistic. Called to serve family and community through love.' },
-  7:  { theme:'Wisdom & Truth', gift:'Analyst, Seeker', desire:'To understand the mystery', desc:'The Seeker. Introspective, analytical, spiritual. Drawn inward to find truth beneath the surface.' },
-  8:  { theme:'Power & Abundance', gift:'Executive, Authority', desire:'To achieve mastery', desc:'The Authority. Ambitious, powerful, achievement-driven. Here to master the material world with integrity.' },
-  9:  { theme:'Compassion & Completion', gift:'Humanitarian, Sage', desire:'To serve all of humanity', desc:'The Humanitarian. Compassionate, wise, universal. Born to serve, give, and release what no longer serves.' },
-  11: { theme:'Spiritual Illumination', gift:'Visionary, Inspirer', desire:'To uplift and enlighten', desc:'The Visionary ★. A master number — intensified 2. Carries a higher spiritual mission to inspire and illuminate.' },
-  22: { theme:'Master Manifestation', gift:'Architect of Reality', desire:'To build lasting legacy', desc:'The Master Builder ★. Can manifest on a monumental scale — turns visionary ideas into physical reality.' },
-  33: { theme:'Divine Service', gift:'Teacher of Teachers', desire:'To heal through love', desc:'The Master Teacher ★. The highest vibration — complete compassion and healing expressed through unconditional love.' }
-};
+const PYTH={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
+const VOWELS=new Set(['A','E','I','O','U']);
+const MEANINGS={1:{n:'The Initiator',t:'Leadership & Independence',d:'To lead and create'},2:{n:'The Harmoniser',t:'Partnership & Balance',d:'To love and connect'},3:{n:'The Creator',t:'Expression & Creativity',d:'To create and inspire'},4:{n:'The Builder',t:'Stability & Discipline',d:'To create lasting order'},5:{n:'The Adventurer',t:'Freedom & Change',d:'To experience life fully'},6:{n:'The Nurturer',t:'Responsibility & Love',d:'To love and be loved'},7:{n:'The Seeker',t:'Wisdom & Truth',d:'To understand the mystery'},8:{n:'The Authority',t:'Power & Abundance',d:'To achieve mastery'},9:{n:'The Humanitarian',t:'Compassion & Completion',d:'To serve humanity'},11:{n:'The Illuminator',t:'Spiritual Illumination',d:'To uplift and enlighten'},22:{n:'The Master Builder',t:'Master Manifestation',d:'To build lasting legacy'},33:{n:'The Master Teacher',t:'Divine Service',d:'To heal through love'}};
 
-const PYTH = {A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
-const VOWELS = new Set(['A','E','I','O','U']);
+function reduce(n){while(n>9&&n!==11&&n!==22&&n!==33){n=String(n).split('').reduce((a,d)=>a+parseInt(d),0);}return n;}
+function rdPart(n){if(n===11||n===22||n===33)return n;let s=String(n).split('').reduce((a,d)=>a+parseInt(d),0);return(s===11||s===22||s===33)?s:reduce(s);}
+function M(n){return MEANINGS[n]||MEANINGS[9];}
 
-// ── Number helpers ──
-function reduce(n) {
-  while (n > 9 && n !== 11 && n !== 22 && n !== 33) {
-    n = String(n).split('').reduce((a,d) => a + parseInt(d), 0);
-  }
-  return n;
-}
-function reduceStep(n, isMaster) {
-  if (n === 11 || n === 22 || n === 33) return n;
-  return reduce(n);
-}
-function letterVal(ch) { return PYTH[ch.toUpperCase()] || 0; }
-function isVowel(ch) {
-  const u = ch.toUpperCase();
-  return VOWELS.has(u);
-}
-function meaning(n) { return MEANINGS[n] || MEANINGS[9]; }
-
-// ── Life Path ──
-function reduceDigits(n) {
-  if (n === 11 || n === 22 || n === 33) return n;
-  let s = String(n).split('').reduce((a,d)=>a+parseInt(d),0);
-  return (s === 11 || s === 22 || s === 33) ? s : reduce(s);
-}
-
-function calcLifePath() {
-  const m = parseInt(document.getElementById('lp-month').value) || 0;
-  const d = parseInt(document.getElementById('lp-day').value) || 0;
-  const y = parseInt(document.getElementById('lp-year').value) || 0;
-  if (!m || !d || !y || y < 1000) { clearLP(); return; }
-
-  const rm = reduceDigits(m);
-  const rd = reduceDigits(d);
-  const ry = reduceDigits([...String(y)].reduce((a,c)=>a+parseInt(c),0));
-  const total = rm + rd + ry;
-  const lp = reduceDigits(total);
-
-  document.getElementById('lp-m').textContent = rm;
-  document.getElementById('lp-d').textContent = rd;
-  document.getElementById('lp-y').textContent = ry;
-  document.getElementById('lp-result').textContent = lp;
-  const m2 = meaning(lp);
-  document.getElementById('lp-meaning').textContent = m2.theme + ' · ' + m2.desc;
-  document.getElementById('lp-steps').textContent =
-    `Month ${m} → ${rm}   +   Day ${d} → ${rd}   +   Year ${y} → ${ry}   =   ${total} → ${lp}`;
-  autoSave();
-}
-function clearLP() {
-  ['lp-m','lp-d','lp-y','lp-result'].forEach(id => document.getElementById(id).textContent = '—');
-  document.getElementById('lp-meaning').textContent = '';
-  document.getElementById('lp-steps').textContent = '';
-}
-
-// ── Name Calculator ──
-function calcName() {
-  const names = [
-    document.getElementById('n-first').value,
-    document.getElementById('n-mid').value,
-    document.getElementById('n-last').value
-  ].filter(n => n.trim());
-
-  if (!names.length) {
-    document.getElementById('letter-display-wrap').style.display = 'none';
-    ['expr-num','soul-num','pers-num'].forEach(id => document.getElementById(id).textContent = '—');
-    ['expr-mean','soul-mean'].forEach(id => document.getElementById(id).textContent = '');
-    return;
-  }
-
-  // Build letter chips
-  const chips = document.getElementById('letter-chips');
-  chips.innerHTML = '';
-  let exprSum = 0, soulSum = 0, persSum = 0;
-
-  names.forEach((nm, ni) => {
-    const letters = nm.toUpperCase().replace(/[^A-Z]/g,'').split('');
-    letters.forEach(ch => {
-      const v = letterVal(ch);
-      const vowel = isVowel(ch);
-      const chip = document.createElement('div');
-      chip.className = 'letter-chip' + (vowel ? ' vowel' : ' consonant');
-      chip.innerHTML = `<span class="letter-char">${ch}</span><span class="letter-val">${v}</span>`;
-      chips.appendChild(chip);
-      exprSum += v;
-      if (vowel) soulSum += v;
-      else persSum += v;
-    });
-    if (ni < names.length - 1) {
-      const spacer = document.createElement('div');
-      spacer.style.cssText = 'width:8px;height:8px;border-radius:50%;background:rgba(201,168,76,0.25);align-self:center';
-      chips.appendChild(spacer);
-    }
-  });
-
-  document.getElementById('letter-display-wrap').style.display = 'block';
-  const expr = reduceDigits(reduce(exprSum));
-  const soul = reduceDigits(reduce(soulSum));
-  const pers = reduceDigits(reduce(persSum));
-
-  document.getElementById('expr-num').textContent = expr;
-  document.getElementById('soul-num').textContent = soul;
-  document.getElementById('pers-num').textContent = pers;
-  document.getElementById('expr-mean').textContent = meaning(expr).theme;
-  document.getElementById('soul-mean').textContent = meaning(soul).desire;
-  document.getElementById('pers-num').textContent = pers;
-
-  const synthBox = document.getElementById('synth-box');
-  synthBox.style.display = 'block';
-  document.getElementById('synth-text').innerHTML =
-    `Expression: ${exprSum} → <strong style="color:var(--accent)">${expr}</strong><br>` +
-    `Soul Urge: ${soulSum} → <strong style="color:var(--accent)">${soul}</strong><br>` +
-    `Personality: ${persSum} → <strong style="color:var(--accent)">${pers}</strong>`;
+// ── Calc Life Path ──
+function calcLP(){
+  const m=parseInt(document.getElementById('lp-m').value)||0;
+  const d=parseInt(document.getElementById('lp-d').value)||0;
+  const y=parseInt(document.getElementById('lp-y').value)||0;
+  if(!m||!d||!y||y<1000){['r-m','r-d','r-y','r-lp'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('r-lp-m').textContent='';document.getElementById('lp-steps').textContent='';return;}
+  const rm=rdPart(m),rd=rdPart(d),ry=rdPart([...String(y)].reduce((a,c)=>a+parseInt(c),0));
+  const tot=rm+rd+ry;const lp=rdPart(tot);
+  document.getElementById('r-m').textContent=rm;document.getElementById('r-d').textContent=rd;document.getElementById('r-y').textContent=ry;
+  document.getElementById('r-lp').textContent=lp;
+  const mv=M(lp);document.getElementById('r-lp-m').textContent=mv.n+' · '+mv.t;
+  document.getElementById('lp-steps').textContent=`Month ${m}→${rm}  +  Day ${d}→${rd}  +  Year ${y}→${ry}  =  ${tot}→${lp}`;
   autoSave();
 }
 
-// ── Tab switch ──
-function switchTab(id) {
-  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.calc-pane').forEach(p => p.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  event.target.classList.add('active');
-}
-
-// ── Build meanings grid ──
-function buildMeanings() {
-  const grid = document.getElementById('meanings-grid');
-  [1,2,3,4,5,6,7,8,9,11,22,33].forEach(n => {
-    const m = MEANINGS[n];
-    const d = document.createElement('div');
-    d.className = 'meaning-card';
-    d.innerHTML = `
-      <div class="meaning-num${n>=11?' master':''}">${n}${n>=11?' ★':''}</div>
-      <div class="meaning-theme">${m.theme}</div>
-      <div class="meaning-gift">${m.gift}</div>
-      <div class="meaning-desire">${m.desire}</div>`;
-    grid.appendChild(d);
+// ── Calc Name ──
+function calcName(){
+  const names=[document.getElementById('n-first').value,document.getElementById('n-mid').value,document.getElementById('n-last').value].filter(n=>n.trim());
+  if(!names.length){document.getElementById('lc-wrap').style.display='none';['r-expr','r-soul','r-pers'].forEach(id=>document.getElementById(id).textContent='—');['r-expr-m','r-soul-m'].forEach(id=>document.getElementById(id).textContent='');document.getElementById('r-synth-box').style.display='none';return;}
+  const chips=document.getElementById('lc-chips');chips.innerHTML='';
+  let ex=0,so=0,pe=0;
+  names.forEach((nm,ni)=>{
+    const letters=nm.toUpperCase().replace(/[^A-Z]/g,'').split('');
+    letters.forEach(ch=>{const v=PYTH[ch]||0;const vow=VOWELS.has(ch);const c=document.createElement('div');c.className='lc'+(vow?' v':'');c.innerHTML=`<span class="lc-ch">${ch}</span><span class="lc-vl">${v}</span>`;chips.appendChild(c);ex+=v;if(vow)so+=v;else pe+=v;});
+    if(ni<names.length-1){const s=document.createElement('div');s.style.cssText='width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,.25);align-self:center';chips.appendChild(s);}
   });
+  document.getElementById('lc-wrap').style.display='block';
+  const expr=rdPart(reduce(ex)),soul=rdPart(reduce(so)),pers=rdPart(reduce(pe));
+  document.getElementById('r-expr').textContent=expr;document.getElementById('r-soul').textContent=soul;document.getElementById('r-pers').textContent=pers;
+  document.getElementById('r-expr-m').textContent=M(expr).t;document.getElementById('r-soul-m').textContent=M(soul).d;
+  const sb=document.getElementById('r-synth-box');sb.style.display='block';
+  document.getElementById('r-synth').innerHTML=`Expr: ${ex}→<strong style="color:var(--accent)">${expr}</strong><br>Soul: ${so}→<strong style="color:var(--accent)">${soul}</strong><br>Pers: ${pe}→<strong style="color:var(--accent)">${pers}</strong>`;
+  autoSave();
 }
 
-// ── Build accordion ──
-const ACC_DATA = [
-  { title: 'The Master Numbers Rule', sub: '11, 22, 33 — Never Reduce',
-    content: '<strong>Master numbers 11, 22, and 33 are never reduced to single digits in your core chart.</strong> When a calculation produces one of these numbers at any stage — whether as a name sub-total or as the final result — it is preserved as-is. These numbers carry amplified spiritual frequencies that exist outside the 1–9 cycle. However, master numbers in <em>name sub-totals</em> are kept intact only before adding to the other names; the final total is then reduced normally unless it itself lands on a master number.' },
-  { title: 'Using Your Birth Name', sub: 'Not your married, preferred, or nickname',
-    content: 'Always use the <strong>exact name on your birth certificate</strong> for Expression, Soul Urge, and Personality calculations. This is your energetic signature at the moment of entry into this lifetime. A married name or preferred name can be calculated separately as an overlay, but the birth name remains your primary blueprint. If you were adopted and your name was changed early in life, use the name you were given at birth, not the adoptive name.' },
-  { title: 'The Letter Y — Vowel or Consonant?', sub: 'It depends on its function',
-    content: 'Y is treated as a <strong>vowel</strong> when it provides the vowel sound in a syllable and no other vowel is present. Examples: "Lynn" — the Y functions as the vowel sound, so count it as a vowel. "Mary" — the Y is a vowel. "Yolanda" — the Y at the start before a vowel (O) functions as a consonant. When in doubt, listen to the sound the Y makes in the syllable: if it carries the vowel sound, count it as a vowel.' },
-  { title: 'Reducing Correctly', sub: 'Step-by-step without shortcuts',
-    content: 'Never add all digits of a date together in one step. <strong>Always reduce each component separately first</strong>, then combine. Wrong: 11/28/1984 = 1+1+2+8+1+9+8+4 = 34 → 7. Correct: November = 11 → 2, 28 → 10 → 1, 1984 → 22 → 4, then 2+1+4 = 7. The shortcut method can occasionally produce the same result but will often miss master numbers — for example, it might reduce 22 to 4 prematurely.' },
-  { title: 'When Your Life Path Is a Master Number', sub: 'Preserving 11, 22, 33 in the final sum',
-    content: 'If your three reduced components (month + day + year) sum to 11, 22, or 33 <strong>before the final reduction</strong>, you carry a master number Life Path. Example: if month reduces to 3, day to 6, year to 2, the total is 11 — preserve this as Life Path 11, not 2. People with master Life Paths often feel a heightened sense of purpose or responsibility, and may experience the intensity of their number as both gift and challenge.' }
+function switchTab(id,btn){document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.cp').forEach(p=>p.classList.remove('active'));document.getElementById('cp-'+id).classList.add('active');btn.classList.add('active');}
+
+// ── Meanings grid ──
+(function buildMG(){
+  const g=document.getElementById('mg');
+  [1,2,3,4,5,6,7,8,9,11,22,33].forEach(n=>{
+    const m=MEANINGS[n];const d=document.createElement('div');d.className='mc';
+    d.innerHTML=`<div class="mn${n>=11?' m':''}">${n}${n>=11?' ★':''}</div><div class="mth">${m.t}</div><div class="mgift">${m.n}</div><div class="mdes">${m.d}</div>`;
+    g.appendChild(d);
+  });
+})();
+
+// ── Accordion ──
+const ACC=[
+  {t:'Master Numbers: Never Reduce',s:'11, 22, 33 — always preserved',c:'When any stage of a calculation produces <strong>11, 22, or 33</strong> — stop. These are preserved as-is throughout your chart. A name sub-total of 22 is kept as 22 before adding to other names. A final Life Path total of 11 is Life Path 11, not 2.'},
+  {t:'Birth Name Rule',s:'Always use your birth certificate name',c:'<strong>Always use your full name as it appears on your birth certificate</strong> for Expression, Soul Urge, and Personality. Married names and preferred names can be read as overlays, but the birth name is your primary energetic signature.'},
+  {t:'The Letter Y',s:'Vowel or consonant — it depends',c:'Y is a <strong>vowel</strong> when it carries the vowel sound in a syllable with no other vowel present. "Lynn" → Y is a vowel. "Mary" → Y is a vowel. "Yolanda" → the opening Y before O functions as a consonant. Listen to the sound.'},
+  {t:'Reduce Each Part Separately',s:'Never shortcut the Life Path calculation',c:'For Life Path, always reduce Month, Day, and Year <strong>separately</strong> before combining. Shortcutting (adding all digits together at once) can cause you to miss master numbers hidden within individual components.'},
+  {t:'Numbers as Maps, Not Mandates',s:'You are always greater than your chart',c:'Your four core numbers reveal <strong>tendencies, themes, and potentials</strong> — not fixed outcomes. A Life Path 4 is not destined to be a builder and nothing else. It means the energy of structure and foundation runs as a constant theme. How you engage with that energy is always your choice.'}
 ];
+(function buildAcc(){const c=document.getElementById('accordion');ACC.forEach(item=>{const el=document.createElement('div');el.className='acc-item';el.innerHTML=`<button class="acc-hd" onclick="this.closest('.acc-item').classList.toggle('open')"><div><div class="acc-ht">${item.t}</div><div class="acc-hs">${item.s}</div></div><span class="acc-ic">+</span></button><div class="acc-bd"><div class="acc-ct">${item.c}</div></div>`;c.appendChild(el);});})();
 
-function buildAccordion() {
-  const container = document.getElementById('accordion');
-  ACC_DATA.forEach((item, i) => {
-    const el = document.createElement('div');
-    el.className = 'acc-item';
-    el.innerHTML = `
-      <button class="acc-header" onclick="toggleAcc(this)">
-        <div>
-          <div class="acc-header-text">${item.title}</div>
-          <div class="acc-header-sub">${item.sub}</div>
-        </div>
-        <span class="acc-icon">+</span>
-      </button>
-      <div class="acc-body"><div class="acc-content">${item.content}</div></div>`;
-    container.appendChild(el);
-  });
-}
-function toggleAcc(btn) {
-  const item = btn.closest('.acc-item');
-  item.classList.toggle('open');
-}
-
-// ── Build Quiz ──
-const QUIZ_DATA = [
-  { q: 'The Life Path Number is derived from your full <strong>___</strong>.', opts: ['Birth name', 'Birth date', 'Birth city', 'Preferred name'], ans: 1, fb: 'Correct! The Life Path comes from Month + Day + Year, each reduced separately then combined.' },
-  { q: 'The Soul Urge Number uses only the <strong>___</strong> in your birth name.', opts: ['Consonants', 'All letters', 'Vowels', 'First and last letter'], ans: 2, fb: 'Yes — Vowels (A, E, I, O, U) reveal your heart\'s deepest desire.' },
-  { q: 'When a name sub-total equals 22, you should:', opts: ['Reduce it to 4 immediately', 'Keep it as 22 before adding to the other names', 'Ignore it and start over', 'Replace it with 11'], ans: 1, fb: 'Master numbers (11, 22, 33) are preserved as-is — never reduced prematurely.' },
-  { q: 'True or False: You should use your married name for Expression Number calculations.', opts: ['True', 'False — always use your full birth certificate name'], ans: 1, fb: 'Always use your birth name exactly as it appears on your birth certificate. Your birth name is your energetic signature.' },
-  { q: 'The letter Y is treated as a vowel when:', opts: ['It appears at the start of a name', 'It follows another vowel', 'It provides the vowel sound in a syllable with no other vowel', 'Never — Y is always a consonant'], ans: 2, fb: 'Y is a vowel when it carries the vowel sound — e.g. "Lynn" or "Mary." Listen to the sound, not the position.' },
-  { q: 'The Personality Number is derived from:', opts: ['All letters in your name', 'Vowels only', 'Consonants only', 'Your birth date'], ans: 2, fb: 'Consonants create your Personality Number — the mask or first impression you present to the world.' },
-  { q: 'In the Pythagorean system, A = ?', opts: ['9', '3', '1', '7'], ans: 2, fb: 'A=1, B=2, C=3 ... the alphabet maps cyclically to values 1–9.' },
-  { q: 'Which number is NOT a master number in standard numerology?', opts: ['11', '33', '44', '22'], ans: 2, fb: 'The three master numbers are 11, 22, and 33. 44 and above are not preserved in the standard Pythagorean system.' }
+// ── Quiz ──
+const QD=[
+  {q:'The Soul Urge Number is derived from:',opts:['All letters in your name','Consonants only','Vowels only','Your birth date'],ans:2,fb:'Vowels only (A, E, I, O, U) reveal your heart\'s deepest desire — what your soul truly craves.'},
+  {q:'When a name sub-total equals 22, you should:',opts:['Reduce it to 4 immediately','Keep it as 22 before adding to other names','Replace it with 11','Start the calculation over'],ans:1,fb:'Master numbers (11, 22, 33) are preserved at every stage — never reduced prematurely.'},
+  {q:'Always use your <strong>___</strong> for name-based calculations.',opts:['Preferred or nickname','Married name','Full birth certificate name','Initials only'],ans:2,fb:'Your birth name is your energetic signature from the moment of entry into this lifetime. Always use it.'},
+  {q:'The Personality Number uses which letters?',opts:['All letters','Vowels only','Consonants only','First and last letter of each name'],ans:2,fb:'Consonants create the Personality Number — the mask or first impression you present to the world.'},
+  {q:'The Expression Number is also called the:',opts:['Soul Number','Destiny Number','Heart Number','Karmic Number'],ans:1,fb:'The Expression Number is also known as the Destiny Number — it reveals your natural talents and life direction.'},
+  {q:'Life Path 7 carries the energy of:',opts:['Power & abundance','Freedom & change','Wisdom & truth','Responsibility & love'],ans:2,fb:'7 is The Seeker — wisdom, introspection, truth, and spiritual depth. A life of questioning and understanding.'},
 ];
+let qA=0,qC=0;
+(function buildQ(){const c=document.getElementById('quiz');QD.forEach((q,qi)=>{const d=document.createElement('div');d.className='quiz-item';d.id='qi-'+qi;d.innerHTML=`<div class="quiz-q">${qi+1}. ${q.q}</div><div class="quiz-opts">${q.opts.map((o,oi)=>`<button class="quiz-opt" onclick="ansQ(${qi},${oi})">${o}</button>`).join('')}</div><div class="quiz-fb" id="qf-${qi}"></div>`;c.appendChild(d);});})();
+function ansQ(qi,chosen){const item=document.getElementById('qi-'+qi);if(item.dataset.done)return;item.dataset.done='1';const q=QD[qi];item.querySelectorAll('.quiz-opt').forEach(o=>o.disabled=true);const fb=document.getElementById('qf-'+qi);if(chosen===q.ans){item.classList.add('correct');item.querySelectorAll('.quiz-opt')[chosen].classList.add('ok');fb.className='quiz-fb correct show';fb.textContent='✓ '+q.fb;qC++;}else{item.classList.add('wrong');item.querySelectorAll('.quiz-opt')[chosen].classList.add('no');item.querySelectorAll('.quiz-opt')[q.ans].classList.add('show-ok');fb.className='quiz-fb wrong show';fb.textContent='✗ '+q.fb;}qA++;if(qA===QD.length){const s=document.getElementById('quiz-score');s.className='quiz-score show';const p=Math.round(qC/QD.length*100);s.innerHTML=`You answered <strong style="color:var(--accent)">${qC} of ${QD.length}</strong> correctly (${p}%).${p>=80?' The numbers are becoming second nature.':' Review and return when ready.'}`}}
 
-let quizAnswered = 0, quizCorrect = 0;
+// ── Canvas ──
+const nc=document.getElementById('num-canvas'),nctx=nc.getContext('2d');let nt=0;
+const floaters=Array.from({length:20},()=>({n:[1,2,3,4,5,6,7,8,9,11,22,33][Math.floor(Math.random()*12)],x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.07,size:12+Math.random()*18,alpha:.12+Math.random()*.32,phase:Math.random()*Math.PI*2}));
+function resNC(){nc.width=nc.offsetWidth*Math.min(devicePixelRatio,2);nc.height=100*Math.min(devicePixelRatio,2);nctx.scale(Math.min(devicePixelRatio,2),Math.min(devicePixelRatio,2))}resNC();window.addEventListener('resize',resNC);
+function animNC(){const w=nc.offsetWidth,h=100;nctx.clearRect(0,0,w,h);nt+=.012;floaters.forEach(f=>{f.x+=f.vx*.01;f.y+=f.vy*.01;if(f.x<0)f.x=1;if(f.x>1)f.x=0;if(f.y<0)f.y=1;if(f.y>1)f.y=0;const p=.6+.4*Math.sin(nt*1.2+f.phase);nctx.font=`${f.size}px 'Cinzel',serif`;nctx.fillStyle=`rgba(201,168,76,${f.alpha*p})`;nctx.textAlign='center';nctx.fillText(f.n,f.x*w,f.y*h+f.size*.4);});requestAnimationFrame(animNC);}animNC();
 
-function buildQuiz() {
-  const container = document.getElementById('quiz');
-  QUIZ_DATA.forEach((q, qi) => {
-    const div = document.createElement('div');
-    div.className = 'quiz-item';
-    div.id = 'quiz-' + qi;
-    const optsHTML = q.opts.map((o, oi) =>
-      `<button class="quiz-opt" onclick="answerQuiz(${qi}, ${oi})">${o}</button>`
-    ).join('');
-    div.innerHTML = `
-      <div class="quiz-q">${qi+1}. ${q.q}</div>
-      <div class="quiz-opts">${optsHTML}</div>
-      <div class="quiz-feedback" id="qfb-${qi}"></div>`;
-    container.appendChild(div);
-  });
-}
+// ── Progress ──
+window.addEventListener('scroll',()=>{const p=Math.min(scrollY/(document.body.scrollHeight-innerHeight)*100,100);document.getElementById('prog-fill').style.width=p+'%'},{passive:true});
 
-function answerQuiz(qi, chosen) {
-  const item = document.getElementById('quiz-' + qi);
-  if (item.dataset.answered) return;
-  item.dataset.answered = '1';
-  const q = QUIZ_DATA[qi];
-  const opts = item.querySelectorAll('.quiz-opt');
-  opts.forEach(o => o.disabled = true);
-  const fb = document.getElementById('qfb-' + qi);
-  if (chosen === q.ans) {
-    opts[chosen].classList.add('selected-correct');
-    item.classList.add('correct');
-    fb.className = 'quiz-feedback correct show';
-    fb.textContent = '✓ ' + q.fb;
-    quizCorrect++;
-  } else {
-    opts[chosen].classList.add('selected-wrong');
-    opts[q.ans].classList.add('show-correct');
-    item.classList.add('wrong');
-    fb.className = 'quiz-feedback wrong show';
-    fb.textContent = '✗ ' + q.fb;
-  }
-  quizAnswered++;
-  if (quizAnswered === QUIZ_DATA.length) {
-    const scoreEl = document.getElementById('quiz-score');
-    scoreEl.className = 'quiz-score show';
-    const pct = Math.round((quizCorrect / QUIZ_DATA.length) * 100);
-    scoreEl.innerHTML = `You answered <strong style="color:var(--accent)">${quizCorrect} of ${QUIZ_DATA.length}</strong> correctly (${pct}%).${pct >= 80 ? ' Excellent — the numbers are becoming second nature.' : ' Review the sections above and try again when ready.'}`;
-  }
-  autoSave();
-}
+// ── Reveal ──
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
+document.querySelectorAll('.ls').forEach(s=>io.observe(s));
 
-// ── Animated canvas ──
-const nc = document.getElementById('num-canvas');
-const nctx = nc.getContext('2d');
-let nt = 0;
-const floatingNums = Array.from({length: 18}, (_, i) => ({
-  n: [1,2,3,4,5,6,7,8,9,11,22,33][Math.floor(Math.random()*12)],
-  x: Math.random(), y: Math.random(),
-  vx: (Math.random()-0.5)*0.15, vy: (Math.random()-0.5)*0.08,
-  size: 12 + Math.random()*18, alpha: 0.15 + Math.random()*0.35, phase: Math.random()*Math.PI*2
-}));
-function resizeCanvas() {
-  nc.width = nc.offsetWidth * Math.min(window.devicePixelRatio, 2);
-  nc.height = 100 * Math.min(window.devicePixelRatio, 2);
-  nctx.scale(Math.min(window.devicePixelRatio, 2), Math.min(window.devicePixelRatio, 2));
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-function animNums() {
-  const w = nc.offsetWidth, h = 100;
-  nctx.clearRect(0,0,w,h);
-  nt += 0.012;
-  floatingNums.forEach(fn => {
-    fn.x += fn.vx * 0.01; fn.y += fn.vy * 0.01;
-    if (fn.x < 0) fn.x = 1; if (fn.x > 1) fn.x = 0;
-    if (fn.y < 0) fn.y = 1; if (fn.y > 1) fn.y = 0;
-    const pulse = 0.6 + 0.4*Math.sin(nt*1.2 + fn.phase);
-    nctx.font = `${fn.size}px 'Cinzel', serif`;
-    nctx.fillStyle = `rgba(201,168,76,${fn.alpha * pulse})`;
-    nctx.textAlign = 'center';
-    nctx.fillText(fn.n, fn.x * w, fn.y * h + fn.size * 0.4);
-  });
-  requestAnimationFrame(animNums);
-}
-animNums();
-
-// ── Progress bar ──
-window.addEventListener('scroll', () => {
-  const pct = Math.min(window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100, 100);
-  document.getElementById('prog-fill').style.width = pct + '%';
-}, {passive:true});
-
-// ── Intersection observer ──
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, {threshold: 0.08});
-document.querySelectorAll('.lesson-section').forEach(s => io.observe(s));
-
-// ══════════════════════════════════════
-// SAVE / LOAD
-// ══════════════════════════════════════
-const SAVE_KEY = 'tfa_lesson_N2';
-let xp = 0, saveTimer;
-
-function getData() {
-  return {
-    version: '1.0', lesson: 'N2', ts: new Date().toISOString(),
-    reflections: { r1: document.getElementById('ref-1').value, r2: document.getElementById('ref-2').value, r3: document.getElementById('ref-3').value },
-    calc: {
-      month: document.getElementById('lp-month').value,
-      day: document.getElementById('lp-day').value,
-      year: document.getElementById('lp-year').value,
-      first: document.getElementById('n-first').value,
-      mid: document.getElementById('n-mid').value,
-      last: document.getElementById('n-last').value
-    },
-    quiz: quizAnswered, quizCorrect,
-    xp, completed: document.getElementById('complete-btn').classList.contains('done')
-  };
-}
-
-function loadData() {
-  try {
-    const raw = localStorage.getItem(SAVE_KEY);
-    if (!raw) return;
-    const d = JSON.parse(raw);
-    if (d.reflections) {
-      document.getElementById('ref-1').value = d.reflections.r1 || '';
-      document.getElementById('ref-2').value = d.reflections.r2 || '';
-      document.getElementById('ref-3').value = d.reflections.r3 || '';
-    }
-    if (d.calc) {
-      if (d.calc.month) document.getElementById('lp-month').value = d.calc.month;
-      if (d.calc.day) document.getElementById('lp-day').value = d.calc.day;
-      if (d.calc.year) document.getElementById('lp-year').value = d.calc.year;
-      if (d.calc.first) document.getElementById('n-first').value = d.calc.first;
-      if (d.calc.mid) document.getElementById('n-mid').value = d.calc.mid;
-      if (d.calc.last) document.getElementById('n-last').value = d.calc.last;
-      calcLifePath(); calcName();
-    }
-    if (d.xp) { xp = d.xp; updateXP(); }
-    if (d.completed) applyComplete();
-    document.getElementById('save-time').textContent = formatTime(d.ts);
-  } catch(e) {}
-}
-
-function saveData() {
-  localStorage.setItem(SAVE_KEY, JSON.stringify(getData()));
-  document.getElementById('save-time').textContent = 'just now';
-}
-
-function autoSave() {
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveData, 1200);
-}
-
-// Periodic 90s save
-setInterval(saveData, 90000);
-
-function exportData() {
-  const blob = new Blob([JSON.stringify(getData(), null, 2)], {type:'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `tfa_N2_${new Date().toISOString().slice(0,10)}.json`;
-  a.click();
-  toast('Backup exported ✦');
-}
-
-function importData(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const r = new FileReader();
-  r.onload = ev => {
-    try {
-      const d = JSON.parse(ev.target.result);
-      localStorage.setItem(SAVE_KEY, JSON.stringify(d));
-      loadData(); toast('Session restored ✦');
-    } catch { toast('Invalid backup file'); }
-  };
-  r.readAsText(file);
-  e.target.value = '';
-}
-
-function formatTime(iso) {
-  try { return new Date(iso).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); } catch{return '—';}
-}
-
-// ── XP / Completion ──
-function updateXP() { document.getElementById('xp-display').textContent = xp + ' XP'; }
-
-function applyComplete() {
-  const btn = document.getElementById('complete-btn');
-  btn.classList.add('done');
-  btn.textContent = '✦ Lesson Sealed';
-  document.getElementById('xp-pop').classList.add('show');
-}
-
-function markComplete() {
-  if (document.getElementById('complete-btn').classList.contains('done')) return;
-  xp += 10; updateXP();
-  applyComplete();
-  saveData();
-  launchConfetti();
-  toast('✦ +10 XP · N2 Sealed ✦');
-}
-
-function launchConfetti() {
-  const colors = ['#c9a84c','#dfc472','#f0ede6','#9aa0c8','#c9a84c'];
-  for (let i = 0; i < 60; i++) {
-    const el = document.createElement('div');
-    el.className = 'confetti-piece';
-    el.style.cssText = `
-      left:${Math.random()*100}%;
-      background:${colors[Math.floor(Math.random()*colors.length)]};
-      animation-delay:${Math.random()*0.8}s;
-      animation-duration:${1.5 + Math.random()}s;
-      transform:rotate(${Math.random()*360}deg);
-      width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;
-      border-radius:${Math.random()>0.5?'50%':'2px'}`;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 2800);
-  }
-}
-
-// ── Toast ──
-let toastTimer2;
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  clearTimeout(toastTimer2);
-  toastTimer2 = setTimeout(() => t.classList.remove('show'), 3000);
-}
-
-// ── INIT ──
-buildMeanings();
-buildAccordion();
-buildQuiz();
+// ── Save ──
+const KEY='tfa_lesson_N2';let xp=0,saveT;
+function getData(){return{version:'1.0',lesson:'N2',ts:new Date().toISOString(),reflections:{r1:document.getElementById('ref-1').value,r2:document.getElementById('ref-2').value,r3:document.getElementById('ref-3').value},calc:{m:document.getElementById('lp-m').value,d:document.getElementById('lp-d').value,y:document.getElementById('lp-y').value,first:document.getElementById('n-first').value,mid:document.getElementById('n-mid').value,last:document.getElementById('n-last').value},xp,completed:document.getElementById('comp-btn').classList.contains('done')}}
+function loadData(){try{const raw=localStorage.getItem(KEY);if(!raw)return;const d=JSON.parse(raw);if(d.reflections){document.getElementById('ref-1').value=d.reflections.r1||'';document.getElementById('ref-2').value=d.reflections.r2||'';document.getElementById('ref-3').value=d.reflections.r3||'';}if(d.calc){if(d.calc.m)document.getElementById('lp-m').value=d.calc.m;if(d.calc.d)document.getElementById('lp-d').value=d.calc.d;if(d.calc.y)document.getElementById('lp-y').value=d.calc.y;if(d.calc.first)document.getElementById('n-first').value=d.calc.first;if(d.calc.mid)document.getElementById('n-mid').value=d.calc.mid;if(d.calc.last)document.getElementById('n-last').value=d.calc.last;calcLP();calcName();}if(d.xp){xp=d.xp;updXP();}if(d.completed)applyDone();document.getElementById('save-time').textContent=fmtT(d.ts);}catch(e){}}
+function saveData(){localStorage.setItem(KEY,JSON.stringify(getData()));document.getElementById('save-time').textContent='just now'}
+function autoSave(){clearTimeout(saveT);saveT=setTimeout(saveData,1200)}
+setInterval(saveData,90000);
+function exportData(){const b=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`tfa_N2_${new Date().toISOString().slice(0,10)}.json`;a.click();toast('Backup exported ✦')}
+function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const d=JSON.parse(ev.target.result);localStorage.setItem(KEY,JSON.stringify(d));loadData();toast('Session restored ✦');}catch{toast('Invalid file')}};r.readAsText(f);e.target.value=''}
+function fmtT(iso){try{return new Date(iso).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}catch{return'—'}}
+function updXP(){document.getElementById('xp-display').textContent=xp+' XP'}
+function applyDone(){const b=document.getElementById('comp-btn');b.classList.add('done');b.textContent='✦ Lesson Sealed';document.getElementById('xp-pop').classList.add('show')}
+function markComplete(){if(document.getElementById('comp-btn').classList.contains('done'))return;xp+=10;updXP();applyDone();saveData();confetti();toast('✦ +10 XP · N2 Sealed ✦')}
+function confetti(){const cols=['#c9a84c','#dfc472','#f0ede6','#9aa0c8'];for(let i=0;i<60;i++){const el=document.createElement('div');el.className='cf';el.style.cssText=`left:${Math.random()*100}%;background:${cols[Math.floor(Math.random()*cols.length)]};animation-delay:${Math.random()*.8}s;animation-duration:${1.5+Math.random()}s;transform:rotate(${Math.random()*360}deg);width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;border-radius:${Math.random()>.5?'50%':'2px'}`;document.body.appendChild(el);setTimeout(()=>el.remove(),2800)}}
+let toastT;function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3000)}
 loadData();
 </script>
 </body>
