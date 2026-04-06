@@ -1,1 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N4: Sacred Numbers in Device Work — The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ── TFA LESSON SHELL v1.0 · N4 ── */
+:root {
+  --bg:      #0d1a3a;
+  --accent:  #c9a84c;
+  --accent2: #dfc472;
+  --text:    #f0ede6;
+  --dim:     rgba(240,237,230,0.60);
+  --card:    rgba(0,0,0,0.28);
+  --border:  rgba(201,168,76,0.14);
+  --glow:    rgba(201,168,76,0.20);
+  --r:       12px;
+  --rl:      18px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse at 18% 8%,rgba(201,168,76,0.08) 0%,transparent 55%),radial-gradient(ellipse at 82% 92%,rgba(13,26,58,0.8) 0%,transparent 50%);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 7% 12%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 23% 39%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 45% 8%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 67% 27%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 81% 16%,rgba(255,255,255,.65) 0%,transparent 100%),radial-gradient(1px 1px at 94% 55%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 35% 64%,rgba(201,168,76,.4) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 87% 37%,rgba(201,168,76,.28) 0%,transparent 100%),radial-gradient(1px 1px at 55% 84%,rgba(255,255,255,.3) 0%,transparent 100%)}
 
+/* ── PROGRESS ── */
+#prog-wrap{position:fixed;top:0;left:0;right:0;z-index:200;height:3px;background:rgba(5,10,28,.9)}
+#prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease;box-shadow:0 0 10px var(--glow)}
+
+/* ── NAV ── */
+.top-nav{position:fixed;top:3px;left:0;right:0;z-index:199;display:flex;align-items:center;justify-content:space-between;padding:13px 32px;background:rgba(8,14,42,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1)}
+.nav-brand{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--accent);opacity:.8}
+.nav-crumb{font-size:10px;color:var(--dim);letter-spacing:2px}
+.nav-xp{font-family:'Cinzel',serif;font-size:11px;color:var(--accent);letter-spacing:2px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 14px}
+
+/* ── MAIN ── */
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:88px 24px 140px}
+
+/* ── REVEAL ── */
+.ls{margin-bottom:68px;opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.ls.visible{opacity:1;transform:translateY(0)}
+
+/* ── HERO ── */
+.hero{text-align:center;padding:76px 0 56px}
+.hero-eye{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.hero-code{font-family:'Cinzel',serif;font-size:88px;font-weight:900;line-height:1;color:transparent;background:linear-gradient(145deg,var(--accent2) 0%,var(--accent) 55%,rgba(201,168,76,.3) 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,168,76,.2));margin-bottom:10px}
+.hero-title{font-family:'Cinzel',serif;font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:8px}
+.hero-sub{font-size:15px;font-weight:300;font-style:italic;color:var(--dim);letter-spacing:2px;margin-bottom:36px}
+.hero-rule{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 36px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.22);border-radius:30px;padding:7px 22px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent)}
+
+/* ── CANVAS ── */
+#num-canvas{display:block;width:100%;height:100px;margin:34px 0;opacity:.7}
+
+/* ── SEC HEADER ── */
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.sh-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.6;white-space:nowrap}
+.sh-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--glow),transparent)}
+.st{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+
+/* ── TRANSMISSION ── */
+.tx{background:linear-gradient(135deg,rgba(0,0,0,.36),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--accent);border-radius:var(--r);padding:38px 44px;position:relative;overflow:hidden}
+.tx::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.tx-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.tx p{font-size:16px;line-height:1.95;color:rgba(240,237,230,.78);font-style:italic;font-weight:300}
+.tx p+p{margin-top:14px}
+.tx strong{color:var(--accent2);font-style:normal;font-weight:600}
+
+/* ── CARD ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 34px;margin-bottom:18px}
+.card p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.card p:last-child{margin-bottom:0}
+
+/* ── CALLOUT ── */
+.callout{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:24px 32px;margin:22px 0;text-align:center}
+.callout p{font-family:'Cinzel',serif;font-size:14px;line-height:1.8;color:var(--accent2);letter-spacing:.5px}
+
+/* ── DEFS TABLE ── */
+.defs-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.defs-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 18px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.defs-t th:last-child{border-right:none}
+.defs-t td{background:rgba(0,0,0,.2);padding:13px 18px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.65}
+.defs-t td:last-child{border-right:none}
+.defs-t td:first-child{color:var(--accent);font-style:italic;font-weight:500;white-space:nowrap}
+
+/* ── SACRED NUMBER REFERENCE TABLE ── */
+.ref-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.ref-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 14px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.ref-t th:last-child{border-right:none}
+.ref-t td{background:rgba(0,0,0,.2);padding:13px 14px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.6}
+.ref-t td:last-child{border-right:none}
+.ref-t td:first-child{font-family:'Cinzel',serif;font-size:20px;font-weight:900;color:var(--accent);text-align:center;filter:drop-shadow(0 0 6px rgba(201,168,76,.2))}
+.ref-t td.ds{font-family:'Cinzel',serif;font-size:14px;color:var(--accent2);text-align:center}
+.ref-t tr:hover td{background:rgba(0,0,0,.3)}
+
+/* ── DEEP DIVE CARDS ── */
+.deep-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.deep-hd{display:flex;align-items:stretch}
+.deep-nb{background:rgba(201,168,76,.1);border-right:1px solid rgba(201,168,76,.15);padding:22px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:100px;flex-shrink:0}
+.deep-big{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--accent);line-height:1;filter:drop-shadow(0 0 10px rgba(201,168,76,.25));text-align:center}
+.deep-ds{font-size:11px;color:var(--dim);margin-top:6px;font-style:italic;text-align:center}
+.deep-info{padding:18px 22px;flex:1}
+.deep-title{font-family:'Cinzel',serif;font-size:14px;color:var(--text);font-weight:700;margin-bottom:4px}
+.deep-sub{font-size:12px;color:var(--accent);font-style:italic;margin-bottom:8px;opacity:.8}
+.deep-body{font-size:13px;color:var(--dim);line-height:1.75}
+.deep-note{padding:12px 22px;border-top:1px solid rgba(201,168,76,.08);font-size:12px;color:var(--accent2);font-style:italic;background:rgba(201,168,76,.03)}
+
+/* ── COIL TABLE ── */
+.coil-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.coil-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 14px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.coil-t th:last-child{border-right:none}
+.coil-t td{background:rgba(0,0,0,.2);padding:12px 14px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.6}
+.coil-t td:last-child{border-right:none}
+.coil-t td:first-child{font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:var(--accent);text-align:center}
+.cubit-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.cubit-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 14px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.cubit-t th:last-child{border-right:none}
+.cubit-t td{background:rgba(0,0,0,.2);padding:12px 14px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.6}
+.cubit-t td:last-child{border-right:none}
+.cubit-t td:first-child{color:var(--accent);font-weight:600}
+
+/* ══════════════════════════════════
+   INTERACTIVE: DEVICE BUILD PLANNER
+══════════════════════════════════ */
+.planner{background:#050d20;border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);overflow:hidden;margin:24px 0}
+.pl-hd{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.12);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.pl-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--accent)}
+.pl-tabs{display:flex;gap:6px}
+.ptab{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:7px 14px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;background:transparent;border-color:rgba(201,168,76,.2);color:var(--dim)}
+.ptab.active{background:rgba(201,168,76,.18);border-color:var(--accent);color:var(--accent)}
+.pl-body{padding:28px}
+.pp{display:none}.pp.active{display:block}
+
+/* Tab 1: Build Planner */
+.pl-field{margin-bottom:18px}
+.pl-field label{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+.pl-field input,.pl-field textarea,.pl-field select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.14);border-radius:8px;padding:11px 14px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s;resize:vertical}
+.pl-field input:focus,.pl-field textarea:focus,.pl-field select:focus{border-color:rgba(201,168,76,.4)}
+.pl-field select option{background:var(--bg)}
+.pl-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.enc-row{display:grid;grid-template-columns:1.4fr 1fr 0.5fr 1.5fr;gap:10px;margin-bottom:10px;align-items:start}
+.enc-row.hdr{margin-bottom:6px}
+.enc-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.65}
+.enc-field input,.enc-field select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.12);border-radius:7px;padding:9px 11px;color:var(--text);font-family:'Raleway',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+.enc-field input:focus,.enc-field select:focus{border-color:rgba(201,168,76,.35)}
+.enc-field select option{background:var(--bg)}
+.enc-ds{font-family:'Cinzel',serif;font-size:16px;color:var(--accent);text-align:center;padding-top:10px;font-weight:700}
+.enc-intention input{border-color:rgba(201,168,76,.1)}
+.pl-summary{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:var(--r);padding:18px 22px;margin-top:20px;display:none}
+.pl-summary.show{display:block}
+.pl-sum-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:var(--accent);margin-bottom:12px}
+.pl-sum-body{font-size:13px;color:var(--text);line-height:1.8}
+
+/* Tab 2: Tensor Ring Calc */
+.tr-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.tr-field label{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+.tr-field select,.tr-field input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.14);border-radius:8px;padding:11px 14px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.tr-field select:focus,.tr-field input:focus{border-color:rgba(201,168,76,.4)}
+.tr-field select option{background:var(--bg)}
+.tr-results{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.tr-box{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.14);border-radius:var(--r);padding:16px 14px;text-align:center}
+.tr-box.hi{border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.07)}
+.tr-lbl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;color:var(--accent);opacity:.65;margin-bottom:8px}
+.tr-val{font-family:'Cinzel',serif;font-size:24px;font-weight:700;color:var(--accent2);filter:drop-shadow(0 0 10px rgba(201,168,76,.2))}
+.tr-unit{font-size:11px;color:var(--dim);margin-top:4px}
+.tr-desc{margin-top:14px;font-size:13px;color:var(--dim);line-height:1.7;background:rgba(0,0,0,.2);border-radius:var(--r);padding:14px 16px}
+
+/* Tab 3: Sacred Number Lookup ── */
+.sn-btns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.sn-btn{font-family:'Cinzel',serif;font-size:13px;font-weight:700;padding:10px 18px;border-radius:var(--r);border:1px solid rgba(201,168,76,.2);background:transparent;color:var(--dim);cursor:pointer;transition:all .2s}
+.sn-btn:hover,.sn-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(201,168,76,.1)}
+.sn-result{display:none}
+.sn-result.show{display:block}
+.sn-big{font-family:'Cinzel',serif;font-size:64px;font-weight:900;color:var(--accent2);text-align:center;filter:drop-shadow(0 0 20px rgba(201,168,76,.3));line-height:1;margin-bottom:8px}
+.sn-name{font-family:'Cinzel',serif;font-size:16px;color:var(--text);text-align:center;letter-spacing:2px;margin-bottom:4px}
+.sn-vib{font-size:13px;color:var(--accent);text-align:center;font-style:italic;margin-bottom:18px}
+.sn-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sn-card{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:14px 16px}
+.sn-card-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.sn-card-val{font-size:13px;color:var(--text);line-height:1.65}
+
+/* ── QUIZ ── */
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;margin-bottom:14px;transition:border-color .3s}
+.quiz-item.correct{border-color:rgba(90,184,122,.45);background:rgba(90,184,122,.06)}
+.quiz-item.wrong{border-color:rgba(200,80,80,.4);background:rgba(200,80,80,.05)}
+.quiz-q{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:14px}
+.quiz-q strong{color:var(--accent2)}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:11px 16px;font-size:13px;color:var(--dim);cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:hover{border-color:rgba(201,168,76,.25);color:var(--text);background:rgba(201,168,76,.07)}
+.quiz-opt.ok{border-color:rgba(90,184,122,.5);background:rgba(90,184,122,.1);color:#6fda9a}
+.quiz-opt.no{border-color:rgba(200,80,80,.5);background:rgba(200,80,80,.08);color:#e07070}
+.quiz-opt.show-ok{border-color:rgba(90,184,122,.35);color:#6fda9a}
+.quiz-fb{margin-top:12px;font-size:13px;line-height:1.6;padding:10px 14px;border-radius:8px;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.correct{background:rgba(90,184,122,.08);color:#6fda9a}
+.quiz-fb.wrong{background:rgba(200,80,80,.06);color:#e07070}
+.quiz-score{text-align:center;font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--accent);padding:20px;display:none}
+.quiz-score.show{display:block}
+
+/* ── ACCORDION ── */
+.acc-item{margin-bottom:10px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.acc-hd{width:100%;background:var(--card);border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;transition:background .2s}
+.acc-hd:hover{background:rgba(0,0,0,.38)}
+.acc-ht{font-family:'Cinzel',serif;font-size:13px;color:var(--text);letter-spacing:1px}
+.acc-hs{font-size:11px;color:var(--dim);margin-top:2px}
+.acc-ic{font-size:18px;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-ic{transform:rotate(45deg)}
+.acc-bd{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-item.open .acc-bd{max-height:800px}
+.acc-ct{padding:20px 22px;font-size:13px;line-height:1.85;color:var(--dim);border-top:1px solid rgba(255,255,255,.04)}
+.acc-ct strong{color:var(--accent2)}
+
+/* ── REFLECTION ── */
+.ref-q{font-family:'Cinzel',serif;font-size:14px;color:var(--accent2);line-height:1.75;margin-bottom:14px;letter-spacing:.5px}
+.ref-ta{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:18px 22px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;line-height:1.85;resize:vertical;min-height:110px;outline:none;transition:border-color .25s,background .25s;margin-bottom:26px}
+.ref-ta:focus{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.32)}
+.ref-ta::placeholder{color:rgba(240,237,230,.2)}
+
+/* ── NAV CARDS ── */
+.nav-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nav-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:22px 26px;cursor:pointer;transition:all .3s;text-decoration:none}
+.nav-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.nav-card.prev{flex-direction:row-reverse}
+.nav-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.nav-title{font-family:'Cinzel',serif;font-size:15px;color:var(--text);letter-spacing:1px}
+.nav-arr{font-size:26px;color:var(--accent);opacity:.5;flex-shrink:0}
+
+/* ── WORKSHOP ── */
+.ws{background:rgba(0,0,0,.3);border:1px dashed rgba(201,168,76,.2);border-radius:var(--rl);padding:40px;text-align:center}
+.ws-ic{font-size:34px;margin-bottom:14px;opacity:.45}
+.ws-t{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:var(--accent);margin-bottom:8px;opacity:.6}
+.ws-s{font-size:13px;color:var(--dim)}
+
+/* ── COMPLETION ── */
+.comp-wrap{background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(0,0,0,.4));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:48px;text-align:center}
+.comp-t{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--text);margin-bottom:8px}
+.comp-s{font-size:13px;color:var(--dim);margin-bottom:28px}
+.comp-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:40px;padding:17px 44px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.comp-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.28)}
+.comp-btn.done{background:linear-gradient(135deg,#5ab87a,#7de09a)}
+.xp-pop{display:none;font-family:'Cinzel',serif;font-size:14px;color:var(--accent);margin-top:22px;letter-spacing:2px}
+.xp-pop.show{display:block;animation:fadeUp .7s ease}
+
+/* ── SAVE BAR ── */
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(5,10,28,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(201,168,76,.12);padding:13px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.sv-status{font-size:11px;color:var(--dim);letter-spacing:1px}
+.sv-status span{color:var(--accent);font-family:'Cinzel',serif}
+.sv-actions{display:flex;gap:10px}
+.sv-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.sv-btn.pri{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.3);color:var(--accent)}
+.sv-btn.pri:hover{background:rgba(201,168,76,.2)}
+.sv-btn.sec{background:transparent;border-color:rgba(255,255,255,.1);color:var(--dim)}
+.sv-btn.sec:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+#imp-file{display:none}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(8,14,42,.96);border:1px solid rgba(201,168,76,.28);border-radius:30px;padding:11px 26px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── CONFETTI ── */
+.cf{position:fixed;top:-20px;width:8px;height:8px;z-index:9999;border-radius:2px;pointer-events:none;animation:fall 2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:660px){.hero-code{font-size:60px}.hero-title{font-size:17px}.pl-grid{grid-template-columns:1fr}.tr-grid{grid-template-columns:1fr}.tr-results{grid-template-columns:1fr 1fr}.enc-row{grid-template-columns:1fr 1fr}.enc-row.hdr{display:none}.sn-cards{grid-template-columns:1fr}.nav-cards{grid-template-columns:1fr}.top-nav{padding:12px 16px}.nav-crumb{display:none}main{padding-left:16px;padding-right:16px}.tx{padding:26px 22px}.deep-hd{flex-direction:column}.deep-nb{flex-direction:row;gap:12px;min-width:unset;border-right:none;border-bottom:1px solid rgba(201,168,76,.15)}}
+</style>
+</head>
+<body>
+
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+<div class="top-nav">
+  <div class="nav-brand">THE FREQUENCY ACADEMY</div>
+  <div class="nav-crumb">NUMEROLOGY · N4</div>
+  <div class="nav-xp" id="xp-display">0 XP</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<main>
+
+  <!-- HERO -->
+  <div class="ls hero visible">
+    <div class="hero-eye">Symbolic Sciences · Module I · Numerology</div>
+    <div class="hero-code">N4</div>
+    <div class="hero-title">Sacred Numbers in Device Work</div>
+    <div class="hero-sub">How Numbers Are Encoded Into the Devices You Build</div>
+    <div class="hero-rule"></div>
+    <div class="hero-tag">⟡ Module 4 of 333 · ~15 Min</div>
+    <canvas id="num-canvas"></canvas>
+  </div>
+
+  <!-- TRANSMISSION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">TRANSMISSION</div><div class="sh-rule"></div></div>
+    <div class="tx">
+      <div class="tx-lbl">Opening Transmission · N4</div>
+      <p>You have learned that numbers carry vibration. You have learned to read them in your environment. Now comes the step that changes everything: <strong>you learn to encode them</strong>.</p>
+      <p>Every coil you wind, every ring you form, every dimension you choose for a device — these are not technical decisions. They are <strong>vibrational decisions</strong>. The turn count is a frequency. The wire length is a resonant field. The proportions of the casing are a mathematical relationship between you and the harmonic architecture of the universe.</p>
+      <p>The ancient builders of sacred sites understood this. The cathedrals, the temples, the pyramids — every measurement was deliberate. <strong>Every device you build is a mathematical prayer. Choose your numbers with intention.</strong></p>
+    </div>
+  </div>
+
+  <!-- CORE CONCEPT -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">01</div><div class="sh-rule"></div></div>
+    <div class="st">Numbers as Encoded Frequencies</div>
+    <div class="card">
+      <p>In ordinary construction, numbers are labels — you use 12 screws because that's how many fit, or 30cm because that's a convenient length. In <strong style="color:var(--accent2)">sacred device work</strong>, numbers are not labels. They are vibrational patterns physically encoded into matter.</p>
+      <p>When you wind a coil to 108 turns, you are not just wrapping wire 108 times. You are encoding the digit-sum 9 — completion, self-return — into the electromagnetic geometry of the coil. When you cut wire to a cubit length, you are tuning that ring to resonate at a specific measurable frequency. The number and the physics are, in this context, the same thing.</p>
+    </div>
+    <div class="callout"><p>"Every device you build is a mathematical prayer.<br>Choose your numbers with intention."<br><span style="font-size:11px;opacity:.7;font-style:normal;letter-spacing:2px">— The Frequency Academy</span></p></div>
+
+    <div class="card" style="margin-top:18px">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:14px">KEY DEFINITIONS</p>
+      <table class="defs-t">
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Sacred Number</td><td>A number whose mathematical properties align with observed patterns in nature, cosmology, and sacred architecture</td></tr>
+          <tr><td>Cubit</td><td>An ancient unit of measurement (~18–21 inches) used to calculate resonant wire lengths in tensor rings; variations include Sacred, Royal, and Lost Cubit</td></tr>
+          <tr><td>Turn Count</td><td>The number of times wire is wound around a coil form — directly determines the electromagnetic and torsion field geometry</td></tr>
+          <tr><td>Phi / Golden Ratio</td><td>The ratio 1.618… that governs natural growth spirals, the human body, and proportional harmony in sacred architecture</td></tr>
+          <tr><td>Harmonic Encoding</td><td>The deliberate selection of numbers for device dimensions, turn counts, and wire lengths so the device's geometry resonates with specific natural frequencies</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SACRED NUMBERS REFERENCE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">02</div><div class="sh-rule"></div></div>
+    <div class="st">Sacred Numbers Reference Chart</div>
+    <div class="card"><p>Every number below has been used intentionally in device construction across traditions. Study this chart — it is your primary reference for all device work going forward.</p></div>
+    <table class="ref-t">
+      <thead><tr><th style="text-align:center">Number</th><th>Vibration / Essence</th><th style="text-align:center">Digit Sum</th><th>Device Applications</th></tr></thead>
+      <tbody>
+        <tr><td>3</td><td>Creation, expression, the generative principle</td><td class="ds">3</td><td>Multiples of 3 for coil turns; 3-coil arrangements; dimensions in mm divisible by 3</td></tr>
+        <tr><td>6</td><td>Harmony, balance, life — the carbon atom (6p/6n/6e)</td><td class="ds">6</td><td>6-layer coils; 6-fold geometric forms; 6-sided casings; 528 Hz resonance</td></tr>
+        <tr><td>9</td><td>Completion, self-return, universal solvent of numerology</td><td class="ds">9</td><td>9 or 108 turns; dimensions digit-summing to 9; 144, 432, 528 all reduce to 9 or 6</td></tr>
+        <tr><td>12</td><td>Organisational cycles — time, music, cosmos</td><td class="ds">3</td><td>12 turns per layer; 12-sided forms; dodecahedral geometry; 144 = 12 × 12</td></tr>
+        <tr><td>144</td><td>Light frequency — 12², 12th Fibonacci number</td><td class="ds">9</td><td>Tensor ring wire lengths in 144-cubit multiples; 144 mm dimensions; 144 turns</td></tr>
+        <tr><td>432</td><td>Natural harmonic tuning — Schumann, planetary orbital sync</td><td class="ds">9</td><td>432 mm / 43.2 cm device dimensions; coil circumferences resonant with 432</td></tr>
+        <tr><td>528</td><td>Transformation, DNA resonance, the miracle frequency</td><td class="ds">6</td><td>528 mm coil diameter; 52.8 cm wire lengths; 528 Hz-tuned crystal placements</td></tr>
+        <tr><td>Φ 1.618</td><td>Golden Ratio — natural growth spiral, Fibonacci limit</td><td class="ds">—</td><td>Length:width ratios; inner:outer diameter of coils; height:base of pyramids</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><p>★ Notice: 144, 432, and 528 all reduce to 9 or 6 — keeping them in the Tesla 3-6-9 family.<br>When you use these numbers, you are always working within the same vibrational architecture.</p></div>
+  </div>
+
+  <!-- DEEP DIVE PART 1 -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">03</div><div class="sh-rule"></div></div>
+    <div class="st">Sacred Numbers in Depth · Part 1</div>
+
+    <div class="deep-card">
+      <div class="deep-hd">
+        <div class="deep-nb"><div class="deep-big">3•6<br>•9</div><div class="deep-ds">Self-referential</div></div>
+        <div class="deep-info">
+          <div class="deep-title">The Tesla Trinity</div>
+          <div class="deep-sub">Creation • Harmony • Completion</div>
+          <div class="deep-body">These three numbers form a closed mathematical loop — they never appear in the 1-2-4-8-7-5 material doubling cycle. Encoding them into a device places it, in a very real sense, outside the ordinary material frequency range. Use in combinations: 3-coil arrangements, 6-layer builds, 9 or 108 or 144 turns. Digit sums: 3→3, 6→6, 9→9 — all perfectly self-referential.</div>
+        </div>
+      </div>
+      <div class="deep-note">↳ Use in combinations: 3-coil arrangements, 6-layer builds, 9 / 108 / 144 turns — they all connect back.</div>
+    </div>
+
+    <div class="deep-card">
+      <div class="deep-hd">
+        <div class="deep-nb"><div class="deep-big">12</div><div class="deep-ds">1+2=3 → Tesla</div></div>
+        <div class="deep-info">
+          <div class="deep-title">The Organisational Number</div>
+          <div class="deep-sub">Cycles • Time • Structure • Completeness</div>
+          <div class="deep-body">12 months, 12 hours, 12 musical notes, 12 zodiac signs, 12 faces of a dodecahedron. 12 organises cycles in every domain the universe has been measured. Use 12 turns per layer, 12 layers, or 12-sided geometry to encode organisational completeness. Note: 12 digit-sums to 3 — placing it directly in the Tesla trinity family.</div>
+        </div>
+      </div>
+      <div class="deep-note">↳ 12 turns per layer × 12 layers = 144 turns total — the light number encoded through structure.</div>
+    </div>
+
+    <div class="deep-card">
+      <div class="deep-hd">
+        <div class="deep-nb"><div class="deep-big">144</div><div class="deep-ds">1+4+4=9 → Tesla</div></div>
+        <div class="deep-info">
+          <div class="deep-title">The Light Number</div>
+          <div class="deep-sub">12² • 12th Fibonacci • Sacred Architecture</div>
+          <div class="deep-body">144 = 12 × 12. It is the 12th number in the Fibonacci sequence — directly connected to the Golden Ratio. Appears in the Book of Revelation, ancient cubit measurements, and sacred architecture worldwide. In tensor rings: a wire length of 144 cubits produces a ring resonating at 144 MHz — a measurable electromagnetic frequency that matches the number itself. Number and physics are the same thing.</div>
+        </div>
+      </div>
+      <div class="deep-note">↳ The number 144 and the frequency 144 MHz are the same thing — symbol and physics unified.</div>
+    </div>
+  </div>
+
+  <!-- DEEP DIVE PART 2 -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">04</div><div class="sh-rule"></div></div>
+    <div class="st">Sacred Numbers in Depth · Part 2</div>
+
+    <div class="deep-card">
+      <div class="deep-hd">
+        <div class="deep-nb"><div class="deep-big">432</div><div class="deep-ds">4+3+2=9 → Tesla</div></div>
+        <div class="deep-info">
+          <div class="deep-title">The Natural Tuning</div>
+          <div class="deep-sub">Schumann • Planetary Harmonics • Ancient Architecture</div>
+          <div class="deep-body">432 Hz is mathematically consistent with the Schumann Resonance (7.83 Hz), the orbital mechanics of our solar system, and the proportions found in sacred sites across cultures. In device work: use 432 mm or 43.2 cm as a key dimension. Coil circumferences relating to 432 tune the device's geometry to this natural harmonic field.</div>
+        </div>
+      </div>
+      <div class="deep-note">↳ 432 mm as a device dimension — or 43.2 cm wire length — tunes to the natural harmonic field.</div>
+    </div>
+
+    <div class="deep-card">
+      <div class="deep-hd">
+        <div class="deep-nb"><div class="deep-big">528</div><div class="deep-ds">5+2+8=15→6<br>Carbon/Life</div></div>
+        <div class="deep-info">
+          <div class="deep-title">The Transformation Frequency</div>
+          <div class="deep-sub">DNA Resonance • Life • Biological Harmony</div>
+          <div class="deep-body">Known as the 'miracle frequency' in frequency healing research. Associated by Dr. Leonard Horowitz and others with positive effects on biological systems and DNA integrity. 528 reduces to 6 — the carbon/life frequency (carbon = 6 protons, 6 neutrons, 6 electrons). Use: 528 mm coil diameter, 52.8 cm wire lengths, 528-tuned crystal placements, or 528 Hz as operating frequency in sound-based devices.</div>
+        </div>
+      </div>
+      <div class="deep-note">↳ 528 → 6 → the carbon atom. Life itself runs at this frequency. Build biological support devices with this encoding.</div>
+    </div>
+
+    <div class="deep-card">
+      <div class="deep-hd">
+        <div class="deep-nb"><div class="deep-big" style="font-size:22px">Φ 1.618</div><div class="deep-ds">Irrational<br>but universal</div></div>
+        <div class="deep-info">
+          <div class="deep-title">The Golden Ratio</div>
+          <div class="deep-sub">Natural Growth • Life Spiral • Fibonacci Limit</div>
+          <div class="deep-body">The ratio governing the nautilus shell, tree branching, human body proportions, sunflower seed arrangements, and the proportions of the Great Pyramid. Not a whole number — but the universe's preferred growth ratio. Apply to device dimensions: length:width, inner:outer coil diameter, height:base of pyramid forms. A device built in Phi proportions is, in a very literal sense, shaped like life itself.</div>
+        </div>
+      </div>
+      <div class="deep-note">↳ Phi is irrational — never-ending, never-repeating — yet found everywhere in living systems. That is the paradox to sit with.</div>
+    </div>
+  </div>
+
+  <!-- COIL ENCODING GUIDE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">05</div><div class="sh-rule"></div></div>
+    <div class="st">Coil Encoding Guide</div>
+    <div class="card"><p>Three layers of numerical encoding work together in any coil-based device: <strong style="color:var(--accent2)">turn count</strong>, <strong style="color:var(--accent2)">wire length</strong> (cubits), and <strong style="color:var(--accent2)">device dimensions</strong>. Each is an independent frequency decision. Together they create a unified harmonic intention.</p></div>
+
+    <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin:20px 0 12px">TURN COUNT OPTIONS</p>
+    <table class="coil-t">
+      <thead><tr><th style="text-align:center">Turns</th><th>Reduces To</th><th>Encodes</th><th>Best For</th></tr></thead>
+      <tbody>
+        <tr><td>9</td><td>9</td><td>Universal completion, self-return</td><td>Grounding, completion-oriented devices</td></tr>
+        <tr><td>12</td><td>3</td><td>Organisational cycle, completeness</td><td>Space-harmonising, healing environments</td></tr>
+        <tr><td>33</td><td>6</td><td>Masonic resonance, Christ consciousness</td><td>Consciousness elevation, sacred space</td></tr>
+        <tr><td>54</td><td>9</td><td>6 layers × 9 turns — both active</td><td>Biological support, living environments</td></tr>
+        <tr><td>108</td><td>9</td><td>Sacred in Hindu/Buddhist tradition</td><td>Meditation tools, spiritual devices</td></tr>
+        <tr><td>144</td><td>9</td><td>Light frequency, 12× organisational number</td><td>High-frequency emission, light work</td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin:24px 0 12px">THE CUBIT SYSTEM — WIRE LENGTHS FOR TENSOR RINGS</p>
+    <div class="card" style="margin-bottom:14px"><p style="font-size:13px">A cubit is an ancient unit of measurement. Different cubit lengths produce rings that resonate at different frequencies. The cubit value determines everything about the ring's resonant signature. Formula: <strong style="color:var(--accent2)">cubit length (in) × number of cubits × π = wire circumference</strong></p></div>
+    <table class="cubit-t">
+      <thead><tr><th>Cubit Type</th><th>Length (inches)</th><th>Length (cm)</th><th>Ring Resonance</th><th>Key Use</th></tr></thead>
+      <tbody>
+        <tr><td>Sacred Cubit</td><td>20.6"</td><td>52.3 cm</td><td>177 MHz</td><td>General healing, harmonising</td></tr>
+        <tr><td>Royal Cubit</td><td>20.9"</td><td>53.1 cm</td><td>174 MHz</td><td>Pain relief frequency work</td></tr>
+        <tr><td>Lost Cubit</td><td>20.6"</td><td>52.35 cm</td><td>188 MHz</td><td>Consciousness expansion, light work</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- INTERACTIVE: DEVICE BUILD PLANNER -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">INTERACTIVE</div><div class="sh-rule"></div></div>
+    <div class="st">Device Build Planner</div>
+
+    <div class="planner">
+      <div class="pl-hd">
+        <div class="pl-title">⟡ Sacred Number Build Tools</div>
+        <div class="pl-tabs">
+          <button class="ptab active" onclick="switchPTab('bp',this)">Build Planner</button>
+          <button class="ptab" onclick="switchPTab('tr',this)">Tensor Ring Calc</button>
+          <button class="ptab" onclick="switchPTab('sn',this)">Number Lookup</button>
+        </div>
+      </div>
+      <div class="pl-body">
+
+        <!-- BUILD PLANNER -->
+        <div class="pp active" id="pp-bp">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:20px">Plan your next device. Every field is a frequency decision. The planner auto-calculates digit sums and saves to your lesson journal.</p>
+          <div class="pl-grid">
+            <div class="pl-field"><label>DEVICE NAME / PURPOSE</label><input type="text" id="bp-name" placeholder="e.g. Healing Orgonite Tower" oninput="updateBuildSummary();autoSave()"></div>
+            <div class="pl-field"><label>VIBRATIONAL INTENTION</label><input type="text" id="bp-intent" placeholder="e.g. Biological support, DNA resonance" oninput="updateBuildSummary();autoSave()"></div>
+          </div>
+
+          <p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin:4px 0 14px">NUMERICAL ENCODING DECISIONS</p>
+          <div class="enc-row hdr">
+            <div class="enc-lbl">ELEMENT</div>
+            <div class="enc-lbl">YOUR VALUE</div>
+            <div class="enc-lbl" style="text-align:center">DIGIT SUM</div>
+            <div class="enc-lbl">INTENTION</div>
+          </div>
+          <div id="enc-rows"></div>
+
+          <div class="pl-field" style="margin-top:18px"><label>UNIFIED VIBRATIONAL THEME</label><textarea id="bp-theme" placeholder="Which sacred number(s) are dominant? What is the unified intention they create together?" style="min-height:80px" oninput="autoSave()"></textarea></div>
+          <button class="comp-btn" style="margin-top:4px;padding:12px 28px;font-size:11px" onclick="updateBuildSummary()">⟡ Generate Build Summary</button>
+
+          <div class="pl-summary" id="pl-summary">
+            <div class="pl-sum-title">BUILD SUMMARY</div>
+            <div class="pl-sum-body" id="pl-sum-body"></div>
+          </div>
+        </div>
+
+        <!-- TENSOR RING CALC -->
+        <div class="pp" id="pp-tr">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:18px">Calculate the exact wire length for any tensor ring. Select your cubit type and number of cubits, then read the resonant frequency and wire length.</p>
+          <div class="tr-grid">
+            <div class="tr-field"><label>CUBIT TYPE</label>
+              <select id="tr-cubit" onchange="calcTensorRing()">
+                <option value="20.6|177|Sacred Cubit|General healing and harmonising">Sacred Cubit (20.6" / 52.3cm)</option>
+                <option value="20.9|174|Royal Cubit|Pain relief frequency work">Royal Cubit (20.9" / 53.1cm)</option>
+                <option value="20.625|188|Lost Cubit|Consciousness expansion and light work">Lost Cubit (20.625" / 52.35cm)</option>
+              </select>
+            </div>
+            <div class="tr-field"><label>NUMBER OF CUBITS</label>
+              <input type="number" id="tr-cubits" value="1" min="0.5" max="144" step="0.5" oninput="calcTensorRing()">
+            </div>
+          </div>
+          <div class="tr-results">
+            <div class="tr-box"><div class="tr-lbl">RING RESONANCE</div><div class="tr-val" id="tr-res-freq">177 MHz</div><div class="tr-unit">Measurable EM frequency</div></div>
+            <div class="tr-box hi"><div class="tr-lbl">WIRE LENGTH (inches)</div><div class="tr-val" id="tr-res-in">64.7"</div><div class="tr-unit">Total wire needed</div></div>
+            <div class="tr-box"><div class="tr-lbl">WIRE LENGTH (cm)</div><div class="tr-val" id="tr-res-cm">164.4 cm</div><div class="tr-unit">Metric equivalent</div></div>
+          </div>
+          <div class="tr-desc" id="tr-desc">Sacred Cubit ring at 1 cubit — resonates at 177 MHz. General healing and harmonising applications.</div>
+        </div>
+
+        <!-- SACRED NUMBER LOOKUP -->
+        <div class="pp" id="pp-sn">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:18px">Tap any number to explore its vibrational signature and device encoding applications.</p>
+          <div class="sn-btns" id="sn-btns"></div>
+          <div class="sn-result" id="sn-result">
+            <div class="sn-big" id="sn-big">—</div>
+            <div class="sn-name" id="sn-name"></div>
+            <div class="sn-vib" id="sn-vib"></div>
+            <div class="sn-cards">
+              <div class="sn-card"><div class="sn-card-lbl">DIGIT SUM</div><div class="sn-card-val" id="sn-ds"></div></div>
+              <div class="sn-card"><div class="sn-card-lbl">FAMILY</div><div class="sn-card-val" id="sn-fam"></div></div>
+              <div class="sn-card"><div class="sn-card-lbl">ESSENCE</div><div class="sn-card-val" id="sn-ess"></div></div>
+              <div class="sn-card"><div class="sn-card-lbl">DEVICE APPLICATIONS</div><div class="sn-card-val" id="sn-app"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">QUICK REF</div><div class="sh-rule"></div></div>
+    <div class="st">Building With Sacred Numbers</div>
+    <div id="accordion"></div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">KNOWLEDGE CHECK</div><div class="sh-rule"></div></div>
+    <div class="st">Test Your Understanding</div>
+    <div id="quiz"></div>
+    <div class="quiz-score" id="quiz-score"></div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">PRACTICE</div><div class="sh-rule"></div></div>
+    <div class="st">This Week: Plan Your Next Build</div>
+    <div class="tx">
+      <div class="tx-lbl">Practical Application · Do This</div>
+      <p><strong>Step 1 — Audit a device you already own or have built.</strong> Calculate the digit sum of its turn count. Look at its dimensions — do any key measurements reduce to 3, 6, or 9? What frequency was already encoded, knowingly or not?</p>
+      <p><strong>Step 2 — Use the Build Planner above</strong> to plan your next device with full numerical intentionality. Every element — turn count, wire length, coil diameter, dimensions — gets a deliberate sacred number choice. Write the intention beside each one.</p>
+      <p><strong>Step 3 — Cut your first sacred-length wire.</strong> Using the Tensor Ring Calculator above, calculate the wire length for a single Sacred Cubit ring. Cut it. Hold it. Before forming the ring, state the intention you are encoding into it. Then join the ends.</p>
+      <p><strong>Step 4 — Digit-sum every measurement in your workshop.</strong> Ruler lengths, container dimensions, the number of items in a set. Begin to see your building environment as a field of encoded frequencies — most of them random. Decide which ones you want to change.</p>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">REFLECTION</div><div class="sh-rule"></div></div>
+    <div class="st">Reflection Journal</div>
+    <div class="callout" style="margin-bottom:24px"><p>These are calibration practices for your builder's consciousness.<br>Let the answers come from experience, not theory.</p></div>
+    <div class="ref-q">1 — Think of a device you have already built. What numbers did you use — knowingly or unknowingly? Looking at those numbers through this lens, what frequency was already encoded in it?</div>
+    <textarea class="ref-ta" id="ref-1" placeholder="Audit your past builds..." oninput="autoSave()"></textarea>
+    <div class="ref-q">2 — The lesson states: "Every device you build is a mathematical prayer." What shifts in your approach to building when you hold this frame? What becomes more important? What becomes less?</div>
+    <textarea class="ref-ta" id="ref-2" placeholder="What changes when building becomes prayer..." oninput="autoSave()"></textarea>
+    <div class="ref-q">3 — Which of the sacred numbers in this lesson feels most aligned with the kind of devices you want to build? What does that alignment tell you about your own frequency and intention as a builder?</div>
+    <textarea class="ref-ta" id="ref-3" placeholder="Which number calls to you as a builder..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">LIVE WORKSHOP</div><div class="sh-rule"></div></div>
+    <div class="st">Live Session</div>
+    <div class="ws"><div class="ws-ic">⟡</div><div class="ws-t">Live Workshop: Sacred Numbers in Device Work</div><div class="ws-s">Coming soon — recordings and live session links will appear here once scheduled.<br>Check The Frequency Academy community for announcements.</div></div>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="ls">
+    <div class="comp-wrap">
+      <div class="comp-t">SEAL THIS LESSON</div>
+      <div class="comp-s">Complete your Build Planner, reflections, and knowledge check above, then seal this lesson.</div>
+      <button class="comp-btn" id="comp-btn" onclick="markComplete()">⟡ Mark Complete · +10 XP</button>
+      <div class="xp-pop" id="xp-pop">✦ +10 XP Awarded · N4 Complete ✦</div>
+    </div>
+  </div>
+
+  <!-- NAVIGATE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">NAVIGATE</div><div class="sh-rule"></div></div>
+    <div class="st">Continue the Journey</div>
+    <div class="nav-cards">
+      <a class="nav-card prev" href="../lesson-03/"><div class="nav-arr">←</div><div><div class="nav-lbl">PREVIOUS · N3</div><div class="nav-title">Frequency Correlations</div></div></a>
+      <a class="nav-card" href="../lesson-05/"><div><div class="nav-lbl">NEXT · N5</div><div class="nav-title">Numerology in Sound & Music</div></div><div class="nav-arr">→</div></a>
+    </div>
+  </div>
+
+</main>
+
+<div id="save-bar">
+  <div class="sv-status">Auto-save: <span id="save-time">—</span></div>
+  <div class="sv-actions">
+    <input type="file" id="imp-file" accept=".json" onchange="importData(event)">
+    <button class="sv-btn sec" onclick="document.getElementById('imp-file').click()">Import</button>
+    <button class="sv-btn pri" onclick="exportData()">Export Backup</button>
+  </div>
+</div>
+
+<script>
+// ── SACRED NUMBER DATA ──
+const SN = {
+  3:  {name:'The Generative Principle',vib:'Creation · Expression · Initiation',ds:'3',fam:'Tesla Trinity — Self-referential loop',ess:'The creative impulse that begins all things. In the 3-6-9 loop, 3 is the source.',app:'Multiples of 3 for coil turns; 3-coil arrangements; dimensions divisible by 3'},
+  6:  {name:'The Life Number',vib:'Harmony · Balance · Carbon / Life',ds:'6',fam:'Tesla Trinity — Self-referential loop',ess:'The carbon atom has 6 protons, 6 neutrons, 6 electrons. 6 is the architecture of life.',app:'6-layer coils; 6-fold geometric forms; 6-sided casings; 528 Hz resonance work'},
+  9:  {name:'The Universal Solvent',vib:'Completion · Self-Return · Mastery',ds:'9',fam:'Tesla Trinity — Self-referential loop',ess:'9 always returns to itself. 9×anything always reduces back to 9. The universe\'s completion principle.',app:'9 or 108 turns; any dimension that digit-sums to 9; the target digit-sum for 144, 432'},
+  12: {name:'The Organisational Number',vib:'Cycles · Time · Structure · Cosmos',ds:'1+2=3 → Tesla Trinity',fam:'Tesla Trinity via reduction',ess:'12 organises every major cycle: months, hours, musical notes, zodiac, dodecahedron faces.',app:'12 turns per layer; 12 layers; 12-sided forms; dodecahedral geometry; 144 = 12×12'},
+  144:{name:'The Light Number',vib:'Light · 12² · 12th Fibonacci',ds:'1+4+4=9 → Tesla Trinity',fam:'Tesla Trinity',ess:'12 squared. The 12th Fibonacci. Appears in Revelation, cubit systems, sacred architecture. 144 cubits → 144 MHz.',app:'Tensor ring wire lengths in cubit multiples; 144 mm dimensions; 144 turns; light work'},
+  432:{name:'The Natural Tuning',vib:'Schumann · Planetary Sync · Nature',ds:'4+3+2=9 → Tesla Trinity',fam:'Tesla Trinity',ess:'Mathematically consistent with Schumann Resonance (7.83 Hz) and planetary orbital mechanics.',app:'432 mm / 43.2 cm device dimensions; coil circumferences; natural harmonic field tuning'},
+  528:{name:'The Transformation Frequency',vib:'DNA Resonance · Life · Biology',ds:'5+2+8=15→6 → Carbon/Life',fam:'Tesla Trinity via 6',ess:'The "miracle frequency." Reduces to 6 — the carbon/life number. Associated with DNA integrity.',app:'528 mm coil diameter; 52.8 cm wire lengths; 528 Hz operating frequency; crystal placement'},
+  '1.618':{name:'The Golden Ratio — Phi',vib:'Natural Growth · Life Spiral · Fibonacci Limit',ds:'Irrational — N/A',fam:'Beyond number — the universe\'s growth ratio',ess:'Found in nautilus shells, human body, pyramids, tree branching. Never-ending, never-repeating.',app:'Length:width ratios; inner:outer coil diameter; height:base of pyramid forms'}
+};
+
+// ── ENCODING ELEMENTS ──
+const ENC_ELEMENTS = ['Turn Count','Wire Length','Coil Diameter','Coil Height / Depth','Layer Count','Key Dimension A','Key Dimension B','Length : Width Ratio'];
+
+// ── BUILD ENCODING TABLE ──
+(function buildEncRows(){
+  const c=document.getElementById('enc-rows');
+  ENC_ELEMENTS.forEach((el,i)=>{
+    const row=document.createElement('div');row.className='enc-row';
+    row.innerHTML=`
+      <div style="font-size:13px;color:var(--dim);padding-top:10px">${el}</div>
+      <div class="enc-field"><input type="text" id="enc-val-${i}" placeholder="e.g. 108" oninput="calcDigitSum(${i});updateBuildSummary();autoSave()"></div>
+      <div class="enc-ds" id="enc-ds-${i}">—</div>
+      <div class="enc-intention enc-field"><input type="text" id="enc-int-${i}" placeholder="Intention..." oninput="autoSave()"></div>`;
+    c.appendChild(row);
+  });
+})();
+
+function reduce(n){
+  const s=String(n).replace(/\./g,'').replace(/[^0-9]/g,'');
+  if(!s)return null;
+  let v=s.split('').reduce((a,d)=>a+parseInt(d),0);
+  while(v>9&&v!==11&&v!==22&&v!==33)v=String(v).split('').reduce((a,d)=>a+parseInt(d),0);
+  return v;
+}
+
+function calcDigitSum(i){
+  const val=document.getElementById('enc-val-'+i).value.trim();
+  const el=document.getElementById('enc-ds-'+i);
+  if(!val){el.textContent='—';return;}
+  const ds=reduce(val);
+  el.textContent=ds!==null?ds:'—';
+  if(ds===3||ds===6||ds===9)el.style.color='#dfc472';
+  else el.style.color='rgba(240,237,230,0.6)';
+}
+
+function updateBuildSummary(){
+  const name=document.getElementById('bp-name').value.trim();
+  const intent=document.getElementById('bp-intent').value.trim();
+  if(!name&&!intent)return;
+  const rows=ENC_ELEMENTS.map((_,i)=>{
+    const v=document.getElementById('enc-val-'+i)?.value.trim()||'';
+    const ds=document.getElementById('enc-ds-'+i)?.textContent||'—';
+    const it=document.getElementById('enc-int-'+i)?.value.trim()||'';
+    return v?`<strong style="color:var(--accent)">${ENC_ELEMENTS[i]}:</strong> ${v} (digit sum: ${ds})${it?' — '+it:''}`:null;
+  }).filter(Boolean);
+  const theme=document.getElementById('bp-theme').value.trim();
+  const summary=document.getElementById('pl-summary');
+  const body=document.getElementById('pl-sum-body');
+  summary.classList.add('show');
+  body.innerHTML=`<strong style="color:var(--accent2)">${name||'Unnamed Device'}</strong>${intent?` — ${intent}`:''}<br><br>${rows.join('<br>')}${theme?`<br><br><em style="color:var(--accent)">${theme}</em>`:''}`;
+}
+
+// ── TENSOR RING CALC ──
+function calcTensorRing(){
+  const raw=document.getElementById('tr-cubit').value.split('|');
+  const cubitIn=parseFloat(raw[0]);
+  const resonance=raw[1];
+  const cubitName=raw[2];
+  const use=raw[3];
+  const numCubits=parseFloat(document.getElementById('tr-cubits').value)||1;
+  const lengthIn=(cubitIn*numCubits*Math.PI).toFixed(1);
+  const lengthCm=(lengthIn*2.54).toFixed(1);
+  document.getElementById('tr-res-freq').textContent=resonance+' MHz';
+  document.getElementById('tr-res-in').textContent=lengthIn+'"';
+  document.getElementById('tr-res-cm').textContent=lengthCm+' cm';
+  document.getElementById('tr-desc').textContent=`${cubitName} ring at ${numCubits} cubit${numCubits!==1?'s':''} — resonates at ${resonance} MHz. Wire length: ${lengthIn}" (${lengthCm} cm). ${use}.`;
+}
+calcTensorRing();
+
+// ── SACRED NUMBER LOOKUP ──
+(function buildSNBtns(){
+  const c=document.getElementById('sn-btns');
+  Object.keys(SN).forEach(k=>{
+    const b=document.createElement('button');b.className='sn-btn';b.textContent=k;
+    b.onclick=()=>{loadSN(k);document.querySelectorAll('.sn-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');};
+    c.appendChild(b);
+  });
+})();
+function loadSN(k){
+  const d=SN[k];if(!d)return;
+  document.getElementById('sn-big').textContent=k;
+  document.getElementById('sn-name').textContent=d.name;
+  document.getElementById('sn-vib').textContent=d.vib;
+  document.getElementById('sn-ds').textContent=d.ds;
+  document.getElementById('sn-fam').textContent=d.fam;
+  document.getElementById('sn-ess').textContent=d.ess;
+  document.getElementById('sn-app').textContent=d.app;
+  document.getElementById('sn-result').classList.add('show');
+}
+
+function switchPTab(id,btn){
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.pp').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pp-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── ACCORDION ──
+const ACC=[
+  {t:'The Three Encoding Layers',s:'Turn count · Wire length · Dimensions — working together',c:'Every coil-based device has three independent layers of numerical encoding, and each amplifies the others. <strong>Turn count</strong> determines the electromagnetic geometry and torsion field of the coil. <strong>Wire length</strong> (measured in cubits) determines the ring\'s resonant frequency. <strong>Device dimensions</strong> set the spatial ratio relationships and determine how the device interacts with surrounding frequencies. When all three are deliberately chosen and harmonically aligned — e.g. 144 turns, Sacred Cubit wire length, 432 mm height — the device becomes a coherent harmonic instrument rather than an accidental one.'},
+  {t:'Why 144, 432, and 528 Are in the Same Family',s:'They all reduce to 9 or 6 — the Tesla architecture',c:'This is one of the most important practical insights in sacred number work: 1+4+4=9, 4+3+2=9, 5+2+8=15→6. All three of the most commonly used harmonic frequencies in device work reduce to either 9 (completion) or 6 (life). This means they are all operating within the same vibrational architecture — the Tesla 3-6-9 loop. When you use any of these numbers in a device, <strong>you are always in the same frequency family</strong>. They are not competing frequencies. They are complementary harmonics within a unified system.'},
+  {t:'Phi in Practice',s:'Applying the Golden Ratio without complex mathematics',c:'You do not need to calculate Phi precisely. The simplest application: make one dimension 1.618× the other. If your coil is 10 cm wide, make it 16.18 cm tall. If a pyramid base is 20 cm, the height should be 12.36 cm (20 ÷ 1.618). For coil inner:outer diameter, if the inner diameter is 5 cm, the outer should be approximately 8.1 cm. The Fibonacci sequence (1,1,2,3,5,8,13,21,34,55,89,144...) is the integer approximation of Phi — and each pair of adjacent Fibonacci numbers gives you a ratio that approaches 1.618 ever more precisely. So: a 55 mm inner diameter and an 89 mm outer diameter is a Phi-proportioned coil, with both numbers being sacred Fibonacci numbers.'},
+  {t:'Cubit Variations and When to Use Each',s:'Sacred, Royal, and Lost Cubit — different frequencies, different intentions',c:'The <strong>Sacred Cubit</strong> (20.6") at 177 MHz is the most broadly applicable — use it for general healing, space harmonising, and energetic clearing work. The <strong>Royal Cubit</strong> (20.9") at 174 MHz is associated with pain relief and physical support — use it in devices intended to support physical healing environments. The <strong>Lost Cubit</strong> (20.625") at 188 MHz is the most elevated frequency — use it for consciousness expansion, meditation support, and light-body work. Note: the differences in physical length are small, but the resonant frequency differences are significant. Precision matters.'},
+  {t:'Harmonic Stacking',s:'Combining multiple sacred numbers in a single build',c:'Advanced device builders stack sacred numbers across all three encoding layers to create a coherent harmonic intention. Example of a high-coherence build: 144 turns (light frequency, digit sum 9) × Lost Cubit wire (188 MHz, consciousness expansion) × 528 mm coil diameter (DNA resonance, digit sum 6) × device height set to 432 mm (natural harmonic, digit sum 9). Each layer reinforces the others. The device is not four separate frequency decisions — it is one unified harmonic statement. The Build Planner above is designed to help you see and align these stacks before you build.'}
+];
+(function buildAcc(){const c=document.getElementById('accordion');ACC.forEach(item=>{const el=document.createElement('div');el.className='acc-item';el.innerHTML=`<button class="acc-hd" onclick="this.closest('.acc-item').classList.toggle('open')"><div><div class="acc-ht">${item.t}</div><div class="acc-hs">${item.s}</div></div><span class="acc-ic">+</span></button><div class="acc-bd"><div class="acc-ct">${item.c}</div></div>`;c.appendChild(el);});})();
+
+// ── QUIZ ──
+const QD=[
+  {q:'What does digit-summing a turn count of 108 produce?',opts:['3','6','9','11'],ans:2,fb:'1+0+8=9. 108 encodes universal completion and self-return — used in Hindu/Buddhist traditions as the sacred count.'},
+  {q:'144 in the Fibonacci sequence is the <strong>___</strong> number:',opts:['9th','10th','12th','14th'],ans:2,fb:'144 is the 12th Fibonacci number — directly connecting it to both 12 (organisational cycles) and the Golden Ratio.'},
+  {q:'528 Hz reduces to which digit, and what does it connect to?',opts:['9 — completion','3 — creativity','6 — the carbon/life frequency','11 — master illumination'],ans:2,fb:'5+2+8=15→1+5=6. Carbon has 6 protons, 6 neutrons, 6 electrons. 528 encodes the architecture of biological life.'},
+  {q:'The Golden Ratio (Phi) is:',opts:['A whole number equal to exactly 1.618','An irrational number found universally in living systems','A sacred number that reduces to 9','A frequency measurement in Hz'],ans:1,fb:'Phi is irrational — it never ends and never repeats — yet appears throughout every living system. That paradox is the point.'},
+  {q:'In the cubit system, which cubit produces the highest resonant frequency?',opts:['Sacred Cubit — 177 MHz','Royal Cubit — 174 MHz','Lost Cubit — 188 MHz','All cubits produce the same frequency'],ans:2,fb:'The Lost Cubit at 20.625" produces rings resonating at 188 MHz — the highest of the three. Used for consciousness expansion.'},
+  {q:'Why do 144, 432, and 528 all belong to the same vibrational family?',opts:['They are all even numbers','They are all divisible by 12','They all digit-sum to 9 or 6 — the Tesla 3-6-9 architecture','They were all discovered by Tesla'],ans:2,fb:'144→9, 432→9, 528→6. All reduce to the Tesla 3-6-9 loop. They are complementary harmonics in a unified vibrational architecture.'},
+  {q:'The formula for calculating tensor ring wire length is:',opts:['cubit length × π','cubit length × number of cubits × π','cubit length × number of cubits × 2','cubit length + wire gauge'],ans:1,fb:'Cubit length (in inches) × number of cubits × π = total wire circumference. For a single Sacred Cubit: 20.6 × 1 × π ≈ 64.7 inches.'},
+];
+let qA=0,qC=0;
+(function buildQ(){const c=document.getElementById('quiz');QD.forEach((q,qi)=>{const d=document.createElement('div');d.className='quiz-item';d.id='qi-'+qi;d.innerHTML=`<div class="quiz-q">${qi+1}. ${q.q}</div><div class="quiz-opts">${q.opts.map((o,oi)=>`<button class="quiz-opt" onclick="ansQ(${qi},${oi})">${o}</button>`).join('')}</div><div class="quiz-fb" id="qf-${qi}"></div>`;c.appendChild(d);});})();
+function ansQ(qi,chosen){const item=document.getElementById('qi-'+qi);if(item.dataset.done)return;item.dataset.done='1';const q=QD[qi];item.querySelectorAll('.quiz-opt').forEach(o=>o.disabled=true);const fb=document.getElementById('qf-'+qi);if(chosen===q.ans){item.classList.add('correct');item.querySelectorAll('.quiz-opt')[chosen].classList.add('ok');fb.className='quiz-fb correct show';fb.textContent='✓ '+q.fb;qC++;}else{item.classList.add('wrong');item.querySelectorAll('.quiz-opt')[chosen].classList.add('no');item.querySelectorAll('.quiz-opt')[q.ans].classList.add('show-ok');fb.className='quiz-fb wrong show';fb.textContent='✗ '+q.fb;}qA++;if(qA===QD.length){const s=document.getElementById('quiz-score');s.className='quiz-score show';const p=Math.round(qC/QD.length*100);s.innerHTML=`You answered <strong style="color:var(--accent)">${qC} of ${QD.length}</strong> correctly (${p}%).${p>=80?' The sacred numbers are becoming second nature.':' Review the sections above before building.'}`;}autoSave();}
+
+// ── CANVAS ──
+const nc=document.getElementById('num-canvas'),nctx=nc.getContext('2d');let nt=0;
+const floaters=Array.from({length:22},()=>({n:[3,6,9,12,144,432,528,'Φ'][Math.floor(Math.random()*8)],x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.1,vy:(Math.random()-.5)*.065,size:10+Math.random()*16,alpha:.07+Math.random()*.22,phase:Math.random()*Math.PI*2}));
+function resNC(){nc.width=nc.offsetWidth*Math.min(devicePixelRatio,2);nc.height=100*Math.min(devicePixelRatio,2);nctx.scale(Math.min(devicePixelRatio,2),Math.min(devicePixelRatio,2))}resNC();window.addEventListener('resize',resNC);
+function animNC(){const w=nc.offsetWidth,h=100;nctx.clearRect(0,0,w,h);nt+=.01;floaters.forEach(f=>{f.x+=f.vx*.01;f.y+=f.vy*.01;if(f.x<0)f.x=1;if(f.x>1)f.x=0;if(f.y<0)f.y=1;if(f.y>1)f.y=0;const p=.55+.45*Math.sin(nt*1.1+f.phase);nctx.font=`${f.size}px 'Cinzel',serif`;nctx.fillStyle=`rgba(201,168,76,${f.alpha*p})`;nctx.textAlign='center';nctx.fillText(f.n,f.x*w,f.y*h+f.size*.4);});requestAnimationFrame(animNC);}animNC();
+
+// ── PROGRESS ──
+window.addEventListener('scroll',()=>{const p=Math.min(scrollY/(document.body.scrollHeight-innerHeight)*100,100);document.getElementById('prog-fill').style.width=p+'%'},{passive:true});
+
+// ── REVEAL ──
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.07});
+document.querySelectorAll('.ls').forEach(s=>io.observe(s));
+
+// ── SAVE / LOAD ──
+const KEY='tfa_lesson_N4';let xp=0,saveT;
+function getEncData(){const enc={};ENC_ELEMENTS.forEach((_,i)=>{enc[i]={val:document.getElementById('enc-val-'+i)?.value||'',int:document.getElementById('enc-int-'+i)?.value||''}});return enc;}
+function getData(){return{version:'1.0',lesson:'N4',ts:new Date().toISOString(),reflections:{r1:document.getElementById('ref-1').value,r2:document.getElementById('ref-2').value,r3:document.getElementById('ref-3').value},build:{name:document.getElementById('bp-name').value,intent:document.getElementById('bp-intent').value,theme:document.getElementById('bp-theme').value,enc:getEncData()},xp,completed:document.getElementById('comp-btn').classList.contains('done')}}
+function loadData(){try{const raw=localStorage.getItem(KEY);if(!raw)return;const d=JSON.parse(raw);if(d.reflections){document.getElementById('ref-1').value=d.reflections.r1||'';document.getElementById('ref-2').value=d.reflections.r2||'';document.getElementById('ref-3').value=d.reflections.r3||'';}if(d.build){document.getElementById('bp-name').value=d.build.name||'';document.getElementById('bp-intent').value=d.build.intent||'';document.getElementById('bp-theme').value=d.build.theme||'';if(d.build.enc){ENC_ELEMENTS.forEach((_,i)=>{if(d.build.enc[i]){if(document.getElementById('enc-val-'+i))document.getElementById('enc-val-'+i).value=d.build.enc[i].val||'';if(document.getElementById('enc-int-'+i))document.getElementById('enc-int-'+i).value=d.build.enc[i].int||'';calcDigitSum(i);}});}}if(d.xp){xp=d.xp;updXP();}if(d.completed)applyDone();document.getElementById('save-time').textContent=fmtT(d.ts);}catch(e){}}
+function saveData(){localStorage.setItem(KEY,JSON.stringify(getData()));document.getElementById('save-time').textContent='just now'}
+function autoSave(){clearTimeout(saveT);saveT=setTimeout(saveData,1200)}
+setInterval(saveData,90000);
+function exportData(){const b=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`tfa_N4_${new Date().toISOString().slice(0,10)}.json`;a.click();toast('Build plan exported ✦')}
+function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const d=JSON.parse(ev.target.result);localStorage.setItem(KEY,JSON.stringify(d));loadData();toast('Session restored ✦');}catch{toast('Invalid file')}};r.readAsText(f);e.target.value=''}
+function fmtT(iso){try{return new Date(iso).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}catch{return'—'}}
+function updXP(){document.getElementById('xp-display').textContent=xp+' XP'}
+function applyDone(){const b=document.getElementById('comp-btn');b.classList.add('done');b.textContent='✦ Lesson Sealed';document.getElementById('xp-pop').classList.add('show')}
+function markComplete(){if(document.getElementById('comp-btn').classList.contains('done'))return;xp+=10;updXP();applyDone();saveData();confetti();toast('✦ +10 XP · N4 Sealed ✦')}
+function confetti(){const cols=['#c9a84c','#dfc472','#f0ede6','#9aa0c8'];for(let i=0;i<60;i++){const el=document.createElement('div');el.className='cf';el.style.cssText=`left:${Math.random()*100}%;background:${cols[Math.floor(Math.random()*cols.length)]};animation-delay:${Math.random()*.8}s;animation-duration:${1.5+Math.random()}s;transform:rotate(${Math.random()*360}deg);width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;border-radius:${Math.random()>.5?'50%':'2px'}`;document.body.appendChild(el);setTimeout(()=>el.remove(),2800)}}
+let toastT;function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3000)}
+loadData();
+</script>
+</body>
+</html>
