@@ -180,76 +180,76 @@
         {
           "id": "N1",
           "title": "The Language of Numbers",
-          "description": "Vibration Encoded in Mathematics",
+          "description": "Vibration encoded in mathematics",
           "path": "/04-symbolic-sciences/numerology/lesson-01-language-of-numbers/",
           "status": "live"
         },
         {
           "id": "N2",
           "title": "Personal Numerology",
-          "description": "",
+          "description": "Your four core numbers",
           "path": "/04-symbolic-sciences/numerology/lesson-02/",
-          "status": "coming"
+          "status": "live"
         },
         {
           "id": "N3",
-          "title": "The Seed of Life",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Frequency Correlations",
+          "description": "111, 222, 333, 369 & repeating numbers",
+          "path": "/04-symbolic-sciences/numerology/lesson-03/",
+          "status": "live"
         },
         {
           "id": "N4",
           "title": "Sacred Numbers in Device Work",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "description": "How numbers are encoded into the devices you build",
+          "path": "/04-symbolic-sciences/numerology/lesson-04/",
+          "status": "live"
         },
         {
           "id": "N5",
-          "title": "Timing with Numbers",
-          "description": "",
+          "title": "Numerology in Sound & Music",
+          "description": "432 Hz, 528 Hz & the Solfeggio frequencies",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N6",
-          "title": "Sound and Music",
+          "title": "Numerology & Frequency",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N7",
-          "title": "Numerology & the Human Body",
+          "title": "Personal Year Cycles",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N8",
-          "title": "Numerology in Architecture",
+          "title": "Name Numerology",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N9",
-          "title": "Numerology & Relationships",
+          "title": "Sacred Number Patterns",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N10",
-          "title": "Master Numbers Deep Dive",
+          "title": "Numerology in Practice",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N11",
-          "title": "Numerology & Money",
+          "title": "Integration & Application",
           "description": "",
           "path": "",
           "status": "coming"
@@ -278,7 +278,7 @@
         {
           "id": "N15",
           "title": "Putting It All Together",
-          "description": "Module Finale",
+          "description": "Module finale",
           "path": "",
           "status": "coming"
         }
