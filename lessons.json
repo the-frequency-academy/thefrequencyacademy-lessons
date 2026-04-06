@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-03-26",
+    "lastUpdated": "2026-04-06",
     "totalModules": 16,
     "skoolUrl": "https://www.skool.com/the-frequency-academy-3454/about",
     "baseUrl": "https://thefrequencyacademy-lessons.pages.dev"
@@ -172,10 +172,10 @@
     {
       "code": "SS",
       "number": "04",
-      "title": "Symbolic Sciences \u2014 Numerology",
+      "title": "Symbolic Sciences — Numerology",
       "folder": "04-symbolic-sciences",
       "color": "#c9a84c",
-      "totalPlanned": 11,
+      "totalPlanned": 15,
       "lessons": [
         {
           "id": "N1",
@@ -186,71 +186,99 @@
         },
         {
           "id": "N2",
-          "title": "Life Path Number",
-          "description": "Your soul's blueprint",
-          "path": "",
+          "title": "Personal Numerology",
+          "description": "",
+          "path": "/04-symbolic-sciences/numerology/lesson-02/",
           "status": "coming"
         },
         {
           "id": "N3",
-          "title": "Expression Number",
+          "title": "The Seed of Life",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N4",
-          "title": "Soul Urge Number",
+          "title": "Sacred Numbers in Device Work",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N5",
-          "title": "Master Numbers",
+          "title": "Timing with Numbers",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N6",
-          "title": "Numerology & Frequency",
+          "title": "Sound and Music",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N7",
-          "title": "Personal Year Cycles",
+          "title": "Numerology & the Human Body",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N8",
-          "title": "Name Numerology",
+          "title": "Numerology in Architecture",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N9",
-          "title": "Sacred Number Patterns",
+          "title": "Numerology & Relationships",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N10",
-          "title": "Numerology in Practice",
+          "title": "Master Numbers Deep Dive",
           "description": "",
           "path": "",
           "status": "coming"
         },
         {
           "id": "N11",
-          "title": "Integration & Application",
+          "title": "Numerology & Money",
           "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N12",
+          "title": "Numerology in Nature",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N13",
+          "title": "Advanced Chart Reading",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N14",
+          "title": "Numerology & Your Purpose",
+          "description": "",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "N15",
+          "title": "Putting It All Together",
+          "description": "Module Finale",
           "path": "",
           "status": "coming"
         }
@@ -297,7 +325,7 @@
         },
         {
           "id": "TM1",
-          "title": "Technomancy \u2014 Introduction",
+          "title": "Technomancy — Introduction",
           "description": "",
           "path": "",
           "status": "coming"
@@ -342,14 +370,14 @@
     {
       "code": "FC",
       "number": "09",
-      "title": "Frequency Charged\u2122 Methodology",
+      "title": "Frequency Charged™ Methodology",
       "folder": "09-frequency-charged-methodology",
       "color": "#2a8a7a",
       "totalPlanned": 27,
       "lessons": [
         {
           "id": "FC1",
-          "title": "What Is Frequency Charged\u2122",
+          "title": "What Is Frequency Charged™",
           "description": "",
           "path": "",
           "status": "coming"
@@ -445,7 +473,7 @@
       "lessons": [
         {
           "id": "SG1",
-          "title": "Inanna's Descent \u2014 Gate One",
+          "title": "Inanna's Descent — Gate One",
           "description": "The Crown",
           "path": "",
           "status": "coming"
@@ -463,22 +491,22 @@
       "lessons": [
         {
           "id": "DL1",
-          "title": "Late Night Resonance \u2014 D Hijaz",
-          "description": "Unreleased handpan \u00b7 Skool members only",
+          "title": "Late Night Resonance — D Hijaz",
+          "description": "Unreleased handpan · Skool members only",
           "path": "",
           "status": "dragon"
         },
         {
           "id": "DL2",
-          "title": "Late Night Resonance \u2014 D Kurd",
-          "description": "Unreleased handpan \u00b7 Skool members only",
+          "title": "Late Night Resonance — D Kurd",
+          "description": "Unreleased handpan · Skool members only",
           "path": "",
           "status": "dragon"
         },
         {
           "id": "DL3",
-          "title": "Late Night Resonance \u2014 E Amara",
-          "description": "Unreleased handpan \u00b7 Skool members only",
+          "title": "Late Night Resonance — E Amara",
+          "description": "Unreleased handpan · Skool members only",
           "path": "",
           "status": "dragon"
         }
