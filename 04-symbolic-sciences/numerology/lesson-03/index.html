@@ -3,18 +3,641 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coming Soon · The Frequency Academy</title>
+<title>N3: Frequency Correlations — The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Georgia',serif;background:#0d1240;color:#f5f0e8;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center}
-h1{font-size:1.2rem;letter-spacing:.2em;color:#c9a84c;margin-bottom:1rem;text-transform:uppercase}
-p{color:#a09880;font-size:.85rem;letter-spacing:.1em}
+/* ── TFA LESSON SHELL v1.0 · N3 ── */
+:root {
+  --bg:      #0d1a3a;
+  --accent:  #c9a84c;
+  --accent2: #dfc472;
+  --text:    #f0ede6;
+  --dim:     rgba(240,237,230,0.60);
+  --card:    rgba(0,0,0,0.28);
+  --border:  rgba(201,168,76,0.14);
+  --glow:    rgba(201,168,76,0.20);
+  --r:       12px;
+  --rl:      18px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse at 20% 10%,rgba(201,168,76,0.08) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(13,26,58,0.8) 0%,transparent 50%);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 8% 13%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 24% 40%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 43% 9%,rgba(255,255,255,.8) 0%,transparent 100%),radial-gradient(1px 1px at 65% 28%,rgba(255,255,255,.55) 0%,transparent 100%),radial-gradient(1px 1px at 79% 18%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 92% 56%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 13% 74%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 36% 62%,rgba(201,168,76,.45) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 88% 35%,rgba(201,168,76,.3) 0%,transparent 100%),radial-gradient(1px 1px at 57% 82%,rgba(255,255,255,.35) 0%,transparent 100%)}
+
+/* ── PROGRESS ── */
+#prog-wrap{position:fixed;top:0;left:0;right:0;z-index:200;height:3px;background:rgba(5,10,28,.9)}
+#prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease;box-shadow:0 0 10px var(--glow)}
+
+/* ── NAV ── */
+.top-nav{position:fixed;top:3px;left:0;right:0;z-index:199;display:flex;align-items:center;justify-content:space-between;padding:13px 32px;background:rgba(8,14,42,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1)}
+.nav-brand{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--accent);opacity:.8}
+.nav-crumb{font-size:10px;color:var(--dim);letter-spacing:2px}
+.nav-xp{font-family:'Cinzel',serif;font-size:11px;color:var(--accent);letter-spacing:2px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 14px}
+
+/* ── MAIN ── */
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:88px 24px 140px}
+
+/* ── REVEAL ── */
+.ls{margin-bottom:68px;opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.ls.visible{opacity:1;transform:translateY(0)}
+
+/* ── HERO ── */
+.hero{text-align:center;padding:76px 0 56px}
+.hero-eye{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.hero-code{font-family:'Cinzel',serif;font-size:88px;font-weight:900;line-height:1;color:transparent;background:linear-gradient(145deg,var(--accent2) 0%,var(--accent) 55%,rgba(201,168,76,.3) 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,168,76,.2));margin-bottom:10px}
+.hero-title{font-family:'Cinzel',serif;font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:8px}
+.hero-sub{font-size:15px;font-weight:300;font-style:italic;color:var(--dim);letter-spacing:2px;margin-bottom:36px}
+.hero-rule{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 36px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.22);border-radius:30px;padding:7px 22px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent)}
+
+/* ── CANVAS ── */
+#num-canvas{display:block;width:100%;height:100px;margin:34px 0;opacity:.75}
+
+/* ── SEC HEADER ── */
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.sh-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.6;white-space:nowrap}
+.sh-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--glow),transparent)}
+.st{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+
+/* ── TRANSMISSION ── */
+.tx{background:linear-gradient(135deg,rgba(0,0,0,.36),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--accent);border-radius:var(--r);padding:38px 44px;position:relative;overflow:hidden}
+.tx::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.tx-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.tx p{font-size:16px;line-height:1.95;color:rgba(240,237,230,.78);font-style:italic;font-weight:300}
+.tx p+p{margin-top:14px}
+.tx strong{color:var(--accent2);font-style:normal;font-weight:600}
+
+/* ── CARD ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 34px;margin-bottom:18px}
+.card p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.card p:last-child{margin-bottom:0}
+
+/* ── CALLOUT ── */
+.callout{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:24px 32px;margin:22px 0;text-align:center}
+.callout p{font-family:'Cinzel',serif;font-size:14px;line-height:1.8;color:var(--accent2);letter-spacing:.5px}
+
+/* ── SEQUENCE GRID ── */
+.seq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.seq-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 16px;text-align:center;transition:all .25s;cursor:default}
+.seq-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-2px)}
+.seq-num{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--accent);margin-bottom:6px;filter:drop-shadow(0 0 8px rgba(201,168,76,.2))}
+.seq-name{font-family:'Cinzel',serif;font-size:11px;color:var(--text);letter-spacing:1px;margin-bottom:4px}
+.seq-vib{font-size:11px;color:var(--accent);opacity:.75;margin-bottom:6px;font-style:italic}
+.seq-msg{font-size:12px;color:var(--dim);line-height:1.6}
+
+/* ── DEEP DIVE CARDS ── */
+.deep-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.deep-hd{display:flex;align-items:stretch;gap:0}
+.deep-num-block{background:rgba(201,168,76,.1);border-right:1px solid rgba(201,168,76,.15);padding:20px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:90px;flex-shrink:0}
+.deep-big{font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:var(--accent);line-height:1;filter:drop-shadow(0 0 10px rgba(201,168,76,.25))}
+.deep-core{font-family:'Cinzel',serif;font-size:14px;color:var(--dim);margin-top:4px}
+.deep-info{padding:18px 22px;flex:1}
+.deep-title{font-family:'Cinzel',serif;font-size:14px;color:var(--text);font-weight:700;margin-bottom:4px}
+.deep-sub{font-size:12px;color:var(--accent);font-style:italic;margin-bottom:8px;opacity:.8}
+.deep-body{font-size:13px;color:var(--dim);line-height:1.7}
+.deep-ref{padding:14px 22px;border-top:1px solid rgba(201,168,76,.08);font-size:12px;color:var(--accent);font-style:italic;opacity:.75}
+
+/* ── 369 CODE VISUAL ── */
+.code-wrap{background:#050d20;border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);overflow:hidden;margin:24px 0}
+.code-hd{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.12);padding:16px 24px;font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--accent)}
+.code-body{padding:28px}
+.code-quote{font-family:'Cinzel',serif;font-size:15px;font-style:italic;color:var(--accent2);text-align:center;line-height:1.8;margin-bottom:6px}
+.code-attr{font-size:11px;color:var(--dim);text-align:center;letter-spacing:2px;margin-bottom:28px}
+.code-tables{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.code-tbl{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden}
+.code-tbl th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:10px 12px;text-align:center;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1)}
+.code-tbl th:last-child{border-right:none}
+.code-tbl td{background:rgba(0,0,0,.2);padding:10px 12px;text-align:center;font-family:'Cinzel',serif;font-size:14px;color:var(--dim);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04)}
+.code-tbl td:last-child{border-right:none}
+.code-tbl td.gold{color:var(--accent);font-weight:700}
+.code-tbl td.check{color:#5ab87a;font-size:16px}
+.code-insight{margin-top:22px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:var(--r);padding:18px 22px;font-size:14px;color:var(--text);line-height:1.8}
+
+/* ── INTERACTIVE: SEQUENCE EXPLORER ── */
+.explorer{background:#050d20;border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);overflow:hidden;margin:24px 0}
+.ex-hd{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.12);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ex-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--accent)}
+.ex-body{padding:28px}
+.ex-input-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.ex-field{flex:1;min-width:140px}
+.ex-field label{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+.ex-field input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.14);border-radius:8px;padding:11px 16px;color:var(--text);font-family:'Cinzel',serif;font-size:22px;letter-spacing:6px;text-align:center;outline:none;transition:border-color .2s}
+.ex-field input:focus{border-color:rgba(201,168,76,.4)}
+.ex-field input::placeholder{font-family:'Raleway',sans-serif;font-size:13px;letter-spacing:1px;color:rgba(240,237,230,.2)}
+.seq-btns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.seq-btn{font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;padding:8px 16px;border-radius:20px;border:1px solid rgba(201,168,76,.2);background:transparent;color:var(--dim);cursor:pointer;transition:all .2s}
+.seq-btn:hover,.seq-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(201,168,76,.1)}
+.ex-result{display:none}
+.ex-result.show{display:block}
+.ex-res-num{font-family:'Cinzel',serif;font-size:72px;font-weight:900;color:var(--accent2);text-align:center;line-height:1;filter:drop-shadow(0 0 20px rgba(201,168,76,.3));margin-bottom:6px}
+.ex-res-name{font-family:'Cinzel',serif;font-size:16px;color:var(--text);text-align:center;letter-spacing:2px;margin-bottom:4px}
+.ex-res-vib{font-size:13px;color:var(--accent);text-align:center;font-style:italic;margin-bottom:18px}
+.ex-res-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ex-res-box{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:14px 16px}
+.ex-res-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.ex-res-val{font-size:13px;color:var(--text);line-height:1.6}
+.ex-res-q{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:var(--r);padding:14px 18px;margin-top:12px;font-size:13px;color:var(--accent2);line-height:1.7;font-style:italic}
+.ex-empty{text-align:center;padding:30px;font-size:13px;color:var(--dim);font-style:italic}
+
+/* ── 7-DAY JOURNAL TABLE ── */
+.journal-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.journal-table th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);padding:12px 10px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.journal-table th:last-child{border-right:none}
+.journal-table td{background:rgba(0,0,0,.2);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);padding:0;vertical-align:top}
+.journal-table td:last-child{border-right:none}
+.journal-table td:first-child{background:rgba(201,168,76,.06);font-family:'Cinzel',serif;font-size:16px;color:var(--accent);text-align:center;padding:14px 8px;font-weight:700;min-width:44px}
+.jta{width:100%;background:transparent;border:none;padding:10px 12px;color:var(--text);font-family:'Raleway',sans-serif;font-size:12px;line-height:1.6;resize:none;min-height:54px;outline:none}
+.jta::placeholder{color:rgba(240,237,230,.18)}
+
+/* ── QUIZ ── */
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;margin-bottom:14px;transition:border-color .3s}
+.quiz-item.correct{border-color:rgba(90,184,122,.45);background:rgba(90,184,122,.06)}
+.quiz-item.wrong{border-color:rgba(200,80,80,.4);background:rgba(200,80,80,.05)}
+.quiz-q{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:14px}
+.quiz-q strong{color:var(--accent2)}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:11px 16px;font-size:13px;color:var(--dim);cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:hover{border-color:rgba(201,168,76,.25);color:var(--text);background:rgba(201,168,76,.07)}
+.quiz-opt.ok{border-color:rgba(90,184,122,.5);background:rgba(90,184,122,.1);color:#6fda9a}
+.quiz-opt.no{border-color:rgba(200,80,80,.5);background:rgba(200,80,80,.08);color:#e07070}
+.quiz-opt.show-ok{border-color:rgba(90,184,122,.35);color:#6fda9a}
+.quiz-fb{margin-top:12px;font-size:13px;line-height:1.6;padding:10px 14px;border-radius:8px;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.correct{background:rgba(90,184,122,.08);color:#6fda9a}
+.quiz-fb.wrong{background:rgba(200,80,80,.06);color:#e07070}
+.quiz-score{text-align:center;font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--accent);padding:20px;display:none}
+.quiz-score.show{display:block}
+
+/* ── ACCORDION ── */
+.acc-item{margin-bottom:10px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.acc-hd{width:100%;background:var(--card);border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;transition:background .2s}
+.acc-hd:hover{background:rgba(0,0,0,.38)}
+.acc-ht{font-family:'Cinzel',serif;font-size:13px;color:var(--text);letter-spacing:1px}
+.acc-hs{font-size:11px;color:var(--dim);margin-top:2px}
+.acc-ic{font-size:18px;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-ic{transform:rotate(45deg)}
+.acc-bd{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-item.open .acc-bd{max-height:800px}
+.acc-ct{padding:20px 22px;font-size:13px;line-height:1.85;color:var(--dim);border-top:1px solid rgba(255,255,255,.04)}
+.acc-ct strong{color:var(--accent2)}
+
+/* ── STEPS ── */
+.step-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.step-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 20px;text-align:center}
+.step-n{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:var(--accent);opacity:.7;margin-bottom:10px}
+.step-title{font-family:'Cinzel',serif;font-size:14px;color:var(--text);margin-bottom:10px;letter-spacing:1px}
+.step-desc{font-size:13px;color:var(--dim);line-height:1.7}
+
+/* ── REFLECTION ── */
+.ref-q{font-family:'Cinzel',serif;font-size:14px;color:var(--accent2);line-height:1.75;margin-bottom:14px;letter-spacing:.5px}
+.ref-ta{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:18px 22px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;line-height:1.85;resize:vertical;min-height:110px;outline:none;transition:border-color .25s,background .25s;margin-bottom:26px}
+.ref-ta:focus{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.32)}
+.ref-ta::placeholder{color:rgba(240,237,230,.2)}
+
+/* ── DEFS TABLE ── */
+.defs-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.defs-table th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 18px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.defs-table th:last-child{border-right:none}
+.defs-table td{background:rgba(0,0,0,.2);padding:13px 18px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.65}
+.defs-table td:last-child{border-right:none}
+.defs-table td:first-child{color:var(--accent);font-style:italic;font-weight:500;white-space:nowrap}
+
+/* ── NAV CARDS ── */
+.nav-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nav-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:22px 26px;cursor:pointer;transition:all .3s;text-decoration:none}
+.nav-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.nav-card.prev{flex-direction:row-reverse}
+.nav-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.nav-title{font-family:'Cinzel',serif;font-size:15px;color:var(--text);letter-spacing:1px}
+.nav-arr{font-size:26px;color:var(--accent);opacity:.5;flex-shrink:0}
+
+/* ── WORKSHOP ── */
+.ws{background:rgba(0,0,0,.3);border:1px dashed rgba(201,168,76,.2);border-radius:var(--rl);padding:40px;text-align:center}
+.ws-ic{font-size:34px;margin-bottom:14px;opacity:.45}
+.ws-t{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:var(--accent);margin-bottom:8px;opacity:.6}
+.ws-s{font-size:13px;color:var(--dim)}
+
+/* ── COMPLETION ── */
+.comp-wrap{background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(0,0,0,.4));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:48px;text-align:center}
+.comp-t{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--text);margin-bottom:8px}
+.comp-s{font-size:13px;color:var(--dim);margin-bottom:28px}
+.comp-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:40px;padding:17px 44px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.comp-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.28)}
+.comp-btn.done{background:linear-gradient(135deg,#5ab87a,#7de09a)}
+.xp-pop{display:none;font-family:'Cinzel',serif;font-size:14px;color:var(--accent);margin-top:22px;letter-spacing:2px}
+.xp-pop.show{display:block;animation:fadeUp .7s ease}
+
+/* ── SAVE BAR ── */
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(5,10,28,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(201,168,76,.12);padding:13px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.sv-status{font-size:11px;color:var(--dim);letter-spacing:1px}
+.sv-status span{color:var(--accent);font-family:'Cinzel',serif}
+.sv-actions{display:flex;gap:10px}
+.sv-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.sv-btn.pri{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.3);color:var(--accent)}
+.sv-btn.pri:hover{background:rgba(201,168,76,.2)}
+.sv-btn.sec{background:transparent;border-color:rgba(255,255,255,.1);color:var(--dim)}
+.sv-btn.sec:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+#imp-file{display:none}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(8,14,42,.96);border:1px solid rgba(201,168,76,.28);border-radius:30px;padding:11px 26px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── CONFETTI ── */
+.cf{position:fixed;top:-20px;width:8px;height:8px;z-index:9999;border-radius:2px;pointer-events:none;animation:fall 2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:660px){.hero-code{font-size:60px}.hero-title{font-size:18px}.seq-grid{grid-template-columns:1fr 1fr}.step-wrap{grid-template-columns:1fr}.code-tables{grid-template-columns:1fr}.nav-cards{grid-template-columns:1fr}.ex-res-grid{grid-template-columns:1fr}.top-nav{padding:12px 16px}.nav-crumb{display:none}main{padding-left:16px;padding-right:16px}.tx{padding:26px 22px}.deep-hd{flex-direction:column}.deep-num-block{flex-direction:row;gap:12px;min-width:unset;border-right:none;border-bottom:1px solid rgba(201,168,76,.15)}}
 </style>
 </head>
 <body>
-<div>
-<h1>Lesson Coming Soon</h1>
-<p>The Frequency Academy · Check back soon</p>
+
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+
+<div class="top-nav">
+  <div class="nav-brand">THE FREQUENCY ACADEMY</div>
+  <div class="nav-crumb">NUMEROLOGY · N3</div>
+  <div class="nav-xp" id="xp-display">0 XP</div>
 </div>
+
+<div class="toast" id="toast"></div>
+
+<main>
+
+  <!-- HERO -->
+  <div class="ls hero visible">
+    <div class="hero-eye">Symbolic Sciences · Module I · Numerology</div>
+    <div class="hero-code">N3</div>
+    <div class="hero-title">Frequency Correlations</div>
+    <div class="hero-sub">111 · 222 · 333 · 369 & Repeating Numbers</div>
+    <div class="hero-rule"></div>
+    <div class="hero-tag">⟡ Module 3 of 333 · ~15 Min</div>
+    <canvas id="num-canvas"></canvas>
+  </div>
+
+  <!-- TRANSMISSION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">TRANSMISSION</div><div class="sh-rule"></div></div>
+    <div class="tx">
+      <div class="tx-lbl">Opening Transmission · N3</div>
+      <p>You have seen it. The clock reads 11:11. The receipt total is $3.33. You wake at 4:44 for the third morning in a row. You dismiss it as coincidence — then it happens again, and something in you <strong>knows</strong> it is not.</p>
+      <p>The universe does not place numbers in your path. It does something far more elegant: it <strong>tunes you</strong> to them. When you are vibrating at a particular frequency, the matching patterns in your environment become suddenly, unmistakably visible. The numbers were always there. <em>Your awareness of them is the signal.</em></p>
+      <p>What you are about to learn will change how you read the world around you. Not because the world will change — but because <strong>you will see it more clearly.</strong></p>
+    </div>
+  </div>
+
+  <!-- CORE CONCEPT -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">01</div><div class="sh-rule"></div></div>
+    <div class="st">What Are Frequency Correlations?</div>
+    <div class="card">
+      <p>A <strong style="color:var(--accent2)">frequency correlation</strong> is a repeating number pattern that appears in your physical reality and reflects the vibrational frequency you are currently holding. The key to understanding them lies in a single principle: <em>resonance</em>.</p>
+      <p>When your thoughts, emotions, and energy are coherent around a specific theme, you naturally begin to perceive matching frequencies in your environment. This is not mysticism — it is the same principle by which a tuning fork causes a matching fork across a room to vibrate. You become tuned; the environment responds.</p>
+    </div>
+    <div class="callout">
+      <p>The question is not: <em>"Why is the universe showing me this?"</em><br>The more precise question is: <em>"What frequency am I holding right now?"</em><br><span style="font-size:11px;opacity:.7;letter-spacing:2px;font-style:normal">That is where the real information lives.</span></p>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:16px">KEY DEFINITIONS</p>
+      <table class="defs-table">
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Frequency Correlation</td><td>A repeating number pattern reflecting the vibrational frequency you are currently holding</td></tr>
+          <tr><td>Resonance</td><td>The principle by which a vibrating frequency causes matching frequencies in its environment to respond or become noticeable</td></tr>
+          <tr><td>Amplification</td><td>The effect of triple repetition on a number's vibration — 111 carries the energy of 1, intensified three-fold</td></tr>
+          <tr><td>Frequency Mirror</td><td>The concept that repeating numbers reflect your current vibrational state rather than delivering an external message</td></tr>
+          <tr><td>369 Code</td><td>The mathematical pattern in which 3, 6, and 9 form a closed self-referential loop separate from the 1-2-4-8-7-5 material doubling cycle</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SEQUENCE OVERVIEW -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">02</div><div class="sh-rule"></div></div>
+    <div class="st">The Nine Sequences at a Glance</div>
+    <div class="card"><p>Every repeating sequence is an <strong style="color:var(--accent2)">amplification</strong> of its core single digit. The triple repetition does not change the energy — it intensifies it, making it unmissable. Use this as your quick reference, then go deeper in the section below.</p></div>
+    <div class="seq-grid" id="seq-grid"></div>
+  </div>
+
+  <!-- DEEP DIVE 111-555 -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">03</div><div class="sh-rule"></div></div>
+    <div class="st">Deep Dive · 111 through 555</div>
+    <div id="deep-1-5"></div>
+  </div>
+
+  <!-- DEEP DIVE 666-999 -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">04</div><div class="sh-rule"></div></div>
+    <div class="st">Deep Dive · 666 through 999</div>
+    <div class="card" style="margin-bottom:20px"><p style="font-size:13px;font-style:italic;color:var(--dim)">Remember: No sequence is more important than another. The one that appears most frequently for you is simply the frequency you are most consistently vibrating at right now.</p></div>
+    <div id="deep-6-9"></div>
+  </div>
+
+  <!-- 369 CODE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">05</div><div class="sh-rule"></div></div>
+    <div class="st">The 369 Code</div>
+    <div class="code-wrap">
+      <div class="code-hd">⟡ The Mathematics Behind Tesla's Key</div>
+      <div class="code-body">
+        <div class="code-quote">"If you only knew the magnificence of the 3, 6, and 9, then you would have a key to the universe."</div>
+        <div class="code-attr">— Attributed to Nikola Tesla</div>
+        <div class="code-tables">
+          <div>
+            <p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:12px">THE DOUBLING CYCLE</p>
+            <table class="code-tbl">
+              <thead><tr><th>Number</th><th>1</th><th>2</th><th>4</th><th>8</th><th>16</th><th>32</th><th>64</th></tr></thead>
+              <tbody><tr><td style="background:rgba(201,168,76,.08);color:var(--accent);font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;border-right:1px solid rgba(201,168,76,.1)">Digit Sum</td><td class="gold">1</td><td class="gold">2</td><td class="gold">4</td><td class="gold">8</td><td class="gold">7</td><td class="gold">5</td><td class="gold">1</td></tr></tbody>
+            </table>
+            <p style="font-size:12px;color:var(--dim);margin-top:12px;line-height:1.7"><strong style="color:var(--text)">Notice:</strong> The doubling sequence cycles through 1, 2, 4, 8, 7, 5 — infinitely. The numbers <strong style="color:var(--accent2)">3, 6, and 9 never appear.</strong></p>
+          </div>
+          <div>
+            <p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:12px">THE 3-6-9 LOOP</p>
+            <table class="code-tbl">
+              <thead><tr><th>Operation</th><th>Result</th><th>Digit Sum</th><th>In Loop?</th></tr></thead>
+              <tbody>
+                <tr><td style="color:var(--dim)">3 × 2 = 6</td><td class="gold">6</td><td class="gold">6</td><td class="check">✓</td></tr>
+                <tr><td style="color:var(--dim)">6 × 2 = 12</td><td class="gold">12</td><td class="gold">3</td><td class="check">✓</td></tr>
+                <tr><td style="color:var(--dim)">9 × 2 = 18</td><td class="gold">18</td><td class="gold">9</td><td class="check">✓</td></tr>
+              </tbody>
+            </table>
+            <p style="font-size:12px;color:var(--dim);margin-top:12px;line-height:1.7">3, 6, and 9 form a <strong style="color:var(--text)">closed self-referential loop</strong> — completely separate from the material doubling cycle.</p>
+          </div>
+        </div>
+        <div class="code-insight">
+          Many researchers connect the 369 pattern to the <strong>torus</strong>, to vortex mathematics, and to the hidden geometry underlying physical reality. In numerology, 3 is expression, 6 is love, 9 is completion. Together they form a dimensional loop separate from the material world — as if creativity, love, and completion operate by a different set of rules entirely.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE EXPLORER -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">INTERACTIVE</div><div class="sh-rule"></div></div>
+    <div class="st">Frequency Sequence Explorer</div>
+    <div class="explorer">
+      <div class="ex-hd">
+        <div class="ex-title">⟡ What Is This Number Showing You?</div>
+        <div style="font-size:11px;color:var(--dim);letter-spacing:1px">Enter or tap a sequence to explore its message</div>
+      </div>
+      <div class="ex-body">
+        <div class="ex-input-row">
+          <div class="ex-field">
+            <label>ENTER A SEQUENCE</label>
+            <input type="text" id="exp-input" placeholder="111, 333, 777..." maxlength="6" oninput="runExplorer(this.value)">
+          </div>
+        </div>
+        <div class="seq-btns" id="seq-btns"></div>
+        <div class="ex-result" id="exp-result">
+          <div class="ex-empty">Enter or tap a sequence above to reveal its frequency message.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE ACCORDION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">QUICK REF</div><div class="sh-rule"></div></div>
+    <div class="st">Working With Frequency Correlations</div>
+    <div id="accordion"></div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">KNOWLEDGE CHECK</div><div class="sh-rule"></div></div>
+    <div class="st">Test Your Understanding</div>
+    <div id="quiz"></div>
+    <div class="quiz-score" id="quiz-score"></div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">PRACTICE</div><div class="sh-rule"></div></div>
+    <div class="st">The 3-Step Conscious Practice</div>
+    <div class="card"><p>Use this framework <strong style="color:var(--accent2)">every time</strong> you notice a repeating number. The practice takes less than 60 seconds and, done consistently, will reveal clear patterns in your personal frequency over days and weeks.</p></div>
+    <div class="step-wrap">
+      <div class="step-card">
+        <div class="step-n">STEP 1</div>
+        <div class="step-title">Notice Without Grasping</div>
+        <div class="step-desc">Note the sequence. Don't force meaning. Simply observe: "I noticed 444 today. Three times." No need to immediately interpret.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-n">STEP 2</div>
+        <div class="step-title">Check Your Frequency</div>
+        <div class="step-desc">Ask: What was I thinking before I noticed this? What emotion was I in? What theme is alive in my life right now? The number is the mirror — your frequency is the message.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-n">STEP 3</div>
+        <div class="step-title">Respond Intentionally</div>
+        <div class="step-desc">Use what you know. If 555 and resisting change — ask how to move with it. If 111 and fearful — redirect your thoughts. The sequence is your reminder to tune right now.</div>
+      </div>
+    </div>
+
+    <div class="sh" style="margin-top:36px"><div class="sh-tag">7-DAY JOURNAL</div><div class="sh-rule"></div></div>
+    <div class="card"><p style="font-size:13px">For the next 7 days, record every repeating number you notice below. Patterns will emerge. Your journal saves automatically.</p></div>
+    <table class="journal-table" id="journal-table"></table>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">REFLECTION</div><div class="sh-rule"></div></div>
+    <div class="st">Reflection Journal</div>
+    <div class="callout" style="margin-bottom:24px"><p>Let the answers come from your frequency, not your intellect.<br>Sit with each question before writing.</p></div>
+    <div class="ref-q">1 — Think of a time in the past when you noticed a repeating number. Looking back through the lens of what you've learned — what frequency do you think you were holding in that moment?</div>
+    <textarea class="ref-ta" id="ref-1" placeholder="Write freely..." oninput="autoSave()"></textarea>
+    <div class="ref-q">2 — Which sequence in this lesson resonates most strongly with where you are right now in your life? What does that tell you about your current frequency?</div>
+    <textarea class="ref-ta" id="ref-2" placeholder="Which number keeps appearing for you..." oninput="autoSave()"></textarea>
+    <div class="ref-q">3 — The 369 Code shows that creativity (3), love (6), and completion (9) operate in a separate loop from the material doubling cycle. What does this suggest to you about their role in the architecture of reality?</div>
+    <textarea class="ref-ta" id="ref-3" placeholder="What does the 369 pattern mean to you personally..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">LIVE WORKSHOP</div><div class="sh-rule"></div></div>
+    <div class="st">Live Session</div>
+    <div class="ws"><div class="ws-ic">⟡</div><div class="ws-t">Live Workshop: Frequency Correlations</div><div class="ws-s">Coming soon — recordings and live session links will appear here once scheduled.<br>Check The Frequency Academy community for announcements.</div></div>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="ls">
+    <div class="comp-wrap">
+      <div class="comp-t">SEAL THIS LESSON</div>
+      <div class="comp-s">Complete your reflections and 7-day journal above, then seal this lesson.</div>
+      <button class="comp-btn" id="comp-btn" onclick="markComplete()">⟡ Mark Complete · +10 XP</button>
+      <div class="xp-pop" id="xp-pop">✦ +10 XP Awarded · N3 Complete ✦</div>
+    </div>
+  </div>
+
+  <!-- NAVIGATE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">NAVIGATE</div><div class="sh-rule"></div></div>
+    <div class="st">Continue the Journey</div>
+    <div class="nav-cards">
+      <a class="nav-card prev" href="../lesson-02/">
+        <div class="nav-arr">←</div>
+        <div><div class="nav-lbl">PREVIOUS · N2</div><div class="nav-title">Personal Numerology</div></div>
+      </a>
+      <a class="nav-card" href="../lesson-04/">
+        <div><div class="nav-lbl">NEXT · N4</div><div class="nav-title">Numerology & Relationships</div></div>
+        <div class="nav-arr">→</div>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<div id="save-bar">
+  <div class="sv-status">Auto-save: <span id="save-time">—</span></div>
+  <div class="sv-actions">
+    <input type="file" id="imp-file" accept=".json" onchange="importData(event)">
+    <button class="sv-btn sec" onclick="document.getElementById('imp-file').click()">Import</button>
+    <button class="sv-btn pri" onclick="exportData()">Export Backup</button>
+  </div>
+</div>
+
+<script>
+// ── SEQUENCE DATA ──
+const SEQS = {
+  111:{name:'Activation Signal',vib:'Initiation · New Beginnings',msg:'Your thoughts are particularly potent right now. You are in a high-frequency creative moment. Direct your mind deliberately toward what you want to create.',core:'1',question:'What were you thinking or feeling when you last saw 111? What are you being called to initiate?'},
+  222:{name:'Alignment Confirmation',vib:'Trust · Divine Timing · Balance',msg:'You are on the right path even when evidence hasn\'t appeared yet. Something is aligning behind the scenes. Stay in balance and trust the timing.',core:'2',question:'What situation in your life might 222 be inviting you to trust more deeply?'},
+  333:{name:'Creative Trinity',vib:'Expression · Mind-Body-Spirit',msg:'A peak of creative energy is present. You are being called to express, create, and speak your truth. 3 is the number of communication and expansion — tripled.',core:'3',question:'What creative expression or truth have you been holding back that 333 might be prompting?'},
+  444:{name:'Foundation Frequency',vib:'Stability · Protection · Support',msg:'One of the most grounding sequences. You are protected and surrounded by stable energy. The foundation beneath you is solid — even if you can\'t feel it yet.',core:'4',question:'Where in your life do you most need the grounding reminder of 444 right now?'},
+  555:{name:'Change Signal',vib:'Transformation · Freedom · Movement',msg:'Significant change is incoming or already underway. This is a time to move with the current, not resist it. The change leads somewhere better — even if the destination isn\'t visible yet.',core:'5',question:'What change are you currently resisting that 555 might be encouraging you to embrace?'},
+  666:{name:'Rebalancing Code',vib:'Love · Care · Heart-Centred Attention',msg:'The amplified vibration of 6 — the nurturer, the energy of love and responsibility. A prompt to rebalance: come back to your heart. Not the popular misconception — this is a gentle call home.',core:'6',question:'Where are you over-focusing on material or mental concerns at the expense of love or care?'},
+  777:{name:'Mystical Download',vib:'Wisdom · Spiritual Depth · Revelation',msg:'777 appears during periods of intense spiritual growth and inner realisation. Pay close attention to dreams, intuitive hits, and unexpected insights. Something is being revealed to you now.',core:'7',question:'What spiritual insight or intuitive knowing has been quietly growing in you lately?'},
+  888:{name:'Abundance Alignment',vib:'Material Flow · Deserving · Infinity',msg:'The infinity symbol repeated. Your energy is aligning with the flow of abundance. Stand in the energy of deserving. Release scarcity thinking. The channel is open.',core:'8',question:'What scarcity belief might you need to release to fully receive the frequency of 888?'},
+  999:{name:'Completion Gate',vib:'Endings · Release · Preparation',msg:'A major cycle is closing. A chapter, relationship, belief, or version of yourself is completing. This creates space for an entirely new beginning. Release with gratitude.',core:'9',question:'What are you holding onto that 999 might be asking you to release in order to receive something new?'}
+};
+
+// ── BUILD SEQUENCE GRID ──
+(function buildGrid(){
+  const g=document.getElementById('seq-grid');
+  Object.entries(SEQS).forEach(([seq,d])=>{
+    const c=document.createElement('div');c.className='seq-card';
+    c.innerHTML=`<div class="seq-num">${seq}</div><div class="seq-name">${d.name}</div><div class="seq-vib">${d.vib.split('·')[0].trim()}</div><div class="seq-msg" style="display:none">${d.msg}</div>`;
+    c.onclick=()=>loadSeq(seq);
+    g.appendChild(c);
+  });
+})();
+
+// ── BUILD DEEP DIVE CARDS ──
+function buildDeep(id, keys){
+  const c=document.getElementById(id);
+  keys.forEach(seq=>{
+    const d=SEQS[seq];
+    const el=document.createElement('div');el.className='deep-card';
+    el.innerHTML=`<div class="deep-hd"><div class="deep-num-block"><div class="deep-big">${seq}</div><div class="deep-core">Core: ${d.core}</div></div><div class="deep-info"><div class="deep-title">${d.name}</div><div class="deep-sub">${d.vib}</div><div class="deep-body">${d.msg}</div></div></div><div class="deep-ref">↳ Reflect: ${d.question}</div>`;
+    c.appendChild(el);
+  });
+}
+buildDeep('deep-1-5',['111','222','333','444','555']);
+buildDeep('deep-6-9',['666','777','888','999']);
+
+// ── INTERACTIVE EXPLORER ──
+(function buildBtns(){
+  const c=document.getElementById('seq-btns');
+  Object.keys(SEQS).forEach(seq=>{
+    const b=document.createElement('button');b.className='seq-btn';b.textContent=seq;
+    b.onclick=()=>{document.getElementById('exp-input').value=seq;loadSeq(seq);document.querySelectorAll('.seq-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');};
+    c.appendChild(b);
+  });
+})();
+
+function runExplorer(val){
+  const clean=val.replace(/\D/g,'');
+  const match=Object.keys(SEQS).find(s=>s===clean||clean.startsWith(s.charAt(0).repeat(3)));
+  if(SEQS[clean]){loadSeq(clean);}else if(match){loadSeq(match);}
+  else{document.getElementById('exp-result').innerHTML='<div class="ex-empty">Enter a repeating sequence like 111, 333, or 777.</div>';document.getElementById('exp-result').classList.add('show');}
+}
+
+function loadSeq(seq){
+  if(!SEQS[seq])return;
+  const d=SEQS[seq];
+  document.getElementById('exp-result').innerHTML=`
+    <div class="ex-res-num">${seq}</div>
+    <div class="ex-res-name">${d.name}</div>
+    <div class="ex-res-vib">${d.vib}</div>
+    <div class="ex-res-grid">
+      <div class="ex-res-box"><div class="ex-res-lbl">CORE DIGIT</div><div class="ex-res-val" style="font-family:'Cinzel',serif;font-size:28px;color:var(--accent)">${d.core}</div></div>
+      <div class="ex-res-box"><div class="ex-res-lbl">FREQUENCY MESSAGE</div><div class="ex-res-val">${d.msg}</div></div>
+    </div>
+    <div class="ex-res-q">Reflection prompt: ${d.question}</div>`;
+  document.getElementById('exp-result').classList.add('show');
+  document.querySelectorAll('.seq-btn').forEach(b=>{b.classList.toggle('active',b.textContent===seq);});
+  autoSave();
+}
+
+// ── BUILD 7-DAY JOURNAL ──
+(function buildJournal(){
+  const t=document.getElementById('journal-table');
+  t.innerHTML=`<thead><tr><th style="width:44px">Day</th><th style="width:80px">Sequence</th><th>Where / Context</th><th>Thinking / Feeling</th><th>Theme</th></tr></thead><tbody></tbody>`;
+  const tb=t.querySelector('tbody');
+  for(let i=1;i<=7;i++){
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${i}</td><td><textarea class="jta" id="jd${i}-seq" placeholder="e.g. 444" oninput="autoSave()"></textarea></td><td><textarea class="jta" id="jd${i}-ctx" placeholder="Time / place..." oninput="autoSave()"></textarea></td><td><textarea class="jta" id="jd${i}-feel" placeholder="Thoughts, emotions..." oninput="autoSave()"></textarea></td><td><textarea class="jta" id="jd${i}-theme" placeholder="Pattern..." oninput="autoSave()"></textarea></td>`;
+    tb.appendChild(tr);
+  }
+})();
+
+// ── ACCORDION ──
+const ACC=[
+  {t:'The Resonance Principle Explained',s:'Why you notice — not why they appear',c:'You do not notice repeating numbers because the universe places them in front of you. You notice them because you are <strong>tuned to that frequency</strong>. Think of it like a radio: 444 was always broadcasting — but you only hear it when your dial is close to that station. This reframe is empowering: instead of waiting for signs, you become responsible for your own frequency. The signal tells you where your dial is set.'},
+  {t:'Not All Interpretations Are Equal',s:'The difference between mirror and message',c:'Popular "angel number" frameworks often describe repeating numbers as external messages from guides or the universe. The TFA framework frames them differently: as <strong>frequency mirrors</strong>. The distinction matters. If 333 is a message, you become a receiver — passive, waiting. If 333 is a mirror, you become a participant — active, responsible. One disempowers you subtly; the other reminds you of your creative authority.'},
+  {t:'Working With 369 in Daily Life',s:'Practical applications of the code',c:'The 369 Code is not only mathematical — it is practical. Many people use it as a <strong>manifestation structure</strong>: write your intention 3 times in the morning, 6 times in the afternoon, 9 times at night. Whether or not this "works" mechanically, the discipline tunes your awareness to the frequency of what you want to create three times daily. The number of repetitions itself carries the vibrational loop.'},
+  {t:'When Sequences Cluster',s:'Seeing multiple patterns in short periods',c:'Sometimes multiple sequences appear within a short time frame — 111 in the morning, 444 at noon, 999 in the evening. This often reflects a period of <strong>significant energetic movement or transition</strong>. Rather than interpreting each individually, look for the narrative: initiation (1) → foundation (4) → completion (9). The arc of the sequences tells a story about the cycle you are moving through.'},
+  {t:'Sequences vs. Personal Numbers',s:'How correlations relate to your core chart',c:'Your personal core numbers (Life Path, Expression, Soul Urge, Personality from N2) have a relationship with the sequences you notice most frequently. People with a Life Path 7 often report seeing 777 more than others. This is not coincidence — it is resonance. Your dominant vibrational frequency naturally attunes you to matching environmental patterns. <strong>Track your sequences for a month</strong> and compare them to your core numbers. The overlap is usually striking.'}
+];
+(function buildAcc(){const c=document.getElementById('accordion');ACC.forEach(item=>{const el=document.createElement('div');el.className='acc-item';el.innerHTML=`<button class="acc-hd" onclick="this.closest('.acc-item').classList.toggle('open')"><div><div class="acc-ht">${item.t}</div><div class="acc-hs">${item.s}</div></div><span class="acc-ic">+</span></button><div class="acc-bd"><div class="acc-ct">${item.c}</div></div>`;c.appendChild(el);});})();
+
+// ── QUIZ ──
+const QD=[
+  {q:'A Frequency Correlation is best described as:',opts:['A message placed by the universe to guide you','A repeating number reflecting the vibrational frequency you are currently holding','A coincidence with symbolic meaning assigned by tradition','An angel number sent by spiritual guides'],ans:1,fb:'Correct — frequency correlations are mirrors of your current vibration, not external messages placed for you.'},
+  {q:'The principle that explains why you notice repeating numbers is called:',opts:['Synchronicity','Manifestation','Resonance','Amplification'],ans:2,fb:'Resonance — when you vibrate at a frequency, matching frequencies in your environment become noticeable to you.'},
+  {q:'What does 777 signal?',opts:['Material abundance and financial flow','Significant change incoming','Spiritual growth and deep inner realisation','A major cycle closing'],ans:2,fb:'777 is the Mystical Download — it appears during periods of intense spiritual growth, inner realisation, and revelation.'},
+  {q:'In the doubling sequence (1, 2, 4, 8, 16...), which numbers NEVER appear in the digit sums?',opts:['1, 5, and 7','3, 6, and 9','2, 4, and 8','6, 7, and 8'],ans:1,fb:'3, 6, and 9 never appear in the doubling cycle — they form their own closed loop, which is the foundation of the 369 Code.'},
+  {q:'555 signals that you should:',opts:['Maintain stability and resist change','Retreat and wait for clarity','Move with the change rather than resist it','Return to your heart and home'],ans:2,fb:'555 signals transformation — move with the current, not against it. The change leads somewhere better.'},
+  {q:'The 3-Step Conscious Practice involves:',opts:['Notice → Reduce → Calculate','Notice Without Grasping → Check Your Frequency → Respond Intentionally','Identify → Journal → Share','Observe → Interpret → Ignore'],ans:1,fb:'Notice Without Grasping → Check Your Frequency → Respond Intentionally. This three-step sequence turns observation into a conscious frequency practice.'},
+  {q:'888 is associated with:',opts:['A major cycle closing — release and prepare','Spiritual wisdom and mystical downloads','Alignment with the flow of abundance — stand in the energy of deserving','Grounding protection and stable foundations'],ans:2,fb:'888 — the infinity symbol tripled — signals alignment between your energy and material flow. Release scarcity thinking.'},
+];
+let qA=0,qC=0;
+(function buildQ(){const c=document.getElementById('quiz');QD.forEach((q,qi)=>{const d=document.createElement('div');d.className='quiz-item';d.id='qi-'+qi;d.innerHTML=`<div class="quiz-q">${qi+1}. ${q.q}</div><div class="quiz-opts">${q.opts.map((o,oi)=>`<button class="quiz-opt" onclick="ansQ(${qi},${oi})">${o}</button>`).join('')}</div><div class="quiz-fb" id="qf-${qi}"></div>`;c.appendChild(d);});})();
+function ansQ(qi,chosen){const item=document.getElementById('qi-'+qi);if(item.dataset.done)return;item.dataset.done='1';const q=QD[qi];item.querySelectorAll('.quiz-opt').forEach(o=>o.disabled=true);const fb=document.getElementById('qf-'+qi);if(chosen===q.ans){item.classList.add('correct');item.querySelectorAll('.quiz-opt')[chosen].classList.add('ok');fb.className='quiz-fb correct show';fb.textContent='✓ '+q.fb;qC++;}else{item.classList.add('wrong');item.querySelectorAll('.quiz-opt')[chosen].classList.add('no');item.querySelectorAll('.quiz-opt')[q.ans].classList.add('show-ok');fb.className='quiz-fb wrong show';fb.textContent='✗ '+q.fb;}qA++;if(qA===QD.length){const s=document.getElementById('quiz-score');s.className='quiz-score show';const p=Math.round(qC/QD.length*100);s.innerHTML=`You answered <strong style="color:var(--accent)">${qC} of ${QD.length}</strong> correctly (${p}%).${p>=80?' The frequencies are becoming clear.':' Review and return when ready.'}`;}autoSave();}
+
+// ── ANIMATED CANVAS ──
+const nc=document.getElementById('num-canvas'),nctx=nc.getContext('2d');let nt=0;
+const floaters=Array.from({length:22},()=>({n:[111,222,333,444,555,666,777,888,999,369,11,33][Math.floor(Math.random()*12)],x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.1,vy:(Math.random()-.5)*.065,size:10+Math.random()*14,alpha:.08+Math.random()*.25,phase:Math.random()*Math.PI*2}));
+function resNC(){nc.width=nc.offsetWidth*Math.min(devicePixelRatio,2);nc.height=100*Math.min(devicePixelRatio,2);nctx.scale(Math.min(devicePixelRatio,2),Math.min(devicePixelRatio,2))}resNC();window.addEventListener('resize',resNC);
+function animNC(){const w=nc.offsetWidth,h=100;nctx.clearRect(0,0,w,h);nt+=.01;floaters.forEach(f=>{f.x+=f.vx*.01;f.y+=f.vy*.01;if(f.x<0)f.x=1;if(f.x>1)f.x=0;if(f.y<0)f.y=1;if(f.y>1)f.y=0;const p=.55+.45*Math.sin(nt*1.1+f.phase);nctx.font=`${f.size}px 'Cinzel',serif`;nctx.fillStyle=`rgba(201,168,76,${f.alpha*p})`;nctx.textAlign='center';nctx.fillText(f.n,f.x*w,f.y*h+f.size*.4);});requestAnimationFrame(animNC);}animNC();
+
+// ── PROGRESS ──
+window.addEventListener('scroll',()=>{const p=Math.min(scrollY/(document.body.scrollHeight-innerHeight)*100,100);document.getElementById('prog-fill').style.width=p+'%'},{passive:true});
+
+// ── REVEAL ──
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.07});
+document.querySelectorAll('.ls').forEach(s=>io.observe(s));
+
+// ── SAVE / LOAD ──
+const KEY='tfa_lesson_N3';let xp=0,saveT;
+function getJournalData(){const j={};for(let i=1;i<=7;i++){j[i]={seq:document.getElementById(`jd${i}-seq`)?.value||'',ctx:document.getElementById(`jd${i}-ctx`)?.value||'',feel:document.getElementById(`jd${i}-feel`)?.value||'',theme:document.getElementById(`jd${i}-theme`)?.value||''}}return j;}
+function getData(){return{version:'1.0',lesson:'N3',ts:new Date().toISOString(),reflections:{r1:document.getElementById('ref-1').value,r2:document.getElementById('ref-2').value,r3:document.getElementById('ref-3').value},journal:getJournalData(),xp,completed:document.getElementById('comp-btn').classList.contains('done')}}
+function loadData(){try{const raw=localStorage.getItem(KEY);if(!raw)return;const d=JSON.parse(raw);if(d.reflections){document.getElementById('ref-1').value=d.reflections.r1||'';document.getElementById('ref-2').value=d.reflections.r2||'';document.getElementById('ref-3').value=d.reflections.r3||'';}if(d.journal){for(let i=1;i<=7;i++){if(d.journal[i]){const j=d.journal[i];if(document.getElementById(`jd${i}-seq`))document.getElementById(`jd${i}-seq`).value=j.seq||'';if(document.getElementById(`jd${i}-ctx`))document.getElementById(`jd${i}-ctx`).value=j.ctx||'';if(document.getElementById(`jd${i}-feel`))document.getElementById(`jd${i}-feel`).value=j.feel||'';if(document.getElementById(`jd${i}-theme`))document.getElementById(`jd${i}-theme`).value=j.theme||'';}}}if(d.xp){xp=d.xp;updXP();}if(d.completed)applyDone();document.getElementById('save-time').textContent=fmtT(d.ts);}catch(e){}}
+function saveData(){localStorage.setItem(KEY,JSON.stringify(getData()));document.getElementById('save-time').textContent='just now'}
+function autoSave(){clearTimeout(saveT);saveT=setTimeout(saveData,1200)}
+setInterval(saveData,90000);
+function exportData(){const b=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`tfa_N3_${new Date().toISOString().slice(0,10)}.json`;a.click();toast('Backup exported ✦')}
+function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const d=JSON.parse(ev.target.result);localStorage.setItem(KEY,JSON.stringify(d));loadData();toast('Session restored ✦');}catch{toast('Invalid file')}};r.readAsText(f);e.target.value=''}
+function fmtT(iso){try{return new Date(iso).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}catch{return'—'}}
+function updXP(){document.getElementById('xp-display').textContent=xp+' XP'}
+function applyDone(){const b=document.getElementById('comp-btn');b.classList.add('done');b.textContent='✦ Lesson Sealed';document.getElementById('xp-pop').classList.add('show')}
+function markComplete(){if(document.getElementById('comp-btn').classList.contains('done'))return;xp+=10;updXP();applyDone();saveData();confetti();toast('✦ +10 XP · N3 Sealed ✦')}
+function confetti(){const cols=['#c9a84c','#dfc472','#f0ede6','#9aa0c8'];for(let i=0;i<60;i++){const el=document.createElement('div');el.className='cf';el.style.cssText=`left:${Math.random()*100}%;background:${cols[Math.floor(Math.random()*cols.length)]};animation-delay:${Math.random()*.8}s;animation-duration:${1.5+Math.random()}s;transform:rotate(${Math.random()*360}deg);width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;border-radius:${Math.random()>.5?'50%':'2px'}`;document.body.appendChild(el);setTimeout(()=>el.remove(),2800)}}
+let toastT;function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3000)}
+loadData();
+</script>
 </body>
 </html>
