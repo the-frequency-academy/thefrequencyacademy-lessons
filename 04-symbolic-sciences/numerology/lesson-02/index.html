@@ -3,610 +3,1844 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>N2: Personal Numerology — The Frequency Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<title>Q2: Wave-Particle Duality — The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:wght@300;400;500;600&family=Raleway+Dots&display=swap" rel="stylesheet">
 <style>
-/* ── TFA LESSON SHELL v1.0 ── */
 :root {
-  --bg:      #0d1a3a;
-  --accent:  #c9a84c;
-  --accent2: #dfc472;
-  --text:    #f0ede6;
-  --dim:     rgba(240,237,230,0.60);
-  --card:    rgba(0,0,0,0.28);
-  --border:  rgba(201,168,76,0.14);
-  --glow:    rgba(201,168,76,0.20);
-  --r:       12px;
-  --rl:      18px;
+  --navy: #0D1240;
+  --navy-light: #131a5a;
+  --navy-mid: #1a2270;
+  --gold: #C9A84C;
+  --gold-light: #e8c96a;
+  --gold-pale: rgba(201,168,76,0.12);
+  --gold-glow: rgba(201,168,76,0.3);
+  --cream: #FDFAF4;
+  --cream-dim: rgba(253,250,244,0.7);
+  --white: #ffffff;
+  --cyan: #4fc3f7;
+  --cyan-dim: rgba(79,195,247,0.2);
+  --purple: #7c4dff;
+  --text: #e8e0d0;
+  --muted: rgba(232,224,208,0.55);
+  --radius: 12px;
+  --radius-lg: 20px;
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);background-image:radial-gradient(ellipse at 18% 12%,rgba(201,168,76,0.07) 0%,transparent 55%),radial-gradient(ellipse at 82% 88%,rgba(13,26,58,0.8) 0%,transparent 50%);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 9% 14%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 25% 41%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 44% 8%,rgba(255,255,255,.8) 0%,transparent 100%),radial-gradient(1px 1px at 66% 31%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 80% 17%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 93% 57%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 14% 75%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 37% 63%,rgba(201,168,76,.45) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 89% 36%,rgba(201,168,76,.3) 0%,transparent 100%)}
 
-/* ── PROGRESS ── */
-#prog-wrap{position:fixed;top:0;left:0;right:0;z-index:200;height:3px;background:rgba(5,10,28,.9)}
-#prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease;box-shadow:0 0 10px var(--glow)}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ── NAV ── */
-.top-nav{position:fixed;top:3px;left:0;right:0;z-index:199;display:flex;align-items:center;justify-content:space-between;padding:13px 32px;background:rgba(8,14,42,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1)}
-.nav-brand{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--accent);opacity:.8}
-.nav-crumb{font-size:10px;color:var(--dim);letter-spacing:2px}
-.nav-xp{font-family:'Cinzel',serif;font-size:11px;color:var(--accent);letter-spacing:2px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 14px}
+html { scroll-behavior: smooth; }
 
-/* ── MAIN ── */
-main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:88px 24px 140px}
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-/* ── SECTION REVEAL ── */
-.ls{margin-bottom:68px;opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
-.ls.visible{opacity:1;transform:translateY(0)}
+/* ── STAR FIELD ── */
+.starfield {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 20% 30%, #1a1060 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 70%, #0a2040 0%, transparent 60%),
+              var(--navy);
+}
+.starfield::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 60%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 72% 45%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 25%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 75%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 48% 85%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 80%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(2px 2px at 25% 40%, rgba(201,168,76,0.6) 0%, transparent 100%),
+    radial-gradient(2px 2px at 65% 70%, rgba(79,195,247,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 10%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,0.4) 0%, transparent 100%);
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar-container {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 4px;
+  background: rgba(13,18,64,0.95);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+#progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--cyan));
+  width: 0%;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+#progress-label {
+  position: absolute; top: 6px; right: 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  opacity: 0.7;
+}
+
+/* ── TOP NAV ── */
+.top-nav {
+  position: fixed; top: 4px; left: 0; right: 0; z-index: 99;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 32px;
+  background: rgba(13,18,64,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+.nav-brand {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  opacity: 0.85;
+}
+.nav-meta {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+}
+.xp-badge {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+.xp-badge span {
+  background: var(--gold-pale);
+  border: 1px solid var(--gold-glow);
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+
+/* ── MAIN LAYOUT ── */
+main {
+  position: relative; z-index: 1;
+  padding-top: 80px;
+  padding-bottom: 120px;
+  max-width: 860px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ── SECTION BLOCKS ── */
+.section {
+  margin-bottom: 64px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ── HERO ── */
-.hero{text-align:center;padding:76px 0 56px}
-.hero-eye{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
-.hero-code{font-family:'Cinzel',serif;font-size:88px;font-weight:900;line-height:1;color:transparent;background:linear-gradient(145deg,var(--accent2) 0%,var(--accent) 55%,rgba(201,168,76,.3) 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,168,76,.2));margin-bottom:10px}
-.hero-title{font-family:'Cinzel',serif;font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:8px}
-.hero-sub{font-size:15px;font-weight:300;font-style:italic;color:var(--dim);letter-spacing:2px;margin-bottom:36px}
-.hero-rule{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 36px}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.22);border-radius:30px;padding:7px 22px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent)}
+.hero {
+  text-align: center;
+  padding: 80px 0 60px;
+  position: relative;
+}
+.hero-module-tag {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.hero-lesson-code {
+  font-family: 'Cinzel', serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: transparent;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, rgba(201,168,76,0.4) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 12px;
+  text-shadow: none;
+  filter: drop-shadow(0 0 30px rgba(201,168,76,0.25));
+}
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.hero-subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 2px;
+  font-style: italic;
+  margin-bottom: 40px;
+}
+.hero-divider {
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 40px;
+}
+.gate-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold-pale);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 30px;
+  padding: 6px 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold);
+}
 
-/* ── CANVAS ── */
-#num-canvas{display:block;width:100%;height:100px;margin:34px 0;opacity:.7}
+/* ── WAVE CANVAS HERO ── */
+.wave-hero-canvas {
+  width: 100%;
+  height: 140px;
+  margin: 40px 0;
+  border-radius: var(--radius);
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(79,195,247,0.15);
+  overflow: hidden;
+}
 
-/* ── SECTION HEADER ── */
-.sh{display:flex;align-items:center;gap:16px;margin-bottom:26px}
-.sh-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.6;white-space:nowrap}
-.sh-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--glow),transparent)}
-.st{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+/* ── TRANSMISSION BOX ── */
+.transmission {
+  background: linear-gradient(135deg, rgba(13,18,64,0.9) 0%, rgba(20,28,100,0.7) 100%);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 40px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.transmission::before {
+  content: '';
+  position: absolute; top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.transmission-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 5px;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.transmission p {
+  font-size: 17px;
+  line-height: 1.9;
+  color: var(--cream-dim);
+  font-weight: 300;
+  font-style: italic;
+}
+.transmission p + p { margin-top: 16px; }
+.transmission strong {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 600;
+}
 
-/* ── TRANSMISSION ── */
-.tx{background:linear-gradient(135deg,rgba(0,0,0,.36) 0%,rgba(201,168,76,.04) 100%);border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--accent);border-radius:var(--r);padding:38px 44px;position:relative;overflow:hidden}
-.tx::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
-.tx-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
-.tx p{font-size:16px;line-height:1.95;color:rgba(240,237,230,.78);font-style:italic;font-weight:300}
-.tx p+p{margin-top:14px}
-.tx strong{color:var(--accent2);font-style:normal;font-weight:600}
+/* ── SECTION HEADERS ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.section-number {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  opacity: 0.6;
+  white-space: nowrap;
+}
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-glow), transparent);
+}
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
 
-/* ── CARD ── */
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 34px;margin-bottom:18px}
-.card p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:14px}
-.card p:last-child{margin-bottom:0}
+/* ── CONTENT BLOCKS ── */
+.content-block {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(201,168,76,0.1);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  margin-bottom: 24px;
+}
+.content-block p {
+  line-height: 1.9;
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.content-block p:last-child { margin-bottom: 0; }
 
 /* ── CALLOUT ── */
-.callout{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:24px 32px;margin:22px 0;text-align:center}
-.callout p{font-family:'Cinzel',serif;font-size:14px;line-height:1.8;color:var(--accent2);letter-spacing:.5px}
+.callout {
+  background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.04) 100%);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: var(--radius);
+  padding: 28px 36px;
+  margin: 28px 0;
+  text-align: center;
+}
+.callout p {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+}
 
-/* ── FOUR CORES ── */
-.cores{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
-.core-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;transition:all .25s}
-.core-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-2px)}
-.core-n{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent);margin-bottom:8px}
-.core-name{font-family:'Cinzel',serif;font-size:15px;color:var(--text);font-weight:700;margin-bottom:4px}
-.core-from{font-size:11px;color:var(--dim);letter-spacing:1px;margin-bottom:8px}
-.core-rv{font-size:13px;color:var(--text);line-height:1.6}
-.core-tag{display:inline-block;margin-top:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:3px 12px;font-size:10px;letter-spacing:1px;color:var(--accent)}
+/* ── TIMELINE ── */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+.timeline::before {
+  content: '';
+  position: absolute; left: 0; top: 8px; bottom: 8px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--gold-glow), var(--gold-glow), transparent);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+  padding: 20px 24px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(201,168,76,0.08);
+  border-radius: var(--radius);
+  transition: border-color 0.3s, background 0.3s;
+}
+.timeline-item:hover {
+  border-color: rgba(201,168,76,0.2);
+  background: rgba(255,255,255,0.04);
+}
+.timeline-item::before {
+  content: '';
+  position: absolute; left: -40px; top: 24px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+.timeline-year {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+.timeline-scientist {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: var(--cream);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.timeline-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
 
-/* ── PYTHAGOREAN TABLE ── */
-.pyth{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
-.pyth th{background:rgba(201,168,76,.14);font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:var(--accent);padding:14px 10px;text-align:center;border-right:1px solid rgba(201,168,76,.1)}
-.pyth td{background:rgba(0,0,0,.22);padding:12px 8px;text-align:center;font-family:'Cinzel',serif;font-size:13px;color:var(--dim);letter-spacing:3px;border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04)}
-.pyth th:last-child,.pyth td:last-child{border-right:none}
+/* ── DOUBLE SLIT INTERACTIVE ── */
+.lab-container {
+  background: #050d20;
+  border: 1px solid rgba(79,195,247,0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin: 32px 0;
+}
+.lab-header {
+  background: rgba(79,195,247,0.06);
+  border-bottom: 1px solid rgba(79,195,247,0.1);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.lab-title {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+.lab-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.lab-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 8px 18px;
+  border-radius: 30px;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-transform: uppercase;
+}
+.lab-btn.active-observe {
+  background: rgba(201,168,76,0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.lab-btn.active-observe.on {
+  background: rgba(201,168,76,0.3);
+  box-shadow: 0 0 12px rgba(201,168,76,0.3);
+}
+.lab-btn.reset-btn {
+  background: transparent;
+  border-color: rgba(79,195,247,0.3);
+  color: var(--cyan);
+}
+.lab-btn.reset-btn:hover {
+  background: rgba(79,195,247,0.1);
+}
+canvas#dbl-slit {
+  display: block;
+  width: 100%;
+  background: #030810;
+}
+.lab-status {
+  padding: 14px 24px;
+  background: rgba(0,0,0,0.3);
+  border-top: 1px solid rgba(79,195,247,0.08);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-align: center;
+}
+.lab-status span {
+  color: var(--cyan);
+  font-family: 'Cinzel', serif;
+}
 
-/* ── STEPS ── */
-.steps{margin:18px 0}
-.step{display:flex;gap:16px;margin-bottom:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px}
-.step-n{font-family:'Cinzel',serif;font-size:13px;color:var(--accent);font-weight:700;flex-shrink:0;margin-top:2px;width:26px;text-align:center}
-.step-b{font-size:14px;line-height:1.8;color:var(--text)}
-.step-b strong{color:var(--accent2)}
+/* ── EQUATION BLOCK ── */
+.equation-card {
+  background: linear-gradient(135deg, rgba(13,18,64,0.95), rgba(26,34,112,0.6));
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.equation-card::before {
+  content: 'λ';
+  position: absolute;
+  right: -20px; top: -20px;
+  font-family: 'Cinzel', serif;
+  font-size: 160px;
+  color: rgba(201,168,76,0.04);
+  pointer-events: none;
+}
+.equation-display {
+  font-family: 'Cinzel', serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin: 20px 0;
+  filter: drop-shadow(0 0 20px rgba(201,168,76,0.3));
+  letter-spacing: 4px;
+}
+.equation-legend {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.eq-item {
+  text-align: center;
+}
+.eq-symbol {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.eq-name {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
 
-/* ── WORKED TABLE ── */
-.wt{width:100%;border-collapse:separate;border-spacing:0;margin:18px 0;border-radius:var(--r);overflow:hidden}
-.wt th{background:rgba(201,168,76,.1);font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent);padding:14px 18px;text-align:left;border-bottom:1px solid rgba(201,168,76,.18)}
-.wt td{background:rgba(0,0,0,.22);padding:14px 18px;font-size:13px;color:var(--text);border-bottom:1px solid rgba(255,255,255,.04);line-height:1.5}
-.wt tr:last-child td{border-bottom:none;background:rgba(201,168,76,.06);color:var(--accent2);font-weight:600}
-.wt td.r{color:var(--accent);font-family:'Cinzel',serif;font-size:16px;font-weight:700}
+/* ── DE BROGLIE CALCULATOR ── */
+.calculator {
+  background: rgba(5,13,32,0.8);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.calc-header {
+  background: rgba(201,168,76,0.06);
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+  padding: 16px 24px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--gold);
+}
+.calc-body { padding: 28px; }
+.calc-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.calc-field label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.calc-field input, .calc-field select {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--cream);
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.calc-field input:focus, .calc-field select:focus {
+  border-color: rgba(201,168,76,0.4);
+}
+.calc-field select option { background: var(--navy); }
+.calc-result {
+  background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.03));
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+}
+.calc-result-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+.calc-result-value {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 10px rgba(201,168,76,0.25));
+}
+.calc-result-context {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.calc-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.preset-btn {
+  font-family: 'Raleway', sans-serif;
+  font-size: 11px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(201,168,76,0.2);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 1px;
+}
+.preset-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-pale);
+}
 
-/* ── CALCULATOR ── */
-.calc{background:#050d20;border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);overflow:hidden;margin:24px 0}
-.calc-hd{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.12);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.calc-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--accent)}
-.calc-tabs{display:flex;gap:6px}
-.ctab{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:7px 16px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;background:transparent;border-color:rgba(201,168,76,.2);color:var(--dim)}
-.ctab.active{background:rgba(201,168,76,.18);border-color:var(--accent);color:var(--accent)}
-.calc-body{padding:28px}
-.cp{display:none}.cp.active{display:block}
+/* ── DUALITY TABLE ── */
+.duality-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 24px 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.duality-table th {
+  background: rgba(201,168,76,0.1);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+.duality-table td {
+  padding: 14px 20px;
+  font-size: 13px;
+  color: var(--text);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  line-height: 1.6;
+}
+.duality-table tr:last-child td { border-bottom: none; }
+.duality-table tr:hover td { background: rgba(255,255,255,0.02); }
+.duality-table td:first-child {
+  color: var(--cyan);
+  font-weight: 500;
+}
 
-.lf-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
-.cf label{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
-.cf input,.cf select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.14);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
-.cf input:focus,.cf select:focus{border-color:rgba(201,168,76,.4)}
-.cf select option{background:var(--bg)}
-
-.nf{margin-bottom:14px}
-.nf label{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
-.nf input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.14);border-radius:8px;padding:11px 16px;color:var(--text);font-family:'Cinzel',serif;font-size:16px;letter-spacing:4px;text-transform:uppercase;outline:none;transition:border-color .2s}
-.nf input:focus{border-color:rgba(201,168,76,.4)}
-.nf input::placeholder{font-family:'Raleway',sans-serif;font-size:13px;letter-spacing:1px;text-transform:none;color:rgba(240,237,230,.25)}
-
-.lc-wrap{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0;min-height:40px}
-.lc{display:flex;flex-direction:column;align-items:center;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:5px 9px;min-width:30px}
-.lc.v{border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.1)}
-.lc-ch{font-family:'Cinzel',serif;font-size:14px;color:var(--text)}
-.lc.v .lc-ch{color:var(--accent)}
-.lc-vl{font-size:10px;color:var(--dim);margin-top:2px}
-
-.res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
-.rb{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.14);border-radius:var(--r);padding:16px 12px;text-align:center}
-.rb.hi{border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.07)}
-.rl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;color:var(--accent);opacity:.7;margin-bottom:8px}
-.rn{font-family:'Cinzel',serif;font-size:34px;font-weight:900;color:var(--accent2);line-height:1;filter:drop-shadow(0 0 12px rgba(201,168,76,.22))}
-.rm{font-size:11px;color:var(--dim);margin-top:6px;line-height:1.5}
-.lp-steps-txt{font-size:12px;color:var(--dim);margin-bottom:16px;font-style:italic;line-height:1.8;min-height:22px}
-
-.calc-btn{width:100%;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;padding:14px;border-radius:30px;border:1px solid var(--accent);background:rgba(201,168,76,.12);color:var(--accent);cursor:pointer;transition:all .25s;margin:14px 0 0;text-transform:uppercase}
-.calc-btn:hover{background:rgba(201,168,76,.22);box-shadow:0 0 20px rgba(201,168,76,.15)}
-
-/* ── MEANINGS GRID ── */
-.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
-.mc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;transition:all .25s}
-.mc:hover{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.38);transform:translateY(-2px)}
-.mn{font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:var(--accent);margin-bottom:6px}
-.mn.m{color:var(--accent2);font-size:18px}
-.mth{font-family:'Cinzel',serif;font-size:11px;color:var(--text);margin-bottom:4px;letter-spacing:1px}
-.mgift{font-size:11px;color:var(--dim);margin-bottom:3px}
-.mdes{font-size:11px;color:var(--accent);font-style:italic;opacity:.8}
-
-/* ── WISDOM GRID ── */
-.wg{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);overflow:hidden;margin:20px 0}
-.wc{background:rgba(13,18,64,.9);padding:16px 18px}
-.wc.hd{background:rgba(201,168,76,.08);font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent);text-transform:uppercase}
-.wc p{font-size:13px;line-height:1.7}
-.wc.an p{color:rgba(240,237,230,.72);font-style:italic}
-.wc.sc p{color:#7ec8f0}
-
-/* ── ACCORDION ── */
-.acc-item{margin-bottom:10px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
-.acc-hd{width:100%;background:var(--card);border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;transition:background .2s}
-.acc-hd:hover{background:rgba(0,0,0,.38)}
-.acc-ht{font-family:'Cinzel',serif;font-size:13px;color:var(--text);letter-spacing:1px}
-.acc-hs{font-size:11px;color:var(--dim);margin-top:2px}
-.acc-ic{font-size:18px;color:var(--accent);transition:transform .3s;flex-shrink:0}
-.acc-item.open .acc-ic{transform:rotate(45deg)}
-.acc-bd{max-height:0;overflow:hidden;transition:max-height .45s ease}
-.acc-item.open .acc-bd{max-height:600px}
-.acc-ct{padding:20px 22px;font-size:13px;line-height:1.85;color:var(--dim);border-top:1px solid rgba(255,255,255,.04)}
-.acc-ct strong{color:var(--accent2)}
-
-/* ── QUIZ ── */
-.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;margin-bottom:14px;transition:border-color .3s}
-.quiz-item.correct{border-color:rgba(90,184,122,.45);background:rgba(90,184,122,.06)}
-.quiz-item.wrong{border-color:rgba(200,80,80,.4);background:rgba(200,80,80,.05)}
-.quiz-q{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:14px}
-.quiz-q strong{color:var(--accent2)}
-.quiz-opts{display:flex;flex-direction:column;gap:8px}
-.quiz-opt{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:11px 16px;font-size:13px;color:var(--dim);cursor:pointer;transition:all .2s;text-align:left}
-.quiz-opt:hover{border-color:rgba(201,168,76,.25);color:var(--text);background:rgba(201,168,76,.07)}
-.quiz-opt.ok{border-color:rgba(90,184,122,.5);background:rgba(90,184,122,.1);color:#6fda9a}
-.quiz-opt.no{border-color:rgba(200,80,80,.5);background:rgba(200,80,80,.08);color:#e07070}
-.quiz-opt.show-ok{border-color:rgba(90,184,122,.35);color:#6fda9a}
-.quiz-fb{margin-top:12px;font-size:13px;line-height:1.6;padding:10px 14px;border-radius:8px;display:none}
-.quiz-fb.show{display:block}
-.quiz-fb.correct{background:rgba(90,184,122,.08);color:#6fda9a}
-.quiz-fb.wrong{background:rgba(200,80,80,.06);color:#e07070}
-.quiz-score{text-align:center;font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--accent);padding:20px;display:none}
-.quiz-score.show{display:block}
+/* ── WISDOM TABLE ── */
+.wisdom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.12);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 24px 0;
+}
+.wisdom-cell {
+  background: rgba(13,18,64,0.9);
+  padding: 18px 20px;
+}
+.wisdom-cell.header {
+  background: rgba(201,168,76,0.08);
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.wisdom-cell p {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.7;
+}
+.wisdom-cell.ancient p { color: var(--cream-dim); font-style: italic; }
+.wisdom-cell.science p { color: var(--cyan); }
 
 /* ── REFLECTION ── */
-.ref-q{font-family:'Cinzel',serif;font-size:14px;color:var(--accent2);line-height:1.75;margin-bottom:14px;letter-spacing:.5px}
-.ref-ta{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:18px 22px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;line-height:1.85;resize:vertical;min-height:110px;outline:none;transition:border-color .25s,background .25s;margin-bottom:26px}
-.ref-ta:focus{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.32)}
-.ref-ta::placeholder{color:rgba(240,237,230,.2)}
+.reflection-prompt {
+  margin-bottom: 32px;
+}
+.reflection-q {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: var(--gold-light);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+.reflection-field {
+  width: 100%;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(201,168,76,0.12);
+  border-radius: var(--radius);
+  padding: 20px;
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  resize: vertical;
+  min-height: 120px;
+  outline: none;
+  transition: border-color 0.25s, background 0.25s;
+}
+.reflection-field:focus {
+  border-color: rgba(201,168,76,0.3);
+  background: rgba(255,255,255,0.035);
+}
+.reflection-field::placeholder { color: rgba(232,224,208,0.25); }
 
-/* ── NEXT / PREV ── */
-.nav-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.nav-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:22px 26px;cursor:pointer;transition:all .3s;text-decoration:none}
-.nav-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
-.nav-card.prev{flex-direction:row-reverse}
-.nav-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.65;margin-bottom:6px}
-.nav-title{font-family:'Cinzel',serif;font-size:15px;color:var(--text);letter-spacing:1px}
-.nav-arr{font-size:26px;color:var(--accent);opacity:.5;flex-shrink:0}
+/* ── NEXT LESSON ── */
+.next-lesson-card {
+  background: linear-gradient(135deg, rgba(79,195,247,0.06) 0%, rgba(13,18,64,0.8) 100%);
+  border: 1px solid rgba(79,195,247,0.2);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.next-lesson-card:hover {
+  border-color: rgba(79,195,247,0.4);
+  background: linear-gradient(135deg, rgba(79,195,247,0.1) 0%, rgba(13,18,64,0.9) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(79,195,247,0.1);
+}
+.next-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--cyan);
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+.next-title {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: var(--cream);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.next-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+}
+.next-arrow {
+  font-size: 28px;
+  color: var(--cyan);
+  opacity: 0.6;
+}
 
-/* ── WORKSHOP ── */
-.ws{background:rgba(0,0,0,.3);border:1px dashed rgba(201,168,76,.2);border-radius:var(--rl);padding:40px;text-align:center}
-.ws-ic{font-size:34px;margin-bottom:14px;opacity:.45}
-.ws-t{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:var(--accent);margin-bottom:8px;opacity:.6}
-.ws-s{font-size:13px;color:var(--dim)}
-
-/* ── COMPLETION ── */
-.comp-wrap{background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(0,0,0,.4));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:48px;text-align:center}
-.comp-t{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--text);margin-bottom:8px}
-.comp-s{font-size:13px;color:var(--dim);margin-bottom:28px}
-.comp-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:40px;padding:17px 44px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
-.comp-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.28)}
-.comp-btn.done{background:linear-gradient(135deg,#5ab87a,#7de09a)}
-.xp-pop{display:none;font-family:'Cinzel',serif;font-size:14px;color:var(--accent);margin-top:22px;letter-spacing:2px}
-.xp-pop.show{display:block;animation:fadeUp .7s ease}
+/* ── COMPLETION BLOCK ── */
+.completion-block {
+  background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(13,18,64,0.9) 100%);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.completion-title {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.completion-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.complete-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  border: none;
+  border-radius: 40px;
+  padding: 16px 40px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--navy);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+}
+.complete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(201,168,76,0.3);
+}
+.complete-btn.completed {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  box-shadow: 0 0 30px rgba(76,175,80,0.3);
+}
+.xp-awarded {
+  display: none;
+  margin-top: 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  animation: fadeInUp 0.6s ease;
+}
+.xp-awarded.show { display: block; }
 
 /* ── SAVE BAR ── */
-#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(5,10,28,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(201,168,76,.12);padding:13px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.sv-status{font-size:11px;color:var(--dim);letter-spacing:1px}
-.sv-status span{color:var(--accent);font-family:'Cinzel',serif}
-.sv-actions{display:flex;gap:10px}
-.sv-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase}
-.sv-btn.pri{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.3);color:var(--accent)}
-.sv-btn.pri:hover{background:rgba(201,168,76,.2)}
-.sv-btn.sec{background:transparent;border-color:rgba(255,255,255,.1);color:var(--dim)}
-.sv-btn.sec:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
-#imp-file{display:none}
+#save-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(9,13,48,0.96);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(201,168,76,0.15);
+  padding: 12px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.save-status {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+.save-status span {
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+}
+.save-actions {
+  display: flex;
+  gap: 10px;
+}
+.save-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+.save-btn.export {
+  background: transparent;
+  border-color: rgba(201,168,76,0.3);
+  color: var(--gold);
+}
+.save-btn.export:hover {
+  background: var(--gold-pale);
+}
+.save-btn.import {
+  background: transparent;
+  border-color: rgba(255,255,255,0.1);
+  color: var(--muted);
+}
+.save-btn.import:hover {
+  border-color: rgba(255,255,255,0.2);
+  color: var(--cream);
+}
+#import-file { display: none; }
+
+/* ── KEY TAKEAWAYS ── */
+.takeaways {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.takeaways li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.takeaways li:last-child { border-bottom: none; }
+.takeaway-mark {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: var(--gold);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+  50% { box-shadow: 0 0 20px 4px rgba(201,168,76,0.15); }
+}
+@keyframes wave-travel {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
 
 /* ── TOAST ── */
-.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(8,14,42,.96);border:1px solid rgba(201,168,76,.28);border-radius:30px;padding:11px 26px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* ── CONFETTI ── */
-.cf{position:fixed;top:-20px;width:8px;height:8px;z-index:9999;border-radius:2px;pointer-events:none;animation:fall 2s linear forwards}
-@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(13,18,64,0.95);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 30px;
+  padding: 12px 28px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  z-index: 200;
+  opacity: 0;
+  transition: all 0.35s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 
 /* ── RESPONSIVE ── */
-@media(max-width:660px){.hero-code{font-size:60px}.hero-title{font-size:18px}.cores{grid-template-columns:1fr}.lf-grid{grid-template-columns:1fr}.res-grid{grid-template-columns:1fr 1fr}.mg{grid-template-columns:1fr 1fr}.wg{grid-template-columns:1fr}.nav-cards{grid-template-columns:1fr}.top-nav{padding:12px 16px}.nav-crumb{display:none}main{padding-left:16px;padding-right:16px}.tx{padding:26px 22px}}
+@media (max-width: 640px) {
+  .hero-lesson-code { font-size: 48px; }
+  .hero-title { font-size: 20px; }
+  .transmission { padding: 28px 24px; }
+  .calc-inputs { grid-template-columns: 1fr; }
+  .wisdom-grid { grid-template-columns: 1fr; }
+  .top-nav { padding: 12px 16px; }
+  .nav-meta { display: none; }
+  main { padding-left: 16px; padding-right: 16px; }
+}
 </style>
 </head>
 <body>
 
-<div id="prog-wrap"><div id="prog-fill"></div></div>
+<div class="starfield"></div>
 
-<div class="top-nav">
-  <div class="nav-brand">THE FREQUENCY ACADEMY</div>
-  <div class="nav-crumb">NUMEROLOGY · N2</div>
-  <div class="nav-xp" id="xp-display">0 XP</div>
+<!-- Progress Bar -->
+<div id="progress-bar-container">
+  <div id="progress-fill"></div>
+  <div id="progress-label">Q2 · WAVE-PARTICLE DUALITY</div>
 </div>
 
+<!-- Top Nav -->
+<div class="top-nav">
+  <div class="nav-brand">THE FREQUENCY ACADEMY</div>
+  <div class="nav-meta">QUANTUM PHYSICS · Q2</div>
+  <div class="xp-badge">⟡ <span id="xp-display">0 XP</span></div>
+</div>
+
+<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <main>
 
   <!-- HERO -->
-  <div class="ls hero visible">
-    <div class="hero-eye">Symbolic Sciences · Module I · Numerology</div>
-    <div class="hero-code">N2</div>
-    <div class="hero-title">Personal Numerology</div>
-    <div class="hero-sub">Your Four Core Numbers</div>
-    <div class="hero-rule"></div>
-    <div class="hero-tag">⟡ Module 2 of 333 · ~15 Min</div>
-    <canvas id="num-canvas"></canvas>
+  <div class="section hero visible">
+    <div class="hero-module-tag">Quantum Physics &amp; Sciences</div>
+    <div class="hero-lesson-code">Q2</div>
+    <div class="hero-title">Wave-Particle Duality</div>
+    <div class="hero-subtitle">Everything is Both</div>
+    <div class="hero-divider"></div>
+    <div class="gate-tag">⟡ Foundation · ~10 Min</div>
+
+    <canvas class="wave-hero-canvas" id="wave-hero" height="140"></canvas>
   </div>
 
-  <!-- TRANSMISSION -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">TRANSMISSION</div><div class="sh-rule"></div></div>
-    <div class="tx">
-      <div class="tx-lbl">Opening Transmission · N2</div>
-      <p>Before your name was given to you, <strong>the universe already knew your number.</strong> Encoded in the moment of your birth — in the precise arrangement of day, month, and year — is a vibrational signature as unique as your fingerprint and as ancient as mathematics itself.</p>
-      <p>The ancients didn't separate number from spirit. Pythagoras taught that number is the <strong>language through which the divine speaks to matter.</strong> What modern numerology calls your "chart," the initiates called your <em>sacred frequency map</em> — the blueprint your soul chose before it arrived.</p>
-      <p>Today, you decode four of those numbers. Not to be defined by them — but to be <strong>confirmed by them.</strong></p>
+  <!-- OPENING TRANSMISSION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">TRANSMISSION</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="transmission">
+      <div class="transmission-label">Opening Transmission</div>
+      <p>Before you were told you were solid, you were a song.</p>
+      <p>Before the name, the body, the story — there was a <strong>frequency</strong>. A probability. A vast shimmering field of <em>could-be</em>, held in the hands of no one and everything at once.</p>
+      <p>Quantum physics didn't discover this. It <strong>remembered</strong> it. In the language of mathematics and light, it handed us back what the mystery schools encoded in stone: <em>you are not a thing. You are a process. You are not a noun. You are a verb.</em></p>
+      <p>Today we enter the double-slit — the single experiment that cracked physics open at its seams and revealed something the ancient initiates already knew: <strong>the observer does not watch reality. The observer creates it.</strong></p>
     </div>
   </div>
 
   <!-- CORE CONCEPT -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">01</div><div class="sh-rule"></div></div>
-    <div class="st">Your Four Core Numbers</div>
-    <div class="card"><p>Personal numerology identifies four core numbers that together form your <strong style="color:var(--accent2)">vibrational blueprint</strong> — a map of your soul's journey, your natural gifts, your deepest desires, and how you present yourself to the world.</p></div>
-    <div class="callout"><p>"Know thyself — and the numbers will confirm what you already feel."<br><span style="font-size:11px;opacity:.7;font-style:normal;letter-spacing:2px">— The Frequency Academy</span></p></div>
-    <div class="cores">
-      <div class="core-card"><div class="core-n">NUMBER ONE</div><div class="core-name">Life Path</div><div class="core-from">From: Full birth date</div><div class="core-rv">Your soul's core journey — the road you were born to travel. Life lessons, natural strengths, and overarching theme.</div><span class="core-tag">Core Purpose</span></div>
-      <div class="core-card"><div class="core-n">NUMBER TWO</div><div class="core-name">Expression</div><div class="core-from">From: Full birth name (all letters)</div><div class="core-rv">Your talents, abilities, and the direction your life is naturally destined to unfold.</div><span class="core-tag">Natural Gifts</span></div>
-      <div class="core-card"><div class="core-n">NUMBER THREE</div><div class="core-name">Soul Urge</div><div class="core-from">From: Vowels in your birth name</div><div class="core-rv">Your heart's deepest desire — what you truly crave at your core, your innermost motivations.</div><span class="core-tag">Inner Desire</span></div>
-      <div class="core-card"><div class="core-n">NUMBER FOUR</div><div class="core-name">Personality</div><div class="core-from">From: Consonants in your birth name</div><div class="core-rv">The first impression you give others before they truly know you. How you present yourself to the world.</div><span class="core-tag">Outer Mask</span></div>
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">The Foundation</div>
+
+    <div class="content-block">
+      <p>All matter and energy exist simultaneously as both <strong style="color:var(--cyan)">waves</strong> and <strong style="color:var(--gold)">particles</strong>. Not one or the other depending on what it is — both, always, at the same time. This is not metaphor. It is the experimentally verified, rigorously tested, mathematically ironclad foundation of quantum mechanics.</p>
+      <p>What determines which nature manifests? Observation. The act of looking, measuring, knowing — collapses infinite potential into a single, definite reality. Before the measurement: a spread of possibility. After: one truth.</p>
+    </div>
+
+    <div class="callout">
+      <p>"You are not a passive observer of reality.<br>You are a participant in its creation."</p>
     </div>
   </div>
 
-  <!-- PYTHAGOREAN -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">02</div><div class="sh-rule"></div></div>
-    <div class="st">The Pythagorean System</div>
-    <div class="card"><p>All name-based calculations use the Pythagorean system — the alphabet assigned values 1–9 in a repeating cycle. Commit this table to memory. You will use it for every name calculation in this module.</p></div>
-    <table class="pyth"><thead><tr><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr></thead><tbody><tr><td>A J S</td><td>B K T</td><td>C L U</td><td>D M V</td><td>E N W</td><td>F O X</td><td>G P Y</td><td>H Q Z</td><td>I R</td></tr></tbody></table>
-    <div class="card" style="margin-top:14px"><p>A=1, B=2 ... I=9, then J=1, K=2 ... R=9, then S=1 ... Z=8. <strong style="color:var(--accent2)">Master Numbers 11, 22, 33</strong> are never reduced in your chart. Y is a vowel when it carries the vowel sound in a syllable (e.g. Lynn, Mary).</p></div>
-  </div>
-
-  <!-- LIFE PATH -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">03</div><div class="sh-rule"></div></div>
-    <div class="st">The Life Path Number</div>
-    <div class="card"><p>Your most important number. Derived from your full birth date — each part reduced separately, then combined. Describes the road you were born to travel.</p></div>
-    <div class="steps">
-      <div class="step"><div class="step-n">1</div><div class="step-b">Write your birth date as <strong>Month / Day / Year</strong></div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-b">Reduce each part <strong>separately</strong> to a single digit (preserve 11, 22, 33)</div></div>
-      <div class="step"><div class="step-n">3</div><div class="step-b">Add the three results together, then reduce once more</div></div>
+  <!-- DOUBLE SLIT LAB -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <div class="section-line"></div>
     </div>
-    <div class="card">
-      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:12px">WORKED EXAMPLE · November 28, 1984</p>
-      <table class="wt"><thead><tr><th>Part</th><th>Calculation</th><th>Result</th></tr></thead><tbody><tr><td>Month: November = 11</td><td>1+1</td><td class="r">2</td></tr><tr><td>Day: 28</td><td>2+8=10 → 1+0</td><td class="r">1</td></tr><tr><td>Year: 1984</td><td>1+9+8+4=22 → 2+2</td><td class="r">4</td></tr><tr><td>Total</td><td>2+1+4=7</td><td class="r" style="font-size:22px">7</td></tr></tbody></table>
-      <p style="margin-top:12px;font-style:italic;color:var(--dim);font-size:13px">Life Path 7 = The Seeker. A life of wisdom, introspection, and spiritual truth.</p>
-    </div>
-  </div>
+    <div class="section-title">The Experiment</div>
 
-  <!-- EXPRESSION + SOUL URGE + PERSONALITY -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">04</div><div class="sh-rule"></div></div>
-    <div class="st">Expression, Soul Urge & Personality</div>
-    <div class="card"><p>All three are derived from your <strong style="color:var(--accent2)">full birth name exactly as it appears on your birth certificate</strong>. Always use your birth name — not married, preferred, or nickname.</p></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0">
-      <div class="card" style="margin-bottom:0"><p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">EXPRESSION</p><p style="font-size:13px">Assign a number to <strong style="color:var(--accent2)">every letter</strong>. Sum each name separately, reduce, then add the name totals and reduce again.</p></div>
-      <div class="card" style="margin-bottom:0"><p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">SOUL URGE</p><p style="font-size:13px">Use only the <strong style="color:var(--accent2)">vowels</strong> (A, E, I, O, U). Sum all vowel values across the full name, then reduce.</p></div>
-      <div class="card" style="margin-bottom:0"><p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">PERSONALITY</p><p style="font-size:13px">Use only the <strong style="color:var(--accent2)">consonants</strong>. Sum all consonant values across the full name, then reduce.</p></div>
+    <div class="content-block">
+      <p>In 1801, Thomas Young fired light through two narrow slits and watched it land on a screen behind. Instead of two bright bands — one behind each slit — he saw a pattern of many alternating bright and dark stripes. <em>Waves were interfering with each other.</em> Light was behaving as a wave.</p>
+      <p>A century later, scientists repeated the experiment with single electrons — one at a time, so they could not interfere with each other. Impossibly, the interference pattern still emerged. Each electron seemed to go through <em>both slits simultaneously</em>, interfering with its own wave function.</p>
+      <p>Then they added a detector to observe which slit each electron used. The moment they looked — <strong style="color:var(--gold)">the interference pattern vanished</strong>. Observation itself had collapsed the wave into a particle.</p>
     </div>
-    <div class="callout"><p>The gap between your Soul Urge and Personality numbers reveals the distance between your inner world and your outer presentation.<br>That gap is itself a teaching.</p></div>
-  </div>
 
-  <!-- CALCULATOR -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">INTERACTIVE</div><div class="sh-rule"></div></div>
-    <div class="st">Calculate Your Core Numbers</div>
-    <div class="calc">
-      <div class="calc-hd">
-        <div class="calc-title">⟡ Personal Numerology Calculator</div>
-        <div class="calc-tabs">
-          <button class="ctab active" onclick="switchTab('lp',this)">Life Path</button>
-          <button class="ctab" onclick="switchTab('nm',this)">Name Numbers</button>
+    <!-- INTERACTIVE DOUBLE SLIT -->
+    <div class="lab-container">
+      <div class="lab-header">
+        <div class="lab-title">⚛ Double-Slit Laboratory</div>
+        <div class="lab-controls">
+          <button class="lab-btn active-observe" id="observe-toggle" onclick="toggleObservation()">OBSERVER: OFF</button>
+          <button class="lab-btn reset-btn" onclick="resetLab()">RESET</button>
         </div>
       </div>
+      <canvas id="dbl-slit" height="280"></canvas>
+      <div class="lab-status" id="lab-status">
+        <span>UNOBSERVED</span> — Particles are behaving as waves. Interference pattern forming.
+      </div>
+    </div>
+
+    <div class="content-block">
+      <table class="duality-table">
+        <thead>
+          <tr>
+            <th>Condition</th>
+            <th>Behavior</th>
+            <th>Pattern on Screen</th>
+            <th>Interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>NOT Observed</td>
+            <td>Wave</td>
+            <td>Many bands — interference</td>
+            <td>Quantum superposition</td>
+          </tr>
+          <tr>
+            <td>Observed</td>
+            <td>Particle</td>
+            <td>Two bands — no interference</td>
+            <td>Wave function collapsed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- DE BROGLIE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">The Matter Wave</div>
+
+    <div class="content-block">
+      <p>In 1924, a French physics doctoral student named Louis de Broglie made a proposal so audacious his thesis committee didn't know what to do with it. He sent the paper to Einstein, who read it and wrote back: <em>"This is not crazy. This is real."</em></p>
+      <p>De Broglie's insight: if light (a wave) can behave as particles, then particles must also behave as waves. Every piece of matter — every electron, every atom, every human body — has an associated wavelength. You are a wave function. You have a frequency.</p>
+    </div>
+
+    <div class="equation-card">
+      <div class="transmission-label">De Broglie Matter Wave Equation · 1924</div>
+      <div class="equation-display">λ = h / p</div>
+      <div class="equation-legend">
+        <div class="eq-item">
+          <div class="eq-symbol">λ</div>
+          <div class="eq-name">Wavelength<br>(meters)</div>
+        </div>
+        <div class="eq-item">
+          <div class="eq-symbol">=</div>
+          <div class="eq-name">&nbsp;</div>
+        </div>
+        <div class="eq-item">
+          <div class="eq-symbol">h</div>
+          <div class="eq-name">Planck's Constant<br>6.626 × 10⁻³⁴ J·s</div>
+        </div>
+        <div class="eq-item">
+          <div class="eq-symbol">/</div>
+          <div class="eq-name">&nbsp;</div>
+        </div>
+        <div class="eq-item">
+          <div class="eq-symbol">p</div>
+          <div class="eq-name">Momentum<br>(mass × velocity)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CALCULATOR -->
+    <div class="calculator">
+      <div class="calc-header">⟡ De Broglie Wavelength Calculator</div>
       <div class="calc-body">
-        <!-- LIFE PATH -->
-        <div class="cp active" id="cp-lp">
-          <p style="font-size:13px;color:var(--dim);margin-bottom:18px">Enter your birth date. Each part reduces separately — master numbers (11, 22, 33) are preserved automatically.</p>
-          <div class="lf-grid">
-            <div class="cf"><label>Birth Month</label><select id="lp-m" onchange="calcLP()"><option value="">Month</option><option value="1">January (1)</option><option value="2">February (2)</option><option value="3">March (3)</option><option value="4">April (4)</option><option value="5">May (5)</option><option value="6">June (6)</option><option value="7">July (7)</option><option value="8">August (8)</option><option value="9">September (9)</option><option value="10">October (10→1)</option><option value="11">November (11★)</option><option value="12">December (12→3)</option></select></div>
-            <div class="cf"><label>Birth Day</label><input type="number" id="lp-d" placeholder="e.g. 28" min="1" max="31" oninput="calcLP()"></div>
-            <div class="cf"><label>Birth Year</label><input type="number" id="lp-y" placeholder="e.g. 1984" min="1900" max="2025" oninput="calcLP()"></div>
+        <div class="calc-presets">
+          <button class="preset-btn" onclick="loadPreset('electron')">Electron</button>
+          <button class="preset-btn" onclick="loadPreset('proton')">Proton</button>
+          <button class="preset-btn" onclick="loadPreset('baseball')">Baseball</button>
+          <button class="preset-btn" onclick="loadPreset('human')">Human</button>
+          <button class="preset-btn" onclick="loadPreset('photon')">Photon (500nm)</button>
+        </div>
+        <div class="calc-inputs">
+          <div class="calc-field">
+            <label>MASS (kg)</label>
+            <input type="number" id="calc-mass" value="9.109e-31" step="any" oninput="calculate()">
           </div>
-          <div class="lp-steps-txt" id="lp-steps"></div>
-          <div class="res-grid" style="grid-template-columns:1fr 1fr 1fr">
-            <div class="rb"><div class="rl">MONTH</div><div class="rn" id="r-m">—</div></div>
-            <div class="rb"><div class="rl">DAY</div><div class="rn" id="r-d">—</div></div>
-            <div class="rb"><div class="rl">YEAR</div><div class="rn" id="r-y">—</div></div>
-          </div>
-          <div class="rb hi" style="margin-top:12px;text-align:center">
-            <div class="rl">YOUR LIFE PATH NUMBER</div>
-            <div class="rn" id="r-lp" style="font-size:54px">—</div>
-            <div class="rm" id="r-lp-m"></div>
+          <div class="calc-field">
+            <label>VELOCITY (m/s)</label>
+            <input type="number" id="calc-velocity" value="2.187e6" step="any" oninput="calculate()">
           </div>
         </div>
-        <!-- NAME -->
-        <div class="cp" id="cp-nm">
-          <p style="font-size:13px;color:var(--dim);margin-bottom:16px">Enter your full birth name. <span style="color:var(--accent)">Gold = vowels</span>, white = consonants.</p>
-          <div class="nf"><label>First Name</label><input type="text" id="n-first" placeholder="First name" oninput="calcName()"></div>
-          <div class="nf"><label>Middle Name (leave blank if none)</label><input type="text" id="n-mid" placeholder="Middle name (optional)" oninput="calcName()"></div>
-          <div class="nf"><label>Last Name</label><input type="text" id="n-last" placeholder="Last name" oninput="calcName()"></div>
-          <div id="lc-wrap" style="display:none"><p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin:16px 0 10px">LETTER BREAKDOWN</p><div class="lc-wrap" id="lc-chips"></div></div>
-          <div class="res-grid" id="nm-results" style="margin-top:14px">
-            <div class="rb hi"><div class="rl">EXPRESSION</div><div class="rn" id="r-expr">—</div><div class="rm" id="r-expr-m"></div></div>
-            <div class="rb"><div class="rl">SOUL URGE</div><div class="rn" id="r-soul">—</div><div class="rm" id="r-soul-m"></div></div>
-            <div class="rb"><div class="rl">PERSONALITY</div><div class="rn" id="r-pers">—</div><div class="rm" id="r-pers-m"></div></div>
-            <div class="rb" id="r-synth-box" style="display:none"><div class="rl">WORKING</div><div style="font-size:11px;color:var(--dim);line-height:1.7;margin-top:6px" id="r-synth"></div></div>
-          </div>
+        <div class="calc-result">
+          <div class="calc-result-label">MATTER WAVELENGTH</div>
+          <div class="calc-result-value" id="calc-output">—</div>
+          <div class="calc-result-context" id="calc-context"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MEANINGS -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">REFERENCE</div><div class="sh-rule"></div></div>
-    <div class="st">Core Number Meanings</div>
-    <div class="card"><p>These meanings apply across all four numbers. A Life Path 7 seeks wisdom through the journey; a Soul Urge 7 craves understanding at the level of the heart. Same frequency, different domain.</p></div>
-    <div class="mg" id="mg"></div>
+  <!-- TIMELINE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">Those Who Remembered</div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1801</div>
+        <div class="timeline-scientist">Thomas Young</div>
+        <div class="timeline-desc">Double-slit experiment proves light behaves as a wave, creating interference patterns no particle theory could explain.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1900</div>
+        <div class="timeline-scientist">Max Planck</div>
+        <div class="timeline-desc">Energy comes in discrete packets — quanta. The birth of quantum theory, solving the blackbody radiation problem that classical physics could not.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1905</div>
+        <div class="timeline-scientist">Albert Einstein</div>
+        <div class="timeline-desc">The photoelectric effect proves light is made of particle-like photons. Light is both wave and particle. Nobel Prize, 1921.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1924</div>
+        <div class="timeline-scientist">Louis de Broglie</div>
+        <div class="timeline-desc">All matter has wave properties. Every particle has a wavelength. Einstein calls it "not crazy — real." Nobel Prize, 1929.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1927</div>
+        <div class="timeline-scientist">Niels Bohr</div>
+        <div class="timeline-desc">Complementarity: wave and particle are mutually exclusive descriptions, yet together they form a complete truth. Both are needed. Neither alone is sufficient.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1927</div>
+        <div class="timeline-scientist">Davisson & Germer</div>
+        <div class="timeline-desc">Experimentally confirm electron diffraction. Matter waves are not theory — they are measurement. De Broglie is proven correct.</div>
+      </div>
+    </div>
   </div>
 
   <!-- ANCIENT WISDOM -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">05</div><div class="sh-rule"></div></div>
-    <div class="st">Ancient Knowing · Modern Proof</div>
-    <div class="card"><p>The mystery schools did not lack this knowledge. They held it in a different vessel — encoded in ritual and sacred language. What numerology calls your vibrational blueprint, the Egyptians called your <em>Ka</em>. What we call Life Path, the Vedic seers called <em>dharma</em>. Same truth, different language.</p></div>
-    <div class="wg">
-      <div class="wc hd">Ancient Teaching</div><div class="wc hd">Modern Numerology</div>
-      <div class="wc an"><p>The soul chooses its path before birth</p></div><div class="wc sc"><p>Life Path number encoded in your birth date</p></div>
-      <div class="wc an"><p>Each person carries a sacred name</p></div><div class="wc sc"><p>Expression number derived from birth name</p></div>
-      <div class="wc an"><p>The inner life is hidden from the world</p></div><div class="wc sc"><p>Soul Urge (inner) vs Personality (outer)</p></div>
-      <div class="wc an"><p>Numbers are living forces, not abstractions</p></div><div class="wc sc"><p>Each number carries a vibrational archetype</p></div>
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">05</div>
+      <div class="section-line"></div>
     </div>
-  </div>
+    <div class="section-title">Ancient Knowing · Modern Proof</div>
 
-  <!-- QUICK REF ACCORDION -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">QUICK REF</div><div class="sh-rule"></div></div>
-    <div class="st">Rules & Edge Cases</div>
-    <div id="accordion"></div>
-  </div>
+    <div class="content-block">
+      <p>The mystery schools did not lack the science. They held the science in a different vessel — encoded in ritual, in geometry, in the names of gods. What physics calls a wave function, the Egyptians called the <em>Ka</em>. What quantum mechanics calls superposition, the Vedic traditions called <em>Brahman</em> — all possibility, undifferentiated. What observation calls collapse, the initiates called <em>manifestation</em>.</p>
+    </div>
 
-  <!-- KNOWLEDGE CHECK -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">KNOWLEDGE CHECK</div><div class="sh-rule"></div></div>
-    <div class="st">Test Your Understanding</div>
-    <div id="quiz"></div>
-    <div class="quiz-score" id="quiz-score"></div>
+    <div class="wisdom-grid">
+      <div class="wisdom-cell header">ANCIENT TEACHING</div>
+      <div class="wisdom-cell header">QUANTUM PHYSICS</div>
+      <div class="wisdom-cell ancient"><p>Everything is energy and vibration</p></div>
+      <div class="wisdom-cell science"><p>All matter is wave functions with measurable frequency</p></div>
+      <div class="wisdom-cell ancient"><p>Consciousness creates reality</p></div>
+      <div class="wisdom-cell science"><p>Observer effect collapses wave functions into definite states</p></div>
+      <div class="wisdom-cell ancient"><p>The light body / Ka / aura</p></div>
+      <div class="wisdom-cell science"><p>De Broglie wavelength extending around matter</p></div>
+      <div class="wisdom-cell ancient"><p>Intention shapes manifestation</p></div>
+      <div class="wisdom-cell science"><p>Measurement determines which quantum state materializes</p></div>
+      <div class="wisdom-cell ancient"><p>All is One — the interconnected web</p></div>
+      <div class="wisdom-cell science"><p>Quantum entanglement and non-locality</p></div>
+      <div class="wisdom-cell ancient"><p>Sound and light heal the body</p></div>
+      <div class="wisdom-cell science"><p>Frequency-specific bioeffects on matter waves</p></div>
+    </div>
   </div>
 
   <!-- PRACTICAL APPLICATION -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">PRACTICE</div><div class="sh-rule"></div></div>
-    <div class="st">This Week: Your Blueprint</div>
-    <div class="tx">
-      <div class="tx-lbl">Practical Application · Do This</div>
-      <p><strong>Step 1 — Calculate all four numbers</strong> using the calculator above. Write them down by hand. Don't rush. Allow each number to land before moving to the next.</p>
-      <p><strong>Step 2 — Sit with your Life Path first.</strong> Read its meaning slowly. Notice what resonates — not what you wish were true, but what you already recognise as true.</p>
-      <p><strong>Step 3 — Look for the gap.</strong> Compare your Soul Urge to your Personality number. Where are they aligned? Where do they differ? This gap often reveals your most important integration work.</p>
-      <p><strong>Step 4 — Tell someone your Life Path number</strong> and invite them to share theirs. Notice how naturally the conversation deepens. Numbers are a shared language for self-disclosure.</p>
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">06</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">The Observer Meditation</div>
+
+    <div class="content-block">
+      <p>This is not visualization. This is <strong style="color:var(--gold)">physics in the body</strong>. You are a wave function — spread across probability. The moment you place your attention anywhere, you are collapsing potential into experience. Every act of focused awareness is an act of creation.</p>
+    </div>
+
+    <div class="transmission">
+      <div class="transmission-label">Practice · Do This Now</div>
+      <p><strong>Step 1 — Become the Field.</strong> Settle into stillness. Close your eyes. Instead of feeling solid flesh, sense yourself as a field of vibrating frequency — probability waves extending outward in all directions. Your edges are not where your skin ends.</p>
+      <p><strong>Step 2 — Notice Your Attention.</strong> Where you place awareness, you are collapsing potential into experience. Feel this as a physical sensation — a concentration of energy behind the eyes.</p>
+      <p><strong>Step 3 — Choose Your Focus.</strong> Select something you wish to understand or manifest. Don't grasp it. Don't force it. Simply <em>observe</em> it with steady, neutral attention. Let the wave function collapse naturally.</p>
+      <p><strong>Step 4 — Record.</strong> Open your eyes. Write what arose in the journal below.</p>
     </div>
   </div>
 
-  <!-- REFLECTION -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">REFLECTION</div><div class="sh-rule"></div></div>
-    <div class="st">Reflection Journal</div>
-    <div class="callout" style="margin-bottom:24px"><p>Calculate your four numbers first. Let them settle for a moment before writing.</p></div>
-    <div class="ref-q">1 — Which of your four numbers resonates most strongly right now? What does it confirm that you already knew about yourself?</div>
-    <textarea class="ref-ta" id="ref-1" placeholder="Write freely..." oninput="autoSave()"></textarea>
-    <div class="ref-q">2 — Is there a number in your chart that surprises you or feels difficult to claim? What might that resistance be protecting?</div>
-    <textarea class="ref-ta" id="ref-2" placeholder="Let the question settle before you answer..." oninput="autoSave()"></textarea>
-    <div class="ref-q">3 — Looking at your Soul Urge alongside your Personality: is there a gap between what you crave inwardly and how others perceive you? What is that gap asking of you?</div>
-    <textarea class="ref-ta" id="ref-3" placeholder="The gap between inner and outer is where the real work lives..." oninput="autoSave()"></textarea>
+  <!-- REFLECTIONS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">07</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">Reflection</div>
+
+    <div class="reflection-prompt">
+      <div class="reflection-q">1 — How does knowing you are a wave function — not solid matter, but localized probability — change how you understand yourself and your body?</div>
+      <textarea class="reflection-field" id="reflect-1" placeholder="Write freely. There is no wrong answer here..." oninput="autoSave()"></textarea>
+    </div>
+
+    <div class="reflection-prompt">
+      <div class="reflection-q">2 — If observation collapses quantum potential into reality, what does this reveal about the power of your attention? Where have you been placing yours?</div>
+      <textarea class="reflection-field" id="reflect-2" placeholder="Let the question settle before you answer..." oninput="autoSave()"></textarea>
+    </div>
+
+    <div class="reflection-prompt">
+      <div class="reflection-q">3 — Observer Meditation Notes — What arose during the practice? Insights, images, sensations, clarity?</div>
+      <textarea class="reflection-field" id="reflect-3" placeholder="Record what emerged..." oninput="autoSave()"></textarea>
+    </div>
   </div>
 
-  <!-- WORKSHOP -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">LIVE WORKSHOP</div><div class="sh-rule"></div></div>
-    <div class="st">Live Session</div>
-    <div class="ws"><div class="ws-ic">⟡</div><div class="ws-t">Live Workshop: Personal Numerology</div><div class="ws-s">Coming soon — recordings and live session links will appear here once scheduled.<br>Check The Frequency Academy community for announcements.</div></div>
+  <!-- KEY TAKEAWAYS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">08</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">Key Takeaways</div>
+
+    <div class="content-block">
+      <ul class="takeaways">
+        <li><span class="takeaway-mark">✓</span>Wave-particle duality is not theory — it is experimentally verified fact, replicated thousands of times worldwide.</li>
+        <li><span class="takeaway-mark">✓</span>Light behaves as a wave when traveling and as a particle when interacting. Both are simultaneously true.</li>
+        <li><span class="takeaway-mark">✓</span>De Broglie proved that all matter has wave properties. You have a wavelength. You are a frequency.</li>
+        <li><span class="takeaway-mark">✓</span>The observer effect demonstrates consciousness fundamentally influences physical reality at the quantum level.</li>
+        <li><span class="takeaway-mark">✓</span>You are not separate from the experiment — you are the one who collapses the potential into form.</li>
+        <li><span class="takeaway-mark">✓</span>Ancient wisdom traditions encoded these truths. Quantum physics provides the mathematical framework.</li>
+        <li><span class="takeaway-mark">✓</span>Intention in frequency work matters because your focused awareness collapses quantum potential into physical reality.</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <p>"Everything is both wave and particle.<br>Everything is potential waiting for observation.<br>And you — right now — are the observer."</p>
+    </div>
   </div>
 
   <!-- COMPLETION -->
-  <div class="ls">
-    <div class="comp-wrap">
-      <div class="comp-t">SEAL THIS LESSON</div>
-      <div class="comp-s">Complete your reflections above, then seal this lesson to record your progress.</div>
-      <button class="comp-btn" id="comp-btn" onclick="markComplete()">⟡ Mark Complete · +10 XP</button>
-      <div class="xp-pop" id="xp-pop">✦ +10 XP Awarded · N2 Complete ✦</div>
+  <div class="section">
+    <div class="completion-block">
+      <div class="completion-title">MARK THIS LESSON COMPLETE</div>
+      <div class="completion-subtitle">Complete all reflections above, then seal your intention.</div>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete()">
+        ⟡ Mark Complete · +10 XP
+      </button>
+      <div class="xp-awarded" id="xp-message">
+        ✦ +10 XP Awarded · Q2 Complete ✦
+      </div>
     </div>
   </div>
 
-  <!-- UP NEXT / PREV -->
-  <div class="ls">
-    <div class="sh"><div class="sh-tag">NAVIGATE</div><div class="sh-rule"></div></div>
-    <div class="st">Continue the Journey</div>
-    <div class="nav-cards">
-      <a class="nav-card prev" href="/n1/">
-        <div class="nav-arr">←</div>
-        <div><div class="nav-lbl">PREVIOUS · N1</div><div class="nav-title">The Language of Numbers</div></div>
-      </a>
-      <a class="nav-card" href="/n3/">
-        <div><div class="nav-lbl">NEXT · N3</div><div class="nav-title">The Personal Year Cycle</div></div>
-        <div class="nav-arr">→</div>
-      </a>
+  <!-- NEXT LESSON -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">NEXT</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">What Comes Next</div>
+    <div class="next-lesson-card" onclick="showToast('Q3 — Superposition coming soon')">
+      <div>
+        <div class="next-label">UP NEXT · Q3</div>
+        <div class="next-title">Superposition</div>
+        <div class="next-subtitle">Existing in Multiple States — how quantum systems hold all possibilities simultaneously until the moment of observation</div>
+      </div>
+      <div class="next-arrow">→</div>
     </div>
   </div>
 
 </main>
 
+<!-- Save Bar -->
 <div id="save-bar">
-  <div class="sv-status">Auto-save: <span id="save-time">—</span></div>
-  <div class="sv-actions">
-    <input type="file" id="imp-file" accept=".json" onchange="importData(event)">
-    <button class="sv-btn sec" onclick="document.getElementById('imp-file').click()">Import</button>
-    <button class="sv-btn pri" onclick="exportData()">Export Backup</button>
+  <div class="save-status">Auto-save: <span id="save-time">—</span></div>
+  <div class="save-actions">
+    <input type="file" id="import-file" accept=".json" onchange="importData(event)">
+    <button class="save-btn import" onclick="document.getElementById('import-file').click()">IMPORT</button>
+    <button class="save-btn export" onclick="exportData()">EXPORT JSON</button>
   </div>
 </div>
 
 <script>
-const PYTH={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
-const VOWELS=new Set(['A','E','I','O','U']);
-const MEANINGS={1:{n:'The Initiator',t:'Leadership & Independence',d:'To lead and create'},2:{n:'The Harmoniser',t:'Partnership & Balance',d:'To love and connect'},3:{n:'The Creator',t:'Expression & Creativity',d:'To create and inspire'},4:{n:'The Builder',t:'Stability & Discipline',d:'To create lasting order'},5:{n:'The Adventurer',t:'Freedom & Change',d:'To experience life fully'},6:{n:'The Nurturer',t:'Responsibility & Love',d:'To love and be loved'},7:{n:'The Seeker',t:'Wisdom & Truth',d:'To understand the mystery'},8:{n:'The Authority',t:'Power & Abundance',d:'To achieve mastery'},9:{n:'The Humanitarian',t:'Compassion & Completion',d:'To serve humanity'},11:{n:'The Illuminator',t:'Spiritual Illumination',d:'To uplift and enlighten'},22:{n:'The Master Builder',t:'Master Manifestation',d:'To build lasting legacy'},33:{n:'The Master Teacher',t:'Divine Service',d:'To heal through love'}};
+// ══════════════════════════════════════
+// WAVE HERO ANIMATION
+// ══════════════════════════════════════
+const heroCanvas = document.getElementById('wave-hero');
+const hCtx = heroCanvas.getContext('2d');
+let hTime = 0;
 
-function reduce(n){while(n>9&&n!==11&&n!==22&&n!==33){n=String(n).split('').reduce((a,d)=>a+parseInt(d),0);}return n;}
-function rdPart(n){if(n===11||n===22||n===33)return n;let s=String(n).split('').reduce((a,d)=>a+parseInt(d),0);return(s===11||s===22||s===33)?s:reduce(s);}
-function M(n){return MEANINGS[n]||MEANINGS[9];}
+function resizeHero() {
+  heroCanvas.width = heroCanvas.offsetWidth * window.devicePixelRatio;
+  heroCanvas.height = heroCanvas.offsetHeight * window.devicePixelRatio;
+  hCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+}
+resizeHero();
+window.addEventListener('resize', resizeHero);
 
-// ── Calc Life Path ──
-function calcLP(){
-  const m=parseInt(document.getElementById('lp-m').value)||0;
-  const d=parseInt(document.getElementById('lp-d').value)||0;
-  const y=parseInt(document.getElementById('lp-y').value)||0;
-  if(!m||!d||!y||y<1000){['r-m','r-d','r-y','r-lp'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('r-lp-m').textContent='';document.getElementById('lp-steps').textContent='';return;}
-  const rm=rdPart(m),rd=rdPart(d),ry=rdPart([...String(y)].reduce((a,c)=>a+parseInt(c),0));
-  const tot=rm+rd+ry;const lp=rdPart(tot);
-  document.getElementById('r-m').textContent=rm;document.getElementById('r-d').textContent=rd;document.getElementById('r-y').textContent=ry;
-  document.getElementById('r-lp').textContent=lp;
-  const mv=M(lp);document.getElementById('r-lp-m').textContent=mv.n+' · '+mv.t;
-  document.getElementById('lp-steps').textContent=`Month ${m}→${rm}  +  Day ${d}→${rd}  +  Year ${y}→${ry}  =  ${tot}→${lp}`;
-  autoSave();
+function animateHero() {
+  const w = heroCanvas.offsetWidth, h = heroCanvas.offsetHeight;
+  hCtx.clearRect(0, 0, w, h);
+  hTime += 0.018;
+
+  const numWaves = 4;
+  for (let wv = 0; wv < numWaves; wv++) {
+    const offset = (wv / numWaves) * Math.PI * 2;
+    const amp = 18 + wv * 5;
+    const freq = 0.018 - wv * 0.003;
+    const speed = 1 + wv * 0.4;
+    const alpha = 0.12 + wv * 0.07;
+
+    hCtx.beginPath();
+    hCtx.moveTo(0, h / 2);
+    for (let x = 0; x <= w; x += 2) {
+      const y = h / 2 + Math.sin(x * freq + hTime * speed + offset) * amp
+                       + Math.sin(x * freq * 1.7 + hTime * (speed * 0.6) + offset * 1.3) * (amp * 0.4);
+      x === 0 ? hCtx.moveTo(x, y) : hCtx.lineTo(x, y);
+    }
+
+    const grad = hCtx.createLinearGradient(0, 0, w, 0);
+    if (wv % 2 === 0) {
+      grad.addColorStop(0, `rgba(79,195,247,0)`);
+      grad.addColorStop(0.5, `rgba(79,195,247,${alpha})`);
+      grad.addColorStop(1, `rgba(79,195,247,0)`);
+    } else {
+      grad.addColorStop(0, `rgba(201,168,76,0)`);
+      grad.addColorStop(0.5, `rgba(201,168,76,${alpha * 0.7})`);
+      grad.addColorStop(1, `rgba(201,168,76,0)`);
+    }
+    hCtx.strokeStyle = grad;
+    hCtx.lineWidth = 1.5;
+    hCtx.stroke();
+  }
+
+  // Particles
+  for (let i = 0; i < 12; i++) {
+    const px = ((i / 12) * w + hTime * 25 * (i % 3 === 0 ? 1 : -0.7)) % w;
+    const py = h / 2 + Math.sin(px * 0.018 + hTime + i) * 22;
+    hCtx.beginPath();
+    hCtx.arc(px, py, 1.5, 0, Math.PI * 2);
+    hCtx.fillStyle = i % 3 === 0 ? 'rgba(201,168,76,0.6)' : 'rgba(79,195,247,0.5)';
+    hCtx.fill();
+  }
+
+  requestAnimationFrame(animateHero);
+}
+animateHero();
+
+// ══════════════════════════════════════
+// DOUBLE SLIT EXPERIMENT
+// ══════════════════════════════════════
+const slitCanvas = document.getElementById('dbl-slit');
+const sCtx = slitCanvas.getContext('2d');
+let observed = false;
+let particles = [];
+let pattern = [];
+let frameCount = 0;
+let animId;
+
+function setupSlit() {
+  slitCanvas.width = slitCanvas.offsetWidth * Math.min(window.devicePixelRatio, 2);
+  slitCanvas.height = 280 * Math.min(window.devicePixelRatio, 2);
+  sCtx.scale(Math.min(window.devicePixelRatio, 2), Math.min(window.devicePixelRatio, 2));
+  particles = [];
+  pattern = [];
+  frameCount = 0;
+}
+setupSlit();
+window.addEventListener('resize', setupSlit);
+
+function getSlitDims() {
+  const w = slitCanvas.offsetWidth, h = 280;
+  return {
+    w, h,
+    sourceX: 40,
+    barrierX: w * 0.38,
+    screenX: w - 30,
+    slitY1: h * 0.38,
+    slitY2: h * 0.62,
+    slitH: 18
+  };
 }
 
-// ── Calc Name ──
-function calcName(){
-  const names=[document.getElementById('n-first').value,document.getElementById('n-mid').value,document.getElementById('n-last').value].filter(n=>n.trim());
-  if(!names.length){document.getElementById('lc-wrap').style.display='none';['r-expr','r-soul','r-pers'].forEach(id=>document.getElementById(id).textContent='—');['r-expr-m','r-soul-m'].forEach(id=>document.getElementById(id).textContent='');document.getElementById('r-synth-box').style.display='none';return;}
-  const chips=document.getElementById('lc-chips');chips.innerHTML='';
-  let ex=0,so=0,pe=0;
-  names.forEach((nm,ni)=>{
-    const letters=nm.toUpperCase().replace(/[^A-Z]/g,'').split('');
-    letters.forEach(ch=>{const v=PYTH[ch]||0;const vow=VOWELS.has(ch);const c=document.createElement('div');c.className='lc'+(vow?' v':'');c.innerHTML=`<span class="lc-ch">${ch}</span><span class="lc-vl">${v}</span>`;chips.appendChild(c);ex+=v;if(vow)so+=v;else pe+=v;});
-    if(ni<names.length-1){const s=document.createElement('div');s.style.cssText='width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,.25);align-self:center';chips.appendChild(s);}
+function fireParticle() {
+  const d = getSlitDims();
+  particles.push({
+    x: d.sourceX,
+    y: d.h / 2,
+    targetY: null,
+    speed: 2.5 + Math.random() * 1.5,
+    phase: Math.random() * Math.PI * 2,
+    passed: false,
+    done: false
   });
-  document.getElementById('lc-wrap').style.display='block';
-  const expr=rdPart(reduce(ex)),soul=rdPart(reduce(so)),pers=rdPart(reduce(pe));
-  document.getElementById('r-expr').textContent=expr;document.getElementById('r-soul').textContent=soul;document.getElementById('r-pers').textContent=pers;
-  document.getElementById('r-expr-m').textContent=M(expr).t;document.getElementById('r-soul-m').textContent=M(soul).d;
-  const sb=document.getElementById('r-synth-box');sb.style.display='block';
-  document.getElementById('r-synth').innerHTML=`Expr: ${ex}→<strong style="color:var(--accent)">${expr}</strong><br>Soul: ${so}→<strong style="color:var(--accent)">${soul}</strong><br>Pers: ${pe}→<strong style="color:var(--accent)">${pers}</strong>`;
-  autoSave();
 }
 
-function switchTab(id,btn){document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.cp').forEach(p=>p.classList.remove('active'));document.getElementById('cp-'+id).classList.add('active');btn.classList.add('active');}
+function getTargetY(p) {
+  const d = getSlitDims();
+  if (observed) {
+    // Two bands behavior
+    const slit = Math.random() < 0.5 ? 1 : 2;
+    const center = slit === 1 ? d.slitY1 : d.slitY2;
+    return center + (Math.random() - 0.5) * 40;
+  } else {
+    // Interference pattern
+    const centerY = d.h / 2;
+    const maxAmp = d.h * 0.42;
+    const r = Math.random();
+    // Gaussian envelope with interference fringes
+    const gaussian = () => {
+      let u = 0, v = 0;
+      while (u === 0) u = Math.random();
+      while (v === 0) v = Math.random();
+      return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    };
+    const spread = gaussian() * maxAmp * 0.35;
+    // Quantize to fringes
+    const fringeSpacing = d.h * 0.09;
+    const fringe = Math.round(spread / fringeSpacing);
+    return centerY + fringe * fringeSpacing + (Math.random() - 0.5) * (fringeSpacing * 0.4);
+  }
+}
 
-// ── Meanings grid ──
-(function buildMG(){
-  const g=document.getElementById('mg');
-  [1,2,3,4,5,6,7,8,9,11,22,33].forEach(n=>{
-    const m=MEANINGS[n];const d=document.createElement('div');d.className='mc';
-    d.innerHTML=`<div class="mn${n>=11?' m':''}">${n}${n>=11?' ★':''}</div><div class="mth">${m.t}</div><div class="mgift">${m.n}</div><div class="mdes">${m.d}</div>`;
-    g.appendChild(d);
+function drawSlit() {
+  const d = getSlitDims();
+  sCtx.clearRect(0, 0, d.w, d.h);
+
+  // Background
+  sCtx.fillStyle = '#030810';
+  sCtx.fillRect(0, 0, d.w, d.h);
+
+  // Grid lines
+  sCtx.strokeStyle = 'rgba(255,255,255,0.02)';
+  sCtx.lineWidth = 0.5;
+  for (let y = 0; y < d.h; y += 20) {
+    sCtx.beginPath(); sCtx.moveTo(0, y); sCtx.lineTo(d.w, y); sCtx.stroke();
+  }
+
+  // Screen accumulated pattern
+  if (pattern.length > 0) {
+    const maxHits = Math.max(...pattern.map(p => p.hits || 0), 1);
+    for (const p of pattern) {
+      const intensity = (p.hits || 0) / maxHits;
+      const color = observed ? `rgba(201,168,76,${intensity * 0.85})` : `rgba(79,195,247,${intensity * 0.85})`;
+      sCtx.fillStyle = color;
+      sCtx.fillRect(d.screenX - 3, p.y - 1.5, 6, 3);
+    }
+  }
+
+  // Screen
+  sCtx.strokeStyle = 'rgba(255,255,255,0.12)';
+  sCtx.lineWidth = 2;
+  sCtx.beginPath(); sCtx.moveTo(d.screenX, 0); sCtx.lineTo(d.screenX, d.h); sCtx.stroke();
+
+  // Barrier
+  sCtx.fillStyle = 'rgba(255,255,255,0.15)';
+  sCtx.fillRect(d.barrierX - 3, 0, 6, d.slitY1 - d.slitH / 2);
+  sCtx.fillRect(d.barrierX - 3, d.slitY1 + d.slitH / 2, 6, d.slitY2 - d.slitH / 2 - (d.slitY1 + d.slitH / 2));
+  sCtx.fillRect(d.barrierX - 3, d.slitY2 + d.slitH / 2, 6, d.h - (d.slitY2 + d.slitH / 2));
+
+  // Slit labels
+  sCtx.fillStyle = 'rgba(79,195,247,0.4)';
+  sCtx.font = '9px Courier';
+  sCtx.fillText('SLIT A', d.barrierX + 6, d.slitY1);
+  sCtx.fillText('SLIT B', d.barrierX + 6, d.slitY2);
+
+  // Source
+  const srcPulse = 0.6 + 0.4 * Math.sin(frameCount * 0.12);
+  sCtx.beginPath();
+  sCtx.arc(d.sourceX, d.h / 2, 5 * srcPulse, 0, Math.PI * 2);
+  sCtx.fillStyle = observed ? 'rgba(201,168,76,0.9)' : 'rgba(79,195,247,0.9)';
+  sCtx.fill();
+
+  // Observer eye icon
+  if (observed) {
+    sCtx.fillStyle = 'rgba(201,168,76,0.7)';
+    sCtx.font = '14px serif';
+    sCtx.fillText('👁', d.barrierX - 7, d.slitY1 - d.slitH / 2 - 5);
+    sCtx.fillText('👁', d.barrierX - 7, d.slitY2 - d.slitH / 2 - 5);
+  }
+
+  // Moving particles
+  for (const p of particles) {
+    if (p.done) continue;
+    const alpha = p.passed ? 0.7 : 0.9;
+    sCtx.beginPath();
+    sCtx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+    sCtx.fillStyle = observed ? `rgba(201,168,76,${alpha})` : `rgba(79,195,247,${alpha})`;
+    sCtx.fill();
+
+    if (!observed && p.passed) {
+      // Draw wave trail
+      sCtx.strokeStyle = `rgba(79,195,247,0.08)`;
+      sCtx.lineWidth = 0.5;
+      sCtx.beginPath();
+      sCtx.arc(p.x - 10, p.targetY, 12, -Math.PI / 2, Math.PI / 2);
+      sCtx.stroke();
+    }
+  }
+
+  // Labels
+  sCtx.fillStyle = 'rgba(255,255,255,0.25)';
+  sCtx.font = '9px Courier';
+  sCtx.fillText('SOURCE', d.sourceX - 18, d.h - 8);
+  sCtx.fillText('BARRIER', d.barrierX - 18, d.h - 8);
+  sCtx.fillText('SCREEN', d.screenX - 18, d.h - 8);
+}
+
+function getPatternIndex(y) {
+  return pattern.findIndex(p => Math.abs(p.y - y) < 3);
+}
+
+function recordHit(y) {
+  const idx = getPatternIndex(y);
+  if (idx >= 0) {
+    pattern[idx].hits = (pattern[idx].hits || 0) + 1;
+  } else {
+    pattern.push({ y, hits: 1 });
+  }
+}
+
+function animateSlit() {
+  frameCount++;
+
+  if (frameCount % 4 === 0) fireParticle();
+
+  const d = getSlitDims();
+  for (const p of particles) {
+    if (p.done) continue;
+
+    if (!p.passed) {
+      p.x += p.speed;
+      if (p.x >= d.barrierX) {
+        // Determine if passes through a slit
+        const inSlit1 = Math.abs(p.y - d.slitY1) < d.slitH / 2;
+        const inSlit2 = Math.abs(p.y - d.slitY2) < d.slitH / 2;
+        if (!inSlit1 && !inSlit2) {
+          p.done = true;
+          continue;
+        }
+        p.passed = true;
+        p.targetY = getTargetY(p);
+      } else {
+        // Approach barrier
+        const distToBarrier = d.barrierX - p.x;
+        const t = 1 - distToBarrier / (d.barrierX - d.sourceX);
+        // Slight undulation approaching
+        p.y = d.h / 2 + Math.sin(p.x * 0.08 + p.phase + frameCount * 0.05) * (t * 15);
+      }
+    } else {
+      // Move toward target Y while traveling right
+      const dyToTarget = p.targetY - p.y;
+      p.y += dyToTarget * 0.05;
+      p.x += p.speed;
+      if (p.x >= d.screenX) {
+        recordHit(p.y);
+        p.done = true;
+      }
+    }
+  }
+
+  // Cleanup
+  particles = particles.filter(p => !p.done || p.x < d.screenX + 10).slice(-60);
+
+  drawSlit();
+  animId = requestAnimationFrame(animateSlit);
+}
+animateSlit();
+
+function toggleObservation() {
+  observed = !observed;
+  const btn = document.getElementById('observe-toggle');
+  btn.textContent = `OBSERVER: ${observed ? 'ON' : 'OFF'}`;
+  btn.classList.toggle('on', observed);
+
+  const status = document.getElementById('lab-status');
+  if (observed) {
+    status.innerHTML = '<span>OBSERVED</span> — Particles behave as particles. Two bands forming. Interference pattern destroyed.';
+  } else {
+    status.innerHTML = '<span>UNOBSERVED</span> — Particles are behaving as waves. Interference pattern forming.';
+  }
+  pattern = [];
+  particles = [];
+}
+
+function resetLab() {
+  pattern = [];
+  particles = [];
+  frameCount = 0;
+}
+
+// ══════════════════════════════════════
+// DE BROGLIE CALCULATOR
+// ══════════════════════════════════════
+const PLANCK = 6.626e-34;
+const PRESETS = {
+  electron: { mass: 9.109e-31, velocity: 2.187e6, label: 'electron at Bohr orbit speed' },
+  proton: { mass: 1.673e-27, velocity: 2187.0, label: 'slow proton' },
+  baseball: { mass: 0.145, velocity: 40, label: '145g baseball at 40 m/s (~90mph)' },
+  human: { mass: 70, velocity: 1.4, label: '70kg person walking' },
+  photon: { mass: null, velocity: null, label: 'photon at 500nm (visible green light)' }
+};
+
+function loadPreset(key) {
+  const p = PRESETS[key];
+  if (key === 'photon') {
+    document.getElementById('calc-mass').value = '0';
+    document.getElementById('calc-velocity').value = '3e8';
+    document.getElementById('calc-output').textContent = '500 nm';
+    document.getElementById('calc-context').textContent = 'Visible green light. The wavelength of a photon is directly measurable with a prism or diffraction grating. This is why you can see color.';
+    return;
+  }
+  document.getElementById('calc-mass').value = p.mass;
+  document.getElementById('calc-velocity').value = p.velocity;
+  calculate();
+}
+
+function calculate() {
+  const mass = parseFloat(document.getElementById('calc-mass').value);
+  const vel = parseFloat(document.getElementById('calc-velocity').value);
+  if (!mass || !vel || mass <= 0 || vel <= 0) {
+    document.getElementById('calc-output').textContent = '—';
+    document.getElementById('calc-context').textContent = '';
+    return;
+  }
+  const momentum = mass * vel;
+  const wavelength = PLANCK / momentum;
+
+  let display, context;
+  if (wavelength < 1e-15) {
+    display = `${(wavelength * 1e15).toExponential(2)} fm`;
+    context = 'Femtometer scale — smaller than an atomic nucleus. Unmeasurable by any current technology. The wave nature is physically real but practically undetectable.';
+  } else if (wavelength < 1e-12) {
+    display = `${(wavelength * 1e12).toExponential(2)} pm`;
+    context = 'Picometer scale — atomic bond length range. Wave properties are measurable using X-ray crystallography techniques.';
+  } else if (wavelength < 1e-9) {
+    display = `${(wavelength * 1e9).toFixed(3)} nm`;
+    context = 'Nanometer scale — within the range of electron microscopes. Wave behavior is directly observable and experimentally verified.';
+  } else if (wavelength < 1e-6) {
+    display = `${(wavelength * 1e9).toFixed(1)} nm`;
+    context = 'Nanometer scale. This is the realm where matter waves become detectable in laboratory conditions.';
+  } else if (wavelength < 1e-3) {
+    display = `${(wavelength * 1e6).toExponential(2)} μm`;
+    context = 'Micrometer scale. This wavelength, while technically real, is extraordinarily difficult to measure for objects of this mass.';
+  } else {
+    display = `${wavelength.toExponential(2)} m`;
+    context = 'This wavelength is far smaller than any atom. For macroscopic objects, the de Broglie wavelength exists but is physically unmeasurable — yet the mathematics are exact.';
+  }
+
+  document.getElementById('calc-output').textContent = display;
+  document.getElementById('calc-context').textContent = context;
+}
+calculate();
+
+// ══════════════════════════════════════
+// PROGRESS BAR
+// ══════════════════════════════════════
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docH = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min((scrollTop / docH) * 100, 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+
+// ══════════════════════════════════════
+// INTERSECTION OBSERVER (Reveal)
+// ══════════════════════════════════════
+const sections = document.querySelectorAll('.section');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
   });
-})();
+}, { threshold: 0.08 });
+sections.forEach(s => io.observe(s));
 
-// ── Accordion ──
-const ACC=[
-  {t:'Master Numbers: Never Reduce',s:'11, 22, 33 — always preserved',c:'When any stage of a calculation produces <strong>11, 22, or 33</strong> — stop. These are preserved as-is throughout your chart. A name sub-total of 22 is kept as 22 before adding to other names. A final Life Path total of 11 is Life Path 11, not 2.'},
-  {t:'Birth Name Rule',s:'Always use your birth certificate name',c:'<strong>Always use your full name as it appears on your birth certificate</strong> for Expression, Soul Urge, and Personality. Married names and preferred names can be read as overlays, but the birth name is your primary energetic signature.'},
-  {t:'The Letter Y',s:'Vowel or consonant — it depends',c:'Y is a <strong>vowel</strong> when it carries the vowel sound in a syllable with no other vowel present. "Lynn" → Y is a vowel. "Mary" → Y is a vowel. "Yolanda" → the opening Y before O functions as a consonant. Listen to the sound.'},
-  {t:'Reduce Each Part Separately',s:'Never shortcut the Life Path calculation',c:'For Life Path, always reduce Month, Day, and Year <strong>separately</strong> before combining. Shortcutting (adding all digits together at once) can cause you to miss master numbers hidden within individual components.'},
-  {t:'Numbers as Maps, Not Mandates',s:'You are always greater than your chart',c:'Your four core numbers reveal <strong>tendencies, themes, and potentials</strong> — not fixed outcomes. A Life Path 4 is not destined to be a builder and nothing else. It means the energy of structure and foundation runs as a constant theme. How you engage with that energy is always your choice.'}
-];
-(function buildAcc(){const c=document.getElementById('accordion');ACC.forEach(item=>{const el=document.createElement('div');el.className='acc-item';el.innerHTML=`<button class="acc-hd" onclick="this.closest('.acc-item').classList.toggle('open')"><div><div class="acc-ht">${item.t}</div><div class="acc-hs">${item.s}</div></div><span class="acc-ic">+</span></button><div class="acc-bd"><div class="acc-ct">${item.c}</div></div>`;c.appendChild(el);});})();
+// ══════════════════════════════════════
+// LOCALSTORAGE SAVE/LOAD
+// ══════════════════════════════════════
+const SAVE_KEY = 'tfa_lesson_Q2';
+let xp = 0;
+let saveTimeout;
 
-// ── Quiz ──
-const QD=[
-  {q:'The Soul Urge Number is derived from:',opts:['All letters in your name','Consonants only','Vowels only','Your birth date'],ans:2,fb:'Vowels only (A, E, I, O, U) reveal your heart\'s deepest desire — what your soul truly craves.'},
-  {q:'When a name sub-total equals 22, you should:',opts:['Reduce it to 4 immediately','Keep it as 22 before adding to other names','Replace it with 11','Start the calculation over'],ans:1,fb:'Master numbers (11, 22, 33) are preserved at every stage — never reduced prematurely.'},
-  {q:'Always use your <strong>___</strong> for name-based calculations.',opts:['Preferred or nickname','Married name','Full birth certificate name','Initials only'],ans:2,fb:'Your birth name is your energetic signature from the moment of entry into this lifetime. Always use it.'},
-  {q:'The Personality Number uses which letters?',opts:['All letters','Vowels only','Consonants only','First and last letter of each name'],ans:2,fb:'Consonants create the Personality Number — the mask or first impression you present to the world.'},
-  {q:'The Expression Number is also called the:',opts:['Soul Number','Destiny Number','Heart Number','Karmic Number'],ans:1,fb:'The Expression Number is also known as the Destiny Number — it reveals your natural talents and life direction.'},
-  {q:'Life Path 7 carries the energy of:',opts:['Power & abundance','Freedom & change','Wisdom & truth','Responsibility & love'],ans:2,fb:'7 is The Seeker — wisdom, introspection, truth, and spiritual depth. A life of questioning and understanding.'},
-];
-let qA=0,qC=0;
-(function buildQ(){const c=document.getElementById('quiz');QD.forEach((q,qi)=>{const d=document.createElement('div');d.className='quiz-item';d.id='qi-'+qi;d.innerHTML=`<div class="quiz-q">${qi+1}. ${q.q}</div><div class="quiz-opts">${q.opts.map((o,oi)=>`<button class="quiz-opt" onclick="ansQ(${qi},${oi})">${o}</button>`).join('')}</div><div class="quiz-fb" id="qf-${qi}"></div>`;c.appendChild(d);});})();
-function ansQ(qi,chosen){const item=document.getElementById('qi-'+qi);if(item.dataset.done)return;item.dataset.done='1';const q=QD[qi];item.querySelectorAll('.quiz-opt').forEach(o=>o.disabled=true);const fb=document.getElementById('qf-'+qi);if(chosen===q.ans){item.classList.add('correct');item.querySelectorAll('.quiz-opt')[chosen].classList.add('ok');fb.className='quiz-fb correct show';fb.textContent='✓ '+q.fb;qC++;}else{item.classList.add('wrong');item.querySelectorAll('.quiz-opt')[chosen].classList.add('no');item.querySelectorAll('.quiz-opt')[q.ans].classList.add('show-ok');fb.className='quiz-fb wrong show';fb.textContent='✗ '+q.fb;}qA++;if(qA===QD.length){const s=document.getElementById('quiz-score');s.className='quiz-score show';const p=Math.round(qC/QD.length*100);s.innerHTML=`You answered <strong style="color:var(--accent)">${qC} of ${QD.length}</strong> correctly (${p}%).${p>=80?' The numbers are becoming second nature.':' Review and return when ready.'}`}}
+function getData() {
+  return {
+    version: '1.0',
+    lesson: 'Q2',
+    timestamp: new Date().toISOString(),
+    reflections: {
+      r1: document.getElementById('reflect-1').value,
+      r2: document.getElementById('reflect-2').value,
+      r3: document.getElementById('reflect-3').value
+    },
+    xp: xp,
+    completed: document.getElementById('complete-btn').classList.contains('completed')
+  };
+}
 
-// ── Canvas ──
-const nc=document.getElementById('num-canvas'),nctx=nc.getContext('2d');let nt=0;
-const floaters=Array.from({length:20},()=>({n:[1,2,3,4,5,6,7,8,9,11,22,33][Math.floor(Math.random()*12)],x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.07,size:12+Math.random()*18,alpha:.12+Math.random()*.32,phase:Math.random()*Math.PI*2}));
-function resNC(){nc.width=nc.offsetWidth*Math.min(devicePixelRatio,2);nc.height=100*Math.min(devicePixelRatio,2);nctx.scale(Math.min(devicePixelRatio,2),Math.min(devicePixelRatio,2))}resNC();window.addEventListener('resize',resNC);
-function animNC(){const w=nc.offsetWidth,h=100;nctx.clearRect(0,0,w,h);nt+=.012;floaters.forEach(f=>{f.x+=f.vx*.01;f.y+=f.vy*.01;if(f.x<0)f.x=1;if(f.x>1)f.x=0;if(f.y<0)f.y=1;if(f.y>1)f.y=0;const p=.6+.4*Math.sin(nt*1.2+f.phase);nctx.font=`${f.size}px 'Cinzel',serif`;nctx.fillStyle=`rgba(201,168,76,${f.alpha*p})`;nctx.textAlign='center';nctx.fillText(f.n,f.x*w,f.y*h+f.size*.4);});requestAnimationFrame(animNC);}animNC();
+function loadData() {
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    if (d.reflections) {
+      document.getElementById('reflect-1').value = d.reflections.r1 || '';
+      document.getElementById('reflect-2').value = d.reflections.r2 || '';
+      document.getElementById('reflect-3').value = d.reflections.r3 || '';
+    }
+    if (d.xp) { xp = d.xp; updateXP(); }
+    if (d.completed) applyCompleted();
+    document.getElementById('save-time').textContent = formatTime(d.timestamp);
+  } catch (e) {}
+}
 
-// ── Progress ──
-window.addEventListener('scroll',()=>{const p=Math.min(scrollY/(document.body.scrollHeight-innerHeight)*100,100);document.getElementById('prog-fill').style.width=p+'%'},{passive:true});
+function saveData() {
+  const d = getData();
+  localStorage.setItem(SAVE_KEY, JSON.stringify(d));
+  document.getElementById('save-time').textContent = 'just now';
+}
 
-// ── Reveal ──
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
-document.querySelectorAll('.ls').forEach(s=>io.observe(s));
+function autoSave() {
+  clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(saveData, 900);
+}
 
-// ── Save ──
-const KEY='tfa_lesson_N2';let xp=0,saveT;
-function getData(){return{version:'1.0',lesson:'N2',ts:new Date().toISOString(),reflections:{r1:document.getElementById('ref-1').value,r2:document.getElementById('ref-2').value,r3:document.getElementById('ref-3').value},calc:{m:document.getElementById('lp-m').value,d:document.getElementById('lp-d').value,y:document.getElementById('lp-y').value,first:document.getElementById('n-first').value,mid:document.getElementById('n-mid').value,last:document.getElementById('n-last').value},xp,completed:document.getElementById('comp-btn').classList.contains('done')}}
-function loadData(){try{const raw=localStorage.getItem(KEY);if(!raw)return;const d=JSON.parse(raw);if(d.reflections){document.getElementById('ref-1').value=d.reflections.r1||'';document.getElementById('ref-2').value=d.reflections.r2||'';document.getElementById('ref-3').value=d.reflections.r3||'';}if(d.calc){if(d.calc.m)document.getElementById('lp-m').value=d.calc.m;if(d.calc.d)document.getElementById('lp-d').value=d.calc.d;if(d.calc.y)document.getElementById('lp-y').value=d.calc.y;if(d.calc.first)document.getElementById('n-first').value=d.calc.first;if(d.calc.mid)document.getElementById('n-mid').value=d.calc.mid;if(d.calc.last)document.getElementById('n-last').value=d.calc.last;calcLP();calcName();}if(d.xp){xp=d.xp;updXP();}if(d.completed)applyDone();document.getElementById('save-time').textContent=fmtT(d.ts);}catch(e){}}
-function saveData(){localStorage.setItem(KEY,JSON.stringify(getData()));document.getElementById('save-time').textContent='just now'}
-function autoSave(){clearTimeout(saveT);saveT=setTimeout(saveData,1200)}
-setInterval(saveData,90000);
-function exportData(){const b=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`tfa_N2_${new Date().toISOString().slice(0,10)}.json`;a.click();toast('Backup exported ✦')}
-function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const d=JSON.parse(ev.target.result);localStorage.setItem(KEY,JSON.stringify(d));loadData();toast('Session restored ✦');}catch{toast('Invalid file')}};r.readAsText(f);e.target.value=''}
-function fmtT(iso){try{return new Date(iso).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}catch{return'—'}}
-function updXP(){document.getElementById('xp-display').textContent=xp+' XP'}
-function applyDone(){const b=document.getElementById('comp-btn');b.classList.add('done');b.textContent='✦ Lesson Sealed';document.getElementById('xp-pop').classList.add('show')}
-function markComplete(){if(document.getElementById('comp-btn').classList.contains('done'))return;xp+=10;updXP();applyDone();saveData();confetti();toast('✦ +10 XP · N2 Sealed ✦')}
-function confetti(){const cols=['#c9a84c','#dfc472','#f0ede6','#9aa0c8'];for(let i=0;i<60;i++){const el=document.createElement('div');el.className='cf';el.style.cssText=`left:${Math.random()*100}%;background:${cols[Math.floor(Math.random()*cols.length)]};animation-delay:${Math.random()*.8}s;animation-duration:${1.5+Math.random()}s;transform:rotate(${Math.random()*360}deg);width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;border-radius:${Math.random()>.5?'50%':'2px'}`;document.body.appendChild(el);setTimeout(()=>el.remove(),2800)}}
-let toastT;function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3000)}
+function exportData() {
+  const d = getData();
+  const blob = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `tfa_Q2_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  showToast('Journal exported ✦');
+}
+
+function importData(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    try {
+      const d = JSON.parse(ev.target.result);
+      if (d.reflections) {
+        document.getElementById('reflect-1').value = d.reflections.r1 || '';
+        document.getElementById('reflect-2').value = d.reflections.r2 || '';
+        document.getElementById('reflect-3').value = d.reflections.r3 || '';
+      }
+      if (d.xp) { xp = d.xp; updateXP(); }
+      if (d.completed) applyCompleted();
+      saveData();
+      showToast('Journal imported ✦');
+    } catch {
+      showToast('Invalid file format');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+function formatTime(iso) {
+  if (!iso) return '—';
+  try {
+    return new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  } catch { return '—'; }
+}
+
+// ══════════════════════════════════════
+// XP / COMPLETION
+// ══════════════════════════════════════
+function updateXP() {
+  document.getElementById('xp-display').textContent = `${xp} XP`;
+}
+
+function applyCompleted() {
+  const btn = document.getElementById('complete-btn');
+  btn.classList.add('completed');
+  btn.textContent = '✦ LESSON SEALED ✦';
+  document.getElementById('xp-message').classList.add('show');
+}
+
+function markComplete() {
+  if (document.getElementById('complete-btn').classList.contains('completed')) return;
+  xp += 10;
+  updateXP();
+  applyCompleted();
+  saveData();
+  showToast('✦ +10 XP · Q2 Sealed ✦');
+}
+
+// ══════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
 loadData();
+updateProgress();
 </script>
 </body>
 </html>
