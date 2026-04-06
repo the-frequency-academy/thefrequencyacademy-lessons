@@ -172,7 +172,7 @@
     {
       "code": "SS",
       "number": "04",
-      "title": "Symbolic Sciences — Numerology",
+      "title": "Symbolic Sciences \u2014 Numerology",
       "folder": "04-symbolic-sciences",
       "color": "#c9a84c",
       "totalPlanned": 15,
@@ -207,17 +207,17 @@
         },
         {
           "id": "N5",
-          "title": "Numerology in Sound & Music",
-          "description": "432 Hz, 528 Hz & the Solfeggio frequencies",
-          "path": "",
-          "status": "coming"
+          "title": "Timing With Numbers",
+          "description": "Personal Year, Universal Year & the 9-Year Cycle",
+          "path": "/04-symbolic-sciences/numerology/lesson-05/",
+          "status": "live"
         },
         {
           "id": "N6",
-          "title": "Numerology & Frequency",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Numerology in Sound & Music",
+          "description": "432 Hz, 528 Hz & the Solfeggio frequencies",
+          "path": "/04-symbolic-sciences/numerology/lesson-06/",
+          "status": "live"
         },
         {
           "id": "N7",
@@ -325,7 +325,7 @@
         },
         {
           "id": "TM1",
-          "title": "Technomancy — Introduction",
+          "title": "Technomancy \u2014 Introduction",
           "description": "",
           "path": "",
           "status": "coming"
@@ -370,14 +370,14 @@
     {
       "code": "FC",
       "number": "09",
-      "title": "Frequency Charged™ Methodology",
+      "title": "Frequency Charged\u2122 Methodology",
       "folder": "09-frequency-charged-methodology",
       "color": "#2a8a7a",
       "totalPlanned": 27,
       "lessons": [
         {
           "id": "FC1",
-          "title": "What Is Frequency Charged™",
+          "title": "What Is Frequency Charged\u2122",
           "description": "",
           "path": "",
           "status": "coming"
@@ -473,7 +473,7 @@
       "lessons": [
         {
           "id": "SG1",
-          "title": "Inanna's Descent — Gate One",
+          "title": "Inanna's Descent \u2014 Gate One",
           "description": "The Crown",
           "path": "",
           "status": "coming"
@@ -491,22 +491,22 @@
       "lessons": [
         {
           "id": "DL1",
-          "title": "Late Night Resonance — D Hijaz",
-          "description": "Unreleased handpan · Skool members only",
+          "title": "Late Night Resonance \u2014 D Hijaz",
+          "description": "Unreleased handpan \u00b7 Skool members only",
           "path": "",
           "status": "dragon"
         },
         {
           "id": "DL2",
-          "title": "Late Night Resonance — D Kurd",
-          "description": "Unreleased handpan · Skool members only",
+          "title": "Late Night Resonance \u2014 D Kurd",
+          "description": "Unreleased handpan \u00b7 Skool members only",
           "path": "",
           "status": "dragon"
         },
         {
           "id": "DL3",
-          "title": "Late Night Resonance — E Amara",
-          "description": "Unreleased handpan · Skool members only",
+          "title": "Late Night Resonance \u2014 E Amara",
+          "description": "Unreleased handpan \u00b7 Skool members only",
           "path": "",
           "status": "dragon"
         }
