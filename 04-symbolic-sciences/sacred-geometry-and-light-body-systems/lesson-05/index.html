@@ -1,1 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G5 · Metatron's Cube · The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c1418;
+  --accent: #7ab0b8;
+  --accent2: #9ecdd5;
+  --text: #f0ede6;
+  --text-dim: rgba(240,237,230,0.65);
+  --gold: #c9a84c;
+  --card-bg: rgba(0,0,0,0.32);
+  --card-border: rgba(122,176,184,0.18);
+  --radius: 6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;line-height:1.75;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(122,176,184,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 90%,rgba(201,168,76,0.04) 0%,transparent 50%);pointer-events:none;z-index:0}
 
+#progress-bar-wrap{position:fixed;top:0;left:0;right:0;z-index:1000;height:3px;background:rgba(0,0,0,0.5)}
+#progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--accent));transition:width .4s ease;box-shadow:0 0 12px rgba(201,168,76,.6)}
+#progress-label{position:fixed;top:8px;right:16px;z-index:1001;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.15em;color:var(--accent2);opacity:.8}
+
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:1000;background:rgba(6,13,16,.95);border-top:1px solid var(--card-border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;backdrop-filter:blur(12px)}
+#save-status{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;color:var(--text-dim)}
+.save-btns{display:flex;gap:8px}
+.save-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;padding:8px 18px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;border-radius:var(--radius);transition:all .2s;text-transform:uppercase}
+.save-btn:hover{background:var(--accent);color:var(--bg)}
+.save-btn.gold{border-color:var(--gold);color:var(--gold)}
+.save-btn.gold:hover{background:var(--gold);color:var(--bg)}
+.save-btn.dim{border-color:rgba(255,255,255,.2);color:var(--text-dim)}
+.save-btn.dim:hover{background:rgba(255,255,255,.1);color:var(--text)}
+
+.lesson-wrap{max-width:860px;margin:0 auto;padding:56px 24px 100px;position:relative;z-index:1}
+
+.section{margin-bottom:64px;opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.section.visible{opacity:1;transform:none}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.section-num{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);min-width:32px;opacity:.6}
+.section-title{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:600;color:var(--text);letter-spacing:.06em;flex:1}
+.section-rule{height:1px;flex:1;background:linear-gradient(90deg,var(--accent),transparent);opacity:.3}
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px 32px;margin-bottom:20px;backdrop-filter:blur(8px)}
+p{margin-bottom:16px;color:var(--text-dim)}
+p:last-child{margin-bottom:0}
+.hi{color:var(--accent);font-weight:600}
+.gt{color:var(--gold)}
+h3.sub{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;color:var(--accent2);margin-bottom:14px;text-transform:uppercase}
+
+.hero{text-align:center;padding:80px 0 60px}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.hero-tag{display:inline-block;border:1px solid var(--accent);padding:4px 16px;border-radius:20px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:32px}
+.hero h1{font-family:'Cinzel',serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:700;color:var(--text);line-height:1.15;margin-bottom:12px;letter-spacing:.04em}
+.hero-subtitle{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);letter-spacing:.15em;margin-bottom:40px;font-weight:400}
+.hero-quote{max-width:620px;margin:0 auto 48px;font-style:italic;color:var(--text-dim);font-size:1.05rem;line-height:1.8;border-left:2px solid var(--gold);padding-left:20px;text-align:left}
+.hero-quote cite{display:block;margin-top:10px;font-style:normal;font-size:.8rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase}
+
+.transmission{text-align:center;padding:48px 32px;background:linear-gradient(135deg,rgba(122,176,184,.06),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);margin-bottom:64px}
+.transmission-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.transmission p{font-size:1.1rem;line-height:1.9;color:var(--text);font-style:italic;font-weight:300;max-width:640px;margin:0 auto 16px}
+.transmission p:last-child{margin-bottom:0}
+
+.module-crumb{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;color:var(--text-dim);text-align:center;margin-bottom:48px;text-transform:uppercase}
+.module-crumb span{color:var(--accent)}
+
+.callout{border-left:3px solid var(--gold);background:rgba(201,168,76,.06);padding:16px 20px;margin:20px 0;border-radius:0 var(--radius) var(--radius) 0}
+.callout p{color:var(--text);font-style:italic;margin:0}
+
+.concept-list{list-style:none}
+.concept-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid rgba(122,176,184,.08);color:var(--text-dim);font-size:.92rem}
+.concept-item:last-child{border-bottom:none}
+.cb{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:9px}
+
+/* MATH BOX */
+.math-box{background:rgba(122,176,184,.07);border:1px solid rgba(122,176,184,.2);border-radius:var(--radius);padding:18px 24px;margin:18px 0;text-align:center}
+.math-eq{font-family:'Cinzel',serif;font-size:1.2rem;color:var(--accent);letter-spacing:.06em;margin-bottom:6px}
+.math-sub{font-size:.83rem;color:var(--text-dim);font-style:italic}
+
+/* DATA TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.87rem}
+.data-table th{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;padding:9px 12px;border-bottom:1px solid var(--card-border);text-align:left}
+.data-table td{padding:10px 12px;border-bottom:1px solid rgba(122,176,184,.08);color:var(--text-dim);vertical-align:top}
+.data-table td:first-child{color:var(--gold);font-weight:600}
+.data-table tr:last-child td{border-bottom:none}
+
+/* CUBE BUILDER */
+.cube-builder{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;text-align:center}
+#cubeCanvas{display:block;margin:16px auto;max-width:100%;border:1px solid rgba(122,176,184,.15);border-radius:4px;background:rgba(0,0,0,.55)}
+.builder-controls{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:14px}
+.bb{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.11em;text-transform:uppercase;padding:9px 14px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;border-radius:var(--radius);transition:all .2s}
+.bb:hover,.bb.active{background:var(--accent);color:var(--bg)}
+.bb.reset{border-color:rgba(255,255,255,.2);color:var(--text-dim)}
+.bb.reset:hover{background:rgba(255,255,255,.1);color:var(--text)}
+.builder-status{font-size:.84rem;color:var(--gold);font-style:italic;margin-top:12px;min-height:22px}
+.line-counter{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--accent);margin:8px 0 4px}
+.line-label{font-size:.78rem;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase}
+
+/* PLATONIC SOLIDS EXPLORER */
+.solids-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
+.solid-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:16px 10px;cursor:pointer;transition:all .25s;text-align:center;position:relative}
+.solid-card:hover,.solid-card.active{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.solid-card.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold)}
+.solid-icon{font-size:1.6rem;margin-bottom:8px}
+.solid-name{font-family:'Cinzel',serif;font-size:.72rem;color:var(--text);letter-spacing:.06em;margin-bottom:4px}
+.solid-element{font-size:.7rem;color:var(--accent);letter-spacing:.1em}
+.solid-detail-panel{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:20px 24px;margin-top:16px;display:none}
+.solid-detail-panel.show{display:block}
+.sdp-name{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);margin-bottom:8px}
+.sdp-row{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:12px}
+.sdp-stat{text-align:center}
+.sdp-val{font-family:'Cinzel',serif;font-size:1.3rem;color:var(--accent)}
+.sdp-lbl{font-size:.7rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase}
+.sdp-desc{font-size:.88rem;color:var(--text-dim);line-height:1.7;margin-top:8px}
+.euler-badge{display:inline-block;padding:4px 12px;background:rgba(122,176,184,.1);border:1px solid rgba(122,176,184,.3);border-radius:20px;font-family:'Cinzel',serif;font-size:.72rem;color:var(--accent);margin-top:8px;letter-spacing:.08em}
+
+/* ACCORDION */
+.accordion-item{border:1px solid var(--card-border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.accordion-header{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;cursor:pointer;background:var(--card-bg);transition:background .2s}
+.accordion-header:hover{background:rgba(122,176,184,.08)}
+.accordion-header-text{font-family:'Cinzel',serif;font-size:.84rem;letter-spacing:.1em;color:var(--text)}
+.accordion-arrow{color:var(--accent);font-size:1.2rem;transition:transform .3s}
+.accordion-item.open .accordion-arrow{transform:rotate(90deg)}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 20px;font-size:.9rem;color:var(--text-dim);line-height:1.8}
+.accordion-item.open .accordion-body{max-height:400px;padding:14px 20px 18px}
+
+/* QUIZ */
+.quiz-question{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:22px;margin-bottom:13px}
+.quiz-q-text{font-family:'Cinzel',serif;font-size:.87rem;color:var(--text);margin-bottom:14px;letter-spacing:.04em;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:8px}
+.quiz-option{padding:10px 14px;border:1px solid rgba(122,176,184,.2);border-radius:var(--radius);cursor:pointer;transition:all .2s;font-size:.87rem;color:var(--text-dim);background:transparent;text-align:left;width:100%;font-family:'Raleway',sans-serif}
+.quiz-option:hover{border-color:var(--accent);color:var(--text)}
+.quiz-option.correct{border-color:#4CAF50;background:rgba(76,175,80,.1);color:#81c784}
+.quiz-option.wrong{border-color:#f44336;background:rgba(244,67,54,.1);color:#e57373}
+.quiz-feedback{margin-top:8px;font-size:.81rem;font-style:italic;min-height:18px}
+.quiz-score-bar{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;text-align:center;display:none;margin-top:16px}
+.score-display{font-family:'Cinzel',serif;font-size:2.4rem;color:var(--gold);margin-bottom:8px}
+#quiz-submit{margin:20px auto 0;display:block;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;padding:12px 32px;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer;border-radius:var(--radius);transition:all .2s}
+#quiz-submit:hover{background:var(--gold);color:var(--bg)}
+
+/* REFLECTION */
+.reflection-prompt{margin-bottom:22px}
+.reflection-q{font-style:italic;color:var(--text);margin-bottom:10px;font-size:.94rem;line-height:1.7}
+.reflection-textarea{width:100%;min-height:110px;background:rgba(0,0,0,.3);border:1px solid var(--card-border);border-radius:var(--radius);color:var(--text);font-family:'Raleway',sans-serif;font-size:.9rem;padding:13px 15px;resize:vertical;transition:border-color .2s;line-height:1.6}
+.reflection-textarea:focus{outline:none;border-color:var(--accent)}
+.reflection-textarea::placeholder{color:var(--text-dim);opacity:.5}
+
+/* PRACTICAL */
+.practice-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:14px;margin-top:18px}
+.practice-item{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:18px;text-align:center;transition:border-color .2s}
+.practice-item:hover{border-color:var(--accent)}
+.pi-icon{font-size:1.9rem;margin-bottom:9px}
+.pi-title{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;color:var(--text);margin-bottom:5px}
+.practice-item p{font-size:.8rem}
+
+/* RESOURCES */
+.rg{margin-bottom:26px}
+.rg-title{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--card-border)}
+.ri{display:flex;gap:13px;padding:10px 0;border-bottom:1px solid rgba(122,176,184,.06)}
+.ri:last-child{border-bottom:none}
+.ri-icon{color:var(--accent);min-width:16px;margin-top:3px;font-size:.85rem}
+.ri-title{color:var(--text);font-weight:600;font-size:.86rem;margin-bottom:2px}
+.ri-meta{color:var(--text-dim);font-size:.77rem}
+
+/* WORKSHOP */
+.workshop-slot{text-align:center;padding:44px;border:1px dashed rgba(201,168,76,.3);border-radius:var(--radius);background:rgba(201,168,76,.03)}
+.ws-icon{font-size:2.2rem;margin-bottom:14px;opacity:.5}
+.ws-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--text-dim);letter-spacing:.08em;margin-bottom:7px}
+.ws-sub{color:var(--text-dim);font-size:.84rem;opacity:.6}
+
+/* COMPLETION */
+.completion-card{text-align:center;padding:44px;background:linear-gradient(135deg,rgba(122,176,184,.08),rgba(201,168,76,.06));border:1px solid rgba(201,168,76,.3);border-radius:var(--radius)}
+.completion-title{font-family:'Cinzel',serif;font-size:1.35rem;color:var(--gold);margin-bottom:12px;letter-spacing:.06em}
+.xp-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 24px;background:var(--gold);color:var(--bg);border-radius:24px;font-family:'Cinzel',serif;font-weight:700;font-size:1rem;margin:18px 0;letter-spacing:.08em;opacity:0;transform:scale(.8);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.xp-badge.show{opacity:1;transform:scale(1)}
+.complete-checkbox-wrap{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px 0}
+#complete-checkbox{width:22px;height:22px;accent-color:var(--gold);cursor:pointer}
+.complete-label{font-family:'Cinzel',serif;font-size:.88rem;letter-spacing:.1em;color:var(--text);cursor:pointer}
+
+/* CONFETTI */
+.confetti-piece{position:fixed;pointer-events:none;z-index:9999;animation:confetti-fall linear forwards}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+/* UP NEXT */
+.up-next-card{display:flex;align-items:center;gap:22px;padding:26px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);cursor:pointer;transition:border-color .2s,transform .2s}
+.up-next-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.un-badge{min-width:54px;height:54px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:700;color:var(--bg);font-size:.88rem}
+.un-info{flex:1}
+.un-label{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:4px}
+.un-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px}
+.un-desc{font-size:.83rem;color:var(--text-dim)}
+.un-arrow{color:var(--accent);font-size:1.5rem;opacity:.6}
+
+/* LINEAGE */
+.lineage-flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:16px 0}
+.lc{padding:6px 13px;border:1px solid var(--accent);border-radius:20px;font-family:'Cinzel',serif;font-size:.74rem;color:var(--accent);letter-spacing:.07em;background:rgba(122,176,184,.06)}
+.lc.gold{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.06)}
+.la{color:var(--text-dim);font-size:1.1rem}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .8s ease forwards}
+
+@media(max-width:680px){
+  .solids-grid{grid-template-columns:repeat(3,1fr)}
+  .practice-items{grid-template-columns:1fr 1fr}
+  .lesson-wrap{padding:40px 16px 90px}
+  .card{padding:18px}
+  #save-bar{padding:8px 12px}
+  .save-btn{padding:6px 12px;font-size:9px}
+}
+@media(max-width:420px){
+  .solids-grid{grid-template-columns:1fr 1fr}
+  .practice-items{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+<div id="progress-label">G5 · 0%</div>
+
+<div id="save-bar">
+  <span id="save-status">Auto-saves every 90 seconds</span>
+  <div class="save-btns">
+    <button class="save-btn" onclick="saveData()">&#x27F3; Save Progress</button>
+    <button class="save-btn gold" onclick="exportData()">&#x2193; Export Backup</button>
+    <button class="save-btn dim" onclick="importTrigger()">&#x2191; Import</button>
+  </div>
+</div>
+<input type="file" id="import-input" accept=".json" style="display:none" onchange="importData(event)">
+
+<div class="lesson-wrap">
+
+  <div class="module-crumb">The Frequency Academy · <span>Sacred Geometry &amp; Light Body Systems</span> · Lesson G5 of 22</div>
+
+  <!-- HERO -->
+  <section class="hero section">
+    <div class="hero-eyebrow">Sacred Geometry &amp; Light Body Systems</div>
+    <div class="hero-tag">G5 · LESSON FIVE</div>
+    <h1>Metatron's Cube</h1>
+    <div class="hero-subtitle">The 13 Circles &amp; the Platonic Solids Within</div>
+    <canvas id="heroCanvas" width="300" height="300" style="display:block;margin:0 auto 40px"></canvas>
+    <div class="hero-quote">
+      "Connect the centres of the 13 Fruit of Life circles with every possible straight line and you produce a figure containing all five Platonic Solids simultaneously. Metatron's Cube is the geometric record of every possible three-dimensional form."
+      <cite>— The Frequency Academy</cite>
+    </div>
+  </section>
+
+  <!-- TRANSMISSION -->
+  <section class="section transmission" id="sec-transmission">
+    <div class="transmission-label">&#10022; Opening Transmission &#10022;</div>
+    <p>The Flower of Life is 19 circles and an infinite tessellation. The Blueprint of All Creation. But within it — there is a skeleton. A structure of pure straight lines drawn between 13 chosen points. And from those lines, the most information-dense figure in sacred geometry emerges.</p>
+    <p>Thirteen circles. Seventy-eight lines. All drawn by one rule: connect every centre to every other centre. Nothing more. And in those lines, simultaneously present, are the five forms that Plato said compose all of physical reality — the only five perfectly regular solids that three-dimensional space permits.</p>
+    <p>This is Metatron's Cube. The Scribe's instrument. The geometric record of everything that has ever taken form.</p>
+  </section>
+
+  <!-- CORE CONCEPT -->
+  <section class="section" id="sec-intro">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">What Is Metatron's Cube?</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p><span class="hi">Metatron's Cube</span> is the sacred geometry figure produced by connecting the centres of all 13 Fruit of Life circles with straight lines. It is derived from the Flower of Life in exactly two steps, and within its network of 78 lines, all five Platonic Solids are simultaneously present and extractable.</p>
+      <p>It is the most information-dense single geometric form in sacred geometry — containing within one 2D figure the geometric record of every possible three-dimensional form. This is not metaphor. Each of the five Platonic Solids can be physically traced within the lines of the Cube by selecting specific subsets.</p>
+      <div class="callout">
+        <p><strong class="gt">Key insight:</strong> 13 centres, every connection drawn once: 12 &times; 13 &divide; 2 = 78 lines. The triangular number of 12. All five Platonic Solids encoded simultaneously within those 78 lines.</p>
+      </div>
+      <ul class="concept-list">
+        <li class="concept-item"><div class="cb"></div>Derived from the Flower of Life in two steps: select the Fruit of Life (13 circles), then connect all centres</li>
+        <li class="concept-item"><div class="cb"></div>13 is a Fibonacci number — the number of transformation in numerological tradition</li>
+        <li class="concept-item"><div class="cb"></div>Connecting all 13 centres produces exactly 78 lines — the triangular number of 12</li>
+        <li class="concept-item"><div class="cb"></div>All five Platonic Solids (tetrahedron, cube, octahedron, dodecahedron, icosahedron) are simultaneously encoded</li>
+        <li class="concept-item"><div class="cb"></div>The 13 Fruit circles correspond to the 10 Sephiroth plus 3 hidden spheres of the Kabbalistic Tree of Life</li>
+        <li class="concept-item"><div class="cb"></div>Named for Archangel Metatron — the Scribe of God in Kabbalistic and Enochian tradition</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FROM FLOWER TO FRUIT TO CUBE -->
+  <section class="section" id="sec-derivation">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">From Flower to Fruit to Cube — Two Steps</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <h3 class="sub">Step 1 — The Fruit of Life</h3>
+      <p>Within the 19 circles of the Flower of Life, select 13 using a specific skip pattern: the central circle plus 12 others taken at every other intersection through the outer rings. These 13 circles are the <span class="hi">Fruit of Life</span>.</p>
+      <p>If the Flower is all curves and organic flow — yin — the Fruit is its yang complement: the hidden skeleton, the structure within the curves. The 13 circles map precisely to the 10 Sephiroth of the Kabbalistic Tree of Life plus the 3 hidden spheres, the complete map of divine emanation in the Western mystery tradition.</p>
+      <div class="callout">
+        <p>13 is a Fibonacci number. 13 is the number of transformation. 13 is the number of the Christ Consciousness grid. And 13 is exactly how many circles the Fruit of Life contains.</p>
+      </div>
+
+      <h3 class="sub" style="margin-top:22px">Step 2 — Connect All Centres</h3>
+      <p>Now draw a straight line from every one of the 13 Fruit centres to every other centre. Every single possible connection — not selecting, not filtering. All of them.</p>
+      <div class="math-box">
+        <div class="math-eq">12 &times; 13 &divide; 2 = 78 lines</div>
+        <div class="math-sub">The triangular number of 12. The exact count when every centre connects to every other exactly once.</div>
+      </div>
+      <p>That figure — 13 circles, 78 lines — is Metatron's Cube. And within it, all five Platonic Solids are simultaneously visible.</p>
+
+      <h3 class="sub" style="margin-top:22px">The Full Lineage</h3>
+      <div class="lineage-flow">
+        <div class="lc">Flower of Life (19)</div>
+        <div class="la">&#8594;</div>
+        <div class="lc">Fruit of Life (13)</div>
+        <div class="la">&#8594;</div>
+        <div class="lc gold">Metatron's Cube (78 lines)</div>
+        <div class="la">&#8594;</div>
+        <div class="lc">All 5 Platonic Solids</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATONIC SOLIDS EXPLORER (INTERACTIVE) -->
+  <section class="section" id="sec-solids">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">The Five Platonic Solids Within</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="font-style:italic;font-size:.88rem;color:var(--text-dim);margin-bottom:18px">Click any solid to reveal its structure, element, and significance. All five are simultaneously encoded within Metatron's Cube.</p>
+      <div class="solids-grid">
+        <div class="solid-card" onclick="activateSolid(0,this)">
+          <div class="solid-icon">&#9651;</div>
+          <div class="solid-name">Tetrahedron</div>
+          <div class="solid-element">&#128293; Fire</div>
+        </div>
+        <div class="solid-card" onclick="activateSolid(1,this)">
+          <div class="solid-icon">&#9632;</div>
+          <div class="solid-name">Hexahedron</div>
+          <div class="solid-element">&#127757; Earth</div>
+        </div>
+        <div class="solid-card" onclick="activateSolid(2,this)">
+          <div class="solid-icon">&#9671;</div>
+          <div class="solid-name">Octahedron</div>
+          <div class="solid-element">&#128168; Air</div>
+        </div>
+        <div class="solid-card" onclick="activateSolid(3,this)">
+          <div class="solid-icon">&#9670;</div>
+          <div class="solid-name">Dodecahedron</div>
+          <div class="solid-element">&#10024; Ether</div>
+        </div>
+        <div class="solid-card" onclick="activateSolid(4,this)">
+          <div class="solid-icon">&#11041;</div>
+          <div class="solid-name">Icosahedron</div>
+          <div class="solid-element">&#127754; Water</div>
+        </div>
+      </div>
+      <div class="solid-detail-panel" id="solid-detail"></div>
+
+      <!-- Euler verification -->
+      <div style="margin-top:20px">
+        <h3 class="sub">Euler's Formula — Verified Across All Five</h3>
+        <div class="math-box">
+          <div class="math-eq">Vertices &minus; Edges + Faces = 2</div>
+          <div class="math-sub">Euler's formula holds for every convex polyhedron, confirming the geometric integrity of all five Platonic Solids.</div>
+        </div>
+        <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead><tr><th>Solid</th><th>Vertices</th><th>Edges</th><th>Faces</th><th>V&minus;E+F</th><th>Dual</th></tr></thead>
+          <tbody>
+            <tr><td>Tetrahedron</td><td>4</td><td>6</td><td>4</td><td>2 &#10003;</td><td>Self-dual</td></tr>
+            <tr><td>Hexahedron (Cube)</td><td>8</td><td>12</td><td>6</td><td>2 &#10003;</td><td>Octahedron</td></tr>
+            <tr><td>Octahedron</td><td>6</td><td>12</td><td>8</td><td>2 &#10003;</td><td>Cube</td></tr>
+            <tr><td>Dodecahedron</td><td>20</td><td>30</td><td>12</td><td>2 &#10003;</td><td>Icosahedron</td></tr>
+            <tr><td>Icosahedron</td><td>12</td><td>30</td><td>20</td><td>2 &#10003;</td><td>Dodecahedron</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METATRON CUBE BUILDER (INTERACTIVE) -->
+  <section class="section" id="sec-builder">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Interactive Builder — Draw the Cube</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="cube-builder">
+      <p style="color:var(--text-dim);font-size:.88rem;margin-bottom:4px">Watch all 78 lines appear as Metatron's Cube is drawn from the 13 Fruit of Life centres. Each step adds more lines until the full figure emerges.</p>
+      <canvas id="cubeCanvas" width="460" height="460"></canvas>
+      <div style="margin:8px 0 4px">
+        <div class="line-counter" id="line-counter">0</div>
+        <div class="line-label">lines drawn of 78</div>
+      </div>
+      <div class="builder-controls">
+        <button class="bb" id="cb1" onclick="cubeStep(1)">13 Circles</button>
+        <button class="bb" id="cb2" onclick="cubeStep(2)">First Lines</button>
+        <button class="bb" id="cb3" onclick="cubeStep(3)">Half Complete</button>
+        <button class="bb" id="cb4" onclick="cubeStep(4)">All 78 Lines</button>
+        <button class="bb" id="cb5" onclick="cubeStep(5)">Highlight Tetrahedron</button>
+        <button class="bb reset" onclick="cubeReset()">&#x21BA; Reset</button>
+      </div>
+      <div class="builder-status" id="cube-status">Begin with Step 1 — reveal the 13 Fruit of Life circles.</div>
+    </div>
+  </section>
+
+  <!-- METATRON TRADITION -->
+  <section class="section" id="sec-tradition">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Archangel Metatron &amp; the Kabbalistic Tradition</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>In Kabbalistic and Enochian tradition, <span class="hi">Metatron</span> is the archangel who records divine thought in geometric form. He is called the <em>Scribe of God</em> and the <em>Chancellor of Heaven</em>. The Cube is described as his primary tool — the instrument through which the divine architect organises the structure of creation.</p>
+      <p>The 13 circles of the Fruit of Life correspond to the 10 Sephiroth of the Kabbalistic Tree of Life plus the 3 hidden spheres — the Da'at, and the two aspects of Kether — completing the full map of divine emanation in the Western mystery tradition. This is not incidental correspondence: the geometry maps to the theology with exact precision.</p>
+      <div class="callout">
+        <p>Whether or not you work within the Kabbalistic tradition, the geometry makes a statement that stands on its own: this figure contains all possible three-dimensional form. Whatever tradition first encoded it, they understood the structure of space completely.</p>
+      </div>
+      <p>The five Platonic Solids appear throughout the natural and scientific world: in Plato's cosmology, in Kepler's early model of the solar system, in carbon molecule geometry (buckminsterfullerene is an icosahedron derivative), in virus capsid architecture, and in the proposed geometry of the cosmos itself.</p>
+    </div>
+  </section>
+
+  <!-- KNOWLEDGE CHECK -->
+  <section class="section" id="sec-quiz">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Knowledge Check</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div id="quiz-container">
+      <div class="quiz-question" id="qq1">
+        <div class="quiz-q-text">1. Metatron's Cube is produced by connecting every centre of how many circles?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(1,this,'a')">a) 7 circles — the Seed of Life</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'b')">b) 12 circles — the outer ring of the Flower</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'c')">c) 13 circles — the Fruit of Life</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'d')">d) 19 circles — the full Flower of Life</button>
+        </div>
+        <div class="quiz-feedback" id="qf1"></div>
+      </div>
+      <div class="quiz-question" id="qq2">
+        <div class="quiz-q-text">2. Connecting all 13 Fruit of Life centres produces how many total lines?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(2,this,'a')">a) 13</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'b')">b) 52</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'c')">c) 78</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'d')">d) 144</button>
+        </div>
+        <div class="quiz-feedback" id="qf2"></div>
+      </div>
+      <div class="quiz-question" id="qq3">
+        <div class="quiz-q-text">3. Which Platonic Solid corresponds to the element of Fire?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(3,this,'a')">a) Octahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'b')">b) Tetrahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'c')">c) Icosahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'d')">d) Dodecahedron</button>
+        </div>
+        <div class="quiz-feedback" id="qf3"></div>
+      </div>
+      <div class="quiz-question" id="qq4">
+        <div class="quiz-q-text">4. The dodecahedron, with 12 pentagonal faces, corresponds to which element?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(4,this,'a')">a) Earth</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'b')">b) Water</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'c')">c) Air</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'d')">d) Ether / Cosmos</button>
+        </div>
+        <div class="quiz-feedback" id="qf4"></div>
+      </div>
+      <div class="quiz-question" id="qq5">
+        <div class="quiz-q-text">5. Which pair of Platonic Solids are duals of each other?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(5,this,'a')">a) Tetrahedron and Octahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'b')">b) Cube (Hexahedron) and Octahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'c')">c) Tetrahedron and Icosahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'d')">d) Dodecahedron and Tetrahedron</button>
+        </div>
+        <div class="quiz-feedback" id="qf5"></div>
+      </div>
+      <div class="quiz-question" id="qq6">
+        <div class="quiz-q-text">6. TRUE or FALSE: Metatron's Cube contains only three of the five Platonic Solids.</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(6,this,'a')">True — three Platonic Solids are present</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'b')">False — all five Platonic Solids are simultaneously present within Metatron's Cube</button>
+        </div>
+        <div class="quiz-feedback" id="qf6"></div>
+      </div>
+    </div>
+    <button id="quiz-submit" onclick="submitQuiz()">Check Answers</button>
+    <div class="quiz-score-bar" id="quiz-score-bar">
+      <div class="score-display" id="quiz-score-display">0/6</div>
+      <p id="quiz-score-msg" style="color:var(--text-dim)"></p>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="section" id="sec-glossary">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Quick Reference — Key Definitions</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div id="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Metatron's Cube</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The sacred geometry figure produced by connecting the centres of all 13 Fruit of Life circles with straight lines. Contains all five Platonic Solids simultaneously. The most information-dense single geometric form in sacred geometry.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Fruit of Life</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The 13-circle pattern selected from within the Flower of Life using a specific skip pattern. The template from which Metatron's Cube is derived by connecting all centres. 13 is a Fibonacci number and corresponds to the Kabbalistic Tree of Life plus hidden spheres.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Platonic Solid</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">One of five 3D forms in which every face is an identical regular polygon and every vertex is surrounded by the same number of faces. The only five such forms possible in 3D space: tetrahedron, hexahedron, octahedron, dodecahedron, icosahedron.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Archangel Metatron</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">In Kabbalistic and Enochian tradition, the archangel who records divine thought in geometric form. Called the Scribe of God and Chancellor of Heaven. The Cube is described as his instrument for organising the structure of creation.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Euler's Formula</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">For any convex polyhedron: Vertices minus Edges plus Faces = 2. Holds for all five Platonic Solids and confirms their geometric integrity. A fundamental theorem of topology that connects these forms across mathematics.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Duality</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">Two Platonic Solids are dual when the vertices of one correspond to the face centres of the other. Cube and Octahedron are duals. Dodecahedron and Icosahedron are duals. The Tetrahedron is self-dual — its dual is another tetrahedron.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICAL -->
+  <section class="section" id="sec-practical">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Practical Application — This Week</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="margin-bottom:18px">Metatron's Cube rewards direct engagement — the experience of adding 78 lines and watching form emerge is irreplaceable. This week, work with it physically and with attention.</p>
+      <div class="practice-items">
+        <div class="practice-item">
+          <div class="pi-icon">&#9999;&#65039;</div>
+          <div class="pi-title">Draw the Cube</div>
+          <p>Using your Flower of Life from G4, identify and mark the 13 Fruit circles. Then draw all lines connecting every centre to every other. Allow 45 minutes. Count the lines as you go.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#127775;</div>
+          <div class="pi-title">Trace the Solids</div>
+          <p>Using coloured pencils, trace each Platonic Solid within your completed Cube. Use a different colour for each. Observe how the same set of lines contains all five simultaneously.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#128293;</div>
+          <div class="pi-title">Element Resonance</div>
+          <p>Identify which of the five elements (Fire, Earth, Air, Water, Ether) resonates most strongly with you. Draw its corresponding Platonic Solid and meditate on what that element means to you.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#128218;</div>
+          <div class="pi-title">Research Kepler</div>
+          <p>Look up Johannes Kepler's Mysterium Cosmographicum — his early model of the solar system using nested Platonic Solids. A 17th century astronomer who saw the same forms in the heavens.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="section" id="sec-reflection">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Reflection Journal</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="font-style:italic;color:var(--text-dim);margin-bottom:26px">Metatron's Cube contains all possible 3D form in a single 2D figure. These questions explore what that means.</p>
+      <div class="reflection-prompt">
+        <div class="reflection-q">1. The five Platonic Solids appear in Plato's philosophy, Kepler's astronomy, carbon molecule geometry (fullerene), virus shell architecture, and Metatron's Cube. What does their ubiquity across such different domains — ancient philosophy, Renaissance astronomy, modern biochemistry — suggest to you about the nature of form itself?</div>
+        <textarea class="reflection-textarea" id="ref1" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">2. Metatron is described as the Scribe of God — the one who records divine thought in geometric form. What does it mean to you that a tradition assigns a being of cosmic intelligence specifically to the work of sacred geometry? What does it say about how that tradition understood the relationship between mind, mathematics, and creation?</div>
+        <textarea class="reflection-textarea" id="ref2" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">3. The five elements — Fire, Earth, Air, Water, Ether — each map to a Platonic Solid. Which solid corresponds to your most resonant element? What does the geometry of that solid (its faces, its symmetry, its structure) reveal about the nature of that element? Describe your response to both the element and its form.</div>
+        <textarea class="reflection-textarea" id="ref3" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- GO DEEPER -->
+  <section class="section" id="sec-resources">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <h2 class="section-title">Go Deeper — Resources</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div class="rg">
+        <div class="rg-title">&#128218; Books</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Sacred Geometry — Robert Lawlor</div><div class="ri-meta">Inner Traditions, 1982 · ISBN 978-0500810606 · Provides the geometric foundation for understanding how Metatron's Cube encodes all five Platonic Solids.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">A Beginner's Guide to Constructing the Universe — Michael S. Schneider</div><div class="ri-meta">HarperCollins, 1994 · ISBN 978-0060926717 · Covers the mathematical relationships between Metatron's Cube and the underlying number archetypes.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Ancient Secret of the Flower of Life Vol. 2 — Drunvalo Melchizedek</div><div class="ri-meta">Light Technology Publishing, 2000 · ISBN 978-1891824210 · Derives Metatron's Cube from the Fruit of Life and shows its Platonic Solid encodings.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#128300; Scientific Studies</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Regular Polytopes — H.S.M. Coxeter (Dover, 1973)</div><div class="ri-meta">The definitive mathematical treatment of regular geometric forms, all of which are encoded within Metatron's Cube.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Symmetry — H. Weyl (Princeton University Press, 1952)</div><div class="ri-meta">Examines the symmetry groups underlying Metatron's Cube and the Platonic Solids.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#127916; Documentaries</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Spirit Science — Metatron's Cube (YouTube)</div><div class="ri-meta">Animated walkthrough of how Metatron's Cube is derived and what geometric forms it encodes.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Sacred Science — Various YouTube channels</div><div class="ri-meta">Multiple researchers have produced visual derivations of Metatron's Cube from the Flower of Life.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#127760; Websites</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">geometrycode.com</div><div class="ri-meta">Covers Metatron's Cube construction and its mathematical relationships to the Platonic Solids.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">sacred-geometry.es/metatrons-cube</div><div class="ri-meta">Step-by-step visual construction guide.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#128279; TFA Lesson Connections</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G4 — The Flower of Life</div><div class="ri-meta">Metatron's Cube is derived from the Fruit of Life, itself extracted from the Flower of Life.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G6 — The Platonic Solids</div><div class="ri-meta">All five Platonic Solids encoded within Metatron's Cube receive a full individual treatment in G6.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G18 — Geometry as Language</div><div class="ri-meta">Metatron's Cube functions as a complete geometric language encoding all fundamental forms.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSHOP -->
+  <section class="section" id="sec-workshop">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <h2 class="section-title">Live Workshop</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="workshop-slot">
+      <div class="ws-icon">&#9678;</div>
+      <div class="ws-title">Live Workshop on this topic coming soon</div>
+      <div class="ws-sub">Recordings will appear here once available. Check back or watch for announcements at thefrequencyacademy.net</div>
+    </div>
+  </section>
+
+  <!-- COMPLETION -->
+  <section class="section" id="sec-completion">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <h2 class="section-title">Lesson Complete</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="completion-card">
+      <div class="completion-title">Metatron's Cube — Lesson Summary</div>
+      <p style="color:var(--text-dim);max-width:520px;margin:0 auto 22px;font-style:italic">"Connect the centres of the 13 Fruit of Life circles with every possible straight line and you hold in your hand the geometric record of every possible three-dimensional form."</p>
+      <div class="complete-checkbox-wrap">
+        <input type="checkbox" id="complete-checkbox" onchange="onComplete(this)">
+        <label class="complete-label" for="complete-checkbox">I have completed Lesson G5 — Metatron's Cube</label>
+      </div>
+      <div class="xp-badge" id="xp-badge">&#10022; +10 XP Earned &#10022;</div>
+    </div>
+  </section>
+
+  <!-- UP NEXT -->
+  <section class="section" id="sec-upnext">
+    <div class="section-header">
+      <span class="section-num">14</span>
+      <h2 class="section-title">Up Next in the Module</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="up-next-card">
+      <div class="un-badge">G6</div>
+      <div class="un-info">
+        <div class="un-label">Next Lesson · Sacred Geometry</div>
+        <div class="un-title">The Platonic Solids</div>
+        <div class="un-desc">G6 gives each Platonic Solid a full individual treatment — construction, mathematics, elemental correspondence, and appearance throughout the natural world from crystal lattice structure to viral geometry to the proposed geometry of the cosmos.</div>
+      </div>
+      <div class="un-arrow">&#8250;</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+var STORAGE_KEY = 'tfa_lesson_G5';
+var autosaveTimer = null;
+var quizAnswers = {};
+var correctAnswers = {1:'c',2:'c',3:'b',4:'d',5:'b',6:'b'};
+var quizFeedback = {
+  1:{c:'Correct! Metatron\'s Cube is produced by connecting the centres of the 13 Fruit of Life circles — the central circle plus 12 selected from the Flower by a specific skip pattern.',wrong:'Not quite. The 13 Fruit of Life circles are the source — one central plus 12 selected from the Flower.'},
+  2:{c:'Correct! 12 x 13 divided by 2 = 78 lines — the triangular number of 12. Every centre connects to every other centre exactly once.',wrong:'Not quite. The formula is 12 x 13 divided by 2 = 78 lines — the triangular number of 12.'},
+  3:{b:'Correct! The Tetrahedron corresponds to Fire — four equilateral triangles, four vertices, the simplest stable 3D form.',wrong:'Not quite. The Tetrahedron corresponds to Fire — the simplest stable 3D form with four equilateral triangular faces.'},
+  4:{d:'Correct! The Dodecahedron corresponds to Ether or Cosmos. Twelve pentagons, phi in every face. Plato assigned it to the universe itself.',wrong:'Not quite. The Dodecahedron corresponds to Ether / Cosmos — Plato said the divine architect used it to embroider the constellations on the universe.'},
+  5:{b:'Correct! The Cube (Hexahedron) and the Octahedron are duals — the vertices of one correspond to the face centres of the other. Dodecahedron and Icosahedron are also duals. The Tetrahedron is self-dual.',wrong:'Not quite. The Cube and Octahedron are duals, and the Dodecahedron and Icosahedron are duals. The Tetrahedron is self-dual.'},
+  6:{b:'Correct! All five Platonic Solids are simultaneously present within Metatron\'s Cube. Each can be extracted by selecting specific subsets of the 78 lines.',wrong:'Not quite. All five Platonic Solids are simultaneously present — not just three.'}
+};
+
+var solidData = [
+  {name:'Tetrahedron',el:'&#128293; Fire',faces:4,edges:6,vertices:4,desc:'The simplest 3D form. Four equilateral triangles meeting at four vertices. The primary building block of form — the first shape that can create interior space in three dimensions. Associated with the sharpness and upward drive of Fire.',dual:'Self-dual'},
+  {name:'Hexahedron (Cube)',el:'&#127757; Earth',faces:6,edges:12,vertices:8,desc:'Six equal squares, eight vertices. The form of earthly structure and stability — right angles, solid faces, the geometry of crystalline mineral structure. The most stable form in the physical world. Earth is the element of materialisation, structure, and grounding.',dual:'Octahedron'},
+  {name:'Octahedron',el:'&#128168; Air',faces:8,edges:12,vertices:6,desc:'Eight equilateral triangles forming two square pyramids joined at the base. Six vertices, twelve edges. The form of Air and breath — balanced above and below, moving in all directions equally. The dual of the Cube.',dual:'Cube (Hexahedron)'},
+  {name:'Dodecahedron',el:'&#10024; Ether / Cosmos',faces:12,edges:30,vertices:20,desc:'Twelve pentagonal faces, twenty vertices, thirty edges. Phi is encoded in every face. The cosmic form — Plato assigned it to the universe itself, saying the divine architect used it to embroider the constellations on the heavens. The geometry of higher dimensions projected into three.',dual:'Icosahedron'},
+  {name:'Icosahedron',el:'&#127754; Water',faces:20,edges:30,vertices:12,desc:'Twenty equilateral triangles, twelve vertices, thirty edges. The form of Water and emotional flow. Its geometry appears in virus capsid shells, in the movement of water molecules, and in the geometry of emotional responsiveness. The dual of the Dodecahedron.',dual:'Dodecahedron'}
+];
+
+// PROGRESS
+function updateProgress() {
+  var dH = document.documentElement.scrollHeight, wH = window.innerHeight;
+  var pct = Math.min(100, Math.round((window.scrollY / (dH - wH)) * 100));
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = 'G5 \u00b7 ' + pct + '%';
+}
+window.addEventListener('scroll', updateProgress, {passive:true});
+updateProgress();
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.08});
+document.querySelectorAll('.section').forEach(function(s) { observer.observe(s); });
+
+function toggleAccordion(h) {
+  var item = h.closest('.accordion-item');
+  var open = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item.open').forEach(function(i) { i.classList.remove('open'); });
+  if (!open) item.classList.add('open');
+}
+
+// PLATONIC SOLID EXPLORER
+function activateSolid(idx, card) {
+  document.querySelectorAll('.solid-card').forEach(function(c) { c.classList.remove('active'); });
+  card.classList.add('active');
+  var d = solidData[idx];
+  var euler = d.vertices - d.edges + d.faces;
+  var panel = document.getElementById('solid-detail');
+  panel.className = 'solid-detail-panel show';
+  panel.innerHTML = '<div class="sdp-name">' + d.name + ' &mdash; ' + d.el + '</div>'
+    + '<div class="sdp-row">'
+    + '<div class="sdp-stat"><div class="sdp-val">' + d.faces + '</div><div class="sdp-lbl">Faces</div></div>'
+    + '<div class="sdp-stat"><div class="sdp-val">' + d.vertices + '</div><div class="sdp-lbl">Vertices</div></div>'
+    + '<div class="sdp-stat"><div class="sdp-val">' + d.edges + '</div><div class="sdp-lbl">Edges</div></div>'
+    + '<div class="sdp-stat"><div class="sdp-val">' + euler + '</div><div class="sdp-lbl">V&minus;E+F</div></div>'
+    + '</div>'
+    + '<div class="sdp-desc">' + d.desc + '</div>'
+    + '<div class="euler-badge">Dual: ' + d.dual + '</div>';
+}
+
+// HERO CANVAS
+(function() {
+  var c = document.getElementById('heroCanvas');
+  var ctx = c.getContext('2d');
+  var W = 300, H = 300, cx = W/2, cy = H/2;
+  var r = 52;
+  var frame = 0;
+
+  function makeCenters() {
+    var pts = [[cx, cy]];
+    for (var i = 0; i < 6; i++) {
+      var a = i * Math.PI / 3;
+      pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+    }
+    for (var i = 0; i < 6; i++) {
+      var a = i * Math.PI / 3 + Math.PI / 6;
+      pts.push([cx + r * Math.sqrt(3) * Math.cos(a), cy + r * Math.sqrt(3) * Math.sin(a)]);
+    }
+    return pts;
+  }
+
+  var pts = makeCenters();
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    var t = frame / 120;
+    // Lines
+    for (var i = 0; i < pts.length; i++) {
+      for (var j = i + 1; j < pts.length; j++) {
+        var pulse = 0.08 + 0.06 * Math.sin(t + i * 0.4 + j * 0.3);
+        ctx.beginPath();
+        ctx.moveTo(pts[i][0], pts[i][1]);
+        ctx.lineTo(pts[j][0], pts[j][1]);
+        ctx.strokeStyle = 'rgba(122,176,184,' + pulse + ')';
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+      }
+    }
+    // Circles
+    for (var i = 0; i < pts.length; i++) {
+      var pulse = 0.3 + 0.2 * Math.sin(t + i * 0.5);
+      ctx.beginPath();
+      ctx.arc(pts[i][0], pts[i][1], r, 0, Math.PI * 2);
+      ctx.strokeStyle = i < 7 ? 'rgba(201,168,76,' + pulse + ')' : 'rgba(122,176,184,' + (pulse * 0.7) + ')';
+      ctx.lineWidth = i === 0 ? 1.5 : 1.0;
+      ctx.stroke();
+    }
+    // Highlight lines animating
+    var lineAlpha = 0.3 + 0.25 * Math.sin(t * 1.5);
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1]); ctx.lineTo(pts[2][0], pts[2][1]);
+    ctx.moveTo(pts[0][0], pts[0][1]); ctx.lineTo(pts[4][0], pts[4][1]);
+    ctx.moveTo(pts[0][0], pts[0][1]); ctx.lineTo(pts[6][0], pts[6][1]);
+    ctx.strokeStyle = 'rgba(201,168,76,' + lineAlpha + ')';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+    frame++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// CUBE BUILDER
+(function() {
+  var c = document.getElementById('cubeCanvas');
+  var ctx = c.getContext('2d');
+  var W = 460, H = 460, cx = W/2, cy = H/2;
+  var r = W * 0.16;
+  var step = 0;
+
+  function makePts() {
+    var pts = [[cx, cy]];
+    for (var i = 0; i < 6; i++) {
+      var a = i * Math.PI / 3;
+      pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+    }
+    for (var i = 0; i < 6; i++) {
+      var a = i * Math.PI / 3 + Math.PI / 6;
+      pts.push([cx + r * Math.sqrt(3) * Math.cos(a), cy + r * Math.sqrt(3) * Math.sin(a)]);
+    }
+    return pts;
+  }
+
+  var pts = makePts();
+
+  // Build all 78 pairs in order
+  var allPairs = [];
+  for (var i = 0; i < pts.length; i++) {
+    for (var j = i + 1; j < pts.length; j++) {
+      allPairs.push([i, j]);
+    }
+  }
+
+  // Tetrahedron highlight indices (subset visible in 2D projection)
+  var tetraEdges = [[0,1],[0,3],[0,5],[1,3],[3,5],[5,1]];
+
+  var stepLabels = [
+    'Begin: reveal the 13 Fruit of Life circles.',
+    'Step 1: the 13 Fruit of Life circles selected from within the Flower.',
+    'Step 2: first lines appearing between centres. The Cube begins to emerge.',
+    'Step 3: halfway through all 78 connections. Five Platonic Solids emerging simultaneously.',
+    'Step 4: all 78 lines complete. Metatron\'s Cube in full. Every Platonic Solid present.',
+    'Tetrahedron highlighted within the Cube. One of five forms encoded in the same 78 lines.'
+  ];
+
+  var lineCounts = [0, 0, 20, 50, 78, 78];
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(0,0,0,.55)';
+    ctx.fillRect(0, 0, W, H);
+
+    var teal = '#7ab0b8', gold = '#c9a84c';
+    var showLines = lineCounts[step];
+    var tetMode = step >= 5;
+
+    // Draw lines
+    for (var k = 0; k < Math.min(showLines, allPairs.length); k++) {
+      var p = allPairs[k];
+      var isTet = false;
+      if (tetMode) {
+        for (var t = 0; t < tetraEdges.length; t++) {
+          if ((tetraEdges[t][0] === p[0] && tetraEdges[t][1] === p[1]) ||
+              (tetraEdges[t][0] === p[1] && tetraEdges[t][1] === p[0])) {
+            isTet = true; break;
+          }
+        }
+      }
+      ctx.beginPath();
+      ctx.moveTo(pts[p[0]][0], pts[p[0]][1]);
+      ctx.lineTo(pts[p[1]][0], pts[p[1]][1]);
+      if (tetMode) {
+        ctx.strokeStyle = isTet ? 'rgba(201,168,76,0.9)' : 'rgba(122,176,184,0.12)';
+        ctx.lineWidth = isTet ? 2 : 0.6;
+      } else {
+        ctx.strokeStyle = 'rgba(122,176,184,0.28)';
+        ctx.lineWidth = 0.8;
+      }
+      ctx.stroke();
+    }
+
+    // Draw circles
+    if (step >= 1) {
+      for (var i = 0; i < pts.length; i++) {
+        ctx.beginPath();
+        ctx.arc(pts[i][0], pts[i][1], r, 0, Math.PI * 2);
+        ctx.strokeStyle = tetMode ? 'rgba(122,176,184,0.2)' : (i < 7 ? 'rgba(201,168,76,0.5)' : 'rgba(122,176,184,0.4)');
+        ctx.lineWidth = 1.0;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(pts[i][0], pts[i][1], 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = i < 7 ? gold : teal;
+        ctx.fill();
+      }
+    }
+
+    // Tetrahedron vertex highlight
+    if (tetMode) {
+      var tetVerts = [0, 1, 3, 5];
+      for (var v = 0; v < tetVerts.length; v++) {
+        ctx.beginPath();
+        ctx.arc(pts[tetVerts[v]][0], pts[tetVerts[v]][1], 7, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(201,168,76,0.9)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+      ctx.font = '12px Cinzel,serif';
+      ctx.fillStyle = gold;
+      ctx.textAlign = 'center';
+      ctx.fillText('TETRAHEDRON (FIRE)', cx, H - 18);
+    }
+
+    document.getElementById('line-counter').textContent = Math.min(showLines, allPairs.length);
+    document.getElementById('cube-status').textContent = stepLabels[step];
+  }
+
+  window.cubeStep = function(n) {
+    if (n !== step + 1) return;
+    step = n;
+    for (var i = 1; i <= 5; i++) {
+      var el = document.getElementById('cb' + i);
+      if (el) el.classList.toggle('active', i <= n);
+    }
+    draw();
+  };
+
+  window.cubeReset = function() {
+    step = 0;
+    for (var i = 1; i <= 5; i++) {
+      var el = document.getElementById('cb' + i);
+      if (el) el.classList.remove('active');
+    }
+    draw();
+  };
+  draw();
+})();
+
+// QUIZ
+function quizAnswer(q, btn, choice) {
+  if (quizAnswers[q]) return;
+  quizAnswers[q] = choice;
+  var correct = correctAnswers[q];
+  var buttons = btn.closest('.quiz-options').querySelectorAll('.quiz-option');
+  buttons.forEach(function(b) { b.disabled = true; });
+  if (choice === correct) {
+    btn.classList.add('correct');
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#81c784">&#10003; ' + quizFeedback[q][correct] + '</span>';
+  } else {
+    btn.classList.add('wrong');
+    buttons.forEach(function(b) { if (b.textContent.trim()[0] === correct) b.classList.add('correct'); });
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#e57373">&#10007; ' + quizFeedback[q].wrong + '</span>';
+  }
+  saveData();
+}
+
+function submitQuiz() {
+  var total = Object.keys(correctAnswers).length;
+  var scored = Object.keys(quizAnswers).filter(function(q) { return quizAnswers[q] === correctAnswers[q]; }).length;
+  document.getElementById('quiz-score-bar').style.display = 'block';
+  document.getElementById('quiz-score-display').textContent = scored + '/' + total;
+  var msgs = ['Review the derivation and Platonic Solid table and try again.','Getting there — revisit the solids and their elemental correspondences.','Good grasp of the material — the geometry is becoming clear.','Excellent — strong command of Metatron\'s Cube.','Outstanding — deep understanding of all five Platonic Solids.','Perfect! Metatron\'s Cube is fully mapped in your understanding.'];
+  document.getElementById('quiz-score-msg').textContent = msgs[scored] || msgs[5];
+  document.getElementById('quiz-submit').style.display = 'none';
+  saveData();
+}
+
+function spawnConfetti() {
+  var colors = ['#c9a84c','#7ab0b8','#f0ede6','#9ecdd5','#e8c96d'];
+  for (var i = 0; i < 60; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.cssText = 'left:' + (Math.random()*100) + 'vw;top:-10px;background:' + colors[Math.floor(Math.random()*colors.length)] + ';animation-duration:' + (1.5+Math.random()*2) + 's;animation-delay:' + (Math.random()*.5) + 's;width:' + (6+Math.random()*6) + 'px;height:' + (6+Math.random()*6) + 'px;border-radius:' + (Math.random()>.5?'50%':'2px');
+        document.body.appendChild(el);
+        setTimeout(function() { el.remove(); }, 4000);
+      }, i * 30);
+    })(i);
+  }
+}
+
+function onComplete(cb) {
+  var badge = document.getElementById('xp-badge');
+  if (cb.checked) { badge.classList.add('show'); spawnConfetti(); saveData(); }
+  else badge.classList.remove('show');
+}
+
+function gatherData() {
+  return {
+    version:'1.0', lesson:'G5',
+    timestamp: new Date().toISOString(),
+    reflections:{r1:document.getElementById('ref1').value,r2:document.getElementById('ref2').value,r3:document.getElementById('ref3').value},
+    quiz:{answers:quizAnswers},
+    completed:document.getElementById('complete-checkbox').checked
+  };
+}
+
+function applyData(data) {
+  if (!data) return;
+  if (data.reflections) {
+    ['r1','r2','r3'].forEach(function(k) {
+      var el = document.getElementById('ref' + k.slice(1));
+      if (el && data.reflections[k]) el.value = data.reflections[k];
+    });
+  }
+  if (data.quiz && data.quiz.answers) {
+    quizAnswers = data.quiz.answers;
+    Object.keys(quizAnswers).forEach(function(q) {
+      var choice = quizAnswers[q], correct = correctAnswers[q];
+      var qEl = document.getElementById('qq' + q); if (!qEl) return;
+      var btns = qEl.querySelectorAll('.quiz-option');
+      btns.forEach(function(b) {
+        b.disabled = true;
+        var f = b.textContent.trim()[0];
+        if (f === choice && choice === correct) b.classList.add('correct');
+        else if (f === choice) b.classList.add('wrong');
+        else if (f === correct) b.classList.add('correct');
+      });
+      var html = choice === correct
+        ? '<span style="color:#81c784">&#10003; ' + quizFeedback[q][correct] + '</span>'
+        : '<span style="color:#e57373">&#10007; ' + quizFeedback[q].wrong + '</span>';
+      document.getElementById('qf' + q).innerHTML = html;
+    });
+  }
+  if (data.completed) {
+    document.getElementById('complete-checkbox').checked = true;
+    document.getElementById('xp-badge').classList.add('show');
+  }
+}
+
+function saveData() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(gatherData())); document.getElementById('save-status').textContent = 'Saved at ' + new Date().toLocaleTimeString(); }
+  catch(e) { document.getElementById('save-status').textContent = 'Save failed'; }
+}
+function loadData() {
+  try { var r = localStorage.getItem(STORAGE_KEY); if (r) applyData(JSON.parse(r)); } catch(e) {}
+}
+function scheduleAutosave() { clearTimeout(autosaveTimer); autosaveTimer = setTimeout(saveData, 90000); }
+function exportData() {
+  var blob = new Blob([JSON.stringify(gatherData(),null,2)],{type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'TFA_G5_MetatronsCube_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click(); URL.revokeObjectURL(url);
+}
+function importTrigger() { document.getElementById('import-input').click(); }
+function importData(e) {
+  var file = e.target.files[0]; if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    try { var d = JSON.parse(ev.target.result); applyData(d); localStorage.setItem(STORAGE_KEY,JSON.stringify(d)); document.getElementById('save-status').textContent = 'Imported successfully'; }
+    catch(err) { document.getElementById('save-status').textContent = 'Import failed'; }
+  };
+  reader.readAsText(file);
+}
+setInterval(saveData, 90000);
+window.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>
