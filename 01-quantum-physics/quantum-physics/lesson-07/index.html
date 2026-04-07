@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Q11 — Resonance | The Frequency Academy</title>
+<title>Q7 — The Measurement Problem | The Frequency Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--n:#0a1628;--n2:#0d1e38;--n3:#102040;--g:#4a9edd;--g2:#78b8ee;--gb:rgba(74,158,221,0.22);--gf:rgba(74,158,221,0.08);--w:#e8f0f8;--w2:rgba(232,240,248,0.72);--w3:rgba(232,240,248,0.38);--w4:rgba(232,240,248,0.06);--ok:#2a8a7a;}
@@ -29,14 +29,14 @@ header{background:rgba(10,22,40,0.95);border-bottom:1px solid var(--gb);padding:
 .section p strong{color:var(--g2);font-weight:600}
 .section p em{color:var(--g);font-style:normal;font-weight:500}
 
-/* COMPARISON TABLE */
-.compare-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
-.compare-table th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--g);padding:10px 14px;background:var(--gf);border:1px solid var(--gb);text-align:left}
-.compare-table td{padding:10px 14px;border:1px solid rgba(74,158,221,0.1);color:var(--w2);line-height:1.6;vertical-align:top}
-.compare-table tr:nth-child(even) td{background:rgba(0,0,0,0.15)}
-.compare-table td:first-child{color:var(--g2);font-weight:600}
+/* TABLES */
+.data-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.data-table th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--g);padding:10px 14px;background:var(--gf);border:1px solid var(--gb);text-align:left}
+.data-table td{padding:10px 14px;border:1px solid rgba(74,158,221,0.1);color:var(--w2);line-height:1.6;vertical-align:top}
+.data-table tr:nth-child(even) td{background:rgba(0,0,0,0.15)}
+.data-table td:first-child{color:var(--g2);font-weight:600}
 
-/* RESONANCE VISUALIZER */
+/* DOUBLE-SLIT VISUALIZER */
 .viz-section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
 .viz-section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:6px}
 .viz-sub{font-size:12px;color:var(--w3);margin-bottom:22px;line-height:1.6}
@@ -45,57 +45,44 @@ header{background:rgba(10,22,40,0.95);border-bottom:1px solid var(--gb);padding:
 .viz-tab.active{background:var(--g);color:#080e30;border-color:var(--g)}
 .viz-panel{display:none}.viz-panel.active{display:block}
 
-/* Tab 1 — Wave visualizer */
-.wave-controls{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
-@media(max-width:540px){.wave-controls{grid-template-columns:1fr}}
-.ctrl-group label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;display:block;margin-bottom:6px}
-.ctrl-group input[type=range]{width:100%;accent-color:var(--g);cursor:pointer}
-.freq-display{font-family:'Cinzel',serif;font-size:18px;color:var(--g2);text-align:right;margin-top:4px}
-.wave-canvas-wrap{background:rgba(0,0,0,0.35);border:1px solid var(--gb);border-radius:10px;padding:16px;margin-bottom:14px;overflow:hidden}
-canvas{width:100%;height:120px;display:block}
-.resonance-meter{display:flex;align-items:center;gap:12px;margin-top:10px}
-.rm-label{font-family:'Cinzel',serif;font-size:10px;color:var(--w3);letter-spacing:0.1em;white-space:nowrap}
-.rm-bar{flex:1;height:8px;background:var(--w4);border-radius:4px;overflow:hidden}
-.rm-fill{height:100%;background:var(--g);border-radius:4px;transition:width .3s}
-.rm-pct{font-family:'Cinzel',serif;font-size:12px;color:var(--g2);min-width:40px;text-align:right}
-.resonance-note{font-size:12px;color:var(--w3);line-height:1.6;margin-top:12px;padding:10px 14px;background:var(--gf);border-radius:8px;border-left:2px solid var(--g);display:none}
-.resonance-note.show{display:block}
+/* DOUBLE SLIT CANVAS */
+.slit-wrap{background:rgba(0,0,0,0.3);border:1px solid var(--gb);border-radius:10px;padding:16px;text-align:center;margin-bottom:16px}
+canvas.slit-c{display:block;margin:0 auto;max-width:100%}
+.slit-toggle{display:flex;gap:10px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
+.slit-btn{padding:9px 20px;border-radius:6px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all .18s;border:1px solid var(--gb);background:var(--gf);color:var(--w3)}
+.slit-btn.active{background:var(--g);color:#080e30;border-color:var(--g)}
+.slit-result{background:var(--gf);border-left:2px solid var(--g);border-radius:0 8px 8px 0;padding:12px 14px;margin-top:12px;font-size:13px;color:var(--w2);line-height:1.7}
+.slit-result strong{color:var(--g2)}
 
-/* Tab 2 — Schumann */
-.schumann-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:18px}
-@media(max-width:480px){.schumann-grid{grid-template-columns:1fr 1fr}}
-.sch-card{background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:12px;text-align:center}
-.sch-freq{font-family:'Cinzel',serif;font-size:18px;color:var(--g);margin-bottom:4px}
-.sch-label{font-size:10px;color:var(--w3);letter-spacing:0.06em}
-.brainwave-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
-.brainwave-table th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.08em;color:var(--g);padding:8px 12px;background:var(--gf);border:1px solid var(--gb);text-align:left}
-.brainwave-table td{padding:8px 12px;border:1px solid rgba(74,158,221,0.1);color:var(--w2);vertical-align:middle}
-.brainwave-table td:first-child{color:var(--g2);font-weight:600}
-.overlap-badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700;letter-spacing:0.06em}
-.overlap-yes{background:rgba(74,158,221,0.2);color:var(--g2);border:1px solid var(--gb)}
-.overlap-no{background:var(--w4);color:var(--w3)}
-.schumann-note{font-size:13px;color:var(--w2);line-height:1.75;margin-top:16px;padding:14px;background:var(--gf);border-radius:8px;border-left:2px solid var(--g)}
+/* INTERPRETATION CARDS */
+.interp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+@media(max-width:580px){.interp-grid{grid-template-columns:1fr}}
+.interp-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px;cursor:pointer;transition:all .18s}
+.interp-card:hover{border-color:var(--g);transform:translateY(-1px)}
+.interp-card.active{border-color:var(--g);background:rgba(74,158,221,0.08)}
+.interp-icon{font-size:20px;margin-bottom:8px}
+.interp-name{font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.08em;margin-bottom:4px}
+.interp-tagline{font-size:11px;color:var(--w3);line-height:1.5}
+.interp-detail{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:20px;display:none;animation:fadeIn .2s ease}
+.interp-detail.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.interp-detail h4{font-family:'Cinzel',serif;font-size:13px;color:var(--g2);margin-bottom:10px;letter-spacing:0.06em}
+.interp-detail p{font-size:13px;color:var(--w2);line-height:1.75;margin-bottom:8px}
+.interp-detail p:last-child{margin:0}
+.interp-implication{font-size:12px;color:var(--g);border-top:1px solid var(--gb);margin-top:12px;padding-top:12px;line-height:1.6;font-style:italic}
 
-/* Tab 3 — Body Map */
-.body-map-wrap{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start}
-@media(max-width:580px){.body-map-wrap{grid-template-columns:1fr}}
-.body-svg-wrap{display:flex;flex-direction:column;gap:8px;align-items:center}
-.body-btn{padding:8px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.08em;cursor:pointer;transition:all .18s;border:1px solid var(--gb);background:var(--gf);color:var(--w3);width:160px;text-align:left}
-.body-btn:hover{border-color:var(--g);color:var(--w)}
-.body-btn.active{background:var(--g);color:#080e30;border-color:var(--g)}
-.body-detail{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:20px;min-height:180px}
-.bd-title{font-family:'Cinzel',serif;font-size:13px;color:var(--g);margin-bottom:8px;letter-spacing:0.08em}
-.bd-freq{font-family:'Cinzel',serif;font-size:22px;color:var(--g2);margin-bottom:10px}
-.bd-solf{font-size:12px;color:var(--w3);margin-bottom:10px}
-.bd-desc{font-size:13px;color:var(--w2);line-height:1.7}
-
-/* CONCEPT GRID */
-.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
-@media(max-width:580px){.concept-grid{grid-template-columns:1fr}}
-.concept-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px}
-.concept-card h4{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
-.concept-card p{font-size:12px;color:var(--w3);line-height:1.65;margin:0}
-.concept-card .tfa{font-size:11px;color:var(--g2);margin-top:7px;padding-top:7px;border-top:1px solid var(--gb);display:block;line-height:1.5}
+/* ZENO DEMO */
+.zeno-wrap{background:rgba(0,0,0,0.25);border:1px solid var(--gb);border-radius:10px;padding:20px;margin-top:4px}
+.zeno-controls{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+@media(max-width:480px){.zeno-controls{grid-template-columns:1fr}}
+.zeno-ctrl label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;display:flex;justify-content:space-between;margin-bottom:6px}
+.zeno-ctrl label span{color:var(--g2);font-size:13px}
+.zeno-ctrl input[type=range]{width:100%;accent-color:var(--g);cursor:pointer}
+.zeno-meter{margin-top:8px}
+.zeno-meter-label{font-family:'Cinzel',serif;font-size:10px;color:var(--w3);letter-spacing:0.1em;display:flex;justify-content:space-between;margin-bottom:5px}
+.zeno-bar{height:8px;background:var(--w4);border-radius:4px;overflow:hidden;margin-bottom:10px}
+.zeno-fill{height:100%;border-radius:4px;transition:width .5s ease,background .5s}
+.zeno-note{font-size:12px;color:var(--w3);line-height:1.6;padding:10px 12px;background:var(--gf);border-radius:6px;border-left:2px solid var(--g)}
 
 /* ACCORDION */
 .accordion{margin-top:8px}
@@ -107,6 +94,15 @@ canvas{width:100%;height:120px;display:block}
 .acc-arrow{transition:transform .2s;font-size:11px}
 .acc-arrow.open{transform:rotate(180deg)}
 .acc-body strong{color:var(--g2)}
+.acc-body em{color:var(--g);font-style:normal}
+
+/* CONCEPT GRID */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:580px){.concept-grid{grid-template-columns:1fr}}
+.concept-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px}
+.concept-card h4{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.concept-card p{font-size:12px;color:var(--w3);line-height:1.65;margin:0}
+.concept-card .tfa{font-size:11px;color:var(--g2);margin-top:7px;padding-top:7px;border-top:1px solid var(--gb);display:block;line-height:1.5}
 
 /* PRACTICE STEPS */
 .practice-steps{display:flex;flex-direction:column;gap:10px;margin-top:10px}
@@ -171,14 +167,14 @@ textarea::placeholder{color:var(--w3)}
 
 <header>
   <div class="hd-left">THE FREQUENCY ACADEMY · QUANTUM PHYSICS & SCIENCES</div>
-  <div class="hd-right">Q11 · LESSON 11 OF 16</div>
+  <div class="hd-right">Q7 · LESSON 7 OF 16</div>
 </header>
 
 <div class="hero">
-  <div class="eyebrow">QUANTUM PHYSICS & SCIENCES · Q11</div>
-  <h1>Resonance — The <span>Destroyer</span> and Healer</h1>
+  <div class="eyebrow">QUANTUM PHYSICS & SCIENCES · Q7</div>
+  <h1>The <span>Measurement</span> Problem</h1>
   <div class="gold-rule"></div>
-  <p class="hero-sub">Every system has a natural frequency. When you match it, energy transfers with maximum efficiency. This is why a bridge can shake itself apart and why a kidney stone can be shattered without a single incision. The same law governs both.</p>
+  <p class="hero-sub">Observation changes outcome. Before you look, a quantum system holds every possibility at once. The moment you look, one becomes real. This is not philosophy — it is a century of experimental fact. And it means you are not a passive witness to reality.</p>
 </div>
 
 <div style="max-width:840px;margin:0 auto 32px;padding:0 24px">
@@ -196,182 +192,219 @@ textarea::placeholder{color:var(--w3)}
   <!-- TRANSMISSION -->
   <div class="section">
     <h2>The Transmission</h2>
-    <p>Everything that exists is vibrating. Not metaphorically — literally. Atoms oscillate. Organs pulse. The Earth hums at 7.83 Hz, a frequency your nervous system has been calibrated to for millions of years. The question is never whether frequency affects you. The question is whether the frequency arriving <em>matches</em> what you naturally are.</p>
-    <p>Resonance is the law that governs this. It is the mechanism behind every form of frequency healing that has ever worked, and behind every structure that has ever been destroyed by sound. The destroyer and the healer are not opposites — they are the same law, applied to different intentions. Understanding this changes how you work with frequency at every level.</p>
+    <p>There is an old saying: a watched pot never boils. It was always meant as a lesson in patience — that time slows down when you're staring at something. But what if, at the quantum level, this wasn't metaphor? What if watching the pot actually changed whether it boiled at all?</p>
+    <p>In quantum mechanics, this is not a figure of speech. It is an experimental fact, verified for over a hundred years, that the act of observation changes the outcome of what is observed. Particles behave differently when they are being watched. Not because our instruments disturb them — physicists have designed experiments that eliminate that possibility entirely. But because of observation itself. Because of the act of gaining information.</p>
+    <p>This is called the measurement problem. It is not a fringe idea or a philosophical curiosity. It is the central unsolved puzzle of quantum mechanics — the question that Einstein could not accept, that Bohr spent his life defending, and that physicists still argue about a century later. Because the implications, if you follow them fully, are genuinely staggering: <strong>if observation changes outcome, then you are not a passive witness to reality. You are a participant in its creation.</strong></p>
   </div>
 
-  <!-- THE BRIDGE -->
+  <!-- THE DOUBLE-SLIT -->
   <div class="section">
-    <h2>The Bridge That Shook Itself Apart</h2>
-    <p>On November 7th, 1940, the Tacoma Narrows Bridge in Washington state tore itself apart and collapsed into the water below. The wind that morning was 40 miles per hour — nothing a suspension bridge shouldn't handle. Engineers had designed it to withstand far worse.</p>
-    <p>But the wind that day was not merely strong. It was <strong>rhythmic</strong>. And its rhythm matched the bridge's natural frequency.</p>
-    <p>Each gust arrived at exactly the right moment to add to the oscillation already building. Not fighting the structure — feeding it. The bridge did not fail because something external was forcing it apart. It failed because it was given exactly the right frequency to amplify itself to destruction. This is the first and most important thing to understand about resonance: <em>it is not about power. It is about precision.</em></p>
-    <p>A 40 mph wind cannot normally destroy a bridge. A 40 mph wind arriving at the right frequency can. Small inputs at the correct frequency accumulate into effects that would be impossible by brute force alone. This is also why frequency healing works — and why high-power broad-spectrum approaches often fail. You do not destroy a kidney stone by blasting it with maximum sound pressure. You find the frequency at which the stone naturally vibrates, deliver that frequency precisely, and allow the stone to resonate itself apart. The destroyer and the healer are the same law.</p>
+    <h2>The Double-Slit Experiment — Observer Effect Made Undeniable</h2>
+    <p>In Q2, we met the double-slit experiment as the demonstration of wave-particle duality. Here we return to it — because this is where the measurement problem becomes impossible to dismiss.</p>
+    <p>The setup: fire particles (electrons, photons, even atoms) one at a time at a barrier with two small slits. A detector screen on the other side records where each particle lands. Without observation of which slit each particle uses, the particles build an interference pattern over time — the signature of wave behavior, of each particle passing through both slits simultaneously and interfering with itself. This is superposition made visible on a screen.</p>
+    <p>Now add a detector at the slits to observe which path each particle takes. The interference pattern vanishes. Immediately and completely. The particles now behave like classical particles — landing in two bands, one behind each slit. Not waves. Particles. The act of observing which path they take changes their behavior from wave to particle.</p>
+    <p>Physicists have gone to extraordinary lengths to rule out the obvious explanation — that detectors physically disturb the particles. The experiments have been refined over decades to minimize every conceivable physical disturbance. It makes no difference. <strong>The result is always the same: gaining information about the path collapses the superposition.</strong> Not the physical interaction. The information itself.</p>
 
-    <table class="compare-table" style="margin-top:20px">
-      <thead><tr><th>At Resonance</th><th>Away From Resonance</th></tr></thead>
+    <table class="data-table" style="margin-top:16px">
+      <thead><tr><th>Condition</th><th>Particle Behavior</th><th>Pattern on Screen</th></tr></thead>
       <tbody>
-        <tr><td>Frequency matches natural frequency</td><td>Frequency doesn't match</td></tr>
-        <tr><td>Each wave adds to the previous</td><td>Waves partially cancel</td></tr>
-        <tr><td>Amplitude builds continuously</td><td>Amplitude stays limited</td></tr>
-        <tr><td>Small inputs → large effects</td><td>Large inputs → small effects</td></tr>
-        <tr><td>Energy transfer is efficient</td><td>Energy transfer is inefficient</td></tr>
+        <tr><td>No observation — which slit unknown</td><td>Behaves as wave. Passes through both slits simultaneously. Interferes with itself.</td><td>Interference pattern — many alternating bands</td></tr>
+        <tr><td>Observation — which slit detected</td><td>Behaves as particle. Passes through one slit only. No interference.</td><td>Two bands — one behind each slit</td></tr>
+        <tr><td>Delayed choice — path observed after the fact</td><td>Retroactively becomes particle behavior. The past changes based on present observation.</td><td>Two bands — even though the particle already passed through</td></tr>
       </tbody>
     </table>
+
+    <div style="background:rgba(74,158,221,0.06);border:1px solid var(--gb);border-radius:8px;padding:14px 16px;margin-top:14px">
+      <div style="font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.12em;margin-bottom:6px">THE DELAYED-CHOICE EXPERIMENT</div>
+      <p style="font-size:13px;color:var(--w2);margin:0;line-height:1.7">John Wheeler's delayed-choice experiment — and its subsequent experimental confirmations — demonstrated that we can decide whether to observe a particle's path <em>after</em> it has already passed through the slits. Our later decision determines what the particle did earlier. A choice made now reaches back into the past and changes it. This is not interpretation or conjecture. It has been verified repeatedly in laboratory conditions. Time, in quantum mechanics, is not what we think it is.</p>
+    </div>
   </div>
 
-  <!-- WHAT RESONANCE IS -->
+  <!-- WHAT IS THE MEASUREMENT PROBLEM -->
   <div class="section">
-    <h2>What Resonance Actually Is</h2>
-    <p>Every physical system — every object, organ, molecule, atom — has what physics calls a <strong>natural frequency</strong>, also called a resonant frequency. This is the rate at which the system prefers to oscillate when disturbed. Strike a tuning fork and it produces one specific tone, not because you told it to, but because its physical dimensions determine its preference. The fork's length, mass, and material create a single frequency it will always return to.</p>
-    <p>When you apply an external frequency to a system, the system's response depends entirely on how well that frequency matches its natural frequency. Away from resonance, the external frequency and the system's natural frequency are partially out of phase. Energy partially adds, partially cancels. Amplitude stays bounded no matter how much power you apply.</p>
-    <p>At resonance, every incoming wave arrives at exactly the right phase to add to the previous oscillation. Energy accumulates continuously. The mathematics shows that theoretical amplitude at perfect resonance approaches infinity — in real systems, damping (energy loss through friction, heat, radiation) limits actual amplitude, but the effect is still dramatically amplified.</p>
-    <p><strong>Sympathetic vibration</strong> — when one vibrating object causes another with the same natural frequency to begin vibrating through the medium between them, without direct contact — is one of the most elegant demonstrations of resonance. Strike a 432 Hz tuning fork, bring a second 432 Hz fork nearby, and the unstruck fork begins to ring. Energy transmitted through air, received only by a system tuned to receive it. Physical contact is not required for frequency transfer. This is the mechanism behind field-based frequency devices.</p>
+    <h2>What Exactly Is the Measurement Problem?</h2>
+    <p>The measurement problem is the question at the heart of quantum mechanics that the theory itself cannot answer: <em>why and how does observation cause quantum systems to transition from superposition into definite states?</em></p>
+    <p>Every quantum system is described by a wave function — a mathematical object that contains all possible states of the system simultaneously. This is not a statement about our ignorance. The system is not secretly in one state and we simply don't know which. According to quantum mechanics, the system genuinely occupies all possible states at once, with each state weighted by a probability amplitude. The wave function is a description of reality, not a description of our knowledge about reality.</p>
+    <p>When we measure — when we observe — something happens that the mathematics of quantum mechanics describes but does not explain: the wave function collapses. All the probability collapses into a single definite outcome. The particle that was everywhere is suddenly here. The spin that was both up and down simultaneously is now definitely up.</p>
+
+    <p>The measurement problem is three related questions that physics cannot yet fully answer:</p>
+    <div class="concept-grid" style="margin-top:12px">
+      <div class="concept-card">
+        <h4>What Counts as Measurement?</h4>
+        <p>Does collapse require a conscious observer? A recording device? Any physical interaction with the environment? The mathematics does not specify. Every proposed answer leads to further puzzles.</p>
+        <span class="tfa">→ If any physical interaction causes collapse, then the entire universe was in superposition until the first interaction occurred — an infinite regress. If only consciousness collapses, where does consciousness begin?</span>
+      </div>
+      <div class="concept-card">
+        <h4>Why Does Measurement Cause Collapse?</h4>
+        <p>The Schrödinger equation — which governs quantum systems — describes wave functions evolving smoothly and continuously. It says nothing about collapse. Collapse is added as a separate postulate without physical explanation.</p>
+        <span class="tfa">→ This is the deepest version of the problem: the mathematics that predicts everything correctly offers no mechanism for the most important thing that happens — the transition from possibility to actuality.</span>
+      </div>
+      <div class="concept-card">
+        <h4>How Is One Outcome Selected?</h4>
+        <p>The wave function assigns probabilities to all possible outcomes. But when collapse occurs, one specific outcome is selected. The Born rule tells us the probability — but nothing tells us the mechanism of selection.</p>
+        <span class="tfa">→ Why this outcome and not another? Quantum mechanics gives perfect probability predictions but no answer to this question for any individual event. The selection mechanism remains completely unknown.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Where Is the Quantum-Classical Boundary?</h4>
+        <p>Quantum rules govern particles. Classical rules govern everyday objects. Where is the boundary? Can a cat be in superposition? A brain? A galaxy? The theory offers no principled answer.</p>
+        <span class="tfa">→ Schrödinger proposed his famous cat thought experiment specifically to expose this absurdity: if quantum mechanics applies universally, there is no principled reason why macroscopic objects cannot be in superposition.</span>
+      </div>
+    </div>
   </div>
 
-  <!-- ANCIENT + MODERN CONVERGENCE -->
-  <div class="section">
-    <h2>Ancient Wisdom, Modern Physics</h2>
-    <p>The ancient world did not have the vocabulary of natural frequency and amplitude, but it had the knowledge. The understanding that the universe vibrates, that matter is fundamentally sound-based, that specific tones hold specific relationships to specific systems — this is the common thread running through Pythagorean numerology, Egyptian mystery school practice, Vedic mantra science, and the tonal traditions of indigenous cultures worldwide.</p>
-    <p>The Pythagoreans taught that the cosmos was organized by mathematical ratios — the same ratios that determine harmonic relationships between frequencies. Their Music of the Spheres was not poetry. It was a cosmological model asserting that planetary bodies move at frequencies forming harmonic relationships with each other, with the human body, and with consciousness. They were describing resonance without the vocabulary.</p>
-    <p>The Om of Vedic tradition is not a symbol. It is a frequency protocol — a sound chosen for its resonant relationship with the body's fundamental oscillation. When practiced consistently, it does not merely calm the mind. It <em>entrains</em> the nervous system toward a specific coherent state through repeated resonant exposure. The practice is the science of entrainment. In ancient Egypt, the proportions of the King's Chamber in the Great Pyramid have been measured to have resonant frequencies in the range of human biological systems. Sacred architecture was, in part, frequency technology.</p>
-    <p>The ancients worked with resonance empirically, through centuries of refinement, without equations. Modern physics arrived at the same principles through measurement. Both paths converge on the same truth: <strong>matter responds to frequency, and the response is governed by resonance.</strong></p>
-  </div>
-
-  <!-- RESONANCE IN THE BODY -->
-  <div class="section">
-    <h2>Resonance in the Body</h2>
-    <p>The human body is not one resonant system. It is a nested hierarchy of resonant systems operating simultaneously at different scales and frequencies. Every organ has a natural frequency range determined by its tissue density, fluid content, and structural geometry.</p>
-    <p>The principle of frequency healing follows directly from this. If a system has a natural frequency, and if frequency can be applied externally to interact with that system, then: delivering a system's natural frequency helps it return to optimal resonance when it has drifted. Sustained resonant exposure entrains systems toward coherent oscillation over time. This is not a metaphysical claim. This is the applied physics of oscillating systems.</p>
-    <p>The healer's work is not to force the body toward health. It is to find the frequency the system naturally belongs at and provide it until the system remembers how to hold that frequency on its own. <em>Resonance. Not coercion.</em></p>
-    <p><strong>Schumann Resonance</strong> sits at the intersection of planetary and biological frequency. The cavity between Earth's surface and the ionosphere forms a resonant electromagnetic system. Lightning strikes — approximately 50 per second globally — excite electromagnetic waves through this cavity. The cavity's dimensions determine which frequencies resonate. The fundamental: approximately 7.83 Hz. Human alpha brainwaves — relaxed alertness, meditation, creative flow — fall in the 8-12 Hz range. Human biology developed over millions of years bathed in this electromagnetic environment. The argument that human nervous systems are calibrated to Earth's resonant frequency is not mysticism. It is evolutionary biology applied to electromagnetic frequency.</p>
-  </div>
-
-  <!-- INTERACTIVE VISUALIZER -->
+  <!-- INTERACTIVE -->
   <div class="viz-section">
-    <h2>Resonance Explorer</h2>
-    <p class="viz-sub">Three tools to make resonance principles visible and tangible. The wave visualizer shows energy transfer efficiency in real time. The Schumann map shows where Earth's frequency overlaps with human biology. The body map connects organ systems to their natural frequency ranges.</p>
+    <h2>Measurement Problem Explorer</h2>
+    <p class="viz-sub">Three interactive tools: visualize the double-slit observer effect, explore each interpretation side-by-side with its implications, and experiment with the Quantum Zeno Effect — seeing how observation frequency affects how much a system can change.</p>
+
     <div class="viz-tabs">
-      <button class="viz-tab active" onclick="switchTab('wave', this)">Wave Visualizer</button>
-      <button class="viz-tab" onclick="switchTab('schumann', this)">Schumann Map</button>
-      <button class="viz-tab" onclick="switchTab('body', this)">Body Frequency Map</button>
+      <button class="viz-tab active" onclick="switchTab('slit', this)">Double-Slit Visualizer</button>
+      <button class="viz-tab" onclick="switchTab('interp', this)">Interpretations</button>
+      <button class="viz-tab" onclick="switchTab('zeno', this)">Quantum Zeno Effect</button>
     </div>
 
-    <!-- TAB 1: WAVE VISUALIZER -->
-    <div class="viz-panel active" id="tab-wave">
-      <div class="wave-controls">
-        <div class="ctrl-group">
-          <label>DRIVING FREQUENCY</label>
-          <input type="range" id="driveFreq" min="1" max="200" value="50" oninput="updateViz()">
-          <div class="freq-display"><span id="driveVal">50</span> Hz</div>
-        </div>
-        <div class="ctrl-group">
-          <label>NATURAL FREQUENCY</label>
-          <input type="range" id="naturalFreq" min="1" max="200" value="80" oninput="updateViz()">
-          <div class="freq-display"><span id="naturalVal">80</span> Hz</div>
-        </div>
+    <!-- TAB 1: DOUBLE-SLIT -->
+    <div class="viz-panel active" id="tab-slit">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:16px">Toggle observation on and off to see the pattern shift from interference (wave behavior) to two bands (particle behavior). This is what happens in the real experiment.</p>
+      <div class="slit-toggle">
+        <button class="slit-btn active" id="btn-noobs" onclick="setObservation(false, this)">👁 No Observation</button>
+        <button class="slit-btn" id="btn-obs" onclick="setObservation(true, this)">🔬 With Observation</button>
       </div>
-      <div class="wave-canvas-wrap">
-        <canvas id="driveCanvas" height="120"></canvas>
+      <div class="slit-wrap">
+        <canvas class="slit-c" id="slitCanvas" width="600" height="260"></canvas>
       </div>
-      <div class="wave-canvas-wrap" style="margin-top:8px">
-        <canvas id="resultCanvas" height="120"></canvas>
+      <div class="slit-result" id="slitResult">
+        <strong>Without observation:</strong> Particles pass through both slits simultaneously as waves, interfering with themselves. The interference pattern — many alternating bright and dark bands — is the signature of quantum superposition. The particle's path is genuinely undefined; it takes all paths at once.
       </div>
-      <div style="display:flex;gap:20px;font-size:11px;color:var(--w3);margin-top:8px;font-family:'Cinzel',serif;letter-spacing:0.06em">
-        <span style="color:var(--g)">■</span> Driving wave &nbsp;&nbsp;
-        <span style="color:rgba(74,158,221,0.5)">■</span> System response (superposition)
-      </div>
-      <div class="resonance-meter" style="margin-top:16px">
-        <div class="rm-label">ENERGY TRANSFER EFFICIENCY</div>
-        <div class="rm-bar"><div class="rm-fill" id="rmFill" style="width:0%"></div></div>
-        <div class="rm-pct" id="rmPct">0%</div>
-      </div>
-      <div class="resonance-note" id="resonanceNote"></div>
     </div>
 
-    <!-- TAB 2: SCHUMANN -->
-    <div class="viz-panel" id="tab-schumann">
-      <p style="font-size:13px;color:var(--w2);line-height:1.7;margin-bottom:16px">Earth's electromagnetic resonant cavity produces five primary standing wave frequencies, generated continuously by lightning activity worldwide. These are not arbitrary. They are determined by the physical dimensions of the cavity between Earth's surface and the ionosphere.</p>
-      <div class="schumann-grid">
-        <div class="sch-card"><div class="sch-freq">7.83</div><div class="sch-label">Hz · Fundamental</div></div>
-        <div class="sch-card"><div class="sch-freq">14.3</div><div class="sch-label">Hz · 2nd Harmonic</div></div>
-        <div class="sch-card"><div class="sch-freq">20.8</div><div class="sch-label">Hz · 3rd Harmonic</div></div>
-        <div class="sch-card"><div class="sch-freq">27.3</div><div class="sch-label">Hz · 4th Harmonic</div></div>
-        <div class="sch-card"><div class="sch-freq">33.8</div><div class="sch-label">Hz · 5th Harmonic</div></div>
+    <!-- TAB 2: INTERPRETATIONS -->
+    <div class="viz-panel" id="tab-interp">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:16px">Select an interpretation to explore what it says, what it implies, and what it means for consciousness and frequency work. None has been experimentally proven over the others — they all make identical predictions.</p>
+      <div class="interp-grid">
+        <div class="interp-card" onclick="showInterp('copenhagen', this)">
+          <div class="interp-icon">🌊</div>
+          <div class="interp-name">Copenhagen</div>
+          <div class="interp-tagline">Reality is undefined until measured. Observation creates definiteness.</div>
+        </div>
+        <div class="interp-card" onclick="showInterp('manyworlds', this)">
+          <div class="interp-icon">🌌</div>
+          <div class="interp-name">Many Worlds</div>
+          <div class="interp-tagline">The wave function never collapses. All possibilities branch into parallel universes.</div>
+        </div>
+        <div class="interp-card" onclick="showInterp('consciousness', this)">
+          <div class="interp-icon">🧠</div>
+          <div class="interp-name">Consciousness-Based</div>
+          <div class="interp-tagline">Conscious observation specifically causes collapse. Mind is fundamental.</div>
+        </div>
+        <div class="interp-card" onclick="showInterp('decoherence', this)">
+          <div class="interp-icon">🌫️</div>
+          <div class="interp-name">Decoherence</div>
+          <div class="interp-tagline">Environmental interaction destroys quantum coherence. No collapse required.</div>
+        </div>
       </div>
-      <table class="brainwave-table">
-        <thead><tr><th>Brainwave State</th><th>Frequency Range</th><th>State</th><th>Schumann Overlap</th></tr></thead>
-        <tbody>
-          <tr><td>Delta</td><td>0.5 – 4 Hz</td><td>Deep sleep, healing</td><td><span class="overlap-badge overlap-no">No</span></td></tr>
-          <tr><td>Theta</td><td>4 – 8 Hz</td><td>Meditation, creativity</td><td><span class="overlap-badge overlap-no">Close</span></td></tr>
-          <tr><td>Alpha</td><td>8 – 12 Hz</td><td>Relaxed focus, flow</td><td><span class="overlap-badge overlap-yes">✓ Overlaps 7.83 Hz</span></td></tr>
-          <tr><td>Beta</td><td>13 – 30 Hz</td><td>Active thinking</td><td><span class="overlap-badge overlap-yes">✓ Overlaps 14.3, 20.8</span></td></tr>
-          <tr><td>Gamma</td><td>30 – 100 Hz</td><td>Peak cognition</td><td><span class="overlap-badge overlap-yes">✓ Overlaps 33.8</span></td></tr>
-        </tbody>
-      </table>
-      <div class="schumann-note">The overlap between Schumann's fundamental (7.83 Hz) and human alpha brainwaves (8-12 Hz) is the basis for the argument that human nervous systems are electromagnetically calibrated to Earth's frequency. We evolved bathed in this field for millions of years. Time in nature — particularly with bare feet on ground — re-exposes the nervous system to this baseline frequency. The physics underlying grounding practice is entrainment to Earth's resonant field.</div>
+
+      <div class="interp-detail" id="int-copenhagen">
+        <h4>Copenhagen Interpretation — Bohr &amp; Heisenberg (1920s–30s)</h4>
+        <p>The Copenhagen interpretation is the dominant framework taught in physics textbooks worldwide. Developed primarily by Niels Bohr and Werner Heisenberg, it holds that before measurement, a quantum system has no definite properties at all. The wave function is not a description of a particle in an unknown state — it is a complete description of a particle with no state. There is nothing more to know, because there is nothing more there.</p>
+        <p>Measurement — the act of coupling a quantum system to a classical measuring device — causes collapse. Bohr was largely agnostic about the mechanism; he insisted the question "what is really happening?" is meaningless, because quantum mechanics is a theory of our observations, not of an underlying reality.</p>
+        <p>The implication is radical: reality is participatory. It does not exist in definite form independent of observation. What is real depends on what is measured. The universe responds to inquiry. This is not solipsism — Bohr did not say we create reality with our minds — but it does mean reality is not a fixed backdrop awaiting discovery. It is co-created through the act of measurement.</p>
+        <div class="interp-implication">→ For frequency work: if reality is participatory and observation shapes what becomes definite, then the quality and coherence of your attention is not incidental — it may be physically consequential. The act of observing a system is not neutral.</div>
+      </div>
+
+      <div class="interp-detail" id="int-manyworlds">
+        <h4>Many Worlds Interpretation — Hugh Everett III (1957)</h4>
+        <p>Hugh Everett proposed a radical solution to the measurement problem: the wave function never collapses. The Schrödinger equation always applies, without exception. Instead of collapse, the universe branches. Every time a quantum measurement occurs, reality splits into parallel branches — one for each possible outcome. You experience one outcome; parallel versions of you experience all the others.</p>
+        <p>In this interpretation, all possibilities are equally real, happening simultaneously in an enormous and continuously branching multiverse. What we experience as "the collapse of the wave function" is actually our own branching — the decoherence of our branch from the others, making them inaccessible to us but no less real.</p>
+        <p>Many Worlds is enormously popular among theoretical physicists and cosmologists, partly because it requires no additional postulates beyond the standard Schrödinger equation. It is mathematically elegant. It is also philosophically demanding: there are infinitely many versions of you reading this right now, in branches that diverged at every quantum event since the universe began.</p>
+        <div class="interp-implication">→ For frequency work: if all possibilities are real and branching is continuous, then intention may function as a "branch selection" process — not creating outcomes, but aligning your trajectory with the branch where a desired outcome occurs. This is a more precise framing of some manifestation models.</div>
+      </div>
+
+      <div class="interp-detail" id="int-consciousness">
+        <h4>Consciousness-Based Interpretations — von Neumann, Wigner, Stapp</h4>
+        <p>John von Neumann's rigorous mathematical formulation of quantum mechanics showed that the measurement problem cannot be resolved by pointing to physical measurement devices — the device itself enters superposition, and the device measuring the device enters superposition, and so on in an infinite chain. The only way to stop the chain, von Neumann argued, is at the point of conscious awareness. Consciousness is the one thing that observes without being observed.</p>
+        <p>Eugene Wigner extended this: consciousness causes collapse. Not any physical interaction — specifically, conscious observation. This makes mind ontologically fundamental to physics, not a byproduct of it. The universe remains in superposition until a conscious observer perceives it. This is a dramatic reversal of the standard scientific assumption that consciousness arises from matter. Here, matter — definite, classical matter — arises from consciousness.</p>
+        <p>Henry Stapp has developed this framework most rigorously in recent decades, arguing that conscious choices about what to measure play a causal role in determining physical outcomes. This interpretation is controversial and not majority view in physics — but it has not been experimentally refuted, and it makes identical predictions to all other interpretations.</p>
+        <div class="interp-implication">→ For frequency work: if consciousness causes collapse and is causally efficacious in determining physical outcomes, then intention is literally a physical force — not metaphorically, but mechanically. Coherent, focused consciousness would interact with quantum systems differently than scattered, incoherent awareness.</div>
+      </div>
+
+      <div class="interp-detail" id="int-decoherence">
+        <h4>Decoherence — Zurek, Joos, Zeh (1980s–present)</h4>
+        <p>Decoherence is the most widely accepted modern approach to the measurement problem, though it is more a mechanism than a complete interpretation. When a quantum system interacts with its environment — even minimally — the system and environment become entangled. The system's quantum coherence leaks into the environment, spreading across an enormous number of environmental degrees of freedom. In practice, this coherence is irretrievably lost — the system behaves classically.</p>
+        <p>Decoherence explains why we do not observe quantum superposition in everyday objects: they are constantly interacting with trillions of air molecules, photons, and other environmental particles, causing decoherence to occur almost instantaneously. It explains why quantum computers are so difficult to build — maintaining coherence against environmental interaction requires extraordinary isolation.</p>
+        <p>The limitation of decoherence as a solution: it explains why we cannot observe quantum interference in macroscopic systems, but it does not explain why one particular outcome is selected. Decoherence produces a mixture of classical states with specific probabilities, but it does not eliminate the other branches — it only makes them inaccessible. The selection problem remains.</p>
+        <div class="interp-implication">→ For frequency work: decoherence explains why coherence is so physically important. Your biofield maintaining quantum coherence against environmental noise is not a trivial achievement — it is the condition that allows quantum biological processes (photosynthesis, enzyme function, possibly consciousness) to function. Practices that increase coherence are directly relevant to quantum biological efficiency.</div>
+      </div>
+
+      <div style="background:var(--gf);border-left:2px solid var(--g);border-radius:0 8px 8px 0;padding:12px 14px;margin-top:14px">
+        <p style="font-size:13px;color:var(--w2);margin:0;line-height:1.7"><strong style="color:var(--g2)">What all interpretations agree on:</strong> Observation matters. Measurement affects outcome. The universe behaves differently when observed than when unobserved. You are not a passive witness to a predetermined reality. This is not interpretation — it is the experimental fact that all interpretations must explain.</p>
+      </div>
     </div>
 
-    <!-- TAB 3: BODY MAP -->
-    <div class="viz-panel" id="tab-body">
-      <p style="font-size:13px;color:var(--w2);line-height:1.7;margin-bottom:16px">Select a system to see its natural frequency range, closest Solfeggio frequency, and notes on frequency healing applications. The body is not one resonant system — it is a nested hierarchy of systems, each with its own natural frequency.</p>
-      <div class="body-map-wrap">
-        <div class="body-svg-wrap">
-          <button class="body-btn active" onclick="showBody('whole', this)">Whole Body</button>
-          <button class="body-btn" onclick="showBody('head', this)">Head / Brain</button>
-          <button class="body-btn" onclick="showBody('heart', this)">Heart</button>
-          <button class="body-btn" onclick="showBody('thorax', this)">Chest / Thorax</button>
-          <button class="body-btn" onclick="showBody('abdomen', this)">Abdominal Organs</button>
-          <button class="body-btn" onclick="showBody('cells', this)">Cells / DNA</button>
+    <!-- TAB 3: ZENO EFFECT -->
+    <div class="viz-panel" id="tab-zeno">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:18px">The Quantum Zeno Effect: frequent observation freezes a quantum system, preventing it from changing state. Adjust observation frequency and system instability below to see the survival probability — how much of the original state remains over time.</p>
+      <div class="zeno-wrap">
+        <div class="zeno-controls">
+          <div class="zeno-ctrl">
+            <label>OBSERVATION FREQUENCY <span id="zenoFreqLabel">10×/sec</span></label>
+            <input type="range" id="zenoFreq" min="1" max="100" value="10" oninput="updateZeno()">
+          </div>
+          <div class="zeno-ctrl">
+            <label>SYSTEM INSTABILITY <span id="zenoInstLabel">Medium</span></label>
+            <input type="range" id="zenoInst" min="1" max="10" value="5" oninput="updateZeno()">
+          </div>
         </div>
-        <div class="body-detail" id="bodyDetail">
-          <div class="bd-title">WHOLE BODY</div>
-          <div class="bd-freq">7 – 8 Hz</div>
-          <div class="bd-solf">Closest Solfeggio: 396 Hz (Root / Liberation) · Schumann fundamental: 7.83 Hz</div>
-          <div class="bd-desc">The body as a mechanical resonant system oscillates in this range when stimulated — remarkably close to Schumann's fundamental of 7.83 Hz. Extended exposure to vibration at this frequency produces significant physiological effects. The evolutionary implication is that the whole body's natural resonance calibrates to Earth's electromagnetic field. Grounding, forest bathing, and barefoot earth contact re-expose the system to its natural reference frequency.</div>
+        <div class="zeno-meter">
+          <div class="zeno-meter-label"><span>STATE SURVIVAL PROBABILITY</span><span id="zenoPct">—</span></div>
+          <div class="zeno-bar"><div class="zeno-fill" id="zenoFill" style="width:0%"></div></div>
+          <div class="zeno-meter-label" style="margin-top:8px"><span>CHANGE SUPPRESSION vs NO OBSERVATION</span><span id="zenoSuppress">—</span></div>
+          <div class="zeno-bar"><div class="zeno-fill" id="zenoSuppFill" style="width:0%;background:rgba(201,168,76,0.7)"></div></div>
         </div>
+        <div class="zeno-note" id="zenoNote">—</div>
+      </div>
+      <div style="margin-top:16px;background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:16px">
+        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em;margin-bottom:10px">THE ANTI-ZENO EFFECT</div>
+        <p style="font-size:13px;color:var(--w2);line-height:1.7;margin:0">The Quantum Zeno Effect has a counterpart: the <strong style="color:var(--g2)">Quantum Anti-Zeno Effect</strong>, where observation at intermediate frequencies can actually accelerate decay rather than prevent it. This demonstrates that observation is not simply "freezing" systems — it is actively participating in their evolution. The frequency of observation, not just its presence or absence, determines the direction and magnitude of the effect. <em>How</em> you observe matters as much as <em>whether</em> you observe.</p>
       </div>
     </div>
   </div>
 
-  <!-- KEY CONCEPTS -->
+  <!-- APPLICATIONS -->
   <div class="section">
-    <h2>Key Concepts</h2>
+    <h2>Five Applications for Frequency Work</h2>
+    <p style="margin-bottom:16px">The measurement problem is not abstract philosophy. If observation shapes physical outcomes at the quantum level — and your body, your devices, and your environment are quantum systems — then these principles have direct practical consequences:</p>
+
     <div class="concept-grid">
       <div class="concept-card">
-        <h4>Natural Frequency</h4>
-        <p>The rate at which a system prefers to oscillate when disturbed. Determined by the system's physical properties: mass, stiffness, material composition. Every object, organ, molecule, and atom has one.</p>
-        <span class="tfa">→ In frequency healing, the goal is to identify or approximate the target system's natural frequency. Work at that frequency is maximally efficient. Work far from it is largely wasted.</span>
+        <h4>1. Your Attention Is Not Neutral</h4>
+        <p>Where you place attention may be participating in what becomes real. Scattered, unfocused awareness — like incoherent light from a bulb — disperses in all directions without concentrating. Focused, coherent attention may function more like a laser.</p>
+        <span class="tfa">→ This is the measurement problem applied to consciousness: attention directed at a quantum system participates in collapsing its superposition. The quality of the observer is not irrelevant.</span>
       </div>
       <div class="concept-card">
-        <h4>Resonance</h4>
-        <p>When applied frequency matches natural frequency. Each cycle adds to the system's amplitude. Energy transfer is maximized. Small inputs produce large effects. Precision matters more than power.</p>
-        <span class="tfa">→ A precisely tuned low-amplitude frequency outperforms high-power broad-spectrum input. This is the counterintuitive but critical insight for all frequency device work.</span>
+        <h4>2. Intention as Measurement</h4>
+        <p>If consciousness plays a role in wave function collapse, then setting clear intention is a form of quantum measurement — collapsing probability distributions toward a specific outcome rather than leaving them spread across all possibilities.</p>
+        <span class="tfa">→ Not wishing — participating. The distinction between hoping for an outcome and actively observing (measuring, intending) toward it may have a physical correlate in quantum collapse dynamics.</span>
       </div>
       <div class="concept-card">
-        <h4>Sympathetic Vibration</h4>
-        <p>When one vibrating system causes another with the same natural frequency to begin vibrating without direct contact — through the medium between them. Physical touch is not required for frequency transfer.</p>
-        <span class="tfa">→ The mechanism behind field-based frequency devices, distance healing research, and the transmission properties of structured water. Systems tuned to receive a frequency will receive it.</span>
+        <h4>3. Coherent Observation Is Amplified</h4>
+        <p>A coherent observer — heart-coherent, mentally focused, emotionally aligned — may interact with quantum systems more effectively than an incoherent one. Coherence in the observer matches coherence in the system.</p>
+        <span class="tfa">→ This connects to Q6 (Coherence): the laser vs lightbulb distinction applies to observers as much as to fields. Heart coherence practice is also observation coherence practice.</span>
       </div>
       <div class="concept-card">
-        <h4>Entrainment</h4>
-        <p>The tendency of oscillating systems to synchronize their rhythms over time through a shared medium. Resonance applied temporally — gradual alignment through repeated exposure rather than a single event.</p>
-        <span class="tfa">→ Consistent repeated exposure to a coherent frequency gradually entrains the target system. Duration and consistency matter more than intensity. Build the practice before you amplify it.</span>
+        <h4>4. Your Biofield as Measurement Apparatus</h4>
+        <p>Your electromagnetic biofield is in constant interaction with your environment — constantly "measuring" the quantum field surrounding you. The state of your biofield shapes what collapses into your experience.</p>
+        <span class="tfa">→ This connects to Q9 (Biofield): a coherent biofield is a coherent measurement apparatus. What your field selects from the quantum possibilities around you depends on the field's state.</span>
       </div>
       <div class="concept-card">
-        <h4>Schumann Resonance</h4>
-        <p>Earth's fundamental electromagnetic resonant frequency at approximately 7.83 Hz, generated by lightning activity in the resonant cavity between Earth's surface and the ionosphere. Human alpha waves overlap this range.</p>
-        <span class="tfa">→ Time in nature without electromagnetic interference is electromagnetic recalibration — the nervous system entraining back toward Earth's reference frequency. This is the physics of grounding practice.</span>
+        <h4>5. The Zeno Effect in Practice</h4>
+        <p>Sustained, consistent intention over time — daily meditation, regular intention-setting, continuous practice — may function like the Quantum Zeno Effect, stabilizing desired quantum states through repeated observation.</p>
+        <span class="tfa">→ This is why persistent, consistent practice outperforms sporadic intense effort. Regular observation at appropriate frequency stabilizes the state; infrequent observation allows it to fluctuate and decay.</span>
       </div>
       <div class="concept-card">
-        <h4>Harmonics</h4>
-        <p>Frequencies that are whole-number multiples of a fundamental. Apply 100 Hz and you simultaneously activate responses at 200, 300, 400 Hz. The harmonic series extends the reach of any single frequency.</p>
-        <span class="tfa">→ Frequencies like 432 Hz and 528 Hz appear to have broad biological relevance because their harmonics intersect with multiple body systems simultaneously. One frequency, many resonant doors.</span>
-      </div>
-      <div class="concept-card">
-        <h4>Q-Factor</h4>
-        <p>A measure of how sharp or selective a resonance is. High-Q systems respond dramatically to their exact natural frequency and barely at all to nearby frequencies. Low-Q systems respond to a broader range.</p>
-        <span class="tfa">→ Different biological systems have different Q-factors. Some require precise frequency matching. Others have more latitude. This is why some applications need tuning and others do not.</span>
+        <h4>6. Observation During Device Charging</h4>
+        <p>When you create or charge a frequency device with conscious intention, you are participating in the quantum process of that object's state — potentially collapsing its quantum probability distribution toward the state you intend.</p>
+        <span class="tfa">→ This provides a quantum mechanical framework for why intentional creation may differ from mechanical production — the observation conditions during creation may influence the quantum state of the resulting object.</span>
       </div>
     </div>
   </div>
@@ -385,12 +418,12 @@ textarea::placeholder{color:var(--w3)}
   <!-- PRACTICAL APPLICATION -->
   <div class="section">
     <h2>This Week's Practice</h2>
-    <p style="margin-bottom:16px">This week, find your resonance map. Not conceptually — physically. The exercise below takes 20 minutes and produces data about your natural frequency that no calculator can give you.</p>
+    <p style="margin-bottom:16px">The measurement problem is not only a scientific principle — it is an invitation to take your observation seriously. This week: one practice to cultivate conscious observation, and one to apply the Zeno Effect deliberately.</p>
     <div class="practice-steps">
-      <div class="ps"><div class="ps-n">1</div><div class="ps-t"><strong>Find a natural outdoor environment.</strong> Ideally with bare feet on ground — grass, earth, stone. No devices. No headphones. Sit still for the first five minutes and listen to the ambient frequency of the environment. Notice what your nervous system does. Notice where tension is and where it releases.</div></div>
-      <div class="ps"><div class="ps-n">2</div><div class="ps-t"><strong>Work with a tuning fork if you have one</strong> — 432 Hz or 528 Hz are the most useful starting points. Strike it and hold it near different parts of your body without touching. Notice where you feel the strongest sympathetic response. The body's fluid systems and tissue densities create actual resonance differences that are perceptible.</div></div>
-      <div class="ps"><div class="ps-n">3</div><div class="ps-t"><strong>If you don't have a tuning fork, use your voice.</strong> Hum a tone, change pitch slowly, and notice where your chest, throat, or skull resonates most strongly. The frequency at which you feel the most effortless, clear vibration is close to your natural frequency at that moment.</div></div>
-      <div class="ps"><div class="ps-n">4</div><div class="ps-t"><strong>Record your resonance map.</strong> Write down: what that frequency sounded like, what state you were in when you found it, and what happened in your body as you sustained it. This map will shift with your physical and emotional state. The practice is to find it regularly, not once.</div></div>
+      <div class="ps"><div class="ps-n">1</div><div class="ps-t"><strong>Conscious Observation Practice (10 minutes daily).</strong> Choose a meaningful object — a glass of water, a crystal, a device you work with. Enter a state of heart coherence first: focus on the heart, breathe slowly, generate genuine appreciation. Then observe the object with complete, undivided attention for 2–3 minutes. Not analyzing — observing. Sense that your observation is not passive. You are interacting with the quantum field of this object. Close with a clear statement of intention for what quality you are collapsing into it.</div></div>
+      <div class="ps"><div class="ps-n">2</div><div class="ps-t"><strong>Apply the Quantum Zeno Effect to one goal.</strong> Identify one outcome you are working toward. Instead of setting intention once and moving on, establish a daily observation practice around it — return to it each morning with the same focused attention, the same clear intention, the same coherent state. This is not repetition for psychological reasons. It is the Zeno Effect applied: frequent, coherent observation stabilizing a quantum probability distribution toward that outcome. Track the difference in results over 30 days versus sporadic intention.</div></div>
+      <div class="ps"><div class="ps-n">3</div><div class="ps-t"><strong>Notice which interpretation resonates — then live from it.</strong> Copenhagen, Many Worlds, Consciousness-based, Decoherence — each implies a different relationship between your mind and physical reality. Choose the one that, when you act as if it's true, produces the most coherent, intentional, and effective behavior. This is not about which is scientifically correct (no one knows). It is about which framework makes you the most potent, conscious participant in your experience.</div></div>
+      <div class="ps"><div class="ps-n">4</div><div class="ps-t"><strong>Audit your observation quality.</strong> For one day, notice where your attention actually goes — not where you think it goes. How often is it coherent, focused, and intentional? How often is it scattered, reactive, and pulled by circumstance? If observation participates in what becomes real, then the quality of your habitual attention is shaping your habitual reality. This audit is quantum physics applied to daily life.</div></div>
     </div>
   </div>
 
@@ -400,49 +433,49 @@ textarea::placeholder{color:var(--w3)}
     <div class="res-item">
       <div class="res-icon">📖</div>
       <div>
-        <div class="res-title">The Field — Lynne McTaggart</div>
-        <div class="res-auth">HarperCollins</div>
-        <div class="res-desc">Investigative science journalism covering Zero Point Field, biophoton research, and the evidence base for frequency-based healing — directly relevant to the biological resonance applications in this lesson.</div>
+        <div class="res-title">Quantum Theory Cannot Hurt You — Marcus Chown</div>
+        <div class="res-auth">Faber &amp; Faber, 2007</div>
+        <div class="res-desc">The clearest and most accessible explanation of quantum mechanics and relativity for non-physicists. The measurement problem is covered with humor and precision. Ideal for solidifying the conceptual foundation before moving into deeper material.</div>
       </div>
     </div>
     <div class="res-item">
       <div class="res-icon">📖</div>
       <div>
-        <div class="res-title">The Body Electric — Robert O. Becker & Gary Selden</div>
-        <div class="res-auth">Morrow</div>
-        <div class="res-desc">Documents Becker's pioneering research into electromagnetic effects on biological systems, providing the scientific foundation for understanding why the body responds to external frequency fields.</div>
+        <div class="res-title">The Quantum World — Kenneth Ford</div>
+        <div class="res-auth">Harvard University Press, 2004</div>
+        <div class="res-desc">A rigorous but readable account of quantum mechanics by a physicist who worked directly in the field. Covers the measurement problem, wave function, and interpretations in depth without requiring mathematics. Essential reading for serious students.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">Mind and the Cosmic Order — Charles Pinter</div>
+        <div class="res-auth">Dove, 2013</div>
+        <div class="res-desc">Explores the relationship between consciousness and quantum mechanics with particular attention to the measurement problem and consciousness-based interpretations. Accessible bridge between physics and philosophical implications for mind and reality.</div>
       </div>
     </div>
     <div class="res-item">
       <div class="res-icon">🔬</div>
       <div>
-        <div class="res-title">Schumann Resonances — Original Research</div>
-        <div class="res-auth">Schumann, W.O. — Zeitschrift für Naturforschung, 1952</div>
-        <div class="res-desc">The original paper predicting Earth's electromagnetic resonant frequencies from first principles. The fundamental at 7.83 Hz was measured and confirmed within a decade of publication.</div>
-      </div>
-    </div>
-    <div class="res-item">
-      <div class="res-icon">🔬</div>
-      <div>
-        <div class="res-title">Biophoton Research — Fritz-Albert Popp</div>
-        <div class="res-auth">International Institute of Biophysics</div>
-        <div class="res-desc">Popp's foundational work demonstrating coherent light emission from living cells — establishing that biological systems are electromagnetic transmitters and receivers operating on resonance principles.</div>
+        <div class="res-title">Quantum Enigma — Rosenblum &amp; Kuttner</div>
+        <div class="res-auth">Oxford University Press, 2006</div>
+        <div class="res-desc">Two University of California physicists tackle the measurement problem and the role of consciousness directly. They do not claim consciousness causes collapse — but they argue physics cannot ignore the question. Rigorous, honest, and philosophically careful.</div>
       </div>
     </div>
     <div class="res-item">
       <div class="res-icon">🎬</div>
       <div>
-        <div class="res-title">Tacoma Narrows Bridge Collapse — Original Footage</div>
-        <div class="res-auth">Public domain — archive.org/details/CEP176</div>
-        <div class="res-desc">The definitive footage of resonance as a destructive force. Watching it after understanding the physics makes the mechanism immediately visible. The bridge was not overwhelmed — it was precisely matched.</div>
+        <div class="res-title">Delayed Choice Quantum Eraser — PBS Space Time</div>
+        <div class="res-auth">YouTube — search "PBS Space Time delayed choice"</div>
+        <div class="res-desc">The clearest visual explanation of Wheeler's delayed-choice experiments available online. Shows exactly how retroactive observation works and why it rules out classical explanations of the double-slit result. Essential viewing for fully grasping the measurement problem.</div>
       </div>
     </div>
     <div class="res-item">
-      <div class="res-icon">🎬</div>
+      <div class="res-icon">🔗</div>
       <div>
-        <div class="res-title">Cymatics — Nigel Stanford</div>
-        <div class="res-auth">YouTube — search "Nigel Stanford Cymatics"</div>
-        <div class="res-desc">A music video demonstrating cymatics, Chladni plates, Tesla coils, and resonance phenomena simultaneously. The visual demonstration of frequency creating structure is directly relevant to Q12.</div>
+        <div class="res-title">Previous: Q6 — Coherence</div>
+        <div class="res-auth">The Frequency Academy · Quantum Physics &amp; Sciences</div>
+        <div class="res-desc">The measurement problem connects directly to coherence: a coherent observer interacts with quantum systems differently than an incoherent one. Coherence in consciousness may be the mechanism by which intentional observation has greater physical effect.</div>
       </div>
     </div>
   </div>
@@ -451,48 +484,53 @@ textarea::placeholder{color:var(--w3)}
   <div class="section">
     <h2>Reflection Journal</h2>
     <div class="reflection-prompt">
-      <p>Where in your life are you applying force when you could be finding resonance? Consider a relationship, a creative project, a health challenge, or a financial situation where your primary approach is to push harder. What would it mean to identify the natural frequency of what you are trying to change and match it instead of driving against it?</p>
+      <p>Which interpretation of the measurement problem resonates with you most — Copenhagen, Many Worlds, Consciousness-based, or Decoherence — and why? What does it mean for your relationship to reality if that interpretation is true? Don't answer what you think you should believe — what actually lands?</p>
     </div>
     <textarea id="ref1" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
 
     <div class="reflection-prompt" style="margin-top:16px">
-      <p>What frequencies — people, places, sounds, practices — put you into your most natural oscillation? Not the states you perform, or the environments you think you should thrive in. The ones where something in you settles, becomes more itself, oscillates more cleanly. These are not random preferences. They are data about your natural frequency.</p>
+      <p>How does understanding the observer effect — that observation changes what is observed — change how you approach intention and manifestation? Is there a difference between this and what you previously understood? What shifts when you take it seriously as physics rather than spirituality?</p>
     </div>
     <textarea id="ref2" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
 
     <div class="reflection-prompt" style="margin-top:16px">
-      <p>What shifts in how you understand illness, healing, and the body when you take resonance seriously? If health is the state of systems oscillating at their natural frequencies, then illness is dysrhythmia — systems pulled away from their natural oscillation. Where does this shift your understanding of your own body's history?</p>
+      <p>Have you ever noticed that sustained, focused attention seemed to affect an outcome — in your health, relationships, creative work, or frequency practice? Describe what happened. Now that you have the Quantum Zeno Effect as a framework — does it change how you understand that experience?</p>
     </div>
     <textarea id="ref3" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>How might you apply the Quantum Zeno Effect — sustained, repeated observation stabilizing a state — to your frequency work specifically? What state would you want to stabilize, and what would a daily observation practice around it look like?</p>
+    </div>
+    <textarea id="ref4" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
   </div>
 
   <!-- WORKSHOP SLOT -->
   <div class="workshop">
-    <h3>Live Workshop: Resonance — The Destroyer and Healer</h3>
+    <h3>Live Workshop: The Measurement Problem</h3>
     <p>A live deep-dive on this topic is coming soon. Recordings and supplemental materials will appear here once available. Members will be notified via the Academy portal.</p>
   </div>
 
   <!-- COMPLETION -->
   <div class="completion-box">
     <h3>Mark Lesson Complete</h3>
-    <p>When you have worked through the Resonance Explorer, completed this week's practice, and written at least one reflection — mark this lesson complete.</p>
+    <p>When you have explored all three tabs of the interactive, worked through this week's practices, and written at least two reflections — mark this lesson complete.</p>
     <button class="complete-btn" id="completeBtn" onclick="markComplete()">Mark Complete · +10 XP</button>
     <div class="xp-flash" id="xpFlash">✦ +10 XP Awarded</div>
   </div>
 
   <!-- NAV -->
   <div class="nav-lessons">
-    <a class="nav-lesson prev" href="../lesson-10/">
+    <a class="nav-lesson prev" href="../lesson-6/">
       <div class="nav-arrow">←</div>
       <div>
-        <div class="nav-label">Previous · Q10</div>
-        <div class="nav-title">Quantum Tunnelling</div>
+        <div class="nav-label">Previous · Q6</div>
+        <div class="nav-title">Coherence</div>
       </div>
     </a>
-    <a class="nav-lesson" href="../lesson-12/">
+    <a class="nav-lesson" href="../lesson-8/">
       <div>
-        <div class="nav-label">Next · Q12</div>
-        <div class="nav-title">Cymatics — Sound Creates Structure</div>
+        <div class="nav-label">Next · Q8</div>
+        <div class="nav-title">Cymatics — Sound Made Visible</div>
       </div>
       <div class="nav-arrow">→</div>
     </a>
@@ -511,20 +549,255 @@ textarea::placeholder{color:var(--w3)}
 </div>
 
 <script>
-var KEY = 'tfa_q11';
+var KEY = 'tfa_q7';
 var saveTimer;
 
-// ── ACCORDION DATA ──
+// ── TABS ──
+function switchTab(id, btn) {
+  document.querySelectorAll('.viz-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.viz-panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+  if (id === 'slit') drawSlit(observing);
+  if (id === 'zeno') updateZeno();
+}
+
+// ── DOUBLE-SLIT VISUALIZER ──
+var observing = false;
+var slitAnimId;
+var slitT = 0;
+
+function setObservation(obs, btn) {
+  observing = obs;
+  document.querySelectorAll('.slit-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  var result = document.getElementById('slitResult');
+  if (obs) {
+    result.innerHTML = '<strong>With observation:</strong> By detecting which slit each particle passes through, we gain path information — and the interference pattern vanishes immediately. Particles now behave as classical particles, landing in two bands. The superposition is collapsed by the act of measurement. Note: the detector does not need to physically disturb the particle. Gaining the information is sufficient.';
+  } else {
+    result.innerHTML = '<strong>Without observation:</strong> Particles pass through both slits simultaneously as waves, interfering with themselves. The interference pattern — many alternating bright and dark bands — is the signature of quantum superposition. The particle\'s path is genuinely undefined; it takes all paths at once.';
+  }
+  if (slitAnimId) cancelAnimationFrame(slitAnimId);
+  drawSlit(obs);
+}
+
+function drawSlit(obs) {
+  slitT += 0.025;
+  var canvas = document.getElementById('slitCanvas');
+  if (!canvas) return;
+  var dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.min(600, canvas.parentElement.offsetWidth - 32) * dpr;
+  canvas.height = 260 * dpr;
+  canvas.style.width = Math.min(600, canvas.parentElement.offsetWidth - 32) + 'px';
+  canvas.style.height = '260px';
+  var ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  var W = canvas.width / dpr, H = canvas.height / dpr;
+
+  ctx.fillStyle = '#060f1a';
+  ctx.fillRect(0, 0, W, H);
+
+  var barrierX = W * 0.38;
+  var screenX = W * 0.85;
+  var slit1Y = H * 0.38, slit2Y = H * 0.62;
+  var slitH = H * 0.1;
+
+  // Source
+  ctx.fillStyle = 'rgba(74,158,221,0.9)';
+  ctx.beginPath();
+  ctx.arc(W * 0.08, H / 2, 8, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = 'rgba(232,240,248,0.35)';
+  ctx.font = '10px Cinzel, serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('SOURCE', W * 0.08, H / 2 + 20);
+
+  // Animated particles from source to barrier
+  for (var i = 0; i < 6; i++) {
+    var phase = (slitT + i * 0.28) % 1;
+    var px = W * 0.08 + (barrierX - W * 0.08) * phase;
+    var py = H / 2 + Math.sin(slitT * 2 + i) * 4;
+    ctx.beginPath();
+    ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(74,158,221,' + (0.3 + 0.5 * (1 - phase)) + ')';
+    ctx.fill();
+  }
+
+  // Barrier
+  ctx.fillStyle = 'rgba(232,240,248,0.12)';
+  ctx.fillRect(barrierX - 4, 0, 8, slit1Y - slitH / 2);
+  ctx.fillRect(barrierX - 4, slit1Y + slitH / 2, 8, slit2Y - slitH / 2 - slit1Y - slitH / 2);
+  ctx.fillRect(barrierX - 4, slit2Y + slitH / 2, 8, H - slit2Y - slitH / 2);
+
+  // Slit labels
+  ctx.fillStyle = 'rgba(74,158,221,0.6)';
+  ctx.fillRect(barrierX - 4, slit1Y - slitH / 2, 8, slitH);
+  ctx.fillRect(barrierX - 4, slit2Y - slitH / 2, 8, slitH);
+
+  // Observer detector
+  if (obs) {
+    ctx.fillStyle = 'rgba(220,190,100,0.85)';
+    ctx.beginPath();
+    ctx.arc(barrierX + 18, slit1Y, 7, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(barrierX + 18, slit2Y, 7, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(220,190,100,0.5)';
+    ctx.font = '9px Cinzel, serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('DETECTORS', barrierX + 18, slit1Y - 14);
+  }
+
+  // Screen
+  ctx.fillStyle = 'rgba(232,240,248,0.08)';
+  ctx.fillRect(screenX, 0, 6, H);
+
+  // Pattern on screen
+  if (!obs) {
+    // Interference pattern
+    for (var y = 0; y < H; y++) {
+      var d1 = Math.abs(y - slit1Y), d2 = Math.abs(y - slit2Y);
+      var interference = Math.pow(Math.cos((d1 - d2) * 0.32), 2);
+      var brightness = interference * (0.85 + 0.15 * Math.sin(slitT * 1.5));
+      ctx.fillStyle = 'rgba(74,158,221,' + brightness * 0.9 + ')';
+      ctx.fillRect(screenX + 6, y, 18, 1);
+    }
+    // Animated particles showing wave paths
+    for (var j = 0; j < 4; j++) {
+      var ph2 = (slitT * 0.7 + j * 0.35) % 1;
+      if (ph2 > 0.5) {
+        var wavePh = (ph2 - 0.5) * 2;
+        var targetY = slit1Y + (j % 2 === 0 ? 20 : -20);
+        var px2 = barrierX + (screenX - barrierX) * wavePh;
+        var py2 = slit1Y + (targetY - slit1Y) * wavePh + Math.sin(wavePh * Math.PI * 4 + slitT) * 20;
+        ctx.beginPath();
+        ctx.arc(px2, py2, 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(74,158,221,' + (0.6 * (1 - wavePh)) + ')';
+        ctx.fill();
+      }
+    }
+    ctx.fillStyle = 'rgba(232,240,248,0.35)';
+    ctx.font = '10px Cinzel, serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('INTERFERENCE', screenX + 24, H - 16);
+    ctx.fillText('PATTERN', screenX + 24, H - 4);
+  } else {
+    // Two bands
+    var band1 = slit1Y, band2 = slit2Y, bw = 28;
+    for (var yb = 0; yb < H; yb++) {
+      var d1b = Math.abs(yb - band1), d2b = Math.abs(yb - band2);
+      var bright1 = Math.exp(-d1b * d1b / (2 * bw * bw));
+      var bright2 = Math.exp(-d2b * d2b / (2 * bw * bw));
+      var total = (bright1 + bright2) * (0.9 + 0.1 * Math.sin(slitT * 2));
+      ctx.fillStyle = 'rgba(220,190,100,' + total * 0.85 + ')';
+      ctx.fillRect(screenX + 6, yb, 18, 1);
+    }
+    // Animated particles going through one slit each
+    for (var k = 0; k < 3; k++) {
+      var pk = (slitT * 0.8 + k * 0.4) % 1;
+      if (pk > 0.4) {
+        var kph = (pk - 0.4) / 0.6;
+        var slitY = k % 2 === 0 ? slit1Y : slit2Y;
+        var pkx = barrierX + (screenX - barrierX) * kph;
+        var pky = slitY + (k % 2 === 0 ? 20 : -20) * kph;
+        ctx.beginPath();
+        ctx.arc(pkx, pky, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(220,190,100,' + (0.8 * (1 - kph)) + ')';
+        ctx.fill();
+      }
+    }
+    ctx.fillStyle = 'rgba(232,240,248,0.35)';
+    ctx.font = '10px Cinzel, serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('TWO BANDS', screenX + 24, H - 10);
+  }
+
+  // Labels
+  ctx.fillStyle = 'rgba(232,240,248,0.35)';
+  ctx.font = '9px Cinzel, serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('BARRIER', barrierX, H - 8);
+  ctx.fillText('SCREEN', screenX + 12, H - 8);
+
+  slitAnimId = requestAnimationFrame(function() { drawSlit(observing); });
+}
+
+// ── INTERPRETATION EXPLORER ──
+var activeInterp = null;
+function showInterp(id, card) {
+  document.querySelectorAll('.interp-detail').forEach(function(d) { d.classList.remove('show'); });
+  document.querySelectorAll('.interp-card').forEach(function(c) { c.classList.remove('active'); });
+  if (activeInterp === id) { activeInterp = null; return; }
+  document.getElementById('int-' + id).classList.add('show');
+  card.classList.add('active');
+  activeInterp = id;
+}
+
+// ── QUANTUM ZENO EFFECT ──
+function updateZeno() {
+  var freq = parseInt(document.getElementById('zenoFreq').value);
+  var inst = parseInt(document.getElementById('zenoInst').value);
+  document.getElementById('zenoFreqLabel').textContent = freq + '×/sec';
+  var instLabels = ['','Very Low','Low','Low','Medium','Medium','Medium','High','High','Very High','Extreme'];
+  document.getElementById('zenoInstLabel').textContent = instLabels[inst] || 'Medium';
+
+  // Zeno survival: higher freq, lower instability = higher survival
+  // P_survival ≈ 1 - (inst/10)^2 / (1 + freq/10)
+  var decayRate = (inst / 10) * (inst / 10);
+  var zenoFactor = 1 / (1 + freq / 8);
+  var survival = Math.max(0.02, 1 - decayRate * zenoFactor);
+
+  // Without observation baseline
+  var baseline = Math.max(0, 1 - decayRate * 0.9);
+  var suppression = survival > baseline ? Math.min(1, (survival - baseline) / (1 - baseline)) : 0;
+
+  var pct = Math.round(survival * 100);
+  var suppPct = Math.round(suppression * 100);
+
+  document.getElementById('zenoPct').textContent = pct + '%';
+  document.getElementById('zenoSuppress').textContent = suppPct + '%';
+
+  var fill = document.getElementById('zenoFill');
+  fill.style.width = pct + '%';
+  fill.style.background = pct > 75 ? '#4a9edd' : pct > 45 ? 'rgba(120,184,238,0.8)' : 'rgba(220,190,100,0.7)';
+
+  document.getElementById('zenoSuppFill').style.width = suppPct + '%';
+
+  var note;
+  if (freq >= 70 && inst <= 4) {
+    note = 'Strong Zeno Effect active. Very frequent observation of a low-instability system produces near-complete state preservation. The system is effectively frozen by the measurement process — it cannot evolve because every measurement resets its quantum clock. This is the Zeno regime physicists have confirmed experimentally.';
+  } else if (freq >= 40) {
+    note = 'Moderate Zeno Effect. Frequent observation is significantly slowing the system\'s evolution. At ' + freq + ' observations per second, the measurement intervals are short enough that the quantum state has little time to evolve between measurements, preserving much of the original state.';
+  } else if (freq >= 15) {
+    note = 'Mild Zeno Effect. Observation frequency is reducing decay but not dramatically. The system has enough time between measurements to evolve partially. Increasing frequency would strengthen the stabilizing effect.';
+  } else if (freq <= 5 && inst >= 7) {
+    note = 'Minimal Zeno protection. Infrequent observation of a highly unstable system produces rapid state decay. The system evolves freely between measurements. This is analogous to sporadic, unfocused attention — insufficient to stabilize the quantum state being observed.';
+  } else {
+    note = 'Intermediate regime. At ' + freq + ' observations per second with instability level ' + instLabels[inst] + ', the Zeno Effect provides partial stabilization. The balance between observation frequency and natural decay rate determines how much of the original state survives.';
+  }
+  document.getElementById('zenoNote').textContent = note;
+}
+
+// ── ACCORDION ──
 var ACC = [
-  {t:'Resonance Phenomena — Examples Across Scales', b:'<strong>Tacoma Narrows Bridge (1940)</strong> — 40 mph wind matched the bridge\'s natural frequency. Oscillations built until the bridge tore itself apart. The lesson: external frequency + natural frequency match = catastrophic amplification.<br><br><strong>Opera singer shattering glass</strong> — Singer sustains note at the glass\'s natural frequency. Glass resonates until material fails. Confirmed experimentally with trained singers. The glass does not shatter from volume alone — it shatters from resonant match.<br><br><strong>Lithotripsy</strong> — Medical procedure using focused ultrasound at the resonant frequency of kidney stones to shatter them without surgery. Direct clinical application of the same principle that destroyed Galloping Gertie.<br><br><strong>Radio tuning</strong> — A radio circuit\'s resonant frequency is tuned to match the broadcast frequency. Only matching signals are amplified. Everything else passes through undetected. Selectivity is a function of resonance.<br><br><strong>Musical instruments</strong> — Every acoustic instrument is a resonance chamber. The body of a guitar resonates with the strings, amplifying specific frequencies. The shape, wood, and dimensions are not aesthetic choices — they are frequency engineering.'},
-  {t:'The Physics of Entrainment', b:'Christian Huygens first observed entrainment in 1665: two pendulum clocks mounted on the same wall, started at different phases, gradually synchronized their swing through vibration transmitted through the wall. He called it "an odd kind of sympathy."\n\nThe physics: when two oscillating systems are coupled through a shared medium, they exchange energy. The stronger or more stable oscillator tends to pull the weaker one toward its rhythm. Over time, the systems phase-lock.\n\n<strong>Biological entrainment is continuous:</strong> Heart cells in proximity synchronize their beating rate. Neural oscillators synchronize during deep meditation. Menstrual cycles synchronize in women living together over months. Crowds clapping spontaneously synchronize their rhythm.\n\n<strong>The implication for frequency practice:</strong> You do not need one powerful exposure. You need consistent exposure over time. The body\'s oscillatory systems will gradually entrain toward whatever frequency environment they are repeatedly placed in. This is why daily practice accumulates effects that a single intense session does not.'},
-  {t:'Body Frequency Reference — All Systems', b:'<table style="width:100%;border-collapse:collapse;font-size:12px"><tr style="border-bottom:1px solid rgba(74,158,221,0.15)"><td style="padding:7px 10px;color:var(--g2);font-weight:600">Whole body (standing resonance)</td><td style="padding:7px 10px;color:var(--w2)">7 – 8 Hz</td></tr><tr style="border-bottom:1px solid rgba(74,158,221,0.15)"><td style="padding:7px 10px;color:var(--g2);font-weight:600">Head / skull</td><td style="padding:7px 10px;color:var(--w2)">20 – 30 Hz</td></tr><tr style="border-bottom:1px solid rgba(74,158,221,0.15)"><td style="padding:7px 10px;color:var(--g2);font-weight:600">Chest / thorax</td><td style="padding:7px 10px;color:var(--w2)">50 – 100 Hz</td></tr><tr style="border-bottom:1px solid rgba(74,158,221,0.15)"><td style="padding:7px 10px;color:var(--g2);font-weight:600">Abdominal organs</td><td style="padding:7px 10px;color:var(--w2)">4 – 8 Hz</td></tr><tr style="border-bottom:1px solid rgba(74,158,221,0.15)"><td style="padding:7px 10px;color:var(--g2);font-weight:600">Heart (fundamental)</td><td style="padding:7px 10px;color:var(--w2)">1 – 2 Hz + harmonics</td></tr><tr><td style="padding:7px 10px;color:var(--g2);font-weight:600">Cells (membrane oscillation)</td><td style="padding:7px 10px;color:var(--w2)">MHz range</td></tr></table>'},
-  {t:'Forcing Change vs Finding Resonance', b:'The deeper teaching of resonance is not technical — it is a reorientation toward how change works.\n\n<strong>Forcing change:</strong> Push harder, apply more power, overcome resistance. High effort, low efficiency. The system fights back. Result: temporary, requiring constant maintenance.\n\n<strong>Finding resonance:</strong> Identify the natural frequency of what you\'re working with. Match it. Allow the accumulation effect. Low effort, high efficiency. The system cooperates. Result: self-sustaining.\n\nThis applies beyond frequency devices. In healing: don\'t force the body — find the frequency it naturally resonates with and provide it. In relationships: don\'t force connection — find where your vibrations naturally match. In goals: don\'t force outcomes — align with the natural rhythm of what you\'re creating. In communication: don\'t force understanding — find the frequency that resonates with your audience.\n\nThe technology is the metaphor. And the metaphor is the technology.'}
+  {t:'Measurement Problem — Definition',
+   b:'<strong>The measurement problem</strong> is the central unsolved puzzle of quantum mechanics: why and how does observation cause quantum systems to transition from superposition (all possibilities simultaneously) to definite, single outcomes? The mathematics of quantum mechanics (the Schrödinger equation) describes the smooth evolution of wave functions but does not explain collapse. Collapse must be added as an additional postulate, without physical mechanism.<br><br>The problem has three components: <em>what counts as measurement?</em> (any interaction, or specifically conscious observation?); <em>why does measurement cause collapse?</em> (no physical mechanism is known); and <em>how is one outcome selected?</em> (quantum mechanics gives probabilities but no selection mechanism for individual events).'},
+  {t:'Wave Function and Wave Function Collapse',
+   b:'<strong>The wave function</strong> (usually written ψ, psi) is the complete mathematical description of a quantum system\'s state. It is not a description of our ignorance — it is a description of what the system actually is. A quantum system in superposition has no definite property; it genuinely occupies all possible states simultaneously, weighted by probability amplitudes.<br><br><strong>Wave function collapse</strong> is the transition from this superposition to a single definite state upon measurement. Before collapse: the system is everywhere, in all states. After collapse: the system is here, in this one state. The probability of each outcome is given by the Born rule — the square of the wave function amplitude at that state. <em>Why</em> one outcome occurs rather than another is unknown.'},
+  {t:'Observer Effect — What It Is and What It Isn\'t',
+   b:'<strong>The observer effect</strong> in quantum mechanics is frequently misunderstood. It does not simply mean that detectors physically disturb particles — though at small scales, any physical interaction does disturb systems. The quantum mechanical observer effect is more fundamental: even in experiments designed to minimize physical disturbance, the mere act of <em>gaining information</em> about a system collapses its superposition.<br><br>The key criterion is information: if an observation produces a record of which path a particle took — anywhere in the universe, whether anyone reads that record or not — the interference pattern disappears. If no record exists and cannot in principle be created, the interference pattern remains. It is information, not physical disturbance, that triggers collapse. This has been verified in quantum eraser experiments where path information is "erased" after the fact and the interference pattern restores.'},
+  {t:'Delayed-Choice Experiment — Time and Observation',
+   b:'<strong>John Wheeler\'s delayed-choice experiment</strong> demonstrated one of the most counterintuitive features of quantum mechanics: the choice of whether to observe a particle\'s path — made <em>after</em> the particle has already passed through the slits — determines how the particle behaved at the slits.<br><br>In the experimental version: a photon enters an interferometer. After it has entered, we decide randomly whether to observe which path it took or allow it to interfere. If we observe: it turns out to have taken one path. If we allow interference: it turns out to have taken both paths. Our decision, made after the photon has passed through the apparatus, retroactively determines its behavior. This has been confirmed experimentally, including cosmic-scale versions using light from quasars. Time in quantum mechanics is not what classical physics assumes.'},
+  {t:'Quantum Zeno Effect — Experimental Facts',
+   b:'<strong>The Quantum Zeno Effect</strong> (named for the Greek philosopher Zeno and his paradoxes of motion) was first proposed theoretically in 1977 and confirmed experimentally in 1990 by Itano et al. at NIST, using beryllium ions.<br><br>The basic principle: repeatedly measuring a quantum system prevents it from evolving. If you measure whether a radioactive atom has decayed frequently enough, it will not decay — because each measurement collapses the wave function back to the "not yet decayed" state before significant evolution can occur. The more frequent the measurement, the more completely the system is frozen.<br><br>This has been confirmed in multiple systems including atoms, ions, and photons. The <strong>Quantum Anti-Zeno Effect</strong> — where intermediate observation frequency accelerates decay — has also been experimentally confirmed, demonstrating that the relationship between observation and quantum evolution is complex and frequency-dependent.'},
+  {t:'Schrödinger\'s Cat — The Boundary Problem',
+   b:'<strong>Erwin Schrödinger proposed his famous cat thought experiment in 1935</strong> specifically as a critique of Copenhagen — to show that if quantum mechanics applies universally, the implications for macroscopic objects are absurd.<br><br>The scenario: a cat is in a sealed box with a radioactive atom, a detector, and a mechanism that releases poison if the atom decays. If the atom is in superposition (decayed and not-decayed simultaneously), and the detector is in superposition, and the mechanism is in superposition — then according to the wave function, the cat is also in superposition: both alive and dead simultaneously.<br><br>This is Schrödinger\'s point: the boundary between the quantum world (where superposition is real) and the classical world (where cats are either alive or dead, not both) has no principled location in the theory. Where does superposition end? At the cat? The box? The human observer? The universe as a whole? None of the major interpretations has fully resolved this.'}
 ];
 
 function buildAcc() {
   var w = document.getElementById('accWrap');
-  ACC.forEach(function(item, i) {
+  ACC.forEach(function(item) {
     var d = document.createElement('div');
     d.className = 'acc-item';
     d.innerHTML = '<div class="acc-head" onclick="toggleAcc(this)"><span>' + item.t + '</span><span class="acc-arrow">▾</span></div><div class="acc-body">' + item.b + '</div>';
@@ -540,124 +813,6 @@ function toggleAcc(head) {
   if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
 }
 
-// ── TABS ──
-function switchTab(id, btn) {
-  document.querySelectorAll('.viz-tab').forEach(function(t) { t.classList.remove('active'); });
-  document.querySelectorAll('.viz-panel').forEach(function(p) { p.classList.remove('active'); });
-  btn.classList.add('active');
-  document.getElementById('tab-' + id).classList.add('active');
-  if (id === 'wave') updateViz();
-}
-
-// ── WAVE VISUALIZER ──
-var animFrame;
-var currentEff = 0;
-
-function resonanceEfficiency(drive, natural) {
-  var Q = 10;
-  var ratio = drive / natural;
-  var eff = 1 / (1 + Q * Q * Math.pow(ratio - 1/ratio, 2));
-  return Math.min(1, eff);
-}
-
-function updateViz() {
-  var drive = parseInt(document.getElementById('driveFreq').value);
-  var nat = parseInt(document.getElementById('naturalFreq').value);
-  document.getElementById('driveVal').textContent = drive;
-  document.getElementById('naturalVal').textContent = nat;
-
-  var eff = resonanceEfficiency(drive, nat);
-  var pct = Math.round(eff * 100);
-  document.getElementById('rmFill').style.width = pct + '%';
-  document.getElementById('rmPct').textContent = pct + '%';
-
-  var note = document.getElementById('resonanceNote');
-  if (pct >= 80) {
-    note.textContent = 'Strong resonance — frequencies are closely matched. Each cycle adds to the previous. Small inputs are accumulating into large effects. This is the zone where frequency healing operates most powerfully.';
-    note.className = 'resonance-note show';
-    note.style.borderColor = 'var(--g)';
-  } else if (pct >= 40) {
-    note.textContent = 'Partial resonance — some energy is transferring but the match is imprecise. Effects will be present but limited. Adjusting the driving frequency closer to the natural frequency would significantly increase efficiency.';
-    note.className = 'resonance-note show';
-    note.style.borderColor = 'var(--gb)';
-  } else {
-    note.textContent = 'Low resonance — frequencies are significantly mismatched. Energy transfer is inefficient. Waves are partially cancelling rather than accumulating. Increasing power here would not compensate for the frequency mismatch.';
-    note.className = 'resonance-note show';
-    note.style.borderColor = 'rgba(176,85,64,0.6)';
-  }
-
-  drawWaves(drive, nat, eff);
-}
-
-function drawWaves(drive, nat, eff) {
-  var dc = document.getElementById('driveCanvas');
-  var rc = document.getElementById('resultCanvas');
-  dc.width = dc.offsetWidth * (window.devicePixelRatio || 1);
-  dc.height = 120 * (window.devicePixelRatio || 1);
-  rc.width = rc.offsetWidth * (window.devicePixelRatio || 1);
-  rc.height = 120 * (window.devicePixelRatio || 1);
-  var dCtx = dc.getContext('2d');
-  var rCtx = rc.getContext('2d');
-  dCtx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
-  rCtx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
-  var W = dc.offsetWidth, H = 120, cx = H / 2;
-
-  // Draw driving wave
-  dCtx.clearRect(0, 0, W, H);
-  dCtx.beginPath();
-  dCtx.strokeStyle = '#4a9edd';
-  dCtx.lineWidth = 2;
-  for (var x = 0; x < W; x++) {
-    var t = x / W;
-    var y = cx + Math.sin(t * Math.PI * 2 * (drive / 10)) * (cx * 0.7);
-    x === 0 ? dCtx.moveTo(x, y) : dCtx.lineTo(x, y);
-  }
-  dCtx.stroke();
-  dCtx.fillStyle = 'rgba(232,240,248,0.3)';
-  dCtx.font = '10px Cinzel, serif';
-  dCtx.fillText('DRIVING WAVE — ' + drive + ' Hz', 8, 14);
-
-  // Draw superposition result
-  rCtx.clearRect(0, 0, W, H);
-  var amplitude = 0.5 + eff * 1.8;
-  rCtx.beginPath();
-  rCtx.strokeStyle = 'rgba(74,158,221,0.6)';
-  rCtx.lineWidth = 2;
-  for (var x2 = 0; x2 < W; x2++) {
-    var t2 = x2 / W;
-    var d = Math.sin(t2 * Math.PI * 2 * (drive / 10));
-    var n = Math.sin(t2 * Math.PI * 2 * (nat / 10)) * eff;
-    var y2 = cx + (d + n) * (cx * 0.38 * amplitude);
-    y2 = Math.max(4, Math.min(H - 4, y2));
-    x2 === 0 ? rCtx.moveTo(x2, y2) : rCtx.lineTo(x2, y2);
-  }
-  rCtx.stroke();
-  rCtx.fillStyle = 'rgba(232,240,248,0.3)';
-  rCtx.font = '10px Cinzel, serif';
-  rCtx.fillText('SYSTEM RESPONSE (superposition)', 8, 14);
-}
-
-// ── BODY MAP ──
-var BODY_DATA = {
-  whole: {title:'WHOLE BODY',freq:'7 – 8 Hz',solf:'Closest Solfeggio: 396 Hz (Root · Liberation) · Schumann fundamental: 7.83 Hz',desc:'The body as a mechanical resonant system oscillates in this range when stimulated — remarkably close to Schumann\'s fundamental of 7.83 Hz. Extended exposure to vibration at this frequency produces significant physiological effects. Grounding, forest bathing, and barefoot earth contact re-expose the system to this natural reference frequency. The evolutionary implication: whole-body resonance calibrates to Earth\'s electromagnetic field.'},
-  head: {title:'HEAD / BRAIN',freq:'20 – 30 Hz',solf:'Closest Solfeggio: 528 Hz (Transformation · DNA repair) · Brainwave states: Beta 13-30 Hz, Gamma 30+ Hz',desc:'The skull forms a resonant cavity for the brain. Alpha brainwaves (8-12 Hz) overlap with Schumann fundamental, suggesting that meditative states bring the brain into Earth-frequency alignment. Beta range (13-30 Hz) covers active cognitive processing. Gamma (30+ Hz) correlates with peak integration and insight states. Sound and electromagnetic frequency work targeting the head can shift brainwave state through entrainment.'},
-  heart: {title:'HEART',freq:'1 – 2 Hz + harmonics',solf:'Closest Solfeggio: 639 Hz (Connecting relationships · Heart) · Schumann 2nd harmonic: 14.3 Hz',desc:'The heart operates at fundamental frequencies of 1-2 Hz (60-120 beats per minute) with rich harmonic content extending through multiple octaves. Its electromagnetic field is 60 times greater in amplitude than the brain\'s and measurable several feet from the body. Heart coherence — a smooth, ordered oscillation pattern — produces a field that can be detected in nearby individuals\' brainwaves. The heart is simultaneously a mechanical pump and an electromagnetic frequency transmitter.'},
-  thorax: {title:'CHEST / THORAX',freq:'50 – 100 Hz',solf:'Closest Solfeggio: 528 Hz (Transformation) · Respiratory cycle: 0.2-0.3 Hz',desc:'The chest cavity resonates at higher frequencies due to its structural properties. The respiratory cycle itself oscillates at approximately 0.2-0.3 Hz (12-18 breaths per minute), but the cavity resonates at 50-100 Hz. Controlled breathing at 5-6 breaths per minute (0.1 Hz) creates a specific HRV pattern that synchronizes heart, lungs, and vascular system into coherent oscillation — the basis of heart coherence breathing practice.'},
-  abdomen: {title:'ABDOMINAL ORGANS',freq:'4 – 8 Hz',solf:'Closest Solfeggio: 396 Hz (Liberation · Root) · Overlap with Theta brainwaves',desc:'The gut, liver, and kidneys resonate in the 4-8 Hz range — overlapping with Theta brainwaves (creative flow, meditation) and approaching Schumann\'s fundamental. The gut\'s enteric nervous system contains approximately 100 million neurons and is sometimes called the "second brain." Its frequency range suggests a natural alignment with Earth\'s electromagnetic field and with meditative states. Low-frequency sound and vibration at 4-8 Hz has measurable effects on visceral organ function.'},
-  cells: {title:'CELLS / DNA',freq:'MHz – GHz range',solf:'Solfeggio frequencies interact through harmonic cascades · Biophoton emission: visible light range',desc:'Cellular membrane oscillation occurs at much higher frequencies than organ-level resonance. Fritz-Albert Popp\'s biophoton research demonstrated that living cells emit ultra-weak coherent light — laser-like in phase relationships — theorized to coordinate biological processes across the body at the speed of light. Healthy cells emit coherent biophotons. Stressed or diseased cells emit more photons but with disrupted coherence. The disease is not just chemical — it is a loss of coherent electromagnetic communication.'}
-};
-
-function showBody(id, btn) {
-  document.querySelectorAll('.body-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  var d = BODY_DATA[id];
-  document.getElementById('bodyDetail').innerHTML =
-    '<div class="bd-title">' + d.title + '</div>' +
-    '<div class="bd-freq">' + d.freq + '</div>' +
-    '<div class="bd-solf">' + d.solf + '</div>' +
-    '<div class="bd-desc">' + d.desc + '</div>';
-}
-
 // ── COMPLETION ──
 function markComplete() {
   var btn = document.getElementById('completeBtn');
@@ -671,10 +826,11 @@ function markComplete() {
 // ── SAVE / LOAD ──
 function getData() {
   return {
-    v: 1, lesson: 'Q11', ts: new Date().toISOString(),
+    v: 1, lesson: 'Q7', ts: new Date().toISOString(),
     r1: document.getElementById('ref1').value,
     r2: document.getElementById('ref2').value,
     r3: document.getElementById('ref3').value,
+    r4: document.getElementById('ref4').value,
     done: document.getElementById('completeBtn').classList.contains('done')
   };
 }
@@ -694,12 +850,13 @@ function loadData() {
     if (d.r1) document.getElementById('ref1').value = d.r1;
     if (d.r2) document.getElementById('ref2').value = d.r2;
     if (d.r3) document.getElementById('ref3').value = d.r3;
+    if (d.r4) document.getElementById('ref4').value = d.r4;
     if (d.done) {
       var btn = document.getElementById('completeBtn');
       btn.classList.add('done'); btn.textContent = '✓ Complete';
       document.getElementById('xpFlash').classList.add('show');
     }
-    document.getElementById('saveStatus').textContent = 'Session loaded';
+    document.getElementById('saveStatus').textContent = 'Session restored';
   } catch(e) {}
 }
 function exportData() {
@@ -707,7 +864,7 @@ function exportData() {
   var b = new Blob([JSON.stringify(getData(), null, 2)], {type: 'application/json'});
   var a = document.createElement('a');
   a.href = URL.createObjectURL(b);
-  a.download = 'TFA_Q11_backup_' + Date.now() + '.json';
+  a.download = 'TFA_Q7_backup_' + Date.now() + '.json';
   a.click();
 }
 function importData(e) {
@@ -737,9 +894,11 @@ window.addEventListener('scroll', function() {
 document.addEventListener('DOMContentLoaded', function() {
   buildAcc();
   loadData();
-  updateViz();
-  // Redraw on resize
-  window.addEventListener('resize', function() { updateViz(); });
+  updateZeno();
+  drawSlit(false);
+  window.addEventListener('resize', function() {
+    if (document.getElementById('tab-slit').classList.contains('active')) drawSlit(observing);
+  });
 });
 </script>
 </body>
