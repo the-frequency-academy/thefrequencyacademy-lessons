@@ -1,1 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q16 — Structured Water | The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--n:#0a1628;--n2:#0d1e38;--n3:#102040;--g:#4a9edd;--g2:#78b8ee;--gb:rgba(74,158,221,0.22);--gf:rgba(74,158,221,0.08);--w:#e8f0f8;--w2:rgba(232,240,248,0.72);--w3:rgba(232,240,248,0.38);--w4:rgba(232,240,248,0.06);--ok:#2a8a7a;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
+body{min-height:100vh;padding-bottom:80px}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--w4);z-index:200}
+.progress-fill{height:100%;background:linear-gradient(90deg,#4a9edd,#78d4f8);transition:width .4s;width:0%}
+header{background:rgba(10,22,40,0.95);border-bottom:1px solid var(--gb);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:100;backdrop-filter:blur(8px)}
+.hd-left{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.12em}
+.hd-right{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em}
+.hero{text-align:center;padding:60px 24px 40px;max-width:800px;margin:0 auto}
+.eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.22em;color:var(--g);margin-bottom:18px;opacity:0.8}
+.hero h1{font-family:'Cinzel',serif;font-size:44px;font-weight:700;color:var(--w);line-height:1.12;margin-bottom:12px}
+.hero h1 span{color:var(--g)}
+.gold-rule{width:80px;height:2px;background:linear-gradient(90deg,#4a9edd,#78d4f8);margin:24px auto;opacity:0.7}
+.hero-sub{font-size:16px;color:var(--w3);line-height:1.7;max-width:560px;margin:0 auto}
+.module-complete-badge{display:inline-block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.22em;color:var(--g);border:1px solid var(--gb);padding:5px 16px;border-radius:20px;margin-bottom:18px;background:var(--gf)}
+.content{max-width:780px;margin:0 auto;padding:0 24px}
+.section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb)}
+.section p{font-size:14px;color:var(--w2);line-height:1.8;margin-bottom:12px}
+.section p:last-child{margin:0}
+.section p strong{color:var(--g2);font-weight:600}
+.section p em{color:var(--g);font-style:normal;font-weight:500}
 
+/* TABLES */
+.data-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.data-table th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--g);padding:10px 14px;background:var(--gf);border:1px solid var(--gb);text-align:left}
+.data-table td{padding:10px 14px;border:1px solid rgba(74,158,221,0.1);color:var(--w2);line-height:1.6;vertical-align:top}
+.data-table tr:nth-child(even) td{background:rgba(0,0,0,0.15)}
+.data-table td:first-child{color:var(--g2);font-weight:600}
+
+/* CALLOUT */
+.callout{background:var(--gf);border-left:2px solid var(--g);border-radius:0 8px 8px 0;padding:14px 16px;margin:16px 0}
+.callout-label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.12em;margin-bottom:6px}
+.callout p{font-size:13px;color:var(--w2);margin:0;line-height:1.7}
+.callout.blue{border-left-color:rgba(120,212,248,0.7);background:rgba(120,212,248,0.06)}
+.callout.blue .callout-label{color:rgba(140,220,248,0.9)}
+.callout.amber{border-left-color:rgba(220,190,80,0.7);background:rgba(220,190,80,0.06)}
+.callout.amber .callout-label{color:rgba(220,190,80,0.9)}
+.callout.amber p{color:rgba(232,240,248,0.65)}
+
+/* INTERACTIVE */
+.viz-section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.viz-section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:6px}
+.viz-sub{font-size:12px;color:var(--w3);margin-bottom:22px;line-height:1.6}
+.viz-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.viz-tab{padding:8px 18px;border-radius:6px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all .18s;border:1px solid var(--gb);background:var(--gf);color:var(--w3)}
+.viz-tab.active{background:var(--g);color:#080e30;border-color:var(--g)}
+.viz-panel{display:none}.viz-panel.active{display:block}
+
+/* EZ WATER VISUALIZER */
+.ez-wrap{background:rgba(0,0,0,0.3);border:1px solid var(--gb);border-radius:10px;padding:14px;text-align:center;margin-bottom:14px}
+canvas.ez-c{display:block;margin:0 auto;width:100%;max-width:560px}
+.ez-controls{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+.ez-ctrl label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;display:block;margin-bottom:4px}
+.ez-ctrl input[type=range]{width:140px;accent-color:var(--g);cursor:pointer}
+.ez-ctrl span{font-family:'Cinzel',serif;font-size:11px;color:var(--g2);display:block;text-align:center;margin-top:2px}
+.ez-mode-btns{display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.ez-mode-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.08em;cursor:pointer;border:1px solid var(--gb);background:var(--gf);color:var(--w3);transition:all .18s}
+.ez-mode-btn.active{background:var(--g);color:#080e30;border-color:var(--g)}
+.ez-note{font-size:12px;color:var(--w3);line-height:1.65;padding:10px 14px;background:var(--gf);border-radius:6px;border-left:2px solid var(--g)}
+
+/* STRUCTURING METHODS */
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+@media(max-width:540px){.method-grid{grid-template-columns:1fr}}
+.method-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px;cursor:pointer;transition:all .18s}
+.method-card:hover{border-color:var(--g);transform:translateY(-1px)}
+.method-card.active{border-color:var(--g);background:rgba(74,158,221,0.08)}
+.method-icon{font-size:22px;margin-bottom:8px}
+.method-name{font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.08em;margin-bottom:4px}
+.method-tag{font-size:10px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.06em}
+.method-detail{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:20px;display:none;animation:fadeIn .2s ease}
+.method-detail.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.method-detail h4{font-family:'Cinzel',serif;font-size:13px;color:var(--g2);margin-bottom:10px;letter-spacing:0.06em}
+.method-detail p{font-size:13px;color:var(--w2);line-height:1.75;margin-bottom:8px}
+.method-detail p:last-child{margin:0}
+.method-detail .evidence{font-size:11px;color:rgba(100,220,140,0.85);border-top:1px solid var(--gb);margin-top:10px;padding-top:10px;line-height:1.6}
+.method-detail .practice{font-size:12px;color:var(--g);margin-top:6px;line-height:1.6;font-style:italic}
+
+/* PROPERTIES COMPARISON */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:520px){.compare-grid{grid-template-columns:1fr}}
+.compare-col{background:var(--n3);border:1px solid var(--gb);border-radius:10px;overflow:hidden}
+.compare-col-header{padding:10px 14px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.1em;border-bottom:1px solid var(--gb)}
+.compare-col.bulk .compare-col-header{color:rgba(200,200,200,0.7);background:rgba(255,255,255,0.03)}
+.compare-col.ez .compare-col-header{color:var(--g2);background:rgba(74,158,221,0.08)}
+.compare-row{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--w2);line-height:1.5}
+.compare-row:last-child{border-bottom:none}
+.compare-row strong{color:var(--g2)}
+
+/* ACCORDION */
+.accordion{margin-top:8px}
+.acc-item{border:1px solid var(--gb);border-radius:8px;margin-bottom:7px;overflow:hidden}
+.acc-head{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.06em;background:var(--gf);transition:background .15s}
+.acc-head:hover{background:rgba(255,255,255,0.04)}
+.acc-body{display:none;padding:14px 16px;font-size:13px;color:var(--w2);line-height:1.75;border-top:1px solid var(--gb)}
+.acc-body.open{display:block}
+.acc-arrow{transition:transform .2s;font-size:11px}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body strong{color:var(--g2)}
+
+/* PRACTICE STEPS */
+.practice-steps{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.ps{display:flex;gap:14px;padding:14px;background:var(--gf);border:1px solid var(--gb);border-radius:8px}
+.ps-n{font-family:'Cinzel',serif;font-size:13px;color:var(--g);min-width:28px;font-weight:700;padding-top:1px}
+.ps-t{font-size:13px;color:var(--w2);line-height:1.65}
+.ps-t strong{color:var(--g2);font-weight:600}
+
+/* RESOURCES */
+.res-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(232,240,248,0.05)}
+.res-item:last-child{border:none}
+.res-icon{font-size:15px;flex-shrink:0;padding-top:2px}
+.res-title{font-size:13px;color:var(--w);font-weight:500;margin-bottom:2px}
+.res-auth{font-size:11px;color:var(--g2);margin-bottom:3px}
+.res-desc{font-size:11px;color:var(--w3);line-height:1.5}
+
+/* REFLECTION */
+.reflection-prompt{background:var(--n3);border-left:3px solid var(--g);border-radius:0 8px 8px 0;padding:16px 18px;margin-bottom:12px}
+.reflection-prompt p{font-size:13px;color:var(--w2);line-height:1.65;font-style:italic;margin:0}
+textarea{width:100%;background:var(--w4);border:1px solid var(--gb);border-radius:8px;padding:12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;resize:vertical;min-height:88px;outline:none;line-height:1.6;transition:border-color .2s;margin-top:8px}
+textarea:focus{border-color:var(--g)}
+textarea::placeholder{color:var(--w3)}
+
+/* MODULE COMPLETE SECTION */
+.module-complete{background:rgba(74,158,221,0.06);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px;text-align:center}
+.module-complete h2{font-family:'Cinzel',serif;font-size:18px;color:var(--g2);letter-spacing:0.1em;margin-bottom:14px}
+.module-complete p{font-size:14px;color:var(--w2);line-height:1.8;max-width:600px;margin:0 auto 14px}
+
+/* WORKSHOP */
+.workshop{background:var(--gf);border:1px dashed var(--gb);border-radius:12px;padding:22px;text-align:center;margin-bottom:20px}
+.workshop h3{font-family:'Cinzel',serif;font-size:13px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.workshop p{font-size:12px;color:var(--w3);line-height:1.65}
+
+/* COMPLETION */
+.completion-box{background:var(--gf);border:1px solid var(--gb);border-radius:12px;padding:24px;text-align:center;margin-top:20px}
+.completion-box h3{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.08em;margin-bottom:10px}
+.completion-box p{font-size:13px;color:var(--w3);margin-bottom:16px;line-height:1.6}
+.complete-btn{padding:12px 28px;border-radius:8px;background:var(--g);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:0.1em;color:#080e30;transition:all .15s}
+.complete-btn:hover{background:var(--g2)}
+.complete-btn.done{background:var(--ok);cursor:default}
+.xp-flash{display:none;margin-top:12px;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.08em}
+.xp-flash.show{display:block}
+
+/* NAV */
+.nav-lessons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:480px){.nav-lessons{grid-template-columns:1fr}}
+.nav-lesson{background:var(--n3);border:1px solid var(--gb);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;transition:all .18s}
+.nav-lesson:hover{background:var(--gf);border-color:var(--g)}
+.nav-lesson.prev{flex-direction:row-reverse}
+.nav-label{font-size:10px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.12em;margin-bottom:4px;text-transform:uppercase}
+.nav-title{font-size:13px;color:var(--w);font-family:'Cinzel',serif}
+.nav-arrow{font-size:20px;color:var(--g)}
+
+/* SAVE BAR */
+.save-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,0.97);border-top:1px solid var(--gb);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;backdrop-filter:blur(8px)}
+.save-status{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.08em}
+.save-btns{display:flex;gap:8px}
+.save-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all .15s;border:1px solid var(--gb)}
+.save-btn.primary{background:var(--g);color:#080e30;border-color:var(--g)}.save-btn.primary:hover{background:var(--g2)}
+.save-btn.ghost{background:var(--gf);color:var(--g)}.save-btn.ghost:hover{background:rgba(255,255,255,0.06)}
+#importFile{display:none}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <div class="hd-left">THE FREQUENCY ACADEMY · QUANTUM PHYSICS & SCIENCES</div>
+  <div class="hd-right">Q16 · MODULE CAPSTONE · LESSON 16 OF 16</div>
+</header>
+
+<div class="hero">
+  <div class="module-complete-badge">✦ MODULE CAPSTONE — QUANTUM PHYSICS & SCIENCES ✦</div>
+  <div class="eyebrow">QUANTUM PHYSICS & SCIENCES · Q16</div>
+  <h1>Structured Water — <span>The Fourth Phase</span></h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">You learned that water exists in three phases. That was incomplete. Dr. Gerald Pollack's peer-reviewed research from the University of Washington reveals a fourth — a gel-like, structured state that forms near hydrophilic surfaces and is the primary state of water inside every cell in your body.</p>
+</div>
+
+<div style="max-width:840px;margin:0 auto 32px;padding:0 24px">
+  <div style="background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:14px">
+    <div style="font-size:24px">🎬</div>
+    <div>
+      <div style="font-family:Cinzel,serif;font-size:11px;color:var(--g);letter-spacing:0.1em;margin-bottom:4px">VIDEO LESSON</div>
+      <div style="font-size:13px;color:var(--w3);line-height:1.5">A video transmission for this lesson is coming soon. The interactive lesson below contains the full teaching content — explore it now and the video will be added here when available.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- TRANSMISSION -->
+  <div class="section">
+    <h2>The Transmission</h2>
+    <p>Hold a glass of water. You learned in school that it exists in three phases: solid, liquid, gas. Ice, water, steam. Simple, complete, settled.</p>
+    <p>It was not complete. There is a fourth phase. Not solid, not liquid, not gas — but something in between. A gel-like, structured state with a different molecular formula, a negative electrical charge, and properties that bulk water does not possess. And the water inside your cells is primarily in this fourth phase. Not the bulk water in your glass. Not the tap water you drink. The water that actually fills your cells and surrounds your proteins is structured water — the fourth phase — and it is essential for cellular function in ways that the three-phase model cannot explain.</p>
+    <p>This is the discovery of Dr. Gerald Pollack, professor of bioengineering at the University of Washington, with over 300 peer-reviewed papers and more than three decades of water research. This is not fringe science. It is published, replicable, peer-reviewed work that overturns a fundamental assumption about the most abundant molecule in your body. And it provides the scientific foundation for everything we do with water in frequency practice — vortexing, tensor ring charging, intention work, mineral surface contact. Not mysticism. The fourth phase.</p>
+  </div>
+
+  <!-- THE THREE-PHASE PROBLEM -->
+  <div class="section">
+    <h2>The Three-Phase Problem — What the Textbooks Missed</h2>
+    <p>The three-phase model of water — solid, liquid, gas — describes bulk water's macroscopic behavior adequately. Ice melts at 0°C. Water boils at 100°C. These transitions are real and well-characterized. But the model carries an implicit assumption that liquid water is simply a random jumble of H₂O molecules with no persistent structure beyond transient hydrogen bonds. This assumption, it turns out, is wrong in biologically relevant conditions.</p>
+    <p>Several anomalies of water have puzzled chemists for over a century. Water has anomalously high surface tension — the familiar water skin that supports the weight of small insects. Ice is less dense than liquid water, causing it to float — unusual because most solids are denser than their liquid forms. Water has anomalously high heat capacity, absorbing and releasing heat slowly compared to other molecules of similar size. Water expands when it freezes instead of contracting. The three-phase random-molecule model does not satisfactorily explain these anomalies.</p>
+    <p>Pollack's contribution: under biological conditions — near the hydrophilic surfaces of proteins, membranes, organelles, and cellular infrastructure — liquid water does not remain random. It organizes. It forms a distinct fourth phase with measurably different properties. The anomalies of water, Pollack argues, are not exceptions to a random-molecule model. They are evidence that water is more structured than the model assumed.</p>
+
+    <div class="callout blue">
+      <div class="callout-label">DR. GERALD POLLACK — CREDENTIALS</div>
+      <p>Professor of Bioengineering, University of Washington. Director, Pollack Laboratory. Editor-in-Chief, WATER — A Multidisciplinary Research Journal. Over 300 peer-reviewed papers. Author of "Cells, Gels, and the Engines of Life" (2001) and "The Fourth Phase of Water" (2013). Recipient of the Prigogine Medal for thermodynamics research. This is not alternative science. It is published mainstream biophysics research that challenges a textbook assumption.</p>
+    </div>
+  </div>
+
+  <!-- THE FOURTH PHASE -->
+  <div class="section">
+    <h2>The Fourth Phase — Exclusion Zone Water</h2>
+    <p>Pollack's discovery: when water meets a <strong>hydrophilic surface</strong> — a water-loving surface, one that attracts water molecules — the water immediately adjacent to that surface does not remain randomly organized. It forms a structured zone with properties distinct from bulk water.</p>
+    <p>Pollack called this the <strong>Exclusion Zone</strong> — EZ water — because of its most immediately observable property: it excludes solutes and particles. Place microspheres in water next to a hydrophilic gel surface and watch them migrate away from the surface as the EZ forms. The structured zone literally pushes out substances that are dissolved or suspended in bulk water. The exclusion zone can extend <strong>hundreds of microns</strong> from the surface — a substantial distance at the molecular scale.</p>
+    <p>EZ water is not ice — it is not locked in a rigid crystalline lattice. But it is not random bulk liquid either. It occupies an intermediate state: gel-like, more viscous, organized into hexagonal sheets of water molecules stacked in layers. Its molecular formula is <strong>H₃O₂</strong> rather than H₂O — a different stoichiometry reflecting the more organized molecular packing. It carries a <strong>negative electrical charge</strong>. The bulk water beyond the EZ carries a compensating positive charge. This charge separation is what Pollack calls the "water battery" — stored potential energy in the structured water that can do work.</p>
+    <p>The EZ absorbs light at <strong>270 nanometers</strong> (ultraviolet) — something bulk water does not do. This spectrophotometric signature allows researchers to measure the EZ precisely and track how it grows or shrinks in response to different inputs. And one of the most reliably demonstrated inputs that expands the EZ: <strong>infrared light</strong>. Sunlight contains substantial infrared. The EZ grows when exposed to infrared. This, Pollack argues, is why natural sunlight-exposed water behaves differently from water that has never seen the sun.</p>
+
+    <table class="data-table" style="margin-top:16px">
+      <thead><tr><th>Property</th><th>Bulk Water (H₂O)</th><th>EZ Water (H₃O₂)</th></tr></thead>
+      <tbody>
+        <tr><td>Molecular formula</td><td>H₂O</td><td>H₃O₂</td></tr>
+        <tr><td>Molecular arrangement</td><td>Random, disordered</td><td>Hexagonal sheets, layered</td></tr>
+        <tr><td>Electrical charge</td><td>Neutral</td><td>Negative (−)</td></tr>
+        <tr><td>Viscosity</td><td>Free-flowing liquid</td><td>More viscous, gel-like</td></tr>
+        <tr><td>Density</td><td>Standard liquid density</td><td>Higher than bulk water</td></tr>
+        <tr><td>Solute behavior</td><td>Dissolves and holds solutes</td><td>Excludes particles and solutes</td></tr>
+        <tr><td>Light absorption</td><td>Does not absorb at 270 nm</td><td>Absorbs at 270 nm UV</td></tr>
+        <tr><td>Infrared response</td><td>Minimal organizational effect</td><td>IR expands the EZ substantially</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CELLULAR WATER -->
+  <div class="section">
+    <h2>Cellular Water — Why the Fourth Phase Is Biology</h2>
+    <p>The interior of a living cell is packed with hydrophilic surfaces: the phospholipid bilayer of the cell membrane, the hydrophilic regions of thousands of protein molecules, the surfaces of organelles, the nuclear membrane, cytoskeletal filaments. EZ water forms spontaneously near all of these surfaces. Given the density of hydrophilic surfaces inside a cell, <strong>the majority of cellular water is EZ water</strong>, not bulk water.</p>
+    <p>This changes the picture of how cells work. The conventional biochemistry model treats cellular water as an aqueous solution — a watery medium in which proteins and other molecules float and react. Pollack's model treats cellular water as a structured gel — an organized medium that plays an active role in cellular function, not merely a passive solvent. The gel-like cytoplasm that defines living cells is, in this model, a manifestation of EZ water throughout the cellular interior.</p>
+    <p>The implications extend to cell health. <strong>Healthy cells maintain robust EZ water.</strong> The structured water's negative charge, gel-like viscosity, and exclusion properties all contribute to the organized, ordered environment in which cellular processes operate. When cells are damaged, stressed, or dying, this structure breaks down — the EZ shrinks, the cytoplasm becomes less organized, and cellular function deteriorates. This is not merely a correlation. The EZ is the physical substrate of the ordered cellular environment that life requires.</p>
+
+    <div class="callout">
+      <div class="callout-label">THE WATER BATTERY</div>
+      <p>The negative charge of EZ water and the compensating positive charge of adjacent bulk water create a charge separation — a battery. Pollack calculates that this water battery stores meaningful potential energy. In the cell, this energy is available to do work: driving transport processes, powering molecular machines, organizing protein folding. The cell's energy budget is not derived solely from ATP and metabolic chemistry. The structured water battery is an additional energy source that conventional biochemistry has not accounted for.</p>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE -->
+  <div class="viz-section">
+    <h2>Structured Water Explorer</h2>
+    <p class="viz-sub">Two tools: the EZ Water Visualizer animates the exclusion zone forming and expanding near a hydrophilic surface, with controls for surface type and IR intensity. The Structuring Methods Explorer gives deep dives on each method that creates or expands EZ water, with evidence strength and practical application.</p>
+
+    <div class="viz-tabs">
+      <button class="viz-tab active" onclick="switchTab('ez', this)">EZ Water Visualizer</button>
+      <button class="viz-tab" onclick="switchTab('methods', this)">Structuring Methods</button>
+    </div>
+
+    <!-- TAB 1: EZ VISUALIZER -->
+    <div class="viz-panel active" id="tab-ez">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:14px">The exclusion zone forming near a hydrophilic surface. Blue particles represent bulk water molecules moving randomly. The structured EZ layer (hexagonal, ordered, negatively charged) grows outward from the surface. Adjust infrared intensity to see the EZ expand — replicating Pollack's key experimental finding.</p>
+
+      <div class="ez-mode-btns">
+        <button class="ez-mode-btn active" id="ebtn-bulk" onclick="setEZMode('bulk', this)">Bulk Water Only</button>
+        <button class="ez-mode-btn" id="ebtn-forming" onclick="setEZMode('forming', this)">EZ Forming</button>
+        <button class="ez-mode-btn" id="ebtn-ir" onclick="setEZMode('ir', this)">With Infrared</button>
+      </div>
+
+      <div class="ez-controls">
+        <div class="ez-ctrl">
+          <label>INFRARED INTENSITY</label>
+          <input type="range" id="irSlider" min="0" max="100" value="0" oninput="updateIR()">
+          <span id="irLabel">0% (Dark)</span>
+        </div>
+        <div class="ez-ctrl">
+          <label>TIME ELAPSED</label>
+          <input type="range" id="timeSlider" min="0" max="100" value="50" oninput="updateTime()">
+          <span id="timeLabel">Medium</span>
+        </div>
+      </div>
+
+      <div class="ez-wrap">
+        <canvas class="ez-c" id="ezCanvas" width="560" height="320"></canvas>
+      </div>
+
+      <div class="ez-note" id="ezNote">
+        Bulk water: molecules moving randomly with no persistent organization. This is the conventional three-phase model's liquid water — H₂O with transient hydrogen bonds but no sustained structure. This is the water in a glass, in a river, in unstructured tap water.
+      </div>
+    </div>
+
+    <!-- TAB 2: STRUCTURING METHODS -->
+    <div class="viz-panel" id="tab-methods">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:14px">Research documents several methods that create or expand EZ water. Select any method to see the evidence base, proposed mechanism, and practical application. Evidence strength reflects the quality of published research supporting the effect.</p>
+
+      <div class="method-grid" id="methodGrid"></div>
+      <div class="method-detail" id="methodDetail"></div>
+
+      <div style="background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:14px 16px;margin-top:14px">
+        <div style="font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;margin-bottom:8px">THE HIERARCHY OF EVIDENCE</div>
+        <p style="font-size:13px;color:var(--w2);line-height:1.7;margin:0">Infrared light's ability to expand the EZ is the most directly measured and replicated finding from Pollack's laboratory — it is the core experimental result. Hydrophilic surface contact is the mechanism by which EZ forms at all, also well-established. Vortex effects have experimental support but are less characterized than IR effects. Electromagnetic field effects have theoretical grounding and some experimental evidence but remain less characterized than IR or surface effects. Intention effects have the weakest evidence base and the most speculative mechanism. Knowing this hierarchy allows informed decisions about which methods to prioritize and how to hold each one.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WATER IN FREQUENCY WORK -->
+  <div class="section">
+    <h2>Structured Water in Frequency Practice</h2>
+    <p>The fourth phase provides the scientific framework for water-related frequency practices. Each practice now has a proposed physical mechanism grounded in published biophysics research.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Practice</th><th>Proposed Mechanism</th><th>Evidence Basis</th></tr></thead>
+      <tbody>
+        <tr><td>Tensor Ring Water Charging (4–6 hours)</td><td>Coherent EM field from ring couples with water's hydrogen bond network, gradually increasing EZ formation. Longer exposure allows more complete structural reorganization.</td><td>EZ response to EM fields (Pollack lab); tensor ring EM characteristics (cubit resonance)</td></tr>
+        <tr><td>Vortex Water Structuring</td><td>Rotational motion creates angular momentum that organizes water molecules. Schauberger documented empirically; EZ formation in flowing, spiral-motion water.</td><td>Pollack EZ research; Schauberger's century of empirical documentation; vortex water research</td></tr>
+        <tr><td>Sunlight / Infrared Exposure</td><td>Solar infrared directly expands the EZ — the most robustly measured structuring effect. Sunlight-exposed water maintains larger EZ than unexposed water.</td><td>Direct: Pollack laboratory measurements showing IR-driven EZ expansion at 270 nm absorption</td></tr>
+        <tr><td>Mineral / Crystal Surface Contact</td><td>Hydrophilic mineral and crystal surfaces induce EZ formation in contact water. Spring water has years of mineral surface contact — its larger EZ is proposed explanation for "living water" quality.</td><td>Pollack EZ formation near hydrophilic surfaces; geological spring water research</td></tr>
+        <tr><td>Intentional Charging</td><td>Consciousness-generated EM fields (Q15 bioelectromagnetics) may interact with water's EM-responsive EZ structure. The mechanism runs through field generation, not through direct molecular interaction.</td><td>Indirect: consciousness → EM (HeartMath); EM → EZ (Pollack). The chain is plausible but the intention→EZ link is not directly measured.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout amber" style="margin-top:16px">
+      <div class="callout-label">ON EMOTO'S WATER CRYSTAL WORK</div>
+      <p>Masaru Emoto's photographs of water crystals responding to words and intentions are visually compelling and culturally significant. They are not peer-reviewed science. His methodology has been criticized for subjective crystal selection and lack of blinded protocols. However: the EZ water framework provides a mechanism by which external fields (electromagnetic, acoustic) could affect water structure in ways that manifest as different crystallization patterns. Emoto's specific claims remain unverified; the broader principle that water structure responds to external fields has Pollack's research behind it.</p>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <div class="section">
+    <h2>Quick Reference</h2>
+    <div class="accordion" id="accWrap"></div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="section">
+    <h2>This Week's Practice — Build a Structured Water Protocol</h2>
+    <p style="margin-bottom:16px">The fourth phase is not abstract. You can increase the EZ water in your drinking water using methods that Pollack's research documents. This week: design and begin a personal water structuring protocol, test it systematically, and document what you observe.</p>
+    <div class="practice-steps">
+      <div class="ps"><div class="ps-n">1</div><div class="ps-t"><strong>Infrared structuring — the most evidence-backed method.</strong> Fill a glass or pitcher with water and place it in direct sunlight for 30–60 minutes. This is the most directly Pollack-supported structuring method: solar infrared measurably expands the EZ. Alternatively, use a near-infrared heat lamp (available inexpensively) to expose water for 20–30 minutes. Taste the sunlight-structured water compared to water kept in a dark room at the same temperature. Record what you notice about taste, texture, and how your body feels after drinking each.</div></div>
+      <div class="ps"><div class="ps-n">2</div><div class="ps-t"><strong>Mineral surface contact structuring.</strong> Add a clean, food-grade crystal (quartz, shungite, or mineral stones specifically sold for water use) to a glass of water and let it sit for 4–8 hours. Alternatively, pour water over a clean mineral surface repeatedly. The hydrophilic mineral surface induces EZ formation in contact water over time. This is the proposed mechanism for spring water quality — years of underground mineral contact. Compare to your control glass.</div></div>
+      <div class="ps"><div class="ps-n">3</div><div class="ps-t"><strong>Tensor ring structuring — the frequency practice method.</strong> If you have tensor rings, place a glass or jar of water inside a ring stack or set a ring on top of the container. Leave for a minimum of 4 hours, ideally 6–8. The coherent EM field of the ring is proposed to interact with the water's hydrogen bond network, increasing EZ. This is your frequency device practice directly applying the fourth-phase framework. Test: taste, plant watering (sprouting seeds show different germination rates in some structured water tests), subjective wellbeing.</div></div>
+      <div class="ps"><div class="ps-n">4</div><div class="ps-t"><strong>Document your protocol.</strong> Keep a simple log for seven days: method used, duration, amount of water, what you noticed. This is not a controlled scientific experiment — you cannot blind yourself. But systematic personal documentation across a week produces data that anecdote does not. The value is in building a consistent practice and a personal evidence base, not in proving anything. After seven days, review your notes and make a decision about which methods to continue and which to prioritize.</div></div>
+    </div>
+  </div>
+
+  <!-- GO DEEPER -->
+  <div class="section">
+    <h2>Go Deeper</h2>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">The Fourth Phase of Water — Gerald H. Pollack</div>
+        <div class="res-auth">Ebner &amp; Sons, 2013</div>
+        <div class="res-desc">The primary accessible source. Pollack explains his research for a general scientific audience with full experimental detail. The book that established the fourth phase as a concept for a broader readership. Essential reading for anyone working seriously with structured water.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">Cells, Gels, and the Engines of Life — Gerald H. Pollack</div>
+        <div class="res-auth">Ebner &amp; Sons, 2001</div>
+        <div class="res-desc">Pollack's earlier book examining the cell as a gel system rather than an aqueous solution. More focused on cell biology than water physics, but provides the biological context for why structured water matters at the cellular level. Predates the EZ discovery but establishes the biological framework.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔬</div>
+      <div>
+        <div class="res-title">Pollack Laboratory Publications</div>
+        <div class="res-auth">faculty.washington.edu/ghp — University of Washington</div>
+        <div class="res-desc">The complete list of peer-reviewed papers from Pollack's laboratory, available through the University of Washington faculty page. The primary literature for EZ water — the actual experimental data behind the fourth-phase claims. Essential if you want to evaluate the research firsthand rather than through secondary sources.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">Living Water — Viktor Schauberger</div>
+        <div class="res-auth">Gateway, 1997</div>
+        <div class="res-desc">The collected works of Viktor Schauberger — Austrian forester and naturalist who documented the properties of living (structured) water empirically a century before Pollack's research. Schauberger's observations of spring water, vortex dynamics, and the difference between "dead" and "living" water now map onto EZ water science with remarkable precision.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🎬</div>
+      <div>
+        <div class="res-title">Gerald Pollack TEDx Talk — Water, Energy, and Life</div>
+        <div class="res-auth">YouTube — search "Pollack TEDx water fourth phase"</div>
+        <div class="res-desc">Pollack's accessible 20-minute presentation of the fourth phase for a general audience. The best single overview of EZ water research for those new to the concept. Includes visualization of the exclusion zone and the key experimental demonstrations.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔗</div>
+      <div>
+        <div class="res-title">Previous: Q15 — Bioelectromagnetics</div>
+        <div class="res-auth">The Frequency Academy · Quantum Physics &amp; Sciences</div>
+        <div class="res-desc">The bioelectromagnetic framework from Q15 — particularly the body's electromagnetic fields and their measurable effects — provides the link between frequency devices and EZ water structuring: devices generate EM fields, EM fields affect EZ formation, cellular EZ water quality affects cellular function. The chain is now complete.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="section">
+    <h2>Reflection Journal</h2>
+
+    <div class="reflection-prompt">
+      <p>How does knowing about the fourth phase of water change how you think about hydration and water quality? Not just in terms of drinking water — but in terms of the water inside your cells, the 70% of your body that is water. What does it mean that the state of your cellular water is a measure of cellular health?</p>
+    </div>
+    <textarea id="ref1" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>What water structuring methods have you used or experienced — vortexing, crystal contact, sunlight exposure, tensor rings, intention? Having now encountered the fourth-phase framework: do these practices make more physical sense to you? Less? And which ones do you want to engage with more deliberately going forward?</p>
+    </div>
+    <textarea id="ref2" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>Looking back at the entire Quantum Physics & Sciences module — from wave-particle duality through EZ water — what has most fundamentally shifted in how you understand your body, reality, and frequency work? What do you carry forward into the next module that you did not have before?</p>
+    </div>
+    <textarea id="ref3" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>Dr. Pollack's research validates water structuring with peer-reviewed science. How does having mainstream scientific validation for a practice change your relationship to it? And conversely: are there practices you hold with equal confidence that do not yet have that validation? What is your process for holding both?</p>
+    </div>
+    <textarea id="ref4" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- MODULE COMPLETE -->
+  <div class="module-complete">
+    <h2>Quantum Physics & Sciences — Module Complete</h2>
+    <p>You have completed the full Quantum Physics & Sciences module — sixteen lessons from wave-particle duality through structured water. You now have a foundational understanding of quantum mechanics, electromagnetic physics, bioelectromagnetics, and the frontier territories beyond mainstream science that frequency work operates in.</p>
+    <p>You have the WHY. The next modules will take you into the WHAT and HOW — specific frequencies, specific devices, specific protocols. Everything that follows builds on what you have learned here.</p>
+    <p style="font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.1em;margin-top:4px">Water is the medium of life. Structured water is water in its living state.</p>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="workshop">
+    <h3>Live Workshop: Structured Water — The Fourth Phase</h3>
+    <p>A live deep-dive on this topic is coming soon. Recordings and supplemental materials will appear here once available. Members will be notified via the Academy portal.</p>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="completion-box">
+    <h3>Complete the Quantum Physics &amp; Sciences Module</h3>
+    <p>When you have explored both interactive tabs, begun your structured water protocol, and written at least two reflections — mark this lesson and module complete.</p>
+    <button class="complete-btn" id="completeBtn" onclick="markComplete()">Mark Complete · +10 XP · Module Badge</button>
+    <div class="xp-flash" id="xpFlash">✦ +10 XP Awarded · Quantum Physics & Sciences Complete ✦</div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-lessons">
+    <a class="nav-lesson prev" href="../lesson-15/">
+      <div class="nav-arrow">←</div>
+      <div>
+        <div class="nav-label">Previous · Q15</div>
+        <div class="nav-title">Bioelectromagnetics</div>
+      </div>
+    </a>
+    <a class="nav-lesson" href="../../frequency-fundamentals/">
+      <div>
+        <div class="nav-label">Next Module · F Series</div>
+        <div class="nav-title">Frequency Fundamentals</div>
+      </div>
+      <div class="nav-arrow">→</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="save-bar">
+  <div class="save-status" id="saveStatus">Auto-save active</div>
+  <div class="save-btns">
+    <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+    <button class="save-btn ghost" onclick="document.getElementById('importFile').click()">Import</button>
+    <button class="save-btn ghost" onclick="exportData()">Export</button>
+    <button class="save-btn primary" onclick="saveNow()">Save</button>
+  </div>
+</div>
+
+<script>
+var KEY = 'tfa_q16';
+var saveTimer;
+var ezAnimId;
+var ezT = 0;
+var ezMode = 'bulk';
+var irLevel = 0;
+var timeLevel = 0.5;
+var activeMethod = null;
+
+// ── TABS ──
+function switchTab(id, btn) {
+  document.querySelectorAll('.viz-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.viz-panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+  if (id === 'ez') startEZAnim();
+  else { if (ezAnimId) cancelAnimationFrame(ezAnimId); ezAnimId = null; }
+}
+
+// ── EZ WATER VISUALIZER ──
+function setEZMode(mode, btn) {
+  ezMode = mode;
+  document.querySelectorAll('.ez-mode-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  var ir = document.getElementById('irSlider');
+  var time = document.getElementById('timeSlider');
+  if (mode === 'bulk') { ir.value = 0; time.value = 0; irLevel = 0; timeLevel = 0; }
+  if (mode === 'forming') { ir.value = 0; time.value = 70; irLevel = 0; timeLevel = 0.7; }
+  if (mode === 'ir') { ir.value = 80; time.value = 90; irLevel = 0.8; timeLevel = 0.9; }
+  updateIR(); updateTime();
+}
+
+function updateIR() {
+  irLevel = parseInt(document.getElementById('irSlider').value) / 100;
+  var label = irLevel < 0.1 ? '0% (Dark)' : irLevel < 0.4 ? Math.round(irLevel * 100) + '% (Low IR)' : irLevel < 0.7 ? Math.round(irLevel * 100) + '% (Medium IR — Indirect Sun)' : Math.round(irLevel * 100) + '% (High IR — Direct Sunlight)';
+  document.getElementById('irLabel').textContent = label;
+  updateEZNote();
+}
+
+function updateTime() {
+  timeLevel = parseInt(document.getElementById('timeSlider').value) / 100;
+  var labels = ['Beginning', 'Short', 'Medium', 'Extended', 'Long'];
+  document.getElementById('timeLabel').textContent = labels[Math.floor(timeLevel * 4)] || 'Extended';
+  updateEZNote();
+}
+
+function updateEZNote() {
+  var ezSize = getEZSize();
+  var note;
+  if (ezSize < 0.05) {
+    note = 'Bulk water: molecules moving randomly with no persistent organization. This is the conventional three-phase model\'s liquid water — H₂O with transient hydrogen bonds but no sustained structure. This is the water in a glass, in a river, in unstructured tap water.';
+  } else if (ezSize < 0.25) {
+    note = 'EZ water beginning to form near the hydrophilic surface (bottom). The exclusion zone is still thin — molecules are organizing but the structured layer has not extended far. At this stage, solutes near the surface begin to be displaced outward. The spectrophotometric signature at 270 nm begins to appear.';
+  } else if (ezSize < 0.5) {
+    note = 'EZ water well-established. The structured zone extends several microns from the surface, with hexagonally organized H₃O₂ molecules forming layered sheets. Negatively charged. Gel-like. Solutes are pushed into the bulk water zone above. This is the state of water inside living cells near hydrophilic protein surfaces.';
+  } else if (ezSize < 0.75) {
+    note = 'Large exclusion zone — extended by ' + (irLevel > 0.5 ? 'infrared light exposure' : 'extended contact time') + '. At this scale, the EZ extends hundreds of microns from the surface. Pollack\'s laboratory measured EZ zones this large in response to infrared illumination. The water battery potential — negative EZ vs positive bulk — is substantial. This is the state of well-structured, "living" water.';
+  } else {
+    note = 'Maximum EZ development — high infrared intensity + extended time. The exclusion zone occupies most of the container. The charge separation (negative EZ, positive bulk water edge) stores significant potential energy. Pollack describes this as a state approaching the fourth phase at scale — not just near surfaces but throughout a well-structured water sample exposed to sustained infrared.';
+  }
+  document.getElementById('ezNote').textContent = note;
+}
+
+function getEZSize() {
+  return Math.min(0.95, timeLevel * 0.5 + irLevel * 0.5);
+}
+
+function startEZAnim() {
+  if (ezAnimId) cancelAnimationFrame(ezAnimId);
+  function frame() {
+    ezT += 0.02;
+    drawEZ();
+    ezAnimId = requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+function drawEZ() {
+  var c = document.getElementById('ezCanvas');
+  if (!c) return;
+  var dpr = window.devicePixelRatio || 1;
+  var W = Math.min(560, c.parentElement.offsetWidth - 28);
+  var H = 320;
+  c.width = W * dpr; c.height = H * dpr;
+  c.style.width = W + 'px'; c.style.height = H + 'px';
+  var ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  ctx.fillStyle = '#060f1a';
+  ctx.fillRect(0, 0, W, H);
+
+  var ezSize = getEZSize();
+  var ezHeight = ezSize * H * 0.78;
+  var surfaceY = H - 30;
+
+  // IR rays from top if IR level > 0
+  if (irLevel > 0) {
+    var numRays = Math.floor(3 + irLevel * 8);
+    for (var r = 0; r < numRays; r++) {
+      var rx = (r + 1) * W / (numRays + 1);
+      var rayAlpha = irLevel * 0.5 * (0.5 + 0.5 * Math.sin(ezT * 0.8 + r));
+      var rGrad = ctx.createLinearGradient(rx, 0, rx, surfaceY - ezHeight);
+      rGrad.addColorStop(0, 'rgba(255,140,60,' + rayAlpha + ')');
+      rGrad.addColorStop(1, 'rgba(255,140,60,0)');
+      ctx.beginPath();
+      ctx.strokeStyle = rGrad;
+      ctx.lineWidth = 1.5;
+      ctx.moveTo(rx, 0);
+      ctx.lineTo(rx + Math.sin(ezT * 0.3 + r) * 8, surfaceY - ezHeight);
+      ctx.stroke();
+    }
+    // IR label
+    ctx.fillStyle = 'rgba(255,140,60,0.5)';
+    ctx.font = '10px Cinzel, serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('INFRARED (' + Math.round(irLevel * 100) + '%)', W / 2, 14);
+  }
+
+  // Hydrophilic surface at bottom
+  ctx.fillStyle = 'rgba(74,158,221,0.25)';
+  ctx.fillRect(0, surfaceY, W, H - surfaceY);
+  ctx.fillStyle = 'rgba(74,158,221,0.5)';
+  ctx.font = '10px Cinzel, serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('HYDROPHILIC SURFACE', W / 2, surfaceY + 18);
+
+  // EZ zone
+  if (ezHeight > 2) {
+    var ezGrad = ctx.createLinearGradient(0, surfaceY - ezHeight, 0, surfaceY);
+    ezGrad.addColorStop(0, 'rgba(74,158,221,0.05)');
+    ezGrad.addColorStop(1, 'rgba(74,158,221,0.22)');
+    ctx.fillStyle = ezGrad;
+    ctx.fillRect(0, surfaceY - ezHeight, W, ezHeight);
+
+    // EZ label
+    if (ezHeight > 30) {
+      ctx.fillStyle = 'rgba(120,184,238,0.7)';
+      ctx.font = '10px Cinzel, serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('EZ WATER (H₃O₂)', 8, surfaceY - ezHeight + 16);
+      ctx.font = '9px Cinzel, serif';
+      ctx.fillStyle = 'rgba(120,184,238,0.5)';
+      ctx.fillText('Hexagonal · Negative charge · Gel-like', 8, surfaceY - ezHeight + 28);
+
+      // EZ boundary line
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(74,158,221,0.4)';
+      ctx.setLineDash([5, 5]);
+      ctx.lineWidth = 1;
+      ctx.moveTo(0, surfaceY - ezHeight); ctx.lineTo(W, surfaceY - ezHeight);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    // Hexagonal pattern in EZ zone
+    var hexSize = 8;
+    var hexRows = Math.ceil(ezHeight / (hexSize * 1.7));
+    var hexCols = Math.ceil(W / (hexSize * 2));
+    for (var row = 0; row < hexRows; row++) {
+      for (var col = 0; col < hexCols; col++) {
+        var hx = col * hexSize * 2 + (row % 2) * hexSize;
+        var hy = surfaceY - (row + 0.5) * hexSize * 1.7;
+        if (hy < surfaceY - ezHeight) continue;
+        var hexAlpha = 0.08 + 0.08 * Math.sin(ezT * 0.5 + row * 0.3 + col * 0.2);
+        drawHex(ctx, hx, hy, hexSize - 1, 'rgba(74,158,221,' + hexAlpha + ')');
+      }
+    }
+  }
+
+  // Bulk water particles
+  var bulkTop = ezHeight > 0 ? surfaceY - ezHeight - 5 : surfaceY;
+  var numParticles = 80;
+  for (var i = 0; i < numParticles; i++) {
+    var seed = i * 137.5;
+    var px = (Math.sin(seed) * 0.5 + 0.5) * W;
+    var py = (Math.sin(seed * 1.7 + ezT * (0.3 + Math.sin(seed * 0.3) * 0.2)) * 0.5 + 0.5) * (bulkTop - 10);
+    if (py < 2) py = 2;
+    var alpha = 0.25 + 0.2 * Math.sin(seed + ezT * 0.8);
+    ctx.beginPath();
+    ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(180,220,255,' + alpha + ')';
+    ctx.fill();
+  }
+
+  // Bulk water label
+  if (bulkTop > 20) {
+    ctx.fillStyle = 'rgba(232,240,248,0.25)';
+    ctx.font = '10px Cinzel, serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('BULK WATER (H₂O) · Random · Neutral charge', 8, 16);
+  }
+
+  // EZ height indicator
+  if (ezHeight > 10) {
+    ctx.fillStyle = 'rgba(74,158,221,0.4)';
+    ctx.font = '9px Cinzel, serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(Math.round(ezSize * 100) + '% EZ', W - 8, surfaceY - ezHeight - 6);
+  }
+}
+
+function drawHex(ctx, cx, cy, r, fillStyle) {
+  ctx.beginPath();
+  for (var i = 0; i < 6; i++) {
+    var angle = (i / 6) * Math.PI * 2 - Math.PI / 6;
+    var x = cx + r * Math.cos(angle);
+    var y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.strokeStyle = fillStyle;
+  ctx.lineWidth = 0.8;
+  ctx.stroke();
+}
+
+// ── STRUCTURING METHODS ──
+var METHODS = [
+  { id:'ir', icon:'☀️', name:'Infrared Light', tag:'Strongest Evidence',
+    title:'Infrared Light — Pollack\'s Primary Finding',
+    desc1:'Infrared light is the most directly documented method for expanding EZ water. Pollack\'s laboratory showed that exposure to infrared radiation — particularly in the 3-micron wavelength range that is the peak of solar infrared output at Earth\'s surface — dramatically expands the exclusion zone. The effect is measurable spectrophotometrically: EZ water absorbs at 270 nm, and the absorption peak grows in proportion to infrared exposure. The mechanism is proposed to be energy absorption by the water structure, allowing greater molecular reorganization.',
+    desc2:'Sunlight contains substantial infrared — approximately 52% of solar radiation reaching Earth\'s surface is infrared. This is why sun-exposed water has traditionally been considered more vital or structured than water kept in darkness. It is also why IR saunas may have hydration effects beyond simple temperature increase: the infrared exposure may be structuring the body\'s internal water while also heating tissue.',
+    evidence:'Evidence strength: STRONG — Direct laboratory measurement from Pollack\'s published research. The IR → EZ expansion is the most replicated finding in fourth-phase water research.',
+    practice:'→ Practice: Place water in a glass container in direct sunlight for 30–60 minutes. Or expose water to a near-infrared heat lamp for 20 minutes. This is the most evidence-backed structuring method available without specialized equipment.'
+  },
+  { id:'surface', icon:'💎', name:'Hydrophilic Surfaces', tag:'Core Mechanism',
+    title:'Hydrophilic Surfaces — How EZ Forms at All',
+    desc1:'EZ water formation requires a hydrophilic surface — a surface with affinity for water that attracts and orders water molecules. This is the fundamental mechanism by which the fourth phase exists: without hydrophilic surfaces, EZ water does not form. Surfaces that induce EZ formation include: hydrogel materials (the surfaces Pollack used in most laboratory demonstrations), biological polymers (the hydrophilic regions of proteins), cell membranes, and mineral surfaces including clays, shungite, quartz, and calcite.',
+    desc2:'Spring water acquires its characteristic properties largely through years or decades of contact with mineral surfaces underground. As the water percolates through rock formations, the continuous mineral surface contact allows EZ to form and persist in the water. When spring water emerges at the surface, it has a larger EZ than water that has not had mineral surface contact — a proposed physical explanation for why spring water tastes and feels different from tap water that has only been in contact with metal pipes.',
+    evidence:'Evidence strength: STRONG — This is the core mechanism of EZ formation, directly from Pollack\'s research. The specific effect varies by surface type and has not been comprehensively characterized for all mineral types.',
+    practice:'→ Practice: Add clean mineral stones (quartz, shungite, or mineral-grade stones) to water and allow 4–8 hours of contact. Alternatively, consider natural spring water — its longer mineral contact history is a proposed explanation for its reported quality differences from tap water.'
+  },
+  { id:'vortex', icon:'🌀', name:'Vortex Motion', tag:'Good Evidence',
+    title:'Vortex Motion — Schauberger\'s Insight',
+    desc1:'Viktor Schauberger, the Austrian forester and naturalist, documented extensively in the early 20th century that spiral or vortex motion fundamentally changes water\'s properties. He observed that fish in natural mountain streams — which flow in spiral, vortex-rich patterns — were healthy and vital in ways fish in still or turbulent non-vortex water were not. He built water devices based on spiral flow principles and claimed they produced more vital water. This was empirical observation without a physical theory.',
+    desc2:'Pollack\'s EZ framework provides a proposed mechanism: vortex motion creates angular momentum in the water, and this organized rotation may favor EZ formation by providing the energy needed for molecular reorganization. The spiral geometry of vortex flow mirrors the helical structure proposed for EZ water layers. Research on vortex water is less characterized than infrared research but shows some support for increased EZ content in vortexed water.',
+    evidence:'Evidence strength: MODERATE — Supported by some research and Schauberger\'s century of empirical documentation, but less directly characterized in Pollack\'s laboratory than the IR effect. The mechanism is plausible within the fourth-phase framework.',
+    practice:'→ Practice: Stir water clockwise for 30–60 seconds before drinking. Use a vortexing device if available. Combine with IR exposure for potentially additive effects. The traditional advice to "stir" or "activate" water has a proposed physical basis in vortex-induced EZ expansion.'
+  },
+  { id:'em', icon:'◯', name:'Electromagnetic Fields', tag:'Theoretical + Some Evidence',
+    title:'Electromagnetic Fields — Tensor Rings and Beyond',
+    desc1:'EZ water responds to electromagnetic fields. This has been demonstrated in Pollack\'s laboratory and provides the direct physical mechanism for frequency device water structuring claims. The proposed mechanism: coherent EM fields couple with the hydrogen bond dynamics of water, providing energy that favors the organized EZ configuration over the random bulk configuration. The key variable is coherence — random or incoherent EM noise may not produce the same effect as a coherent field at a specific frequency.',
+    desc2:'Tensor rings generate EM fields determined by their cubit-based dimensional resonance. The Lost Cubit resonant frequency (approximately 144 MHz) and the other cubit frequencies place the ring\'s EM output in the VHF radio range. The standing wave geometry of the tensor ring field creates a coherent EM environment in the space around and below the ring. Water placed in this coherent field is proposed to develop increased EZ content over the 4–6 hour structuring period.',
+    evidence:'Evidence strength: MODERATE — The EZ response to EM fields is documented. The specific effect of tensor ring fields on EZ has not been independently characterized with standard measurement equipment (spectrophotometry at 270 nm).',
+    practice:'→ Practice: Place water under or inside a tensor ring for 4–6 hours minimum. The coherence and geometry of the ring field is the proposed active element — longer exposure allows more complete structural reorganization. A ring stack (multiple rings) is proposed to produce a stronger effect than a single ring.'
+  },
+  { id:'mineral', icon:'🏔️', name:'Mineral Contact', tag:'Good Evidence',
+    title:'Mineral Contact — Natural Water Structuring',
+    desc1:'Specific minerals and natural materials are hydrophilic in ways that promote EZ formation. Shungite, a carbon-rich mineral from Russia, has been documented to affect water structure and is associated with both surface EZ induction and some antimicrobial properties. Clay minerals are strongly hydrophilic and form substantial EZ zones in contact with water — the basis for the health effects attributed to mineral-rich spring waters from clay-bearing geological formations.',
+    desc2:'The practice of adding specific stones to drinking water — shungite, tourmaline, zeolite, various mineral combinations — has both traditional roots and a proposed physical mechanism in EZ water theory. The hydrophilic mineral surface creates EZ zones in the water in contact with it. The longer and more extensive the contact (more surface area, longer time), the more EZ water potentially builds in the container.',
+    evidence:'Evidence strength: GOOD — Hydrophilic surface EZ induction is directly from Pollack\'s research. Specific mineral types vary in their documented EZ-inducing capacity.',
+    practice:'→ Practice: Research and obtain food-grade mineral stones appropriate for water contact. Add to a glass or pitcher of water and allow 6–8 hours minimum contact. Change or refresh stones periodically. Combine with sunlight exposure for potentially additive effects.'
+  },
+  { id:'intention', icon:'🧠', name:'Intention / Consciousness', tag:'Speculative — Indirect Evidence',
+    title:'Intention — The Most Controversial Method',
+    desc1:'The proposal that conscious intention can affect water structure is the most controversial of the structuring methods. The mechanism runs indirectly: consciousness generates bioelectromagnetic fields (Q15 — established in HeartMath research); electromagnetic fields affect EZ formation (Q16 — established in Pollack research). If the chain holds, then focused intention generates an EM field that could in principle affect local EZ water structure.',
+    desc2:'Masaru Emoto\'s water crystal photography provided culturally influential visual evidence but was not rigorously controlled or replicated. The specific claim — that words or intentions directly change water crystallization patterns — has not been independently verified under blinded conditions. However, the bioelectromagnetic mechanism (heart field → water EZ) is physically coherent: a person in a sustained state of cardiac coherence generates a measurable and coherent electromagnetic field, and coherent EM fields demonstrably affect EZ formation.',
+    evidence:'Evidence strength: SPECULATIVE — The mechanism chain is plausible (consciousness → EM → EZ) but the intention → water structure link is not directly measured. Emoto\'s work is not peer-reviewed. HeartMath\'s field research and Pollack\'s EM research are both established, but the connection between them in this specific context remains unverified.',
+    practice:'→ Practice: Enter a state of cardiac coherence (5-breath-per-minute breathing, heart-focused appreciation) before handling or charging water. The rationale: a coherent heart state generates a more coherent EM broadcast, which may more effectively organize EZ structure than a scattered or anxious state. The practice has independent value through HRV improvement regardless of the water effect.'
+  }
+];
+
+function buildMethods() {
+  var grid = document.getElementById('methodGrid');
+  METHODS.forEach(function(m) {
+    var card = document.createElement('div');
+    card.className = 'method-card';
+    card.id = 'mcard-' + m.id;
+    card.onclick = function() { showMethod(m, card); };
+    card.innerHTML =
+      '<div class="method-icon">' + m.icon + '</div>' +
+      '<div class="method-name">' + m.name + '</div>' +
+      '<div class="method-tag">' + m.tag + '</div>';
+    grid.appendChild(card);
+  });
+}
+
+function showMethod(m, card) {
+  document.querySelectorAll('.method-card').forEach(function(c) { c.classList.remove('active'); });
+  var det = document.getElementById('methodDetail');
+  det.classList.remove('show');
+  if (activeMethod === m.id) { activeMethod = null; return; }
+  activeMethod = m.id;
+  card.classList.add('active');
+  det.innerHTML =
+    '<h4>' + m.title + '</h4>' +
+    '<p>' + m.desc1 + '</p>' +
+    '<p>' + m.desc2 + '</p>' +
+    '<div class="evidence">' + m.evidence + '</div>' +
+    '<div class="practice">' + m.practice + '</div>';
+  det.classList.add('show');
+}
+
+// ── ACCORDION ──
+var ACC = [
+  { t:'Key Terms — Structured Water and EZ Water',
+    b:'<strong>Structured Water:</strong> Water with organized molecular arrangement beyond random bulk liquid water. An umbrella term covering EZ water, hexagonal water, coherent domains, and other organized water states.<br><br><strong>EZ Water / Exclusion Zone Water:</strong> The fourth phase of water discovered and named by Dr. Gerald Pollack. Forms near hydrophilic surfaces. Characterized by hexagonal molecular arrangement, H₃O₂ formula, negative charge, increased viscosity, and exclusion of solutes.<br><br><strong>Fourth Phase:</strong> A state of water that is neither solid (ice), liquid (bulk water), nor gas (steam) — an intermediate gel-like state with organized molecular structure. The primary state of water inside living cells.<br><br><strong>Exclusion Zone:</strong> The region near a hydrophilic surface where solutes and particles are excluded. Can extend hundreds of microns. The zone in which EZ water exists. Named for its most immediately observable property.<br><br><strong>Hydrophilic Surface:</strong> A surface with affinity for water — a "water-loving" surface that attracts water molecules and induces EZ formation. Examples: hydrogel, protein surfaces, cell membranes, certain mineral surfaces, clay.<br><br><strong>Bulk Water:</strong> Ordinary, unstructured liquid water (H₂O) with random molecular arrangement. The water in a glass of tap water, in rivers and lakes, in water that has not been in contact with hydrophilic surfaces.<br><br><strong>H₃O₂:</strong> The molecular formula of EZ water — different from ordinary H₂O. Reflects the more ordered, denser packing of water molecules in the exclusion zone structure. Not a different chemical compound — a different structural arrangement with different stoichiometry.' },
+  { t:'Three Phases vs Four Phases — The Complete Comparison',
+    b:'<strong>Solid (Ice):</strong> Crystalline lattice. Molecules locked in place. Hard, rigid. Less dense than liquid water (unusual — most solids sink in their liquid). The hydrogen bond network is fully ordered.<br><br><strong>Liquid (Bulk Water):</strong> Random molecular movement. Hydrogen bonds form and break on picosecond timescales. No persistent structure. Free-flowing. Takes container shape. The three-phase model treats all liquid water as this state.<br><br><strong>Gas (Steam):</strong> Dispersed, high-energy molecules. No significant intermolecular interaction. Expands to fill available space. Pure kinetic energy.<br><br><strong>Fourth Phase (EZ Water):</strong> Gel-like, intermediate. Not frozen like ice — molecules can still move, but movement is restricted and organized. Not random like bulk water — molecules maintain a persistent hexagonal sheet structure. Denser than liquid water. Negatively charged. Excludes foreign substances. Formula H₃O₂. Absorbs at 270 nm UV. Expands in response to infrared light.<br><br>The fourth phase is most analogous to a liquid crystal — a state that has the flow properties of a liquid but the orientational order of a crystal. The term "gel" captures both of these: EZ water is not rigid like ice, but it maintains structure like a gel.' },
+  { t:'The Water Battery — Charge Separation and Biological Energy',
+    b:'One of Pollack\'s most consequential observations: the exclusion zone is negatively charged, and the bulk water adjacent to it becomes positively charged. This charge separation — negative EZ, positive bulk — creates a potential difference: a battery.<br><br><strong>How it forms:</strong> As the EZ builds near a hydrophilic surface, protons (H⁺ ions) are released from the forming structure into the bulk water. This leaves the EZ with a net negative charge and makes the adjacent bulk water increasingly positive (proton-rich, acidic).<br><br><strong>The energy stored:</strong> Pollack calculates that the charge separation across the EZ-bulk interface stores meaningful electrical potential energy — comparable in principle to a biological battery. This energy is available to do work in the cell.<br><br><strong>Biological implications:</strong> Conventional biochemistry assigns nearly all cellular energy to ATP hydrolysis and metabolic chemistry. Pollack\'s water battery proposes an additional energy source — the structural potential energy of organized cellular water. Cell functions that would require more ATP than is available on conventional accounting may be partly powered by the water battery. This would revise the cell\'s energy balance significantly.<br><br><strong>Practical implication:</strong> Increasing the EZ content of cellular water (through hydration with structured water, infrared exposure, etc.) may increase the water battery charge available for cellular function — an additional mechanism for the health claims associated with structured water use.' },
+  { t:'Viktor Schauberger — The Empirical Predecessor',
+    b:'Viktor Schauberger (1885–1958) was an Austrian forest warden and self-taught naturalist who spent decades observing natural water systems — mountain streams, springs, rivers — and developing radical conclusions about the nature of living water long before Pollack\'s research existed.<br><br>His core observations: water flowing in natural spiral, vortex-rich patterns was distinctively different from water that had been channeled into straight pipes or turbulent flows. Natural spring water emerging from underground had properties — vitality for plants and fish, different taste, different behavior in vortex — that tap water lacked. Living water, as he called it, had a structured character that conventional water had lost.<br><br>His practical inventions: Schauberger built "living water" pipes with spiral internal grooves designed to induce vortex motion in flowing water. He claimed these pipes produced water with enhanced vitality. He also built what he called "trout turbines" — devices that generated power by exploiting the spiral implosion dynamics of living water.<br><br>His relevance to EZ water: Schauberger\'s distinction between living and dead water, his emphasis on vortex motion as the organizing principle, and his documentation of spring water properties all map onto Pollack\'s fourth-phase framework with remarkable precision — decades before the science existed to explain the mechanism. His work is the empirical record; Pollack\'s is the theoretical account.' },
+  { t:'Water Inside Cells — The Biological Stakes',
+    b:'The human body is approximately 70% water by mass. The brain is approximately 80% water. In conventional biochemistry, this cellular water is treated as a solvent — the medium in which proteins, lipids, and other molecules float and react. Passive. Structural only in the gross sense.<br><br>Pollack\'s model: cellular water is not passive. Because every cell is packed with hydrophilic surfaces — proteins, membrane phospholipid headgroups, organelle surfaces, cytoskeletal filaments — the majority of cellular water exists in EZ form. The gel-like cytoplasm that characterizes living cells is, in this model, a direct expression of EZ water throughout the cellular interior.<br><br>The difference is significant:<br>· Conventional model: water is a solvent. Proteins do the work. Water is passive background.<br>· EZ model: water is an active participant. The structured water battery powers some cellular work. The gel properties of EZ water directly influence protein folding and molecular diffusion. Water quality is cellular function quality.<br><br>When cells are healthy, their EZ water is robust — high charge separation, substantial exclusion zone, gel-like cytoplasm. When cells are stressed, sick, or dying, the structure breaks down. The EZ shrinks. Cytoplasm becomes less gel-like. This is not merely a symptom of cellular dysfunction — by Pollack\'s model, it is a contributing cause, because the structured water\'s functions (energy storage, molecular organization, solute exclusion) are lost along with the structure.<br><br>This makes hydration with structured water a direct cellular support strategy — not merely ensuring fluid volume, but providing the cells with water that is more readily organized into the EZ configuration they require.' }
+];
+
+function buildAcc() {
+  var w = document.getElementById('accWrap');
+  ACC.forEach(function(item) {
+    var d = document.createElement('div');
+    d.className = 'acc-item';
+    d.innerHTML = '<div class="acc-head" onclick="toggleAcc(this)"><span>' + item.t + '</span><span class="acc-arrow">▾</span></div><div class="acc-body">' + item.b + '</div>';
+    w.appendChild(d);
+  });
+}
+function toggleAcc(head) {
+  var body = head.nextElementSibling;
+  var arrow = head.querySelector('.acc-arrow');
+  var isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body.open').forEach(function(b) { b.classList.remove('open'); });
+  document.querySelectorAll('.acc-arrow.open').forEach(function(a) { a.classList.remove('open'); });
+  if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
+}
+
+// ── COMPLETION ──
+function markComplete() {
+  var btn = document.getElementById('completeBtn');
+  if (btn.classList.contains('done')) return;
+  btn.classList.add('done');
+  btn.textContent = '✓ Module Complete';
+  document.getElementById('xpFlash').classList.add('show');
+  saveNow();
+}
+
+// ── SAVE / LOAD ──
+function getData() {
+  return {
+    v: 1, lesson: 'Q16', ts: new Date().toISOString(),
+    r1: document.getElementById('ref1').value,
+    r2: document.getElementById('ref2').value,
+    r3: document.getElementById('ref3').value,
+    r4: document.getElementById('ref4').value,
+    done: document.getElementById('completeBtn').classList.contains('done')
+  };
+}
+function saveNow() {
+  localStorage.setItem(KEY, JSON.stringify(getData()));
+  document.getElementById('saveStatus').textContent = 'Saved ' + new Date().toLocaleTimeString();
+}
+function autoSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 90000);
+}
+function loadData() {
+  var raw = localStorage.getItem(KEY);
+  if (!raw) return;
+  try {
+    var d = JSON.parse(raw);
+    if (d.r1) document.getElementById('ref1').value = d.r1;
+    if (d.r2) document.getElementById('ref2').value = d.r2;
+    if (d.r3) document.getElementById('ref3').value = d.r3;
+    if (d.r4) document.getElementById('ref4').value = d.r4;
+    if (d.done) {
+      var btn = document.getElementById('completeBtn');
+      btn.classList.add('done'); btn.textContent = '✓ Module Complete';
+      document.getElementById('xpFlash').classList.add('show');
+    }
+    document.getElementById('saveStatus').textContent = 'Session restored';
+  } catch(e) {}
+}
+function exportData() {
+  saveNow();
+  var b = new Blob([JSON.stringify(getData(), null, 2)], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(b);
+  a.download = 'TFA_Q16_backup_' + Date.now() + '.json';
+  a.click();
+}
+function importData(e) {
+  var f = e.target.files[0];
+  if (!f) return;
+  var r = new FileReader();
+  r.onload = function(ev) {
+    try {
+      var d = JSON.parse(ev.target.result);
+      localStorage.setItem(KEY, JSON.stringify(d));
+      loadData();
+    } catch(err) {}
+  };
+  r.readAsText(f);
+  e.target.value = '';
+}
+
+// ── PROGRESS BAR ──
+window.addEventListener('scroll', function() {
+  var doc = document.documentElement;
+  var sc = window.scrollY || doc.scrollTop;
+  var sh = doc.scrollHeight - doc.clientHeight;
+  document.getElementById('progressFill').style.width = (sh > 0 ? Math.min(100, sc / sh * 100) : 0) + '%';
+}, { passive: true });
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  buildMethods();
+  buildAcc();
+  loadData();
+  updateIR(); updateTime();
+  startEZAnim();
+  window.addEventListener('resize', function() {
+    if (document.getElementById('tab-ez').classList.contains('active')) drawEZ();
+  });
+});
+</script>
+</body>
+</html>
