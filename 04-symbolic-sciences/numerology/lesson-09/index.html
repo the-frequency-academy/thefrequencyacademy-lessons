@@ -1,1 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N9: Numerology & Relationships — The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1a3a;--accent:#c9a84c;--accent2:#dfc472;
+  --text:#f0ede6;--dim:rgba(240,237,230,0.60);
+  --card:rgba(0,0,0,0.28);--border:rgba(201,168,76,0.14);--glow:rgba(201,168,76,0.20);
+  --r:12px;--rl:18px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse at 15% 10%,rgba(201,168,76,0.09) 0%,transparent 55%),radial-gradient(ellipse at 85% 90%,rgba(13,26,58,0.8) 0%,transparent 50%);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 8% 12%,rgba(255,255,255,.65) 0%,transparent 100%),radial-gradient(1px 1px at 23% 39%,rgba(255,255,255,.45) 0%,transparent 100%),radial-gradient(1px 1px at 45% 7%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 67% 26%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 82% 15%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 35% 64%,rgba(201,168,76,.38) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 87% 37%,rgba(201,168,76,.26) 0%,transparent 100%)}
+#prog-wrap{position:fixed;top:0;left:0;right:0;z-index:200;height:3px;background:rgba(5,10,28,.9)}
+#prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease;box-shadow:0 0 10px var(--glow)}
+.top-nav{position:fixed;top:3px;left:0;right:0;z-index:199;display:flex;align-items:center;justify-content:space-between;padding:13px 32px;background:rgba(8,14,42,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1)}
+.nav-brand{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--accent);opacity:.8}
+.nav-crumb{font-size:10px;color:var(--dim);letter-spacing:2px}
+.nav-xp{font-family:'Cinzel',serif;font-size:11px;color:var(--accent);letter-spacing:2px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 14px}
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:88px 24px 140px}
+.ls{margin-bottom:68px;opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.ls.visible{opacity:1;transform:translateY(0)}
+.hero{text-align:center;padding:76px 0 56px}
+.hero-eye{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.hero-code{font-family:'Cinzel',serif;font-size:88px;font-weight:900;line-height:1;color:transparent;background:linear-gradient(145deg,var(--accent2) 0%,var(--accent) 55%,rgba(201,168,76,.3) 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,168,76,.2));margin-bottom:10px}
+.hero-title{font-family:'Cinzel',serif;font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:8px}
+.hero-sub{font-size:15px;font-weight:300;font-style:italic;color:var(--dim);letter-spacing:2px;margin-bottom:36px}
+.hero-rule{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 36px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.22);border-radius:30px;padding:7px 22px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent)}
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.sh-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.6;white-space:nowrap}
+.sh-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--glow),transparent)}
+.st{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.tx{background:linear-gradient(135deg,rgba(0,0,0,.36),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--accent);border-radius:var(--r);padding:38px 44px;position:relative;overflow:hidden}
+.tx::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.tx-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.tx p{font-size:16px;line-height:1.95;color:rgba(240,237,230,.78);font-style:italic;font-weight:300}
+.tx p+p{margin-top:14px}
+.tx strong{color:var(--accent2);font-style:normal;font-weight:600}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 34px;margin-bottom:18px}
+.card p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.card p:last-child{margin-bottom:0}
+.callout{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:24px 32px;margin:22px 0;text-align:center}
+.callout p{font-family:'Cinzel',serif;font-size:14px;line-height:1.8;color:var(--accent2);letter-spacing:.5px}
+.defs-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.defs-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 18px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.defs-t th:last-child{border-right:none}
+.defs-t td{background:rgba(0,0,0,.2);padding:13px 18px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.65}
+.defs-t td:last-child{border-right:none}
+.defs-t td:first-child{color:var(--accent);font-style:italic;font-weight:500;white-space:nowrap}
 
+/* ── MATRIX ── */
+.matrix-wrap{overflow-x:auto;margin:20px 0}
+.compat-matrix{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden}
+.compat-matrix th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);padding:11px 8px;text-align:center;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.compat-matrix th:last-child{border-right:none}
+.compat-matrix td{background:rgba(0,0,0,.2);padding:10px 6px;text-align:center;border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);cursor:pointer;transition:background .2s;font-size:1.1rem}
+.compat-matrix td:last-child{border-right:none}
+.compat-matrix td:first-child{background:rgba(201,168,76,.08);font-family:'Cinzel',serif;color:var(--accent);font-weight:700;font-size:13px;cursor:default}
+.compat-matrix td:hover{background:rgba(201,168,76,.1)}
+.sym-r{color:#e06666}.sym-c{color:var(--accent)}.sym-g{color:rgba(200,220,255,.5)}
+.matrix-legend{display:flex;gap:22px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:var(--dim)}
+.leg-item{display:flex;align-items:center;gap:7px}
+.matrix-tip{display:none;margin-top:14px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:var(--r);padding:14px 20px;font-size:13px;color:var(--dim);line-height:1.7}
+.matrix-tip.show{display:block}
+
+/* ── PROFILE CARDS ── */
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+.p-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.p-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:0;transition:opacity .2s}
+.p-card:hover,.p-card.open{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.36)}
+.p-card.open::before{opacity:1}
+.p-num{font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:transparent;background:linear-gradient(135deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;line-height:1;margin-bottom:2px}
+.p-arch{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);opacity:.65;text-transform:uppercase;margin-bottom:10px}
+.p-snap{font-size:13px;color:var(--dim);line-height:1.6}
+.p-detail{display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(201,168,76,.1)}
+.p-card.open .p-detail{display:block}
+.p-detail p{font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:10px}
+.p-detail p:last-child{margin-bottom:0}
+.p-shadow{font-size:12px;font-style:italic;color:rgba(240,237,230,.4);margin-bottom:12px!important}
+.p-badges{display:flex;gap:8px;flex-wrap:wrap}
+.p-badge{padding:3px 12px;border-radius:20px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px}
+.p-best{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:var(--accent)}
+.p-edge{background:rgba(150,170,200,.07);border:1px solid rgba(150,170,200,.18);color:rgba(200,215,235,.6)}
+
+/* ── CALCULATOR ── */
+.calc-box{background:rgba(5,10,28,.6);border:1px solid rgba(201,168,76,.18);border-radius:var(--rl);overflow:hidden;margin:24px 0}
+.calc-hd{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.12);padding:16px 26px}
+.calc-hd-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--accent)}
+.calc-body{padding:28px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:24px}
+.calc-col-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent);opacity:.7;margin-bottom:14px;text-transform:uppercase}
+.cf-label{display:block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.7;margin-bottom:6px}
+.cf-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.12);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s;margin-bottom:14px}
+.cf-input:focus{border-color:rgba(201,168,76,.35)}
+.cf-input[type=number]{-moz-appearance:textfield}
+.cf-input[type=number]::-webkit-inner-spin-button,.cf-input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
+.calc-btn{width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:30px;padding:14px 32px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.calc-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,168,76,.25)}
+.calc-result{display:none;margin-top:24px;animation:fadeUp .4s ease}
+.calc-result.show{display:block}
+.res-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px}
+.res-card{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:16px 18px;text-align:center}
+.res-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.65;margin-bottom:8px}
+.res-val{font-family:'Cinzel',serif;font-size:28px;color:var(--accent2);line-height:1;margin-bottom:4px}
+.res-sub{font-size:11px;color:var(--dim)}
+.res-reading{background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);border-radius:var(--r);padding:20px 24px}
+.res-reading-title{font-family:'Cinzel',serif;font-size:13px;color:var(--text);margin-bottom:10px;letter-spacing:1px}
+.res-reading-body{font-size:13px;color:var(--dim);line-height:1.8}
+.res-profiles{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.res-profile{background:rgba(0,0,0,.2);border:1px solid rgba(201,168,76,.08);border-radius:var(--r);padding:14px 16px}
+.res-profile-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:6px}
+.res-profile-body{font-size:12px;color:var(--dim);line-height:1.65}
+
+/* ── ACCORDION ── */
+.acc-item{margin-bottom:10px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.acc-hd{width:100%;background:var(--card);border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;transition:background .2s}
+.acc-hd:hover{background:rgba(0,0,0,.38)}
+.acc-ht{font-family:'Cinzel',serif;font-size:13px;color:var(--text);letter-spacing:1px}
+.acc-ic{font-size:18px;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-ic{transform:rotate(45deg)}
+.acc-bd{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-item.open .acc-bd{max-height:500px}
+.acc-ct{padding:20px 22px;font-size:13px;line-height:1.85;color:var(--dim);border-top:1px solid rgba(255,255,255,.04)}
+.acc-ct strong{color:var(--accent2)}
+
+/* ── QUIZ ── */
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;margin-bottom:14px;transition:border-color .3s}
+.quiz-item.correct{border-color:rgba(90,184,122,.45);background:rgba(90,184,122,.06)}
+.quiz-item.wrong{border-color:rgba(200,80,80,.4);background:rgba(200,80,80,.05)}
+.quiz-q{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:14px}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:11px 16px;font-size:13px;color:var(--dim);cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:hover{border-color:rgba(201,168,76,.25);color:var(--text);background:rgba(201,168,76,.07)}
+.quiz-opt.ok{border-color:rgba(90,184,122,.5);background:rgba(90,184,122,.1);color:#6fda9a}
+.quiz-opt.no{border-color:rgba(200,80,80,.5);background:rgba(200,80,80,.08);color:#e07070}
+.quiz-opt.show-ok{border-color:rgba(90,184,122,.35);color:#6fda9a}
+.quiz-fb{margin-top:12px;font-size:13px;line-height:1.6;padding:10px 14px;border-radius:8px;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.correct{background:rgba(90,184,122,.08);color:#6fda9a}
+.quiz-fb.wrong{background:rgba(200,80,80,.06);color:#e07070}
+.quiz-score{text-align:center;font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--accent);padding:20px;display:none}
+.quiz-score.show{display:block}
+
+/* ── REFLECTION ── */
+.ref-q{font-family:'Cinzel',serif;font-size:14px;color:var(--accent2);line-height:1.75;margin-bottom:14px;letter-spacing:.5px}
+.ref-ta{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:18px 22px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;line-height:1.85;resize:vertical;min-height:110px;outline:none;transition:border-color .25s;margin-bottom:26px}
+.ref-ta:focus{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.32)}
+.ref-ta::placeholder{color:rgba(240,237,230,.2)}
+
+/* ── PRACTICE ── */
+.prac-step{display:flex;gap:20px;padding:18px 0;border-bottom:1px solid rgba(201,168,76,.07)}
+.prac-step:last-child{border-bottom:none}
+.prac-n{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--accent);opacity:.3;flex-shrink:0;line-height:1.1;width:36px}
+.prac-content strong{display:block;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--text);margin-bottom:7px}
+.prac-content p{font-size:14px;color:var(--dim);line-height:1.8;margin:0}
+
+/* ── NAV / WORKSHOP / COMP ── */
+.nav-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nav-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:22px 26px;cursor:pointer;transition:all .3s;text-decoration:none}
+.nav-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.nav-card.prev{flex-direction:row-reverse}
+.nav-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.nav-title{font-family:'Cinzel',serif;font-size:15px;color:var(--text);letter-spacing:1px}
+.nav-arr{font-size:26px;color:var(--accent);opacity:.5;flex-shrink:0}
+.ws{background:rgba(0,0,0,.3);border:1px dashed rgba(201,168,76,.2);border-radius:var(--rl);padding:40px;text-align:center}
+.ws-ic{font-size:34px;margin-bottom:14px;opacity:.45}
+.ws-t{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:var(--accent);margin-bottom:8px;opacity:.6}
+.ws-s{font-size:13px;color:var(--dim)}
+.comp-wrap{background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(0,0,0,.4));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:48px;text-align:center}
+.comp-t{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--text);margin-bottom:8px}
+.comp-s{font-size:13px;color:var(--dim);margin-bottom:28px}
+.comp-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:40px;padding:17px 44px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.comp-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.28)}
+.comp-btn.done{background:linear-gradient(135deg,#5ab87a,#7de09a)}
+.xp-pop{display:none;font-family:'Cinzel',serif;font-size:14px;color:var(--accent);margin-top:22px;letter-spacing:2px}
+.xp-pop.show{display:block;animation:fadeUp .7s ease}
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(5,10,28,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(201,168,76,.12);padding:13px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.sv-status{font-size:11px;color:var(--dim);letter-spacing:1px}.sv-status span{color:var(--accent);font-family:'Cinzel',serif}
+.sv-actions{display:flex;gap:10px}
+.sv-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.sv-btn.pri{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.3);color:var(--accent)}.sv-btn.pri:hover{background:rgba(201,168,76,.2)}
+.sv-btn.sec{background:transparent;border-color:rgba(255,255,255,.1);color:var(--dim)}.sv-btn.sec:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+#imp-file{display:none}
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(8,14,42,.96);border:1px solid rgba(201,168,76,.28);border-radius:30px;padding:11px 26px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.cf{position:fixed;top:-20px;z-index:9999;border-radius:2px;pointer-events:none;animation:fall 2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:660px){.hero-code{font-size:60px}.hero-title{font-size:17px}.calc-grid{grid-template-columns:1fr}.res-cards{grid-template-columns:1fr}.res-profiles{grid-template-columns:1fr}.profile-grid{grid-template-columns:1fr}.nav-cards{grid-template-columns:1fr}.top-nav{padding:12px 16px}.nav-crumb{display:none}main{padding-left:16px;padding-right:16px}.tx{padding:26px 22px}}
+</style>
+</head>
+<body>
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+<div class="top-nav">
+  <div class="nav-brand">THE FREQUENCY ACADEMY</div>
+  <div class="nav-crumb">NUMEROLOGY · N9</div>
+  <div class="nav-xp" id="xp-display">0 XP</div>
+</div>
+<div class="toast" id="toast"></div>
+<main>
+
+  <!-- HERO -->
+  <div class="ls hero visible">
+    <div class="hero-eye">Symbolic Sciences · Numerology</div>
+    <div class="hero-code">N9</div>
+    <div class="hero-title">Numerology &amp; Relationships</div>
+    <div class="hero-sub">Compatibility, Connection &amp; the Numbers Between People</div>
+    <div class="hero-rule"></div>
+    <div class="hero-tag">⟡ ~20 Min · Compatibility &amp; Connection</div>
+  </div>
+
+  <!-- TRANSMISSION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">TRANSMISSION</div><div class="sh-rule"></div></div>
+    <div class="tx">
+      <div class="tx-lbl">Opening Transmission · N9</div>
+      <p>Before you were born, two frequencies agreed to meet. They didn't know each other's names, didn't choose their timing, didn't plan the collision — and yet when they arrived in the same room, something ancient recognised something ancient.</p>
+      <p>Every relationship you have ever loved, struggled within, or been undone by is a <strong>frequency equation</strong>. Numbers are not the cage around love — they are the tuning fork that lets you hear what love is actually trying to say.</p>
+      <p>This lesson does not tell you who to choose. It teaches you how to <em>listen</em> — to the interference pattern you are already living inside.</p>
+    </div>
+  </div>
+
+  <!-- CORE CONCEPT -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">01</div><div class="sh-rule"></div></div>
+    <div class="st">Every Relationship Is an Acoustic Event</div>
+    <div class="card">
+      <p>In 1831, a suspension bridge in Manchester collapsed — not from the weight of the soldiers marching across it, but from the <strong style="color:var(--accent2)">rhythm</strong> of their march. Their synchronized footsteps created a resonance frequency that matched the bridge's natural vibration. It shook itself apart.</p>
+      <p>This is what physicists call resonance — and it is exactly what happens between two people. When two frequencies interact, they don't simply coexist. They create a <em>third</em> pattern — the interference. That third thing is the relationship itself.</p>
+      <p>In numerology, each Life Path number carries a characteristic frequency — a vibrational signature shaped by the date of birth. When two people enter relationship, their frequencies interact. The result is either constructive interference (amplifying, energising), complementary interference (different but aligned), or growth-edge interference (friction-generating, transformative). None of these is wrong. All three are workable. The question is whether you can read the pattern — and respond consciously.</p>
+    </div>
+    <div class="callout"><p>"Numerology doesn't tell you who to love.<br>It tells you the frequency of the love you're in —<br>and what that frequency is asking of both of you."</p></div>
+    <div class="card">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:14px">KEY DEFINITIONS</p>
+      <table class="defs-t">
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Life Path Compatibility</td><td>The resonance or tension between two people's Life Path numbers — the primary layer of numerological relationship analysis.</td></tr>
+          <tr><td>Resonance</td><td>The amplifying interaction between two frequencies that share harmonic properties. Resonant relationships feel naturally familiar and mutually energising.</td></tr>
+          <tr><td>Interference Pattern</td><td>When two frequencies interact, they create a combined pattern that is either constructive (amplifying) or destructive (diminishing). Every relationship is an interference pattern.</td></tr>
+          <tr><td>Soul Urge Compatibility</td><td>The alignment between what two people most deeply want from life and love, revealed by comparing their Soul Urge numbers (vowels of the full birth name).</td></tr>
+          <tr><td>Expression Compatibility</td><td>The dynamic between how two people naturally show up in the world — their gifts, modes, and default ways of engaging — revealed by their Expression numbers.</td></tr>
+          <tr><td>Relationship Number</td><td>The combined digit sum of two people's Life Path numbers, describing the vibrational quality of the connection itself.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- THREE LAYERS -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">02</div><div class="sh-rule"></div></div>
+    <div class="st">The Three Layers of Compatibility</div>
+    <div class="card"><p>Numerological compatibility is not one-dimensional. Three distinct layers of information are available in any relationship reading. Most people only look at the first. All three are necessary for a complete picture.</p></div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <p style="font-family:'Cinzel',serif;font-size:12px;color:var(--accent);margin-bottom:10px;letter-spacing:2px">LAYER 1 · LIFE PATH COMPATIBILITY</p>
+      <p>This is the primary frequency signature — the vibrational current two people swim in together. It describes the structural dynamic: who initiates, who supports, where ease naturally exists, where friction inevitably arises. Life Path is calculated from the full birthdate and represents the core soul mission. When two Life Paths meet, their combined field becomes the foundation of the relationship itself.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <p style="font-family:'Cinzel',serif;font-size:12px;color:var(--accent);margin-bottom:10px;letter-spacing:2px">LAYER 2 · SOUL URGE COMPATIBILITY</p>
+      <p>Calculated from the vowels of the full birth name, the Soul Urge reveals the deep motivational current beneath the surface. Two people may have a naturally resonant Life Path combination and still persistently talk past each other because what they <em>need</em> from love is fundamentally misaligned. Soul Urge compatibility reveals whether two people want the same thing from life and relationship — or whether they are each, quietly, reaching for something the other cannot provide.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <p style="font-family:'Cinzel',serif;font-size:12px;color:var(--accent);margin-bottom:10px;letter-spacing:2px">LAYER 3 · EXPRESSION COMPATIBILITY</p>
+      <p>Calculated from all letters of the full birth name, the Expression number describes how each person naturally shows up — their gifts, their communication style, their default mode of engagement. Two people with identical Life Paths can still clash endlessly if their Expression numbers create friction. This layer explains the often-bewildering phenomenon of deep connection that nonetheless produces constant miscommunication.</p>
+    </div>
+  </div>
+
+  <!-- COMPATIBILITY MATRIX -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">03</div><div class="sh-rule"></div></div>
+    <div class="st">The Three Compatibility Dynamics</div>
+    <div class="card">
+      <p>Every Life Path pairing falls into one of three categories. These are not fixed destinies — they are frequencies asking questions. ♥ Natural Resonance: shared vibrational family, often feels instantly familiar and easy. ◆ Complementary: different but aligned, each brings what the other lacks. ▲ Growth Edge: significant frequency difference, high friction, high growth potential — not a reason to end a relationship, often the most transformative.</p>
+    </div>
+    <div class="card">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:16px">LIFE PATH COMPATIBILITY MATRIX — tap any cell</p>
+      <div class="matrix-wrap">
+        <table class="compat-matrix" id="compat-matrix"></table>
+      </div>
+      <div class="matrix-legend">
+        <div class="leg-item"><span class="sym-r">♥</span> Natural Resonance</div>
+        <div class="leg-item"><span class="sym-c">◆</span> Complementary</div>
+        <div class="leg-item"><span class="sym-g">▲</span> Growth Edge</div>
+      </div>
+      <div class="matrix-tip" id="matrix-tip"></div>
+    </div>
+  </div>
+
+  <!-- LIFE PATH PROFILES -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">04</div><div class="sh-rule"></div></div>
+    <div class="st">The 9 Life Path Relationship Profiles</div>
+    <div class="card"><p>Find your Life Path. Read your relationship dynamic, your greatest challenge, your shadow, and your most natural and most growth-edge pairings. Tap any card to expand the full profile.</p></div>
+    <div class="profile-grid" id="profile-grid"></div>
+  </div>
+
+  <!-- INTERACTIVE CALCULATOR -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">INTERACTIVE</div><div class="sh-rule"></div></div>
+    <div class="st">Relationship Frequency Calculator</div>
+    <div class="card"><p>Enter your Life Path number and your partner's to reveal your compatibility dynamic, Relationship Number, and a full reading of your numerological connection. Don't know someone's Life Path? Calculate it by adding all digits of their full birthdate, then reducing to a single digit.</p></div>
+    <div class="calc-box">
+      <div class="calc-hd"><div class="calc-hd-title">FREQUENCY READING CALCULATOR</div></div>
+      <div class="calc-body">
+        <div class="calc-grid">
+          <div>
+            <div class="calc-col-title">Person One — You</div>
+            <label class="cf-label">Your Name</label>
+            <input class="cf-input" type="text" id="p1-name" placeholder="Your name">
+            <label class="cf-label">Your Life Path (1–9, 11, 22, 33)</label>
+            <input class="cf-input" type="number" id="p1-lp" placeholder="e.g. 3" min="1" max="33">
+          </div>
+          <div>
+            <div class="calc-col-title">Person Two</div>
+            <label class="cf-label">Their Name</label>
+            <input class="cf-input" type="text" id="p2-name" placeholder="Their name">
+            <label class="cf-label">Their Life Path (1–9, 11, 22, 33)</label>
+            <input class="cf-input" type="number" id="p2-lp" placeholder="e.g. 6" min="1" max="33">
+          </div>
+        </div>
+        <button class="calc-btn" onclick="runCalc()">Calculate Frequency Dynamic</button>
+        <div class="calc-result" id="calc-result">
+          <div class="res-cards">
+            <div class="res-card"><div class="res-lbl">COMPATIBILITY</div><div class="res-val" id="r-sym" style="font-size:2.2rem"></div><div class="res-sub" id="r-type"></div></div>
+            <div class="res-card"><div class="res-lbl">RELATIONSHIP NO.</div><div class="res-val" id="r-relnum"></div><div class="res-sub" id="r-energy"></div></div>
+            <div class="res-card"><div class="res-lbl">PAIRING</div><div class="res-val" id="r-pair" style="font-size:1.1rem;padding-top:6px"></div><div class="res-sub" id="r-pair-sub"></div></div>
+          </div>
+          <div class="res-reading">
+            <div class="res-reading-title" id="r-title"></div>
+            <div class="res-reading-body" id="r-body"></div>
+            <div class="res-profiles" id="r-profiles"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">KNOWLEDGE CHECK</div><div class="sh-rule"></div></div>
+    <div class="st">Test Your Understanding</div>
+    <div id="quiz-wrap"></div>
+    <div class="quiz-score" id="quiz-score"></div>
+  </div>
+
+  <!-- QUICK REF -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">QUICK REF</div><div class="sh-rule"></div></div>
+    <div class="st">Calculation Reference Guide</div>
+    <div id="acc-wrap"></div>
+  </div>
+
+  <!-- PRACTICE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">PRACTICE</div><div class="sh-rule"></div></div>
+    <div class="st">This Week in the Physical World</div>
+    <div class="card">
+      <div class="prac-step">
+        <div class="prac-n">1</div>
+        <div class="prac-content"><strong>MAP THREE RELATIONSHIPS</strong><p>Choose three significant relationships — a partner or close friend, a family member, a colleague. Calculate each person's Life Path from their full birthdate. Find your compatibility dynamic using the matrix above. Write one sentence about what the frequency is asking of you in each connection.</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">2</div>
+        <div class="prac-content"><strong>IDENTIFY YOUR GROWTH-EDGE PAIRING</strong><p>Find the relationship in your life that creates the most friction or misunderstanding. Calculate whether this is a growth-edge pairing. If it is, write down one specific thing that pairing is developing in you that you couldn't develop any other way. Bring this awareness into your next interaction with that person.</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">3</div>
+        <div class="prac-content"><strong>COMPARE SOUL URGE NUMBERS</strong><p>For one close relationship, calculate both Soul Urge numbers (vowels only: A=1, E=5, I=9, O=6, U=3, reduce to single digit). Notice whether the core motivational drives are aligned or different. Ask: does this alignment or difference show up in how you experience day-to-day closeness with this person?</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">4</div>
+        <div class="prac-content"><strong>SEVEN-DAY AWARENESS PRACTICE</strong><p>Each day this week, choose one significant interaction and bring numerological awareness to it. Notice: what frequency dynamic is active? What is the frequency asking of both of you? The awareness itself — before any action — is the practice.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">REFLECTION</div><div class="sh-rule"></div></div>
+    <div class="st">Deepen Your Relationship With This Material</div>
+    <div class="card">
+      <div class="ref-q">1. Think of the most challenging relationship in your life — past or present. Without looking at their Life Path compatibility first, describe the dynamic in your own words. Now calculate their Life Path and find the compatibility. Does the numerological description match what you experienced? What does naming the frequency of the friction give you?</div>
+      <textarea class="ref-ta" id="ref-1" placeholder="Begin writing here..." oninput="autoSave()"></textarea>
+      <div class="ref-q">2. The lesson makes the case that growth-edge relationships are often the most transformative. Do you agree? Think of a relationship that pushed you hardest. What did you learn about yourself through that friction that you couldn't have learned any other way?</div>
+      <textarea class="ref-ta" id="ref-2" placeholder="Begin writing here..." oninput="autoSave()"></textarea>
+      <div class="ref-q">3. "Numerology doesn't tell you who to love. It tells you the frequency of the love you're in — and what that frequency is asking of both of you." For one specific current relationship, answer that question directly: what is the frequency of this connection asking of you, specifically?</div>
+      <textarea class="ref-ta" id="ref-3" placeholder="Begin writing here..." oninput="autoSave()"></textarea>
+    </div>
+  </div>
+
+  <!-- LIVE WORKSHOP -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">LIVE WORKSHOP</div><div class="sh-rule"></div></div>
+    <div class="ws">
+      <div class="ws-ic">◈</div>
+      <div class="ws-t">Live Workshop: Numerology &amp; Relationships</div>
+      <div class="ws-s">A live deep-dive on this topic is coming soon. Recordings and supplemental materials will appear here once available. Members will be notified via the Academy portal.</div>
+    </div>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">COMPLETE</div><div class="sh-rule"></div></div>
+    <div class="comp-wrap">
+      <div class="comp-t">Seal This Lesson</div>
+      <div class="comp-s">When you have worked through the material, completed at least one reflection, and brought this awareness into at least one real relationship — seal this lesson complete.</div>
+      <button class="comp-btn" id="comp-btn" onclick="markComplete()">⟡ Mark Complete · +10 XP</button>
+      <div class="xp-pop" id="xp-pop">✦ +10 XP Awarded · N9 Complete ✦</div>
+    </div>
+  </div>
+
+  <!-- NAVIGATE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">NAVIGATE</div><div class="sh-rule"></div></div>
+    <div class="nav-cards">
+      <div class="nav-card prev">
+        <div class="nav-arr">←</div>
+        <div><div class="nav-lbl">PREVIOUS</div><div class="nav-title">N8 · Architecture &amp; Sacred Space</div></div>
+      </div>
+      <div class="nav-card">
+        <div><div class="nav-lbl">NEXT</div><div class="nav-title">N10 · Master Numbers Deep Dive</div></div>
+        <div class="nav-arr">→</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div id="save-bar">
+  <div class="sv-status">Auto-save: <span id="save-time">—</span></div>
+  <div class="sv-actions">
+    <input type="file" id="imp-file" accept=".json" onchange="importData(event)">
+    <button class="sv-btn sec" onclick="document.getElementById('imp-file').click()">Import</button>
+    <button class="sv-btn sec" onclick="exportData()">Export</button>
+    <button class="sv-btn pri" onclick="saveData();toast('Saved ✦')">Save</button>
+  </div>
+</div>
+
+<script>
+const KEY='tfa_lesson_N9';let xp=0,saveT,qA=0,qC=0;
+
+// ── DATA ──
+const MATRIX=[
+  ['▲','◆','♥','◆','♥','▲','◆','◆','▲'],
+  ['◆','◆','◆','♥','▲','♥','▲','♥','♥'],
+  ['♥','◆','♥','▲','♥','♥','◆','◆','♥'],
+  ['◆','♥','▲','◆','▲','♥','◆','♥','◆'],
+  ['♥','▲','♥','▲','◆','▲','♥','◆','◆'],
+  ['▲','♥','♥','♥','▲','♥','◆','♥','♥'],
+  ['◆','▲','◆','◆','♥','◆','◆','▲','♥'],
+  ['◆','♥','◆','♥','◆','♥','▲','▲','◆'],
+  ['▲','♥','♥','◆','◆','♥','♥','◆','▲']
+];
+const DNAMES={'♥':'Natural Resonance','◆':'Complementary','▲':'Growth Edge'};
+const DDESC={
+  '♥':'Shared vibrational family. Often feels instantly familiar and easy — a sense of recognition that arrives before understanding.',
+  '◆':'Different but aligned. Each brings what the other lacks. Productive and often deeply satisfying when both people lean into appreciating the difference.',
+  '▲':'Significant frequency difference. High friction, high growth. Requires conscious navigation but is often the most transformative connection either person experiences.'
+};
+const RNUM={1:{e:'Independence',d:'This connection carries a frequency of autonomy, initiative, and new beginnings — a catalyst pushing both people toward clearer self-definition.'},2:{e:'Partnership',d:'A frequency of deep cooperation and emotional attunement. This connection asks both people to develop the art of true listening.'},3:{e:'Expression',d:'A frequency of creativity, joy, and communicative abundance. This connection thrives when both people give their expressive gifts full permission.'},4:{e:'Foundation',d:'A frequency of stability, commitment, and careful building. This connection asks for patience and rewards it with lasting love.'},5:{e:'Freedom',d:'A frequency of change, adventure, and sensory aliveness. This connection stays vital when both people resist over-structuring what they have.'},6:{e:'Harmony',d:'A frequency of care, beauty, and devotional love. This connection deepens when both people release perfectionism and accept the love that is actually present.'},7:{e:'Understanding',d:'A frequency of depth, inquiry, and spiritual alignment. This connection asks both people to value the inner life — and to share it.'},8:{e:'Power',d:'A frequency of capability, ambition, and material co-creation. This connection thrives when power is understood as a shared resource, not a competition.'},9:{e:'Completion',d:'A frequency of universal love, wisdom, and sacred purpose. This connection carries a sense of significance — as if it was always going to happen.'}};
+const PROFILES=[
+  {n:1,a:'Initiator',d:'The pioneer in relationship. Deeply independent, needs to be seen as capable. Greatest challenge: learning to receive and share the lead.',shadow:'The 1 can unconsciously make relationship into a solo performance. Growth comes through discovering that dependence and strength can coexist.',best:'3, 5, 9',edge:'Another 1'},
+  {n:2,a:'Nurturer',d:'The diplomat and feeler. Loves deeply, holds the relational space with rare sensitivity. Greatest challenge: expressing own needs directly.',shadow:'The 2 can over-give to the point of invisible resentment. Growth comes through discovering that expressing needs is not abandoning the other.',best:'4, 6, 8',edge:'1'},
+  {n:3,a:'Creator',d:'Joy and creative radiance. Makes every connection brighter. Greatest challenge: staying present through difficulty rather than retreating to brightness.',shadow:'The 3 can use humor and lightness as avoidance. True intimacy asks for the willingness to sit in the dark.',best:'1, 6, 9',edge:'4'},
+  {n:4,a:'Builder',d:'The most loyal partner. Will sustain with extraordinary dedication. Greatest challenge: flexibility when the relationship needs to bend.',shadow:'The 4 can become so committed to how things should be that they cannot respond to how things actually are. Growth is learning that love sometimes requires releasing the blueprint.',best:'2, 6, 8',edge:'5'},
+  {n:5,a:'Adventurer',d:'Freedom and sensory aliveness. Needs space to be fully present. Greatest challenge: commitment without constraint.',shadow:'The 5 can mistake depth for constraint. True freedom includes the freedom to be fully present — which requires a form of commitment.',best:'1, 3, 7',edge:'4'},
+  {n:6,a:'Caregiver',d:'Loves and nurtures with exceptional depth. Most naturally relational number. Greatest challenge: perfectionism — releasing the expectation of how love should look.',shadow:'The 6 can love so strategically — so oriented to an ideal of what the relationship should be — that they miss the actual person in front of them.',best:'2, 3, 9',edge:'1'},
+  {n:7,a:'Seeker',d:'Private, depth-oriented, needs solitude to give their best. Greatest challenge: allowing partners to know their inner world.',shadow:'The 7 can mistake privacy for protection and protection for safety. Growth comes through the discovery that true depth requires being known.',best:'4, 5, 9',edge:'2'},
+  {n:8,a:'Achiever',d:"Brings power and capability. Needs a partner who doesn't shrink. Greatest challenge: bringing emotional authority into the relational realm.",shadow:'The 8 applies the same force to love that they apply to achievement — which works until it doesn\'t. Emotional authority is a different kind of power.',best:'2, 4, 6',edge:'Another 8'},
+  {n:9,a:'Humanitarian',d:'Loves with breathtaking breadth. Greatest challenge: allowing themselves to be loved specifically, intimately, personally.',shadow:'The 9 loves humanity beautifully. The growth edge is in allowing themselves to be loved as a specific person — not just appreciated for their vision.',best:'3, 6, 1',edge:'Another 9'}
+];
+const QD=[
+  {q:'In acoustic terms, when two frequencies interact they create what kind of pattern?',opts:['Harmonic pattern','Resonance field','Interference pattern','Standing wave'],ans:2,fb:'Every relationship is an interference pattern — the third thing created when two frequencies meet.'},
+  {q:'Which of the following correctly describes a Growth Edge compatibility?',opts:['Instantly familiar and easy','Shared vibrational family','Different but aligned, productive and satisfying','Significant frequency difference — high friction, high growth'],ans:3,fb:'Growth Edge means high friction and high growth potential. It is not a reason to end a relationship — often the most transformative pairing either person experiences.'},
+  {q:"Life Path 9's greatest relational challenge is:",opts:['Too much flexibility','Committing to any one person','Allowing themselves to be loved specifically and personally','Over-dependence on others'],ans:2,fb:'The 9 loves with breathtaking breadth. The challenge is receiving love as a specific individual, not just being appreciated for their universal vision.'},
+  {q:'The Soul Urge number is calculated from which part of the full birth name?',opts:['All letters','Only consonants','The first letter of each name','Only vowels'],ans:3,fb:'Vowels only (A=1, E=5, I=9, O=6, U=3). This reveals the deepest motivational current — what a person most deeply needs from life and love.'},
+  {q:'True or false: Two Life Path 8s in partnership have a natural resonance compatibility.',opts:['True — same energy amplifies naturally','False — two 8s is a growth-edge pairing','True — power always recognises power','False — two 8s have no compatibility'],ans:1,fb:'Two 8s is a growth-edge pairing. The same power drive can produce significant friction. High friction, high growth.'},
+  {q:'What does the Relationship Number describe?',opts:["The dominant partner's influence on the connection","The vibrational quality of the connection itself","The average of both Life Paths","Whether the relationship is destined to last"],ans:1,fb:'The Relationship Number is the vibrational quality of the third entity between two people — the relationship itself, not either individual.'},
+  {q:'Which Life Path is described as the most loyal and dedicated partner in the numerological system?',opts:['Life Path 2','Life Path 4','Life Path 6','Life Path 8'],ans:1,fb:'Life Path 4 — the Builder — is the most loyal partner, willing to sustain with extraordinary dedication. Greatest challenge is flexibility when the relationship needs to bend.'}
+];
+const ACCD=[
+  {t:'How to Calculate Your Life Path Number',b:'Add together all digits of your full birthdate (day + month + full year). Reduce to a single digit by adding the resulting digits again — <strong>unless you reach 11, 22, or 33</strong> (Master Numbers — keep these unreduced). Example: August 14, 1988 → 8 + (1+4) + (1+9+8+8) = 8 + 5 + 26 = 8 + 5 + 8 = 21 → 2+1 = <strong>Life Path 3</strong>.'},
+  {t:'How to Calculate Your Soul Urge Number',b:'Write your full birth name. Extract only the vowels (A, E, I, O, U). Assign each vowel its Pythagorean value: <strong>A=1, E=5, I=9, O=6, U=3</strong>. Add all values and reduce to a single digit (unless 11, 22, or 33). This reveals your deepest motivational current — what you most deeply need from life and love.'},
+  {t:'How to Calculate Your Expression Number',b:'Write your full birth name. Assign all letters their Pythagorean values (A=1, B=2, C=3, D=4, E=5, F=6, G=7, H=8, I=9, J=1, K=2, L=3, M=4, N=5, O=6, P=7, Q=8, R=9, S=1, T=2, U=3, V=4, W=5, X=6, Y=7, Z=8). Add all values and reduce to a single digit (unless Master Number). This reveals <strong>how you naturally show up</strong> — your gifts, your mode, your default way of engaging.'},
+  {t:'How to Calculate the Relationship Number',b:'Add both Life Path numbers together. Reduce the sum to a single digit (unless the result is 11, 22, or 33). This number describes the vibrational quality of the connection itself — not either person individually, but the <strong>third entity</strong> that exists between them. Example: LP 3 + LP 7 = 10 → 1+0 = <strong>1 (Independence / Initiation frequency)</strong>.'},
+  {t:'When Life Paths Contradict Experience',b:'If the matrix shows a complementary or resonant pairing but your experience feels like friction — look at the Soul Urge and Expression numbers. It is common for a harmonically aligned Life Path combination to produce persistent communication difficulties because the <strong>Expression numbers create a different kind of friction</strong>. Conversely, a growth-edge Life Path pairing can feel surprisingly smooth when the Soul Urge numbers are closely aligned.'},
+  {t:'Numerology Is Not Determinism',b:'The numbers describe frequency tendencies — not fixed outcomes. A growth-edge pairing with full consciousness and genuine willingness is often more loving, more alive, and more deeply satisfying than a "natural resonance" pairing where both people have fallen asleep to the work required. <strong>The frequency names the dynamic. What you do with it is always your choice.</strong>'}
+];
+
+// ── BUILD MATRIX ──
+function buildMatrix(){
+  const t=document.getElementById('compat-matrix');
+  const SC={'♥':'sym-r','◆':'sym-c','▲':'sym-g'};
+  let h='<thead><tr><th>LP</th>';
+  for(let i=1;i<=9;i++)h+='<th>'+i+'</th>';
+  h+='</tr></thead><tbody>';
+  for(let r=0;r<9;r++){
+    h+='<tr><td>'+(r+1)+'</td>';
+    for(let c=0;c<9;c++){
+      const s=MATRIX[r][c];
+      h+='<td class="'+SC[s]+'" onclick="showTip('+(r+1)+','+(c+1)+',\''+s+'\')">'+s+'</td>';
+    }
+    h+='</tr>';
+  }
+  h+='</tbody>';
+  t.innerHTML=h;
+}
+
+function showTip(r,c,s){
+  const tip=document.getElementById('matrix-tip');
+  tip.innerHTML='<strong style="font-family:\'Cinzel\',serif;color:var(--accent)">LP'+r+' × LP'+c+' — '+DNAMES[s]+'</strong><br>'+DDESC[s];
+  tip.classList.add('show');
+}
+
+// ── BUILD PROFILES ──
+function buildProfiles(){
+  const g=document.getElementById('profile-grid');
+  PROFILES.forEach(function(p){
+    const d=document.createElement('div');
+    d.className='p-card';
+    d.innerHTML='<div class="p-num">'+p.n+'</div><div class="p-arch">The '+p.a+'</div><div class="p-snap">'+p.d.split('.')[0]+'.</div><div class="p-detail"><p>'+p.d+'</p><p class="p-shadow">'+p.shadow+'</p><div class="p-badges"><span class="p-badge p-best">♥ Best: '+p.best+'</span><span class="p-badge p-edge">▲ Edge: '+p.edge+'</span></div></div>';
+    d.addEventListener('click',function(){
+      const was=d.classList.contains('open');
+      document.querySelectorAll('.p-card').forEach(function(c){c.classList.remove('open')});
+      if(!was)d.classList.add('open');
+    });
+    g.appendChild(d);
+  });
+}
+
+// ── CALCULATOR ──
+function digitReduce(n){while(n>9&&n!==11&&n!==22&&n!==33){var s=0;while(n>0){s+=n%10;n=Math.floor(n/10);}n=s;}return n;}
+
+function runCalc(){
+  const p1n=document.getElementById('p1-name').value||'Person 1';
+  const p2n=document.getElementById('p2-name').value||'Person 2';
+  const lp1=parseInt(document.getElementById('p1-lp').value);
+  const lp2=parseInt(document.getElementById('p2-lp').value);
+  if(!lp1||!lp2||lp1<1||lp2<1){alert('Please enter valid Life Path numbers for both people.');return;}
+  const r1=lp1>9?Math.floor(lp1/10)+lp1%10:lp1;
+  const r2=lp2>9?Math.floor(lp2/10)+lp2%10:lp2;
+  const rn=digitReduce(r1+r2);
+  let sym='◆';
+  if(r1>=1&&r1<=9&&r2>=1&&r2<=9)sym=MATRIX[r1-1][r2-1];
+  const rdata=RNUM[rn]||RNUM[1];
+  const p1p=PROFILES.find(function(p){return p.n===r1})||PROFILES[0];
+  const p2p=PROFILES.find(function(p){return p.n===r2})||PROFILES[0];
+  document.getElementById('r-sym').textContent=sym;
+  document.getElementById('r-type').textContent=DNAMES[sym];
+  document.getElementById('r-relnum').textContent=rn;
+  document.getElementById('r-energy').textContent=rdata.e;
+  document.getElementById('r-pair').textContent='LP'+lp1+' × LP'+lp2;
+  document.getElementById('r-pair-sub').textContent=DDESC[sym].slice(0,55)+'...';
+  document.getElementById('r-title').textContent=p1n+' & '+p2n+' — '+DNAMES[sym];
+  document.getElementById('r-body').textContent=DDESC[sym]+' '+rdata.d;
+  document.getElementById('r-profiles').innerHTML=
+    '<div class="res-profile"><div class="res-profile-lbl">'+p1n.toUpperCase()+' · LP'+lp1+' · THE '+p1p.a.toUpperCase()+'</div><div class="res-profile-body">'+p1p.d+'</div></div>'+
+    '<div class="res-profile"><div class="res-profile-lbl">'+p2n.toUpperCase()+' · LP'+lp2+' · The '+p2p.a.toUpperCase()+'</div><div class="res-profile-body">'+p2p.d+'</div></div>';
+  document.getElementById('calc-result').classList.add('show');
+  autoSave();
+}
+
+// ── QUIZ ──
+function buildQuiz(){
+  const w=document.getElementById('quiz-wrap');
+  QD.forEach(function(q,qi){
+    let opts='';
+    q.opts.forEach(function(o,oi){opts+='<button class="quiz-opt" onclick="ansQ('+qi+','+oi+',this)">'+o+'</button>';});
+    const d=document.createElement('div');
+    d.className='quiz-item';d.id='qi-'+qi;
+    d.innerHTML='<div class="quiz-q">Q'+(qi+1)+'. '+q.q+'</div><div class="quiz-opts">'+opts+'</div><div class="quiz-fb" id="qf-'+qi+'"></div>';
+    w.appendChild(d);
+  });
+}
+
+function ansQ(qi,chosen,btn){
+  const item=document.getElementById('qi-'+qi);
+  if(item.dataset.done)return;
+  item.dataset.done='1';
+  const q=QD[qi];
+  item.querySelectorAll('.quiz-opt').forEach(function(o){o.disabled=true;});
+  const fb=document.getElementById('qf-'+qi);
+  if(chosen===q.ans){item.classList.add('correct');btn.classList.add('ok');fb.className='quiz-fb correct show';fb.textContent='✓ '+q.fb;qC++;}
+  else{item.classList.add('wrong');btn.classList.add('no');item.querySelectorAll('.quiz-opt')[q.ans].classList.add('show-ok');fb.className='quiz-fb wrong show';fb.textContent='✗ '+q.fb;}
+  qA++;
+  if(qA===QD.length){const s=document.getElementById('quiz-score');s.className='quiz-score show';const p=Math.round(qC/QD.length*100);s.innerHTML='You answered <strong style="color:var(--accent)">'+qC+' of '+QD.length+'</strong> correctly ('+p+'%).'+(p>=80?' The frequency of relationship is now readable to you.':' Review the profiles above and return.');}
+  autoSave();
+}
+
+// ── ACCORDION ──
+function buildAcc(){
+  const w=document.getElementById('acc-wrap');
+  ACCD.forEach(function(item){
+    const d=document.createElement('div');
+    d.className='acc-item';
+    d.innerHTML='<button class="acc-hd"><span class="acc-ht">'+item.t+'</span><span class="acc-ic">+</span></button><div class="acc-bd"><div class="acc-ct">'+item.b+'</div></div>';
+    d.querySelector('.acc-hd').addEventListener('click',function(){d.classList.toggle('open');});
+    w.appendChild(d);
+  });
+}
+
+// ── COMPLETION ──
+function markComplete(){
+  if(document.getElementById('comp-btn').classList.contains('done'))return;
+  xp+=10;updXP();applyDone();saveData();confetti();toast('✦ +10 XP · N9 Sealed ✦');
+}
+function applyDone(){
+  const b=document.getElementById('comp-btn');
+  b.classList.add('done');b.textContent='✦ Lesson Sealed';
+  document.getElementById('xp-pop').classList.add('show');
+}
+function updXP(){document.getElementById('xp-display').textContent=xp+' XP';}
+function confetti(){
+  const cols=['#c9a84c','#dfc472','#f0ede6','#9aa0c8'];
+  for(let i=0;i<60;i++){
+    const el=document.createElement('div');el.className='cf';
+    el.style.cssText='left:'+Math.random()*100+'%;top:-20px;background:'+cols[Math.floor(Math.random()*cols.length)]+';animation-delay:'+Math.random()*.8+'s;animation-duration:'+(1.5+Math.random())+'s;transform:rotate('+Math.random()*360+'deg);width:'+(4+Math.random()*8)+'px;height:'+(4+Math.random()*8)+'px;border-radius:'+(Math.random()>.5?'50%':'2px');
+    document.body.appendChild(el);setTimeout(function(){el.remove();},2800);
+  }
+}
+
+// ── TOAST ──
+function toast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2200);
+}
+
+// ── SAVE / LOAD ──
+function getData(){
+  return{version:'1.0',lesson:'N9',ts:new Date().toISOString(),
+    reflections:{r1:document.getElementById('ref-1').value,r2:document.getElementById('ref-2').value,r3:document.getElementById('ref-3').value},
+    calc:{p1n:document.getElementById('p1-name').value,p1lp:document.getElementById('p1-lp').value,p2n:document.getElementById('p2-name').value,p2lp:document.getElementById('p2-lp').value},
+    xp,completed:document.getElementById('comp-btn').classList.contains('done')};
+}
+
+function saveData(){
+  localStorage.setItem(KEY,JSON.stringify(getData()));
+  document.getElementById('save-time').textContent='just now';
+}
+function autoSave(){clearTimeout(saveT);saveT=setTimeout(function(){saveData();},90000);}
+
+function loadData(){
+  const raw=localStorage.getItem(KEY);if(!raw)return;
+  try{
+    const d=JSON.parse(raw);
+    if(d.reflections){document.getElementById('ref-1').value=d.reflections.r1||'';document.getElementById('ref-2').value=d.reflections.r2||'';document.getElementById('ref-3').value=d.reflections.r3||'';}
+    if(d.calc){document.getElementById('p1-name').value=d.calc.p1n||'';document.getElementById('p1-lp').value=d.calc.p1lp||'';document.getElementById('p2-name').value=d.calc.p2n||'';document.getElementById('p2-lp').value=d.calc.p2lp||'';if(d.calc.p1lp&&d.calc.p2lp)runCalc();}
+    if(d.xp){xp=d.xp;updXP();}
+    if(d.completed)applyDone();
+    document.getElementById('save-time').textContent='loaded';
+  }catch(e){}
+}
+
+function exportData(){
+  saveData();
+  const b=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='TFA_N9_backup_'+Date.now()+'.json';a.click();
+}
+function importData(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=function(ev){try{const d=JSON.parse(ev.target.result);localStorage.setItem(KEY,JSON.stringify(d));loadData();toast('Session restored ✦');}catch(err){toast('Invalid file');}};
+  r.readAsText(f);e.target.value='';
+}
+
+// ── PROGRESS ──
+window.addEventListener('scroll',function(){
+  const doc=document.documentElement;
+  const sc=window.scrollY||doc.scrollTop;
+  const sh=doc.scrollHeight-doc.clientHeight;
+  document.getElementById('prog-fill').style.width=(sh>0?Math.min(100,sc/sh*100):0)+'%';
+},{passive:true});
+
+// ── SCROLL REVEAL ──
+function initReveal(){
+  const obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+  document.querySelectorAll('.ls').forEach(function(el){obs.observe(el);});
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',function(){
+  buildMatrix();buildProfiles();buildQuiz();buildAcc();loadData();initReveal();
+});
+</script>
+</body>
+</html>
