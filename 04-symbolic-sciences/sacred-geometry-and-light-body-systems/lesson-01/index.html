@@ -3,18 +3,907 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coming Soon · The Frequency Academy</title>
+<title>G1 — The Point and the Circle | The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+:root{
+  --bg:#0c1418;--bg2:#101d22;--bg3:#152028;
+  --a:#7ab0b8;--a2:#9ecdd4;--a3:rgba(122,176,184,0.22);--af:rgba(122,176,184,0.08);
+  --ab:rgba(122,176,184,0.18);
+  --w:#f0ede6;--w2:rgba(240,237,230,0.72);--w3:rgba(240,237,230,0.38);--w4:rgba(240,237,230,0.06);
+  --ok:#2a8a7a;--warn:#b07d20;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Georgia',serif;background:#0d1240;color:#f5f0e8;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center}
-h1{font-size:1.2rem;letter-spacing:.2em;color:#c9a84c;margin-bottom:1rem;text-transform:uppercase}
-p{color:#a09880;font-size:.85rem;letter-spacing:.1em}
+html{background:var(--bg);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
+body{min-height:100vh;padding-bottom:80px}
+
+/* PROGRESS */
+.prog-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--w4);z-index:200}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--a),var(--a2));transition:width .4s;width:0%}
+
+/* HEADER */
+header{background:rgba(12,20,24,0.96);border-bottom:1px solid var(--ab);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:100;backdrop-filter:blur(8px)}
+.hd-l{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.12em}
+.hd-r{font-family:'Cinzel',serif;font-size:11px;color:var(--a);letter-spacing:0.1em}
+
+/* HERO */
+.hero{text-align:center;padding:56px 24px 40px;max-width:820px;margin:0 auto}
+.eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.22em;color:var(--a);margin-bottom:16px;opacity:0.8}
+.hero h1{font-family:'Cinzel',serif;font-size:42px;font-weight:700;color:var(--w);line-height:1.12;margin-bottom:10px}
+.hero h1 span{color:var(--a)}
+.gold-rule{width:80px;height:2px;background:linear-gradient(90deg,var(--a),var(--a2));margin:22px auto;opacity:0.7}
+.hero-sub{font-size:15px;color:var(--w3);line-height:1.75;max-width:560px;margin:0 auto}
+
+/* CONTENT */
+.content{max-width:800px;margin:0 auto;padding:0 24px}
+
+/* SECTION CARDS */
+.section{background:var(--bg2);border:1px solid var(--ab);border-radius:12px;padding:28px;margin-bottom:20px}
+.section h2{font-family:'Cinzel',serif;font-size:14px;color:var(--a);letter-spacing:0.1em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--ab)}
+.section p{font-size:14px;color:var(--w2);line-height:1.82;margin-bottom:12px}
+.section p:last-child{margin:0}
+.section p strong{color:var(--a2);font-weight:600}
+.section p em{color:var(--a);font-style:normal;font-weight:500}
+
+/* CALLOUT */
+.callout{background:var(--af);border-left:2px solid var(--a);border-radius:0 8px 8px 0;padding:14px 16px;margin:14px 0}
+.callout-label{font-family:'Cinzel',serif;font-size:10px;color:var(--a);letter-spacing:0.12em;margin-bottom:6px}
+.callout p{font-size:13px;color:var(--w2);margin:0;line-height:1.7}
+
+/* TRADITION TABLE */
+.trad-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:10px}
+.trad-table th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--a);padding:9px 12px;background:var(--af);border:1px solid var(--ab);text-align:left}
+.trad-table td{padding:9px 12px;border:1px solid rgba(122,176,184,0.1);color:var(--w2);line-height:1.55;vertical-align:top}
+.trad-table td:first-child{color:var(--a2);font-weight:600;white-space:nowrap}
+.trad-table td:nth-child(2){color:var(--a);font-style:italic}
+.trad-table tr:nth-child(even) td{background:rgba(0,0,0,0.18)}
+
+/* MATH TABLE */
+.math-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:10px}
+.math-table th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--a);padding:9px 12px;background:var(--af);border:1px solid var(--ab);text-align:left}
+.math-table td{padding:9px 12px;border:1px solid rgba(122,176,184,0.1);color:var(--w2);line-height:1.55}
+.math-table td:first-child{color:var(--a2);font-weight:600}
+.math-table td:nth-child(2){font-family:monospace;color:var(--a);font-size:13px}
+.math-table td:nth-child(3){font-weight:700;color:var(--w)}
+.math-table tr:nth-child(even) td{background:rgba(0,0,0,0.18)}
+
+/* DEFINITIONS */
+.def-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+.def-item{background:var(--bg3);border:1px solid var(--ab);border-radius:8px;padding:14px 16px;cursor:pointer;transition:all .18s}
+.def-item:hover{border-color:var(--a)}
+.def-term{font-family:'Cinzel',serif;font-size:12px;color:var(--a);letter-spacing:0.08em;margin-bottom:6px}
+.def-body{font-size:13px;color:var(--w2);line-height:1.7}
+
+/* ── INTERACTIVE: COMPASS CANVAS ── */
+.viz-section{background:var(--bg2);border:1px solid var(--ab);border-radius:12px;padding:28px;margin-bottom:20px}
+.viz-section h2{font-family:'Cinzel',serif;font-size:14px;color:var(--a);letter-spacing:0.1em;margin-bottom:6px}
+.viz-sub{font-size:12px;color:var(--w3);margin-bottom:20px;line-height:1.6}
+.viz-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.viz-tab{padding:8px 18px;border-radius:6px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all .18s;border:1px solid var(--ab);background:var(--af);color:var(--w3)}
+.viz-tab.active{background:var(--a);color:#0c1418;border-color:var(--a)}
+.viz-panel{display:none}.viz-panel.active{display:block}
+
+/* Compass tool */
+.compass-wrap{background:rgba(0,0,0,0.35);border:1px solid var(--ab);border-radius:10px;padding:14px;margin-bottom:14px}
+.compass-canvas{display:block;margin:0 auto;cursor:crosshair;touch-action:none}
+.compass-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px;justify-content:center}
+.cc-btn{padding:8px 16px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:0.08em;cursor:pointer;border:1px solid var(--ab);background:var(--af);color:var(--a);transition:all .15s}
+.cc-btn:hover{background:rgba(255,255,255,0.06)}
+.cc-btn.active{background:var(--a);color:#0c1418;border-color:var(--a)}
+.cc-btn.danger{border-color:rgba(200,80,80,0.4);color:rgba(220,100,100,0.8)}
+.cc-btn.danger:hover{background:rgba(200,80,80,0.15)}
+.compass-info{font-size:12px;color:var(--w3);text-align:center;margin-top:8px;min-height:18px;font-family:'Cinzel',serif;letter-spacing:0.05em}
+
+/* Quiz */
+.quiz-q{background:var(--bg3);border:1px solid var(--ab);border-radius:10px;padding:16px 18px;margin-bottom:10px}
+.quiz-q-text{font-size:13px;color:var(--w2);line-height:1.65;margin-bottom:12px}
+.quiz-q-text strong{color:var(--a2)}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:6px;border:1px solid rgba(122,176,184,0.12);background:var(--w4);cursor:pointer;font-size:12.5px;color:var(--w2);transition:all .15s;line-height:1.5}
+.quiz-opt:hover{border-color:var(--a);background:var(--af)}
+.quiz-opt.correct{background:rgba(42,138,122,0.18);border-color:var(--ok);color:#a0ddd0}
+.quiz-opt.wrong{background:rgba(180,60,60,0.15);border-color:rgba(200,80,80,0.5);color:rgba(240,160,160,0.9)}
+.quiz-opt-mark{width:18px;height:18px;border-radius:50%;border:1px solid var(--ab);background:var(--w4);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.quiz-feedback{font-size:11px;color:var(--w3);margin-top:6px;padding:6px 10px;border-radius:4px;background:var(--af);display:none;line-height:1.55}
+.quiz-score{background:var(--af);border:1px solid var(--ab);border-radius:8px;padding:14px 18px;text-align:center;margin-top:14px;display:none}
+.quiz-score-num{font-family:'Cinzel',serif;font-size:28px;color:var(--a);font-weight:700}
+.quiz-score-label{font-size:12px;color:var(--w3);margin-top:4px}
+.quiz-reset{padding:8px 18px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:0.08em;cursor:pointer;border:1px solid var(--ab);background:var(--af);color:var(--a);margin-top:10px;transition:all .15s}
+.quiz-reset:hover{background:rgba(255,255,255,0.06)}
+
+/* ACCORDION */
+.accordion{margin-top:8px}
+.acc-item{border:1px solid var(--ab);border-radius:8px;margin-bottom:7px;overflow:hidden}
+.acc-head{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Cinzel',serif;font-size:12px;color:var(--a);letter-spacing:0.06em;background:var(--af);transition:background .15s}
+.acc-head:hover{background:rgba(255,255,255,0.04)}
+.acc-body{display:none;padding:14px 16px;font-size:13px;color:var(--w2);line-height:1.75;border-top:1px solid var(--ab)}
+.acc-body.open{display:block}
+.acc-arrow{transition:transform .2s;font-size:11px}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body strong{color:var(--a2)}
+.acc-body em{color:var(--a);font-style:normal}
+
+/* PRACTICE STEPS */
+.practice-steps{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.ps{display:flex;gap:14px;padding:14px;background:var(--af);border:1px solid var(--ab);border-radius:8px}
+.ps-n{font-family:'Cinzel',serif;font-size:13px;color:var(--a);min-width:28px;font-weight:700;padding-top:1px}
+.ps-t{font-size:13px;color:var(--w2);line-height:1.65}
+.ps-t strong{color:var(--a2);font-weight:600}
+
+/* REFLECTION */
+.ref-prompt{background:var(--bg3);border-left:3px solid var(--a);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:10px}
+.ref-prompt p{font-size:13px;color:var(--w2);line-height:1.65;font-style:italic;margin:0}
+textarea{width:100%;background:var(--w4);border:1px solid var(--ab);border-radius:8px;padding:12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;resize:vertical;min-height:88px;outline:none;line-height:1.6;transition:border-color .2s;margin-top:8px}
+textarea:focus{border-color:var(--a)}
+textarea::placeholder{color:var(--w3)}
+
+/* RESOURCES */
+.res-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(240,237,230,0.05)}
+.res-item:last-child{border:none}
+.res-icon{font-size:15px;flex-shrink:0;padding-top:2px}
+.res-title{font-size:13px;color:var(--w);font-weight:500;margin-bottom:2px}
+.res-auth{font-size:11px;color:var(--a2);margin-bottom:3px}
+.res-desc{font-size:11px;color:var(--w3);line-height:1.5}
+
+/* WORKSHOP */
+.workshop{background:var(--af);border:1px dashed var(--ab);border-radius:12px;padding:22px;text-align:center;margin-bottom:20px}
+.workshop h3{font-family:'Cinzel',serif;font-size:13px;color:var(--a);letter-spacing:0.08em;margin-bottom:8px}
+.workshop p{font-size:12px;color:var(--w3);line-height:1.65}
+
+/* COMPLETION */
+.completion-box{background:var(--af);border:1px solid var(--ab);border-radius:12px;padding:24px;text-align:center;margin-top:20px}
+.completion-box h3{font-family:'Cinzel',serif;font-size:14px;color:var(--a);letter-spacing:0.08em;margin-bottom:10px}
+.completion-box p{font-size:13px;color:var(--w3);margin-bottom:16px;line-height:1.6}
+.complete-btn{padding:12px 28px;border-radius:8px;background:var(--a);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:0.1em;color:#0c1418;transition:all .15s}
+.complete-btn:hover{background:var(--a2)}
+.complete-btn.done{background:var(--ok);cursor:default}
+.xp-flash{display:none;margin-top:12px;font-family:'Cinzel',serif;font-size:12px;color:var(--a);letter-spacing:0.08em}
+.xp-flash.show{display:block}
+
+/* NAV */
+.nav-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:480px){.nav-row{grid-template-columns:1fr}}
+.nav-card{background:var(--bg3);border:1px solid var(--ab);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;transition:all .18s}
+.nav-card:hover{background:var(--af);border-color:var(--a)}
+.nav-card.prev{flex-direction:row-reverse}
+.nav-label{font-size:10px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.12em;margin-bottom:4px;text-transform:uppercase}
+.nav-title{font-size:13px;color:var(--w);font-family:'Cinzel',serif}
+.nav-arrow{font-size:20px;color:var(--a)}
+
+/* VIDEO */
+.video-placeholder{background:var(--bg2);border:1px solid var(--ab);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:14px;margin:0 24px 32px;max-width:800px;margin-left:auto;margin-right:auto}
+.vp-icon{font-size:24px;flex-shrink:0}
+.vp-label{font-family:'Cinzel',serif;font-size:11px;color:var(--a);letter-spacing:0.1em;margin-bottom:4px}
+.vp-text{font-size:13px;color:var(--w3);line-height:1.5}
+
+/* SAVE BAR */
+.save-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(12,20,24,0.97);border-top:1px solid var(--ab);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;backdrop-filter:blur(8px)}
+.save-status{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.08em}
+.save-btns{display:flex;gap:8px}
+.save-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all .15s;border:1px solid var(--ab)}
+.save-btn.primary{background:var(--a);color:#0c1418;border-color:var(--a)}.save-btn.primary:hover{background:var(--a2)}
+.save-btn.ghost{background:var(--af);color:var(--a)}.save-btn.ghost:hover{background:rgba(255,255,255,0.06)}
+#importFile{display:none}
+
+/* Celebration */
+.celebration{position:fixed;inset:0;pointer-events:none;z-index:300;display:none}
+.celebration.show{display:block}
 </style>
 </head>
 <body>
-<div>
-<h1>Lesson Coming Soon</h1>
-<p>The Frequency Academy · Check back soon</p>
+
+<div class="prog-bar"><div class="prog-fill" id="pf"></div></div>
+
+<header>
+  <div class="hd-l">THE FREQUENCY ACADEMY · SACRED GEOMETRY & LIGHT BODY SYSTEMS</div>
+  <div class="hd-r">G1 · LESSON 1 OF 22</div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">SACRED GEOMETRY & LIGHT BODY SYSTEMS · G1</div>
+  <h1>The Point and <span>the Circle</span></h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">The origin of all form. Before there was geometry, there was a point. Before there was a point, there was awareness reaching outward to discover the shape of itself.</p>
 </div>
+
+<div class="video-placeholder">
+  <div class="vp-icon">🎬</div>
+  <div>
+    <div class="vp-label">VIDEO LESSON</div>
+    <div class="vp-text">A video transmission for this lesson is coming soon. The interactive lesson below contains the full teaching content — explore it now and the video will be added here when available.</div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- TRANSMISSION -->
+<div class="section">
+  <h2>The Transmission</h2>
+  <p>Before there was form, there was a point. Before there was a point, there was awareness. Geometry is the record of awareness reaching outward to discover the shape of itself.</p>
+  <p>Everything you will encounter in this module — every spiral, every solid, every lattice, every light body — is a development of what begins here. One point. One circle. The most fundamental relationship in all of sacred geometry, and in all of creation.</p>
+  <p>This is not abstraction. The sun in the sky is a point within a circle. The iris of your eye is a point within a circle. Every atom, every cell, every energy field your body generates — point and circle, centre and field, source and expression. You are already living this geometry. This lesson gives you the language for what you already are.</p>
+</div>
+
+<!-- POINT AND CIRCLE -->
+<div class="section">
+  <h2>The Geometry of Origin — Point and Circle</h2>
+  <p>All geometry begins with the <strong>Point</strong>. In Euclidean mathematics, the point is defined as "that which has no part." It has no length, no width, no depth. It is pure location — pure potential — before anything has taken form. Sacred geometry goes further: the Point is not merely a mathematical primitive. It is the geometric correspondence of <em>consciousness itself</em> — the witness state, the still centre, the source before the first act of creation.</p>
+
+  <div class="callout">
+    <div class="callout-label">THE POINT IN WORLD TRADITIONS</div>
+    <p>The Vedic tradition calls it the <strong>Bindu</strong> — the primordial point from which all manifest reality emerges. Taoism calls the undifferentiated state before the point <strong>Wu Ji</strong>. Every tradition that has worked with sacred geometry has recognised the Point as the first principle of creation.</p>
+  </div>
+
+  <p>When the Point becomes aware of itself — when consciousness stirs and reaches outward — it creates the <strong>Circle</strong>. The circle is movement in all directions equally. Every point on its boundary is equidistant from the centre. It is the first form, the most complete form, and the parent of all forms that follow.</p>
+  <p>The circle establishes the most fundamental geometric relationship: <em>centre and field</em>. The centre is the still point — unmoving, originating. The field is the circle — the zone of influence, the expression of the centre outward into space. Everything in sacred geometry, from the Vesica Piscis to Metatron's Cube to the Merkaba, is an elaboration of this single relationship.</p>
+
+  <div class="callout">
+    <div class="callout-label">THE RELATIONSHIP: CENTRE & FIELD</div>
+    <p>Consciousness → Awareness Field. Still Point → Circle. Source → Expression. Divine Witness → Creation. Zero → All. The Point and Circle are not two separate things. They are one relationship — the most fundamental movement of consciousness into form.</p>
+  </div>
+</div>
+
+<!-- MATHEMATICS -->
+<div class="section">
+  <h2>The Mathematics of the Circle — Pi and the Transcendental</h2>
+  <p>Sacred geometry is not only symbolic — it is mathematical. The circle encodes one of the universe's most fundamental constants in its very nature: <strong>Pi (π)</strong>.</p>
+  <p>Pi is the ratio of any circle's circumference to its diameter. It is always the same, for any circle of any size. And yet it is <em>irrational</em> and <em>transcendental</em> — infinite, non-repeating, irreducible. It cannot be expressed as a simple fraction. It cannot be expressed as a finite decimal. The circle's boundary can never be perfectly captured in numbers. This is not a limitation of mathematics. It is a statement about the nature of the circle itself: its boundary is infinite in character, even as it appears finite in form.</p>
+
+  <table class="math-table">
+    <thead><tr><th>Element</th><th>Formula</th><th>Value</th><th>Sacred Significance</th></tr></thead>
+    <tbody>
+      <tr><td>Diameter</td><td>2r</td><td>2 × radius</td><td>The first doubling — spans the full field through the centre point</td></tr>
+      <tr><td>Circumference</td><td>π × d</td><td>3.14159… × d</td><td>Pi is irrational — the circle's boundary cannot be perfectly expressed in finite numbers</td></tr>
+      <tr><td>Area</td><td>π × r²</td><td>πr²</td><td>Doubling the radius quadruples the field — field grows as the square of the radius</td></tr>
+      <tr><td>Pi (π)</td><td>C ÷ d</td><td>3.14159265…</td><td>Transcendental — infinite, non-repeating, irreducible. The universe's signature in every circle.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- TRADITIONS -->
+<div class="section">
+  <h2>The Point Within the Circle — A Universal Symbol</h2>
+  <p>The Point within the Circle is one of the most universally recognised symbols in human history. It appears across cultures separated by oceans and millennia as the primary symbol of the solar disc, the divine source, and the relationship between consciousness and its field of creation.</p>
+
+  <table class="trad-table">
+    <thead><tr><th>Tradition</th><th>Symbol / Name</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td>Ancient Egypt</td><td>Ra — Solar Disc</td><td>The sun — point of divine fire at centre of the field of light. The eye of Ra.</td></tr>
+      <tr><td>Alchemy</td><td>Symbol of Gold ⊙</td><td>The alchemical symbol for gold and the sun — the point as perfection within the completed field.</td></tr>
+      <tr><td>Freemasonry</td><td>Point Within a Circle</td><td>The individual soul (point) bounded by the eternal (circle). Balance and divine proportion.</td></tr>
+      <tr><td>Vedic / Hindu</td><td>Bindu</td><td>The primordial point of creation in Tantra — the source from which all manifest reality emerges.</td></tr>
+      <tr><td>Taoist</td><td>Wu Ji / Taiji</td><td>The circle of Wu Ji (undifferentiated potential) containing the first point of distinction.</td></tr>
+      <tr><td>Christianity</td><td>Halo / Aureole</td><td>The sacred circle of light surrounding the divine point of consciousness.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- KEY DEFINITIONS -->
+<div class="section">
+  <h2>Key Definitions</h2>
+  <div class="def-grid" id="defGrid"></div>
+</div>
+
+<!-- INTERACTIVE -->
+<div class="viz-section">
+  <h2>Sacred Geometry Explorer</h2>
+  <p class="viz-sub">Two tools: the <strong>Compass Studio</strong> — a live canvas where you construct the point and circle as a meditative geometric practice, with tools to mark centres, draw circles, and build from scratch. The <strong>Knowledge Check</strong> — 7 questions from the workbook to confirm your understanding.</p>
+
+  <div class="viz-tabs">
+    <button class="viz-tab active" onclick="switchTab('compass', this)">Compass Studio</button>
+    <button class="viz-tab" onclick="switchTab('quiz', this)">Knowledge Check</button>
+  </div>
+
+  <!-- TAB 1: COMPASS -->
+  <div class="viz-panel active" id="tab-compass">
+    <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:14px">Click once to set a <strong>still point</strong> (centre). Then drag outward to draw your circle. Each new click starts a new circle from a new centre. Toggle <em>Point Tool</em> to mark points only. This is the beginning of sacred geometry practice — consciousness creating form.</p>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+      <button class="cc-btn active" id="toolCircle" onclick="setTool('circle', this)">Circle Tool</button>
+      <button class="cc-btn" id="toolPoint" onclick="setTool('point', this)">Point Tool</button>
+      <button class="cc-btn" id="toolLine" onclick="setTool('line', this)">Line Tool</button>
+      <button class="cc-btn danger" onclick="clearCanvas()">Clear</button>
+      <button class="cc-btn" onclick="downloadCanvas()">Save PNG</button>
+    </div>
+
+    <div class="compass-wrap">
+      <canvas class="compass-canvas" id="compassCanvas" width="720" height="380"></canvas>
+    </div>
+    <div class="compass-info" id="compassInfo">Click anywhere to place your still point — the origin of all form</div>
+
+    <div style="background:var(--af);border:1px solid var(--ab);border-radius:8px;padding:14px 16px;margin-top:12px">
+      <div style="font-family:'Cinzel',serif;font-size:10px;color:var(--a);letter-spacing:0.1em;margin-bottom:8px">DRAWING PRACTICE — The Still Point</div>
+      <p style="font-size:13px;color:var(--w2);line-height:1.75;margin:0">Place the needle of your compass on a blank page. Before you draw — <strong>pause</strong>. Feel the needle as the still point. The source. The centre of what you are about to create. Open the compass to any radius. This is your first act of creation — the decision of how far your field extends. Draw the circle slowly and deliberately. Notice that the needle doesn't move. The point is still. The pencil — the field — moves around it.</p>
+    </div>
+  </div>
+
+  <!-- TAB 2: QUIZ -->
+  <div class="viz-panel" id="tab-quiz">
+    <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:16px">Seven questions from the G1 workbook. Select an answer for each question. Feedback appears immediately. Your score is shown when all questions are answered.</p>
+    <div id="quizContainer"></div>
+    <div class="quiz-score" id="quizScore">
+      <div class="quiz-score-num" id="quizScoreNum">0/7</div>
+      <div class="quiz-score-label">Knowledge Check Complete</div>
+      <button class="quiz-reset" onclick="resetQuiz()">Retake Quiz</button>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK REFERENCE -->
+<div class="section">
+  <h2>Quick Reference</h2>
+  <div class="accordion" id="accWrap"></div>
+</div>
+
+<!-- PRACTICAL APPLICATION -->
+<div class="section">
+  <h2>This Week's Practice — Finding Your Still Point</h2>
+  <p style="margin-bottom:16px">Sacred geometry becomes a living practice when it moves from the page into your body and your awareness. This week: two practices to establish the Point-Circle relationship in your physical and inner life.</p>
+  <div class="practice-steps">
+    <div class="ps"><div class="ps-n">1</div><div class="ps-t"><strong>Compass drawing practice — daily for 7 days.</strong> Gather a compass, pencil, ruler, and blank paper. Each day, place the compass needle on a fresh page and pause before you draw. Set an intention for what the still point represents: your centre, your source, your higher self. Set an intention for what the circle represents: your field of awareness, your life, your creative reach. Draw at least three circles of different sizes. Vary the radius deliberately — notice how the size of the circle changes the character of the field while the still point remains unchanged. Keep a drawing journal alongside: what did you notice? What did the act of holding the still point feel like?</div></div>
+    <div class="ps"><div class="ps-n">2</div><div class="ps-t"><strong>Circle mapping — observe 10 circles in your world.</strong> The sun, the moon, a drain, an eye, a coin, a ring, a cell under a microscope, a fruit cross-section, the pupil of an animal, the wheel of a bicycle. For each one: identify the centre point and the field it generates. Ask — what is the source, and what is the expression? Write your observations. This practice trains the geometric eye that sacred geometry requires: the ability to see the underlying pattern in all manifest form.</div></div>
+    <div class="ps"><div class="ps-n">3</div><div class="ps-t"><strong>Still point meditation — 10 minutes.</strong> Sit comfortably. Close your eyes. Place your attention at the very centre of your chest — the still point of your heart field. Do not analyse or visualise. Simply rest attention there. Then, after a few minutes, become aware of the field that radiates outward from that still point — your electromagnetic heart field, your aura, your sphere of influence in the space around you. You are the geometry. The point is your centre. The circle is your field. Sit with this for the remaining time.</div></div>
+  </div>
+</div>
+
+<!-- GO DEEPER -->
+<div class="section">
+  <h2>Go Deeper</h2>
+  <div class="res-item">
+    <div class="res-icon">📖</div>
+    <div><div class="res-title">Sacred Geometry — Robert Lawlor</div><div class="res-auth">Inner Traditions, 1982 · ISBN 978-0500810606</div><div class="res-desc">The foundational academic text on sacred geometry, beginning with the point and circle as the primordial acts of creation. The most rigorous scholarly treatment available.</div></div>
+  </div>
+  <div class="res-item">
+    <div class="res-icon">📖</div>
+    <div><div class="res-title">A Beginner's Guide to Constructing the Universe — Michael S. Schneider</div><div class="res-auth">HarperCollins, 1994 · ISBN 978-0060926717</div><div class="res-desc">Explores how the first nine numbers and their geometric expressions underpin all of nature, starting with the monad. Accessible and visually rich — the ideal companion to this module.</div></div>
+  </div>
+  <div class="res-item">
+    <div class="res-icon">📖</div>
+    <div><div class="res-title">The Ancient Secret of the Flower of Life Vol. 1 — Drunvalo Melchizedek</div><div class="res-auth">Light Technology Publishing, 1998 · ISBN 978-1891824173</div><div class="res-desc">Introduces sacred geometry through the lens of consciousness, beginning with primordial unity and the circle. The primary popular treatment of the sacred geometry tradition this module draws on.</div></div>
+  </div>
+  <div class="res-item">
+    <div class="res-icon">🔬</div>
+    <div><div class="res-title">Zeeman, E.C. — 'The Geometry of Catastrophe'</div><div class="res-auth">Times Literary Supplement, 1971</div><div class="res-desc">Foundational paper on catastrophe theory showing how geometric forms emerge from mathematical singularities — relevant to understanding the point as origin of dimensionality.</div></div>
+  </div>
+  <div class="res-item">
+    <div class="res-icon">🎬</div>
+    <div><div class="res-title">The Code — BBC Documentary Series (2011)</div><div class="res-auth">Available on BBC iPlayer and YouTube</div><div class="res-desc">Explores the mathematical codes underlying nature, opening with unity and circular form. Excellent visual grounding for the mathematical content of this lesson.</div></div>
+  </div>
+  <div class="res-item">
+    <div class="res-icon">🌐</div>
+    <div><div class="res-title">sacred-geometry.es</div><div class="res-auth">Comprehensive visual library</div><div class="res-desc">Step-by-step construction guides for sacred geometric forms starting with the point and circle. The best online resource for visual learners approaching this material for the first time.</div></div>
+  </div>
+  <div class="res-item">
+    <div class="res-icon">🌐</div>
+    <div><div class="res-title">geometrycode.com — Michael Schneider</div><div class="res-auth">Companion site to Constructing the Universe</div><div class="res-desc">Extensive resources on geometric archetypes starting with the monad. Includes the full number-geometry correspondence system that runs through all 22 lessons of this module.</div></div>
+  </div>
+  <div class="res-item">
+    <div class="res-icon">🔗</div>
+    <div><div class="res-title">Next: G2 — Vesica Piscis</div><div class="res-auth">The Frequency Academy · Sacred Geometry & Light Body Systems</div><div class="res-desc">When two circles of equal radius overlap so that the edge of each passes through the centre of the other, the Vesica Piscis is created. The point and circle from G1 are the preconditions for everything in G2.</div></div>
+  </div>
+</div>
+
+<!-- REFLECTION -->
+<div class="section">
+  <h2>Reflection Journal</h2>
+
+  <div class="ref-prompt">
+    <p>The lesson describes the Point as the metaphysical equivalent of consciousness — pure potential before form. Sit quietly for a moment and try to locate your own still point — the place within you that observes without reacting, that is present without movement. Where is it? What does it feel like? Can you describe it?</p>
+  </div>
+  <textarea id="ref1" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+  <div class="ref-prompt" style="margin-top:16px">
+    <p>Every circle you have ever seen — the sun, the moon, a coin, a ring, a drain, an eye, a cell — is an expression of this same fundamental geometry. Choose three circles from your daily life and describe what the centre point and the field represent in each case. What is the source and what is the expression in each?</p>
+  </div>
+  <textarea id="ref2" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+  <div class="ref-prompt" style="margin-top:16px">
+    <p>The lesson states that all 22 lessons of this module — every form in sacred geometry — originate from this single relationship between point and circle. Does this feel true to you? What does it mean to you that infinite complexity can emerge from a single point and a single circle?</p>
+  </div>
+  <textarea id="ref3" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+  <div class="ref-prompt" style="margin-top:16px">
+    <p>The drawing practice asks you to set an intention before you draw. What intention felt most true for you? What did the act of holding the still point and then releasing the pencil into the circle feel like as a metaphor for how you live your own life?</p>
+  </div>
+  <textarea id="ref4" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+</div>
+
+<!-- WORKSHOP -->
+<div class="workshop">
+  <h3>Live Workshop: The Point and the Circle</h3>
+  <p>A live deep-dive on this topic is coming soon. Recordings and supplemental materials will appear here once available. Members will be notified via the Academy portal.</p>
+</div>
+
+<!-- COMPLETION -->
+<div class="completion-box">
+  <h3>Complete G1 — The Point and the Circle</h3>
+  <p>When you have explored both interactive tabs, completed your 7-day drawing practice, and written at least two reflections — mark this lesson complete.</p>
+  <button class="complete-btn" id="completeBtn" onclick="markComplete()">Mark Complete · +10 XP</button>
+  <div class="xp-flash" id="xpFlash">✦ +10 XP Awarded · G2 Vesica Piscis Unlocked ✦</div>
+</div>
+
+<!-- NAV -->
+<div class="nav-row">
+  <a class="nav-card prev" href="../">
+    <div class="nav-arrow">←</div>
+    <div><div class="nav-label">Module Start</div><div class="nav-title">Sacred Geometry Overview</div></div>
+  </a>
+  <a class="nav-card" href="../lesson-02/">
+    <div><div class="nav-label">Next · G2</div><div class="nav-title">Vesica Piscis</div></div>
+    <div class="nav-arrow">→</div>
+  </a>
+</div>
+
+</div><!-- /content -->
+
+<div class="save-bar">
+  <div class="save-status" id="saveStatus">Auto-save active</div>
+  <div class="save-btns">
+    <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+    <button class="save-btn ghost" onclick="document.getElementById('importFile').click()">Import</button>
+    <button class="save-btn ghost" onclick="exportData()">Export</button>
+    <button class="save-btn primary" onclick="saveNow()">Save</button>
+  </div>
+</div>
+
+<canvas class="celebration" id="celebrationCanvas"></canvas>
+
+<script>
+var KEY = 'tfa_lesson_G1';
+var saveTimer;
+var tool = 'circle';
+var drawing = false;
+var startX, startY;
+var strokes = [];
+var currentStroke = null;
+
+// ── TABS ──────────────────────────────────────────────────────────────────
+function switchTab(id, btn) {
+  document.querySelectorAll('.viz-tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.viz-panel').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+// ── DEFINITIONS ───────────────────────────────────────────────────────────
+var DEFS = [
+  {term:'Point',body:'In sacred geometry, the Point is the origin of all dimension — the singularity from which all form emerges. It has no length, no width, no depth. It is pure potential. In metaphysical terms, the Point corresponds to consciousness itself before it takes form — the witness state, the Bindu, Wu Ji.'},
+  {term:'Circle',body:'The perfect closed curve whose every point is equidistant from the centre. The Circle is the first form created when the Point expands outward equally in all directions. It is the most fundamental shape in sacred geometry and the parent form of all that follows.'},
+  {term:'Radius',body:'The distance from the centre point to the edge of the circle. In sacred geometry, the radius is the first act of creation — the movement from the still point outward into space. All subsequent geometry is built on multiples and relationships of this original radius.'},
+  {term:'Circumference',body:'The complete boundary of the circle — the total path traced when awareness moves equally in all directions from the centre. The relationship between circumference and diameter encodes π, one of the universe\'s fundamental constants.'},
+  {term:'Still Point',body:'The metaphysical concept of the unmoving centre — the source from which all movement originates but which is itself without movement. In Taoism, the hub of the wheel. In sacred geometry, the generating point of all form. In consciousness terms, the witness state.'},
+  {term:'Field',body:'The space enclosed or influenced by the circle. In sacred geometry and energy work, the field is the zone of influence generated by any centre point. Understanding the Point-Circle relationship is the foundation for understanding all field dynamics — including the human energy field.'},
+  {term:'Pi (π)',body:'The ratio of a circle\'s circumference to its diameter — always 3.14159265… regardless of the circle\'s size. Pi is transcendental: infinite, non-repeating, irreducible. The circle\'s boundary can never be perfectly expressed in finite numbers. This is the universe\'s signature in the most fundamental geometric form.'},
+];
+(function buildDefs(){
+  var g = document.getElementById('defGrid');
+  DEFS.forEach(function(d){
+    var el = document.createElement('div');
+    el.className = 'def-item';
+    el.innerHTML = '<div class="def-term">'+d.term+'</div><div class="def-body">'+d.body+'</div>';
+    g.appendChild(el);
+  });
+})();
+
+// ── COMPASS CANVAS ────────────────────────────────────────────────────────
+function setTool(t, btn) {
+  tool = t;
+  document.querySelectorAll('.cc-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  var infoMap = {circle:'Click to set a still point, drag to draw your circle', point:'Click to place a point — the origin of awareness', line:'Click and drag to draw a line — the radius, the first direction'};
+  document.getElementById('compassInfo').textContent = infoMap[t];
+}
+
+function getPos(e, canvas) {
+  var r = canvas.getBoundingClientRect();
+  var src = e.touches ? e.touches[0] : e;
+  return {x: (src.clientX - r.left) * (canvas.width / r.width), y: (src.clientY - r.top) * (canvas.height / r.height)};
+}
+
+function clearCanvas() {
+  strokes = [];
+  redrawCanvas();
+  document.getElementById('compassInfo').textContent = 'Canvas cleared — place your still point to begin again';
+}
+
+function downloadCanvas() {
+  var c = document.getElementById('compassCanvas');
+  var link = document.createElement('a');
+  link.download = 'G1-geometry-practice.png';
+  link.href = c.toDataURL();
+  link.click();
+}
+
+function redrawCanvas() {
+  var c = document.getElementById('compassCanvas');
+  var ctx = c.getContext('2d');
+  var dpr = window.devicePixelRatio || 1;
+  var W = c.width / dpr, H = c.height / dpr;
+
+  ctx.fillStyle = '#080e14';
+  ctx.fillRect(0, 0, c.width, c.height);
+
+  // Subtle grid
+  ctx.strokeStyle = 'rgba(122,176,184,0.06)';
+  ctx.lineWidth = 0.5;
+  var step = 40 * dpr;
+  for (var x = 0; x <= c.width; x += step) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,c.height); ctx.stroke(); }
+  for (var y = 0; y <= c.height; y += step) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(c.width,y); ctx.stroke(); }
+
+  strokes.forEach(function(s) {
+    ctx.save();
+    if (s.type === 'circle') {
+      // Draw the centre point first
+      ctx.beginPath();
+      ctx.arc(s.cx, s.cy, 4*dpr, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(158,205,212,0.9)';
+      ctx.fill();
+      // Small crosshair
+      ctx.strokeStyle = 'rgba(122,176,184,0.5)';
+      ctx.lineWidth = 0.8;
+      ctx.beginPath(); ctx.moveTo(s.cx-12*dpr, s.cy); ctx.lineTo(s.cx+12*dpr, s.cy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(s.cx, s.cy-12*dpr); ctx.lineTo(s.cx, s.cy+12*dpr); ctx.stroke();
+      // Circle
+      if (s.r > 2) {
+        ctx.beginPath();
+        ctx.arc(s.cx, s.cy, s.r, 0, Math.PI*2);
+        ctx.strokeStyle = 'rgba(122,176,184,0.75)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        // Radius line
+        ctx.beginPath();
+        ctx.moveTo(s.cx, s.cy);
+        ctx.lineTo(s.cx + s.r, s.cy);
+        ctx.strokeStyle = 'rgba(122,176,184,0.25)';
+        ctx.lineWidth = 0.8;
+        ctx.setLineDash([4, 6]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    } else if (s.type === 'point') {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, 5*dpr, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(201,168,76,0.9)';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, 10*dpr, 0, Math.PI*2);
+      ctx.strokeStyle = 'rgba(201,168,76,0.3)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    } else if (s.type === 'line') {
+      ctx.beginPath();
+      ctx.moveTo(s.x1, s.y1);
+      ctx.lineTo(s.x2, s.y2);
+      ctx.strokeStyle = 'rgba(122,176,184,0.5)';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+    ctx.restore();
+  });
+
+  // Current stroke preview
+  if (currentStroke) {
+    ctx.save();
+    if (currentStroke.type === 'circle') {
+      ctx.beginPath();
+      ctx.arc(currentStroke.cx, currentStroke.cy, 4*dpr, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(158,205,212,0.7)';
+      ctx.fill();
+      if (currentStroke.r > 2) {
+        ctx.beginPath();
+        ctx.arc(currentStroke.cx, currentStroke.cy, currentStroke.r, 0, Math.PI*2);
+        ctx.strokeStyle = 'rgba(122,176,184,0.5)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4,6]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    } else if (currentStroke.type === 'line') {
+      ctx.beginPath();
+      ctx.moveTo(currentStroke.x1, currentStroke.y1);
+      ctx.lineTo(currentStroke.x2, currentStroke.y2);
+      ctx.strokeStyle = 'rgba(122,176,184,0.35)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4,6]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    ctx.restore();
+  }
+}
+
+function initCanvas() {
+  var c = document.getElementById('compassCanvas');
+  var dpr = window.devicePixelRatio || 1;
+  var wrap = c.parentElement;
+  var W = Math.min(720, wrap.offsetWidth - 28);
+  var H = 380;
+  c.width = W * dpr; c.height = H * dpr;
+  c.style.width = W + 'px'; c.style.height = H + 'px';
+  var ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  redrawCanvas();
+
+  function onDown(e) {
+    e.preventDefault();
+    var p = getPos(e, c);
+    drawing = true;
+    startX = p.x * dpr; startY = p.y * dpr;
+    if (tool === 'point') {
+      strokes.push({type:'point', x:startX, y:startY});
+      drawing = false;
+      document.getElementById('compassInfo').textContent = 'Point placed — the still centre, the origin of awareness';
+      redrawCanvas();
+      autoSave();
+    } else if (tool === 'circle') {
+      currentStroke = {type:'circle', cx:startX, cy:startY, r:0};
+    } else if (tool === 'line') {
+      currentStroke = {type:'line', x1:startX, y1:startY, x2:startX, y2:startY};
+    }
+  }
+
+  function onMove(e) {
+    if (!drawing) return;
+    e.preventDefault();
+    var p = getPos(e, c);
+    var x = p.x * dpr, y = p.y * dpr;
+    if (tool === 'circle') {
+      var r = Math.sqrt(Math.pow(x - startX, 2) + Math.pow(y - startY, 2));
+      currentStroke = {type:'circle', cx:startX, cy:startY, r:r};
+      document.getElementById('compassInfo').textContent = 'Radius: ' + Math.round(r / (window.devicePixelRatio||1)) + 'px — the field expanding from the still point';
+    } else if (tool === 'line') {
+      currentStroke = {type:'line', x1:startX, y1:startY, x2:x, y2:y};
+    }
+    redrawCanvas();
+  }
+
+  function onUp(e) {
+    if (!drawing) return;
+    drawing = false;
+    if (currentStroke) {
+      strokes.push(currentStroke);
+      if (currentStroke.type === 'circle' && currentStroke.r > 10) {
+        document.getElementById('compassInfo').textContent = 'Circle drawn — the field radiates from the still point. Your first form.';
+      }
+      currentStroke = null;
+      redrawCanvas();
+      autoSave();
+    }
+  }
+
+  c.addEventListener('mousedown', onDown);
+  c.addEventListener('mousemove', onMove);
+  c.addEventListener('mouseup', onUp);
+  c.addEventListener('touchstart', onDown, {passive:false});
+  c.addEventListener('touchmove', onMove, {passive:false});
+  c.addEventListener('touchend', onUp);
+}
+
+// ── QUIZ ──────────────────────────────────────────────────────────────────
+var QUIZ = [
+  {q:'The Point has ___ dimensions — it has no length, width, or depth. It is pure ___.',
+   opts:['One dimension / matter','Zero dimensions / potential','Two dimensions / energy','Three dimensions / form'],
+   correct:1, feedback:'The Point has zero dimensions — no length, no width, no depth. It is pure potential, the origin before form.'},
+  {q:'Pi (π) is described as "transcendental." What does this mean in the context of the circle?',
+   opts:['It is a round number','It is infinite, non-repeating, and irreducible — the circle\'s boundary cannot be perfectly expressed in finite numbers','It is approximately 3.14 and nothing more','It only applies to circles larger than 1 metre'],
+   correct:1, feedback:'Pi is transcendental — infinite, non-repeating, irreducible. The circle\'s boundary can never be captured in finite numbers. The universe\'s signature in every circle.'},
+  {q:'In Vedic tradition, the primordial point of creation is called:',
+   opts:['Wu Ji','The Taiji','The Bindu','The Ouroboros'],
+   correct:2, feedback:'The Bindu is the primordial point of creation in Vedic and Tantric tradition — the source from which all manifest reality emerges.'},
+  {q:'In sacred geometry, what does the Radius represent?',
+   opts:['The boundary of the circle','The distance from the centre to the edge — the first act of creation, the movement from still point outward','The area enclosed by the circle','The point at which two circles intersect'],
+   correct:1, feedback:'The radius is the first act of creation — the movement from the still point outward into space. All subsequent geometry is built on multiples and relationships of this original radius.'},
+  {q:'What happens to the area of a circle when you double the radius?',
+   opts:['It doubles','It triples','It quadruples','It stays the same'],
+   correct:2, feedback:'Area = πr². Doubling r means (2r)² = 4r². The field quadruples when the radius doubles. The field grows as the square of the reach.'},
+  {q:'The circle is described as the only geometric form that:',
+   opts:['Can be drawn with a compass','Has no beginning and no end','Has exactly 360 degrees','Encodes the golden ratio'],
+   correct:1, feedback:'The circle has no beginning and no end — you can travel its boundary forever and never find an edge. It is infinite in character even as it appears finite in form.'},
+  {q:'The Taoist concept of Wu Ji refers to:',
+   opts:['Complete differentiation and full manifest form','The yin-yang symbol','Undifferentiated potential — the void before the first distinction','The five elements in balance'],
+   correct:2, feedback:'Wu Ji refers to undifferentiated potential — the state before the first distinction, before the point of Taiji arises from the void. The circle of Wu Ji contains the seed of all creation.'},
+];
+
+var quizAnswers = {};
+function buildQuiz() {
+  var c = document.getElementById('quizContainer');
+  QUIZ.forEach(function(q, i) {
+    var div = document.createElement('div');
+    div.className = 'quiz-q';
+    div.id = 'qq' + i;
+    var opts = q.opts.map(function(o, j) {
+      return '<div class="quiz-opt" id="qo'+i+'_'+j+'" onclick="answerQuiz('+i+','+j+')">' +
+        '<span class="quiz-opt-mark" id="qm'+i+'_'+j+'"></span>' + o + '</div>';
+    }).join('');
+    div.innerHTML = '<div class="quiz-q-text"><strong>'+(i+1)+'.</strong> '+q.q+'</div><div class="quiz-opts">'+opts+'</div><div class="quiz-feedback" id="qf'+i+'"></div>';
+    c.appendChild(div);
+  });
+}
+function answerQuiz(qi, oi) {
+  if (quizAnswers[qi] !== undefined) return;
+  quizAnswers[qi] = oi;
+  var q = QUIZ[qi];
+  var optEl = document.getElementById('qo'+qi+'_'+oi);
+  var markEl = document.getElementById('qm'+qi+'_'+oi);
+  var feedEl = document.getElementById('qf'+qi);
+  if (oi === q.correct) {
+    optEl.classList.add('correct');
+    markEl.textContent = '✓';
+    markEl.style.background = 'var(--ok)';
+    markEl.style.color = '#fff';
+  } else {
+    optEl.classList.add('wrong');
+    markEl.textContent = '✗';
+    markEl.style.background = 'rgba(180,60,60,0.6)';
+    markEl.style.color = '#fff';
+    var corrEl = document.getElementById('qo'+qi+'_'+q.correct);
+    corrEl.classList.add('correct');
+    var corrMark = document.getElementById('qm'+qi+'_'+q.correct);
+    corrMark.textContent = '✓';
+    corrMark.style.background = 'var(--ok)';
+    corrMark.style.color = '#fff';
+  }
+  feedEl.textContent = q.feedback;
+  feedEl.style.display = 'block';
+  if (Object.keys(quizAnswers).length === QUIZ.length) {
+    var score = 0;
+    QUIZ.forEach(function(q,i){ if(quizAnswers[i]===q.correct) score++; });
+    document.getElementById('quizScoreNum').textContent = score + '/' + QUIZ.length;
+    document.getElementById('quizScore').style.display = 'block';
+  }
+}
+function resetQuiz() {
+  quizAnswers = {};
+  document.getElementById('quizContainer').innerHTML = '';
+  document.getElementById('quizScore').style.display = 'none';
+  buildQuiz();
+}
+
+// ── ACCORDION ──────────────────────────────────────────────────────────────
+var ACC = [
+  {t:'Point and Circle — Core Principles',
+   b:'<strong>The Point:</strong> Zero dimensions. No length, width, or depth. Pure potential. In sacred geometry, the geometric correspondence of consciousness before form — the Bindu (Vedic), the still point (Taoist), the witness state.<br><br><strong>The Circle:</strong> The first form. Created by equal movement outward from the Point in all directions. Establishes centre (source) and field (expression). The only geometric form with no beginning and no end.<br><br><strong>The Radius:</strong> The first act of creation — the movement from the still point outward. All subsequent sacred geometry is built from multiples and relationships of the original radius.<br><br><strong>Centre and Field:</strong> The most fundamental dynamic in sacred geometry. Consciousness (Point) generates its Awareness Field (Circle). This relationship underlies every form in the 22 lessons of this module.'},
+  {t:'Pi (π) — The Transcendental Constant',
+   b:'Pi is the ratio of a circle\'s circumference to its diameter — always 3.14159265358979… regardless of the circle\'s size. It is transcendental: <strong>infinite</strong> (never ends), <strong>non-repeating</strong> (no pattern recurs), <strong>irreducible</strong> (cannot be expressed as a simple fraction).<br><br>Circumference = π × diameter. Area = π × radius². Doubling the radius quadruples the area — the field grows as the square of the reach.<br><br>The significance: the circle\'s boundary can never be perfectly captured in finite numbers. The universe\'s signature in the most fundamental geometric form is infinite in character.'},
+  {t:'Circle Mathematics Quick Reference',
+   b:'<strong>Diameter</strong> = 2r (2 × radius) — spans the full field through the centre point<br><br><strong>Circumference</strong> = π × d = 2πr<br><br><strong>Area</strong> = π × r² — field grows as the square of radius (double radius = quadruple area)<br><br><strong>Pi</strong> = C ÷ d = 3.14159265… (transcendental, never-ending, never-repeating)<br><br>Key: for any circle, the ratio C/d is always exactly π — regardless of the circle\'s size. This is encoded in the very nature of the circular form.'},
+  {t:'Traditional Correspondences',
+   b:'<strong>Ancient Egypt:</strong> Ra — Solar Disc. Point of divine fire at centre of the field of light.<br><br><strong>Alchemy:</strong> Symbol of Gold (⊙). The point as perfection within the completed field. Gold is the solar metal.<br><br><strong>Freemasonry:</strong> Point Within a Circle. The individual soul bounded by the eternal.<br><br><strong>Vedic/Hindu:</strong> Bindu. Primordial point of creation in Tantra.<br><br><strong>Taoist:</strong> Wu Ji (undifferentiated potential — the circle) / Taiji (the first distinction — the point within).<br><br><strong>Christianity:</strong> The halo or aureole — the sacred circle of light surrounding the divine centre.'},
+  {t:'Key Terms Glossary',
+   b:'<strong>Still Point:</strong> The unmoving centre from which all movement originates. In meditation, the witness state. In sacred geometry, the generating point of all form.<br><br><strong>Field:</strong> The zone of influence generated by a centre point — the circle and all the space it defines.<br><br><strong>Bindu:</strong> Sanskrit — the primordial point of creation.<br><br><strong>Wu Ji:</strong> Taoist — the undifferentiated void before the first distinction. The circle containing the seed of all.<br><br><strong>Taiji:</strong> Taoist — the first distinction arising from Wu Ji — the Yin-Yang dynamic, the first point within the circle of potential.<br><br><strong>Circumscribe:</strong> To draw a circle around a geometric form. All sacred geometric forms can be circumscribed — enclosed within the circle that contains them.<br><br><strong>Inscribe:</strong> To draw a geometric form within a circle. The circle is always the container, the field within which form arises.'},
+];
+
+(function buildAcc(){
+  var w = document.getElementById('accWrap');
+  ACC.forEach(function(item){
+    var d = document.createElement('div');
+    d.className = 'acc-item';
+    d.innerHTML = '<div class="acc-head" onclick="toggleAcc(this)"><span>'+item.t+'</span><span class="acc-arrow">▾</span></div><div class="acc-body">'+item.b+'</div>';
+    w.appendChild(d);
+  });
+})();
+function toggleAcc(head) {
+  var body = head.nextElementSibling;
+  var arrow = head.querySelector('.acc-arrow');
+  var isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body.open').forEach(function(b){b.classList.remove('open');});
+  document.querySelectorAll('.acc-arrow.open').forEach(function(a){a.classList.remove('open');});
+  if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
+}
+
+// ── COMPLETION ─────────────────────────────────────────────────────────────
+function markComplete() {
+  var btn = document.getElementById('completeBtn');
+  if (btn.classList.contains('done')) return;
+  btn.classList.add('done');
+  btn.textContent = '✓ Complete';
+  document.getElementById('xpFlash').classList.add('show');
+  celebrate();
+  saveNow();
+}
+
+function celebrate() {
+  var canvas = document.getElementById('celebrationCanvas');
+  canvas.classList.add('show');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var colors = ['#7ab0b8','#9ecdd4','#c9a84c','#e2c06a','#f0ede6'];
+  for (var i = 0; i < 80; i++) {
+    particles.push({
+      x: Math.random() * canvas.width, y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 5 + 2, color: colors[Math.floor(Math.random()*colors.length)],
+      vy: Math.random() * 3 + 1, vx: (Math.random()-0.5)*2, alpha: 1
+    });
+  }
+  var frame = 0;
+  function anim() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(function(p) {
+      p.y += p.vy; p.x += p.vx; p.alpha -= 0.008;
+      ctx.globalAlpha = Math.max(0, p.alpha);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+    frame++;
+    if (frame < 120) requestAnimationFrame(anim);
+    else { canvas.classList.remove('show'); ctx.clearRect(0,0,canvas.width,canvas.height); }
+  }
+  requestAnimationFrame(anim);
+}
+
+// ── SAVE / LOAD ─────────────────────────────────────────────────────────────
+function getData() {
+  return {
+    v:1, lesson:'G1', ts:new Date().toISOString(),
+    r1:document.getElementById('ref1').value,
+    r2:document.getElementById('ref2').value,
+    r3:document.getElementById('ref3').value,
+    r4:document.getElementById('ref4').value,
+    done:document.getElementById('completeBtn').classList.contains('done'),
+    strokes:strokes.slice()
+  };
+}
+function saveNow() {
+  localStorage.setItem(KEY, JSON.stringify(getData()));
+  document.getElementById('saveStatus').textContent = 'Saved '+new Date().toLocaleTimeString();
+}
+function autoSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 90000);
+}
+function loadData() {
+  var raw = localStorage.getItem(KEY);
+  if (!raw) return;
+  try {
+    var d = JSON.parse(raw);
+    if (d.r1) document.getElementById('ref1').value = d.r1;
+    if (d.r2) document.getElementById('ref2').value = d.r2;
+    if (d.r3) document.getElementById('ref3').value = d.r3;
+    if (d.r4) document.getElementById('ref4').value = d.r4;
+    if (d.done) { var btn = document.getElementById('completeBtn'); btn.classList.add('done'); btn.textContent = '✓ Complete'; document.getElementById('xpFlash').classList.add('show'); }
+    if (d.strokes && d.strokes.length) { strokes = d.strokes; redrawCanvas(); }
+    document.getElementById('saveStatus').textContent = 'Session restored';
+  } catch(e) {}
+}
+function exportData() {
+  saveNow();
+  var b = new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(b);
+  a.download = 'TFA_G1_backup_'+Date.now()+'.json';
+  a.click();
+}
+function importData(e) {
+  var f = e.target.files[0]; if (!f) return;
+  var r = new FileReader();
+  r.onload = function(ev) {
+    try { var d = JSON.parse(ev.target.result); localStorage.setItem(KEY, JSON.stringify(d)); loadData(); } catch(err){}
+  };
+  r.readAsText(f);
+  e.target.value = '';
+}
+
+// ── PROGRESS BAR ────────────────────────────────────────────────────────────
+window.addEventListener('scroll', function() {
+  var doc = document.documentElement;
+  var sc = window.scrollY || doc.scrollTop;
+  var sh = doc.scrollHeight - doc.clientHeight;
+  document.getElementById('pf').style.width = (sh > 0 ? Math.min(100, sc/sh*100) : 0) + '%';
+}, {passive:true});
+
+// ── INIT ────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  buildQuiz();
+  loadData();
+  initCanvas();
+  window.addEventListener('resize', function() {
+    if (document.getElementById('tab-compass').classList.contains('active')) initCanvas();
+  });
+});
+</script>
 </body>
 </html>
