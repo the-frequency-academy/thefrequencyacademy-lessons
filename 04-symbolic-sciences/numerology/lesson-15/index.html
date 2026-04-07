@@ -1,1 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N15: Putting It All Together — The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1a3a;--accent:#c9a84c;--accent2:#dfc472;
+  --text:#f0ede6;--dim:rgba(240,237,230,0.60);
+  --card:rgba(0,0,0,0.28);--border:rgba(201,168,76,0.14);--glow:rgba(201,168,76,0.20);
+  --r:12px;--rl:18px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse at 20% 10%,rgba(201,168,76,.08) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(13,26,58,.8) 0%,transparent 50%);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 8% 12%,rgba(255,255,255,.65) 0%,transparent 100%),radial-gradient(1px 1px at 23% 39%,rgba(255,255,255,.45) 0%,transparent 100%),radial-gradient(1px 1px at 45% 7%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 67% 26%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 82% 15%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 35% 64%,rgba(201,168,76,.38) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 87% 37%,rgba(201,168,76,.26) 0%,transparent 100%)}
+#prog-wrap{position:fixed;top:0;left:0;right:0;z-index:200;height:3px;background:rgba(5,10,28,.9)}
+#prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease;box-shadow:0 0 10px var(--glow)}
+.top-nav{position:fixed;top:3px;left:0;right:0;z-index:199;display:flex;align-items:center;justify-content:space-between;padding:13px 32px;background:rgba(8,14,42,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1)}
+.nav-brand{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--accent);opacity:.8}
+.nav-crumb{font-size:10px;color:var(--dim);letter-spacing:2px}
+.nav-xp{font-family:'Cinzel',serif;font-size:11px;color:var(--accent);letter-spacing:2px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 14px}
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:88px 24px 140px}
+.ls{margin-bottom:68px;opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.ls.visible{opacity:1;transform:translateY(0)}
 
+/* HERO */
+.hero{text-align:center;padding:76px 0 56px}
+.hero-eye{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.hero-code{font-family:'Cinzel',serif;font-size:88px;font-weight:900;line-height:1;color:transparent;background:linear-gradient(145deg,var(--accent2) 0%,var(--accent) 55%,rgba(201,168,76,.3) 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,168,76,.2));margin-bottom:10px}
+.hero-title{font-family:'Cinzel',serif;font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:8px}
+.hero-sub{font-size:15px;font-weight:300;font-style:italic;color:var(--dim);letter-spacing:2px;margin-bottom:36px}
+.hero-rule{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 36px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.22);border-radius:30px;padding:7px 22px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent)}
+.hero-finale{margin-top:28px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:var(--accent2);opacity:.7}
+
+/* MODULE BADGE */
+.module-badge{display:flex;justify-content:center;margin:0 auto 8px;gap:8px;flex-wrap:wrap}
+.lesson-pip{width:32px;height:6px;border-radius:3px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.2)}
+.lesson-pip.done{background:var(--accent);box-shadow:0 0 6px rgba(201,168,76,.4)}
+
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.sh-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.6;white-space:nowrap}
+.sh-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--glow),transparent)}
+.st{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.tx{background:linear-gradient(135deg,rgba(0,0,0,.36),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--accent);border-radius:var(--r);padding:38px 44px;position:relative;overflow:hidden}
+.tx::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.tx-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.tx p{font-size:16px;line-height:1.95;color:rgba(240,237,230,.78);font-style:italic;font-weight:300}
+.tx p+p{margin-top:14px}
+.tx strong{color:var(--accent2);font-style:normal;font-weight:600}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 34px;margin-bottom:18px}
+.card p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.card p:last-child{margin-bottom:0}
+.callout{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:24px 32px;margin:22px 0;text-align:center}
+.callout p{font-family:'Cinzel',serif;font-size:14px;line-height:1.8;color:var(--accent2);letter-spacing:.5px}
+
+/* MODULE MAP TABLE */
+.mm-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.mm-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:11px 14px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.mm-t th:last-child{border-right:none}
+.mm-t td{background:rgba(0,0,0,.2);padding:10px 14px;font-size:12.5px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.55;vertical-align:top}
+.mm-t td:last-child{border-right:none}
+.mm-t td:first-child{color:var(--accent);font-family:'Cinzel',serif;font-size:12px;font-weight:700;white-space:nowrap}
+.mm-t td:nth-child(2){color:var(--accent2);font-size:12px}
+.mm-t td:nth-child(3){color:var(--dim);font-size:11px;font-style:italic}
+.mm-t tr.finale td{background:rgba(201,168,76,.09);font-weight:600}
+.mm-t tr.finale td:first-child{font-size:14px}
+
+/* PERSONAL FREQUENCY PRACTICE BUILDER */
+.pfp-builder{background:rgba(5,10,28,.6);border:1px solid rgba(201,168,76,.18);border-radius:var(--rl);overflow:hidden;margin:24px 0}
+.pfp-hd{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.12);padding:16px 26px;display:flex;align-items:center;justify-content:space-between}
+.pfp-hd-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--accent)}
+.pfp-progress{font-size:11px;color:var(--dim);font-family:'Cinzel',serif;letter-spacing:2px}
+.pfp-body{padding:28px}
+.pfp-step{display:none}
+.pfp-step.active{display:block;animation:fadeUp .35s ease}
+.pfp-step-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.6;margin-bottom:6px}
+.pfp-step-title{font-family:'Cinzel',serif;font-size:16px;color:var(--text);margin-bottom:10px;letter-spacing:1px}
+.pfp-step-sub{font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:18px;font-style:italic}
+.pfp-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.12);border-radius:8px;padding:12px 16px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s;margin-bottom:10px}
+.pfp-input:focus{border-color:rgba(201,168,76,.4)}
+.pfp-ta{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.12);border-radius:8px;padding:12px 16px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none;resize:vertical;min-height:90px;line-height:1.7;transition:border-color .2s;margin-bottom:10px}
+.pfp-ta:focus{border-color:rgba(201,168,76,.4)}
+.pfp-ta::placeholder,.pfp-input::placeholder{color:rgba(240,237,230,.2)}
+.pfp-nav{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-top:20px;flex-wrap:wrap}
+.pfp-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:11px 24px;border-radius:22px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.pfp-btn.next{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;color:#0a1025;font-weight:700}
+.pfp-btn.next:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,.25)}
+.pfp-btn.back{background:transparent;border-color:rgba(255,255,255,.12);color:var(--dim)}.pfp-btn.back:hover{border-color:rgba(255,255,255,.25);color:var(--text)}
+.pfp-step-dots{display:flex;gap:6px;align-items:center}
+.pfp-dot{width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,.2);transition:all .3s}
+.pfp-dot.active{background:var(--accent);box-shadow:0 0 6px rgba(201,168,76,.5);width:18px;border-radius:3px}
+.pfp-dot.done{background:rgba(201,168,76,.5)}
+
+/* PRACTICE CARD OUTPUT */
+.practice-output{display:none;margin-top:24px;animation:fadeUp .5s ease}
+.practice-output.show{display:block}
+.po-header{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(0,0,0,.3));border:1px solid rgba(201,168,76,.25);border-radius:var(--rl);padding:28px 32px;margin-bottom:20px;text-align:center}
+.po-title{font-family:'Cinzel',serif;font-size:18px;letter-spacing:3px;color:var(--accent2);margin-bottom:8px}
+.po-sub{font-size:13px;color:var(--dim);font-style:italic}
+.po-sections{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.po-card{background:rgba(0,0,0,.28);border:1px solid rgba(201,168,76,.1);border-radius:var(--r);padding:18px 20px}
+.po-card-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.po-card-content{font-size:13px;color:var(--text);line-height:1.75}
+.po-statement{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-left:3px solid var(--accent);border-radius:var(--r);padding:16px 20px;margin-top:14px}
+.po-statement-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);margin-bottom:8px}
+.po-statement-text{font-size:14px;color:var(--text);line-height:1.85;font-style:italic}
+
+/* COMPLETION CHECKLIST */
+.completion-checklist{display:flex;flex-direction:column;gap:12px;margin:20px 0}
+.cc-item{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;transition:all .25s;user-select:none}
+.cc-item:hover{border-color:rgba(201,168,76,.25)}
+.cc-item.checked{border-color:rgba(90,184,122,.35);background:rgba(90,184,122,.06)}
+.cc-check{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(201,168,76,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .25s}
+.cc-item.checked .cc-check{background:rgba(90,184,122,.8);border-color:transparent;color:#fff}
+.cc-text{font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;color:var(--dim);transition:color .25s}
+.cc-item.checked .cc-text{color:var(--text)}
+
+/* QUIZ */
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;margin-bottom:14px;transition:border-color .3s}
+.quiz-item.correct{border-color:rgba(90,184,122,.45);background:rgba(90,184,122,.06)}
+.quiz-item.wrong{border-color:rgba(200,80,80,.4);background:rgba(200,80,80,.05)}
+.quiz-q{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:14px}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:11px 16px;font-size:13px;color:var(--dim);cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:hover{border-color:rgba(201,168,76,.25);color:var(--text);background:rgba(201,168,76,.07)}
+.quiz-opt.ok{border-color:rgba(90,184,122,.5);background:rgba(90,184,122,.1);color:#6fda9a}
+.quiz-opt.no{border-color:rgba(200,80,80,.5);background:rgba(200,80,80,.08);color:#e07070}
+.quiz-opt.show-ok{border-color:rgba(90,184,122,.35);color:#6fda9a}
+.quiz-fb{margin-top:12px;font-size:13px;line-height:1.6;padding:10px 14px;border-radius:8px;display:none}
+.quiz-fb.show{display:block}.quiz-fb.correct{background:rgba(90,184,122,.08);color:#6fda9a}.quiz-fb.wrong{background:rgba(200,80,80,.06);color:#e07070}
+.quiz-score{text-align:center;font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--accent);padding:20px;display:none}
+.quiz-score.show{display:block}
+
+/* ACCORDION */
+.acc-item{margin-bottom:10px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.acc-hd{width:100%;background:var(--card);border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;transition:background .2s}
+.acc-hd:hover{background:rgba(0,0,0,.38)}
+.acc-ht{font-family:'Cinzel',serif;font-size:13px;color:var(--text);letter-spacing:1px}
+.acc-ic{font-size:18px;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-ic{transform:rotate(45deg)}
+.acc-bd{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-item.open .acc-bd{max-height:800px}
+.acc-ct{padding:20px 22px;font-size:13px;line-height:1.85;color:var(--dim);border-top:1px solid rgba(255,255,255,.04)}
+.acc-ct strong{color:var(--accent2)}
+
+/* REFLECTION */
+.ref-q{font-family:'Cinzel',serif;font-size:14px;color:var(--accent2);line-height:1.75;margin-bottom:14px;letter-spacing:.5px}
+.ref-ta{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:18px 22px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;line-height:1.85;resize:vertical;min-height:110px;outline:none;transition:border-color .25s;margin-bottom:26px}
+.ref-ta:focus{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.32)}
+.ref-ta::placeholder{color:rgba(240,237,230,.2)}
+
+/* PRAC STEPS */
+.prac-step{display:flex;gap:20px;padding:18px 0;border-bottom:1px solid rgba(201,168,76,.07)}
+.prac-step:last-child{border-bottom:none}
+.prac-n{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--accent);opacity:.3;flex-shrink:0;line-height:1.1;width:36px}
+.prac-content strong{display:block;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--text);margin-bottom:7px}
+.prac-content p{font-size:14px;color:var(--dim);line-height:1.8;margin:0}
+
+/* RESOURCES */
+.res-list{display:flex;flex-direction:column;gap:10px}
+.res-item{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);transition:border-color .2s}
+.res-item:hover{border-color:rgba(201,168,76,.28)}
+.res-icon{color:var(--accent);font-size:1rem;flex-shrink:0;margin-top:2px}
+.res-info strong{display:block;font-size:14px;color:var(--text);margin-bottom:3px}
+.res-info span{font-size:12px;color:var(--dim)}
+
+/* GRADUATE / FINALE */
+.graduate-wrap{background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(0,0,0,.5));border:1px solid rgba(201,168,76,.3);border-radius:var(--rl);padding:48px;text-align:center;position:relative;overflow:hidden}
+.graduate-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.08) 0%,transparent 60%);pointer-events:none}
+.graduate-star{font-size:28px;margin-bottom:14px;display:block}
+.graduate-title{font-family:'Cinzel',serif;font-size:20px;letter-spacing:4px;color:var(--accent2);margin-bottom:18px}
+.graduate-quote{font-size:15px;font-style:italic;color:var(--dim);line-height:1.9;max-width:600px;margin:0 auto 28px}
+.lessons-done{display:flex;flex-direction:column;gap:6px;align-items:flex-start;max-width:360px;margin:0 auto 32px;text-align:left}
+.lesson-check{font-size:13px;color:var(--dim);display:flex;align-items:center;gap:8px;padding:4px 0}
+.lesson-check-ic{color:var(--accent);flex-shrink:0}
+
+/* NAV */
+.nav-card-single{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:22px 26px;cursor:pointer;transition:all .3s;text-decoration:none;justify-content:space-between}
+.nav-card-single:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.nav-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.nav-title{font-family:'Cinzel',serif;font-size:15px;color:var(--text);letter-spacing:1px}
+.nav-arr{font-size:26px;color:var(--accent);opacity:.5;flex-shrink:0}
+.ws{background:rgba(0,0,0,.3);border:1px dashed rgba(201,168,76,.2);border-radius:var(--rl);padding:40px;text-align:center}
+.ws-ic{font-size:34px;margin-bottom:14px;opacity:.45}
+.ws-t{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:var(--accent);margin-bottom:8px;opacity:.6}
+.ws-s{font-size:13px;color:var(--dim)}
+
+/* COMP */
+.comp-wrap{background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(0,0,0,.4));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:48px;text-align:center}
+.comp-t{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--text);margin-bottom:8px}
+.comp-s{font-size:13px;color:var(--dim);margin-bottom:28px}
+.comp-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:40px;padding:17px 44px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.comp-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.28)}
+.comp-btn.done{background:linear-gradient(135deg,#5ab87a,#7de09a)}
+.xp-pop{display:none;font-family:'Cinzel',serif;font-size:14px;color:var(--accent);margin-top:22px;letter-spacing:2px}
+.xp-pop.show{display:block;animation:fadeUp .7s ease}
+
+/* SAVE BAR */
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(5,10,28,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(201,168,76,.12);padding:13px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.sv-status{font-size:11px;color:var(--dim);letter-spacing:1px}.sv-status span{color:var(--accent);font-family:'Cinzel',serif}
+.sv-actions{display:flex;gap:10px}
+.sv-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.sv-btn.pri{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.3);color:var(--accent)}.sv-btn.pri:hover{background:rgba(201,168,76,.2)}
+.sv-btn.sec{background:transparent;border-color:rgba(255,255,255,.1);color:var(--dim)}.sv-btn.sec:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+#imp-file{display:none}
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(8,14,42,.96);border:1px solid rgba(201,168,76,.28);border-radius:30px;padding:11px 26px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.cf{position:fixed;top:-20px;z-index:9999;border-radius:2px;pointer-events:none;animation:fall 2.2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:660px){.hero-code{font-size:60px}.hero-title{font-size:17px}.po-sections{grid-template-columns:1fr}.top-nav{padding:12px 16px}.nav-crumb{display:none}main{padding-left:16px;padding-right:16px}.tx{padding:26px 22px}.graduate-wrap{padding:28px 20px}}
+</style>
+</head>
+<body>
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+<div class="top-nav">
+  <div class="nav-brand">THE FREQUENCY ACADEMY</div>
+  <div class="nav-crumb">NUMEROLOGY · N15 · MODULE FINALE</div>
+  <div class="nav-xp" id="xp-display">0 XP</div>
+</div>
+<div class="toast" id="toast"></div>
+<main>
+
+  <!-- HERO -->
+  <div class="ls hero visible">
+    <div class="hero-eye">Symbolic Sciences · Numerology · Module Finale</div>
+    <div class="hero-code">N15</div>
+    <div class="hero-title">Putting It All Together</div>
+    <div class="hero-sub">Module Synthesis &amp; Your Personal Frequency Practice</div>
+    <div class="hero-rule"></div>
+    <div class="module-badge" id="module-pips"></div>
+    <div class="hero-tag">⟡ ~30 Min · 15 Lessons Complete · Module Graduation</div>
+    <div class="hero-finale">★ Numerology Module Finale ★</div>
+  </div>
+
+  <!-- TRANSMISSION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">TRANSMISSION</div><div class="sh-rule"></div></div>
+    <div class="tx">
+      <div class="tx-lbl">Final Transmission · N15</div>
+      <p>You came into this module with a birthdate and a name. Two things every human being is assigned at birth — one chosen by parents, one chosen by time. You leave it with something different. You leave it with a <strong>map</strong>.</p>
+      <p>The map does not tell you where to go. It tells you who goes — and what they are carrying. It has been here the whole time, encoded in the mathematics of your entry into this world, waiting for you to learn the language it was written in.</p>
+      <p><em>You have learned the language. Now the practice begins.</em></p>
+    </div>
+  </div>
+
+  <!-- MODULE MAP -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">01</div><div class="sh-rule"></div></div>
+    <div class="st">The Complete Module Map — 15 Lessons as One System</div>
+    <div class="card"><p>This module was not 15 separate topics. It was one continuous revelation, unfolding in layers. Each lesson added a dimension to the same central truth: that the numbers encoded in your name and birthdate form a complete, coherent, and deeply personal map of your frequency, your purpose, and your path.</p></div>
+    <div class="card" style="overflow-x:auto;padding:16px">
+      <table class="mm-t">
+        <thead><tr><th>Lesson</th><th>Layer</th><th>Core Contribution</th></tr></thead>
+        <tbody>
+          <tr><td>N1</td><td>Foundation</td><td>The numerological alphabet — what each number 1–9 means as a fundamental vibration</td></tr>
+          <tr><td>N2</td><td>Self</td><td>How to calculate and interpret your five core personal numbers</td></tr>
+          <tr><td>N3</td><td>Resonance</td><td>How numbers appear across all domains of life as a unified frequency system</td></tr>
+          <tr><td>N4</td><td>Application</td><td>Using numerology intentionally in your devices, passwords, and digital tools</td></tr>
+          <tr><td>N5</td><td>Time</td><td>The 9-year cycle, Personal Year, Month, and Day — aligning action with timing</td></tr>
+          <tr><td>N6</td><td>Sound</td><td>432 Hz, the Solfeggio frequencies, and the numerological intelligence of music</td></tr>
+          <tr><td>N7</td><td>Body</td><td>The chakra system, anatomy, and the sacred numbers embedded in your physical form</td></tr>
+          <tr><td>N8</td><td>Space</td><td>Sacred structures as numerological instruments — from the Great Pyramid to your own room</td></tr>
+          <tr><td>N9</td><td>Connection</td><td>Life Path compatibility, Soul Urge dynamics, and numerology as a tool for compassion</td></tr>
+          <tr><td>N10</td><td>Elevation</td><td>11, 22, and 33 — the elevated frequencies and their gifts and shadows</td></tr>
+          <tr><td>N11</td><td>Abundance</td><td>Wealth cycles, business naming, and financial frequency alignment</td></tr>
+          <tr><td>N12</td><td>Nature</td><td>Fibonacci, phi, fractals, and the sacred mathematics of the living world</td></tr>
+          <tr><td>N13</td><td>Synthesis</td><td>Full 5-number chart synthesis and the art of reading all numbers together</td></tr>
+          <tr><td>N14</td><td>Purpose</td><td>Soul contract reading, karmic lessons, and the purpose statement from your chart</td></tr>
+          <tr class="finale"><td>N15</td><td>Integration</td><td>Module synthesis, personal frequency practice, and the next cycle</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><p>"You came into this module with a birthdate and a name.<br>You leave it with a map. The map does not tell you where to go.<br>It tells you who goes — and what they are carrying."</p></div>
+  </div>
+
+  <!-- WHAT INTEGRATION MEANS -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">02</div><div class="sh-rule"></div></div>
+    <div class="st">What Integration Actually Means</div>
+    <div class="card">
+      <p>Integration is not the same as completion. Completion means you finished the lessons. Integration means the lessons have finished you — have reorganised something in how you see yourself and how you move through the world.</p>
+      <p>The test of integration is simple: <strong style="color:var(--accent2)">does the knowledge change anything you do?</strong> Not what you believe — what you do. A student who can recite every Life Path theme but still makes decisions that contradict their own chart has learned numerology. A student who uses their Personal Year to time a major decision, or reads a difficult relationship through the lens of Soul Urge dynamics, has integrated it.</p>
+      <p>This final lesson is not about adding more content. It is about asking the harder question: of everything you have learned, what will you actually live?</p>
+    </div>
+    <div class="card">
+      <p style="font-family:'Cinzel',serif;font-size:11px;color:var(--accent);margin-bottom:16px;letter-spacing:2px">THE SIX INTEGRATION DOMAINS</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="padding:14px 18px;background:rgba(0,0,0,.2);border:1px solid rgba(201,168,76,.08);border-left:2px solid var(--accent);border-radius:var(--r)">
+          <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:5px">MORNING — Daily Alignment</div>
+          <div style="font-size:13px;color:var(--dim);line-height:1.7">A brief daily practice anchoring your Life Path frequency before the day's demands arrive — an affirmation, a breath count, an intention.</div>
+        </div>
+        <div style="padding:14px 18px;background:rgba(0,0,0,.2);border:1px solid rgba(201,168,76,.08);border-left:2px solid var(--accent);border-radius:var(--r)">
+          <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:5px">SPACE — Environment Design</div>
+          <div style="font-size:13px;color:var(--dim);line-height:1.7">From N8: applying sacred number principles to your physical environment so the space itself becomes a frequency instrument.</div>
+        </div>
+        <div style="padding:14px 18px;background:rgba(0,0,0,.2);border:1px solid rgba(201,168,76,.08);border-left:2px solid var(--accent);border-radius:var(--r)">
+          <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:5px">TIME — Cycle Awareness</div>
+          <div style="font-size:13px;color:var(--dim);line-height:1.7">From N5: knowing your current Personal Year theme and aligning major decisions with its energy rather than against it.</div>
+        </div>
+        <div style="padding:14px 18px;background:rgba(0,0,0,.2);border:1px solid rgba(201,168,76,.08);border-left:2px solid var(--accent);border-radius:var(--r)">
+          <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:5px">BODY — Somatic Practice</div>
+          <div style="font-size:13px;color:var(--dim);line-height:1.7">From N7: working with the Solfeggio frequency or chakra alignment corresponding to your Life Path in your physical practice.</div>
+        </div>
+        <div style="padding:14px 18px;background:rgba(0,0,0,.2);border:1px solid rgba(201,168,76,.08);border-left:2px solid var(--accent);border-radius:var(--r)">
+          <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:5px">RELATIONSHIP — Compassion Practice</div>
+          <div style="font-size:13px;color:var(--dim);line-height:1.7">From N9: reading one key relationship in your life through the lens of Life Path compatibility and Soul Urge dynamics.</div>
+        </div>
+        <div style="padding:14px 18px;background:rgba(0,0,0,.2);border:1px solid rgba(201,168,76,.08);border-left:2px solid var(--accent);border-radius:var(--r)">
+          <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:5px">PURPOSE — Weekly Check</div>
+          <div style="font-size:13px;color:var(--dim);line-height:1.7">From N14: a weekly question — am I living from my purpose statement this week? What would bring my activities into closer alignment?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE: PERSONAL FREQUENCY PRACTICE BUILDER -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">INTERACTIVE</div><div class="sh-rule"></div></div>
+    <div class="st">Personal Frequency Practice Builder</div>
+    <div class="card"><p>This is not a calculator. It is a design session. Work through each domain of integration and write the specific practice that applies to your chart. The output is your Personal Frequency Practice — the document you carry forward from this module into the rest of your life.</p></div>
+    <div class="pfp-builder">
+      <div class="pfp-hd">
+        <div class="pfp-hd-title">BUILDING YOUR FREQUENCY PRACTICE</div>
+        <div class="pfp-progress" id="pfp-prog">Step 1 of 7</div>
+      </div>
+      <div class="pfp-body">
+        <div class="pfp-step active" id="step-0">
+          <div class="pfp-step-label">Foundation · Step 1 of 7</div>
+          <div class="pfp-step-title">Your Chart at a Glance</div>
+          <div class="pfp-step-sub">Enter your key numbers — these anchor everything that follows. If you need to calculate any of these, refer back to N13 and N14.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px">
+            <div><label style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.7;display:block;margin-bottom:5px">LIFE PATH</label><input class="pfp-input" id="p-lp" placeholder="e.g. 7" style="margin:0"></div>
+            <div><label style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.7;display:block;margin-bottom:5px">EXPRESSION</label><input class="pfp-input" id="p-ex" placeholder="e.g. 3" style="margin:0"></div>
+            <div><label style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.7;display:block;margin-bottom:5px">SOUL URGE</label><input class="pfp-input" id="p-su" placeholder="e.g. 9" style="margin:0"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px">
+            <div><label style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.7;display:block;margin-bottom:5px">PERSONAL YEAR</label><input class="pfp-input" id="p-py" placeholder="e.g. 5" style="margin:0"></div>
+            <div><label style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.7;display:block;margin-bottom:5px">KARMIC LESSON(S)</label><input class="pfp-input" id="p-kl" placeholder="e.g. 4, 8" style="margin:0"></div>
+            <div><label style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.7;display:block;margin-bottom:5px">MASTER NUMBER(S)</label><input class="pfp-input" id="p-mn" placeholder="e.g. 11 or none" style="margin:0"></div>
+          </div>
+          <div><label style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.7;display:block;margin-bottom:5px">YOUR PURPOSE STATEMENT (from N14)</label><textarea class="pfp-ta" id="p-ps" placeholder="I am here to... through the gift of... motivated by the deep desire to..."></textarea></div>
+        </div>
+
+        <div class="pfp-step" id="step-1">
+          <div class="pfp-step-label">Morning · Step 2 of 7</div>
+          <div class="pfp-step-title">Morning Alignment Practice</div>
+          <div class="pfp-step-sub">Based on your Life Path and current Personal Year: what is your daily morning anchor? Be specific — a vague intention won't survive contact with a busy morning. A precise 3-minute ritual will.</div>
+          <textarea class="pfp-ta" id="p-morning" placeholder="Examples: breathing my Life Path number of breath cycles before rising, reciting my purpose statement aloud, playing the Solfeggio frequency corresponding to my chakra alignment, writing one intention that applies my current Personal Year theme to today..."></textarea>
+        </div>
+
+        <div class="pfp-step" id="step-2">
+          <div class="pfp-step-label">Space · Step 3 of 7</div>
+          <div class="pfp-step-title">Environment Design</div>
+          <div class="pfp-step-sub">From N8: what sacred number governs your primary workspace or living space? What specific change — object count, proportion, alignment, or number encoding — will you make to bring your space into frequency alignment?</div>
+          <textarea class="pfp-ta" id="p-space" placeholder="Examples: arranging my workspace with 7 objects to reflect my Life Path, aligning my desk to face a specific cardinal direction, encoding my core number into a password or PIN I use daily, applying phi proportions to an altar or workspace element..."></textarea>
+        </div>
+
+        <div class="pfp-step" id="step-3">
+          <div class="pfp-step-label">Time · Step 4 of 7</div>
+          <div class="pfp-step-title">Timing &amp; Cycle Awareness</div>
+          <div class="pfp-step-sub">From N5: what Personal Year are you currently in, and what is its primary theme? What one major decision or action in the next 90 days will you align with this cycle — and what will you consciously delay until a more aligned year?</div>
+          <textarea class="pfp-ta" id="p-timing" placeholder="My Personal Year theme is... The decision I will align with this energy is... The decision I will wait on until PY [X] is..."></textarea>
+        </div>
+
+        <div class="pfp-step" id="step-4">
+          <div class="pfp-step-label">Body · Step 5 of 7</div>
+          <div class="pfp-step-title">Somatic &amp; Solfeggio Practice</div>
+          <div class="pfp-step-sub">From N7: which chakra corresponds to your Life Path? Which Solfeggio frequency activates it? How will you work with this frequency in your body — sound, movement, meditation, or another somatic practice — at least three times per week?</div>
+          <textarea class="pfp-ta" id="p-body" placeholder="My Life Path chakra alignment is... The corresponding Solfeggio frequency is... My somatic practice will be... I will do this on [days]..."></textarea>
+        </div>
+
+        <div class="pfp-step" id="step-5">
+          <div class="pfp-step-label">Relationship · Step 6 of 7</div>
+          <div class="pfp-step-title">Compassion Through Numbers</div>
+          <div class="pfp-step-sub">From N9: identify one relationship in your life that most benefits from a numerological lens right now. What is the frequency dynamic between your charts? What does understanding their numbers change in how you relate?</div>
+          <textarea class="pfp-ta" id="p-relationship" placeholder="The relationship: [person, not name needed] Their Life Path is approximately... The dynamic between our numbers is... What changes when I read them through their frequency rather than my expectations is..."></textarea>
+        </div>
+
+        <div class="pfp-step" id="step-6">
+          <div class="pfp-step-label">Purpose · Step 7 of 7</div>
+          <div class="pfp-step-title">Weekly Purpose Check</div>
+          <div class="pfp-step-sub">From N14: write the specific question you will ask yourself every week to check alignment between your choices and your purpose statement. Make it precise enough to generate a yes/no/partial answer — vague questions produce vague answers.</div>
+          <textarea class="pfp-ta" id="p-purpose" placeholder="My weekly purpose check question: Am I this week acting from my [Life Path theme], expressing through [Expression gifts], in service of [Soul Urge motivation]? What was the most on-purpose moment this week? What was the most off-purpose?"></textarea>
+          <div style="margin-top:12px;padding:14px 16px;background:rgba(201,168,76,.06);border-radius:var(--r);font-size:13px;color:var(--dim)">When you click Generate below, your complete Personal Frequency Practice document will be created from all seven answers.</div>
+        </div>
+
+        <div class="pfp-nav">
+          <button class="pfp-btn back" id="pfp-back" onclick="pfpNav(-1)" style="display:none">← Back</button>
+          <div class="pfp-step-dots" id="pfp-dots"></div>
+          <button class="pfp-btn next" id="pfp-next" onclick="pfpNav(1)">Next →</button>
+        </div>
+
+        <div class="practice-output" id="practice-output">
+          <div class="po-header">
+            <div class="po-title">My Personal Frequency Practice</div>
+            <div class="po-sub">Built from the Numerology Module · The Frequency Academy</div>
+          </div>
+          <div id="po-numbers" style="margin-bottom:14px"></div>
+          <div id="po-statement" style="margin-bottom:16px"></div>
+          <div class="po-sections" id="po-practices"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE COMPLETION CHECKLIST -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">KNOWLEDGE CHECK</div><div class="sh-rule"></div></div>
+    <div class="st">Module Integration Check</div>
+    <div class="card"><p>Before sealing the module, confirm your integration across all 15 lessons. Check each item only when it is genuinely true — not when you have completed the lesson, but when you have applied the insight.</p></div>
+    <div class="completion-checklist" id="checklist"></div>
+    <div style="margin-top:16px;padding:14px 20px;background:rgba(0,0,0,.22);border:1px solid rgba(201,168,76,.1);border-radius:var(--r);font-family:'Cinzel',serif;font-size:11px;color:var(--dim);text-align:center" id="checklist-count">0 of 15 integration items confirmed</div>
+  </div>
+
+  <!-- QUICK REF -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">QUICK REF</div><div class="sh-rule"></div></div>
+    <div class="st">Integration Reference — Module at a Glance</div>
+    <div id="acc-wrap"></div>
+  </div>
+
+  <!-- PRACTICE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">PRACTICE</div><div class="sh-rule"></div></div>
+    <div class="st">The First Week of the Rest of the Practice</div>
+    <div class="card">
+      <div class="prac-step">
+        <div class="prac-n">1</div>
+        <div class="prac-content"><strong>COMPLETE YOUR PERSONAL FREQUENCY PRACTICE DOCUMENT</strong><p>Use the builder above to generate your complete practice. Print it or save it somewhere you will encounter it daily — not buried in a folder. The practice only works if it stays visible. Consider a note on your mirror, a card on your desk, or a pinned note on your phone.</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">2</div>
+        <div class="prac-content"><strong>IDENTIFY YOUR THREE KEY INSIGHTS</strong><p>Not the most interesting lessons — the ones that changed something. Write one paragraph for each: what shifted, how you will apply it, and what the application looks like in a specific, concrete behaviour. Insights that don't become behaviours within 30 days rarely become practices.</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">3</div>
+        <div class="prac-content"><strong>SET THREE NUMEROLOGICAL INTENTIONS FOR THE NEXT CYCLE</strong><p>Based on your current Personal Year and your purpose statement, set three intentions that are: (1) governed by a specific number, (2) aligned with the current cycle's energy, and (3) actionable within the next 30 days. Post them in the TFA community with your Personal Year number so others can support your timing.</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">4</div>
+        <div class="prac-content"><strong>WRITE YOUR LETTER TO YOURSELF ONE YEAR FROM NOW</strong><p>The final graduate reflection asks you to write to yourself from one year in the future. This is not a vision board exercise — it is a commitment document. Write it with the specificity of someone who expects to be held accountable. What will you have built, expressed, healed, or initiated by the time you read this letter again?</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">REFLECTION</div><div class="sh-rule"></div></div>
+    <div class="st">Your Graduate Reflection</div>
+    <div class="card">
+      <div class="ref-q">1. You began this module with a birthdate and a name. You end it with a complete numerological system. Write about the journey — what you expected when you started, what surprised you most, and where the material met you most personally.</div>
+      <textarea class="ref-ta" id="ref-1" placeholder="Begin writing here..." oninput="autoSave()"></textarea>
+      <div class="ref-q">2. Look back at the module map. Which of the 15 lessons changed you the most? What was it about that lesson — the content, the timing, or the way it intersected with something live in your life — that gave it that charge?</div>
+      <textarea class="ref-ta" id="ref-2" placeholder="Begin writing here..." oninput="autoSave()"></textarea>
+      <div class="ref-q">3. Write a letter to yourself one year from now. What do you commit to, numerologically, in this coming cycle? What will you have built, expressed, healed, or initiated by the time you read this letter again? Be specific — name the actions, the timelines, the numbers that govern them.</div>
+      <textarea class="ref-ta" id="ref-3" placeholder="Dear [your name], one year from now..." oninput="autoSave()"></textarea>
+    </div>
+  </div>
+
+  <!-- GRADUATE PANEL -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">MODULE COMPLETE</div><div class="sh-rule"></div></div>
+    <div class="graduate-wrap">
+      <span class="graduate-star">★</span>
+      <div class="graduate-title">Numerology Module Complete</div>
+      <div class="graduate-quote">"You came into this module with a birthdate and a name. You leave it with a map. The map does not tell you where to go. It tells you who goes — and what they are carrying."</div>
+      <div class="lessons-done" id="lessons-done"></div>
+      <div style="margin-bottom:24px;font-size:13px;color:var(--dim);line-height:1.8;max-width:520px;margin-left:auto;margin-right:auto">The Frequency Academy's curriculum continues across multiple modules, each going deeper into the numerological and frequency-based understanding of reality. You have completed the Numerology Module — the foundation. The full series of 333 lessons builds on everything you have established here.</div>
+      <a href="https://www.thefrequencyacademy.net" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);border-radius:30px;padding:12px 28px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent);text-decoration:none;transition:all .2s;margin-bottom:28px" onmouseover="this.style.background='rgba(201,168,76,.18)'" onmouseout="this.style.background='rgba(201,168,76,.1)'">Continue at thefrequencyacademy.net →</a>
+    </div>
+  </div>
+
+  <!-- GO DEEPER -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">GO DEEPER</div><div class="sh-rule"></div></div>
+    <div class="st">Extended Study Resources</div>
+    <div class="res-list">
+      <div class="res-item"><div class="res-icon">📖</div><div class="res-info"><strong>The Complete Book of Numerology — David A. Phillips</strong><span>The single most comprehensive reference for the full numerological system — serves as the technical reference text for consolidating everything across all fifteen lessons into a unified personal practice.</span></div></div>
+      <div class="res-item"><div class="res-icon">📖</div><div class="res-info"><strong>Atomic Habits — James Clear</strong><span>The definitive scientific guide to building sustainable daily practices from identity rather than willpower — the most practical companion for the frequency practice integration this lesson asks students to design and commit to.</span></div></div>
+      <div class="res-item"><div class="res-icon">📖</div><div class="res-info"><strong>The Artist's Way — Julia Cameron</strong><span>A twelve-week structured creative recovery program that mirrors the integration methodology of this lesson — Cameron's approach to building consistent daily practice from disparate insights maps directly to N15's synthesis work.</span></div></div>
+      <div class="res-item"><div class="res-icon">🎬</div><div class="res-info"><strong>I Am — Tom Shadyac (2010)</strong><span>A filmmaker's synthesis of science, spirituality, and human potential following personal transformation — demonstrates what it looks like to reorganise an entire life around an integrated frequency framework.</span></div></div>
+      <div class="res-item"><div class="res-icon">🌐</div><div class="res-info"><strong>The Frequency Academy Community — skool.com/the-frequency-academy-3454/about</strong><span>The primary ongoing home for students who have completed the full numerology module — share your integrated practice statement, engage with others' synthesis work, and continue the frequency community beyond the formal lessons.</span></div></div>
+      <div class="res-item"><div class="res-icon">🌐</div><div class="res-info"><strong>Greater Good Science Center — greatergood.berkeley.edu</strong><span>Berkeley's research centre on wellbeing, meaning, and prosocial behaviour — provides ongoing empirical grounding for the purpose-centred frequency practice that N15 establishes as the module's culminating contribution.</span></div></div>
+    </div>
+  </div>
+
+  <!-- LIVE WORKSHOP -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">LIVE WORKSHOP</div><div class="sh-rule"></div></div>
+    <div class="ws">
+      <div class="ws-ic">◈</div>
+      <div class="ws-t">Live Workshop: Numerology Module Graduation</div>
+      <div class="ws-s">A live module graduation session is coming soon. Recordings, supplemental integration materials, and graduate readings will appear here once available. Members will be notified via the Academy portal.</div>
+    </div>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">COMPLETE</div><div class="sh-rule"></div></div>
+    <div class="comp-wrap">
+      <div class="comp-t">Seal the Module</div>
+      <div class="comp-s">When you have completed your Personal Frequency Practice, written your three key insights, and written your letter to yourself one year from now — seal this lesson and the full Numerology Module complete.</div>
+      <button class="comp-btn" id="comp-btn" onclick="markComplete()">★ Seal the Module · +10 XP</button>
+      <div class="xp-pop" id="xp-pop">✦ +10 XP · Numerology Module Complete ✦</div>
+    </div>
+  </div>
+
+  <!-- NAVIGATE — single card back to N14 -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">NAVIGATE</div><div class="sh-rule"></div></div>
+    <a class="nav-card-single" href="../lesson-14/">
+      <div>
+        <div class="nav-lbl">PREVIOUS · N14</div>
+        <div class="nav-title">Numerology &amp; Your Purpose</div>
+      </div>
+      <div class="nav-arr">←</div>
+    </a>
+  </div>
+
+</main>
+
+<div id="save-bar">
+  <div class="sv-status">Auto-save: <span id="save-time">—</span></div>
+  <div class="sv-actions">
+    <input type="file" id="imp-file" accept=".json" onchange="importData(event)">
+    <button class="sv-btn sec" onclick="document.getElementById('imp-file').click()">Import</button>
+    <button class="sv-btn sec" onclick="exportData()">Export</button>
+    <button class="sv-btn pri" onclick="saveData();toast('Saved ✦')">Save</button>
+  </div>
+</div>
+
+<script>
+var KEY='tfa_lesson_N15',xp=0,saveT,pfpStep=0,pfpTotal=7;
+
+// ── MODULE PIPS ──
+var LESSONS=['N1','N2','N3','N4','N5','N6','N7','N8','N9','N10','N11','N12','N13','N14','N15'];
+function buildPips(){
+  var w=document.getElementById('module-pips');
+  LESSONS.forEach(function(l,i){
+    var d=document.createElement('div');
+    d.className='lesson-pip'+(i<14?' done':'');
+    d.title=l;w.appendChild(d);
+  });
+}
+
+// ── GRADUATE LIST ──
+var LESSON_TITLES=['The Language of Numbers','Personal Numerology','Frequency Correlations','Sacred Numbers in Device Work','Timing With Numbers','Numerology in Sound & Music','Numerology & the Human Body','Numerology in Architecture & Sacred Space','Numerology & Relationships','Master Numbers Deep Dive','Numerology & Money','Numerology in Nature','Advanced Chart Reading','Numerology & Your Purpose','Putting It All Together'];
+function buildGraduate(){
+  var w=document.getElementById('lessons-done');
+  LESSON_TITLES.forEach(function(t,i){
+    var d=document.createElement('div');d.className='lesson-check';
+    d.innerHTML='<span class="lesson-check-ic">✓</span><span style="font-family:\'Cinzel\',serif;font-size:11px;letter-spacing:.5px">N'+(i+1)+': '+t+'</span>';
+    w.appendChild(d);
+  });
+}
+
+// ── CHECKLIST ──
+var CL_ITEMS=[
+  'I know the meaning of all nine base numbers (N1)',
+  'I have calculated my five core chart numbers (N2)',
+  'I can identify repeating number patterns in my daily life (N3)',
+  'I have applied at least one sacred number to my digital environment (N4)',
+  'I know my current Personal Year and its theme (N5)',
+  'I understand the numerological basis of 432 Hz and the Solfeggio frequencies (N6)',
+  'I know which chakra corresponds to my Life Path (N7)',
+  'I have applied one sacred number principle to my physical space (N8)',
+  'I have read at least one key relationship through a numerological lens (N9)',
+  'I understand the difference between Master Number gifts and Master Number shadows (N10)',
+  'I know my Wealth Expression number and current financial cycle (N11)',
+  'I can identify Fibonacci sequences and phi proportions in natural forms (N12)',
+  'I have completed a full five-number chart synthesis for myself (N13)',
+  'I have written my three-layer soul contract purpose statement (N14)',
+  'I have completed my Personal Frequency Practice document (N15)'
+];
+var clState=[];
+function buildChecklist(){
+  var w=document.getElementById('checklist');
+  CL_ITEMS.forEach(function(item,i){
+    clState.push(false);
+    var d=document.createElement('div');d.className='cc-item';d.id='cl-'+i;
+    d.innerHTML='<div class="cc-check" id="cc-'+i+'"></div><div class="cc-text">'+item+'</div>';
+    d.addEventListener('click',function(){toggleCL(i);});
+    w.appendChild(d);
+  });
+}
+function toggleCL(i){
+  clState[i]=!clState[i];
+  var item=document.getElementById('cl-'+i);
+  var chk=document.getElementById('cc-'+i);
+  item.classList.toggle('checked',clState[i]);
+  chk.textContent=clState[i]?'✓':'';
+  var count=clState.filter(Boolean).length;
+  document.getElementById('checklist-count').textContent=count+' of 15 integration items confirmed'+(count===15?' — Module fully integrated ✦':'');
+  autoSave();
+}
+
+// ── PRACTICE BUILDER ──
+function buildDots(){
+  var w=document.getElementById('pfp-dots');w.innerHTML='';
+  for(var i=0;i<pfpTotal;i++){
+    var d=document.createElement('div');
+    d.className='pfp-dot'+(i===pfpStep?'active':i<pfpStep?' done':'');
+    w.appendChild(d);
+  }
+}
+function pfpNav(dir){
+  if(dir===1&&pfpStep===pfpTotal-1){generatePractice();return;}
+  var next=pfpStep+dir;
+  if(next<0||next>=pfpTotal)return;
+  document.getElementById('step-'+pfpStep).classList.remove('active');
+  pfpStep=next;
+  document.getElementById('step-'+pfpStep).classList.add('active');
+  document.getElementById('pfp-prog').textContent='Step '+(pfpStep+1)+' of '+pfpTotal;
+  document.getElementById('pfp-back').style.display=pfpStep>0?'block':'none';
+  document.getElementById('pfp-next').textContent=pfpStep===pfpTotal-1?'Generate My Practice ✦':'Next →';
+  buildDots();autoSave();
+}
+function generatePractice(){
+  var lp=document.getElementById('p-lp').value||'—';
+  var ex=document.getElementById('p-ex').value||'—';
+  var su=document.getElementById('p-su').value||'—';
+  var py=document.getElementById('p-py').value||'—';
+  var kl=document.getElementById('p-kl').value||'none';
+  var mn=document.getElementById('p-mn').value||'none';
+  var ps=document.getElementById('p-ps').value||'[purpose statement not yet entered]';
+  var morning=document.getElementById('p-morning').value||'[not yet defined]';
+  var space=document.getElementById('p-space').value||'[not yet defined]';
+  var timing=document.getElementById('p-timing').value||'[not yet defined]';
+  var body=document.getElementById('p-body').value||'[not yet defined]';
+  var rel=document.getElementById('p-relationship').value||'[not yet defined]';
+  var purpose=document.getElementById('p-purpose').value||'[not yet defined]';
+
+  var numHtml='<div class="po-card" style="grid-column:1/-1;background:rgba(201,168,76,.05)"><div class="po-card-label">CHART NUMBERS</div><div class="po-card-content" style="display:flex;gap:24px;flex-wrap:wrap"><span><strong style="color:var(--accent2)">LP '+lp+'</strong></span><span><strong style="color:var(--accent2)">EX '+ex+'</strong></span><span><strong style="color:var(--accent2)">SU '+su+'</strong></span><span><strong style="color:var(--accent2)">PY '+py+'</strong></span><span style="color:var(--dim)">Karmic: '+kl+'</span><span style="color:var(--dim)">Master: '+mn+'</span></div></div>';
+  document.getElementById('po-numbers').innerHTML='<div class="po-sections">'+numHtml+'</div>';
+
+  document.getElementById('po-statement').innerHTML='<div class="po-statement"><div class="po-statement-lbl">SOUL CONTRACT PURPOSE STATEMENT</div><div class="po-statement-text">'+ps+'</div></div>';
+
+  var practices=[
+    {lbl:'MORNING ALIGNMENT',text:morning},
+    {lbl:'ENVIRONMENT DESIGN',text:space},
+    {lbl:'TIMING AWARENESS',text:timing},
+    {lbl:'BODY PRACTICE',text:body},
+    {lbl:'RELATIONSHIP PRACTICE',text:rel},
+    {lbl:'WEEKLY PURPOSE CHECK',text:purpose}
+  ];
+  var pHtml='';
+  practices.forEach(function(p){pHtml+='<div class="po-card"><div class="po-card-label">'+p.lbl+'</div><div class="po-card-content">'+p.text+'</div></div>';});
+  document.getElementById('po-practices').innerHTML=pHtml;
+
+  document.getElementById('practice-output').classList.add('show');
+  document.getElementById('pfp-next').textContent='Regenerate ✦';
+  document.getElementById('pfp-next').onclick=function(){generatePractice();};
+  // Update pip
+  document.querySelectorAll('.lesson-pip')[14].classList.add('done');
+  autoSave();toast('Practice generated ✦');
+}
+buildDots();
+
+// ── ACCORDION ──
+var ACCD=[
+  {t:'The 9 Life Paths — Complete Purpose Reference',b:'<strong>1 Pioneer & Initiator</strong> — To courageously initiate new beginnings and demonstrate the power of individual will.<br><strong>2 Bridge Builder</strong> — To create harmony and hold the relational space in which others can flourish.<br><strong>3 Creative Channel</strong> — To express the joy of creation and inspire through art, communication, and beauty.<br><strong>4 Master Builder</strong> — To bring stability and lasting structure through dedicated, patient work.<br><strong>5 Freedom Teacher</strong> — To demonstrate authentic freedom and inspire others to break free from limitations.<br><strong>6 Heart Teacher</strong> — To embody unconditional love and the healing power of genuine care.<br><strong>7 Seeker & Revealer</strong> — To seek, find, and transmit deep truth from genuine depth of inquiry.<br><strong>8 Abundance Demonstrator</strong> — To demonstrate what becomes possible when a person claims their full power and material mastery.<br><strong>9 Completion & Service</strong> — To embody universal love and serve the healing and completion of the world.'},
+  {t:'Personal Year Themes — Quick Reference',b:'<strong>PY 1:</strong> New beginnings, initiation, independence — plant seeds, launch projects, trust yourself.<br><strong>PY 2:</strong> Partnership, patience, gestation — tend relationships, avoid forcing, receive.<br><strong>PY 3:</strong> Creative expression, joy, communication — create, share, speak, expand socially.<br><strong>PY 4:</strong> Foundation-building, hard work, discipline — build systems, clear old structures, commit.<br><strong>PY 5:</strong> Change, freedom, adventure — expect the unexpected, stay flexible, embrace shifts.<br><strong>PY 6:</strong> Responsibility, home, service, beauty — nurture relationships, beautify environment, serve.<br><strong>PY 7:</strong> Inner work, rest, study, solitude — go inward, research, develop spiritual practice, withdraw from ego-driven pursuits.<br><strong>PY 8:</strong> Power, abundance, material mastery — claim authority, pursue financial goals, step into leadership.<br><strong>PY 9:</strong> Completion, release, endings — let go, conclude, release what is no longer aligned, prepare the cycle\'s close.'},
+  {t:'Solfeggio Frequencies & Life Path Chakra Alignment',b:'<strong>174 Hz</strong> — Root (LP 4, 8) — Grounding, safety, foundation<br><strong>285 Hz</strong> — Root/Sacral — Healing, regeneration<br><strong>396 Hz</strong> — Root (LP 1) — Liberation from fear and guilt<br><strong>417 Hz</strong> — Sacral (LP 5) — Change, clearing trauma<br><strong>528 Hz</strong> — Solar Plexus (LP 3) — DNA repair, creativity, transformation<br><strong>639 Hz</strong> — Heart (LP 2, 6, 9) — Connection, relationships, harmony<br><strong>741 Hz</strong> — Throat (LP 3, 6) — Expression, communication, solutions<br><strong>852 Hz</strong> — Third Eye (LP 7) — Intuition, spiritual order, return to clarity<br><strong>963 Hz</strong> — Crown (LP 9, 11, 22, 33) — Divine connection, unity consciousness'},
+  {t:'Karmic Lessons — All Nine at a Glance',b:'<strong>Absent 1:</strong> Independence, self-assertion, trusting your own judgment.<br><strong>Absent 2:</strong> Cooperation, sensitivity, relational depth, receiving.<br><strong>Absent 3:</strong> Creative expression, joy, trusting the value of what you create.<br><strong>Absent 4:</strong> Discipline, structure, commitment, long-term sustained effort.<br><strong>Absent 5:</strong> Freedom, adaptability, sensory aliveness, embracing change.<br><strong>Absent 6:</strong> Responsibility, love, service without controlling outcomes.<br><strong>Absent 7:</strong> Inner depth, solitude, spiritual inquiry, trusting your own knowing.<br><strong>Absent 8:</strong> Power, authority, material mastery, claiming full capacity.<br><strong>Absent 9:</strong> Completion, release, universal compassion, serving the larger whole.'},
+  {t:'Building a Sustainable Frequency Practice — Key Principles',b:'Research shows habit formation takes an average of 66 days (Lally et al., 2010), not 21. This has three implications for building your frequency practice:<br><br><strong>1. Start smaller than feels right.</strong> A 3-minute morning practice done daily for 66 days produces more integration than a 30-minute practice done inconsistently for a week. Intensity is less important than consistency in the formation phase.<br><br><strong>2. Anchor to existing habits.</strong> Attach your new practice to something you already do without thinking — immediately after waking, before your first coffee, before a daily commute. The existing habit becomes the trigger for the new one.<br><br><strong>3. Track completion, not quality.</strong> In the first 66 days, the only metric that matters is whether you did the practice — not how well, how inspired you felt, or what insights arose. Build the container first. The depth comes after the consistency is established.'}
+];
+function buildAcc(){
+  var w=document.getElementById('acc-wrap');
+  ACCD.forEach(function(item){
+    var d=document.createElement('div');d.className='acc-item';
+    d.innerHTML='<button class="acc-hd"><span class="acc-ht">'+item.t+'</span><span class="acc-ic">+</span></button><div class="acc-bd"><div class="acc-ct">'+item.b+'</div></div>';
+    d.querySelector('.acc-hd').addEventListener('click',function(){d.classList.toggle('open');});
+    w.appendChild(d);
+  });
+}
+
+// ── COMPLETION ──
+function markComplete(){
+  if(document.getElementById('comp-btn').classList.contains('done'))return;
+  xp+=10;updXP();applyDone();saveData();
+  // Extra big confetti for module finale
+  bigConfetti();toast('★ Numerology Module Complete · +10 XP ★');
+}
+function applyDone(){
+  var b=document.getElementById('comp-btn');b.classList.add('done');
+  b.innerHTML='★ Module Sealed — Numerology Complete';
+  document.getElementById('xp-pop').classList.add('show');
+  // Light up final pip
+  document.querySelectorAll('.lesson-pip')[14].classList.add('done');
+}
+function updXP(){document.getElementById('xp-display').textContent=xp+' XP';}
+function bigConfetti(){
+  var cols=['#c9a84c','#dfc472','#f0ede6','#9aa0c8','#ffffff','#ffd700'];
+  for(var i=0;i<120;i++){
+    var el=document.createElement('div');el.className='cf';
+    el.style.cssText='left:'+Math.random()*100+'%;top:-20px;background:'+cols[Math.floor(Math.random()*cols.length)]+';animation-delay:'+Math.random()*1.2+'s;animation-duration:'+(1.8+Math.random()*1.2)+'s;transform:rotate('+Math.random()*360+'deg);width:'+(4+Math.random()*10)+'px;height:'+(4+Math.random()*10)+'px;border-radius:'+(Math.random()>.5?'50%':'2px');
+    document.body.appendChild(el);setTimeout(function(){el.remove();},3600);
+  }
+}
+function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
+
+// ── SAVE / LOAD ──
+function getData(){
+  return{
+    version:'1.0',lesson:'N15',ts:new Date().toISOString(),
+    reflections:{r1:document.getElementById('ref-1').value,r2:document.getElementById('ref-2').value,r3:document.getElementById('ref-3').value},
+    practice:{lp:document.getElementById('p-lp').value,ex:document.getElementById('p-ex').value,su:document.getElementById('p-su').value,py:document.getElementById('p-py').value,kl:document.getElementById('p-kl').value,mn:document.getElementById('p-mn').value,ps:document.getElementById('p-ps').value,morning:document.getElementById('p-morning').value,space:document.getElementById('p-space').value,timing:document.getElementById('p-timing').value,body:document.getElementById('p-body').value,relationship:document.getElementById('p-relationship').value,purpose:document.getElementById('p-purpose').value},
+    checklist:clState,pfpStep:pfpStep,xp:xp,completed:document.getElementById('comp-btn').classList.contains('done')
+  };
+}
+function saveData(){localStorage.setItem(KEY,JSON.stringify(getData()));document.getElementById('save-time').textContent='just now';}
+function autoSave(){clearTimeout(saveT);saveT=setTimeout(function(){saveData();},90000);}
+function loadData(){
+  var raw=localStorage.getItem(KEY);if(!raw)return;
+  try{
+    var d=JSON.parse(raw);
+    if(d.reflections){document.getElementById('ref-1').value=d.reflections.r1||'';document.getElementById('ref-2').value=d.reflections.r2||'';document.getElementById('ref-3').value=d.reflections.r3||'';}
+    if(d.practice){
+      var p=d.practice;
+      document.getElementById('p-lp').value=p.lp||'';document.getElementById('p-ex').value=p.ex||'';document.getElementById('p-su').value=p.su||'';document.getElementById('p-py').value=p.py||'';document.getElementById('p-kl').value=p.kl||'';document.getElementById('p-mn').value=p.mn||'';document.getElementById('p-ps').value=p.ps||'';document.getElementById('p-morning').value=p.morning||'';document.getElementById('p-space').value=p.space||'';document.getElementById('p-timing').value=p.timing||'';document.getElementById('p-body').value=p.body||'';document.getElementById('p-relationship').value=p.relationship||'';document.getElementById('p-purpose').value=p.purpose||'';
+    }
+    if(d.checklist)d.checklist.forEach(function(v,i){if(v)toggleCL(i);});
+    if(d.pfpStep&&d.pfpStep>0){for(var i=0;i<d.pfpStep;i++)pfpNav(1);}
+    if(d.xp){xp=d.xp;updXP();}
+    if(d.completed)applyDone();
+    document.getElementById('save-time').textContent='loaded';
+  }catch(e){}
+}
+function exportData(){saveData();var b=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='TFA_N15_backup_'+Date.now()+'.json';a.click();}
+function importData(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){try{var d=JSON.parse(ev.target.result);localStorage.setItem(KEY,JSON.stringify(d));loadData();toast('Session restored ✦');}catch(err){toast('Invalid file');}};r.readAsText(f);e.target.value='';}
+
+// ── PROGRESS ──
+window.addEventListener('scroll',function(){var doc=document.documentElement,sc=window.scrollY||doc.scrollTop,sh=doc.scrollHeight-doc.clientHeight;document.getElementById('prog-fill').style.width=(sh>0?Math.min(100,sc/sh*100):0)+'%';},{passive:true});
+function initReveal(){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});document.querySelectorAll('.ls').forEach(function(el){obs.observe(el);});}
+
+document.addEventListener('DOMContentLoaded',function(){buildPips();buildGraduate();buildChecklist();buildAcc();loadData();initReveal();buildDots();});
+</script>
+</body>
+</html>
