@@ -1,1 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G6 · The Platonic Solids · The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c1418;
+  --accent: #7ab0b8;
+  --accent2: #9ecdd5;
+  --text: #f0ede6;
+  --text-dim: rgba(240,237,230,0.65);
+  --gold: #c9a84c;
+  --card-bg: rgba(0,0,0,0.32);
+  --card-border: rgba(122,176,184,0.18);
+  --radius: 6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;line-height:1.75;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(122,176,184,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 90%,rgba(201,168,76,0.04) 0%,transparent 50%);pointer-events:none;z-index:0}
 
+#progress-bar-wrap{position:fixed;top:0;left:0;right:0;z-index:1000;height:3px;background:rgba(0,0,0,0.5)}
+#progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--accent));transition:width .4s ease;box-shadow:0 0 12px rgba(201,168,76,.6)}
+#progress-label{position:fixed;top:8px;right:16px;z-index:1001;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.15em;color:var(--accent2);opacity:.8}
+
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:1000;background:rgba(6,13,16,.95);border-top:1px solid var(--card-border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;backdrop-filter:blur(12px)}
+#save-status{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;color:var(--text-dim)}
+.save-btns{display:flex;gap:8px}
+.save-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;padding:8px 18px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;border-radius:var(--radius);transition:all .2s;text-transform:uppercase}
+.save-btn:hover{background:var(--accent);color:var(--bg)}
+.save-btn.gold{border-color:var(--gold);color:var(--gold)}
+.save-btn.gold:hover{background:var(--gold);color:var(--bg)}
+.save-btn.dim{border-color:rgba(255,255,255,.2);color:var(--text-dim)}
+.save-btn.dim:hover{background:rgba(255,255,255,.1);color:var(--text)}
+
+.lesson-wrap{max-width:860px;margin:0 auto;padding:56px 24px 100px;position:relative;z-index:1}
+
+.section{margin-bottom:64px;opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.section.visible{opacity:1;transform:none}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.section-num{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);min-width:32px;opacity:.6}
+.section-title{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:600;color:var(--text);letter-spacing:.06em;flex:1}
+.section-rule{height:1px;flex:1;background:linear-gradient(90deg,var(--accent),transparent);opacity:.3}
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px 32px;margin-bottom:20px;backdrop-filter:blur(8px)}
+p{margin-bottom:16px;color:var(--text-dim)}
+p:last-child{margin-bottom:0}
+.hi{color:var(--accent);font-weight:600}
+.gt{color:var(--gold)}
+h3.sub{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;color:var(--accent2);margin-bottom:14px;text-transform:uppercase}
+
+.hero{text-align:center;padding:80px 0 60px}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.hero-tag{display:inline-block;border:1px solid var(--accent);padding:4px 16px;border-radius:20px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:32px}
+.hero h1{font-family:'Cinzel',serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:700;color:var(--text);line-height:1.15;margin-bottom:12px;letter-spacing:.04em}
+.hero-subtitle{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);letter-spacing:.15em;margin-bottom:40px;font-weight:400}
+.hero-quote{max-width:640px;margin:0 auto 48px;font-style:italic;color:var(--text-dim);font-size:1.02rem;line-height:1.8;border-left:2px solid var(--gold);padding-left:20px;text-align:left}
+.hero-quote cite{display:block;margin-top:10px;font-style:normal;font-size:.8rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase}
+
+.transmission{text-align:center;padding:48px 32px;background:linear-gradient(135deg,rgba(122,176,184,.06),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);margin-bottom:64px}
+.transmission-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.transmission p{font-size:1.1rem;line-height:1.9;color:var(--text);font-style:italic;font-weight:300;max-width:640px;margin:0 auto 16px}
+.transmission p:last-child{margin-bottom:0}
+
+.module-crumb{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;color:var(--text-dim);text-align:center;margin-bottom:48px;text-transform:uppercase}
+.module-crumb span{color:var(--accent)}
+
+.callout{border-left:3px solid var(--gold);background:rgba(201,168,76,.06);padding:16px 20px;margin:20px 0;border-radius:0 var(--radius) var(--radius) 0}
+.callout p{color:var(--text);font-style:italic;margin:0}
+
+.concept-list{list-style:none}
+.concept-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid rgba(122,176,184,.08);color:var(--text-dim);font-size:.92rem}
+.concept-item:last-child{border-bottom:none}
+.cb{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:9px}
+
+/* SOLIDS TABS — main interactive section */
+.solids-tabs{display:flex;gap:0;margin-bottom:0;border-bottom:1px solid var(--card-border);overflow-x:auto}
+.solid-tab{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.1em;padding:12px 18px;cursor:pointer;color:var(--text-dim);background:transparent;border:none;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;text-transform:uppercase}
+.solid-tab:hover{color:var(--text)}
+.solid-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.solid-panel{display:none}
+.solid-panel.show{display:block}
+
+.solid-display{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start;padding:28px 0 0}
+.solid-canvas-wrap{position:relative}
+.solid-canvas-label{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em;color:var(--text-dim);text-align:center;margin-top:8px;text-transform:uppercase}
+.solid-info{}
+.solid-name-big{font-family:'Cinzel',serif;font-size:1.5rem;color:var(--gold);margin-bottom:4px;letter-spacing:.06em}
+.solid-element-tag{display:inline-flex;align-items:center;gap:8px;padding:4px 14px;border:1px solid var(--accent);border-radius:20px;font-family:'Cinzel',serif;font-size:.75rem;color:var(--accent);letter-spacing:.1em;margin-bottom:16px}
+.solid-stats{display:flex;gap:0;margin-bottom:18px;border:1px solid var(--card-border);border-radius:var(--radius);overflow:hidden}
+.stat-block{flex:1;padding:12px 8px;text-align:center;border-right:1px solid var(--card-border)}
+.stat-block:last-child{border-right:none}
+.stat-val{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--accent)}
+.stat-lbl{font-size:.68rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase}
+.solid-desc{font-size:.9rem;color:var(--text-dim);line-height:1.75;margin-bottom:14px}
+.solid-nature{background:rgba(122,176,184,.06);border:1px solid rgba(122,176,184,.15);border-radius:var(--radius);padding:12px 16px;font-size:.85rem;color:var(--text-dim)}
+.solid-nature strong{color:var(--accent2);font-weight:600}
+.dual-badge{display:inline-block;padding:4px 12px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:20px;font-family:'Cinzel',serif;font-size:.72rem;color:var(--gold);margin-top:10px;letter-spacing:.08em}
+.euler-check{font-family:'Cinzel',serif;font-size:.85rem;color:var(--accent);margin-top:10px}
+
+/* DATA TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.86rem}
+.data-table th{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;padding:9px 12px;border-bottom:1px solid var(--card-border);text-align:left}
+.data-table td{padding:10px 12px;border-bottom:1px solid rgba(122,176,184,.08);color:var(--text-dim);vertical-align:top}
+.data-table td:first-child{color:var(--gold);font-weight:600}
+.data-table tr:last-child td{border-bottom:none}
+
+/* PROOF VISUAL */
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:18px 0}
+.proof-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:16px;text-align:center}
+.proof-polygon{font-size:.75rem;color:var(--text-dim);letter-spacing:.08em;margin-bottom:6px;text-transform:uppercase}
+.proof-calc{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--accent);margin-bottom:6px}
+.proof-result{font-size:.82rem;color:var(--gold);font-style:italic}
+.proof-card.flat{opacity:.5}
+.proof-card.flat .proof-calc{color:var(--text-dim)}
+.proof-card.flat .proof-result{color:#e57373}
+
+/* MATH BOX */
+.math-box{background:rgba(122,176,184,.07);border:1px solid rgba(122,176,184,.2);border-radius:var(--radius);padding:18px 24px;margin:18px 0;text-align:center}
+.math-eq{font-family:'Cinzel',serif;font-size:1.2rem;color:var(--accent);letter-spacing:.06em;margin-bottom:6px}
+.math-sub{font-size:.83rem;color:var(--text-dim);font-style:italic}
+
+/* ACCORDION */
+.accordion-item{border:1px solid var(--card-border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.accordion-header{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;cursor:pointer;background:var(--card-bg);transition:background .2s}
+.accordion-header:hover{background:rgba(122,176,184,.08)}
+.accordion-header-text{font-family:'Cinzel',serif;font-size:.84rem;letter-spacing:.1em;color:var(--text)}
+.accordion-arrow{color:var(--accent);font-size:1.2rem;transition:transform .3s}
+.accordion-item.open .accordion-arrow{transform:rotate(90deg)}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 20px;font-size:.9rem;color:var(--text-dim);line-height:1.8}
+.accordion-item.open .accordion-body{max-height:400px;padding:14px 20px 18px}
+
+/* QUIZ */
+.quiz-question{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:22px;margin-bottom:13px}
+.quiz-q-text{font-family:'Cinzel',serif;font-size:.87rem;color:var(--text);margin-bottom:14px;letter-spacing:.04em;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:8px}
+.quiz-option{padding:10px 14px;border:1px solid rgba(122,176,184,.2);border-radius:var(--radius);cursor:pointer;transition:all .2s;font-size:.87rem;color:var(--text-dim);background:transparent;text-align:left;width:100%;font-family:'Raleway',sans-serif}
+.quiz-option:hover{border-color:var(--accent);color:var(--text)}
+.quiz-option.correct{border-color:#4CAF50;background:rgba(76,175,80,.1);color:#81c784}
+.quiz-option.wrong{border-color:#f44336;background:rgba(244,67,54,.1);color:#e57373}
+.quiz-feedback{margin-top:8px;font-size:.81rem;font-style:italic;min-height:18px}
+.quiz-score-bar{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;text-align:center;display:none;margin-top:16px}
+.score-display{font-family:'Cinzel',serif;font-size:2.4rem;color:var(--gold);margin-bottom:8px}
+#quiz-submit{margin:20px auto 0;display:block;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;padding:12px 32px;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer;border-radius:var(--radius);transition:all .2s}
+#quiz-submit:hover{background:var(--gold);color:var(--bg)}
+
+/* REFLECTION */
+.reflection-prompt{margin-bottom:22px}
+.reflection-q{font-style:italic;color:var(--text);margin-bottom:10px;font-size:.94rem;line-height:1.7}
+.reflection-textarea{width:100%;min-height:110px;background:rgba(0,0,0,.3);border:1px solid var(--card-border);border-radius:var(--radius);color:var(--text);font-family:'Raleway',sans-serif;font-size:.9rem;padding:13px 15px;resize:vertical;transition:border-color .2s;line-height:1.6}
+.reflection-textarea:focus{outline:none;border-color:var(--accent)}
+.reflection-textarea::placeholder{color:var(--text-dim);opacity:.5}
+
+/* PRACTICAL */
+.practice-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:14px;margin-top:18px}
+.practice-item{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:18px;text-align:center;transition:border-color .2s}
+.practice-item:hover{border-color:var(--accent)}
+.pi-icon{font-size:1.9rem;margin-bottom:9px}
+.pi-title{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;color:var(--text);margin-bottom:5px}
+.practice-item p{font-size:.8rem}
+
+/* RESOURCES */
+.rg{margin-bottom:26px}
+.rg-title{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--card-border)}
+.ri{display:flex;gap:13px;padding:10px 0;border-bottom:1px solid rgba(122,176,184,.06)}
+.ri:last-child{border-bottom:none}
+.ri-icon{color:var(--accent);min-width:16px;margin-top:3px;font-size:.85rem}
+.ri-title{color:var(--text);font-weight:600;font-size:.86rem;margin-bottom:2px}
+.ri-meta{color:var(--text-dim);font-size:.77rem}
+
+/* WORKSHOP */
+.workshop-slot{text-align:center;padding:44px;border:1px dashed rgba(201,168,76,.3);border-radius:var(--radius);background:rgba(201,168,76,.03)}
+.ws-icon{font-size:2.2rem;margin-bottom:14px;opacity:.5}
+.ws-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--text-dim);letter-spacing:.08em;margin-bottom:7px}
+.ws-sub{color:var(--text-dim);font-size:.84rem;opacity:.6}
+
+/* COMPLETION */
+.completion-card{text-align:center;padding:44px;background:linear-gradient(135deg,rgba(122,176,184,.08),rgba(201,168,76,.06));border:1px solid rgba(201,168,76,.3);border-radius:var(--radius)}
+.completion-title{font-family:'Cinzel',serif;font-size:1.35rem;color:var(--gold);margin-bottom:12px;letter-spacing:.06em}
+.xp-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 24px;background:var(--gold);color:var(--bg);border-radius:24px;font-family:'Cinzel',serif;font-weight:700;font-size:1rem;margin:18px 0;letter-spacing:.08em;opacity:0;transform:scale(.8);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.xp-badge.show{opacity:1;transform:scale(1)}
+.complete-checkbox-wrap{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px 0}
+#complete-checkbox{width:22px;height:22px;accent-color:var(--gold);cursor:pointer}
+.complete-label{font-family:'Cinzel',serif;font-size:.88rem;letter-spacing:.1em;color:var(--text);cursor:pointer}
+
+/* CONFETTI */
+.confetti-piece{position:fixed;pointer-events:none;z-index:9999;animation:confetti-fall linear forwards}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+/* UP NEXT */
+.up-next-card{display:flex;align-items:center;gap:22px;padding:26px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);cursor:pointer;transition:border-color .2s,transform .2s}
+.up-next-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.un-badge{min-width:54px;height:54px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:700;color:var(--bg);font-size:.88rem}
+.un-info{flex:1}
+.un-label{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:4px}
+.un-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px}
+.un-desc{font-size:.83rem;color:var(--text-dim)}
+.un-arrow{color:var(--accent);font-size:1.5rem;opacity:.6}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .8s ease forwards}
+.rotate-canvas{display:block}
+
+@media(max-width:700px){
+  .solid-display{grid-template-columns:1fr}
+  .proof-grid{grid-template-columns:1fr 1fr}
+  .practice-items{grid-template-columns:1fr 1fr}
+  .lesson-wrap{padding:40px 16px 90px}
+  .card{padding:18px}
+  #save-bar{padding:8px 12px}
+  .save-btn{padding:6px 12px;font-size:9px}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+<div id="progress-label">G6 · 0%</div>
+
+<div id="save-bar">
+  <span id="save-status">Auto-saves every 90 seconds</span>
+  <div class="save-btns">
+    <button class="save-btn" onclick="saveData()">&#x27F3; Save Progress</button>
+    <button class="save-btn gold" onclick="exportData()">&#x2193; Export Backup</button>
+    <button class="save-btn dim" onclick="importTrigger()">&#x2191; Import</button>
+  </div>
+</div>
+<input type="file" id="import-input" accept=".json" style="display:none" onchange="importData(event)">
+
+<div class="lesson-wrap">
+
+  <div class="module-crumb">The Frequency Academy &middot; <span>Sacred Geometry &amp; Light Body Systems</span> &middot; Lesson G6 of 22</div>
+
+  <!-- HERO -->
+  <section class="hero section">
+    <div class="hero-eyebrow">Sacred Geometry &amp; Light Body Systems</div>
+    <div class="hero-tag">G6 &middot; LESSON SIX</div>
+    <h1>The Platonic Solids</h1>
+    <div class="hero-subtitle">The Five Shapes of All Creation</div>
+    <canvas id="heroCanvas" width="300" height="300" style="display:block;margin:0 auto 40px"></canvas>
+    <div class="hero-quote">
+      "There are exactly five regular convex polyhedra. Not approximately five. Not five that we have found so far. Exactly five, proven by Euclid. They are not discovered, they are inevitable &mdash; and they are the five shapes from which all three-dimensional form in the universe is built."
+      <cite>&mdash; The Frequency Academy</cite>
+    </div>
+  </section>
+
+  <!-- TRANSMISSION -->
+  <section class="section transmission" id="sec-transmission">
+    <div class="transmission-label">&#10022; Opening Transmission &#10022;</div>
+    <p>How many regular convex polyhedra are there? Not six. Not twelve. Five. Exactly five, proven by Euclid in the Elements. Not estimated. Not the five we have discovered so far. Exactly five &mdash; as certain as the fact that the interior angles of a triangle sum to 180 degrees.</p>
+    <p>They are not discovered. They are inevitable. And they have been present in the actual structure of matter since the first atoms took form &mdash; in crystal lattice and molecular geometry and virus shell, in the cleavage of diamond and the packing of salt, in the proposed topology of the universe itself.</p>
+    <p>Plato knew. Euclid proved. Physics confirmed. These five forms are the grammar of three-dimensional space.</p>
+  </section>
+
+  <!-- CORE CONCEPT -->
+  <section class="section" id="sec-intro">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">The Five Inevitable Forms</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>A <span class="hi">Platonic Solid</span> is a three-dimensional form in which every face is an identical regular polygon, every vertex is surrounded by the same number of faces, and every edge is the same length. These constraints are extraordinarily strict &mdash; and they permit exactly five solutions. No more are possible. Euclid proved this in Book XIII of the Elements.</p>
+      <p>The five are: the <span class="gt">Tetrahedron</span> (Fire), the <span class="gt">Hexahedron / Cube</span> (Earth), the <span class="gt">Octahedron</span> (Air), the <span class="gt">Dodecahedron</span> (Ether/Cosmos), and the <span class="gt">Icosahedron</span> (Water). Each was assigned to one of the classical elements by Plato in the Timaeus, c.360 BCE &mdash; assignments that turn out to track real structural properties of matter with extraordinary precision.</p>
+      <div class="callout">
+        <p><strong class="gt">Key fact:</strong> Euler's formula V &minus; E + F = 2 holds for every convex polyhedron &mdash; and is verified without exception for all five Platonic Solids. It is one of the most beautiful results in all of mathematics.</p>
+      </div>
+      <ul class="concept-list">
+        <li class="concept-item"><div class="cb"></div>Exactly five regular convex polyhedra exist &mdash; proven by Euclid, not estimated</li>
+        <li class="concept-item"><div class="cb"></div>Each has identical regular polygon faces, identical vertices, and identical edge lengths throughout</li>
+        <li class="concept-item"><div class="cb"></div>Dual relationships: Cube &harr; Octahedron; Dodecahedron &harr; Icosahedron; Tetrahedron is self-dual</li>
+        <li class="concept-item"><div class="cb"></div>All five appear in the actual structure of physical matter: crystals, molecules, viruses</li>
+        <li class="concept-item"><div class="cb"></div>Plato assigned each to a classical element in the Timaeus &mdash; assignments that match structural properties</li>
+        <li class="concept-item"><div class="cb"></div>All five are simultaneously encoded within Metatron's Cube (G5)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE: SOLID EXPLORER TABS -->
+  <section class="section" id="sec-interactive">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">The Five Solids &mdash; Interactive Explorer</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card" style="padding-bottom:32px">
+      <p style="font-size:.88rem;color:var(--text-dim);font-style:italic;margin-bottom:18px">Select each solid to explore its structure, element, natural appearances, and Euler verification. Each solid rotates live in the canvas.</p>
+      <div class="solids-tabs">
+        <button class="solid-tab active" onclick="showSolid(0,this)">Tetrahedron</button>
+        <button class="solid-tab" onclick="showSolid(1,this)">Cube</button>
+        <button class="solid-tab" onclick="showSolid(2,this)">Octahedron</button>
+        <button class="solid-tab" onclick="showSolid(3,this)">Dodecahedron</button>
+        <button class="solid-tab" onclick="showSolid(4,this)">Icosahedron</button>
+      </div>
+
+      <!-- TETRAHEDRON -->
+      <div class="solid-panel show" id="sp0">
+        <div class="solid-display">
+          <div>
+            <canvas class="rotate-canvas" id="sc0" width="260" height="260"></canvas>
+            <div class="solid-canvas-label">Tetrahedron &mdash; rotating</div>
+          </div>
+          <div class="solid-info">
+            <div class="solid-name-big">Tetrahedron</div>
+            <div class="solid-element-tag">&#128293; Fire</div>
+            <div class="solid-stats">
+              <div class="stat-block"><div class="stat-val">4</div><div class="stat-lbl">Faces</div></div>
+              <div class="stat-block"><div class="stat-val">4</div><div class="stat-lbl">Vertices</div></div>
+              <div class="stat-block"><div class="stat-val">6</div><div class="stat-lbl">Edges</div></div>
+            </div>
+            <div class="solid-desc">The simplest possible three-dimensional form. Four equilateral triangles meeting at four vertices &mdash; the primary building block of form in three-dimensional space. Its sharpness and upward-pointing geometry match Fire: the first element, the most dynamic, the point of ignition. The smallest stable 3D structure.</div>
+            <div class="solid-nature"><strong>In nature:</strong> The methane molecule (CH&#8324;) is a perfect tetrahedron &mdash; the central carbon atom with four hydrogen atoms at the four vertices. Also appears in some mineral crystals.</div>
+            <div class="dual-badge">Self-dual &mdash; the dual of a tetrahedron is another tetrahedron</div>
+            <div class="euler-check">Euler: 4 &minus; 6 + 4 = 2 &#10003;</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUBE -->
+      <div class="solid-panel" id="sp1">
+        <div class="solid-display">
+          <div>
+            <canvas class="rotate-canvas" id="sc1" width="260" height="260"></canvas>
+            <div class="solid-canvas-label">Hexahedron (Cube) &mdash; rotating</div>
+          </div>
+          <div class="solid-info">
+            <div class="solid-name-big">Hexahedron (Cube)</div>
+            <div class="solid-element-tag">&#127757; Earth</div>
+            <div class="solid-stats">
+              <div class="stat-block"><div class="stat-val">6</div><div class="stat-lbl">Faces</div></div>
+              <div class="stat-block"><div class="stat-val">8</div><div class="stat-lbl">Vertices</div></div>
+              <div class="stat-block"><div class="stat-val">12</div><div class="stat-lbl">Edges</div></div>
+            </div>
+            <div class="solid-desc">Six equal squares meeting at eight vertices. The form of structure, stability, and material reality. The cubic lattice is the most common structural arrangement in mineralogy and metallurgy &mdash; the geometry of stability, packing, and solidity. Earth is the element of manifestation, structure, and the physical body.</div>
+            <div class="solid-nature"><strong>In nature:</strong> Pyrite, halite (salt), galena, and many metallic minerals crystallise in cubic lattice structure. The entire field of cubic crystal symmetry is built on this form.</div>
+            <div class="dual-badge">Dual: Octahedron (face centres of cube = vertices of octahedron)</div>
+            <div class="euler-check">Euler: 8 &minus; 12 + 6 = 2 &#10003;</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OCTAHEDRON -->
+      <div class="solid-panel" id="sp2">
+        <div class="solid-display">
+          <div>
+            <canvas class="rotate-canvas" id="sc2" width="260" height="260"></canvas>
+            <div class="solid-canvas-label">Octahedron &mdash; rotating</div>
+          </div>
+          <div class="solid-info">
+            <div class="solid-name-big">Octahedron</div>
+            <div class="solid-element-tag">&#128168; Air</div>
+            <div class="solid-stats">
+              <div class="stat-block"><div class="stat-val">8</div><div class="stat-lbl">Faces</div></div>
+              <div class="stat-block"><div class="stat-val">6</div><div class="stat-lbl">Vertices</div></div>
+              <div class="stat-block"><div class="stat-val">12</div><div class="stat-lbl">Edges</div></div>
+            </div>
+            <div class="solid-desc">Eight equilateral triangles forming two square pyramids joined at the base. Six vertices, twelve edges &mdash; identical edge count to the Cube, its dual. Balanced above and below, pointing in all directions equally. The form of breath and movement &mdash; Air as the element of connection, intelligence, and flow.</div>
+            <div class="solid-nature"><strong>In nature:</strong> Diamond &mdash; the hardest natural substance &mdash; cleaves naturally into octahedral form. Fluorite and spinel also crystallise octahedrally. The natural cleavage of diamond follows octahedral symmetry.</div>
+            <div class="dual-badge">Dual: Cube (face centres of octahedron = vertices of cube)</div>
+            <div class="euler-check">Euler: 6 &minus; 12 + 8 = 2 &#10003;</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DODECAHEDRON -->
+      <div class="solid-panel" id="sp3">
+        <div class="solid-display">
+          <div>
+            <canvas class="rotate-canvas" id="sc3" width="260" height="260"></canvas>
+            <div class="solid-canvas-label">Dodecahedron &mdash; rotating</div>
+          </div>
+          <div class="solid-info">
+            <div class="solid-name-big">Dodecahedron</div>
+            <div class="solid-element-tag">&#10024; Ether / Cosmos</div>
+            <div class="solid-stats">
+              <div class="stat-block"><div class="stat-val">12</div><div class="stat-lbl">Faces</div></div>
+              <div class="stat-block"><div class="stat-val">20</div><div class="stat-lbl">Vertices</div></div>
+              <div class="stat-block"><div class="stat-val">30</div><div class="stat-lbl">Edges</div></div>
+            </div>
+            <div class="solid-desc">Twelve regular pentagons, twenty vertices, thirty edges. Phi (&phi; &asymp; 1.618) is encoded in every pentagonal face. The most complex of the five forms &mdash; and the one Plato assigned to the cosmos itself, saying the divine architect used it to embroider the constellations on the heavens. Modern cosmologists have proposed the universe may have dodecahedral topology.</div>
+            <div class="solid-nature"><strong>In nature:</strong> Proposed geometry of the universe itself (Luminet et al., 2003). Also appears in some quasicrystal structures and has been proposed as virus capsid architecture in some species.</div>
+            <div class="dual-badge">Dual: Icosahedron (face centres of dodecahedron = vertices of icosahedron)</div>
+            <div class="euler-check">Euler: 20 &minus; 30 + 12 = 2 &#10003;</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ICOSAHEDRON -->
+      <div class="solid-panel" id="sp4">
+        <div class="solid-display">
+          <div>
+            <canvas class="rotate-canvas" id="sc4" width="260" height="260"></canvas>
+            <div class="solid-canvas-label">Icosahedron &mdash; rotating</div>
+          </div>
+          <div class="solid-info">
+            <div class="solid-name-big">Icosahedron</div>
+            <div class="solid-element-tag">&#127754; Water</div>
+            <div class="solid-stats">
+              <div class="stat-block"><div class="stat-val">20</div><div class="stat-lbl">Faces</div></div>
+              <div class="stat-block"><div class="stat-val">12</div><div class="stat-lbl">Vertices</div></div>
+              <div class="stat-block"><div class="stat-val">30</div><div class="stat-lbl">Edges</div></div>
+            </div>
+            <div class="solid-desc">Twenty equilateral triangles, twelve vertices, thirty edges &mdash; identical edge count to the Dodecahedron, its dual. The most spherical of the five forms &mdash; the one that most closely approximates a sphere for its size. The form of Water: fluid, responsive, enveloping. Twenty faces for maximum enclosure and flow.</div>
+            <div class="solid-nature"><strong>In nature:</strong> HIV, herpes, adenovirus, and many other viruses build their protein capsids in icosahedral geometry &mdash; because it minimises surface area while maximising enclosed volume. Optimal packaging. The universe finds the same solution at the microscale.</div>
+            <div class="dual-badge">Dual: Dodecahedron (face centres of icosahedron = vertices of dodecahedron)</div>
+            <div class="euler-check">Euler: 12 &minus; 30 + 20 = 2 &#10003;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY ONLY FIVE — THE PROOF -->
+  <section class="section" id="sec-proof">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Why Only Five &mdash; The Euclidean Proof</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>The proof is elegant. At any vertex of a regular polyhedron, the face angles must sum to <em>less than</em> 360&deg; &mdash; otherwise the vertex would be flat (a plane) or fold inward (concave), not a proper 3D point. This single constraint eliminates every possibility except five.</p>
+      <div class="math-box">
+        <div class="math-eq">Face angles at any vertex &lt; 360&deg;</div>
+        <div class="math-sub">The constraint that makes exactly five Platonic Solids inevitable and nothing more.</div>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-card">
+          <div class="proof-polygon">3 Triangles</div>
+          <div class="proof-calc">3 &times; 60&deg; = 180&deg;</div>
+          <div class="proof-result">&#10003; Tetrahedron</div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-polygon">4 Triangles</div>
+          <div class="proof-calc">4 &times; 60&deg; = 240&deg;</div>
+          <div class="proof-result">&#10003; Octahedron</div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-polygon">5 Triangles</div>
+          <div class="proof-calc">5 &times; 60&deg; = 300&deg;</div>
+          <div class="proof-result">&#10003; Icosahedron</div>
+        </div>
+        <div class="proof-card flat">
+          <div class="proof-polygon">6 Triangles</div>
+          <div class="proof-calc">6 &times; 60&deg; = 360&deg;</div>
+          <div class="proof-result">&#10007; Flat plane &mdash; not a vertex</div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-polygon">3 Squares</div>
+          <div class="proof-calc">3 &times; 90&deg; = 270&deg;</div>
+          <div class="proof-result">&#10003; Cube</div>
+        </div>
+        <div class="proof-card flat">
+          <div class="proof-polygon">4 Squares</div>
+          <div class="proof-calc">4 &times; 90&deg; = 360&deg;</div>
+          <div class="proof-result">&#10007; Flat plane &mdash; not a vertex</div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-polygon">3 Pentagons</div>
+          <div class="proof-calc">3 &times; 108&deg; = 324&deg;</div>
+          <div class="proof-result">&#10003; Dodecahedron</div>
+        </div>
+        <div class="proof-card flat">
+          <div class="proof-polygon">3 Hexagons</div>
+          <div class="proof-calc">3 &times; 120&deg; = 360&deg;</div>
+          <div class="proof-result">&#10007; Flat plane &mdash; not a vertex</div>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:4px">
+        <p>Five combinations. Five solids. Not six. Never six. Exactly five, forever. They are not discovered &mdash; they are the only possibilities that three-dimensional space permits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERENCE TABLE + NATURE -->
+  <section class="section" id="sec-reference">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Complete Reference &amp; Natural Appearances</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <h3 class="sub">The Five Solids &mdash; Complete Reference</h3>
+      <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead><tr><th>Solid</th><th>Faces</th><th>Vertices</th><th>Edges</th><th>Element</th><th>Dual</th><th>V&minus;E+F</th></tr></thead>
+        <tbody>
+          <tr><td>Tetrahedron</td><td>4 triangles</td><td>4</td><td>6</td><td>Fire</td><td>Self</td><td>2 &#10003;</td></tr>
+          <tr><td>Cube (Hexahedron)</td><td>6 squares</td><td>8</td><td>12</td><td>Earth</td><td>Octahedron</td><td>2 &#10003;</td></tr>
+          <tr><td>Octahedron</td><td>8 triangles</td><td>6</td><td>12</td><td>Air</td><td>Cube</td><td>2 &#10003;</td></tr>
+          <tr><td>Dodecahedron</td><td>12 pentagons</td><td>20</td><td>30</td><td>Ether/Cosmos</td><td>Icosahedron</td><td>2 &#10003;</td></tr>
+          <tr><td>Icosahedron</td><td>20 triangles</td><td>12</td><td>30</td><td>Water</td><td>Dodecahedron</td><td>2 &#10003;</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub" style="margin-top:24px">Plato's Timaeus (&sim;360 BCE)</h3>
+      <p>In the Timaeus, Plato assigned each solid to one of the classical elements, tracking real structural properties. The sharpest and smallest to Fire. The most stable to Earth. The most balanced (pointing equally in all directions) to Air. The most fluid to Water. And the Dodecahedron &mdash; the most complex, phi-encoded, twelve-pentagoned form &mdash; to the Cosmos itself. Plato wrote that the divine architect used it to embroider the constellations on the heavens. Modern cosmologists have proposed the universe may have precisely this topology.</p>
+      <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead><tr><th>Solid</th><th>Found in Nature</th><th>Significance</th></tr></thead>
+        <tbody>
+          <tr><td>Tetrahedron</td><td>Methane molecule (CH&#8324;), some mineral crystals</td><td>Simplest stable 3D structure &mdash; four triangles at equal angles</td></tr>
+          <tr><td>Cube</td><td>Pyrite, halite (salt), galena crystals</td><td>Cubic crystal lattice is the most common structure in minerals and metals</td></tr>
+          <tr><td>Octahedron</td><td>Diamond, fluorite, spinel crystals</td><td>Natural cleavage form of diamond &mdash; the hardest natural substance</td></tr>
+          <tr><td>Dodecahedron</td><td>Proposed geometry of the universe; some virus capsids</td><td>Plato assigned it to the cosmos. Some cosmologists propose dodecahedral universal topology.</td></tr>
+          <tr><td>Icosahedron</td><td>HIV, herpes, adenovirus shells</td><td>Minimises surface area while maximising enclosed volume &mdash; optimal biological packaging</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- KNOWLEDGE CHECK -->
+  <section class="section" id="sec-quiz">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Knowledge Check</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div id="quiz-container">
+      <div class="quiz-question" id="qq1">
+        <div class="quiz-q-text">1. How many regular convex polyhedra (Platonic Solids) exist in three-dimensional space?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(1,this,'a')">a) 4 &mdash; based on the four classical elements</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'b')">b) 5 &mdash; proven by Euclid, not estimated</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'c')">c) 6 &mdash; including the hexagonal prism</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'d')">d) 7 &mdash; one for each classical planet</button>
+        </div>
+        <div class="quiz-feedback" id="qf1"></div>
+      </div>
+      <div class="quiz-question" id="qq2">
+        <div class="quiz-q-text">2. Why does 6 equilateral triangles at a vertex NOT produce a sixth Platonic Solid?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(2,this,'a')">a) The triangles are too small to form a solid</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'b')">b) Six triangles produce exactly 360&deg; &mdash; a flat plane, not a vertex</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'c')">c) Six triangles exceed 360&deg; and fold inside out</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'d')">d) Euclid simply excluded it by definition</button>
+        </div>
+        <div class="quiz-feedback" id="qf2"></div>
+      </div>
+      <div class="quiz-question" id="qq3">
+        <div class="quiz-q-text">3. Which Platonic Solid is the natural cleavage form of diamond?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(3,this,'a')">a) Cube (Hexahedron)</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'b')">b) Tetrahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'c')">c) Octahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'d')">d) Icosahedron</button>
+        </div>
+        <div class="quiz-feedback" id="qf3"></div>
+      </div>
+      <div class="quiz-question" id="qq4">
+        <div class="quiz-q-text">4. In Plato's Timaeus, which solid did he assign to the Cosmos, saying the divine architect used it to embroider the constellations on the heavens?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(4,this,'a')">a) Icosahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'b')">b) Tetrahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'c')">c) Octahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'d')">d) Dodecahedron</button>
+        </div>
+        <div class="quiz-feedback" id="qf4"></div>
+      </div>
+      <div class="quiz-question" id="qq5">
+        <div class="quiz-q-text">5. Many viruses (HIV, herpes, adenovirus) build their protein shells in icosahedral geometry because:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(5,this,'a')">a) It is the largest of the five Platonic Solids</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'b')">b) It minimises surface area while maximising enclosed volume &mdash; optimal biological packaging</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'c')">c) It is the easiest geometric form for biological systems to construct</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'d')">d) It corresponds to the element of Water which viruses prefer</button>
+        </div>
+        <div class="quiz-feedback" id="qf5"></div>
+      </div>
+      <div class="quiz-question" id="qq6">
+        <div class="quiz-q-text">6. TRUE or FALSE: The Platonic Solids were invented by Plato &mdash; he is their discoverer.</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(6,this,'a')">True &mdash; Plato invented and described them</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'b')">False &mdash; the five solids predate Plato; Euclid proved the five-only theorem in his Elements</button>
+        </div>
+        <div class="quiz-feedback" id="qf6"></div>
+      </div>
+    </div>
+    <button id="quiz-submit" onclick="submitQuiz()">Check Answers</button>
+    <div class="quiz-score-bar" id="quiz-score-bar">
+      <div class="score-display" id="quiz-score-display">0/6</div>
+      <p id="quiz-score-msg" style="color:var(--text-dim)"></p>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="section" id="sec-glossary">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Quick Reference &mdash; Key Definitions</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div id="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Polyhedron</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">A three-dimensional geometric form with flat faces, straight edges, and sharp vertices. The Platonic Solids are the five regular convex polyhedra &mdash; the only ones in which every face is an identical regular polygon and every vertex is identical.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Regular Polygon</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">A two-dimensional figure with all sides equal and all interior angles equal. The equilateral triangle (60&deg;), square (90&deg;), and regular pentagon (108&deg;) are the only regular polygons that can form Platonic Solid faces. Hexagons at 120&deg; give 360&deg; at a vertex &mdash; flat, not a solid.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Vertex Angle Sum</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The sum of the face angles meeting at each vertex of a polyhedron. For a Platonic Solid, this sum must be less than 360&deg; &mdash; the constraint that limits possible solids to exactly five. At exactly 360&deg;, the vertex becomes flat (a plane). Above 360&deg;, the form folds inward.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Euler's Formula</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">For any convex polyhedron: V &minus; E + F = 2, where V = vertices, E = edges, F = faces. Proven by Euler in 1758, this formula holds for all five Platonic Solids without exception. It is one of the most beautiful results in all of mathematics &mdash; connecting topology and geometry in a single elegant equation.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Platonic Duals</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">Two Platonic Solids are dual when the face centres of one become the vertices of the other. The cube and octahedron are duals. The dodecahedron and icosahedron are duals. The tetrahedron is self-dual. Duals share the same number of edges (12 for cube/octahedron; 30 for dodecahedron/icosahedron).</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Timaeus</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">Plato's dialogue (~360 BCE) in which he assigns the Platonic Solids to the classical elements: tetrahedron to Fire, cube to Earth, octahedron to Air, icosahedron to Water, and dodecahedron to the Cosmos/Ether. These assignments track real structural properties &mdash; the dodecahedron-cosmos assignment is being revisited in modern cosmology.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICAL -->
+  <section class="section" id="sec-practical">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Practical Application &mdash; This Week</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="margin-bottom:18px">The Platonic Solids are best understood through direct physical encounter. This week, engage with them as real three-dimensional objects &mdash; built, held, and drawn.</p>
+      <div class="practice-items">
+        <div class="practice-item">
+          <div class="pi-icon">&#127981;</div>
+          <div class="pi-title">Build the Solids</div>
+          <p>Use a Platonic solid model kit (or paper nets) to physically construct all five. Hold each one. Notice how it feels in your hand &mdash; the sharpness of the tetrahedron, the stability of the cube.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#128270;</div>
+          <div class="pi-title">Find Them in Nature</div>
+          <p>Look for: cubic salt crystals, octahedral diamond/fluorite, tetrahedral molecular models. Look up icosahedral virus images. Notice how the same five forms appear at every scale.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#9999;&#65039;</div>
+          <div class="pi-title">Draw All Five</div>
+          <p>Draw a net for each solid (the flat unfolded version) and fold them into 3D forms. Verify Euler's formula V &minus; E + F = 2 for each one as you construct it.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#128218;</div>
+          <div class="pi-title">Read Kepler</div>
+          <p>Research Kepler's Mysterium Cosmographicum (1596) &mdash; his attempt to model planetary orbits using nested Platonic Solids. A 17th century astronomer who saw the same five forms in the structure of the heavens.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="section" id="sec-reflection">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Reflection Journal</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="font-style:italic;color:var(--text-dim);margin-bottom:26px">Five inevitable forms. These questions invite you to explore why they feel so significant.</p>
+      <div class="reflection-prompt">
+        <div class="reflection-q">1. Plato assigned the dodecahedron to the cosmos in 360 BCE, saying the divine architect used it to embroider the constellations. Modern cosmologists have proposed the universe may indeed have dodecahedral topology. What does it mean to you that a 2,400-year-old philosophical assignment might be literally true? What does this say about the relationship between ancient wisdom and modern science?</div>
+        <textarea class="reflection-textarea" id="ref1" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">2. The icosahedron appears in virus geometry. The cubic lattice is the structure of salt. The octahedron is the cleavage form of diamond. The same five shapes Plato assigned to the elements appear in the actual structure of matter. Does this feel like coincidence to you? What would need to be true about reality for this pattern to exist?</div>
+        <textarea class="reflection-textarea" id="ref2" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">3. The proof that only five Platonic Solids exist has been known since Euclid. We live in a universe with exactly these five forms as the building blocks of all 3D structure &mdash; not by convention or custom, but by mathematical necessity. What does it feel like to know that the geometry of your world is not arbitrary but provably inevitable?</div>
+        <textarea class="reflection-textarea" id="ref3" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- GO DEEPER -->
+  <section class="section" id="sec-resources">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Go Deeper &mdash; Resources</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div class="rg">
+        <div class="rg-title">&#128218; Books</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Regular Polytopes &mdash; H.S.M. Coxeter (Dover, 1973)</div><div class="ri-meta">ISBN 978-0486614809 &middot; The definitive mathematical reference for the five regular polyhedra and their geometric properties.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Sacred Geometry &mdash; Robert Lawlor (Inner Traditions, 1982)</div><div class="ri-meta">ISBN 978-0500810606 &middot; Presents the Platonic Solids in their esoteric and geometric context with full construction guides.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">A Beginner's Guide to Constructing the Universe &mdash; Michael S. Schneider (HarperCollins, 1994)</div><div class="ri-meta">ISBN 978-0060926717 &middot; Accessible exploration of how each Platonic Solid corresponds to elemental archetypes and natural forms.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Mysterium Cosmographicum &mdash; Johannes Kepler (1596)</div><div class="ri-meta">Kepler's attempt to model planetary orbits using nested Platonic Solids &mdash; historically significant application of this geometry.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#128300; Scientific Studies</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Nature of the Chemical Bond &mdash; Linus Pauling (1939)</div><div class="ri-meta">Molecular geometry often exhibits Platonic Solid symmetry; Pauling's work established the geometric basis of bonding angles.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Icosahedral Symmetry in Viruses &mdash; Caspar &amp; Klug, Cold Spring Harbor Symposium (1962)</div><div class="ri-meta">Demonstrated that many viruses self-assemble into icosahedral (Platonic Solid) geometric forms.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#127916; Documentaries &amp; Online</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Dimensions: A Walk Through Mathematics &mdash; Jos Leys et al. (free online)</div><div class="ri-meta">Visually stunning mathematical film with extended coverage of the four-dimensional extensions of the Platonic Solids.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Platonic Solids &mdash; various YouTube educators</div><div class="ri-meta">Multiple rigorous visual introductions to the five regular polyhedra from mathematics channels.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#127760; Websites</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">mathworld.wolfram.com/PlatonicSolid.html</div><div class="ri-meta">Rigorous mathematical reference for all properties of the five Platonic Solids.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">sacred-geometry.es/platonic-solids</div><div class="ri-meta">Visual and esoteric context for the Platonic Solids with elemental correspondences.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#128279; TFA Lesson Connections</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G5 &mdash; Metatron's Cube</div><div class="ri-meta">All five Platonic Solids are encoded within Metatron's Cube &mdash; the lesson that precedes this one.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G9 &mdash; Toroidal Fields</div><div class="ri-meta">The Platonic Solids can be understood as crystallised cross-sections of toroidal energy fields.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G22 &mdash; Applying Geometry to Device Design</div><div class="ri-meta">Platonic Solid geometries are applied in orgonite and device construction for their resonant properties.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSHOP -->
+  <section class="section" id="sec-workshop">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <h2 class="section-title">Live Workshop</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="workshop-slot">
+      <div class="ws-icon">&#9678;</div>
+      <div class="ws-title">Live Workshop on this topic coming soon</div>
+      <div class="ws-sub">Recordings will appear here once available. Check back or watch for announcements at thefrequencyacademy.net</div>
+    </div>
+  </section>
+
+  <!-- COMPLETION -->
+  <section class="section" id="sec-completion">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <h2 class="section-title">Lesson Complete</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="completion-card">
+      <div class="completion-title">The Platonic Solids &mdash; Lesson Summary</div>
+      <p style="color:var(--text-dim);max-width:540px;margin:0 auto 22px;font-style:italic">"There are exactly five regular convex polyhedra. Not approximately five. Exactly five, proven by Euclid. They are not discovered &mdash; they are inevitable."</p>
+      <div class="complete-checkbox-wrap">
+        <input type="checkbox" id="complete-checkbox" onchange="onComplete(this)">
+        <label class="complete-label" for="complete-checkbox">I have completed Lesson G6 &mdash; The Platonic Solids</label>
+      </div>
+      <div class="xp-badge" id="xp-badge">&#10022; +10 XP Earned &#10022;</div>
+    </div>
+  </section>
+
+  <!-- UP NEXT -->
+  <section class="section" id="sec-upnext">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <h2 class="section-title">Up Next in the Module</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="up-next-card">
+      <div class="un-badge">G7</div>
+      <div class="un-info">
+        <div class="un-label">Next Lesson &middot; Sacred Geometry</div>
+        <div class="un-title">The Golden Ratio &mdash; Phi</div>
+        <div class="un-desc">G7 explores Phi (&phi;), the Golden Ratio &asymp; 1.618 &mdash; the proportion that governs the growth of living organisms, the proportions of the human body, the geometry of the dodecahedron and icosahedron, the spiral of nautilus shells, and the architecture of the Parthenon and the Great Pyramid. Phi is the proportion of life itself.</div>
+      </div>
+      <div class="un-arrow">&#8250;</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+var STORAGE_KEY = 'tfa_lesson_G6';
+var autosaveTimer = null;
+var quizAnswers = {};
+var correctAnswers = {1:'b',2:'b',3:'c',4:'d',5:'b',6:'b'};
+var quizFeedback = {
+  1:{b:'Correct! Exactly five regular convex polyhedra exist, proven by Euclid in Book XIII of the Elements. Not estimated, not discovered so far. Exactly five, forever.',wrong:'Not quite. There are exactly five Platonic Solids, proven by Euclid. This is a mathematical certainty, not an estimate.'},
+  2:{b:'Correct! Six equilateral triangles at a vertex give 6 x 60 = 360 degrees exactly &mdash; a flat plane, not a vertex. For a 3D point, the sum must be less than 360 degrees.',wrong:'Not quite. Six triangles at a vertex give exactly 360 degrees &mdash; a flat plane. A proper 3D vertex requires less than 360 degrees.'},
+  3:{c:'Correct! The octahedron is the natural cleavage form of diamond &mdash; the hardest natural substance. Diamond, fluorite, and spinel crystals all exhibit octahedral symmetry.',wrong:'Not quite. The octahedron is the natural cleavage form of diamond.'},
+  4:{d:'Correct! Plato assigned the dodecahedron to the Cosmos &mdash; the twelve-pentagonal-faced solid with phi encoded in every face. Modern cosmologists have proposed the universe may have dodecahedral topology.',wrong:'Not quite. Plato assigned the dodecahedron to the Cosmos &mdash; saying the divine architect used it to embroider the constellations on the heavens.'},
+  5:{b:'Correct! Icosahedral geometry minimises surface area while maximising enclosed volume &mdash; optimal packaging for the genetic material inside. The universe finds the same optimal form at the microscale.',wrong:'Not quite. Viruses use icosahedral geometry because it minimises surface area while maximising enclosed volume &mdash; optimal biological packaging.'},
+  6:{b:'Correct! The five Platonic Solids predate Plato &mdash; some were known to the Pythagoreans. Euclid proved the five-only theorem. Plato described and named them philosophically, but did not invent them.',wrong:'Not quite. The five solids predate Plato. Euclid proved that exactly five exist. Plato described them philosophically but did not invent or discover them.'}
+};
+
+// PROGRESS
+function updateProgress() {
+  var dH = document.documentElement.scrollHeight, wH = window.innerHeight;
+  var pct = Math.min(100, Math.round((window.scrollY / (dH - wH)) * 100));
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = 'G6 \u00b7 ' + pct + '%';
+}
+window.addEventListener('scroll', updateProgress, {passive:true});
+updateProgress();
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.08});
+document.querySelectorAll('.section').forEach(function(s) { observer.observe(s); });
+
+function toggleAccordion(h) {
+  var item = h.closest('.accordion-item');
+  var open = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item.open').forEach(function(i) { i.classList.remove('open'); });
+  if (!open) item.classList.add('open');
+}
+
+// SOLID TABS
+function showSolid(idx, tab) {
+  document.querySelectorAll('.solid-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.solid-panel').forEach(function(p) { p.classList.remove('show'); });
+  tab.classList.add('active');
+  document.getElementById('sp' + idx).classList.add('show');
+}
+
+// 3D WIREFRAME RENDERER
+function make3D(vertices, edges, scale) {
+  return {v: vertices, e: edges, s: scale, rx: 0, ry: 0};
+}
+
+function project(v, rx, ry, d, scale) {
+  // Rotate around x then y
+  var cosX = Math.cos(rx), sinX = Math.sin(rx);
+  var cosY = Math.cos(ry), sinY = Math.sin(ry);
+  var y1 = v[1]*cosX - v[2]*sinX;
+  var z1 = v[1]*sinX + v[2]*cosX;
+  var x2 = v[0]*cosY + z1*sinY;
+  var z2 = -v[0]*sinY + z1*cosY;
+  var factor = d / (d + z2 + 3);
+  return [x2 * factor * scale, y1 * factor * scale];
+}
+
+function drawWireframe(canvas, solid, angle, teal, gold) {
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = 'rgba(0,0,0,0.4)';
+  ctx.fillRect(0, 0, W, H);
+  var rx = 0.4 + angle * 0.3;
+  var ry = angle;
+  var projected = solid.v.map(function(v) { return project(v, rx, ry, 4, solid.s); });
+  for (var i = 0; i < solid.e.length; i++) {
+    var a = projected[solid.e[i][0]];
+    var b = projected[solid.e[i][1]];
+    ctx.beginPath();
+    ctx.moveTo(W/2 + a[0], H/2 + a[1]);
+    ctx.lineTo(W/2 + b[0], H/2 + b[1]);
+    ctx.strokeStyle = teal;
+    ctx.lineWidth = 1.4;
+    ctx.stroke();
+  }
+  for (var i = 0; i < projected.length; i++) {
+    ctx.beginPath();
+    ctx.arc(W/2 + projected[i][0], H/2 + projected[i][1], 3, 0, Math.PI*2);
+    ctx.fillStyle = gold;
+    ctx.fill();
+  }
+}
+
+// Define all 5 solids
+var phi = (1 + Math.sqrt(5)) / 2;
+var solids = [
+  // Tetrahedron
+  {
+    v: [[1,1,1],[-1,-1,1],[-1,1,-1],[1,-1,-1]],
+    e: [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]],
+    s: 80
+  },
+  // Cube
+  {
+    v: [[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]],
+    e: [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]],
+    s: 75
+  },
+  // Octahedron
+  {
+    v: [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]],
+    e: [[0,2],[0,3],[0,4],[0,5],[1,2],[1,3],[1,4],[1,5],[2,4],[2,5],[3,4],[3,5]],
+    s: 90
+  },
+  // Dodecahedron (approximate vertices)
+  {
+    v: [
+      [1,1,1],[1,1,-1],[1,-1,1],[1,-1,-1],
+      [-1,1,1],[-1,1,-1],[-1,-1,1],[-1,-1,-1],
+      [0,1/phi,phi],[0,1/phi,-phi],[0,-1/phi,phi],[0,-1/phi,-phi],
+      [1/phi,phi,0],[1/phi,-phi,0],[-1/phi,phi,0],[-1/phi,-phi,0],
+      [phi,0,1/phi],[phi,0,-1/phi],[-phi,0,1/phi],[-phi,0,-1/phi]
+    ],
+    e: [
+      [0,8],[0,12],[0,16],[1,9],[1,12],[1,17],[2,10],[2,13],[2,16],[3,11],[3,13],[3,17],
+      [4,8],[4,14],[4,18],[5,9],[5,14],[5,19],[6,10],[6,15],[6,18],[7,11],[7,15],[7,19],
+      [8,10],[9,11],[12,14],[13,15],[16,17],[18,19]
+    ],
+    s: 55
+  },
+  // Icosahedron
+  {
+    v: [
+      [0,1,phi],[0,1,-phi],[0,-1,phi],[0,-1,-phi],
+      [1,phi,0],[1,-phi,0],[-1,phi,0],[-1,-phi,0],
+      [phi,0,1],[phi,0,-1],[-phi,0,1],[-phi,0,-1]
+    ],
+    e: [
+      [0,2],[0,4],[0,6],[0,8],[0,10],
+      [1,3],[1,4],[1,6],[1,9],[1,11],
+      [2,5],[2,7],[2,8],[2,10],
+      [3,5],[3,7],[3,9],[3,11],
+      [4,6],[4,8],[4,9],
+      [5,7],[5,8],[5,9],
+      [6,10],[6,11],
+      [7,10],[7,11],
+      [8,9],[10,11]
+    ],
+    s: 62
+  }
+];
+
+var angles = [0,0,0,0,0];
+var animIds = [null,null,null,null,null];
+var teal = '#7ab0b8', gold = '#c9a84c';
+
+function animateSolid(idx) {
+  if (animIds[idx]) cancelAnimationFrame(animIds[idx]);
+  var canvas = document.getElementById('sc' + idx);
+  if (!canvas) return;
+  function frame() {
+    angles[idx] += 0.012;
+    drawWireframe(canvas, solids[idx], angles[idx], teal, gold);
+    animIds[idx] = requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+// Hero canvas - rotate all 5 simultaneously as collage
+(function() {
+  var c = document.getElementById('heroCanvas');
+  var ctx = c.getContext('2d');
+  var W = 300, H = 300;
+  var angle = 0;
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle = 'rgba(0,0,0,0.4)';
+    ctx.fillRect(0,0,W,H);
+    // Draw 3 solids: tetrahedron centre, cube top-left, octahedron top-right
+    var positions = [[W/2,H/2,0,45],[W/4,H/4,1,35],[3*W/4,H/4,2,40]];
+    for (var p = 0; p < positions.length; p++) {
+      var px = positions[p][0], py = positions[p][1], si = positions[p][2], sc = positions[p][3];
+      var s = solids[si];
+      var projected = s.v.map(function(v) { return project(v, angle*0.4, angle + p*1.1, 4, sc); });
+      var alpha = p === 0 ? 0.7 : 0.4;
+      for (var i = 0; i < s.e.length; i++) {
+        var a = projected[s.e[i][0]], b = projected[s.e[i][1]];
+        ctx.beginPath();
+        ctx.moveTo(px+a[0], py+a[1]);
+        ctx.lineTo(px+b[0], py+b[1]);
+        ctx.strokeStyle = p===0 ? 'rgba(201,168,76,'+alpha+')' : 'rgba(122,176,184,'+alpha+')';
+        ctx.lineWidth = p===0 ? 1.5 : 1.0;
+        ctx.stroke();
+      }
+    }
+    angle += 0.01;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// Start animating first solid
+animateSolid(0);
+
+// Override showSolid to also start animation
+var origShowSolid = window.showSolid;
+window.showSolid = function(idx, tab) {
+  origShowSolid(idx, tab);
+  animateSolid(idx);
+};
+
+// QUIZ
+function quizAnswer(q, btn, choice) {
+  if (quizAnswers[q]) return;
+  quizAnswers[q] = choice;
+  var correct = correctAnswers[q];
+  var buttons = btn.closest('.quiz-options').querySelectorAll('.quiz-option');
+  buttons.forEach(function(b) { b.disabled = true; });
+  if (choice === correct) {
+    btn.classList.add('correct');
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#81c784">&#10003; ' + quizFeedback[q][correct] + '</span>';
+  } else {
+    btn.classList.add('wrong');
+    buttons.forEach(function(b) { if (b.textContent.trim()[0] === correct) b.classList.add('correct'); });
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#e57373">&#10007; ' + quizFeedback[q].wrong + '</span>';
+  }
+  saveData();
+}
+
+function submitQuiz() {
+  var total = Object.keys(correctAnswers).length;
+  var scored = Object.keys(quizAnswers).filter(function(q) { return quizAnswers[q] === correctAnswers[q]; }).length;
+  document.getElementById('quiz-score-bar').style.display = 'block';
+  document.getElementById('quiz-score-display').textContent = scored + '/' + total;
+  var msgs = ['Review the proof and reference tables and try again.','Good start &mdash; revisit the vertex angle proof and natural appearances.','Solid grasp of the material &mdash; the five forms are becoming familiar.','Excellent &mdash; strong command of the Platonic Solids.','Outstanding &mdash; deep understanding of structure, element, and proof.','Perfect! The five inevitable forms are fully mapped in your understanding.'];
+  document.getElementById('quiz-score-msg').textContent = msgs[scored] || msgs[5];
+  document.getElementById('quiz-submit').style.display = 'none';
+  saveData();
+}
+
+function spawnConfetti() {
+  var colors = ['#c9a84c','#7ab0b8','#f0ede6','#9ecdd5','#e8c96d'];
+  for (var i = 0; i < 60; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.cssText = 'left:' + (Math.random()*100) + 'vw;top:-10px;background:' + colors[Math.floor(Math.random()*colors.length)] + ';animation-duration:' + (1.5+Math.random()*2) + 's;animation-delay:' + (Math.random()*.5) + 's;width:' + (6+Math.random()*6) + 'px;height:' + (6+Math.random()*6) + 'px;border-radius:' + (Math.random()>.5?'50%':'2px');
+        document.body.appendChild(el);
+        setTimeout(function() { el.remove(); }, 4000);
+      }, i * 30);
+    })(i);
+  }
+}
+
+function onComplete(cb) {
+  var badge = document.getElementById('xp-badge');
+  if (cb.checked) { badge.classList.add('show'); spawnConfetti(); saveData(); }
+  else badge.classList.remove('show');
+}
+
+function gatherData() {
+  return {
+    version:'1.0', lesson:'G6',
+    timestamp: new Date().toISOString(),
+    reflections:{r1:document.getElementById('ref1').value,r2:document.getElementById('ref2').value,r3:document.getElementById('ref3').value},
+    quiz:{answers:quizAnswers},
+    completed:document.getElementById('complete-checkbox').checked
+  };
+}
+
+function applyData(data) {
+  if (!data) return;
+  if (data.reflections) {
+    ['r1','r2','r3'].forEach(function(k) {
+      var el = document.getElementById('ref' + k.slice(1));
+      if (el && data.reflections[k]) el.value = data.reflections[k];
+    });
+  }
+  if (data.quiz && data.quiz.answers) {
+    quizAnswers = data.quiz.answers;
+    Object.keys(quizAnswers).forEach(function(q) {
+      var choice = quizAnswers[q], correct = correctAnswers[q];
+      var qEl = document.getElementById('qq' + q); if (!qEl) return;
+      var btns = qEl.querySelectorAll('.quiz-option');
+      btns.forEach(function(b) {
+        b.disabled = true;
+        var f = b.textContent.trim()[0];
+        if (f === choice && choice === correct) b.classList.add('correct');
+        else if (f === choice) b.classList.add('wrong');
+        else if (f === correct) b.classList.add('correct');
+      });
+      var html = choice === correct
+        ? '<span style="color:#81c784">&#10003; ' + quizFeedback[q][correct] + '</span>'
+        : '<span style="color:#e57373">&#10007; ' + quizFeedback[q].wrong + '</span>';
+      document.getElementById('qf' + q).innerHTML = html;
+    });
+  }
+  if (data.completed) {
+    document.getElementById('complete-checkbox').checked = true;
+    document.getElementById('xp-badge').classList.add('show');
+  }
+}
+
+function saveData() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(gatherData())); document.getElementById('save-status').textContent = 'Saved at ' + new Date().toLocaleTimeString(); }
+  catch(e) { document.getElementById('save-status').textContent = 'Save failed'; }
+}
+function loadData() {
+  try { var r = localStorage.getItem(STORAGE_KEY); if (r) applyData(JSON.parse(r)); } catch(e) {}
+}
+function scheduleAutosave() { clearTimeout(autosaveTimer); autosaveTimer = setTimeout(saveData, 90000); }
+function exportData() {
+  var blob = new Blob([JSON.stringify(gatherData(),null,2)],{type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'TFA_G6_PlatonicSolids_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click(); URL.revokeObjectURL(url);
+}
+function importTrigger() { document.getElementById('import-input').click(); }
+function importData(e) {
+  var file = e.target.files[0]; if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    try { var d = JSON.parse(ev.target.result); applyData(d); localStorage.setItem(STORAGE_KEY,JSON.stringify(d)); document.getElementById('save-status').textContent = 'Imported successfully'; }
+    catch(err) { document.getElementById('save-status').textContent = 'Import failed'; }
+  };
+  reader.readAsText(file);
+}
+setInterval(saveData, 90000);
+window.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>
