@@ -1,1 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G9 &middot; Toroidal Fields &middot; The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c1418;
+  --accent: #7ab0b8;
+  --accent2: #9ecdd5;
+  --text: #f0ede6;
+  --text-dim: rgba(240,237,230,0.65);
+  --gold: #c9a84c;
+  --card-bg: rgba(0,0,0,0.32);
+  --card-border: rgba(122,176,184,0.18);
+  --radius: 6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;line-height:1.75;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(122,176,184,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 90%,rgba(201,168,76,0.04) 0%,transparent 50%);pointer-events:none;z-index:0}
 
+#progress-bar-wrap{position:fixed;top:0;left:0;right:0;z-index:1000;height:3px;background:rgba(0,0,0,0.5)}
+#progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--accent));transition:width .4s ease;box-shadow:0 0 12px rgba(201,168,76,.6)}
+#progress-label{position:fixed;top:8px;right:16px;z-index:1001;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.15em;color:var(--accent2);opacity:.8}
+
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:1000;background:rgba(6,13,16,.95);border-top:1px solid var(--card-border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;backdrop-filter:blur(12px)}
+#save-status{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;color:var(--text-dim)}
+.save-btns{display:flex;gap:8px}
+.save-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;padding:8px 18px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;border-radius:var(--radius);transition:all .2s;text-transform:uppercase}
+.save-btn:hover{background:var(--accent);color:var(--bg)}
+.save-btn.gold{border-color:var(--gold);color:var(--gold)}
+.save-btn.gold:hover{background:var(--gold);color:var(--bg)}
+.save-btn.dim{border-color:rgba(255,255,255,.2);color:var(--text-dim)}
+.save-btn.dim:hover{background:rgba(255,255,255,.1);color:var(--text)}
+
+.lesson-wrap{max-width:860px;margin:0 auto;padding:56px 24px 100px;position:relative;z-index:1}
+
+.section{margin-bottom:64px;opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.section.visible{opacity:1;transform:none}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.section-num{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);min-width:32px;opacity:.6}
+.section-title{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:600;color:var(--text);letter-spacing:.06em;flex:1}
+.section-rule{height:1px;flex:1;background:linear-gradient(90deg,var(--accent),transparent);opacity:.3}
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px 32px;margin-bottom:20px;backdrop-filter:blur(8px)}
+p{margin-bottom:16px;color:var(--text-dim)}
+p:last-child{margin-bottom:0}
+.hi{color:var(--accent);font-weight:600}
+.gt{color:var(--gold)}
+h3.sub{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;color:var(--accent2);margin-bottom:14px;text-transform:uppercase}
+
+.hero{text-align:center;padding:80px 0 60px}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.hero-tag{display:inline-block;border:1px solid var(--accent);padding:4px 16px;border-radius:20px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:32px}
+.hero h1{font-family:'Cinzel',serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:700;color:var(--text);line-height:1.15;margin-bottom:12px;letter-spacing:.04em}
+.hero-subtitle{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);letter-spacing:.15em;margin-bottom:40px;font-weight:400}
+.hero-quote{max-width:640px;margin:0 auto 48px;font-style:italic;color:var(--text-dim);font-size:1rem;line-height:1.8;border-left:2px solid var(--gold);padding-left:20px;text-align:left}
+.hero-quote cite{display:block;margin-top:10px;font-style:normal;font-size:.8rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase}
+
+.transmission{text-align:center;padding:48px 32px;background:linear-gradient(135deg,rgba(122,176,184,.06),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);margin-bottom:64px}
+.transmission-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.transmission p{font-size:1.1rem;line-height:1.9;color:var(--text);font-style:italic;font-weight:300;max-width:640px;margin:0 auto 16px}
+.transmission p:last-child{margin-bottom:0}
+
+.module-crumb{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;color:var(--text-dim);text-align:center;margin-bottom:48px;text-transform:uppercase}
+.module-crumb span{color:var(--accent)}
+
+.callout{border-left:3px solid var(--gold);background:rgba(201,168,76,.06);padding:16px 20px;margin:20px 0;border-radius:0 var(--radius) var(--radius) 0}
+.callout p{color:var(--text);font-style:italic;margin:0}
+
+.concept-list{list-style:none}
+.concept-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid rgba(122,176,184,.08);color:var(--text-dim);font-size:.92rem}
+.concept-item:last-child{border-bottom:none}
+.cb{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:9px}
+
+/* TORUS CANVAS */
+#torusCanvas{display:block;margin:0 auto;border-radius:4px}
+
+/* SCALE EXPLORER — interactive clickable cards */
+.scale-explorer{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.scale-row{display:flex;align-items:stretch;gap:14px;cursor:pointer;border-radius:var(--radius);transition:all .2s}
+.scale-badge{min-width:80px;padding:14px 10px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0;transition:all .2s}
+.scale-badge-icon{font-size:1.4rem}
+.scale-badge-label{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.1em;color:var(--text-dim);text-transform:uppercase;text-align:center}
+.scale-content{flex:1;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:14px 18px;transition:all .2s}
+.scale-row:hover .scale-badge,.scale-row.open .scale-badge{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.scale-row:hover .scale-content,.scale-row.open .scale-content{border-color:var(--gold);background:rgba(201,168,76,.05)}
+.scale-title{font-family:'Cinzel',serif;font-size:.9rem;color:var(--text);margin-bottom:4px;letter-spacing:.06em}
+.scale-field{font-size:.8rem;color:var(--accent);margin-bottom:6px;letter-spacing:.06em}
+.scale-detail{font-size:.85rem;color:var(--text-dim);max-height:0;overflow:hidden;transition:max-height .35s ease,opacity .3s;opacity:0;line-height:1.65}
+.scale-row.open .scale-detail{max-height:120px;opacity:1}
+
+/* TORUS MATH */
+.math-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.math-card{background:rgba(122,176,184,.07);border:1px solid rgba(122,176,184,.2);border-radius:var(--radius);padding:16px;text-align:center}
+.math-eq{font-family:'Cinzel',serif;font-size:1rem;color:var(--accent);margin-bottom:6px}
+.math-label{font-size:.75rem;color:var(--text-dim);letter-spacing:.08em}
+
+/* TORUS CALCULATOR */
+.torus-calc{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px}
+.tc-inputs{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.tc-group{flex:1;min-width:140px}
+.tc-label{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;color:var(--accent2);text-transform:uppercase;margin-bottom:6px}
+.tc-input{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--card-border);border-radius:var(--radius);color:var(--text);font-family:'Raleway',sans-serif;font-size:1rem;padding:10px 14px;transition:border-color .2s}
+.tc-input:focus{outline:none;border-color:var(--gold)}
+.tc-results{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tc-result{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:14px;text-align:center}
+.tc-result-val{font-family:'Cinzel',serif;font-size:1.3rem;color:var(--gold)}
+.tc-result-label{font-size:.72rem;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+
+/* DATA TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.86rem}
+.data-table th{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;padding:9px 12px;border-bottom:1px solid var(--card-border);text-align:left}
+.data-table td{padding:10px 12px;border-bottom:1px solid rgba(122,176,184,.08);color:var(--text-dim);vertical-align:top}
+.data-table td:first-child{color:var(--gold);font-weight:600}
+.data-table tr:last-child td{border-bottom:none}
+
+/* ACCORDION */
+.accordion-item{border:1px solid var(--card-border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.accordion-header{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;cursor:pointer;background:var(--card-bg);transition:background .2s}
+.accordion-header:hover{background:rgba(122,176,184,.08)}
+.accordion-header-text{font-family:'Cinzel',serif;font-size:.84rem;letter-spacing:.1em;color:var(--text)}
+.accordion-arrow{color:var(--accent);font-size:1.2rem;transition:transform .3s}
+.accordion-item.open .accordion-arrow{transform:rotate(90deg)}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 20px;font-size:.9rem;color:var(--text-dim);line-height:1.8}
+.accordion-item.open .accordion-body{max-height:400px;padding:14px 20px 18px}
+
+/* QUIZ */
+.quiz-question{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:22px;margin-bottom:13px}
+.quiz-q-text{font-family:'Cinzel',serif;font-size:.87rem;color:var(--text);margin-bottom:14px;letter-spacing:.04em;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:8px}
+.quiz-option{padding:10px 14px;border:1px solid rgba(122,176,184,.2);border-radius:var(--radius);cursor:pointer;transition:all .2s;font-size:.87rem;color:var(--text-dim);background:transparent;text-align:left;width:100%;font-family:'Raleway',sans-serif}
+.quiz-option:hover{border-color:var(--accent);color:var(--text)}
+.quiz-option.correct{border-color:#4CAF50;background:rgba(76,175,80,.1);color:#81c784}
+.quiz-option.wrong{border-color:#f44336;background:rgba(244,67,54,.1);color:#e57373}
+.quiz-feedback{margin-top:8px;font-size:.81rem;font-style:italic;min-height:18px}
+.quiz-score-bar{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;text-align:center;display:none;margin-top:16px}
+.score-display{font-family:'Cinzel',serif;font-size:2.4rem;color:var(--gold);margin-bottom:8px}
+#quiz-submit{margin:20px auto 0;display:block;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;padding:12px 32px;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer;border-radius:var(--radius);transition:all .2s}
+#quiz-submit:hover{background:var(--gold);color:var(--bg)}
+
+/* REFLECTION */
+.reflection-prompt{margin-bottom:22px}
+.reflection-q{font-style:italic;color:var(--text);margin-bottom:10px;font-size:.94rem;line-height:1.7}
+.reflection-textarea{width:100%;min-height:110px;background:rgba(0,0,0,.3);border:1px solid var(--card-border);border-radius:var(--radius);color:var(--text);font-family:'Raleway',sans-serif;font-size:.9rem;padding:13px 15px;resize:vertical;transition:border-color .2s;line-height:1.6}
+.reflection-textarea:focus{outline:none;border-color:var(--accent)}
+.reflection-textarea::placeholder{color:var(--text-dim);opacity:.5}
+
+/* PRACTICAL */
+.practice-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:14px;margin-top:18px}
+.practice-item{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:18px;text-align:center;transition:border-color .2s}
+.practice-item:hover{border-color:var(--accent)}
+.pi-icon{font-size:1.9rem;margin-bottom:9px}
+.pi-title{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;color:var(--text);margin-bottom:5px}
+.practice-item p{font-size:.8rem}
+
+/* RESOURCES */
+.rg{margin-bottom:26px}
+.rg-title{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--card-border)}
+.ri{display:flex;gap:13px;padding:10px 0;border-bottom:1px solid rgba(122,176,184,.06)}
+.ri:last-child{border-bottom:none}
+.ri-icon{color:var(--accent);min-width:16px;margin-top:3px}
+.ri-title{color:var(--text);font-weight:600;font-size:.86rem;margin-bottom:2px}
+.ri-meta{color:var(--text-dim);font-size:.77rem}
+
+.workshop-slot{text-align:center;padding:44px;border:1px dashed rgba(201,168,76,.3);border-radius:var(--radius);background:rgba(201,168,76,.03)}
+.ws-icon{font-size:2.2rem;margin-bottom:14px;opacity:.5}
+.ws-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--text-dim);letter-spacing:.08em;margin-bottom:7px}
+.ws-sub{color:var(--text-dim);font-size:.84rem;opacity:.6}
+
+.completion-card{text-align:center;padding:44px;background:linear-gradient(135deg,rgba(122,176,184,.08),rgba(201,168,76,.06));border:1px solid rgba(201,168,76,.3);border-radius:var(--radius)}
+.completion-title{font-family:'Cinzel',serif;font-size:1.35rem;color:var(--gold);margin-bottom:12px;letter-spacing:.06em}
+.xp-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 24px;background:var(--gold);color:var(--bg);border-radius:24px;font-family:'Cinzel',serif;font-weight:700;font-size:1rem;margin:18px 0;letter-spacing:.08em;opacity:0;transform:scale(.8);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.xp-badge.show{opacity:1;transform:scale(1)}
+.complete-checkbox-wrap{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px 0}
+#complete-checkbox{width:22px;height:22px;accent-color:var(--gold);cursor:pointer}
+.complete-label{font-family:'Cinzel',serif;font-size:.88rem;letter-spacing:.1em;color:var(--text);cursor:pointer}
+
+.confetti-piece{position:fixed;pointer-events:none;z-index:9999;animation:confetti-fall linear forwards}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+.up-next-card{display:flex;align-items:center;gap:22px;padding:26px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);cursor:pointer;transition:border-color .2s,transform .2s}
+.up-next-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.un-badge{min-width:54px;height:54px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:700;color:var(--bg);font-size:.88rem}
+.un-info{flex:1}
+.un-label{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:4px}
+.un-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px}
+.un-desc{font-size:.83rem;color:var(--text-dim)}
+.un-arrow{color:var(--accent);font-size:1.5rem;opacity:.6}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .8s ease forwards}
+
+@media(max-width:680px){
+  .math-grid{grid-template-columns:1fr}
+  .tc-results{grid-template-columns:1fr}
+  .practice-items{grid-template-columns:1fr 1fr}
+  .lesson-wrap{padding:40px 16px 90px}
+  .card{padding:18px}
+  #save-bar{padding:8px 12px}
+  .save-btn{padding:6px 12px;font-size:9px}
+  .scale-row{flex-direction:column}
+  .scale-badge{flex-direction:row;justify-content:flex-start;gap:10px;min-width:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+<div id="progress-label">G9 &middot; 0%</div>
+
+<div id="save-bar">
+  <span id="save-status">Auto-saves every 90 seconds</span>
+  <div class="save-btns">
+    <button class="save-btn" onclick="saveData()">&#x27F3; Save Progress</button>
+    <button class="save-btn gold" onclick="exportData()">&#x2193; Export Backup</button>
+    <button class="save-btn dim" onclick="importTrigger()">&#x2191; Import</button>
+  </div>
+</div>
+<input type="file" id="import-input" accept=".json" style="display:none" onchange="importData(event)">
+
+<div class="lesson-wrap">
+
+  <div class="module-crumb">The Frequency Academy &middot; <span>Sacred Geometry &amp; Light Body Systems</span> &middot; Lesson G9 of 22</div>
+
+  <!-- HERO -->
+  <section class="hero section">
+    <div class="hero-eyebrow">Sacred Geometry &amp; Light Body Systems</div>
+    <div class="hero-tag">G9 &middot; LESSON NINE</div>
+    <h1>Toroidal Fields</h1>
+    <div class="hero-subtitle">The Shape of All Energy Systems</div>
+    <canvas id="heroCanvas" width="300" height="300" style="display:block;margin:0 auto 40px;border-radius:50%"></canvas>
+    <div class="hero-quote">
+      "The torus is not one shape among many. It is the fundamental shape of every self-sustaining energy system in the universe &mdash; from the electromagnetic field of the proton to the heart field to the magnetosphere of the Earth. It is the geometry of a system that sustains itself by flowing through itself."
+      <cite>&mdash; The Frequency Academy</cite>
+    </div>
+  </section>
+
+  <!-- TRANSMISSION -->
+  <section class="section transmission" id="sec-transmission">
+    <div class="transmission-label">&#10022; Opening Transmission &#10022;</div>
+    <p>Place your hand on your heart. The electromagnetic field radiating outward from this moment &mdash; extending several feet in every direction around your body &mdash; is not a blob, not a sphere, not a random cloud. It has a shape. And that shape is the same shape as the magnetic field of the Earth. The same shape as the heliosphere of the Sun. The same shape as the field of a proton.</p>
+    <p>A torus. Energy flowing through the central axis, out through one pole, arcing over the top and down the sides, returning through the base to re-enter the centre. The field feeding itself. The output becoming the input. A self-sustaining system in eternal dynamic equilibrium.</p>
+    <p>Once you see the torus, you cannot unsee it. It is everywhere energy sustains itself &mdash; which is to say, it is everywhere.</p>
+  </section>
+
+  <!-- CORE CONCEPT -->
+  <section class="section" id="sec-intro">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">What Is the Torus?</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>A <span class="hi">torus</span> is the surface generated by rotating a circle around an axis that is in the same plane as the circle but does not intersect it. The result is the surface of a doughnut. Mathematically, it is defined by two radii: the <span class="gt">major radius R</span> (distance from the centre of the torus to the centre of the tube) and the <span class="gt">minor radius r</span> (the radius of the tube itself).</p>
+      <p>The torus is topologically distinct from a sphere. A sphere has genus 0 &mdash; no holes. A torus has genus 1 &mdash; one hole through the middle. In topology, a coffee cup and a doughnut are the same shape (both genus 1). No amount of continuous stretching, bending, or deforming can turn a torus into a sphere or vice versa. They are fundamentally different kinds of surface.</p>
+      <div class="callout">
+        <p>The torus is the simplest closed surface with non-trivial topology &mdash; the simplest shape where inside and outside are not straightforwardly separable. It is also the fundamental geometry of every self-sustaining energy system in the universe.</p>
+      </div>
+      <ul class="concept-list">
+        <li class="concept-item"><div class="cb"></div>Generated by rotating a circle around an external axis &mdash; two radii (R, r) fully define the geometry</li>
+        <li class="concept-item"><div class="cb"></div>Topologically genus 1 (one hole) &mdash; fundamentally distinct from the sphere (genus 0)</li>
+        <li class="concept-item"><div class="cb"></div>Self-referencing: energy flows through the axis, arcs outward, returns to re-enter &mdash; output becomes input</li>
+        <li class="concept-item"><div class="cb"></div>Found at every scale: proton fields, water molecules, the human heart, the human biofield, Earth magnetosphere, heliosphere, galactic field</li>
+        <li class="concept-item"><div class="cb"></div>Prerequisite for understanding Merkaba (G15&ndash;16), tensor rings (G20), and all field-based energy work</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TORUS MATHEMATICS + CALCULATOR -->
+  <section class="section" id="sec-math">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">The Mathematics of the Torus &mdash; Live Calculator</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <h3 class="sub">Mathematical Structure</h3>
+      <div class="math-grid">
+        <div class="math-card">
+          <div class="math-eq">Volume = 2&pi;&sup2;Rr&sup2;</div>
+          <div class="math-label">Two pi squared times R times r squared</div>
+        </div>
+        <div class="math-card">
+          <div class="math-eq">Surface Area = 4&pi;&sup2;Rr</div>
+          <div class="math-label">Four pi squared times R times r</div>
+        </div>
+      </div>
+      <p style="font-size:.86rem;color:var(--text-dim)">Where R = major radius (centre to tube centre) and r = minor radius (tube radius). Together they fully define the geometry of any toroidal surface.</p>
+    </div>
+    <div class="torus-calc">
+      <h3 class="sub" style="margin-bottom:16px">Torus Calculator &mdash; Enter Any Radii</h3>
+      <div class="tc-inputs">
+        <div class="tc-group">
+          <div class="tc-label">Major Radius R</div>
+          <input class="tc-input" type="number" id="tc-R" value="3" min="0.1" step="0.1" oninput="calcTorus()">
+        </div>
+        <div class="tc-group">
+          <div class="tc-label">Minor Radius r</div>
+          <input class="tc-input" type="number" id="tc-r" value="1" min="0.1" step="0.1" oninput="calcTorus()">
+        </div>
+        <div class="tc-group">
+          <div class="tc-label">Units</div>
+          <input class="tc-input" type="text" id="tc-units" value="cm" placeholder="cm / m / ft" oninput="calcTorus()">
+        </div>
+      </div>
+      <div class="tc-results">
+        <div class="tc-result">
+          <div class="tc-result-val" id="tc-vol">177.65 cm&sup3;</div>
+          <div class="tc-result-label">Volume</div>
+        </div>
+        <div class="tc-result">
+          <div class="tc-result-val" id="tc-sa">118.44 cm&sup2;</div>
+          <div class="tc-result-label">Surface Area</div>
+        </div>
+        <div class="tc-result">
+          <div class="tc-result-val" id="tc-ratio">3.00</div>
+          <div class="tc-result-label">R / r ratio</div>
+        </div>
+        <div class="tc-result">
+          <div class="tc-result-val" id="tc-circ">18.85 cm</div>
+          <div class="tc-result-label">Outer circumference (2&pi;R)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE: SCALE EXPLORER -->
+  <section class="section" id="sec-interactive">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Toroidal Fields at Every Scale &mdash; Explorer</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="font-style:italic;font-size:.88rem;color:var(--text-dim);margin-bottom:18px">The torus appears at every scale of nature that sustains itself. Click any scale to reveal the specific toroidal field and its significance.</p>
+      <div class="scale-explorer" id="scale-explorer">
+
+        <div class="scale-row" onclick="toggleScale(this)">
+          <div class="scale-badge">
+            <div class="scale-badge-icon">&#128165;</div>
+            <div class="scale-badge-label">Sub-atomic</div>
+          </div>
+          <div class="scale-content">
+            <div class="scale-title">Proton &amp; Electron Fields</div>
+            <div class="scale-field">Electromagnetic field structure of fundamental particles</div>
+            <div class="scale-detail">Particle physics models describe the electromagnetic fields of protons and electrons as toroidal in structure. Nassim Haramein's research proposes that the proton itself has toroidal geometry, and that the fundamental unit of the vacuum also exhibits this form. The torus is present at the most basic level of physical reality.</div>
+          </div>
+        </div>
+
+        <div class="scale-row" onclick="toggleScale(this)">
+          <div class="scale-badge">
+            <div class="scale-badge-icon">&#128167;</div>
+            <div class="scale-badge-label">Molecular</div>
+          </div>
+          <div class="scale-content">
+            <div class="scale-title">Water Molecule Field</div>
+            <div class="scale-field">Electron density field of H&#8322;O</div>
+            <div class="scale-detail">The electron density field of the water molecule has a toroidal geometry. This is one reason water is considered the supreme carrier of information and energy in biological systems &mdash; its toroidal field geometry allows it to act as a field antenna and information storage medium.</div>
+          </div>
+        </div>
+
+        <div class="scale-row" onclick="toggleScale(this)">
+          <div class="scale-badge">
+            <div class="scale-badge-icon">&#10084;</div>
+            <div class="scale-badge-label">Human Heart</div>
+          </div>
+          <div class="scale-content">
+            <div class="scale-title">The Heart's Electromagnetic Field</div>
+            <div class="scale-field">Strongest EM field in the body &mdash; extends several feet beyond the skin</div>
+            <div class="scale-detail">HeartMath Institute research has documented that the human heart generates the strongest electromagnetic field in the body &mdash; approximately 60 times the amplitude of the brain's field. This field has a toroidal geometry, extending several feet in every direction from the body. It is measurable by magnetometers and is responsive to emotional states.</div>
+          </div>
+        </div>
+
+        <div class="scale-row" onclick="toggleScale(this)">
+          <div class="scale-badge">
+            <div class="scale-badge-icon">&#129489;</div>
+            <div class="scale-badge-label">Human Body</div>
+          </div>
+          <div class="scale-content">
+            <div class="scale-title">The Full Human Biofield / Aura</div>
+            <div class="scale-field">The complete human energy field &mdash; the toroidal aura</div>
+            <div class="scale-detail">The complete human biofield follows a toroidal pattern: energy flows up through the central axis (the spine and core), arcs out over the top of the head, curves around the sides and below the feet, and returns through the base to re-enter the centre. This is the geometry of the aura, the chakra system in its complete expression, and the human Merkaba field.</div>
+          </div>
+        </div>
+
+        <div class="scale-row" onclick="toggleScale(this)">
+          <div class="scale-badge">
+            <div class="scale-badge-icon">&#127758;</div>
+            <div class="scale-badge-label">Earth</div>
+          </div>
+          <div class="scale-content">
+            <div class="scale-title">Earth's Magnetosphere</div>
+            <div class="scale-field">The Van Allen belts &mdash; Earth's toroidal magnetic shield</div>
+            <div class="scale-detail">Earth's magnetic field is toroidal in geometry, generated by the flow of molten iron in the outer core. The Van Allen radiation belts follow the toroidal structure of the magnetosphere. This field shields all life on the surface from solar radiation &mdash; a toroidal field as the fundamental protection mechanism of a living planet.</div>
+          </div>
+        </div>
+
+        <div class="scale-row" onclick="toggleScale(this)">
+          <div class="scale-badge">
+            <div class="scale-badge-icon">&#9728;</div>
+            <div class="scale-badge-label">Solar System</div>
+          </div>
+          <div class="scale-content">
+            <div class="scale-title">The Heliosphere</div>
+            <div class="scale-field">The Sun's toroidal electromagnetic field &mdash; extending beyond Pluto</div>
+            <div class="scale-detail">The Sun's electromagnetic field creates a toroidal heliosphere extending well beyond Pluto and the Kuiper Belt. Within this heliosphere, all planets and all life in the solar system reside. The heliosphere interacts with the interstellar medium at its boundary &mdash; a toroidal field containing an entire solar system.</div>
+          </div>
+        </div>
+
+        <div class="scale-row" onclick="toggleScale(this)">
+          <div class="scale-badge">
+            <div class="scale-badge-icon">&#127752;</div>
+            <div class="scale-badge-label">Galaxy</div>
+          </div>
+          <div class="scale-content">
+            <div class="scale-title">Galactic Magnetic Field</div>
+            <div class="scale-field">The Milky Way's toroidal magnetic component</div>
+            <div class="scale-detail">The magnetic field of the Milky Way has a toroidal component in addition to its spiral structure. The same geometry that governs the heart field governs the field of a galaxy 100,000 light-years across. The torus is scale-invariant &mdash; the same form at every level of the nested hierarchy of energy systems.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SELF-REFERENCING -->
+  <section class="section" id="sec-self-ref">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">The Self-Referencing Quality of the Torus</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>The torus is the only geometric form that is perfectly <span class="hi">self-referencing</span>. Energy flows through the central axis of the torus, out through one pole, arcs around the outside surface, and returns through the other pole to re-enter the centre. The field feeds itself. The output becomes the input.</p>
+      <p>This is why the torus appears at every scale of nature that sustains itself &mdash; from the atom to the galaxy. It is the geometry of a system in <span class="gt">dynamic equilibrium</span>: always moving, never depleting, the flow of energy through itself sustaining the very structure that generates the flow.</p>
+      <div class="callout">
+        <p><strong class="gt">Symbolic correspondence:</strong> Eternal Flow &middot; Self-Sustaining Systems &middot; The Breath of the Universe &middot; Dynamic Equilibrium</p>
+      </div>
+      <p>In sacred geometry and energy work, the toroidal field is the fundamental model for the human energy body, for scalar fields generated by tensor rings, and for the Merkaba vehicle (G15&ndash;16). Understanding the torus is prerequisite for any device or practice that works with field dynamics.</p>
+
+      <!-- Animated flow diagram -->
+      <div style="text-align:center;margin-top:20px">
+        <canvas id="torusCanvas" width="360" height="300" style="border-radius:var(--radius);border:1px solid var(--card-border)"></canvas>
+        <p style="font-size:.78rem;color:var(--text-dim);margin-top:8px;font-style:italic">Animated cross-section of toroidal energy flow &mdash; watch the field sustain itself</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KNOWLEDGE CHECK -->
+  <section class="section" id="sec-quiz">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Knowledge Check</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div id="quiz-container">
+      <div class="quiz-question" id="qq1">
+        <div class="quiz-q-text">1. A torus is geometrically defined as:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(1,this,'a')">a) A sphere with a dent in it</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'b')">b) The surface generated by rotating a circle around an external axis in the same plane</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'c')">c) A cylinder bent into a loop</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'d')">d) The 3D rotation of a triangle</button>
+        </div>
+        <div class="quiz-feedback" id="qf1"></div>
+      </div>
+      <div class="quiz-question" id="qq2">
+        <div class="quiz-q-text">2. Why is the torus topologically distinct from a sphere?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(2,this,'a')">a) It is larger than a sphere</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'b')">b) The torus has genus 1 (one hole) while a sphere has genus 0; no continuous deformation can transform one into the other</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'c')">c) The torus has no curved surfaces</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'d')">d) A torus cannot be drawn in two dimensions</button>
+        </div>
+        <div class="quiz-feedback" id="qf2"></div>
+      </div>
+      <div class="quiz-question" id="qq3">
+        <div class="quiz-q-text">3. Which field of the human body has been documented by HeartMath Institute to have toroidal geometry extending several feet from the body?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(3,this,'a')">a) The brain's electromagnetic field</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'b')">b) The lung field during breathing</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'c')">c) The heart's electromagnetic field</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'d')">d) The nervous system's bioelectrical field</button>
+        </div>
+        <div class="quiz-feedback" id="qf3"></div>
+      </div>
+      <div class="quiz-question" id="qq4">
+        <div class="quiz-q-text">4. The torus is described as "self-referencing" because:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(4,this,'a')">a) It references the shape of a coffee cup</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'b')">b) Energy flows through the axis, arcs outward, and returns to re-enter the centre &mdash; output becomes input, sustaining itself</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'c')">c) It can be defined using only its own properties</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'d')">d) The two radii reference each other mathematically</button>
+        </div>
+        <div class="quiz-feedback" id="qf4"></div>
+      </div>
+      <div class="quiz-question" id="qq5">
+        <div class="quiz-q-text">5. TRUE or FALSE: A torus and a sphere are topologically equivalent &mdash; one can be continuously deformed into the other.</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(5,this,'a')">True &mdash; they are both closed surfaces</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'b')">False &mdash; torus (genus 1) and sphere (genus 0) are topologically distinct; no continuous deformation connects them</button>
+        </div>
+        <div class="quiz-feedback" id="qf5"></div>
+      </div>
+      <div class="quiz-question" id="qq6">
+        <div class="quiz-q-text">6. At which scales does toroidal geometry appear in energy fields?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(6,this,'a')">a) Only at human and planetary scales</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'b')">b) Only at cosmic scales &mdash; galaxies and beyond</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'c')">c) At every scale from subatomic particles to galaxies &mdash; the torus is scale-invariant</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'d')">d) Only where magnetic fields are present</button>
+        </div>
+        <div class="quiz-feedback" id="qf6"></div>
+      </div>
+    </div>
+    <button id="quiz-submit" onclick="submitQuiz()">Check Answers</button>
+    <div class="quiz-score-bar" id="quiz-score-bar">
+      <div class="score-display" id="quiz-score-display">0/6</div>
+      <p id="quiz-score-msg" style="color:var(--text-dim)"></p>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="section" id="sec-glossary">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Quick Reference &mdash; Key Definitions</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div id="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Torus</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">A surface generated by rotating a circle around an axis in the same plane but not intersecting it. The shape of a doughnut. The fundamental geometry of every self-sustaining electromagnetic and energy field in the universe. Defined by two radii: major (R) and minor (r).</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Major Radius (R)</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The distance from the centre of a torus to the centre of its tube. Defines the overall size of the toroidal form. A larger R creates a wider, more open torus. Together with the minor radius r, R fully defines the geometry of the toroidal surface.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Minor Radius (r)</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The radius of the tube of a torus. Defines the thickness of the toroidal ring. Together with the major radius R, it fully defines the geometry of the toroidal surface. When r approaches R, the central hole closes; when r is much smaller than R, the torus becomes thin and ring-like.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Topology</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The branch of mathematics concerned with properties of space that are preserved under continuous deformations (stretching, bending, twisting &mdash; but not tearing or gluing). The torus (genus 1, one hole) is topologically distinct from the sphere (genus 0, no holes). A coffee cup and a doughnut are topologically identical &mdash; both genus 1.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Self-Referencing Field</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">A field whose output re-enters as input, sustaining itself through continuous flow. The toroidal field is perfectly self-referencing: energy flows through the central axis, arcs around the outside, and returns to re-enter the centre. The field feeds itself &mdash; a self-sustaining system in dynamic equilibrium.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Magnetosphere</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The region around a planet dominated by its magnetic field. Earth's magnetosphere is toroidal in geometry, shaped by the interaction of the planetary magnetic dipole with the solar wind. The Van Allen radiation belts follow the toroidal structure of the magnetosphere, trapping charged particles in two belt-shaped regions.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICAL -->
+  <section class="section" id="sec-practical">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Practical Application &mdash; This Week</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="margin-bottom:18px">The torus is not an abstract concept &mdash; it is your living reality. This week, practice perceiving and working with the toroidal field that surrounds you and flows through you at all times.</p>
+      <div class="practice-items">
+        <div class="practice-item">
+          <div class="pi-icon">&#10084;</div>
+          <div class="pi-title">Heart Field Meditation</div>
+          <p>Place one hand on your heart. Breathe slowly. Visualise the toroidal field expanding with each exhale &mdash; out the top, around the sides, beneath your feet, returning through the base. Hold this for 10 minutes.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#9998;&#65039;</div>
+          <div class="pi-title">Draw the Torus</div>
+          <p>Draw a torus cross-section. Add energy flow arrows: up through the central axis, out the top pole, curving around the outside, returning through the base. Draw yourself inside the torus with your heart at the centre.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#128214;</div>
+          <div class="pi-title">Research HeartMath</div>
+          <p>Visit heartmath.org/research and read about the documented toroidal structure of the heart's electromagnetic field. Note the measured extent of the field and how emotional state affects it.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#128375;</div>
+          <div class="pi-title">Find the Torus in Nature</div>
+          <p>Look for toroidal structures in your environment: smoke rings, vortex rings in water, the shape of a doughnut, the cross-section of a tree ring. Notice where the self-sustaining flow pattern appears.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="section" id="sec-reflection">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Reflection Journal</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="font-style:italic;color:var(--text-dim);margin-bottom:26px">The torus is everywhere once you see it. These questions invite you to encounter it.</p>
+      <div class="reflection-prompt">
+        <div class="reflection-q">1. Place your hand on your heart. The electromagnetic field you are generating right now has a toroidal geometry extending several feet in every direction around you &mdash; the same geometry as the magnetosphere of the Earth, the Sun's heliosphere, and the fields of subatomic particles. What does it mean to you to know that your heart is generating the same fundamental field shape as a planet?</div>
+        <textarea class="reflection-textarea" id="ref1" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">2. The torus sustains itself by flowing through itself &mdash; the output becomes the input. Can you think of other systems &mdash; ecosystems, economies, communities, personal practices, relationships &mdash; that operate on this same self-sustaining flow principle? What makes them healthy? What happens when the flow is interrupted or the field collapses?</div>
+        <textarea class="reflection-textarea" id="ref2" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">3. This lesson connects the torus to the Merkaba (G15&ndash;16) and to tensor ring work (G20). Before you reach those lessons, what do you already intuit about how a geometric form that sustains itself through self-referencing flow might be applied in healing, energy work, or device design? What is the relationship between geometry and consciousness?</div>
+        <textarea class="reflection-textarea" id="ref3" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- GO DEEPER -->
+  <section class="section" id="sec-resources">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Go Deeper &mdash; Resources</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div class="rg">
+        <div class="rg-title">&#128218; Books</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Heart's Code &mdash; Paul Pearsall (Broadway Books, 1998)</div><div class="ri-meta">ISBN 978-0767900959 &middot; Examines the heart's toroidal electromagnetic field and its role in cellular and consciousness communication.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Holographic Universe &mdash; Michael Talbot (HarperCollins, 1991)</div><div class="ri-meta">ISBN 978-0062014108 &middot; Discusses toroidal and holographic field structures underlying physical reality.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Stalking the Wild Pendulum &mdash; Itzhak Bentov (Destiny Books, 1988)</div><div class="ri-meta">ISBN 978-0892812028 &middot; A physicist's exploration of the toroidal nature of consciousness and biofield dynamics.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#128300; Scientific Studies</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Coherent Heart &mdash; McCraty, R. et al. (HeartMath Research Center, 2006)</div><div class="ri-meta">Documents the toroidal electromagnetic field generated by the heart, extending several feet from the body. Foundational research on heart field geometry.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Quantum Gravity and the Holographic Mass &mdash; Haramein, N. (Physical Review &amp; Research International, 2013)</div><div class="ri-meta">Proposes that fundamental particles have toroidal geometry and that the torus is the universal energy form.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#127916; Documentaries</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Thrive &mdash; Foster Gamble (2011)</div><div class="ri-meta">Documents the torus as the fundamental energy pattern of all systems from atoms to galaxies.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Living Matrix (2009)</div><div class="ri-meta">Explores biofield research including toroidal field structures around living organisms.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#127760; Websites</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">heartmath.org/research</div><div class="ri-meta">HeartMath Institute's research library on the heart's toroidal electromagnetic field.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">resonancescience.org</div><div class="ri-meta">Nassim Haramein's Resonance Science Foundation covering toroidal geometry in physics.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#128279; TFA Lesson Connections</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Q9 &mdash; Wave Mechanics</div><div class="ri-meta">Toroidal fields are described by the same wave mechanics equations covered in Q9.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G15&ndash;16 &mdash; The Merkaba</div><div class="ri-meta">The Merkaba vehicle is a toroidal energy field in counter-rotating motion around the body.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G20 &mdash; Sacred Geometry in Tensor Rings</div><div class="ri-meta">Tensor rings generate a toroidal scalar field &mdash; the torus is the operative geometry.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSHOP -->
+  <section class="section" id="sec-workshop">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <h2 class="section-title">Live Workshop</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="workshop-slot">
+      <div class="ws-icon">&#9678;</div>
+      <div class="ws-title">Live Workshop on this topic coming soon</div>
+      <div class="ws-sub">Recordings will appear here once available. Check back or watch for announcements at thefrequencyacademy.net</div>
+    </div>
+  </section>
+
+  <!-- COMPLETION -->
+  <section class="section" id="sec-completion">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <h2 class="section-title">Lesson Complete</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="completion-card">
+      <div class="completion-title">Toroidal Fields &mdash; Lesson Summary</div>
+      <p style="color:var(--text-dim);max-width:540px;margin:0 auto 22px;font-style:italic">"The torus is not one shape among many. It is the fundamental shape of every self-sustaining energy system in the universe. It is the geometry of a system that sustains itself by flowing through itself."</p>
+      <div class="complete-checkbox-wrap">
+        <input type="checkbox" id="complete-checkbox" onchange="onComplete(this)">
+        <label class="complete-label" for="complete-checkbox">I have completed Lesson G9 &mdash; Toroidal Fields</label>
+      </div>
+      <div class="xp-badge" id="xp-badge">&#10022; +10 XP Earned &#10022;</div>
+    </div>
+  </section>
+
+  <!-- UP NEXT -->
+  <section class="section" id="sec-upnext">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <h2 class="section-title">Up Next in the Module</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="up-next-card">
+      <div class="un-badge">G10</div>
+      <div class="un-info">
+        <div class="un-label">Next Lesson &middot; Sacred Geometry</div>
+        <div class="un-title">The Kathara Grid</div>
+        <div class="un-desc">The Kathara Grid is the 12-pointed, 12-line template that underlies the Tree of Life and the full Krystic creation mechanics. G10 introduces the grid as the energetic skeleton of all creation and the map of the 12-dimensional scale of consciousness.</div>
+      </div>
+      <div class="un-arrow">&#8250;</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+var STORAGE_KEY = 'tfa_lesson_G9';
+var autosaveTimer = null;
+var quizAnswers = {};
+
+var correctAnswers = {1:'b',2:'b',3:'c',4:'b',5:'b',6:'c'};
+var quizFeedback = {
+  1:{b:'Correct! A torus is the surface generated by rotating a circle around an axis that is in the same plane as the circle but does not intersect it. The result is the surface of a doughnut.',wrong:'Not quite. A torus is the surface generated by rotating a circle around an external axis in the same plane.'},
+  2:{b:'Correct! The torus has genus 1 (one hole through the middle) while the sphere has genus 0 (no holes). Topology proves these are fundamentally different -- no continuous deformation can transform one into the other.',wrong:'Not quite. The torus (genus 1) and sphere (genus 0) have different topological genus -- they are fundamentally distinct surfaces.'},
+  3:{c:'Correct! HeartMath Institute research has documented that the heart generates the strongest electromagnetic field in the body, with toroidal geometry extending several feet beyond the physical body.',wrong:'Not quite. HeartMath Institute has documented the heart as generating the strongest EM field in the body, with a documented toroidal geometry.'},
+  4:{b:'Correct! The torus is self-referencing because energy flows through the central axis, arcs around the outside, and returns to re-enter the centre. Output becomes input -- the field sustains itself.',wrong:'Not quite. Self-referencing means the output of the toroidal field re-enters as input, sustaining itself through continuous flow.'},
+  5:{b:'Correct! A torus (genus 1) and a sphere (genus 0) are topologically distinct. No continuous deformation -- no stretching, bending, or twisting without tearing -- can transform one into the other.',wrong:'Not quite. Torus and sphere are topologically distinct (different genus numbers) and cannot be continuously deformed into each other.'},
+  6:{c:'Correct! The torus appears at every scale from subatomic particles to galaxies -- proton fields, water molecules, the human heart field, the human biofield, the magnetosphere, the heliosphere, and the galactic magnetic field.',wrong:'Not quite. Toroidal geometry is scale-invariant -- it appears at every scale from subatomic particles to galaxies.'}
+};
+
+// PROGRESS
+function updateProgress() {
+  var dH = document.documentElement.scrollHeight, wH = window.innerHeight;
+  var pct = Math.min(100, Math.round((window.scrollY / (dH - wH)) * 100));
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = 'G9 \u00b7 ' + pct + '%';
+}
+window.addEventListener('scroll', updateProgress, {passive:true});
+updateProgress();
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.08});
+document.querySelectorAll('.section').forEach(function(s) { observer.observe(s); });
+
+function toggleAccordion(h) {
+  var item = h.closest('.accordion-item');
+  var open = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item.open').forEach(function(i) { i.classList.remove('open'); });
+  if (!open) item.classList.add('open');
+}
+
+function toggleScale(row) {
+  var wasOpen = row.classList.contains('open');
+  document.querySelectorAll('.scale-row.open').forEach(function(r) { r.classList.remove('open'); });
+  if (!wasOpen) row.classList.add('open');
+}
+
+// TORUS CALCULATOR
+function calcTorus() {
+  var R = parseFloat(document.getElementById('tc-R').value) || 0;
+  var r = parseFloat(document.getElementById('tc-r').value) || 0;
+  var units = document.getElementById('tc-units').value.trim() || '';
+  var vol = 2 * Math.PI * Math.PI * R * r * r;
+  var sa = 4 * Math.PI * Math.PI * R * r;
+  var ratio = r > 0 ? R / r : 0;
+  var circ = 2 * Math.PI * R;
+  var u2 = units ? (units + '\u00b2') : '';
+  var u3 = units ? (units + '\u00b3') : '';
+  document.getElementById('tc-vol').textContent = vol.toFixed(2) + (u3 ? ' ' + u3 : '');
+  document.getElementById('tc-sa').textContent = sa.toFixed(2) + (u2 ? ' ' + u2 : '');
+  document.getElementById('tc-ratio').textContent = ratio.toFixed(2);
+  document.getElementById('tc-circ').textContent = circ.toFixed(2) + (units ? ' ' + units : '');
+}
+calcTorus();
+
+// HERO CANVAS -- animated torus cross-section
+(function() {
+  var c = document.getElementById('heroCanvas');
+  var ctx = c.getContext('2d');
+  var W = 300, H = 300, cx = W/2, cy = H/2;
+  var frame = 0;
+  var R = 90, r = 45;
+
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle = 'rgba(0,0,0,0.5)';
+    ctx.fillRect(0,0,W,H);
+
+    var t = frame * 0.025;
+
+    // Draw torus cross-section rings
+    var steps = 60;
+    for (var i = 0; i < steps; i++) {
+      var angle = (i / steps) * Math.PI * 2;
+      var tx = cx + R * Math.cos(angle);
+      var ty = cy + R * Math.sin(angle) * 0.4;
+      var depth = Math.cos(angle + t);
+      var alpha = 0.15 + 0.25 * ((depth + 1) / 2);
+      ctx.beginPath();
+      ctx.ellipse(tx, ty, r, r * 0.4, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(122,176,184,' + alpha + ')';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+
+    // Bright front circles
+    for (var i = 0; i < steps; i++) {
+      var angle = (i / steps) * Math.PI * 2;
+      var depth = Math.cos(angle + t);
+      if (depth < 0.3) continue;
+      var tx = cx + R * Math.cos(angle);
+      var ty = cy + R * Math.sin(angle) * 0.4;
+      var alpha2 = 0.3 + 0.5 * depth;
+      ctx.beginPath();
+      ctx.ellipse(tx, ty, r, r * 0.4, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(201,168,76,' + alpha2 + ')';
+      ctx.lineWidth = 1.8;
+      ctx.stroke();
+    }
+
+    // Energy flow arrows on the path
+    var numDots = 8;
+    for (var d = 0; d < numDots; d++) {
+      var flowAngle = (d / numDots) * Math.PI * 2 + t * 0.7;
+      var fa = ((flowAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+      var dotX = cx + R * Math.cos(fa);
+      var dotY = cy + R * Math.sin(fa) * 0.4;
+      var dotDepth = Math.cos(fa + t);
+      var dotAlpha = 0.4 + 0.5 * ((dotDepth + 1) / 2);
+      ctx.beginPath();
+      ctx.arc(dotX, dotY, 5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(201,168,76,' + dotAlpha + ')';
+      ctx.fill();
+    }
+
+    // Central axis line
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - R * 0.55);
+    ctx.lineTo(cx, cy + R * 0.55);
+    ctx.strokeStyle = 'rgba(240,237,230,0.3)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4,4]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    frame++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// TORUS FLOW CANVAS
+(function() {
+  var c = document.getElementById('torusCanvas');
+  var ctx = c.getContext('2d');
+  var W = 360, H = 300, cx = W/2, cy = H/2;
+  var frame = 0;
+  var R = 90, r = 40;
+
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle = 'rgba(0,0,0,0.4)';
+    ctx.fillRect(0,0,W,H);
+
+    var t = frame * 0.022;
+
+    // Torus outer/inner outlines (ellipse projection)
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, R + r, (R + r) * 0.45, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(122,176,184,0.3)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, R - r, (R - r) * 0.45, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(122,176,184,0.2)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Tube rings
+    for (var i = 0; i < 48; i++) {
+      var angle = (i / 48) * Math.PI * 2;
+      var depth = Math.cos(angle + t);
+      var tx = cx + R * Math.cos(angle);
+      var ty = cy + R * Math.sin(angle) * 0.45;
+      var alpha = 0.1 + 0.3 * ((depth + 1) / 2);
+      ctx.beginPath();
+      ctx.ellipse(tx, ty, r, r * 0.45, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(122,176,184,' + alpha + ')';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Energy flow along the tube
+    var numFlow = 12;
+    for (var d = 0; d < numFlow; d++) {
+      var fa = (d / numFlow) * Math.PI * 2 + t;
+      var tx2 = cx + R * Math.cos(fa);
+      var ty2 = cy + R * Math.sin(fa) * 0.45;
+      var depth2 = Math.cos(fa + t);
+      var alpha2 = 0.3 + 0.6 * ((depth2 + 1) / 2);
+      var radius2 = 4 + 2 * ((depth2 + 1) / 2);
+      ctx.beginPath();
+      ctx.arc(tx2, ty2, radius2, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(201,168,76,' + alpha2 + ')';
+      ctx.fill();
+    }
+
+    // Axis arrows
+    var arrowY = cy - (R + r) * 0.5;
+    var arrowLen = (R + r) * 1.1;
+    ctx.beginPath();
+    ctx.moveTo(cx, arrowY + arrowLen);
+    ctx.lineTo(cx, arrowY);
+    ctx.strokeStyle = 'rgba(240,237,230,0.5)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5,4]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Labels
+    ctx.font = '10px Cinzel,serif';
+    ctx.fillStyle = 'rgba(240,237,230,0.5)';
+    ctx.textAlign = 'center';
+    ctx.fillText('Central Axis', cx + 52, cy - (R+r)*0.42 + 6);
+    ctx.fillText('Energy Flow', cx, cy + (R+r)*0.52 + 14);
+
+    frame++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// QUIZ
+function quizAnswer(q, btn, choice) {
+  if (quizAnswers[q]) return;
+  quizAnswers[q] = choice;
+  var correct = correctAnswers[q];
+  var buttons = btn.closest('.quiz-options').querySelectorAll('.quiz-option');
+  buttons.forEach(function(b) { b.disabled = true; });
+  if (choice === correct) {
+    btn.classList.add('correct');
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#81c784">&#10003; ' + quizFeedback[q][correct] + '</span>';
+  } else {
+    btn.classList.add('wrong');
+    buttons.forEach(function(b) { if (b.textContent.trim()[0] === correct) b.classList.add('correct'); });
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#e57373">&#10007; ' + quizFeedback[q].wrong + '</span>';
+  }
+  saveData();
+}
+
+function submitQuiz() {
+  var total = Object.keys(correctAnswers).length;
+  var scored = Object.keys(quizAnswers).filter(function(q) { return quizAnswers[q] === correctAnswers[q]; }).length;
+  document.getElementById('quiz-score-bar').style.display = 'block';
+  document.getElementById('quiz-score-display').textContent = scored + '/' + total;
+  var msgs = ['Review the geometry and topology sections and try again.','Good start -- revisit the self-referencing quality and scale table.','Solid grasp of the torus -- the shape is becoming familiar.','Excellent -- strong understanding of toroidal geometry.','Outstanding -- deep command of the torus across all scales.','Perfect! The torus is fully understood at every scale.'];
+  document.getElementById('quiz-score-msg').textContent = msgs[scored] || msgs[5];
+  document.getElementById('quiz-submit').style.display = 'none';
+  saveData();
+}
+
+function spawnConfetti() {
+  var colors = ['#c9a84c','#7ab0b8','#f0ede6','#9ecdd5','#e8c96d'];
+  for (var i = 0; i < 60; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.cssText = 'left:' + (Math.random()*100) + 'vw;top:-10px;background:' + colors[Math.floor(Math.random()*colors.length)] + ';animation-duration:' + (1.5+Math.random()*2) + 's;animation-delay:' + (Math.random()*.5) + 's;width:' + (6+Math.random()*6) + 'px;height:' + (6+Math.random()*6) + 'px;border-radius:' + (Math.random()>.5?'50%':'2px');
+        document.body.appendChild(el);
+        setTimeout(function() { el.remove(); }, 4000);
+      }, i * 30);
+    })(i);
+  }
+}
+
+function onComplete(cb) {
+  var badge = document.getElementById('xp-badge');
+  if (cb.checked) { badge.classList.add('show'); spawnConfetti(); saveData(); }
+  else badge.classList.remove('show');
+}
+
+function gatherData() {
+  return {
+    version:'1.0', lesson:'G9',
+    timestamp: new Date().toISOString(),
+    reflections:{r1:document.getElementById('ref1').value,r2:document.getElementById('ref2').value,r3:document.getElementById('ref3').value},
+    quiz:{answers:quizAnswers},
+    completed:document.getElementById('complete-checkbox').checked
+  };
+}
+function applyData(data) {
+  if (!data) return;
+  if (data.reflections) {
+    ['r1','r2','r3'].forEach(function(k) {
+      var el = document.getElementById('ref' + k.slice(1));
+      if (el && data.reflections[k]) el.value = data.reflections[k];
+    });
+  }
+  if (data.quiz && data.quiz.answers) {
+    quizAnswers = data.quiz.answers;
+    Object.keys(quizAnswers).forEach(function(q) {
+      var choice = quizAnswers[q], correct = correctAnswers[q];
+      var qEl = document.getElementById('qq' + q); if (!qEl) return;
+      var btns = qEl.querySelectorAll('.quiz-option');
+      btns.forEach(function(b) {
+        b.disabled = true;
+        var f = b.textContent.trim()[0];
+        if (f === choice && choice === correct) b.classList.add('correct');
+        else if (f === choice) b.classList.add('wrong');
+        else if (f === correct) b.classList.add('correct');
+      });
+      var html = choice === correct
+        ? '<span style="color:#81c784">&#10003; ' + quizFeedback[q][correct] + '</span>'
+        : '<span style="color:#e57373">&#10007; ' + quizFeedback[q].wrong + '</span>';
+      document.getElementById('qf' + q).innerHTML = html;
+    });
+  }
+  if (data.completed) {
+    document.getElementById('complete-checkbox').checked = true;
+    document.getElementById('xp-badge').classList.add('show');
+  }
+}
+function saveData() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(gatherData())); document.getElementById('save-status').textContent = 'Saved at ' + new Date().toLocaleTimeString(); }
+  catch(e) { document.getElementById('save-status').textContent = 'Save failed'; }
+}
+function loadData() {
+  try { var r = localStorage.getItem(STORAGE_KEY); if (r) applyData(JSON.parse(r)); } catch(e) {}
+}
+function scheduleAutosave() { clearTimeout(autosaveTimer); autosaveTimer = setTimeout(saveData, 90000); }
+function exportData() {
+  var blob = new Blob([JSON.stringify(gatherData(),null,2)],{type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'TFA_G9_ToroidalFields_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click(); URL.revokeObjectURL(url);
+}
+function importTrigger() { document.getElementById('import-input').click(); }
+function importData(e) {
+  var file = e.target.files[0]; if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    try { var d = JSON.parse(ev.target.result); applyData(d); localStorage.setItem(STORAGE_KEY,JSON.stringify(d)); document.getElementById('save-status').textContent = 'Imported successfully'; }
+    catch(err) { document.getElementById('save-status').textContent = 'Import failed'; }
+  };
+  reader.readAsText(file);
+}
+setInterval(saveData, 90000);
+window.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>
