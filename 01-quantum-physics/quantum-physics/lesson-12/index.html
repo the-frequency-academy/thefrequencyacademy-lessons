@@ -1,1 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q12 — The Electromagnetic Spectrum | The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--n:#0a1628;--n2:#0d1e38;--n3:#102040;--g:#4a9edd;--g2:#78b8ee;--gb:rgba(74,158,221,0.22);--gf:rgba(74,158,221,0.08);--w:#e8f0f8;--w2:rgba(232,240,248,0.72);--w3:rgba(232,240,248,0.38);--w4:rgba(232,240,248,0.06);--ok:#2a8a7a;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
+body{min-height:100vh;padding-bottom:80px}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--w4);z-index:200}
+.progress-fill{height:100%;background:linear-gradient(90deg,#f00,#f80,#ff0,#0f0,#00f,#90f);transition:width .4s;width:0%}
+header{background:rgba(10,22,40,0.95);border-bottom:1px solid var(--gb);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:100;backdrop-filter:blur(8px)}
+.hd-left{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.12em}
+.hd-right{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em}
+.hero{text-align:center;padding:60px 24px 40px;max-width:800px;margin:0 auto}
+.eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.22em;color:var(--g);margin-bottom:18px;opacity:0.8}
+.hero h1{font-family:'Cinzel',serif;font-size:42px;font-weight:700;color:var(--w);line-height:1.12;margin-bottom:12px}
+.hero h1 span{color:var(--g)}
+.spectrum-rule{width:100%;max-width:400px;height:3px;background:linear-gradient(90deg,#ff4444,#ff8800,#ffee00,#44ff44,#4488ff,#8844ff);margin:24px auto;opacity:0.7;border-radius:2px}
+.hero-sub{font-size:16px;color:var(--w3);line-height:1.7;max-width:560px;margin:0 auto}
+.content{max-width:780px;margin:0 auto;padding:0 24px}
+.section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb)}
+.section p{font-size:14px;color:var(--w2);line-height:1.8;margin-bottom:12px}
+.section p:last-child{margin:0}
+.section p strong{color:var(--g2);font-weight:600}
+.section p em{color:var(--g);font-style:normal;font-weight:500}
 
+/* TABLES */
+.data-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.data-table th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--g);padding:10px 14px;background:var(--gf);border:1px solid var(--gb);text-align:left}
+.data-table td{padding:10px 14px;border:1px solid rgba(74,158,221,0.1);color:var(--w2);line-height:1.6;vertical-align:top}
+.data-table tr:nth-child(even) td{background:rgba(0,0,0,0.15)}
+.data-table td:first-child{color:var(--g2);font-weight:600}
+
+/* CALLOUT */
+.callout{background:var(--gf);border-left:2px solid var(--g);border-radius:0 8px 8px 0;padding:14px 16px;margin:16px 0}
+.callout-label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.12em;margin-bottom:6px}
+.callout p{font-size:13px;color:var(--w2);margin:0;line-height:1.7}
+.callout.gold{border-left-color:rgba(201,168,76,0.7);background:rgba(201,168,76,0.06)}
+.callout.gold .callout-label{color:rgba(220,190,100,0.9)}
+
+/* SPECTRUM BAND COLORS */
+.band-radio{color:#88aaff}
+.band-micro{color:#aa88ff}
+.band-ir{color:#ff8844}
+.band-vis{background:linear-gradient(90deg,#ff4444,#ff8800,#ffee00,#44ff44,#4488ff,#8844ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
+.band-uv{color:#cc44ff}
+.band-xray{color:#88ffee}
+.band-gamma{color:#ff4488}
+
+/* VISIBLE LIGHT ROW COLORS */
+.vis-red td:first-child{color:#ff6666}
+.vis-orange td:first-child{color:#ff9944}
+.vis-yellow td:first-child{color:#ffee44}
+.vis-green td:first-child{color:#66ee66}
+.vis-blue td:first-child{color:#6688ff}
+.vis-violet td:first-child{color:#cc66ff}
+
+/* INTERACTIVE SECTION */
+.viz-section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.viz-section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:6px}
+.viz-sub{font-size:12px;color:var(--w3);margin-bottom:22px;line-height:1.6}
+.viz-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.viz-tab{padding:8px 18px;border-radius:6px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all .18s;border:1px solid var(--gb);background:var(--gf);color:var(--w3)}
+.viz-tab.active{background:var(--g);color:#080e30;border-color:var(--g)}
+.viz-panel{display:none}.viz-panel.active{display:block}
+
+/* SPECTRUM VISUALIZER */
+.spectrum-bar-wrap{margin:16px 0;border-radius:8px;overflow:hidden;border:1px solid var(--gb)}
+.spectrum-bar{height:48px;background:linear-gradient(90deg,
+  #333388 0%,
+  #4455cc 6%,
+  #5566ee 10%,
+  #7788ff 14%,
+  #aabbff 18%,
+  #ccddff 22%,
+  #ff4444 26%,
+  #ff6600 30%,
+  #ffaa00 32%,
+  #ffee00 34%,
+  #88dd00 36%,
+  #00cc44 38%,
+  #0088cc 40%,
+  #4444ff 42%,
+  #8800cc 44%,
+  #cc00ff 47%,
+  #882299 52%,
+  #444466 60%,
+  #333355 75%,
+  #222244 90%,
+  #111133 100%
+);position:relative;cursor:pointer}
+.spectrum-marker{position:absolute;top:0;width:2px;background:white;height:100%;opacity:0;transition:opacity .2s,left .1s}
+.spectrum-labels{display:flex;font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.06em}
+.spec-lbl{flex:1;text-align:center;padding:4px 2px;border-right:1px solid rgba(255,255,255,0.08);cursor:pointer;transition:background .15s;color:var(--w3)}
+.spec-lbl:last-child{border-right:none}
+.spec-lbl:hover,.spec-lbl.active{background:rgba(74,158,221,0.15);color:var(--g2)}
+.band-detail{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:20px;margin-top:12px;display:none;animation:fadeIn .2s ease}
+.band-detail.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.band-detail-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.band-detail h4{font-family:'Cinzel',serif;font-size:14px;letter-spacing:0.08em}
+.band-range{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.06em}
+.band-detail p{font-size:13px;color:var(--w2);line-height:1.75;margin-bottom:8px}
+.band-detail p:last-child{margin:0}
+.band-examples{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.band-ex{font-size:10px;font-family:'Cinzel',serif;letter-spacing:0.06em;padding:3px 8px;border-radius:10px;background:rgba(74,158,221,0.1);border:1px solid var(--gb);color:var(--g2)}
+
+/* FREQUENCY FINDER */
+.finder-wrap{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:20px}
+.finder-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:520px){.finder-row{grid-template-columns:1fr}}
+.finder-ctrl label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;display:flex;justify-content:space-between;margin-bottom:6px}
+.finder-ctrl label span{color:var(--g2);font-size:12px}
+.finder-ctrl input[type=number]{width:100%;background:rgba(0,0,0,0.3);border:1px solid var(--gb);border-radius:6px;padding:10px 12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.finder-ctrl input[type=number]:focus{border-color:var(--g)}
+.finder-ctrl select{width:100%;background:rgba(0,0,0,0.3);border:1px solid var(--gb);border-radius:6px;padding:10px 12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;outline:none;cursor:pointer}
+.finder-result{background:rgba(74,158,221,0.06);border:1px solid var(--gb);border-radius:8px;padding:16px;margin-top:8px}
+.finder-result-band{font-family:'Cinzel',serif;font-size:18px;margin-bottom:6px}
+.finder-result-props{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0;font-size:12px}
+@media(max-width:520px){.finder-result-props{grid-template-columns:1fr 1fr}}
+.prop-box{background:rgba(0,0,0,0.2);border-radius:6px;padding:10px;text-align:center}
+.prop-label{font-family:'Cinzel',serif;font-size:9px;color:var(--w3);letter-spacing:0.1em;margin-bottom:4px}
+.prop-value{font-family:'Cinzel',serif;font-size:13px;color:var(--g2);word-break:break-all}
+.finder-context{font-size:12px;color:var(--w3);line-height:1.65;margin-top:8px;padding:10px 12px;background:var(--gf);border-radius:6px;border-left:2px solid var(--g)}
+.finder-position{margin:12px 0}
+.finder-pos-label{font-family:'Cinzel',serif;font-size:10px;color:var(--w3);letter-spacing:0.1em;margin-bottom:6px}
+.finder-bar{height:20px;background:linear-gradient(90deg,#333388,#4455cc,#7788ff,#ccddff,#ff4444,#ff6600,#ffaa00,#88dd00,#0088cc,#8800cc,#882299,#333355,#111133);border-radius:4px;position:relative;overflow:visible}
+.finder-needle{position:absolute;top:-4px;transform:translateX(-50%);width:3px;height:28px;background:white;border-radius:2px;box-shadow:0 0 6px rgba(255,255,255,0.8);transition:left .4s ease}
+.quick-btns{margin-top:14px}
+.quick-btns-label{font-family:'Cinzel',serif;font-size:10px;color:var(--w3);letter-spacing:0.1em;margin-bottom:8px}
+.quick-group{margin-bottom:10px}
+.quick-group-label{font-size:10px;color:var(--g);font-family:'Cinzel',serif;letter-spacing:0.06em;margin-bottom:5px}
+.quick-group-btns{display:flex;flex-wrap:wrap;gap:5px}
+.quick-btn{padding:5px 10px;border-radius:5px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.06em;cursor:pointer;transition:all .15s;border:1px solid var(--gb);background:var(--gf);color:var(--g2)}
+.quick-btn:hover{background:rgba(74,158,221,0.15);border-color:var(--g)}
+
+/* ACCORDION */
+.accordion{margin-top:8px}
+.acc-item{border:1px solid var(--gb);border-radius:8px;margin-bottom:7px;overflow:hidden}
+.acc-head{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.06em;background:var(--gf);transition:background .15s}
+.acc-head:hover{background:rgba(255,255,255,0.04)}
+.acc-body{display:none;padding:14px 16px;font-size:13px;color:var(--w2);line-height:1.75;border-top:1px solid var(--gb)}
+.acc-body.open{display:block}
+.acc-arrow{transition:transform .2s;font-size:11px}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body strong{color:var(--g2)}
+
+/* PRACTICE STEPS */
+.practice-steps{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.ps{display:flex;gap:14px;padding:14px;background:var(--gf);border:1px solid var(--gb);border-radius:8px}
+.ps-n{font-family:'Cinzel',serif;font-size:13px;color:var(--g);min-width:28px;font-weight:700;padding-top:1px}
+.ps-t{font-size:13px;color:var(--w2);line-height:1.65}
+.ps-t strong{color:var(--g2);font-weight:600}
+
+/* RESOURCES */
+.res-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(232,240,248,0.05)}
+.res-item:last-child{border:none}
+.res-icon{font-size:15px;flex-shrink:0;padding-top:2px}
+.res-title{font-size:13px;color:var(--w);font-weight:500;margin-bottom:2px}
+.res-auth{font-size:11px;color:var(--g2);margin-bottom:3px}
+.res-desc{font-size:11px;color:var(--w3);line-height:1.5}
+
+/* REFLECTION */
+.reflection-prompt{background:var(--n3);border-left:3px solid var(--g);border-radius:0 8px 8px 0;padding:16px 18px;margin-bottom:12px}
+.reflection-prompt p{font-size:13px;color:var(--w2);line-height:1.65;font-style:italic;margin:0}
+textarea{width:100%;background:var(--w4);border:1px solid var(--gb);border-radius:8px;padding:12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;resize:vertical;min-height:88px;outline:none;line-height:1.6;transition:border-color .2s;margin-top:8px}
+textarea:focus{border-color:var(--g)}
+textarea::placeholder{color:var(--w3)}
+
+/* WORKSHOP */
+.workshop{background:var(--gf);border:1px dashed var(--gb);border-radius:12px;padding:22px;text-align:center;margin-bottom:20px}
+.workshop h3{font-family:'Cinzel',serif;font-size:13px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.workshop p{font-size:12px;color:var(--w3);line-height:1.65}
+
+/* COMPLETION */
+.completion-box{background:var(--gf);border:1px solid var(--gb);border-radius:12px;padding:24px;text-align:center;margin-top:20px}
+.completion-box h3{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.08em;margin-bottom:10px}
+.completion-box p{font-size:13px;color:var(--w3);margin-bottom:16px;line-height:1.6}
+.complete-btn{padding:12px 28px;border-radius:8px;background:var(--g);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:0.1em;color:#080e30;transition:all .15s}
+.complete-btn:hover{background:var(--g2)}
+.complete-btn.done{background:var(--ok);cursor:default}
+.xp-flash{display:none;margin-top:12px;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.08em}
+.xp-flash.show{display:block}
+
+/* NAV */
+.nav-lessons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:480px){.nav-lessons{grid-template-columns:1fr}}
+.nav-lesson{background:var(--n3);border:1px solid var(--gb);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;transition:all .18s}
+.nav-lesson:hover{background:var(--gf);border-color:var(--g)}
+.nav-lesson.prev{flex-direction:row-reverse}
+.nav-label{font-size:10px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.12em;margin-bottom:4px;text-transform:uppercase}
+.nav-title{font-size:13px;color:var(--w);font-family:'Cinzel',serif}
+.nav-arrow{font-size:20px;color:var(--g)}
+
+/* SAVE BAR */
+.save-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,0.97);border-top:1px solid var(--gb);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;backdrop-filter:blur(8px)}
+.save-status{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.08em}
+.save-btns{display:flex;gap:8px}
+.save-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all .15s;border:1px solid var(--gb)}
+.save-btn.primary{background:var(--g);color:#080e30;border-color:var(--g)}.save-btn.primary:hover{background:var(--g2)}
+.save-btn.ghost{background:var(--gf);color:var(--g)}.save-btn.ghost:hover{background:rgba(255,255,255,0.06)}
+#importFile{display:none}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <div class="hd-left">THE FREQUENCY ACADEMY · QUANTUM PHYSICS & SCIENCES</div>
+  <div class="hd-right">Q12 · LESSON 12 OF 16</div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">QUANTUM PHYSICS & SCIENCES · Q12</div>
+  <h1>The Electromagnetic <span>Spectrum</span></h1>
+  <div class="spectrum-rule"></div>
+  <p class="hero-sub">You know the rainbow — red, orange, yellow, green, blue, violet. But that rainbow is less than 1% of what is actually there. Below it, above it, and stretching in both directions beyond anything your eyes can detect: one phenomenon, one physics, infinite frequencies.</p>
+</div>
+
+<div style="max-width:840px;margin:0 auto 32px;padding:0 24px">
+  <div style="background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:14px">
+    <div style="font-size:24px">🎬</div>
+    <div>
+      <div style="font-family:Cinzel,serif;font-size:11px;color:var(--g);letter-spacing:0.1em;margin-bottom:4px">VIDEO LESSON</div>
+      <div style="font-size:13px;color:var(--w3);line-height:1.5">A video transmission for this lesson is coming soon. The interactive lesson below contains the full teaching content — explore it now and the video will be added here when available.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- TRANSMISSION -->
+  <div class="section">
+    <h2>The Transmission</h2>
+    <p>A prism takes white light and splits it apart — and suddenly you can see what was always there, hidden inside the apparent emptiness. Red bleeds into orange, into yellow, green, blue, violet. The spectrum of visible light, spread across a wall. It is one of the most beautiful things physics produces.</p>
+    <p>But here is what the prism cannot show you: below the red edge, invisible to your eye, infrared radiation continues — the heat you feel from a fire, from the sun, from your own hand held close to your face. And below that, microwaves — carrying your wireless signal and heating your food. And below that, radio waves, some of them kilometers long, carrying broadcasts across continents. The Schumann resonance — 7.83 Hz, Earth's electromagnetic heartbeat — lives at the very bottom of this range, its wavelength so long it wraps around the entire planet.</p>
+    <p>Above the violet edge, ultraviolet begins — the frequencies that tan your skin and sterilize water. Then X-rays, which pass through flesh and stop at bone. Then gamma rays, produced by nuclear reactions and cosmic events, their wavelengths smaller than the nucleus of an atom.</p>
+    <p>It is all one thing. Radio waves, visible light, gamma radiation — they are all oscillating electric and magnetic fields traveling at the speed of light. The only difference between them is frequency. <strong>Understanding where every frequency sits on this spectrum is how you develop a map of reality that extends far beyond the visible.</strong></p>
+  </div>
+
+  <!-- WHAT IS EM RADIATION -->
+  <div class="section">
+    <h2>What Electromagnetic Radiation Actually Is</h2>
+    <p>An electromagnetic wave is not a thing that travels through something. It is two oscillating fields — electric and magnetic — that propagate each other through space. An oscillating electric field generates a changing magnetic field. That changing magnetic field generates a changing electric field. The two fields sustain each other across empty space with no medium required. This is why light can travel from a star to your eye across billions of miles of vacuum.</p>
+    <p>The speed at which this propagation occurs is fixed: approximately 299,792,458 meters per second — the speed of light, c. This is not the speed of photons in some philosophical sense. It is the measured propagation velocity of electromagnetic fields in vacuum, consistent to many decimal places across all frequencies and all observers. The constancy of c is foundational to special relativity and to all of modern physics.</p>
+    <p>Because the speed is constant across all EM frequencies, and because wave speed = frequency × wavelength, frequency and wavelength are locked in an inverse relationship for all EM radiation: <strong>higher frequency means shorter wavelength, lower frequency means longer wavelength.</strong> A radio wave at 1 MHz has a wavelength of 300 meters. Visible green light at 550 THz has a wavelength of 545 nanometers. A gamma ray at 10 EHz has a wavelength smaller than an atomic nucleus.</p>
+
+    <div class="callout">
+      <div class="callout-label">THE ENERGY RELATIONSHIP — E = hf</div>
+      <p>Energy per photon = Planck's constant × frequency. This means higher frequency EM carries more energy per quantum. Radio wave photons carry around 10⁻²⁸ Joules each — completely incapable of ionizing biological molecules. Gamma ray photons carry around 10⁻¹² Joules each — capable of tearing electrons from atoms and breaking DNA bonds. The spectrum is not merely a catalog of frequencies. It is a spectrum of energy per quantum, with profound consequences for how each band interacts with matter.</p>
+    </div>
+  </div>
+
+  <!-- THE FULL SPECTRUM -->
+  <div class="section">
+    <h2>The Full Spectrum — Radio to Gamma</h2>
+    <p>Starting at the lowest frequencies and moving upward through the full range:</p>
+
+    <table class="data-table" style="margin-bottom:20px">
+      <thead><tr><th>Band</th><th>Frequency</th><th>Wavelength</th><th>Examples &amp; Properties</th></tr></thead>
+      <tbody>
+        <tr><td class="band-radio">Radio Waves</td><td>3 Hz – 300 GHz</td><td>100,000 km – 1 mm</td><td>AM/FM radio, TV broadcasts, two-way radios. ELF (3–300 Hz) includes Schumann resonance and brainwaves. Waves can travel around the planet and penetrate buildings.</td></tr>
+        <tr><td class="band-micro">Microwaves</td><td>300 MHz – 300 GHz</td><td>1 m – 1 mm</td><td>WiFi (2.4 GHz, 5 GHz), cell phones, microwave ovens (2.45 GHz), radar, satellite communication. Modern wireless technology lives here.</td></tr>
+        <tr><td class="band-ir">Infrared (IR)</td><td>300 GHz – 430 THz</td><td>1 mm – 700 nm</td><td>Thermal radiation. Every warm object emits IR. Night vision, TV remotes, IR saunas, heat lamps, thermal cameras. Your body glows in infrared.</td></tr>
+        <tr><td><span class="band-vis">Visible Light</span></td><td>430 – 750 THz</td><td>700 – 400 nm</td><td>The only band human eyes detect. Less than 1% of the full spectrum. All colors of the rainbow. Red has the lowest frequency; violet the highest.</td></tr>
+        <tr><td class="band-uv">Ultraviolet (UV)</td><td>750 THz – 30 PHz</td><td>400 – 10 nm</td><td>UV-A tans skin. UV-B causes sunburn. UV-C kills microorganisms (blocked by ozone layer). Black lights, sterilization, vitamin D synthesis.</td></tr>
+        <tr><td class="band-xray">X-Rays</td><td>30 PHz – 30 EHz</td><td>10 – 0.01 nm</td><td>Penetrate soft tissue, absorbed by bone — hence medical imaging. Security scanners, industrial inspection. Sufficient energy per photon to damage cells.</td></tr>
+        <tr><td class="band-gamma">Gamma Rays</td><td>&gt; 30 EHz</td><td>&lt; 0.01 nm</td><td>Nuclear reactions, radioactive decay, cosmic events. Gamma ray bursts are the most energetic events in the known universe. Medically used for targeted cancer treatment.</td></tr>
+      </tbody>
+    </table>
+
+    <h2 style="margin-bottom:12px">Visible Light — The Tiny Window</h2>
+    <p>The visible band deserves particular attention because it is all most people have ever directly perceived of the electromagnetic spectrum. It spans from approximately 700 nm (red) to 400 nm (violet) — a ratio of less than 2:1 in wavelength, occupying less than 1% of the full spectrum by frequency range.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Color</th><th>Wavelength</th><th>Frequency</th><th>Relative Energy</th></tr></thead>
+      <tbody>
+        <tr class="vis-red"><td>Red</td><td>700–635 nm</td><td>430–480 THz</td><td>Lowest visible</td></tr>
+        <tr class="vis-orange"><td>Orange</td><td>635–590 nm</td><td>480–510 THz</td><td>↓</td></tr>
+        <tr class="vis-yellow"><td>Yellow</td><td>590–560 nm</td><td>510–540 THz</td><td>↓</td></tr>
+        <tr class="vis-green"><td>Green</td><td>560–490 nm</td><td>540–610 THz</td><td>↓</td></tr>
+        <tr class="vis-blue"><td>Blue</td><td>490–450 nm</td><td>610–670 THz</td><td>↓</td></tr>
+        <tr class="vis-violet"><td>Violet</td><td>450–400 nm</td><td>670–750 THz</td><td>Highest visible</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:16px">
+      <p><strong style="color:var(--g2)">The implication:</strong> We navigate reality using less than 1% of the available electromagnetic information. Everything else — the entire radio, microwave, infrared, ultraviolet, X-ray, and gamma spectrum — is invisible to us. We have instruments to detect them. We do not have eyes for them. The visible rainbow is a keyhole. What lies beyond it in both directions is the rest of the house.</p>
+    </div>
+  </div>
+
+  <!-- WHERE FREQUENCY WORK LIVES -->
+  <div class="section">
+    <h2>Where Frequency Work Lives on the Spectrum</h2>
+    <p>The frequencies used in healing and frequency work — Schumann resonance, brainwave frequencies, PEMF therapy, audio healing frequencies, tensor ring resonances — cluster almost entirely at the extremely low end of the electromagnetic spectrum. Understanding exactly where they sit clarifies their properties and how they interact with biology.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Frequency</th><th>Value</th><th>EM Band</th><th>Wavelength</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Schumann Resonance</td><td>7.83 Hz (+harmonics)</td><td>ELF</td><td>~38,300 km</td><td>Wraps around Earth. Resonant frequency of Earth-ionosphere cavity.</td></tr>
+        <tr><td>Delta Brainwaves</td><td>0.5–4 Hz</td><td>ELF</td><td>75,000–600,000 km</td><td>Deep sleep, healing states. Below Schumann fundamental.</td></tr>
+        <tr><td>Theta Brainwaves</td><td>4–8 Hz</td><td>ELF</td><td>37,500–75,000 km</td><td>Meditation, hypnagogia, creativity. Overlaps Schumann.</td></tr>
+        <tr><td>Alpha Brainwaves</td><td>8–12 Hz</td><td>ELF</td><td>25,000–37,500 km</td><td>Relaxed focus, flow. Overlaps Schumann harmonics.</td></tr>
+        <tr><td>Gamma Brainwaves</td><td>30–100 Hz</td><td>ELF / SLF</td><td>3,000–10,000 km</td><td>Peak cognition, integration, insight states.</td></tr>
+        <tr><td>PEMF Therapy</td><td>1–100 Hz</td><td>ELF</td><td>3,000–300,000 km</td><td>Same range as brainwaves. Not coincidence.</td></tr>
+        <tr><td>Solfeggio / Audio Hz</td><td>174–963 Hz</td><td>ELF / ULF</td><td>310–1,700 km</td><td>Acoustic waves in air; electromagnetic in devices.</td></tr>
+        <tr><td>Lost Cubit Tensor Ring</td><td>~144 MHz</td><td>VHF Radio</td><td>~2.08 m</td><td>Genuine EM resonant frequency — VHF radio range.</td></tr>
+        <tr><td>WiFi (2.4 GHz)</td><td>2,400,000,000 Hz</td><td>Microwave / SHF</td><td>~12.5 cm</td><td>Used for wireless networking. Microwave range.</td></tr>
+        <tr><td>Visible Light</td><td>430–750 THz</td><td>Optical</td><td>400–700 nm</td><td>Less than 1% of EM spectrum by frequency range.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold" style="margin-top:16px">
+      <div class="callout-label">THE KEY INSIGHT</div>
+      <p>The frequencies that affect biology most directly tend to be in the extremely low to ultra-low frequency range. This is where the brain operates, where Earth resonates, where cells communicate electrically. These frequencies carry very little energy per photon — they cannot ionize molecules or cause direct tissue damage. What they can carry is <strong>information</strong>. And information, organized as coherent frequency patterns resonant with biological systems, is what shapes biological function.</p>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE -->
+  <div class="viz-section">
+    <h2>Electromagnetic Spectrum Explorer</h2>
+    <p class="viz-sub">Two tools: the Spectrum Map lets you click any band to see its full properties and applications. The Frequency Finder takes any frequency you enter — from 1 Hz to 10²⁵ Hz — and places it precisely on the spectrum with wavelength, energy, and biological context.</p>
+
+    <div class="viz-tabs">
+      <button class="viz-tab active" onclick="switchTab('map', this)">Spectrum Map</button>
+      <button class="viz-tab" onclick="switchTab('finder', this)">Frequency Finder</button>
+    </div>
+
+    <!-- TAB 1: SPECTRUM MAP -->
+    <div class="viz-panel active" id="tab-map">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:14px">Click any band label below to explore that region of the spectrum in depth.</p>
+      <div class="spectrum-bar-wrap">
+        <div class="spectrum-bar" id="spectrumBar"></div>
+      </div>
+      <div class="spectrum-labels" id="specLabels"></div>
+      <div class="band-detail" id="bandDetail"></div>
+    </div>
+
+    <!-- TAB 2: FREQUENCY FINDER -->
+    <div class="viz-panel" id="tab-finder">
+      <div class="finder-wrap">
+        <div class="finder-row">
+          <div class="finder-ctrl">
+            <label>FREQUENCY VALUE</label>
+            <input type="number" id="finderFreq" value="7.83" min="0.001" step="any" oninput="runFinder()">
+          </div>
+          <div class="finder-ctrl">
+            <label>UNIT</label>
+            <select id="finderUnit" onchange="runFinder()">
+              <option value="1">Hz</option>
+              <option value="1000">kHz</option>
+              <option value="1000000">MHz</option>
+              <option value="1000000000">GHz</option>
+              <option value="1000000000000">THz</option>
+              <option value="1000000000000000">PHz</option>
+              <option value="1000000000000000000">EHz</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="finder-position">
+          <div class="finder-pos-label">POSITION ON SPECTRUM</div>
+          <div class="finder-bar"><div class="finder-needle" id="finderNeedle" style="left:5%"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.04em;margin-top:4px">
+            <span>3 Hz</span><span>Radio</span><span>Micro</span><span>IR</span><span>Vis</span><span>UV</span><span>X-ray</span><span>γ</span>
+          </div>
+        </div>
+
+        <div class="finder-result" id="finderResult">
+          <div class="finder-result-band" id="finderBandName">—</div>
+          <div class="finder-result-props">
+            <div class="prop-box"><div class="prop-label">WAVELENGTH</div><div class="prop-value" id="fWL">—</div></div>
+            <div class="prop-box"><div class="prop-label">ENERGY / PHOTON</div><div class="prop-value" id="fE">—</div></div>
+            <div class="prop-box"><div class="prop-label">PERIOD</div><div class="prop-value" id="fP">—</div></div>
+          </div>
+          <div class="finder-context" id="finderContext">—</div>
+        </div>
+
+        <div class="quick-btns">
+          <div class="quick-btns-label">QUICK SELECT</div>
+          <div class="quick-group">
+            <div class="quick-group-label">EARTH &amp; BIOLOGY</div>
+            <div class="quick-group-btns">
+              <button class="quick-btn" onclick="setFinder(7.83,'1')">7.83 Hz · Schumann</button>
+              <button class="quick-btn" onclick="setFinder(14.3,'1')">14.3 Hz · Schumann 2nd</button>
+              <button class="quick-btn" onclick="setFinder(40,'1')">40 Hz · Gamma Brain</button>
+              <button class="quick-btn" onclick="setFinder(10,'1')">10 Hz · Alpha Brain</button>
+            </div>
+          </div>
+          <div class="quick-group">
+            <div class="quick-group-label">HEALING FREQUENCIES</div>
+            <div class="quick-group-btns">
+              <button class="quick-btn" onclick="setFinder(174,'1')">174 Hz</button>
+              <button class="quick-btn" onclick="setFinder(432,'1')">432 Hz</button>
+              <button class="quick-btn" onclick="setFinder(528,'1')">528 Hz</button>
+              <button class="quick-btn" onclick="setFinder(639,'1')">639 Hz</button>
+              <button class="quick-btn" onclick="setFinder(741,'1')">741 Hz</button>
+              <button class="quick-btn" onclick="setFinder(963,'1')">963 Hz</button>
+            </div>
+          </div>
+          <div class="quick-group">
+            <div class="quick-group-label">TECHNOLOGY &amp; DEVICES</div>
+            <div class="quick-group-btns">
+              <button class="quick-btn" onclick="setFinder(144,'1000000')">144 MHz · Lost Cubit</button>
+              <button class="quick-btn" onclick="setFinder(2.4,'1000000000')">2.4 GHz · WiFi</button>
+              <button class="quick-btn" onclick="setFinder(5,'1000000000')">5 GHz · WiFi 5</button>
+              <button class="quick-btn" onclick="setFinder(100,'1000000000')">100 GHz · 5G upper</button>
+            </div>
+          </div>
+          <div class="quick-group">
+            <div class="quick-group-label">LIGHT &amp; BEYOND</div>
+            <div class="quick-group-btns">
+              <button class="quick-btn" onclick="setFinder(430,'1000000000000')">430 THz · Red Light</button>
+              <button class="quick-btn" onclick="setFinder(590,'1000000000000')">590 THz · Yellow</button>
+              <button class="quick-btn" onclick="setFinder(750,'1000000000000')">750 THz · Violet</button>
+              <button class="quick-btn" onclick="setFinder(1,'1000000000000000')">1 PHz · UV</button>
+              <button class="quick-btn" onclick="setFinder(30,'1000000000000000000')">30 EHz · Gamma</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <div class="section">
+    <h2>Quick Reference</h2>
+    <div class="accordion" id="accWrap"></div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="section">
+    <h2>This Week's Practice — Map Your Frequency Environment</h2>
+    <p style="margin-bottom:16px">You are continuously bathed in electromagnetic radiation across multiple bands simultaneously. This week, develop awareness of what frequencies are actually present in your environment and where they sit on the spectrum.</p>
+    <div class="practice-steps">
+      <div class="ps"><div class="ps-n">1</div><div class="ps-t"><strong>Audit your immediate EM environment.</strong> In the space you inhabit most — your home, your desk, your bedroom — identify every device emitting EM radiation and use the Frequency Finder to place each one on the spectrum. Your phone (850 MHz–2.6 GHz), WiFi router (2.4 or 5 GHz), microwave oven (2.45 GHz), Bluetooth (2.4 GHz), any PEMF device, any tensor rings, any lighting (infrared through visible through UV). Write the complete list. Notice what bands are densest.</div></div>
+      <div class="ps"><div class="ps-n">2</div><div class="ps-t"><strong>Find the Schumann resonance on the finder and compare it to your WiFi frequency.</strong> The Schumann fundamental is 7.83 Hz. WiFi is 2.4 billion Hz. Calculate the ratio. This ratio is approximately 300 million to 1. This is not a reason to avoid technology — it is a reason to understand that your nervous system evolved in an environment dominated by one set of frequencies and now operates in an environment with another set many orders of magnitude higher in frequency. What that means is a matter of ongoing scientific investigation.</div></div>
+      <div class="ps"><div class="ps-n">3</div><div class="ps-t"><strong>Spend time in the low-frequency end of the spectrum deliberately.</strong> Go outside without devices. Bare feet on ground. No phone, no earbuds. Earth's surface emits ELF fields in the Schumann range. Your brain's dominant frequency in alert rest is alpha — 8–12 Hz, the same range as Schumann harmonics. For 20 minutes, let the dominant EM frequencies you're exposed to be the ones your nervous system evolved alongside. Notice what happens to your state.</div></div>
+      <div class="ps"><div class="ps-n">4</div><div class="ps-t"><strong>Evaluate one frequency claim using the spectrum as your framework.</strong> Find a claim about a frequency being either healing or harmful — from any source. Place that frequency on the spectrum using the finder. Note its energy per photon, its wavelength, its band. Ask: is this frequency ionizing or non-ionizing? Does it resonate with biological frequencies or is it many orders of magnitude removed? What physical mechanism is proposed? The spectrum is your map for evaluating these claims with intelligence rather than either acceptance or dismissal.</div></div>
+    </div>
+  </div>
+
+  <!-- GO DEEPER -->
+  <div class="section">
+    <h2>Go Deeper</h2>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">The Invisible Rainbow — Arthur Firstenberg</div>
+        <div class="res-auth">Chelsea Green Publishing, 2017</div>
+        <div class="res-desc">A detailed and controversial historical account of electrification and its biological effects, from telegraph to 5G. Essential reading for understanding the full scope of humanity's electromagnetic environment and the research — contested and mainstream — on biological effects across the spectrum.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">Light: Science and Magic — Fil Hunter, Steven Biver, Paul Fuqua</div>
+        <div class="res-auth">Focal Press, 4th edition</div>
+        <div class="res-desc">Primarily a photography reference, but contains one of the most precise and practical explanations of the visible spectrum, light behavior, and how different frequencies of visible light interact with surfaces and materials. Makes the physics of visible light concrete.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔬</div>
+      <div>
+        <div class="res-title">Schumann Resonances — Original Research, W.O. Schumann (1952)</div>
+        <div class="res-auth">Zeitschrift für Naturforschung</div>
+        <div class="res-desc">The paper predicting the Earth-ionosphere resonant frequencies from first principles. Demonstrates exactly how the EM spectrum's ELF band contains Earth's own resonant signature — and how that signature aligns with biological frequency ranges.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🎬</div>
+      <div>
+        <div class="res-title">The Electromagnetic Spectrum — NASA Science</div>
+        <div class="res-auth">science.nasa.gov/ems — free online resource</div>
+        <div class="res-desc">NASA's public educational series on the full electromagnetic spectrum. Each band is covered with accurate science, applications, and images taken through instruments sensitive to each part of the spectrum. Seeing the universe in radio, infrared, UV, and X-ray is genuinely perspective-shifting.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔬</div>
+      <div>
+        <div class="res-title">Bioelectromagnetics — Journal</div>
+        <div class="res-auth">Wiley — peer-reviewed research journal</div>
+        <div class="res-desc">The primary scientific journal for research on biological effects of non-ionizing electromagnetic fields. Covers PEMF research, ELF exposure studies, RF biological effects, and experimental frequency healing studies. The source for evidence-based evaluation of frequency claims.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔗</div>
+      <div>
+        <div class="res-title">Previous: Q11 — Resonance, The Destroyer and Healer</div>
+        <div class="res-auth">The Frequency Academy · Quantum Physics &amp; Sciences</div>
+        <div class="res-desc">Q11 explains why specific frequencies produce large biological effects through resonance. Q12 provides the map showing exactly where those frequencies sit relative to the full spectrum of electromagnetic phenomena — completing the physics picture.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="section">
+    <h2>Reflection Journal</h2>
+    <div class="reflection-prompt">
+      <p>How does understanding the full electromagnetic spectrum change how you think about frequency work? Not intellectually — in practice. Does it sharpen your sense of what is plausible and what is not? Does it change how you relate to the frequencies you use?</p>
+    </div>
+    <textarea id="ref1" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>What surprised you most about where different frequencies sit on the spectrum? What does it mean to you that visible light — the entire basis of visual reality — occupies less than 1% of the available electromagnetic range? What might you be missing?</p>
+    </div>
+    <textarea id="ref2" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>The frequencies that biology evolved alongside — Schumann resonance, brainwave frequencies, the EM fields of the Earth's surface — are in the ELF range, many orders of magnitude below the frequencies of modern technology. How do you want to hold this information? Not as fear, not as dismissal. As awareness that translates into what, specifically?</p>
+    </div>
+    <textarea id="ref3" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>You now have the spectrum as a map for evaluating frequency claims — healing and harmful alike. How does having an actual physical framework change your relationship to information about frequencies? What does intelligent discernment look like now that you have the tools?</p>
+    </div>
+    <textarea id="ref4" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="workshop">
+    <h3>Live Workshop: The Electromagnetic Spectrum</h3>
+    <p>A live deep-dive on this topic is coming soon. Recordings and supplemental materials will appear here once available. Members will be notified via the Academy portal.</p>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="completion-box">
+    <h3>Mark Lesson Complete</h3>
+    <p>When you have explored both interactive tabs, mapped your EM environment in this week's practice, and written at least two reflections — mark this lesson complete.</p>
+    <button class="complete-btn" id="completeBtn" onclick="markComplete()">Mark Complete · +10 XP</button>
+    <div class="xp-flash" id="xpFlash">✦ +10 XP Awarded</div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-lessons">
+    <a class="nav-lesson prev" href="../lesson-11/">
+      <div class="nav-arrow">←</div>
+      <div>
+        <div class="nav-label">Previous · Q11</div>
+        <div class="nav-title">Resonance — Destroyer &amp; Healer</div>
+      </div>
+    </a>
+    <a class="nav-lesson" href="../lesson-13/">
+      <div>
+        <div class="nav-label">Next · Q13</div>
+        <div class="nav-title">The Biofield</div>
+      </div>
+      <div class="nav-arrow">→</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="save-bar">
+  <div class="save-status" id="saveStatus">Auto-save active</div>
+  <div class="save-btns">
+    <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+    <button class="save-btn ghost" onclick="document.getElementById('importFile').click()">Import</button>
+    <button class="save-btn ghost" onclick="exportData()">Export</button>
+    <button class="save-btn primary" onclick="saveNow()">Save</button>
+  </div>
+</div>
+
+<script>
+var KEY = 'tfa_q12';
+var saveTimer;
+
+// ── TABS ──
+function switchTab(id, btn) {
+  document.querySelectorAll('.viz-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.viz-panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+  if (id === 'finder') runFinder();
+}
+
+// ── SPECTRUM BANDS DATA ──
+var BANDS = [
+  {
+    id: 'radio', label: 'Radio', color: '#6688ff',
+    freqRange: '3 Hz – 300 GHz', wlRange: '100,000 km – 1 mm',
+    title: 'Radio Waves — The Giants of the Spectrum',
+    desc: 'Radio waves are the lowest-frequency electromagnetic radiation, with wavelengths ranging from hundreds of kilometers down to a millimeter. They require no medium — they travel through walls, buildings, and across continents by bouncing off the ionosphere. The entire history of wireless communication is built on this band.',
+    desc2: 'The ELF (Extremely Low Frequency) sub-band — 3 to 300 Hz — is where Earth\'s Schumann resonance lives (7.83 Hz), where human brainwaves oscillate (0.5–100 Hz), and where PEMF therapy devices operate. These wavelengths are measured in thousands of kilometers. The 7.83 Hz Schumann fundamental has a wavelength of approximately 38,300 km — it literally wraps around the planet.',
+    examples: ['AM Radio (530 kHz–1.6 MHz)', 'FM Radio (88–108 MHz)', 'TV Broadcasts', 'Two-way radios', 'Schumann Resonance (7.83 Hz)', 'Brainwaves (0.5–100 Hz)', 'PEMF Therapy (1–100 Hz)', 'GPS (1.2–1.6 GHz)']
+  },
+  {
+    id: 'micro', label: 'Microwave', color: '#aa88ff',
+    freqRange: '300 MHz – 300 GHz', wlRange: '1 m – 1 mm',
+    title: 'Microwaves — The Technology Band',
+    desc: 'Microwaves overlap with the upper radio range and are defined by wavelengths measured in centimeters to millimeters. This is the frequency range that enables nearly all modern wireless technology. WiFi, cellular networks, Bluetooth, radar, and satellite communications all operate here.',
+    desc2: 'Microwave ovens heat food by operating at 2.45 GHz — a frequency at which water molecules absorb energy efficiently and convert it to heat through molecular rotation. This is not ionizing radiation; it cannot break chemical bonds. It heats by agitating molecules. WiFi at 2.4 GHz is adjacent to the microwave oven frequency — but at vastly lower power levels.',
+    examples: ['WiFi 2.4 GHz', 'WiFi 5 GHz', 'Cellular (850 MHz–2.6 GHz)', 'Bluetooth (2.4 GHz)', 'Microwave ovens (2.45 GHz)', 'Radar', 'Satellite comms', '5G (sub-6 GHz and mmWave)']
+  },
+  {
+    id: 'ir', label: 'Infrared', color: '#ff8844',
+    freqRange: '300 GHz – 430 THz', wlRange: '1 mm – 700 nm',
+    title: 'Infrared — The Heat Spectrum',
+    desc: 'Infrared radiation is thermal radiation — every object above absolute zero emits infrared, with the peak wavelength determined by temperature (Wien\'s Law). The human body, at approximately 37°C, radiates primarily in the far-infrared range around 9,000 nm. Night vision technology and thermal cameras detect this self-emission.',
+    desc2: 'Near-infrared (NIR) is the sub-band closest to visible light, from about 700 nm to 2,500 nm. NIR therapy has genuine clinical applications: specific NIR wavelengths are absorbed by cytochrome c oxidase in mitochondria, influencing ATP production. Photobiomodulation (low-level laser therapy) uses NIR and visible red wavelengths. IR saunas operate in far-infrared, heating tissue directly through resonant absorption rather than heating air.',
+    examples: ['TV remotes (850–940 nm)', 'IR saunas', 'Night vision cameras', 'Thermal imaging', 'Heat lamps', 'Photobiomodulation (NIR)', 'Body heat radiation (~9 μm)', 'Fire radiation']
+  },
+  {
+    id: 'vis', label: 'Visible', color: 'rainbow',
+    freqRange: '430 – 750 THz', wlRange: '700 – 400 nm',
+    title: 'Visible Light — The Keyhole',
+    desc: 'Visible light is the narrow band of EM radiation that the human eye evolved to detect. It spans from approximately 700 nm (red) to 400 nm (violet) — a wavelength ratio of less than 2:1, occupying less than 1% of the full electromagnetic spectrum by frequency range.',
+    desc2: 'The eye\'s sensitivity peaks in the green-yellow region (~555 nm in daylight conditions) — the range where solar output is highest at Earth\'s surface after atmospheric filtering. Color vision arises from three types of cone photoreceptors tuned to different wavelength peaks. The entire richness of visual experience is the brain\'s interpretation of signals from these three overlapping sensitivity curves within this impossibly narrow band.',
+    examples: ['Red (700–635 nm)', 'Orange (635–590 nm)', 'Yellow (590–560 nm)', 'Green (560–490 nm)', 'Blue (490–450 nm)', 'Violet (450–400 nm)', 'Lasers (any color)', 'Photography']
+  },
+  {
+    id: 'uv', label: 'UV', color: '#cc44ff',
+    freqRange: '750 THz – 30 PHz', wlRange: '400 – 10 nm',
+    title: 'Ultraviolet — Beyond Violet',
+    desc: 'Ultraviolet radiation begins just above the visible violet edge. It is divided into three sub-bands: UV-A (400–315 nm), UV-B (315–280 nm), and UV-C (280–100 nm). UV-A penetrates the dermis and causes tanning and premature aging. UV-B is absorbed in the epidermis and causes sunburn, but also drives vitamin D3 synthesis. UV-C is germicidal — it disrupts DNA replication in microorganisms — but is almost entirely blocked by Earth\'s ozone layer before reaching the surface.',
+    desc2: 'UV photons carry sufficient energy per quantum to cause photochemical reactions — they can break certain chemical bonds. This is why UV-B damages DNA (causing sunburn mutations) and why UV-C sterilizes surfaces. At the boundary with X-rays, extreme ultraviolet (EUV) photons approach ionizing energy levels.',
+    examples: ['UV-A (tanning, 315–400 nm)', 'UV-B (sunburn + Vit D)', 'UV-C (sterilization)', 'Black lights (UV-A, ~365 nm)', 'Fluorescence', 'Ozone layer absorption', 'Photolithography', 'Astronomical UV imaging']
+  },
+  {
+    id: 'xray', label: 'X-Ray', color: '#88ffee',
+    freqRange: '30 PHz – 30 EHz', wlRange: '10 – 0.01 nm',
+    title: 'X-Rays — The Penetrating Rays',
+    desc: 'X-rays are ionizing radiation — each photon carries sufficient energy to eject electrons from atoms, breaking chemical bonds and potentially damaging DNA. This makes them useful for imaging (dense structures like bone absorb more X-rays than soft tissue, creating contrast) and dangerous at high cumulative doses.',
+    desc2: 'Medical X-ray imaging uses carefully calculated doses that provide diagnostic information with acceptable risk. CT scans deliver higher doses than single X-rays. The biological risk of X-ray exposure is cumulative — each exposure adds to lifetime dose. Hard X-rays (higher frequency, shorter wavelength) penetrate more deeply. Soft X-rays (lower frequency) are absorbed in the upper layers of tissue. X-ray crystallography — using X-ray diffraction patterns through crystalline materials — was how the double-helix structure of DNA was first revealed.',
+    examples: ['Medical imaging (chest, dental)', 'CT scans', 'Security scanners', 'Industrial inspection', 'X-ray crystallography', 'Astronomy (X-ray telescopes)', 'Cancer radiotherapy', 'Mammography']
+  },
+  {
+    id: 'gamma', label: 'Gamma', color: '#ff4488',
+    freqRange: '> 30 EHz', wlRange: '< 0.01 nm',
+    title: 'Gamma Rays — The Cosmic Extreme',
+    desc: 'Gamma rays are the highest-energy photons in the electromagnetic spectrum, produced by nuclear reactions, radioactive decay, and the most energetic cosmic events. Their wavelengths are smaller than the diameter of an atomic nucleus. Each gamma photon can carry enough energy to cause significant ionization and molecular damage.',
+    desc2: 'Gamma ray bursts from distant galaxies are the most energetic events observed in the known universe — brief flashes brighter than entire galaxies, powered by neutron star mergers or collapsing massive stars. Medically, gamma radiation is used in targeted cancer treatment (gamma knife surgery) and in PET imaging. The Earth\'s magnetic field and atmosphere shield the surface from most cosmic gamma radiation, though low-level exposure from cosmic rays and naturally occurring radioactive materials is continuous and unavoidable.',
+    examples: ['Radioactive decay', 'Gamma knife surgery', 'PET scans (511 keV)', 'Gamma ray bursts (GRBs)', 'Neutron star mergers', 'Nuclear reactions', 'Cosmic ray showers', 'Naturally occurring (K-40, radon)']
+  }
+];
+
+var activeBand = null;
+
+function buildSpectrumMap() {
+  var labels = document.getElementById('specLabels');
+  BANDS.forEach(function(band) {
+    var el = document.createElement('div');
+    el.className = 'spec-lbl';
+    el.textContent = band.label;
+    el.onclick = function() { showBand(band.id, el); };
+    labels.appendChild(el);
+  });
+}
+
+function showBand(id, clickedEl) {
+  document.querySelectorAll('.spec-lbl').forEach(function(l) { l.classList.remove('active'); });
+  document.querySelectorAll('.band-detail').forEach(function(d) { d.classList.remove('show'); });
+
+  if (activeBand === id) { activeBand = null; return; }
+  activeBand = id;
+
+  if (clickedEl) clickedEl.classList.add('active');
+
+  var band = BANDS.find(function(b) { return b.id === id; });
+  if (!band) return;
+
+  var det = document.getElementById('bandDetail');
+  var color = band.color === 'rainbow'
+    ? 'background:linear-gradient(90deg,#ff4444,#ff8800,#ffee00,#44ff44,#4488ff,#8844ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text'
+    : 'color:' + band.color;
+
+  var examples = band.examples.map(function(e) { return '<span class="band-ex">' + e + '</span>'; }).join('');
+
+  det.innerHTML =
+    '<div class="band-detail-header">' +
+      '<h4 style="' + color + '">' + band.title + '</h4>' +
+      '<div class="band-range">' + band.freqRange + ' · ' + band.wlRange + '</div>' +
+    '</div>' +
+    '<p>' + band.desc + '</p>' +
+    '<p>' + band.desc2 + '</p>' +
+    '<div class="band-examples">' + examples + '</div>';
+
+  det.classList.add('show');
+}
+
+// ── FREQUENCY FINDER ──
+var H = 6.62607015e-34;
+var C = 299792458;
+var EV = 1.602176634e-19;
+
+var BANDS_DATA = [
+  { name: 'ELF (Extremely Low Frequency)', max: 300, color: '#6688ff',
+    context: 'Extremely Low Frequency — This is where life evolved. Schumann resonance (7.83 Hz), brainwaves, PEMF therapy, and the body\'s endogenous electrical oscillations all live here. Wavelengths measured in thousands of kilometers. Energy per photon is negligible — these frequencies carry information, not destructive energy.' },
+  { name: 'SLF (Super Low Frequency)', max: 3000, color: '#7799ff',
+    context: 'Super Low Frequency — Overlaps with upper brainwave states and the lower range of audio healing frequencies. Submarine communications use this range for penetration through seawater. Wavelengths still measured in hundreds to thousands of kilometers.' },
+  { name: 'ULF (Ultra Low Frequency)', max: 30000, color: '#88aaff',
+    context: 'Ultra Low Frequency — The Solfeggio frequencies and audio healing range live here. Sound waves at these frequencies have very long wavelengths in air (kilometers). As EM radiation, ULF wavelengths are still hundreds to thousands of kilometers long.' },
+  { name: 'VLF (Very Low Frequency)', max: 300000, color: '#99bbff',
+    context: 'Very Low Frequency — Upper audio range through 300 kHz. Long-distance radio navigation (LORAN). Can penetrate seawater. The ionosphere reflects VLF waves, allowing them to travel around the globe. Wavelengths measured in kilometers.' },
+  { name: 'LF (Low Frequency) / Long Wave Radio', max: 3e6, color: '#aaccff',
+    context: 'Long Wave Radio — AM radio broadcasting uses parts of this range. Wavelengths measured in hundreds of meters to kilometers. These waves travel beyond the horizon by ground wave propagation and ionospheric reflection.' },
+  { name: 'MF (Medium Frequency) / AM Radio', max: 30e6, color: '#bbddff',
+    context: 'Medium Frequency — Standard AM radio broadcasts (530 kHz–1.6 MHz) occupy this range. Wavelengths of hundreds of meters. The ionospheric reflection that makes AM reception possible at night (when the ionosphere layer rises) is a standing wave phenomenon.' },
+  { name: 'HF (High Frequency) / Shortwave', max: 300e6, color: '#aab8ff',
+    context: 'High Frequency / Shortwave — International shortwave radio, amateur radio, aviation communications. Wavelengths of 10–100 meters. HF waves can be reflected by the ionosphere to achieve long-distance global propagation. This is also where some tensor ring resonant frequencies fall.' },
+  { name: 'VHF (Very High Frequency)', max: 3e9, color: '#9988ff',
+    context: 'Very High Frequency — FM radio (88–108 MHz), television broadcasts, and some tensor ring frequencies (e.g., 144 MHz Lost Cubit resonance) operate here. Wavelengths of 1–10 meters. VHF does not reflect off the ionosphere — it travels line-of-sight.' },
+  { name: 'UHF (Ultra High Frequency)', max: 30e9, color: '#aa88ff',
+    context: 'Ultra High Frequency — Television, cellular networks, GPS (1.2–1.6 GHz), and WiFi 2.4 GHz. Wavelengths of 10 cm to 1 m. Modern 4G/LTE and most cellular technology lives here.' },
+  { name: 'SHF (Super High Frequency) / Microwave', max: 300e9, color: '#bb88ff',
+    context: 'Super High Frequency — WiFi 5 GHz, 5G mid-band, satellite communications, and radar. Wavelengths of 1 mm to 10 cm. Microwave ovens operate at 2.45 GHz in this range. Non-ionizing — heats through molecular agitation, not bond-breaking.' },
+  { name: 'EHF (Extremely High Frequency) / mmWave', max: 3e12, color: '#cc88ff',
+    context: 'Extremely High Frequency / Millimeter Wave — 5G mmWave technology, atmospheric science, radio astronomy. Wavelengths of 1–10 mm. Absorbed by water vapor and oxygen in the atmosphere — limited range but high bandwidth.' },
+  { name: 'Infrared (Far / Thermal)', max: 100e12, color: '#ff8844',
+    context: 'Far Infrared — Thermal radiation. Every object above absolute zero emits in this range. The human body at 37°C peaks around 9,000 nm (33 THz). Far-infrared saunas, heat lamps, and Earth\'s own thermal radiation all operate here. Non-ionizing.' },
+  { name: 'Infrared (Near)', max: 430e12, color: '#ff9966',
+    context: 'Near-Infrared — Immediately below visible red. Photobiomodulation and low-level laser therapy use specific NIR wavelengths (660–1000 nm) that are absorbed by cytochrome c oxidase in mitochondria, potentially enhancing ATP production. TV remotes use ~850–940 nm.' },
+  { name: 'Visible Light', max: 750e12, color: 'rainbow',
+    context: 'Visible Light — The only band the human eye detects. Red (700 nm) to violet (400 nm). Less than 1% of the full EM spectrum. All color perception, all visual experience of the world, is contained in this narrow band. Photons here are energetic enough to drive photochemical reactions (photosynthesis, vitamin A synthesis in the eye) but not enough to ionize atoms.' },
+  { name: 'Ultraviolet (UV-A)', max: 1e15, color: '#cc44ff',
+    context: 'UV-A — Tanning, fluorescence, and some phototherapy. Penetrates to the dermis. Causes some DNA damage but primarily through indirect mechanisms. Black lights emit UV-A. Most UV-A reaches Earth\'s surface — less absorbed by the ozone layer than UV-B/C.' },
+  { name: 'Ultraviolet (UV-B / UV-C)', max: 30e15, color: '#bb33ff',
+    context: 'UV-B and UV-C — Sufficient energy per photon to cause direct DNA damage (pyrimidine dimers). UV-B drives vitamin D synthesis in skin. UV-C is germicidal but blocked by the ozone layer. These photons are at the edge of ionizing radiation.' },
+  { name: 'X-Rays (Soft)', max: 3e18, color: '#88ffee',
+    context: 'Soft X-Rays — Ionizing radiation. Each photon has sufficient energy to eject electrons from atoms. Absorbed by the upper layers of tissue. Less penetrating than hard X-rays. Used in some forms of imaging and therapeutic applications.' },
+  { name: 'X-Rays (Hard)', max: 30e18, color: '#66ffcc',
+    context: 'Hard X-Rays — More penetrating ionizing radiation. Pass through soft tissue, absorbed by bone — the basis of medical X-ray imaging. Sufficient per-photon energy to cause cellular and DNA damage with cumulative exposure. Risk-benefit analysis governs medical use.' },
+  { name: 'Gamma Rays', max: Infinity, color: '#ff4488',
+    context: 'Gamma Rays — The highest-energy photons. Produced by nuclear reactions, radioactive decay, and the most extreme cosmic events. Wavelengths smaller than atomic nuclei. Highly ionizing. Used in cancer treatment (gamma knife) and PET imaging. Cosmic gamma ray bursts are the most energetic events in the known universe.' }
+];
+
+function getBandData(hz) {
+  for (var i = 0; i < BANDS_DATA.length; i++) {
+    if (hz < BANDS_DATA[i].max) return BANDS_DATA[i];
+  }
+  return BANDS_DATA[BANDS_DATA.length - 1];
+}
+
+function formatVal(v) {
+  if (v === 0) return '0';
+  var abs = Math.abs(v);
+  if (abs >= 1e18) return (v / 1e18).toPrecision(4) + ' EHz';
+  if (abs >= 1e15) return (v / 1e15).toPrecision(4) + ' PHz';
+  if (abs >= 1e12) return (v / 1e12).toPrecision(4) + ' THz';
+  if (abs >= 1e9)  return (v / 1e9).toPrecision(4)  + ' GHz';
+  if (abs >= 1e6)  return (v / 1e6).toPrecision(4)  + ' MHz';
+  if (abs >= 1e3)  return (v / 1e3).toPrecision(4)  + ' kHz';
+  return v.toPrecision(4) + ' Hz';
+}
+
+function formatWL(m) {
+  if (m >= 1e6)    return (m / 1e6).toPrecision(4)  + ' Mm';
+  if (m >= 1000)   return (m / 1000).toPrecision(4) + ' km';
+  if (m >= 1)      return m.toPrecision(4)           + ' m';
+  if (m >= 0.01)   return (m * 100).toPrecision(4)  + ' cm';
+  if (m >= 0.001)  return (m * 1000).toPrecision(4) + ' mm';
+  if (m >= 1e-6)   return (m * 1e6).toPrecision(4)  + ' μm';
+  if (m >= 1e-9)   return (m * 1e9).toPrecision(4)  + ' nm';
+  if (m >= 1e-12)  return (m * 1e12).toPrecision(4) + ' pm';
+  return m.toExponential(3) + ' m';
+}
+
+function formatPer(s) {
+  if (s >= 86400)  return (s / 86400).toPrecision(4) + ' days';
+  if (s >= 3600)   return (s / 3600).toPrecision(4)  + ' hr';
+  if (s >= 60)     return (s / 60).toPrecision(4)    + ' min';
+  if (s >= 1)      return s.toPrecision(4)            + ' s';
+  if (s >= 0.001)  return (s * 1000).toPrecision(4)  + ' ms';
+  if (s >= 1e-6)   return (s * 1e6).toPrecision(4)   + ' μs';
+  return s.toExponential(3) + ' s';
+}
+
+function formatE(j) { return j.toExponential(3) + ' J'; }
+
+function setFinder(val, unit) {
+  document.getElementById('finderFreq').value = val;
+  document.getElementById('finderUnit').value = unit;
+  runFinder();
+}
+
+function runFinder() {
+  var val = parseFloat(document.getElementById('finderFreq').value) || 7.83;
+  var unit = parseFloat(document.getElementById('finderUnit').value) || 1;
+  var hz = val * unit;
+
+  var wl = C / hz;
+  var E = H * hz;
+  var period = 1 / hz;
+  var band = getBandData(hz);
+
+  // Position needle — log scale from 3 Hz to 3e25 Hz
+  var logMin = Math.log10(3), logMax = Math.log10(3e25);
+  var logHz = Math.log10(Math.max(3, hz));
+  var pct = Math.min(98, Math.max(2, ((logHz - logMin) / (logMax - logMin)) * 100));
+  document.getElementById('finderNeedle').style.left = pct + '%';
+
+  // Band name color
+  var nameColor = band.color === 'rainbow'
+    ? 'background:linear-gradient(90deg,#ff4444,#ff8800,#ffee00,#44ff44,#4488ff,#8844ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text'
+    : 'color:' + band.color;
+
+  document.getElementById('finderBandName').setAttribute('style', nameColor);
+  document.getElementById('finderBandName').textContent = band.name + ' — ' + formatVal(hz);
+  document.getElementById('fWL').textContent = formatWL(wl);
+  document.getElementById('fE').textContent = formatE(E);
+  document.getElementById('fP').textContent = formatPer(period);
+  document.getElementById('finderContext').textContent = band.context;
+}
+
+// ── ACCORDION ──
+var ACC = [
+  { t: 'The EM Spectrum — Complete Reference Table',
+    b: '<strong>Radio ELF (3–300 Hz):</strong> Schumann resonance, brainwaves, PEMF. Wavelengths: 1,000–100,000 km<br><strong>Radio VLF (3–30 kHz):</strong> Navigation, submarine comms. Wavelengths: 10–100 km<br><strong>Radio HF (3–30 MHz):</strong> Shortwave radio, some tensor ring frequencies. Wavelengths: 10–100 m<br><strong>Radio VHF (30–300 MHz):</strong> FM radio, tensor ring resonances. Wavelengths: 1–10 m<br><strong>Microwave UHF (300 MHz–3 GHz):</strong> WiFi 2.4 GHz, 4G, GPS. Wavelengths: 10 cm–1 m<br><strong>Microwave SHF (3–30 GHz):</strong> WiFi 5 GHz, 5G, radar. Wavelengths: 1–10 cm<br><strong>Infrared (300 GHz–430 THz):</strong> Heat, night vision, IR saunas. Wavelengths: 700 nm–1 mm<br><strong>Visible (430–750 THz):</strong> All color vision. Wavelengths: 400–700 nm<br><strong>UV (750 THz–30 PHz):</strong> Tanning, sterilization, vitamin D. Wavelengths: 10–400 nm<br><strong>X-Ray (30 PHz–30 EHz):</strong> Medical imaging, ionizing. Wavelengths: 0.01–10 nm<br><strong>Gamma (&gt;30 EHz):</strong> Nuclear, cosmic, most energetic. Wavelengths: &lt;0.01 nm' },
+  { t: 'Unit Prefixes — Reading Frequency Values',
+    b: 'Electromagnetic frequencies span 25 orders of magnitude — from a few Hertz to 10²⁵ Hz. The unit prefix system handles this:<br><br><strong>Hz</strong> = cycles per second (base unit)<br><strong>kHz</strong> = kilohertz = 10³ Hz (thousands)<br><strong>MHz</strong> = megahertz = 10⁶ Hz (millions)<br><strong>GHz</strong> = gigahertz = 10⁹ Hz (billions)<br><strong>THz</strong> = terahertz = 10¹² Hz (trillions)<br><strong>PHz</strong> = petahertz = 10¹⁵ Hz (quadrillions)<br><strong>EHz</strong> = exahertz = 10¹⁸ Hz (quintillions)<br><br>The span from 7.83 Hz (Schumann) to 5 GHz (WiFi 5) is a factor of approximately 640 million. The span from 7.83 Hz to 500 THz (visible green) is a factor of approximately 64 trillion. This is why logarithmic scales are used when representing the full spectrum.' },
+  { t: 'Ionizing vs Non-Ionizing Radiation',
+    b: '<strong>Non-ionizing radiation</strong> (radio, microwave, infrared, visible, UV-A): photons do not carry sufficient energy to remove electrons from atoms. Cannot directly break DNA bonds. Primary mechanisms are heating (in microwave range) and photochemical reactions (in visible/UV-A). The entire frequency range used in healing work is non-ionizing.<br><br><strong>Ionizing radiation</strong> (UV-B/C, X-ray, gamma): photons carry enough energy per quantum to eject electrons from atoms, creating ions. Can directly break chemical bonds including DNA bonds. Causes cellular damage with sufficient cumulative exposure.<br><br><strong>The threshold</strong> is approximately 10 eV (electron-volts) per photon — around the UV-C range (~30 PHz, ~10 nm wavelength). Below this threshold: non-ionizing. Above: ionizing.<br><br><strong>Key implication for frequency work:</strong> all frequencies in the ELF through radio, microwave, and infrared ranges are non-ionizing. They cannot cause the molecular damage that ionizing radiation causes. Their biological mechanisms — if any — operate through different pathways: resonance, information, field effects on ion channels and membrane potentials.' },
+  { t: 'The Schumann Resonance — Earth\'s EM Signature',
+    b: 'The Earth-ionosphere cavity — the space between Earth\'s surface and the lower ionosphere at approximately 60 km altitude — acts as a resonant electromagnetic cavity. Lightning strikes, approximately 50 per second worldwide, continuously excite electromagnetic waves in this cavity. The cavity\'s dimensions determine which frequencies resonate as standing waves.<br><br><strong>Primary Schumann frequencies:</strong><br>· 7.83 Hz (fundamental) — wavelength: 38,300 km<br>· 14.3 Hz (2nd harmonic)<br>· 20.8 Hz (3rd harmonic)<br>· 27.3 Hz (4th harmonic)<br>· 33.8 Hz (5th harmonic)<br><br>These overlap almost exactly with human brainwave states: theta (4–8 Hz), alpha (8–12 Hz), and beta (12–30 Hz). Human nervous systems evolved bathed in this electromagnetic background for millions of years. Time in natural environments without electronic devices re-exposes the nervous system to these frequencies as the dominant EM background — the physics basis for grounding and nature-immersion practices.' },
+  { t: 'Where Tensor Ring Frequencies Fall',
+    b: 'Tensor rings are closed-loop conductors whose resonant frequency is determined by the speed of light divided by the circumference of the wire. Different cubit measurements produce different circumferences and therefore different resonant frequencies.<br><br>The Lost Cubit (approximately 65.43 cm wire circumference) produces a resonant frequency of approximately <strong>144 MHz</strong> — in the VHF radio band. The Sacred Cubit resonant frequency falls in a similar range. These are genuine electromagnetic frequencies in the radio band, not metaphorical or symbolic frequencies.<br><br>At these frequencies (wavelength ~2 meters for 144 MHz), the ring operates as a small loop antenna capable of both emitting and receiving electromagnetic radiation. The toroidal standing wave field that forms inside and around the ring is the physical mechanism through which tensor rings interact with their environment. Understanding the Frequency Finder placement (VHF radio band) allows comparison with other frequencies in the environment.' },
+  { t: 'Why Biological Frequencies Are at the Low End',
+    b: 'The clustering of biological electromagnetic frequencies at the ELF end of the spectrum is not arbitrary. There are several converging reasons:<br><br><strong>1. Evolution in the Schumann environment:</strong> Life on Earth evolved bathed in ELF electromagnetic fields — the Schumann resonances and the DC electric fields of the atmosphere. Nervous systems that resonated with the dominant EM background had evolutionary advantage.<br><br><strong>2. Wavelength-to-body size relationship:</strong> The wavelengths of brainwave frequencies (thousands of kilometers) are enormous compared to the body — the body is effectively a tiny perturbation in these fields. ELF fields penetrate and envelop the entire organism, enabling global biological synchronization rather than localized heating effects.<br><br><strong>3. Low energy, high information capacity:</strong> ELF photons carry negligible destructive energy but can modulate ion channel behavior, cell membrane potential, and oscillatory biological processes through resonance. Information at low energetic cost is biologically optimal.<br><br><strong>4. The quantum biology connection:</strong> The biological processes identified in quantum biology (Q10) — photosynthesis coherence, cryptochrome magnetoreception, enzyme tunneling — all operate in quantum frequency ranges far higher, but their macroscopic regulation may involve ELF coordination fields.' }
+];
+
+function buildAcc() {
+  var w = document.getElementById('accWrap');
+  ACC.forEach(function(item) {
+    var d = document.createElement('div');
+    d.className = 'acc-item';
+    d.innerHTML = '<div class="acc-head" onclick="toggleAcc(this)"><span>' + item.t + '</span><span class="acc-arrow">▾</span></div><div class="acc-body">' + item.b + '</div>';
+    w.appendChild(d);
+  });
+}
+function toggleAcc(head) {
+  var body = head.nextElementSibling;
+  var arrow = head.querySelector('.acc-arrow');
+  var isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body.open').forEach(function(b) { b.classList.remove('open'); });
+  document.querySelectorAll('.acc-arrow.open').forEach(function(a) { a.classList.remove('open'); });
+  if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
+}
+
+// ── COMPLETION ──
+function markComplete() {
+  var btn = document.getElementById('completeBtn');
+  if (btn.classList.contains('done')) return;
+  btn.classList.add('done');
+  btn.textContent = '✓ Complete';
+  document.getElementById('xpFlash').classList.add('show');
+  saveNow();
+}
+
+// ── SAVE / LOAD ──
+function getData() {
+  return {
+    v: 1, lesson: 'Q12', ts: new Date().toISOString(),
+    r1: document.getElementById('ref1').value,
+    r2: document.getElementById('ref2').value,
+    r3: document.getElementById('ref3').value,
+    r4: document.getElementById('ref4').value,
+    done: document.getElementById('completeBtn').classList.contains('done')
+  };
+}
+function saveNow() {
+  localStorage.setItem(KEY, JSON.stringify(getData()));
+  document.getElementById('saveStatus').textContent = 'Saved ' + new Date().toLocaleTimeString();
+}
+function autoSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 90000);
+}
+function loadData() {
+  var raw = localStorage.getItem(KEY);
+  if (!raw) return;
+  try {
+    var d = JSON.parse(raw);
+    if (d.r1) document.getElementById('ref1').value = d.r1;
+    if (d.r2) document.getElementById('ref2').value = d.r2;
+    if (d.r3) document.getElementById('ref3').value = d.r3;
+    if (d.r4) document.getElementById('ref4').value = d.r4;
+    if (d.done) {
+      var btn = document.getElementById('completeBtn');
+      btn.classList.add('done'); btn.textContent = '✓ Complete';
+      document.getElementById('xpFlash').classList.add('show');
+    }
+    document.getElementById('saveStatus').textContent = 'Session restored';
+  } catch(e) {}
+}
+function exportData() {
+  saveNow();
+  var b = new Blob([JSON.stringify(getData(), null, 2)], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(b);
+  a.download = 'TFA_Q12_backup_' + Date.now() + '.json';
+  a.click();
+}
+function importData(e) {
+  var f = e.target.files[0];
+  if (!f) return;
+  var r = new FileReader();
+  r.onload = function(ev) {
+    try {
+      var d = JSON.parse(ev.target.result);
+      localStorage.setItem(KEY, JSON.stringify(d));
+      loadData();
+    } catch(err) {}
+  };
+  r.readAsText(f);
+  e.target.value = '';
+}
+
+// ── PROGRESS BAR ──
+window.addEventListener('scroll', function() {
+  var doc = document.documentElement;
+  var sc = window.scrollY || doc.scrollTop;
+  var sh = doc.scrollHeight - doc.clientHeight;
+  document.getElementById('progressFill').style.width = (sh > 0 ? Math.min(100, sc / sh * 100) : 0) + '%';
+}, { passive: true });
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  buildSpectrumMap();
+  buildAcc();
+  loadData();
+  runFinder();
+});
+</script>
+</body>
+</html>
