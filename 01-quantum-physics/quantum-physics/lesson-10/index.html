@@ -1,1 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q10: Cymatics — Sound Made Visible | The Frequency Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a1628;
+  --accent: #4a9edd;
+  --accent2: #7abce8;
+  --text: #f0ede6;
+  --text-dim: rgba(240,237,230,0.65);
+  --card-bg: rgba(0,0,0,0.32);
+  --card-border: rgba(74,158,221,0.18);
+  --gold: #c9a84c;
+  --gold-dim: rgba(201,168,76,0.55);
+  --navy-deep: #060f1e;
+}
 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* ─── ANIMATED BACKGROUND ─── */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 20s ease-in-out infinite alternate;
+}
+.bg-orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(74,158,221,0.08) 0%, transparent 70%); top: -200px; right: -200px; animation-delay: 0s; }
+.bg-orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%); bottom: 0; left: -150px; animation-delay: -10s; }
+.bg-orb-3 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(74,158,221,0.06) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: -5s; }
+
+@keyframes drift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 20px) scale(1.05); }
+}
+
+/* ─── PROGRESS BAR ─── */
+#progress-bar-wrap {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.07);
+  z-index: 1000;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(74,158,221,0.6);
+}
+
+/* ─── LESSON TAG ─── */
+#lesson-tag {
+  position: fixed;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+  z-index: 999;
+  white-space: nowrap;
+}
+
+/* ─── SAVE BAR ─── */
+#save-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(6,15,30,0.92);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--card-border);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  gap: 12px;
+}
+#save-status {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 0.05em;
+  flex: 1;
+}
+#save-status.saved { color: var(--accent); }
+.save-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  padding: 8px 18px;
+  border: 1px solid var(--card-border);
+  background: rgba(74,158,221,0.08);
+  color: var(--accent2);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.save-btn:hover { background: rgba(74,158,221,0.18); border-color: var(--accent); }
+.save-btn.primary { background: rgba(201,168,76,0.12); border-color: var(--gold-dim); color: var(--gold); }
+.save-btn.primary:hover { background: rgba(201,168,76,0.22); }
+
+/* ─── MAIN LAYOUT ─── */
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+}
+
+/* ─── SECTION CARDS ─── */
+.section {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 2px;
+  padding: 52px 52px 48px;
+  margin-bottom: 40px;
+  position: relative;
+  backdrop-filter: blur(4px);
+}
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg, var(--accent), transparent);
+  opacity: 0.5;
+}
+
+@media (max-width: 640px) {
+  .section { padding: 32px 24px 28px; }
+}
+
+/* ─── TYPOGRAPHY ─── */
+.lesson-code {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+h1 em { color: var(--accent); font-style: normal; }
+.subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  margin-bottom: 32px;
+}
+h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--accent2);
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(74,158,221,0.15);
+}
+h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 16px; color: var(--text-dim); }
+p:last-child { margin-bottom: 0; }
+strong { color: var(--text); font-weight: 600; }
+em { color: var(--accent2); font-style: italic; }
+
+/* ─── DIVIDER ─── */
+.divider {
+  border: none;
+  border-top: 1px solid rgba(74,158,221,0.12);
+  margin: 32px 0;
+}
+
+/* ─── OPENING TRANSMISSION ─── */
+.transmission {
+  text-align: center;
+  padding: 80px 52px 72px;
+  background: linear-gradient(180deg, rgba(74,158,221,0.05) 0%, var(--card-bg) 100%);
+}
+.transmission-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.transmission-label::before,
+.transmission-label::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold-dim);
+}
+.transmission blockquote {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.65;
+  max-width: 640px;
+  margin: 0 auto 36px;
+  font-style: italic;
+}
+.transmission-close {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+/* ─── CYMATIC VISUALIZER ─── */
+#cymatic-canvas-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 32px auto;
+}
+#cymatic-canvas {
+  display: block;
+  width: 100%;
+  border-radius: 2px;
+  border: 1px solid var(--card-border);
+}
+.freq-slider-wrap {
+  margin-top: 20px;
+}
+.freq-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.freq-label span { color: var(--accent); font-size: 1rem; }
+input[type="range"] {
+  width: 100%;
+  height: 3px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(90deg, var(--accent) var(--pct, 0%), rgba(255,255,255,0.1) var(--pct, 0%));
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow: 0 0 8px rgba(74,158,221,0.5);
+}
+.freq-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+#pattern-name {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-top: 12px;
+  min-height: 1.5em;
+  transition: opacity 0.3s;
+}
+
+/* ─── CONCEPT EXPLORER ─── */
+.explorer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.explorer-card {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--card-border);
+  border-radius: 2px;
+  padding: 18px;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.explorer-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(74,158,221,0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.explorer-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.explorer-card:hover::after { opacity: 1; }
+.explorer-card.active { border-color: var(--accent); background: rgba(74,158,221,0.08); }
+.explorer-card-icon { font-size: 1.8rem; margin-bottom: 10px; }
+.explorer-card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--accent2);
+  margin-bottom: 4px;
+}
+.explorer-card-hint {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+.explorer-expand {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(74,158,221,0.12);
+  border-radius: 2px;
+  padding: 28px;
+  margin-top: 4px;
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+.explorer-expand.visible { display: block; }
+.explorer-expand h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+  letter-spacing: 0.08em;
+}
+.explorer-expand p { font-size: 0.9rem; margin-bottom: 10px; }
+.explorer-expand .tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  border: 1px solid rgba(74,158,221,0.3);
+  padding: 2px 8px;
+  margin: 2px;
+  text-transform: uppercase;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+/* ─── DATA TABLE ─── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.88rem;
+}
+.data-table th {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid rgba(74,158,221,0.2);
+  background: rgba(74,158,221,0.05);
+}
+.data-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text-dim);
+  vertical-align: top;
+}
+.data-table tr:hover td { background: rgba(74,158,221,0.04); }
+.data-table td:first-child { color: var(--gold); font-weight: 600; font-size: 0.82rem; }
+
+/* ─── CALLOUT BOX ─── */
+.callout {
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  background: rgba(74,158,221,0.06);
+  margin: 24px 0;
+  border-radius: 0 2px 2px 0;
+}
+.callout-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+
+.callout.gold { border-left-color: var(--gold); background: rgba(201,168,76,0.06); }
+.callout.gold .callout-label { color: var(--gold); }
+
+/* ─── ACCORDION ─── */
+.accordion-item {
+  border: 1px solid var(--card-border);
+  border-radius: 2px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.accordion-trigger {
+  width: 100%;
+  background: rgba(0,0,0,0.2);
+  border: none;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+}
+.accordion-trigger:hover { background: rgba(74,158,221,0.06); }
+.accordion-trigger-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  color: var(--accent2);
+}
+.accordion-arrow {
+  color: var(--accent);
+  font-size: 0.75rem;
+  transition: transform 0.25s;
+  flex-shrink: 0;
+}
+.accordion-item.open .accordion-arrow { transform: rotate(180deg); }
+.accordion-body {
+  display: none;
+  padding: 20px 20px 20px 20px;
+  border-top: 1px solid var(--card-border);
+  background: rgba(0,0,0,0.12);
+}
+.accordion-item.open .accordion-body { display: block; animation: fadeIn 0.25s ease; }
+.accordion-body p { font-size: 0.9rem; }
+.accordion-body strong { color: var(--accent2); }
+
+/* ─── REFLECTION JOURNAL ─── */
+.journal-prompt {
+  margin-bottom: 32px;
+}
+.journal-prompt-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: block;
+}
+.journal-prompt p {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+textarea {
+  width: 100%;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--card-border);
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  padding: 16px;
+  resize: vertical;
+  min-height: 130px;
+  outline: none;
+  transition: border-color 0.2s;
+  border-radius: 1px;
+}
+textarea:focus { border-color: var(--accent); }
+textarea::placeholder { color: rgba(240,237,230,0.25); font-style: italic; }
+
+/* ─── PRACTICE TIMER ─── */
+.practice-steps {
+  counter-reset: step;
+}
+.practice-step {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+.practice-step-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(74,158,221,0.1);
+  border: 1px solid rgba(74,158,221,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  color: var(--accent);
+  counter-increment: step;
+}
+.practice-step-text { font-size: 0.92rem; color: var(--text-dim); padding-top: 4px; }
+.practice-step-text strong { color: var(--text); }
+
+/* ─── RESOURCE LIST ─── */
+.resource-list {
+  list-style: none;
+  padding: 0;
+}
+.resource-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.resource-list li:last-child { border-bottom: none; }
+.resource-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.resource-content {}
+.resource-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--accent2);
+  margin-bottom: 2px;
+}
+.resource-desc { font-size: 0.82rem; color: var(--text-dim); }
+.resource-tag {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  padding: 1px 6px;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold);
+  margin-left: 6px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+/* ─── TAKEAWAYS ─── */
+.takeaways-list {
+  list-style: none;
+  padding: 0;
+}
+.takeaways-list li {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.92rem;
+  color: var(--text-dim);
+}
+.takeaways-list li:last-child { border-bottom: none; }
+.takeaway-check {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── WORKSHOP SLOT ─── */
+.workshop-slot {
+  text-align: center;
+  padding: 52px 24px;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(74,158,221,0.02),
+    rgba(74,158,221,0.02) 4px,
+    transparent 4px,
+    transparent 14px
+  );
+  border: 1px dashed rgba(74,158,221,0.2);
+  border-radius: 2px;
+}
+.workshop-icon { font-size: 2.5rem; margin-bottom: 16px; opacity: 0.5; }
+.workshop-slot h3 { color: var(--text-dim); font-size: 0.9rem; letter-spacing: 0.15em; margin-bottom: 8px; }
+.workshop-slot p { font-size: 0.85rem; color: rgba(240,237,230,0.35); max-width: 400px; margin: 0 auto; }
+
+/* ─── COMPLETION ─── */
+.completion-wrap {
+  text-align: center;
+  padding: 52px 24px;
+}
+.completion-checkbox-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  padding: 16px 28px;
+  border: 1px solid var(--card-border);
+  background: rgba(0,0,0,0.2);
+  transition: all 0.3s;
+  margin-bottom: 24px;
+  user-select: none;
+}
+.completion-checkbox-wrap:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+.completion-checkbox-wrap.done { border-color: var(--gold); background: rgba(201,168,76,0.1); }
+#completion-cb { display: none; }
+.cb-visual {
+  width: 22px; height: 22px;
+  border: 2px solid var(--gold-dim);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+.cb-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  transition: color 0.3s;
+}
+.completion-checkbox-wrap.done .cb-label { color: var(--gold); }
+.xp-award {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: none;
+}
+.xp-award.visible { display: block; animation: xpPop 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+@keyframes xpPop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.xp-particles {
+  position: fixed;
+  pointer-events: none;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 9998;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  animation: particleFall 2s ease-out forwards;
+}
+@keyframes particleFall {
+  0% { transform: translateY(-10px) scale(1); opacity: 1; }
+  100% { transform: translateY(100vh) scale(0.3) rotate(720deg); opacity: 0; }
+}
+
+/* ─── UP NEXT ─── */
+.up-next-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 32px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(74,158,221,0.15);
+  border-radius: 2px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s;
+  cursor: default;
+}
+.up-next-card:hover { border-color: var(--accent); background: rgba(74,158,221,0.06); }
+.up-next-arrow {
+  font-size: 1.5rem;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.up-next-meta {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.up-next-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--text);
+  letter-spacing: 0.06em;
+}
+.up-next-desc { font-size: 0.85rem; color: var(--text-dim); margin-top: 4px; }
+
+/* ─── NATURE TABLE GRID ─── */
+.nature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin: 20px 0;
+}
+.nature-cell {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid var(--card-border);
+  padding: 14px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.nature-cell:hover { border-color: var(--accent); }
+.nature-cell-icon { font-size: 1.6rem; margin-bottom: 6px; }
+.nature-cell-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--accent2);
+  margin-bottom: 4px;
+}
+.nature-cell-fact { font-size: 0.72rem; color: var(--text-dim); line-height: 1.4; }
+
+/* ─── APPLICATIONS ─── */
+.app-item {
+  display: flex;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.app-item:last-child { border-bottom: none; }
+.app-num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 28px;
+  padding-top: 2px;
+}
+.app-content h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.app-content p { font-size: 0.9rem; margin-bottom: 0; }
+
+/* ─── IMPORT SECTION ─── */
+.import-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
+}
+#import-file { display: none; }
+.import-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 6px 12px;
+  border: 1px solid var(--card-border);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.1em;
+  transition: all 0.2s;
+}
+.import-label:hover { border-color: var(--accent2); color: var(--accent2); }
+
+/* ─── QUOTE ─── */
+blockquote.body-quote {
+  border-left: 2px solid var(--gold);
+  padding: 16px 20px;
+  margin: 20px 0;
+  background: rgba(201,168,76,0.04);
+  font-style: italic;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+}
+blockquote.body-quote cite {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  font-style: normal;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+}
+
+/* ─── MODULE TAG ─── */
+.module-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  border: 1px solid rgba(74,158,221,0.25);
+  padding: 5px 12px;
+  margin-bottom: 20px;
+}
+
+.freq-pattern-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text-dim);
+}
+.freq-pattern-row:last-child { border-bottom: none; }
+.freq-hz { color: var(--accent); font-family: 'Cinzel', serif; font-size: 0.72rem; }
+
+/* Objectives list */
+.obj-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+.obj-list li {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.obj-list li:last-child { border-bottom: none; }
+.obj-list li::before {
+  content: '◆';
+  color: var(--accent);
+  font-size: 0.5rem;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+</style>
+</head>
+<body>
+
+<!-- Ambient Background -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<!-- Progress Bar -->
+<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+
+<!-- Lesson Tag -->
+<div id="lesson-tag">QUANTUM PHYSICS &amp; SCIENCES · Q10</div>
+
+<!-- Particle Container -->
+<div class="xp-particles" id="particles"></div>
+
+<main>
+
+  <!-- ═══════════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════════════ -->
+  <div class="section transmission" id="s-header">
+    <div class="module-badge">⬡ Gate 1 — The Moon &nbsp;|&nbsp; Quantum Foundations Module</div>
+    <span class="lesson-code">Q10</span>
+    <h1>Cymatics —<br><em>Sound Made Visible</em></h1>
+    <p class="subtitle">Vibration · Form · The Architecture of Reality</p>
+
+    <div class="transmission-label"><span>Opening Transmission</span></div>
+
+    <blockquote>
+      Before there was form, there was vibration.<br>
+      Before there was light, there was the Word.<br>
+      And the Word did not merely travel through matter — it <em>became</em> matter.
+    </blockquote>
+    <blockquote>
+      What you are about to witness is not metaphor. It is physics.<br>
+      Sound touches sand on a plate and geometry blooms into being.<br>
+      Nature has been singing its structure into existence since the beginning — and you are part of that song.
+    </blockquote>
+
+    <div class="transmission-close">Charged by Inanna™</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CORE CONCEPT INTRO
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-intro">
+    <h2>The Moment Sound Becomes Visible</h2>
+
+    <p>In 1787, a German physicist named Ernst Chladni ran a violin bow across the edge of a metal plate dusted with sand. What happened next stopped natural philosophers in their tracks: the sand <strong>moved</strong>. Not randomly. It organized — with mathematical precision — into geometric patterns no one had arranged and no blueprint had designed.</p>
+
+    <p>The sand had simply gone where the vibration wasn't. The still points of the plate — the places where sound waves canceled each other out — became the architecture. And vibration did the building.</p>
+
+    <p>Two centuries later, we call this <strong>cymatics</strong>: from the Greek <em>kyma</em>, meaning wave. The study of visible sound. The science of vibration made form.</p>
+
+    <div class="callout">
+      <div class="callout-label">Core Concept</div>
+      <p>Sound creates form. Frequency organizes matter. The geometric patterns we see in nature — from snowflakes to galaxies — emerge from vibration. You are not separate from this process; your voice, your thoughts, and your emotions are constantly shaping matter.</p>
+    </div>
+
+    <h3>Learning Objectives</h3>
+    <ul class="obj-list">
+      <li>Understand what cymatics is and how sound creates visible geometric patterns</li>
+      <li>Recognize the connection between frequency and form in nature</li>
+      <li>Grasp the implications of water crystal research for understanding vibration's effects</li>
+      <li>Understand how your voice, thoughts, and emotions shape matter</li>
+      <li>Apply cymatic principles to frequency work and intentional creation</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       INTERACTIVE — CYMATIC VISUALIZER
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-interactive">
+    <h2>Interactive · Cymatic Pattern Explorer</h2>
+    <p>Drag the frequency slider to watch how different frequencies generate different geometric patterns — just as they do on a real Chladni plate. Notice how complexity increases with frequency, and how familiar sacred geometry appears at specific resonant points.</p>
+
+    <div id="cymatic-canvas-wrap">
+      <canvas id="cymatic-canvas" width="480" height="480"></canvas>
+    </div>
+
+    <div class="freq-slider-wrap">
+      <div class="freq-label">
+        <span id="freq-display">155 Hz</span>
+        <span id="pattern-complexity">Complexity: Low</span>
+      </div>
+      <input type="range" id="freq-slider" min="0" max="100" value="0" step="1">
+      <div class="freq-ticks">
+        <span>100 Hz</span>
+        <span>500 Hz</span>
+        <span>1500 Hz</span>
+        <span>3000 Hz</span>
+        <span>6500 Hz</span>
+      </div>
+    </div>
+    <div id="pattern-name">4-Segment Division</div>
+
+    <div style="margin-top: 28px;">
+      <h3>Reference Frequencies</h3>
+      <p style="font-size:0.85rem; margin-bottom:16px;">These are real Chladni resonant frequencies documented in physics demonstrations. Each creates a distinctive, reproducible pattern:</p>
+      <div id="freq-reference">
+        <div class="freq-pattern-row"><span class="freq-hz">155 Hz</span><span>Simple 4-segment — good first demonstration</span><span style="color:var(--accent2);font-size:0.75rem;">Low</span></div>
+        <div class="freq-pattern-row"><span class="freq-hz">334 Hz</span><span>Basic grid — clear nodal lines</span><span style="color:var(--accent2);font-size:0.75rem;">Low</span></div>
+        <div class="freq-pattern-row"><span class="freq-hz">467 Hz</span><span>Star pattern — aesthetic simple form</span><span style="color:var(--accent2);font-size:0.75rem;">Low-Med</span></div>
+        <div class="freq-pattern-row"><span class="freq-hz">801 Hz</span><span>Complex star — beautiful symmetry</span><span style="color:var(--accent2);font-size:0.75rem;">Medium</span></div>
+        <div class="freq-pattern-row"><span class="freq-hz">839 Hz</span><span>Bowtie — distinctive formation</span><span style="color:var(--accent2);font-size:0.75rem;">Medium</span></div>
+        <div class="freq-pattern-row"><span class="freq-hz">1452 Hz</span><span>Multi-ring — intricate detail</span><span style="color:var(--accent2);font-size:0.75rem;">Med-High</span></div>
+        <div class="freq-pattern-row"><span class="freq-hz">3154 Hz</span><span>Flower / mandala — sacred geometry</span><span style="color:var(--accent2);font-size:0.75rem;">High</span></div>
+        <div class="freq-pattern-row"><span class="freq-hz">4338 Hz</span><span>Diagonal squares — grid-like complexity</span><span style="color:var(--accent2);font-size:0.75rem;">High</span></div>
+        <div class="freq-pattern-row"><span class="freq-hz">6500 Hz</span><span>Ultra-complex — maximum intricacy</span><span style="color:var(--accent2);font-size:0.75rem;">Very High</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HOW CYMATICS WORKS
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-mechanics">
+    <h2>How Cymatics Works</h2>
+
+    <h3>The Chladni Plate Experiment</h3>
+    <p>The classic demonstration uses a metal plate, fine sand, and a tone generator. Here is the mechanism in exact detail:</p>
+
+    <p>A flat metal plate connects to a speaker or vibration source. Fine sand is spread evenly across its surface. A pure tone — a single frequency — passes through. The plate vibrates at that frequency. Some areas vibrate intensely (antinodes); others remain completely still (nodal lines). The sand bounces away from the moving areas and collects at the still points. A geometric pattern emerges — the visible map of the sound wave embedded in matter.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Observation</th><th>What It Tells Us</th></tr></thead>
+      <tbody>
+        <tr><td>Low frequencies → simple patterns</td><td>Fundamental forms emerge from basic vibrations</td></tr>
+        <tr><td>Higher frequencies → more complexity</td><td>Complexity arises from higher vibrational states</td></tr>
+        <tr><td>Same frequency always creates same pattern</td><td>Frequency-form relationship is consistent and reproducible</td></tr>
+        <tr><td>Patterns mirror forms found in nature</td><td>Natural forms may emerge from vibrational templates</td></tr>
+      </tbody>
+    </table>
+
+    <blockquote class="body-quote">
+      "In attempting to leave the cymatic phenomenon intact... we can derive from it the following spectrum with form at one end and movement at the other... and in the centre, acting in either direction, creating and forming everything, the wave field."
+      <cite>— Hans Jenny, Cymatics (1967)</cite>
+    </blockquote>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HISTORY
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-history">
+    <h2>A History of Seeing Sound</h2>
+
+    <table class="data-table">
+      <thead><tr><th>Year</th><th>Researcher</th><th>Contribution</th></tr></thead>
+      <tbody>
+        <tr><td>1680</td><td>Robert Hooke (England)</td><td>First observed nodal patterns on vibrating glass plates covered with flour — the forgotten predecessor</td></tr>
+        <tr><td>1787</td><td>Ernst Chladni (Germany)</td><td>Discovered sand-pattern geometry using violin bow on metal plates. Named "Father of Acoustics." Performed for Napoleon.</td></tr>
+        <tr><td>1815</td><td>Sophie Germain (France)</td><td>Developed the mathematical theory explaining Chladni patterns. Won the Paris Academy prize — three times.</td></tr>
+        <tr><td>1960s–70s</td><td>Hans Jenny (Switzerland)</td><td>Coined "cymatics." 14 years of systematic documentation. Published over 350 photographs. His books are available at archive.org.</td></tr>
+        <tr><td>Contemporary</td><td>Alexander Lauterwasser</td><td>"Water Sound Images" — extended cymatics into water medium, from sine waves to Beethoven</td></tr>
+        <tr><td>1990s–2000s</td><td>Masaru Emoto (Japan)</td><td>Photographed water crystals after exposure to words, music, and intentions. Results are contested — see note below.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <div class="callout-label">On Emoto's Research</div>
+      <p>Emoto's water crystal work is visually compelling and culturally significant, but it is <strong>not scientifically validated</strong>. His methodology has been criticized for small sample sizes and subjective crystal selection. A triple-blind study failed to replicate results under controlled conditions. What we <em>do</em> know rigorously: water structure is affected by electromagnetic fields; sound waves create measurable patterns in water; and water can hold temporary molecular structure. The principle deserves contemplation — hold the specific claims lightly.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CONCEPT EXPLORER
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-explorer">
+    <h2>Concept Explorer · Cymatics in Nature</h2>
+    <p>The patterns that appear on a Chladni plate do not stay in the laboratory. They are written into the fabric of the living world. Click each card to explore the connection.</p>
+
+    <div class="explorer-grid">
+      <div class="explorer-card" onclick="toggleExplorer('snow')">
+        <div class="explorer-card-icon">❄️</div>
+        <div class="explorer-card-title">Snowflakes</div>
+        <div class="explorer-card-hint">Six-fold symmetry — click to explore</div>
+      </div>
+      <div class="explorer-card" onclick="toggleExplorer('flower')">
+        <div class="explorer-card-icon">🌸</div>
+        <div class="explorer-card-title">Flowers</div>
+        <div class="explorer-card-hint">Fibonacci petals — click to explore</div>
+      </div>
+      <div class="explorer-card" onclick="toggleExplorer('shell')">
+        <div class="explorer-card-icon">🐚</div>
+        <div class="explorer-card-title">Shells</div>
+        <div class="explorer-card-hint">Golden spiral — click to explore</div>
+      </div>
+      <div class="explorer-card" onclick="toggleExplorer('galaxy')">
+        <div class="explorer-card-icon">🌌</div>
+        <div class="explorer-card-title">Galaxies</div>
+        <div class="explorer-card-hint">Cosmic spiral arms — click to explore</div>
+      </div>
+      <div class="explorer-card" onclick="toggleExplorer('dna')">
+        <div class="explorer-card-icon">🧬</div>
+        <div class="explorer-card-title">DNA</div>
+        <div class="explorer-card-hint">Fibonacci helix — click to explore</div>
+      </div>
+      <div class="explorer-card" onclick="toggleExplorer('sound')">
+        <div class="explorer-card-icon">🔊</div>
+        <div class="explorer-card-title">Your Voice</div>
+        <div class="explorer-card-hint">Living cymatics — click to explore</div>
+      </div>
+    </div>
+
+    <div class="explorer-expand" id="ex-snow">
+      <h4>Snowflakes &amp; Hexagonal Symmetry</h4>
+      <p>Every snowflake has six-fold symmetry — not because nature is decorating, but because the water molecule's bonding angle of 104.5° naturally creates hexagonal geometry when crystallizing. Hexagonal patterns appear consistently in cymatics at specific frequencies. The same mathematical constraint that governs wave interference governs ice formation.</p>
+      <p>The deeper question: is a snowflake a cymatic phenomenon — water crystallizing in resonance with its own molecular frequency?</p>
+      <span class="tag">Hexagonal geometry</span> <span class="tag">Water structure</span> <span class="tag">Molecular resonance</span>
+    </div>
+
+    <div class="explorer-expand" id="ex-flower">
+      <h4>Flowers &amp; the Fibonacci Sequence</h4>
+      <p>Flower petals occur in Fibonacci numbers: lilies have 3, buttercups have 5, delphiniums have 8, marigolds have 13. This is not coincidence — it reflects optimal packing, governed by the same mathematical ratios that appear in cymatic patterns. Sunflower seed spirals run in 34 and 55 — consecutive Fibonacci numbers. Pinecones: 8 and 13.</p>
+      <p>Nature optimizes using these ratios for maximum efficiency. Cymatics reveals that these ratios emerge naturally from vibration.</p>
+      <span class="tag">Fibonacci 3·5·8·13·21</span> <span class="tag">Phyllotaxis</span> <span class="tag">Golden ratio</span>
+    </div>
+
+    <div class="explorer-expand" id="ex-shell">
+      <h4>The Nautilus &amp; the Logarithmic Spiral</h4>
+      <p>The nautilus shell grows by adding chambers, each approximately 1.618 times larger than the last — the golden ratio. This logarithmic spiral appears in: spiral galaxies, hurricanes, the cochlea of your ear, seeds, ram horns, and cymatic water experiments at specific frequencies.</p>
+      <p>The same spiral at every scale. From the chambers of a shell to the arms of a galaxy: one pattern, written into the architecture of reality.</p>
+      <span class="tag">Golden ratio φ = 1.618</span> <span class="tag">Logarithmic spiral</span> <span class="tag">Scale invariance</span>
+    </div>
+
+    <div class="explorer-expand" id="ex-galaxy">
+      <h4>Spiral Galaxies &amp; Cosmic Cymatics</h4>
+      <p>Spiral galaxies like the Milky Way follow logarithmic spirals at approximately 12 degrees. The same mathematics governs snail shells. NASA's NGC 1566 "Spanish Dancer" galaxy closely matches Fibonacci proportions. Hurricanes form the same spiral from atmospheric pressure differentials.</p>
+      <p>Scale invariance: the same pattern at the scale of sand particles, shells, weather systems, and galaxies. As above, so below — this is not mysticism. It may be physics.</p>
+      <span class="tag">Logarithmic spiral ~12°</span> <span class="tag">NGC 1566</span> <span class="tag">As above so below</span>
+    </div>
+
+    <div class="explorer-expand" id="ex-dna">
+      <h4>DNA &amp; Fibonacci Structure</h4>
+      <p>The DNA double helix measures 34 ångströms long by 21 ångströms wide per full cycle. Both 34 and 21 are consecutive Fibonacci numbers. The helix turns at a golden angle. The molecule that carries all biological information is encoded in Fibonacci geometry — the same mathematics that emerges from vibrational field organization.</p>
+      <p>If morphogenetic fields guide biological development through resonance, the Fibonacci structure of DNA may not be arbitrary. It may be the molecular signature of that organizing vibration.</p>
+      <span class="tag">34 × 21 angstroms</span> <span class="tag">Fibonacci sequence</span> <span class="tag">Morphogenetic fields</span>
+    </div>
+
+    <div class="explorer-expand" id="ex-sound">
+      <h4>Your Voice as Cymatic Instrument</h4>
+      <p>When you speak, sing, or tone, you are creating standing waves in the air — and through the medium of your body. Your body is approximately 70% water. Sound waves create measurable patterns in water. The sustained tones of chanting, OM, or Gregorian music create standing waves in your tissues.</p>
+      <p>This is why these practices feel different from silence. You are not just making sound — you are reorganizing matter. You are doing cymatics on yourself from the inside out.</p>
+      <span class="tag">Standing waves</span> <span class="tag">70% water body</span> <span class="tag">Vocal toning</span>
+    </div>
+
+    <h3>The Profound Question</h3>
+    <p>Are these correspondences coincidence? Or is nature itself a cymatic phenomenon — biological development guided by <strong>morphogenetic fields</strong>, resonant frequencies that shape how matter organizes? Rupert Sheldrake's controversial but thought-provoking research suggests organisms tune into species-wide resonance patterns. Cymatics shows that organized form can emerge purely from frequency. No blueprint required. Just vibration.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SOUND, WATER & YOU
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-water">
+    <h2>Sound, Water, and You</h2>
+
+    <p>Your body is not solid. It is <strong>70% water</strong>. Your brain is 75% water. Your blood is 83% water. You are, in the most literal sense, a liquid medium — the ideal environment for cymatics.</p>
+
+    <p>If sound waves create measurable geometric patterns in a shallow dish of water on a speaker cone, what are the sounds around you doing to the water inside you? What is the music you listen to doing? What about the tone of voice you use when you talk to yourself?</p>
+
+    <table class="data-table">
+      <thead><tr><th>Stimulus (Emoto's Research)</th><th>Crystal Formation Observed</th></tr></thead>
+      <tbody>
+        <tr><td>Words: "Love," "Gratitude"</td><td>Beautiful, symmetric crystalline structures</td></tr>
+        <tr><td>Words: "Hate," "Fear"</td><td>Chaotic, fragmented formations</td></tr>
+        <tr><td>Classical music</td><td>Intricate, harmonious patterns</td></tr>
+        <tr><td>Heavy metal music</td><td>Disordered, jagged formations</td></tr>
+        <tr><td>Written words on container</td><td>Affected formation without direct sound</td></tr>
+        <tr><td>Prayer / positive intention</td><td>More ordered crystalline structures</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-label">What Rigorous Science Confirms</div>
+      <p>Emoto's specific claims remain unvalidated. But the broader principle has grounding: water structure <em>is</em> affected by electromagnetic fields; sound waves <em>do</em> create measurable patterns in water; and water <em>can</em> hold temporary molecular structure. Cymatics is not disputed. The mechanism of intention affecting water is where the controversy lives.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CYMATICS & QUANTUM FOUNDATIONS
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-quantum">
+    <h2>Cymatics &amp; the Quantum Picture</h2>
+    <p>Cymatics is where all the Quantum Foundations we have studied become visible. Every principle converges here — and you can see it with your eyes:</p>
+
+    <table class="data-table">
+      <thead><tr><th>Quantum Principle</th><th>Cymatic Connection</th></tr></thead>
+      <tbody>
+        <tr><td>Wave-Particle Duality</td><td>Vibration manifests as both wave (sound) and particle arrangement (pattern) — duality made visible</td></tr>
+        <tr><td>Superposition</td><td>All possible patterns exist until a specific frequency "collapses" the form into being</td></tr>
+        <tr><td>Entanglement</td><td>Cymatic patterns may propagate through the connected field instantaneously across space</td></tr>
+        <tr><td>Zero Point Field</td><td>The sea of energy from which vibration draws matter into organized form</td></tr>
+        <tr><td>Coherence</td><td>Coherent frequencies create coherent patterns; incoherence creates chaos</td></tr>
+        <tr><td>Resonance</td><td>Matching frequencies create maximum pattern formation and energy transfer</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <div class="callout-label">The Visible Proof</div>
+      <p>Cymatics is the visual demonstration that frequency creates form. Every pattern on a Chladni plate is proof that vibration organizes matter. And you are not separate from this process. <strong>You are a cymatic being</strong>, shaped by vibration and creating vibration with every breath, every word, every thought that carries charge.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       QUICK REFERENCE ACCORDION
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-reference">
+    <h2>Quick Reference · Key Terms</h2>
+    <p>Expand each term to see its full definition and context in the cymatic framework.</p>
+
+    <div class="accordion-item" id="acc-cymatics">
+      <button class="accordion-trigger" onclick="toggleAccordion('cymatics')">
+        <span class="accordion-trigger-title">Cymatics</span>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p><strong>From Greek "kyma" (wave).</strong> The study of visible sound and vibration — how wave phenomena create visible patterns in matter. Coined by Swiss scientist Hans Jenny in the 1960s, based on Ernst Chladni's 1787 discovery. Cymatics demonstrates that sound is not merely an auditory phenomenon but a formative force that organizes physical matter into geometry.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item" id="acc-chladni">
+      <button class="accordion-trigger" onclick="toggleAccordion('chladni')">
+        <span class="accordion-trigger-title">Chladni Patterns</span>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p><strong>Named for Ernst Chladni (1756–1827).</strong> Geometric patterns formed when a vibrating surface — typically a metal plate — causes particles like sand or salt to collect at nodal lines. The sand migrates away from areas of maximum vibration and accumulates where the surface is still, revealing the wave pattern as visible geometry. Same frequency always produces same pattern — completely reproducible.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item" id="acc-nodal">
+      <button class="accordion-trigger" onclick="toggleAccordion('nodal')">
+        <span class="accordion-trigger-title">Nodal Lines</span>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p><strong>The still points of a vibrating surface.</strong> Lines or points where wave interference creates zero net displacement — where the medium is not moving. In cymatics, particles collect at nodal lines to reveal the wave pattern. In music, nodal lines create harmonics. In your body, they may define energetic boundaries where different frequencies meet and cancel.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item" id="acc-standing">
+      <button class="accordion-trigger" onclick="toggleAccordion('standing')">
+        <span class="accordion-trigger-title">Standing Wave</span>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p><strong>A wave pattern that appears stationary.</strong> Created when two waves of equal frequency and amplitude travel in opposite directions and interfere with each other. The result is a wave that appears to stand still — with fixed nodes (still points) and antinodes (maximum vibration). All cymatic patterns are standing wave phenomena. Your body creates standing waves when you tone or chant.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item" id="acc-morpho">
+      <button class="accordion-trigger" onclick="toggleAccordion('morpho')">
+        <span class="accordion-trigger-title">Morphogenetic Field</span>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p><strong>Proposed by biologist Rupert Sheldrake.</strong> A theoretical field that guides biological development through resonance patterns — a kind of blueprint that organisms tune into rather than carry in their DNA. Controversial in mainstream science but compelling: if cymatics demonstrates that vibration creates form without a physical blueprint, morphogenetic fields offer a mechanism by which resonance could guide biological architecture.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item" id="acc-memory">
+      <button class="accordion-trigger" onclick="toggleAccordion('memory')">
+        <span class="accordion-trigger-title">Water Memory</span>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p><strong>The hypothesis that water retains structural information.</strong> Associated with French immunologist Jacques Benveniste and popularized by Masaru Emoto. The idea that water's molecular hydrogen-bond network can temporarily retain the "imprint" of substances or vibrations it has been exposed to. Not scientifically validated under controlled conditions. However: water <em>does</em> form temporary structures; electromagnetic fields <em>do</em> affect water structure; and cymatics proves sound creates patterns in water.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item" id="acc-sono">
+      <button class="accordion-trigger" onclick="toggleAccordion('sono')">
+        <span class="accordion-trigger-title">Sonoluminescence</span>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p><strong>Light produced from sound waves in water.</strong> When sound waves create tiny bubbles in liquid that collapse violently (cavitation), the implosion can produce a flash of light — temperatures briefly reaching those found on the surface of the sun. This is peer-reviewed, reproducible physics. Sound creating light. Vibration generating energy dense enough to emit photons. Evidence that sound's power to affect matter extends far beyond pattern formation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PRACTICAL APPLICATION
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-application">
+    <h2>Practical Application · This Week</h2>
+    <p>Cymatics is not a concept to understand — it is a principle to <em>live</em>. Here are five concrete practices that bring cymatic awareness into your daily experience:</p>
+
+    <div class="app-item">
+      <div class="app-num">01</div>
+      <div class="app-content">
+        <h4>Audit Your Sound Environment</h4>
+        <p>The music playing in your home, the tone of conversations around you, the sounds of traffic or nature — all are cymatically affecting matter including your body. This week, actively choose your sound environment. Introduce 432 Hz music, nature recordings, or harmonious compositions. Notice what shifts.</p>
+      </div>
+    </div>
+
+    <div class="app-item">
+      <div class="app-num">02</div>
+      <div class="app-content">
+        <h4>Voice Awareness Practice</h4>
+        <p>Place one hand on your chest. Speak a negative self-statement in your normal tone. Feel the resonance. Then speak a statement of genuine appreciation. The difference you feel is not psychological — it is the difference in standing wave patterns in your tissue. Your words are physics, not just psychology.</p>
+      </div>
+    </div>
+
+    <div class="app-item">
+      <div class="app-num">03</div>
+      <div class="app-content">
+        <h4>Understand Water Structuring as Applied Cymatics</h4>
+        <p>When you charge water with tensor rings or frequency devices, you are doing cymatics: introducing coherent frequencies that organize water's molecular structure. Structured water is cymatically organized water. This gives a physical mechanism to practices that might otherwise feel purely metaphysical.</p>
+      </div>
+    </div>
+
+    <div class="app-item">
+      <div class="app-num">04</div>
+      <div class="app-content">
+        <h4>See Sacred Geometry as Frozen Cymatics</h4>
+        <p>The Flower of Life, the Seed of Life, the torus — these patterns appear in cymatic experiments at specific frequencies. They are not arbitrary spiritual symbols. They are natural forms that vibration creates. When you work with sacred geometry, you are encoding cymatic patterns with intent.</p>
+      </div>
+    </div>
+
+    <div class="app-item">
+      <div class="app-num">05</div>
+      <div class="app-content">
+        <h4>Practice Toning or OM Chanting</h4>
+        <p>Find a quiet space. Begin humming a comfortable tone. Sustain it for two minutes. Feel where the vibration resonates in your body. Explore different pitches — notice how each creates sensation in different areas. You are creating standing waves in your tissues. This is cymatic medicine. You are restructuring yourself from the inside.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       REFLECTION JOURNAL
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-journal">
+    <h2>Reflection Journal</h2>
+    <p>These prompts are from your student workbook. Your responses save automatically and can be exported as a backup.</p>
+
+    <div class="journal-prompt">
+      <span class="journal-prompt-label">Prompt 1 of 3</span>
+      <p>What sounds, music, or voices do you notice affecting your state most powerfully? Reflect on how cymatic awareness might explain what you've been experiencing — and what you want to change.</p>
+      <textarea id="journal-1" placeholder="Begin writing here... your thoughts save automatically." oninput="onInput()"></textarea>
+    </div>
+
+    <div class="journal-prompt">
+      <span class="journal-prompt-label">Prompt 2 of 3</span>
+      <p>How does understanding cymatics change how you think about your own voice and words — to yourself and to others? What would shift in your daily communication if you truly believed your voice was shaping matter?</p>
+      <textarea id="journal-2" placeholder="Begin writing here... your thoughts save automatically." oninput="onInput()"></textarea>
+    </div>
+
+    <div class="journal-prompt">
+      <span class="journal-prompt-label">Prompt 3 of 3</span>
+      <p>What cymatic patterns have you noticed in nature, in your own body, or in your life? How might you apply cymatic awareness to your frequency work or daily practice going forward?</p>
+      <textarea id="journal-3" placeholder="Begin writing here... your thoughts save automatically." oninput="onInput()"></textarea>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       KEY TAKEAWAYS
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-takeaways">
+    <h2>Key Takeaways</h2>
+    <ul class="takeaways-list">
+      <li><span class="takeaway-check">◆</span>Cymatics is the study of visible sound — vibration made visible through geometric patterns in matter.</li>
+      <li><span class="takeaway-check">◆</span>When frequency passes through matter, it organizes that matter into specific, reproducible geometric forms.</li>
+      <li><span class="takeaway-check">◆</span>Different frequencies create different patterns; the frequency-form relationship is consistent and predictable.</li>
+      <li><span class="takeaway-check">◆</span>Natural forms — snowflakes, flowers, shells, galaxies — mirror cymatic patterns. Vibration may shape biology itself.</li>
+      <li><span class="takeaway-check">◆</span>Your body is 70% water. The frequencies you expose yourself to may be shaping your molecular structure.</li>
+      <li><span class="takeaway-check">◆</span>Your voice is a cymatic instrument, creating standing waves that organize your internal tissues.</li>
+      <li><span class="takeaway-check">◆</span>Sacred geometry patterns appear in cymatics — they are not arbitrary symbols but forms that vibration naturally generates.</li>
+      <li><span class="takeaway-check">◆</span>Sound creates form. You are a cymatic being, both shaped by vibration and creating vibration with every breath.</li>
+    </ul>
+
+    <blockquote class="body-quote">
+      "In the beginning was the Word." Cymatics shows us why this might be literally true. Sound precedes form. Vibration creates structure. The universe may be a vast cymatic phenomenon — frequency made manifest. And you are both creation and creator in this vibrational dance.
+      <cite>— Q10 Closing</cite>
+    </blockquote>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       GO DEEPER
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-resources">
+    <h2>Go Deeper · Resources</h2>
+
+    <ul class="resource-list">
+      <li>
+        <div class="resource-icon">📖</div>
+        <div class="resource-content">
+          <div class="resource-title">Hans Jenny — Cymatics: A Study of Wave Phenomena &amp; Vibration <span class="resource-tag">Free</span></div>
+          <div class="resource-desc">Jenny's complete work with 350+ photographs of cymatic experiments. Available at archive.org/details/hans-jenny-cymatics — the primary source for everything in this lesson.</div>
+        </div>
+      </li>
+      <li>
+        <div class="resource-icon">🎬</div>
+        <div class="resource-content">
+          <div class="resource-title">Nigel Stanford — CYMATICS (2014 Music Video)</div>
+          <div class="resource-desc">The most visually stunning modern demonstration of cymatics. Features Chladni plates, ferrofluid, Ruben's tube, and water speakers. The music was composed after the cymatic experiments were filmed. Available on YouTube. Reference/inspiration — contact for licensing for commercial use.</div>
+        </div>
+      </li>
+      <li>
+        <div class="resource-icon">📸</div>
+        <div class="resource-content">
+          <div class="resource-title">Alexander Lauterwasser — Water Sound Images (2006)</div>
+          <div class="resource-desc">Extends Jenny's work into water as the cymatic medium — from sine waves to Beethoven's compositions. Photographs water at the threshold between order and chaos.</div>
+        </div>
+      </li>
+      <li>
+        <div class="resource-icon">🌐</div>
+        <div class="resource-content">
+          <div class="resource-title">tonegenerator.net <span class="resource-tag">Free Tool</span></div>
+          <div class="resource-desc">Online tone generator for exploring specific frequencies. Use with headphones or speaker. Reference the Chladni frequency table (155, 334, 467, 801 Hz...) and feel what each does in your body.</div>
+        </div>
+      </li>
+      <li>
+        <div class="resource-icon">🛸</div>
+        <div class="resource-content">
+          <div class="resource-title">NASA Image Gallery — Spiral Galaxies <span class="resource-tag">Public Domain</span></div>
+          <div class="resource-desc">Search images.nasa.gov for M51 Whirlpool Galaxy, NGC 1566 Spanish Dancer, Andromeda spiral arms. All NASA images are public domain. Visual proof of cymatic patterns at cosmic scale.</div>
+        </div>
+      </li>
+      <li>
+        <div class="resource-icon">🔗</div>
+        <div class="resource-content">
+          <div class="resource-title">Related TFA Lessons</div>
+          <div class="resource-desc">S1–S5: Sound Healing (cymatic principles for therapeutic benefit) · W1–W5: Water Structuring (cymatics applied to water) · G1–G5: Sacred Geometry (geometry that emerges from vibration) · V1–V3: Voice Work (your voice as cymatic instrument)</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       WORKSHOP SLOT
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-workshop">
+    <h2>Live Workshop</h2>
+    <div class="workshop-slot">
+      <div class="workshop-icon">📡</div>
+      <h3>Live Workshop on Cymatics Coming Soon</h3>
+      <p>A deep-dive live session on this topic is being scheduled. Recordings will appear here when available. Check your TFA student portal for upcoming dates.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       COMPLETION
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-completion">
+    <div class="completion-wrap">
+      <h2>Lesson Complete</h2>
+      <p style="margin-bottom:28px; font-size:0.9rem;">Mark this lesson complete when you have moved through all sections and submitted your reflections.</p>
+
+      <label class="completion-checkbox-wrap" id="completion-label" onclick="toggleCompletion()">
+        <input type="checkbox" id="completion-cb">
+        <div class="cb-visual" id="cb-visual">—</div>
+        <span class="cb-label" id="cb-label">Mark Q10 Complete — Claim +10 XP</span>
+      </label>
+
+      <div class="xp-award" id="xp-award">⬡ +10 XP Awarded — You Are a Cymatic Being ⬡</div>
+
+      <p style="font-size:0.8rem; color:var(--text-dim); margin-top:16px; font-style:italic;">"Sound creates form. Speak your world into being."</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       UP NEXT
+  ══════════════════════════════════════════════ -->
+  <div class="section" id="s-upnext">
+    <h2>Up Next</h2>
+    <p style="margin-bottom:20px; font-size:0.88rem; color:var(--text-dim);">You have completed the Quantum Foundations module — the visible proof that frequency creates form. Now we go deeper into the specific frequencies that shape consciousness and matter.</p>
+    <div class="up-next-card">
+      <div class="up-next-arrow">→</div>
+      <div>
+        <div class="up-next-meta">NEXT IN SEQUENCE · FREQUENCY FUNDAMENTALS</div>
+        <div class="up-next-title">F1: The Frequency Spectrum — A Map of Vibration</div>
+        <div class="up-next-desc">Now that you've seen how frequency creates form, explore the full spectrum of frequencies that shape consciousness, biology, and reality. The F Series begins here.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Save Bar -->
+<div id="save-bar">
+  <div id="save-status">Auto-save enabled · Q10</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <label class="import-label" for="import-file" title="Import backup JSON">⬆ Import</label>
+    <input type="file" id="import-file" accept=".json" onchange="importData(event)">
+    <button class="save-btn" onclick="saveData()">⬡ Save Progress</button>
+    <button class="save-btn primary" onclick="exportData()">↓ Export Backup</button>
+  </div>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────
+   CYMATIC CANVAS VISUALIZER
+───────────────────────────────────────────── */
+const canvas = document.getElementById('cymatic-canvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+const CX = W/2, CY = H/2;
+
+const freqSlider = document.getElementById('freq-slider');
+const freqDisplay = document.getElementById('freq-display');
+const patternName = document.getElementById('pattern-name');
+const patternComplexity = document.getElementById('pattern-complexity');
+
+// Map 0-100 to frequency and pattern params
+const patternData = [
+  { hz: 155,  name: '4-Segment Division',      complexity: 'Low',      n: 2, m: 2, rings: 1 },
+  { hz: 200,  name: 'Simple Cross',             complexity: 'Low',      n: 3, m: 1, rings: 1 },
+  { hz: 334,  name: 'Basic Grid',               complexity: 'Low',      n: 2, m: 3, rings: 2 },
+  { hz: 467,  name: 'Star Pattern',             complexity: 'Low-Med',  n: 4, m: 2, rings: 2 },
+  { hz: 600,  name: 'Double Star',              complexity: 'Medium',   n: 5, m: 2, rings: 2 },
+  { hz: 801,  name: 'Complex Star',             complexity: 'Medium',   n: 5, m: 3, rings: 3 },
+  { hz: 839,  name: 'Bowtie Formation',         complexity: 'Medium',   n: 4, m: 4, rings: 3 },
+  { hz: 1000, name: 'Radial Mandala',           complexity: 'Med-High', n: 6, m: 3, rings: 3 },
+  { hz: 1146, name: 'Hexagonal Web',            complexity: 'Med-High', n: 6, m: 4, rings: 4 },
+  { hz: 1452, name: 'Multi-Ring Star',          complexity: 'Med-High', n: 7, m: 4, rings: 4 },
+  { hz: 1560, name: 'Unusual Formation',        complexity: 'Med-High', n: 8, m: 3, rings: 4 },
+  { hz: 2000, name: 'Complex Web',              complexity: 'High',     n: 8, m: 5, rings: 5 },
+  { hz: 2500, name: 'Intricate Mandala',        complexity: 'High',     n: 9, m: 5, rings: 5 },
+  { hz: 3154, name: 'Flower / Sacred Geometry', complexity: 'High',     n: 10, m: 6, rings: 6 },
+  { hz: 3406, name: 'Radial-to-Circular',       complexity: 'High',     n: 11, m: 5, rings: 6 },
+  { hz: 4000, name: 'Dense Star Web',           complexity: 'High',     n: 12, m: 6, rings: 7 },
+  { hz: 4338, name: 'Diagonal Squares',         complexity: 'High',     n: 10, m: 8, rings: 7 },
+  { hz: 4754, name: 'Return to Simplicity',     complexity: 'Med-High', n: 8, m: 7, rings: 6 },
+  { hz: 5500, name: 'Ultra-Complex Web',        complexity: 'Very High', n: 13, m: 8, rings: 8 },
+  { hz: 6500, name: 'Maximum Intricacy',        complexity: 'Very High', n: 14, m: 9, rings: 9 },
+];
+
+let animFrame = null;
+let animT = 0;
+
+function drawCymatic(t) {
+  const val = parseInt(freqSlider.value);
+  const idx = Math.floor((val / 100) * (patternData.length - 1));
+  const pd = patternData[idx];
+
+  // Update UI
+  freqDisplay.textContent = pd.hz + ' Hz';
+  patternName.textContent = pd.name;
+  patternComplexity.textContent = 'Complexity: ' + pd.complexity;
+
+  // Update slider fill
+  freqSlider.style.setProperty('--pct', val + '%');
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  const bg = ctx.createRadialGradient(CX, CY, 0, CX, CY, W*0.6);
+  bg.addColorStop(0, 'rgba(10,22,40,0.98)');
+  bg.addColorStop(1, 'rgba(4,10,20,0.99)');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  const n = pd.n, m = pd.m, rings = pd.rings;
+  const R = Math.min(W, H) * 0.44;
+  const breathe = 1 + 0.008 * Math.sin(t * 0.5);
+
+  ctx.save();
+  ctx.translate(CX, CY);
+
+  // Draw cymatic-style Chladni nodal lines
+  // Method: draw the standing wave interference pattern using Bessel-like approximation
+  const resolution = 280;
+  const cellSize = (W * 0.88) / resolution;
+
+  // Particle field simulation
+  const pts = [];
+  for (let xi = 0; xi <= resolution; xi++) {
+    for (let yi = 0; yi <= resolution; yi++) {
+      const x = (xi / resolution - 0.5) * W * 0.88;
+      const y = (yi / resolution - 0.5) * H * 0.88;
+      const r = Math.sqrt(x*x + y*y);
+      const angle = Math.atan2(y, x);
+
+      if (r > R * 1.02) continue;
+
+      // Chladni equation: Z = cos(n*pi*x/L) * cos(m*pi*y/L)
+      // Use polar adapted version for circular plates
+      const norm_r = r / R;
+      const z = Math.cos(n * Math.PI * norm_r) * Math.cos(m * angle + t * 0.1) +
+                 Math.cos(m * Math.PI * norm_r) * Math.cos(n * angle + t * 0.1);
+
+      // Particles collect near z ≈ 0 (nodal lines)
+      const nodeDist = Math.abs(z);
+      if (nodeDist < 0.18) {
+        pts.push({ x, y, intensity: 1 - nodeDist / 0.18 });
+      }
+    }
+  }
+
+  // Draw particles
+  pts.forEach(p => {
+    const alpha = p.intensity * 0.85;
+    const sz = p.intensity * 1.6 * breathe;
+    const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, sz);
+    grd.addColorStop(0, `rgba(74,158,221,${alpha})`);
+    grd.addColorStop(1, `rgba(74,158,221,0)`);
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, sz, 0, Math.PI * 2);
+    ctx.fillStyle = grd;
+    ctx.fill();
+  });
+
+  // Subtle glow on center
+  const glow = ctx.createRadialGradient(0, 0, 0, 0, 0, R * 0.25);
+  glow.addColorStop(0, 'rgba(201,168,76,0.06)');
+  glow.addColorStop(1, 'transparent');
+  ctx.fillStyle = glow;
+  ctx.beginPath();
+  ctx.arc(0, 0, R * 0.25, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Outer ring
+  ctx.beginPath();
+  ctx.arc(0, 0, R, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(74,158,221,0.15)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+function animateCanvas() {
+  animT += 0.015;
+  drawCymatic(animT);
+  animFrame = requestAnimationFrame(animateCanvas);
+}
+
+freqSlider.addEventListener('input', () => {
+  // just let the animation loop handle it
+});
+
+animateCanvas();
+
+/* ─────────────────────────────────────────────
+   CONCEPT EXPLORER
+───────────────────────────────────────────── */
+const explorerMap = { snow: 'ex-snow', flower: 'ex-flower', shell: 'ex-shell', galaxy: 'ex-galaxy', dna: 'ex-dna', sound: 'ex-sound' };
+let activeExplorer = null;
+
+function toggleExplorer(key) {
+  const cards = document.querySelectorAll('.explorer-card');
+  const expands = document.querySelectorAll('.explorer-expand');
+
+  if (activeExplorer === key) {
+    // Close
+    expands.forEach(e => e.classList.remove('visible'));
+    cards.forEach(c => c.classList.remove('active'));
+    activeExplorer = null;
+    return;
+  }
+
+  expands.forEach(e => e.classList.remove('visible'));
+  cards.forEach(c => c.classList.remove('active'));
+
+  const targetId = explorerMap[key];
+  const targetEl = document.getElementById(targetId);
+  if (targetEl) {
+    targetEl.classList.add('visible');
+    // Mark card active
+    const cardIndex = Object.keys(explorerMap).indexOf(key);
+    if (cards[cardIndex]) cards[cardIndex].classList.add('active');
+  }
+  activeExplorer = key;
+}
+
+/* ─────────────────────────────────────────────
+   ACCORDION
+───────────────────────────────────────────── */
+function toggleAccordion(id) {
+  const item = document.getElementById('acc-' + id);
+  if (!item) return;
+  item.classList.toggle('open');
+}
+
+/* ─────────────────────────────────────────────
+   PROGRESS BAR
+───────────────────────────────────────────── */
+function updateProgress() {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docH > 0 ? (scrollTop / docH) * 100 : 0;
+  document.getElementById('progress-bar').style.width = Math.min(pct, 100) + '%';
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+
+/* ─────────────────────────────────────────────
+   COMPLETION & XP
+───────────────────────────────────────────── */
+function toggleCompletion() {
+  const label = document.getElementById('completion-label');
+  const cbVisual = document.getElementById('cb-visual');
+  const cbLabel = document.getElementById('cb-label');
+  const xpAward = document.getElementById('xp-award');
+
+  const isNowDone = !label.classList.contains('done');
+
+  if (isNowDone) {
+    label.classList.add('done');
+    cbVisual.textContent = '✓';
+    cbLabel.textContent = 'Q10 Complete — You Are a Cymatic Being';
+    xpAward.classList.add('visible');
+    spawnParticles();
+    document.getElementById('progress-bar').style.width = '100%';
+  } else {
+    label.classList.remove('done');
+    cbVisual.textContent = '—';
+    cbLabel.textContent = 'Mark Q10 Complete — Claim +10 XP';
+    xpAward.classList.remove('visible');
+  }
+
+  saveData();
+}
+
+function spawnParticles() {
+  const container = document.getElementById('particles');
+  container.innerHTML = '';
+  const colors = ['#4a9edd', '#c9a84c', '#7abce8', '#f0ede6', '#2ab8a0'];
+
+  for (let i = 0; i < 60; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      top: ${-10 + Math.random() * 30}%;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      width: ${4 + Math.random() * 6}px;
+      height: ${4 + Math.random() * 6}px;
+      animation-duration: ${1.5 + Math.random() * 2}s;
+      animation-delay: ${Math.random() * 0.8}s;
+    `;
+    container.appendChild(p);
+  }
+
+  setTimeout(() => { container.innerHTML = ''; }, 4000);
+}
+
+/* ─────────────────────────────────────────────
+   STORAGE — localStorage key: tfa_lesson_Q10
+───────────────────────────────────────────── */
+const STORAGE_KEY = 'tfa_lesson_Q10';
+let saveTimer = null;
+let isDirty = false;
+
+function gatherData() {
+  return {
+    version: 1,
+    lessonCode: 'Q10',
+    savedAt: new Date().toISOString(),
+    journal: {
+      j1: document.getElementById('journal-1').value,
+      j2: document.getElementById('journal-2').value,
+      j3: document.getElementById('journal-3').value,
+    },
+    completion: document.getElementById('completion-label').classList.contains('done'),
+    freqSlider: freqSlider.value,
+  };
+}
+
+function applyData(data) {
+  if (!data) return;
+  if (data.journal) {
+    if (data.journal.j1) document.getElementById('journal-1').value = data.journal.j1;
+    if (data.journal.j2) document.getElementById('journal-2').value = data.journal.j2;
+    if (data.journal.j3) document.getElementById('journal-3').value = data.journal.j3;
+  }
+  if (data.completion) {
+    const label = document.getElementById('completion-label');
+    if (!label.classList.contains('done')) {
+      label.classList.add('done');
+      document.getElementById('cb-visual').textContent = '✓';
+      document.getElementById('cb-label').textContent = 'Q10 Complete — You Are a Cymatic Being';
+      document.getElementById('xp-award').classList.add('visible');
+    }
+  }
+  if (data.freqSlider !== undefined) {
+    freqSlider.value = data.freqSlider;
+  }
+}
+
+function saveData() {
+  try {
+    const data = gatherData();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    setSaveStatus('Progress saved · ' + new Date().toLocaleTimeString(), true);
+    isDirty = false;
+  } catch (e) {
+    setSaveStatus('Save failed — storage may be full', false);
+  }
+}
+
+function setSaveStatus(msg, ok) {
+  const el = document.getElementById('save-status');
+  el.textContent = msg;
+  el.classList.toggle('saved', ok);
+}
+
+function onInput() {
+  isDirty = true;
+  setSaveStatus('Unsaved changes...', false);
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveData, 90000); // 90s auto-save
+}
+
+function exportData() {
+  const data = gatherData();
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'TFA_Q10_Cymatics_backup_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (data.lessonCode !== 'Q10') {
+        setSaveStatus('Wrong lesson file — expected Q10', false);
+        return;
+      }
+      applyData(data);
+      saveData();
+      setSaveStatus('Backup restored successfully', true);
+    } catch (err) {
+      setSaveStatus('Import failed — invalid file', false);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// Auto-save every 90s
+setInterval(() => {
+  if (isDirty) saveData();
+}, 90000);
+
+// Load on start
+window.addEventListener('DOMContentLoaded', () => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const data = JSON.parse(raw);
+      applyData(data);
+      setSaveStatus('Restored · Last saved ' + new Date(data.savedAt).toLocaleString(), true);
+    } else {
+      setSaveStatus('New session · Auto-save enabled', false);
+    }
+  } catch (e) {
+    setSaveStatus('Auto-save enabled', false);
+  }
+});
+
+// Also save on textarea blur
+['journal-1','journal-2','journal-3'].forEach(id => {
+  document.getElementById(id).addEventListener('blur', () => {
+    if (isDirty) saveData();
+  });
+});
+</script>
+</body>
+</html>
