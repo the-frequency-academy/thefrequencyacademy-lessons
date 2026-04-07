@@ -1,1 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N12: Numerology in Nature — The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1a3a;--accent:#c9a84c;--accent2:#dfc472;
+  --text:#f0ede6;--dim:rgba(240,237,230,0.60);
+  --card:rgba(0,0,0,0.28);--border:rgba(201,168,76,0.14);--glow:rgba(201,168,76,0.20);
+  --r:12px;--rl:18px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse at 15% 10%,rgba(201,168,76,0.09) 0%,transparent 55%),radial-gradient(ellipse at 85% 90%,rgba(13,26,58,0.8) 0%,transparent 50%);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 8% 12%,rgba(255,255,255,.65) 0%,transparent 100%),radial-gradient(1px 1px at 23% 39%,rgba(255,255,255,.45) 0%,transparent 100%),radial-gradient(1px 1px at 45% 7%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 67% 26%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 82% 15%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 35% 64%,rgba(201,168,76,.38) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 87% 37%,rgba(201,168,76,.26) 0%,transparent 100%)}
+#prog-wrap{position:fixed;top:0;left:0;right:0;z-index:200;height:3px;background:rgba(5,10,28,.9)}
+#prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease;box-shadow:0 0 10px var(--glow)}
+.top-nav{position:fixed;top:3px;left:0;right:0;z-index:199;display:flex;align-items:center;justify-content:space-between;padding:13px 32px;background:rgba(8,14,42,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1)}
+.nav-brand{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--accent);opacity:.8}
+.nav-crumb{font-size:10px;color:var(--dim);letter-spacing:2px}
+.nav-xp{font-family:'Cinzel',serif;font-size:11px;color:var(--accent);letter-spacing:2px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 14px}
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:88px 24px 140px}
+.ls{margin-bottom:68px;opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.ls.visible{opacity:1;transform:translateY(0)}
+.hero{text-align:center;padding:76px 0 56px}
+.hero-eye{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.hero-code{font-family:'Cinzel',serif;font-size:88px;font-weight:900;line-height:1;color:transparent;background:linear-gradient(145deg,var(--accent2) 0%,var(--accent) 55%,rgba(201,168,76,.3) 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,168,76,.2));margin-bottom:10px}
+.hero-title{font-family:'Cinzel',serif;font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:8px}
+.hero-sub{font-size:15px;font-weight:300;font-style:italic;color:var(--dim);letter-spacing:2px;margin-bottom:36px}
+.hero-rule{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 36px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.22);border-radius:30px;padding:7px 22px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent)}
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.sh-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.6;white-space:nowrap}
+.sh-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--glow),transparent)}
+.st{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.tx{background:linear-gradient(135deg,rgba(0,0,0,.36),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--accent);border-radius:var(--r);padding:38px 44px;position:relative;overflow:hidden}
+.tx::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.tx-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.tx p{font-size:16px;line-height:1.95;color:rgba(240,237,230,.78);font-style:italic;font-weight:300}
+.tx p+p{margin-top:14px}
+.tx strong{color:var(--accent2);font-style:normal;font-weight:600}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 34px;margin-bottom:18px}
+.card p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.card p:last-child{margin-bottom:0}
+.callout{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:24px 32px;margin:22px 0;text-align:center}
+.callout p{font-family:'Cinzel',serif;font-size:14px;line-height:1.8;color:var(--accent2);letter-spacing:.5px}
+.defs-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.defs-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 18px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.defs-t th:last-child{border-right:none}
+.defs-t td{background:rgba(0,0,0,.2);padding:13px 18px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.65}
+.defs-t td:last-child{border-right:none}
+.defs-t td:first-child{color:var(--accent);font-style:italic;font-weight:500;white-space:nowrap}
 
+/* ── FIBONACCI TABLE ── */
+.fib-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.fib-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:11px 14px;text-align:center;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.fib-t th:last-child{border-right:none}
+.fib-t td{background:rgba(0,0,0,.2);padding:11px 14px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);text-align:center;line-height:1.5}
+.fib-t td:last-child{border-right:none}
+.fib-t td:nth-child(2){color:var(--accent2);font-family:'Cinzel',serif;font-size:16px;font-weight:700}
+.fib-t td:nth-child(4){color:var(--accent);font-weight:600}
+.fib-t td:nth-child(5){color:var(--dim);font-style:italic}
+.fib-t tr.tesla td{background:rgba(201,168,76,.07)}
+
+/* ── SACRED NUMBERS EXPLORER ── */
+.sn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.sn-card{border-radius:var(--r);border:1px solid rgba(201,168,76,.1);background:var(--card);cursor:pointer;transition:all .25s;overflow:hidden}
+.sn-card:hover,.sn-card.open{border-color:rgba(201,168,76,.35);background:rgba(0,0,0,.36)}
+.sn-hd{padding:18px 16px;text-align:center}
+.sn-num{font-family:'Cinzel',serif;font-size:36px;font-weight:900;color:transparent;background:linear-gradient(135deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;line-height:1;margin-bottom:4px}
+.sn-name{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.7;text-transform:uppercase}
+.sn-body{display:none;border-top:1px solid rgba(201,168,76,.08);padding:14px 16px;font-size:12px;color:var(--dim);line-height:1.7;text-align:left}
+.sn-card.open .sn-body{display:block}
+
+/* ── ORBITAL TABLE ── */
+.orb-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.orb-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 14px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.orb-t th:last-child{border-right:none}
+.orb-t td{background:rgba(0,0,0,.2);padding:12px 14px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.6;vertical-align:top}
+.orb-t td:last-child{border-right:none;color:var(--accent2);font-family:'Cinzel',serif;font-size:11px;letter-spacing:.5px}
+.orb-t td:first-child{color:var(--accent);font-weight:600;white-space:nowrap}
+
+/* ── INTERACTIVE: FIBONACCI EXPLORER ── */
+.fib-explorer{background:rgba(5,10,28,.6);border:1px solid rgba(201,168,76,.18);border-radius:var(--rl);overflow:hidden;margin:24px 0}
+.fib-hd{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.12);padding:16px 26px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.fib-hd-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--accent)}
+.fib-tabs{display:flex;gap:8px}
+.ftab{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:7px 14px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;background:transparent;border-color:rgba(201,168,76,.2);color:var(--dim)}
+.ftab.active{background:rgba(201,168,76,.18);border-color:var(--accent);color:var(--accent)}
+.fib-body{padding:28px}
+.fpanel{display:none}.fpanel.active{display:block}
+
+/* Sequence builder */
+.seq-display{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;min-height:60px;align-items:center}
+.seq-num{font-family:'Cinzel',serif;font-size:18px;color:var(--accent2);background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:8px 14px;transition:all .3s;position:relative}
+.seq-num.new{animation:popIn .4s ease}
+.seq-num.tesla{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.1);color:var(--accent)}
+@keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+.seq-controls{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.seq-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:10px 20px;border-radius:20px;border:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.08);color:var(--accent);cursor:pointer;transition:all .2s}
+.seq-btn:hover{background:rgba(201,168,76,.18)}
+.seq-info{background:rgba(0,0,0,.25);border:1px solid rgba(201,168,76,.1);border-radius:var(--r);padding:16px 20px;font-size:13px;color:var(--dim);line-height:1.8}
+.seq-info strong{color:var(--accent2)}
+
+/* Phi calculator */
+.phi-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center;margin-bottom:18px}
+.phi-eq{font-family:'Cinzel',serif;font-size:20px;color:var(--accent);text-align:center}
+.phi-field label{display:block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.7;margin-bottom:6px}
+.phi-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.phi-input:focus{border-color:rgba(201,168,76,.4)}
+.phi-result{font-family:'Cinzel',serif;font-size:22px;color:var(--accent2);text-align:center;padding:12px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:var(--r);min-height:52px;display:flex;align-items:center;justify-content:center}
+.phi-note{font-size:12px;color:var(--dim);font-style:italic;margin-top:8px;text-align:center}
+.phi-phi{font-size:12px;color:var(--dim);line-height:1.7;background:rgba(0,0,0,.2);border-radius:var(--r);padding:14px 18px;margin-top:14px}
+
+/* Digit sum checker */
+.ds-row{display:flex;gap:12px;align-items:flex-end;margin-bottom:16px;flex-wrap:wrap}
+.ds-input{flex:1;min-width:160px;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.ds-input:focus{border-color:rgba(201,168,76,.4)}
+.ds-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:11px 20px;border-radius:20px;border:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.08);color:var(--accent);cursor:pointer;transition:all .2s;white-space:nowrap}
+.ds-btn:hover{background:rgba(201,168,76,.18)}
+.ds-result{display:none;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:var(--r);padding:16px 20px;text-align:center}
+.ds-result.show{display:block}
+.ds-num{font-family:'Cinzel',serif;font-size:42px;color:var(--accent2);line-height:1;margin-bottom:4px}
+.ds-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent);opacity:.7}
+.ds-meaning{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.7}
+
+/* ── QUIZ ── */
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;margin-bottom:14px;transition:border-color .3s}
+.quiz-item.correct{border-color:rgba(90,184,122,.45);background:rgba(90,184,122,.06)}
+.quiz-item.wrong{border-color:rgba(200,80,80,.4);background:rgba(200,80,80,.05)}
+.quiz-q{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:14px}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:11px 16px;font-size:13px;color:var(--dim);cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:hover{border-color:rgba(201,168,76,.25);color:var(--text);background:rgba(201,168,76,.07)}
+.quiz-opt.ok{border-color:rgba(90,184,122,.5);background:rgba(90,184,122,.1);color:#6fda9a}
+.quiz-opt.no{border-color:rgba(200,80,80,.5);background:rgba(200,80,80,.08);color:#e07070}
+.quiz-opt.show-ok{border-color:rgba(90,184,122,.35);color:#6fda9a}
+.quiz-fb{margin-top:12px;font-size:13px;line-height:1.6;padding:10px 14px;border-radius:8px;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.correct{background:rgba(90,184,122,.08);color:#6fda9a}
+.quiz-fb.wrong{background:rgba(200,80,80,.06);color:#e07070}
+.quiz-score{text-align:center;font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--accent);padding:20px;display:none}
+.quiz-score.show{display:block}
+
+/* ── ACCORDION ── */
+.acc-item{margin-bottom:10px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.acc-hd{width:100%;background:var(--card);border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;transition:background .2s}
+.acc-hd:hover{background:rgba(0,0,0,.38)}
+.acc-ht{font-family:'Cinzel',serif;font-size:13px;color:var(--text);letter-spacing:1px}
+.acc-ic{font-size:18px;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-ic{transform:rotate(45deg)}
+.acc-bd{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-item.open .acc-bd{max-height:600px}
+.acc-ct{padding:20px 22px;font-size:13px;line-height:1.85;color:var(--dim);border-top:1px solid rgba(255,255,255,.04)}
+.acc-ct strong{color:var(--accent2)}
+
+/* ── REFLECTION ── */
+.ref-q{font-family:'Cinzel',serif;font-size:14px;color:var(--accent2);line-height:1.75;margin-bottom:14px;letter-spacing:.5px}
+.ref-ta{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:18px 22px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;line-height:1.85;resize:vertical;min-height:110px;outline:none;transition:border-color .25s;margin-bottom:26px}
+.ref-ta:focus{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.32)}
+.ref-ta::placeholder{color:rgba(240,237,230,.2)}
+
+/* ── PRACTICE ── */
+.prac-step{display:flex;gap:20px;padding:18px 0;border-bottom:1px solid rgba(201,168,76,.07)}
+.prac-step:last-child{border-bottom:none}
+.prac-n{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--accent);opacity:.3;flex-shrink:0;line-height:1.1;width:36px}
+.prac-content strong{display:block;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--text);margin-bottom:7px}
+.prac-content p{font-size:14px;color:var(--dim);line-height:1.8;margin:0}
+
+/* ── RESOURCES ── */
+.res-list{display:flex;flex-direction:column;gap:10px}
+.res-item{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);transition:border-color .2s}
+.res-item:hover{border-color:rgba(201,168,76,.28)}
+.res-icon{color:var(--accent);font-size:1rem;flex-shrink:0;margin-top:2px}
+.res-info strong{display:block;font-size:14px;color:var(--text);margin-bottom:3px}
+.res-info span{font-size:12px;color:var(--dim)}
+
+/* ── NAV / WORKSHOP / COMP ── */
+.nav-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nav-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:22px 26px;cursor:pointer;transition:all .3s;text-decoration:none}
+.nav-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.nav-card.prev{flex-direction:row-reverse}
+.nav-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.nav-title{font-family:'Cinzel',serif;font-size:15px;color:var(--text);letter-spacing:1px}
+.nav-arr{font-size:26px;color:var(--accent);opacity:.5;flex-shrink:0}
+.ws{background:rgba(0,0,0,.3);border:1px dashed rgba(201,168,76,.2);border-radius:var(--rl);padding:40px;text-align:center}
+.ws-ic{font-size:34px;margin-bottom:14px;opacity:.45}
+.ws-t{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:var(--accent);margin-bottom:8px;opacity:.6}
+.ws-s{font-size:13px;color:var(--dim)}
+.comp-wrap{background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(0,0,0,.4));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:48px;text-align:center}
+.comp-t{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--text);margin-bottom:8px}
+.comp-s{font-size:13px;color:var(--dim);margin-bottom:28px}
+.comp-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:40px;padding:17px 44px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.comp-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.28)}
+.comp-btn.done{background:linear-gradient(135deg,#5ab87a,#7de09a)}
+.xp-pop{display:none;font-family:'Cinzel',serif;font-size:14px;color:var(--accent);margin-top:22px;letter-spacing:2px}
+.xp-pop.show{display:block;animation:fadeUp .7s ease}
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(5,10,28,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(201,168,76,.12);padding:13px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.sv-status{font-size:11px;color:var(--dim);letter-spacing:1px}.sv-status span{color:var(--accent);font-family:'Cinzel',serif}
+.sv-actions{display:flex;gap:10px}
+.sv-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.sv-btn.pri{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.3);color:var(--accent)}.sv-btn.pri:hover{background:rgba(201,168,76,.2)}
+.sv-btn.sec{background:transparent;border-color:rgba(255,255,255,.1);color:var(--dim)}.sv-btn.sec:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+#imp-file{display:none}
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(8,14,42,.96);border:1px solid rgba(201,168,76,.28);border-radius:30px;padding:11px 26px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.cf{position:fixed;top:-20px;z-index:9999;border-radius:2px;pointer-events:none;animation:fall 2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:660px){.hero-code{font-size:60px}.hero-title{font-size:17px}.sn-grid{grid-template-columns:1fr 1fr}.phi-grid{grid-template-columns:1fr}.nav-cards{grid-template-columns:1fr}.top-nav{padding:12px 16px}.nav-crumb{display:none}main{padding-left:16px;padding-right:16px}.tx{padding:26px 22px}.fib-tabs{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+<div class="top-nav">
+  <div class="nav-brand">THE FREQUENCY ACADEMY</div>
+  <div class="nav-crumb">NUMEROLOGY · N12</div>
+  <div class="nav-xp" id="xp-display">0 XP</div>
+</div>
+<div class="toast" id="toast"></div>
+<main>
+
+  <!-- HERO -->
+  <div class="ls hero visible">
+    <div class="hero-eye">Symbolic Sciences · Numerology</div>
+    <div class="hero-code">N12</div>
+    <div class="hero-title">Numerology in Nature</div>
+    <div class="hero-sub">Fibonacci, Fractals &amp; the Mathematics of the Living World</div>
+    <div class="hero-rule"></div>
+    <div class="hero-tag">⟡ ~20 Min · The Living Code</div>
+  </div>
+
+  <!-- TRANSMISSION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">TRANSMISSION</div><div class="sh-rule"></div></div>
+    <div class="tx">
+      <div class="tx-lbl">Opening Transmission · N12</div>
+      <p>You have been walking through a library your entire life without knowing how to read it. Every flower, every shell, every branching tree, every spiral galaxy — <strong>they are all saying the same thing in the same language.</strong> That language is number.</p>
+      <p>The numbers we have been working with in your personal chart — 1 through 9, the Fibonacci values, phi — are not inventions of human culture. They are the operating code of the universe itself. Your Life Path number is not separate from the growth algorithm of a sunflower. It is the same algorithm, running in a different medium.</p>
+      <p>Once you see this, you cannot unsee it. And the world becomes a completely different place to live in.</p>
+    </div>
+  </div>
+
+  <!-- CORE CONCEPT -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">01</div><div class="sh-rule"></div></div>
+    <div class="st">Nature IS Mathematics</div>
+    <div class="card">
+      <p>In 1202, Leonardo of Pisa — known as Fibonacci — introduced Europe to a sequence that had been known in India for centuries. He described it through a thought experiment about rabbits, but the sequence he wrote down was already embedded in every living thing on Earth.</p>
+      <p><strong style="color:var(--accent2)">1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...</strong> Each number the sum of the two before it. Simple, recursive, and as it turns out — the growth code of the living world. Count the spirals in a sunflower head: you will find 34 going one direction and 55 going the other. Two consecutive Fibonacci numbers. Their ratio: 1.618. Phi. The golden ratio. The same proportion appears in the nautilus shell, the human body, the spiral arms of galaxies, the branching of trees, and the double helix of DNA.</p>
+      <p>This is not coincidence. It is the universe using the most efficient growth algorithm available — and that algorithm is number. The same numbers that appear in your personal numerological chart are not arbitrary symbols. They are the frequencies through which reality builds itself.</p>
+    </div>
+    <div class="callout"><p>"Nature is not decorated with mathematics.<br>Nature IS mathematics. The same numbers we find in the human chart,<br>we find in the sunflower, the galaxy, the nautilus shell,<br>and the double helix of your own DNA."</p></div>
+    <div class="card">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:14px">KEY DEFINITIONS</p>
+      <table class="defs-t">
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Fibonacci Sequence</td><td>The series 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89... in which each number is the sum of the two preceding numbers. As the sequence progresses, the ratio between consecutive numbers converges on phi (1.618).</td></tr>
+          <tr><td>Phi / Golden Ratio</td><td>1.618033... The irrational number that describes the proportion of living, growing, spiralling form. Encoded in the sunflower, the nautilus, the human body, the Parthenon, and the spiral arms of galaxies.</td></tr>
+          <tr><td>Phyllotaxis</td><td>The arrangement of leaves, seeds, petals, and other plant structures according to Fibonacci numbers. Most sunflowers have 34 and 55 spirals, or 55 and 89 — consecutive Fibonacci numbers.</td></tr>
+          <tr><td>Fractal</td><td>A geometric pattern that repeats at every scale — self-similar at the macro and micro level. The branching of a tree repeats in the branching of its twigs, then in the pattern of its leaves, then in the veins of each leaf.</td></tr>
+          <tr><td>Sacred Number in Nature</td><td>Numbers appearing repeatedly in natural forms corresponding to the numerological system: 3 (leaves in many plants), 5 (petals in most flowers), 6 (hexagonal honeycomb cells), 12 (pairs of ribs), etc.</td></tr>
+          <tr><td>Orbital Resonance</td><td>When two orbiting bodies exert a regular gravitational influence because their orbital periods are related by a ratio of small integers. The solar system is full of Fibonacci and sacred number orbital resonances.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FIBONACCI TABLE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">02</div><div class="sh-rule"></div></div>
+    <div class="st">The Fibonacci Sequence — Nature's Growth Algorithm</div>
+    <div class="card"><p>As the sequence grows, the ratio between consecutive numbers converges on phi with increasing precision. The digit sums cycle through the same 24 values endlessly — and they always contain the Tesla trinity (3, 6, 9) at regular intervals. The sequence is not random. It is numerologically structured at its core. Gold-highlighted rows mark Tesla trinity digit sums.</p></div>
+    <div class="card" style="overflow-x:auto">
+      <table class="fib-t">
+        <thead><tr><th>Position</th><th>Fibonacci</th><th>Consecutive Ratio → Φ</th><th>Digit Sum</th><th>In Nature</th></tr></thead>
+        <tbody id="fib-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SACRED NUMBERS -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">03</div><div class="sh-rule"></div></div>
+    <div class="st">Sacred Numbers in the Natural World</div>
+    <div class="card"><p>The same numbers that govern personal charts appear throughout the natural world at every scale. Tap any number to reveal its natural expressions — from biology to crystallography to planetary mechanics.</p></div>
+    <div class="sn-grid" id="sn-grid"></div>
+  </div>
+
+  <!-- ORBITAL RESONANCE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">04</div><div class="sh-rule"></div></div>
+    <div class="st">The Solar System as a Numerological Instrument</div>
+    <div class="card"><p>The planets of our solar system are not distributed randomly. Their orbital relationships encode phi, Fibonacci numbers, and sacred number ratios with extraordinary precision. The solar system is a running demonstration of the same mathematics encoded in your personal chart.</p></div>
+    <div class="card" style="overflow-x:auto">
+      <table class="orb-t">
+        <thead><tr><th>Body / Relationship</th><th>Orbital Data</th><th>Sacred Number Encoding</th></tr></thead>
+        <tbody>
+          <tr><td>Earth / Venus</td><td>8 Earth years ≈ 13 Venus years</td><td>8 and 13 are consecutive Fibonacci numbers. Ratio: 1.625 ≈ Φ</td></tr>
+          <tr><td>Jupiter / Saturn</td><td>Synodic period ratio ≈ 5:2</td><td>5 and 2 are Fibonacci numbers</td></tr>
+          <tr><td>Earth / Mars</td><td>Orbital resonance approximates 1:2</td><td>Octave relationship — the most fundamental harmonic ratio</td></tr>
+          <tr><td>Venus rotation</td><td>243 Earth days per rotation</td><td>2+4+3 = 9 — the completion number</td></tr>
+          <tr><td>Earth rotation</td><td>365.25 days — digit sum: 3+6+5+2+5 = 21, then 3</td><td>3 — the creative principle governing the year</td></tr>
+          <tr><td>Moon cycle</td><td>29.53 days — digit sum: 2+9+5+3 = 19, then 10, then 1</td><td>1 — unity / new beginning of each cycle</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FRACTAL PRINCIPLE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">05</div><div class="sh-rule"></div></div>
+    <div class="st">The Fractal Principle — Same Pattern, Every Scale</div>
+    <div class="card">
+      <p>A fractal is a pattern that repeats itself at every level of magnification. Zoom into the coast of Norway and the same jagged pattern you see from space appears in every cove, every rock, every grain of sand. Zoom into a fern and the structure of the whole leaf repeats in each frond, which repeats in each sub-frond, all the way down to the cellular level.</p>
+      <p><strong style="color:var(--accent2)">The branching of a tree</strong> repeats in the branching of its twigs, which repeats in the veining of its leaves, which repeats in the structure of the roots underground, which repeats in the structure of the blood vessels carrying nutrients through its tissue. The same pattern, running at every scale, from the cellular to the canopy.</p>
+      <p>This is not coincidence. It is the universe's most efficient design principle — a single algorithm generating infinite complexity by recursively applying the same rule. And the rule is always a sacred number ratio. Always Fibonacci. Always phi. Always the same numbers you find in your chart.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <p style="font-family:'Cinzel',serif;font-size:12px;color:var(--accent);margin-bottom:10px;letter-spacing:2px">THE PERSONAL FRACTAL</p>
+      <p>The fractal principle applies to your personal numerology. Your Life Path number does not only describe your soul mission — it describes the pattern that repeats at every scale of your life. The pattern of a Life Path 5 shows up in how they structure a single conversation, in how they design a week, in how they build a decade. The same freedom-and-pivot dynamic runs at every level. Your number is not a label. It is a fractal pattern — the same shape, playing out at every scale of your existence.</p>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE: FIBONACCI EXPLORER -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">INTERACTIVE</div><div class="sh-rule"></div></div>
+    <div class="st">Nature's Mathematics Explorer</div>
+    <div class="card"><p>Three tools for working with the mathematics of nature directly. Build the Fibonacci sequence, calculate phi proportions for your space, or find the digit sum of any natural number and trace it to its sacred meaning.</p></div>
+    <div class="fib-explorer">
+      <div class="fib-hd">
+        <div class="fib-hd-title">FIBONACCI &amp; PHI EXPLORER</div>
+        <div class="fib-tabs">
+          <button class="ftab active" onclick="switchTab('seq',this)">Sequence</button>
+          <button class="ftab" onclick="switchTab('phi',this)">Phi Calculator</button>
+          <button class="ftab" onclick="switchTab('ds',this)">Digit Sum</button>
+        </div>
+      </div>
+      <div class="fib-body">
+
+        <!-- SEQUENCE TAB -->
+        <div class="fpanel active" id="tab-seq">
+          <div class="seq-controls">
+            <button class="seq-btn" onclick="addFib()">+ Add Next Number</button>
+            <button class="seq-btn" onclick="addFib5()">+ Add 5 Numbers</button>
+            <button class="seq-btn" onclick="resetFib()">Reset</button>
+          </div>
+          <div class="seq-display" id="seq-display"></div>
+          <div class="seq-info" id="seq-info">Start building the sequence above. Gold-highlighted numbers have Tesla trinity digit sums (3, 6, or 9).</div>
+        </div>
+
+        <!-- PHI TAB -->
+        <div class="fpanel" id="tab-phi">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:18px;line-height:1.7">Enter any measurement — a room dimension, a canvas, a sacred object — and calculate its phi-proportioned partner. The golden ratio is 1.618:1. Enter the longer dimension to find the shorter, or vice versa.</p>
+          <div class="phi-grid">
+            <div class="phi-field">
+              <label>Longer Dimension</label>
+              <input class="phi-input" type="number" id="phi-long" placeholder="e.g. 89" oninput="calcPhi()">
+            </div>
+            <div class="phi-eq">÷ Φ =</div>
+            <div class="phi-field">
+              <label>Shorter (Phi-Proportion)</label>
+              <div class="phi-result" id="phi-short">—</div>
+            </div>
+            <div class="phi-eq">or ×Φ→</div>
+            <div class="phi-field">
+              <label>Longer (from Shorter)</label>
+              <div class="phi-result" id="phi-long-out">—</div>
+            </div>
+          </div>
+          <p class="phi-note">Result is highlighted in gold when within 1% of a Fibonacci pair ✦</p>
+          <div class="phi-phi">
+            <strong style="color:var(--accent2);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px">PHI FIBONACCI PAIRS</strong><br>
+            Near-phi Fibonacci pairs: 3:5 (1.667) · 5:8 (1.600) · 8:13 (1.625) · 13:21 (1.619) · 21:34 (1.618) · 34:55 (1.618) · 55:89 (1.618) · 89:144 (1.618)
+          </div>
+        </div>
+
+        <!-- DIGIT SUM TAB -->
+        <div class="fpanel" id="tab-ds">
+          <p style="font-size:13px;color:var(--dim);margin-bottom:18px;line-height:1.7">Enter any number found in nature — petal count, spiral count, orbital days, biological measurements — to find its digit sum and trace it to its numerological meaning.</p>
+          <div class="ds-row">
+            <input class="ds-input" type="number" id="ds-num" placeholder="e.g. 243, 365, 34..." oninput="calcDS()">
+            <button class="ds-btn" onclick="calcDS()">Find Meaning</button>
+          </div>
+          <div class="ds-result" id="ds-result">
+            <div class="ds-num" id="ds-final"></div>
+            <div class="ds-label">DIGIT SUM</div>
+            <div class="ds-meaning" id="ds-meaning-text"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">KNOWLEDGE CHECK</div><div class="sh-rule"></div></div>
+    <div class="st">Test Your Understanding</div>
+    <div id="quiz-wrap"></div>
+    <div class="quiz-score" id="quiz-score"></div>
+  </div>
+
+  <!-- QUICK REF -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">QUICK REF</div><div class="sh-rule"></div></div>
+    <div class="st">Nature's Number Reference</div>
+    <div id="acc-wrap"></div>
+  </div>
+
+  <!-- PRACTICE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">PRACTICE</div><div class="sh-rule"></div></div>
+    <div class="st">This Week in the Physical World</div>
+    <div class="card">
+      <div class="prac-step">
+        <div class="prac-n">1</div>
+        <div class="prac-content"><strong>FIND FIBONACCI IN A LIVING THING</strong><p>Go outside or find a natural object — a flower, a pinecone, a leaf, a piece of fruit, a shell. Spend 5 minutes counting its numerical structures. Count petals, spiral rows, branching points. Record the numbers you find and calculate their digit sums using the Digit Sum tool above. Note which of your personal chart numbers appear in what you find.</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">2</div>
+        <div class="prac-content"><strong>PHI-PROPORTION ONE SURFACE IN YOUR SPACE</strong><p>Choose one surface in your living or working space — a desk, an altar, a shelf. Using the Phi Calculator above, determine its phi-proportioned dimensions. If it isn't already in phi proportion, adjust what is on it to create a phi-proportioned arrangement. Notice whether the space feels different. This is not aesthetic preference — it is resonance.</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">3</div>
+        <div class="prac-content"><strong>SEVEN-DAY NATURE JOURNAL</strong><p>Each day this week, find and count one numerical pattern in the natural world. A flower's petals, the branching of a plant, the symmetry of a leaf, the hexagonal structure of ice crystals or a beehive. Record the number, its digit sum, its meaning in numerology, and its personal resonance in the reflection section below. By day seven, the world will look completely different.</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">4</div>
+        <div class="prac-content"><strong>TRACE YOUR LIFE PATH FRACTAL</strong><p>Take your Life Path number and write it at the top of a page. Below it, describe how that number's energy shows up at three scales of your life: a single interaction this week, a pattern over the last year, and a theme across your whole life so far. Notice the fractal — the same pattern, repeating at every scale. This is what it means to work with number as a living intelligence rather than a label.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">REFLECTION</div><div class="sh-rule"></div></div>
+    <div class="st">Seeing Through Numerological Eyes</div>
+    <div class="card">
+      <div class="ref-q">1. The lesson makes the claim that "Nature IS mathematics" rather than being decorated by it. What is the difference between those two statements? How does each framing change your experience of being in the natural world?</div>
+      <textarea class="ref-ta" id="ref-1" placeholder="Begin writing here..." oninput="autoSave()"></textarea>
+      <div class="ref-q">2. The Fibonacci sequence and phi appear at every scale of the natural world — from DNA to galaxies. The same numbers appear in your personal numerological chart. What do you make of this correspondence? What does it suggest about the relationship between your personal frequency and the mathematics of the living world?</div>
+      <textarea class="ref-ta" id="ref-2" placeholder="Begin writing here..." oninput="autoSave()"></textarea>
+      <div class="ref-q">3. Go outside or look at a natural object. Find the Fibonacci numbers and the sacred numbers in it. Write what you found and what it felt like to see the mathematical intelligence in a living thing for the first time through this lens.</div>
+      <textarea class="ref-ta" id="ref-3" placeholder="Begin writing here..." oninput="autoSave()"></textarea>
+    </div>
+  </div>
+
+  <!-- GO DEEPER -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">GO DEEPER</div><div class="sh-rule"></div></div>
+    <div class="st">Extended Study Resources</div>
+    <div class="res-list">
+      <div class="res-item"><div class="res-icon">📖</div><div class="res-info"><strong>The Divine Proportion — H.E. Huntley</strong><span>The definitive exploration of phi across mathematics, art, nature, and architecture. Rigorous, beautiful, and genuinely mind-expanding.</span></div></div>
+      <div class="res-item"><div class="res-icon">📖</div><div class="res-info"><strong>The Golden Ratio — Mario Livio</strong><span>Scientific and historical investigation of phi's appearance throughout nature, mathematics, and human culture. Excellent grounding in the physics behind the pattern.</span></div></div>
+      <div class="res-item"><div class="res-icon">📖</div><div class="res-info"><strong>The Fractal Geometry of Nature — Benoit Mandelbrot</strong><span>The foundational text on fractal geometry. Mandelbrot's original work showing how irregular natural forms encode mathematical self-similarity at every scale.</span></div></div>
+      <div class="res-item"><div class="res-icon">🎬</div><div class="res-info"><strong>Vihart — Fibonacci and the Nature of Mathematics (YouTube)</strong><span>An extraordinary, fast-paced visual demonstration of Fibonacci patterns in sunflowers, pinecones, and plants. One of the best mathematical explanations ever recorded.</span></div></div>
+      <div class="res-item"><div class="res-icon">🎧</div><div class="res-info"><strong>TFA Audio: Reading Nature as a Numerological Document</strong><span>Guided practice for developing the eye to see sacred number in natural environments. Available in the Member Library.</span></div></div>
+    </div>
+  </div>
+
+  <!-- LIVE WORKSHOP -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">LIVE WORKSHOP</div><div class="sh-rule"></div></div>
+    <div class="ws">
+      <div class="ws-ic">◈</div>
+      <div class="ws-t">Live Workshop: Numerology in Nature</div>
+      <div class="ws-s">A live deep-dive on this topic is coming soon. Recordings and supplemental materials will appear here once available. Members will be notified via the Academy portal.</div>
+    </div>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">COMPLETE</div><div class="sh-rule"></div></div>
+    <div class="comp-wrap">
+      <div class="comp-t">Seal This Lesson</div>
+      <div class="comp-s">When you have found Fibonacci in at least one living thing, completed at least one reflection, and begun reading the natural world as a numerological document — seal this lesson complete.</div>
+      <button class="comp-btn" id="comp-btn" onclick="markComplete()">⟡ Mark Complete · +10 XP</button>
+      <div class="xp-pop" id="xp-pop">✦ +10 XP Awarded · N12 Complete ✦</div>
+    </div>
+  </div>
+
+  <!-- NAVIGATE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">NAVIGATE</div><div class="sh-rule"></div></div>
+    <div class="nav-cards">
+      <a class="nav-card prev" href="../lesson-11/">
+        <div class="nav-arr">←</div>
+        <div><div class="nav-lbl">PREVIOUS · N11</div><div class="nav-title">Numerology &amp; Money</div></div>
+      </a>
+      <a class="nav-card" href="../lesson-13/">
+        <div><div class="nav-lbl">NEXT · N13</div><div class="nav-title">Advanced Chart Reading</div></div>
+        <div class="nav-arr">→</div>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<div id="save-bar">
+  <div class="sv-status">Auto-save: <span id="save-time">—</span></div>
+  <div class="sv-actions">
+    <input type="file" id="imp-file" accept=".json" onchange="importData(event)">
+    <button class="sv-btn sec" onclick="document.getElementById('imp-file').click()">Import</button>
+    <button class="sv-btn sec" onclick="exportData()">Export</button>
+    <button class="sv-btn pri" onclick="saveData();toast('Saved ✦')">Save</button>
+  </div>
+</div>
+
+<script>
+const KEY='tfa_lesson_N12';var xp=0,saveT,qA=0,qC=0;
+
+// ── FIBONACCI DATA ──
+var FIB_DATA=[
+  {pos:1,n:1,ratio:'1/1 = 1.000',ds:1,nat:'—'},
+  {pos:2,n:1,ratio:'2/1 = 2.000',ds:1,nat:'Seed'},
+  {pos:3,n:2,ratio:'3/2 = 1.500',ds:2,nat:'Leaf pairs'},
+  {pos:4,n:3,ratio:'5/3 = 1.667',ds:3,nat:'Petals (many)'},
+  {pos:5,n:5,ratio:'8/5 = 1.600',ds:5,nat:'Petals (most)'},
+  {pos:6,n:8,ratio:'13/8 = 1.625',ds:8,nat:'Spirals (many)'},
+  {pos:7,n:13,ratio:'21/13 = 1.615',ds:4,nat:'Spirals (sunflower low)'},
+  {pos:8,n:21,ratio:'34/21 = 1.619',ds:3,nat:'Petal spirals'},
+  {pos:9,n:34,ratio:'55/34 = 1.618',ds:1,nat:'Sunflower spirals'},
+  {pos:10,n:55,ratio:'89/55 = 1.618',ds:1,nat:'Sunflower spirals'},
+  {pos:11,n:89,ratio:'Φ = 1.61803...',ds:8,nat:'Pine cone spirals'}
+];
+
+function buildFibTable(){
+  var tb=document.getElementById('fib-tbody');
+  FIB_DATA.forEach(function(r){
+    var tesla=(r.ds===3||r.ds===6||r.ds===9);
+    var tr=document.createElement('tr');
+    if(tesla)tr.className='tesla';
+    tr.innerHTML='<td>'+r.pos+'</td><td>'+r.n+'</td><td>'+r.ratio+'</td><td>'+r.ds+(tesla?' ✦':'')+'</td><td>'+r.nat+'</td>';
+    tb.appendChild(tr);
+  });
+}
+
+// ── SACRED NUMBERS ──
+var SN_DATA=[
+  {n:'1',name:'Unity',body:'The single cell. The seed. One sun at the centre of the solar system. The origin point of every living system. The unity from which all multiplicity emerges.'},
+  {n:'2',name:'Duality / Mirror',body:'Two hemispheres in the brain. Two strands of the DNA double helix. Bilateral symmetry in nearly all animals. The paired wings of a bird. Two eyes, two hands, two feet.'},
+  {n:'3',name:'Creative Triad',body:'Three-leafed clover. Trefoil structures in plant biology. Three primary colour receptors in human vision. The triangle as the first stable geometric form. Three dimensions of space.'},
+  {n:'4',name:'Foundation / Order',body:'Four seasons governing biological cycles. Four DNA base pairs (A, T, G, C). Four chambers of the heart. Four limbs in mammals. The fourfold symmetry of many crystals.'},
+  {n:'5',name:'Life / Freedom',body:'Five petals in most flowers (rose, cherry blossom, apple blossom). Five fingers and five toes. The five-point radial symmetry of starfish and sea urchins. Five senses.'},
+  {n:'6',name:'Harmony / Structure',body:'Six-sided hexagonal cells in beehives — the strongest and most space-efficient tessellation in geometry. Six legs on all insects. Six carbon atoms at the core of all organic molecules.'},
+  {n:'7',name:'Wisdom / Depth',body:'Seven colours in the visible light spectrum. Seven notes in the diatonic musical scale. Seven layers of the human skin. Seven cervical vertebrae in nearly all mammals.'},
+  {n:'8',name:'Power / Octave',body:'Eight legs on spiders and arachnids. The octopus. Eight arms of the octagram found in natural crystalline structures. The octave as the doubling point in acoustic frequency.'},
+  {n:'9',name:'Completion',body:'Nine months of human gestation. The 9-year cycle of the moon\'s nodal return. Nine planets in the original solar system model. The nine-fold symmetry found in many flowers.'},
+  {n:'12',name:'Systemic Order',body:'Twelve months reflecting the twelve lunar cycles. Twelve pairs of ribs in the human skeleton. The twelve-fold symmetry of many snowflake crystals. Twelve cranial nerves.'},
+  {n:'Φ',name:'The Growth Constant',body:'The golden ratio 1.618 — in sunflower seed spirals, nautilus shell chambers, the branching of trees, the proportion of the human body, hurricane spiral arms, and galaxy formation.'}
+];
+
+function buildSNGrid(){
+  var g=document.getElementById('sn-grid');
+  SN_DATA.forEach(function(d){
+    var card=document.createElement('div');
+    card.className='sn-card';
+    card.innerHTML='<div class="sn-hd"><div class="sn-num">'+d.n+'</div><div class="sn-name">'+d.name+'</div></div><div class="sn-body">'+d.body+'</div>';
+    card.addEventListener('click',function(){
+      var was=card.classList.contains('open');
+      document.querySelectorAll('.sn-card').forEach(function(c){c.classList.remove('open');});
+      if(!was)card.classList.add('open');
+    });
+    g.appendChild(card);
+  });
+}
+
+// ── INTERACTIVE: SEQUENCE BUILDER ──
+var fibSeq=[1,1];
+var PHI=1.6180339887;
+
+function digitSum(n){
+  var s=String(Math.abs(Math.round(n)));
+  while(s.length>1){var t=0;for(var i=0;i<s.length;i++)t+=parseInt(s[i]);s=String(t);}
+  return parseInt(s);
+}
+
+function renderSeq(){
+  var d=document.getElementById('seq-display');
+  d.innerHTML='';
+  fibSeq.forEach(function(n,i){
+    var ds=digitSum(n);
+    var tesla=(ds===3||ds===6||ds===9);
+    var span=document.createElement('span');
+    span.className='seq-num'+(tesla?' tesla':'')+(i===fibSeq.length-1?' new':'');
+    span.textContent=n;
+    span.title='Digit sum: '+ds+(tesla?' (Tesla ✦)':'');
+    d.appendChild(span);
+  });
+  var last=fibSeq[fibSeq.length-1];
+  var prev=fibSeq[fibSeq.length-2]||1;
+  var ratio=last>0?(last/prev).toFixed(5):'—';
+  var ds=digitSum(last);
+  var tesla=(ds===3||ds===6||ds===9);
+  document.getElementById('seq-info').innerHTML=
+    '<strong>Current number:</strong> '+last+
+    ' &nbsp;|&nbsp; <strong>Digit sum:</strong> '+ds+(tesla?' ✦ Tesla trinity':'')+
+    ' &nbsp;|&nbsp; <strong>Ratio to prev:</strong> '+ratio+
+    ' &nbsp;|&nbsp; <strong>Φ = 1.61803...</strong>'+
+    (fibSeq.length>=10?'<br><em style="color:var(--accent)">The ratio has now converged on phi to 4 decimal places.</em>':'');
+}
+
+function addFib(){
+  if(fibSeq.length>30)return;
+  var next=fibSeq[fibSeq.length-1]+fibSeq[fibSeq.length-2];
+  fibSeq.push(next);
+  renderSeq();
+}
+function addFib5(){for(var i=0;i<5;i++)addFib();}
+function resetFib(){fibSeq=[1,1];renderSeq();}
+
+// ── PHI CALCULATOR ──
+function calcPhi(){
+  var long=parseFloat(document.getElementById('phi-long').value);
+  var shortOut=document.getElementById('phi-short');
+  var longOut=document.getElementById('phi-long-out');
+  if(!long||isNaN(long)){shortOut.textContent='—';longOut.textContent='—';return;}
+  var shorter=(long/PHI).toFixed(3);
+  var longer=(long*PHI).toFixed(3);
+  shortOut.textContent=shorter;
+  longOut.textContent=longer;
+  shortOut.style.color=isFibRatio(long,parseFloat(shorter))?'var(--accent)':'var(--accent2)';
+}
+
+function isFibRatio(a,b){
+  var r=a/b;
+  return Math.abs(r-PHI)<0.02;
+}
+
+// ── DIGIT SUM MEANINGS ──
+var DS_MEANINGS={
+  1:'Unity and new beginnings. The origin point, the seed, the initiating force. Appears at every dawn of a new cycle.',
+  2:'Duality and partnership. The pairing that enables growth — bilateral symmetry, DNA double helix, the two poles of every magnetic field.',
+  3:'Creative expression and generation. The first stable form (triangle), the primary colour triad, the three-fold nature of many plant structures.',
+  4:'Foundation and order. The four seasons, four DNA bases, four chambers of the heart. The architecture of sustained life.',
+  5:'Freedom, life, and sensory aliveness. Five petals, five fingers, five senses. The number of living form as distinct from crystalline structure.',
+  6:'Harmony, efficiency, and structural beauty. The hexagon of the honeycomb — maximum strength, minimum material. The number of perfect organisation.',
+  7:'Depth, spectrum, and hidden order. Seven colours in light, seven notes in scale, seven skin layers. The number of invisible intelligence made manifest.',
+  8:'Power, doubling, and cyclical return. The octave, the arachnid, the octagram in crystals. The number of energy cycling back to itself at a higher level.',
+  9:'Completion, universality, and return. Nine months of gestation, nine-fold flower symmetry, the 9-year lunar nodal cycle. The number of the completed cycle.'
+};
+
+function calcDS(){
+  var n=document.getElementById('ds-num').value.trim();
+  if(!n){document.getElementById('ds-result').classList.remove('show');return;}
+  var num=parseFloat(n.replace(/[^0-9.]/g,''));
+  if(isNaN(num)){return;}
+  var ds=digitSum(num);
+  document.getElementById('ds-final').textContent=ds;
+  document.getElementById('ds-meaning-text').textContent=DS_MEANINGS[ds]||'A sacred number encoding the principles of '+ds+' in the natural world.';
+  document.getElementById('ds-result').classList.add('show');
+}
+
+// ── TAB SWITCHER ──
+function switchTab(id,btn){
+  document.querySelectorAll('.fpanel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── QUIZ ──
+var QD=[
+  {q:'What is the 6th number in the Fibonacci sequence: 1, 1, 2, 3, 5, ___?',opts:['7','8','9','11'],ans:1,fb:'Correct — 8 is the 6th Fibonacci number (5+3=8). It appears in the number of spirals in many flowers and pinecones.'},
+  {q:'As the Fibonacci sequence progresses, the ratio between consecutive numbers converges on:',opts:['Pi (3.14159...)','The square root of 2 (1.41421...)','Phi / The Golden Ratio (1.61803...)','E (2.71828...)'],ans:2,fb:'The ratio between consecutive Fibonacci numbers converges on phi (1.61803...) — the golden ratio that governs all living, growing, spiralling form.'},
+  {q:'The study of the arrangement of leaves, seeds, and petals in Fibonacci patterns is called:',opts:['Phytology','Phyllotaxis','Photosynthesis','Phylogenetics'],ans:1,fb:'Phyllotaxis — from the Greek for leaf arrangement. Most sunflowers have 34 and 55 spirals (consecutive Fibonacci numbers) in their seed heads.'},
+  {q:'The digit sum of Venus\'s rotation period (243 Earth days) is:',opts:['6','7','8','9'],ans:3,fb:'2+4+3 = 9 — the completion number. Venus\'s rotation period encodes the completion frequency in its digit sum.'},
+  {q:'The fractal principle means:',opts:['Patterns only appear at large scales, not small ones','The same patterns repeat at every scale — from the cellular to the cosmic','Fractals are purely mathematical constructs with no natural equivalents','Natural patterns are always irregular and non-repeating'],ans:1,fb:'The fractal principle means the same pattern repeats at every level of magnification. The branching of a tree repeats in its twigs, its leaves, its veins, and its roots.'},
+  {q:'True or False: The digit sums of the Fibonacci sequence are completely random with no repeating pattern.',opts:['True — the sums are unpredictable','False — the digit sums cycle through the same 24 values repeatedly, always including 3, 6, and 9','True — digit sums have no relationship to the Tesla trinity','False — the sums only ever produce the numbers 1, 2, and 3'],ans:1,fb:'FALSE. The digit sums of the Fibonacci sequence cycle through the same 24 values endlessly and always contain the Tesla trinity (3, 6, 9) at regular intervals. The sequence is numerologically structured at its core.'},
+  {q:'The Earth/Venus orbital resonance approximates 8:13. These are:',opts:['The two most common prime numbers','Consecutive Fibonacci numbers with a ratio approaching phi','Random orbital coincidences with no mathematical significance','The ages of the two planets in billions of years'],ans:1,fb:'8 and 13 are consecutive Fibonacci numbers. Their ratio (1.625) closely approximates phi (1.618). The solar system encodes Fibonacci and phi ratios in its orbital relationships with extraordinary precision.'}
+];
+
+function buildQuiz(){
+  var w=document.getElementById('quiz-wrap');
+  QD.forEach(function(q,qi){
+    var opts='';
+    q.opts.forEach(function(o,oi){opts+='<button class="quiz-opt" onclick="ansQ('+qi+','+oi+',this)">'+o+'</button>';});
+    var d=document.createElement('div');d.className='quiz-item';d.id='qi-'+qi;
+    d.innerHTML='<div class="quiz-q">Q'+(qi+1)+'. '+q.q+'</div><div class="quiz-opts">'+opts+'</div><div class="quiz-fb" id="qf-'+qi+'"></div>';
+    w.appendChild(d);
+  });
+}
+
+function ansQ(qi,chosen,btn){
+  var item=document.getElementById('qi-'+qi);
+  if(item.dataset.done)return;
+  item.dataset.done='1';
+  var q=QD[qi];
+  item.querySelectorAll('.quiz-opt').forEach(function(o){o.disabled=true;});
+  var fb=document.getElementById('qf-'+qi);
+  if(chosen===q.ans){item.classList.add('correct');btn.classList.add('ok');fb.className='quiz-fb correct show';fb.textContent='✓ '+q.fb;qC++;}
+  else{item.classList.add('wrong');btn.classList.add('no');item.querySelectorAll('.quiz-opt')[q.ans].classList.add('show-ok');fb.className='quiz-fb wrong show';fb.textContent='✗ '+q.fb;}
+  qA++;
+  if(qA===QD.length){var s=document.getElementById('quiz-score');s.className='quiz-score show';var p=Math.round(qC/QD.length*100);s.innerHTML='You answered <strong style="color:var(--accent)">'+qC+' of '+QD.length+'</strong> correctly ('+p+'%).'+(p>=80?' The mathematical language of nature is now readable to you.':' Spend time with the Fibonacci explorer above and return.');}
+  autoSave();
+}
+
+// ── ACCORDION ──
+var ACCD=[
+  {t:'Fibonacci Numbers Most Commonly Found in Nature',b:'The Fibonacci numbers you are most likely to encounter in direct observation: <strong>3</strong> (petals: lily, iris, trillium), <strong>5</strong> (petals: buttercup, wild rose, apple blossom, most flowers), <strong>8</strong> (petals: delphiniums; spirals in many pine cones), <strong>13</strong> (petals: some daisies; spirals in many sunflowers), <strong>21</strong> (petals: many daisy varieties; sunflower spirals), <strong>34, 55, 89</strong> (spirals in large sunflowers). The spiral counts in pinecones are always consecutive Fibonacci pairs: 3 and 5, or 5 and 8, or 8 and 13.'},
+  {t:'Phi in the Human Body',b:'The golden ratio appears in the proportions of the human body with remarkable consistency: <strong>total height ÷ height to navel ≈ 1.618</strong>. The finger joints from tip to base are in phi proportion. The face: width to height ratio, the position of the eyes relative to the nose and mouth. The DNA molecule measures 34Å long and 21Å wide per full cycle — consecutive Fibonacci numbers with a ratio of 1.619, essentially phi.'},
+  {t:'The 24-Value Digit Sum Cycle in Fibonacci',b:'The digit sums of the Fibonacci sequence form a perfectly repeating cycle of 24 values: 1, 1, 2, 3, 5, 8, 4, 3, 7, 1, 8, 9, 8, 8, 7, 6, 4, 1, 5, 6, 2, 8, 1, 9... then it repeats identically. This cycle <strong>always contains 3, 6, and 9 at regular intervals</strong>. The sequence is not random — it is numerologically structured at its deepest mathematical level. Tesla\'s observation that 3, 6, and 9 are the key to the universe is visible in this cycle.'},
+  {t:'Orbital Resonance and Sacred Number',b:'Orbital resonance occurs when two bodies\' orbital periods are in simple integer ratios. The most striking examples: <strong>Earth/Venus (8:13)</strong> — consecutive Fibonacci numbers, ratio 1.625 ≈ phi. <strong>Jupiter/Saturn (5:2)</strong> — both Fibonacci numbers. <strong>Earth/Mars (1:2)</strong> — the octave, the most fundamental harmonic. <strong>Neptune/Pluto (3:2)</strong> — a perfect fifth. These are not random coincidences. The gravitational mathematics of the solar system selects for Fibonacci and harmonic ratios as the most stable configurations.'},
+  {t:'Reading Nature as a Numerological Document',b:'Practical guide to numerological nature reading: <strong>Count everything.</strong> Petals (usually 5), sepals (usually 5), stamens (usually 5 or 10), leaf arrangements, branching ratios. <strong>Find the spirals.</strong> In any composite flower or pinecone, count the spirals going clockwise and counterclockwise — they will always be consecutive Fibonacci numbers. <strong>Calculate digit sums.</strong> Any number you find in nature digit-sums to a sacred number with a meaning in the numerological system. <strong>Connect to your chart.</strong> Notice which sacred numbers you find most frequently — they may correlate with your own numerological signature.'},
+  {t:'Fractals in Biology and Physics',b:'Fractal geometry was formally described by Benoit Mandelbrot in 1975, but the patterns he described had been running since the first living cells. <strong>Biological fractals:</strong> the branching of blood vessels (the same branching angle at every scale), the structure of the lung (about 23 iterations of bifurcating branches), the pattern of nerve cells. <strong>Physical fractals:</strong> coastlines, snowflakes, lightning bolts, river networks, mountain ranges. <strong>The key insight:</strong> fractal patterns are generated by recursive rules — simple algorithms applied repeatedly. The same is true of numerological patterns. Your Life Path number is not a static label; it is a recursive rule generating the same pattern at every scale of your life.'}
+];
+
+function buildAcc(){
+  var w=document.getElementById('acc-wrap');
+  ACCD.forEach(function(item){
+    var d=document.createElement('div');d.className='acc-item';
+    d.innerHTML='<button class="acc-hd"><span class="acc-ht">'+item.t+'</span><span class="acc-ic">+</span></button><div class="acc-bd"><div class="acc-ct">'+item.b+'</div></div>';
+    d.querySelector('.acc-hd').addEventListener('click',function(){d.classList.toggle('open');});
+    w.appendChild(d);
+  });
+}
+
+// ── COMPLETION ──
+function markComplete(){
+  if(document.getElementById('comp-btn').classList.contains('done'))return;
+  xp+=10;updXP();applyDone();saveData();confetti();toast('✦ +10 XP · N12 Sealed ✦');
+}
+function applyDone(){
+  var b=document.getElementById('comp-btn');
+  b.classList.add('done');b.textContent='✦ Lesson Sealed';
+  document.getElementById('xp-pop').classList.add('show');
+}
+function updXP(){document.getElementById('xp-display').textContent=xp+' XP';}
+function confetti(){
+  var cols=['#c9a84c','#dfc472','#f0ede6','#9aa0c8'];
+  for(var i=0;i<60;i++){
+    var el=document.createElement('div');el.className='cf';
+    el.style.cssText='left:'+Math.random()*100+'%;top:-20px;background:'+cols[Math.floor(Math.random()*cols.length)]+';animation-delay:'+Math.random()*.8+'s;animation-duration:'+(1.5+Math.random())+'s;transform:rotate('+Math.random()*360+'deg);width:'+(4+Math.random()*8)+'px;height:'+(4+Math.random()*8)+'px;border-radius:'+(Math.random()>.5?'50%':'2px');
+    document.body.appendChild(el);setTimeout(function(){el.remove();},2800);
+  }
+}
+
+// ── TOAST ──
+function toast(msg){
+  var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2200);
+}
+
+// ── SAVE / LOAD ──
+function getData(){
+  return{version:'1.0',lesson:'N12',ts:new Date().toISOString(),
+    reflections:{r1:document.getElementById('ref-1').value,r2:document.getElementById('ref-2').value,r3:document.getElementById('ref-3').value},
+    fibSeqLen:fibSeq.length,
+    xp:xp,completed:document.getElementById('comp-btn').classList.contains('done')};
+}
+function saveData(){
+  localStorage.setItem(KEY,JSON.stringify(getData()));
+  document.getElementById('save-time').textContent='just now';
+}
+function autoSave(){clearTimeout(saveT);saveT=setTimeout(function(){saveData();},90000);}
+function loadData(){
+  var raw=localStorage.getItem(KEY);if(!raw)return;
+  try{
+    var d=JSON.parse(raw);
+    if(d.reflections){document.getElementById('ref-1').value=d.reflections.r1||'';document.getElementById('ref-2').value=d.reflections.r2||'';document.getElementById('ref-3').value=d.reflections.r3||'';}
+    if(d.fibSeqLen&&d.fibSeqLen>2){while(fibSeq.length<d.fibSeqLen&&fibSeq.length<31)fibSeq.push(fibSeq[fibSeq.length-1]+fibSeq[fibSeq.length-2]);renderSeq();}
+    if(d.xp){xp=d.xp;updXP();}
+    if(d.completed)applyDone();
+    document.getElementById('save-time').textContent='loaded';
+  }catch(e){}
+}
+function exportData(){
+  saveData();
+  var b=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='TFA_N12_backup_'+Date.now()+'.json';a.click();
+}
+function importData(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(ev){try{var d=JSON.parse(ev.target.result);localStorage.setItem(KEY,JSON.stringify(d));loadData();toast('Session restored ✦');}catch(err){toast('Invalid file');}};
+  r.readAsText(f);e.target.value='';
+}
+
+// ── PROGRESS ──
+window.addEventListener('scroll',function(){
+  var doc=document.documentElement;
+  var sc=window.scrollY||doc.scrollTop;
+  var sh=doc.scrollHeight-doc.clientHeight;
+  document.getElementById('prog-fill').style.width=(sh>0?Math.min(100,sc/sh*100):0)+'%';
+},{passive:true});
+
+// ── SCROLL REVEAL ──
+function initReveal(){
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+  document.querySelectorAll('.ls').forEach(function(el){obs.observe(el);});
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',function(){
+  buildFibTable();
+  buildSNGrid();
+  renderSeq();
+  buildQuiz();
+  buildAcc();
+  loadData();
+  initReveal();
+});
+</script>
+</body>
+</html>
