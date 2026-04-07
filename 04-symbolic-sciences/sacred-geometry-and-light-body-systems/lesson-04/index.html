@@ -1,1 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G4 · The Flower of Life · The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c1418;
+  --accent: #7ab0b8;
+  --accent2: #9ecdd5;
+  --text: #f0ede6;
+  --text-dim: rgba(240,237,230,0.65);
+  --gold: #c9a84c;
+  --card-bg: rgba(0,0,0,0.32);
+  --card-border: rgba(122,176,184,0.18);
+  --radius: 6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;line-height:1.75;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(122,176,184,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 90%,rgba(201,168,76,0.04) 0%,transparent 50%);pointer-events:none;z-index:0}
 
+/* PROGRESS */
+#progress-bar-wrap{position:fixed;top:0;left:0;right:0;z-index:1000;height:3px;background:rgba(0,0,0,0.5)}
+#progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--accent));transition:width 0.4s ease;box-shadow:0 0 12px rgba(201,168,76,0.6)}
+#progress-label{position:fixed;top:8px;right:16px;z-index:1001;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.15em;color:var(--accent2);opacity:.8}
+
+/* SAVE BAR */
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:1000;background:rgba(6,13,16,0.95);border-top:1px solid var(--card-border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;backdrop-filter:blur(12px)}
+#save-status{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;color:var(--text-dim)}
+.save-btns{display:flex;gap:8px}
+.save-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;padding:8px 18px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;border-radius:var(--radius);transition:all .2s;text-transform:uppercase}
+.save-btn:hover{background:var(--accent);color:var(--bg)}
+.save-btn.gold{border-color:var(--gold);color:var(--gold)}
+.save-btn.gold:hover{background:var(--gold);color:var(--bg)}
+.save-btn.dim{border-color:rgba(255,255,255,0.2);color:var(--text-dim)}
+.save-btn.dim:hover{background:rgba(255,255,255,0.1);color:var(--text)}
+
+/* LAYOUT */
+.lesson-wrap{max-width:860px;margin:0 auto;padding:56px 24px 100px;position:relative;z-index:1}
+
+/* SECTION */
+.section{margin-bottom:64px;opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.section.visible{opacity:1;transform:none}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.section-num{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);min-width:32px;opacity:.6}
+.section-title{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:600;color:var(--text);letter-spacing:.06em;flex:1}
+.section-rule{height:1px;flex:1;background:linear-gradient(90deg,var(--accent),transparent);opacity:.3}
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px 32px;margin-bottom:20px;backdrop-filter:blur(8px)}
+p{margin-bottom:16px;color:var(--text-dim)}
+p:last-child{margin-bottom:0}
+.highlight{color:var(--accent);font-weight:600}
+.gold-text{color:var(--gold)}
+h3.sub{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;color:var(--accent2);margin-bottom:14px;text-transform:uppercase}
+
+/* HERO */
+.hero{text-align:center;padding:80px 0 60px}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.hero-tag{display:inline-block;border:1px solid var(--accent);padding:4px 16px;border-radius:20px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:32px}
+.hero h1{font-family:'Cinzel',serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:700;color:var(--text);line-height:1.15;margin-bottom:12px;letter-spacing:.04em}
+.hero-subtitle{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);letter-spacing:.15em;margin-bottom:40px;font-weight:400}
+.hero-quote{max-width:620px;margin:0 auto 48px;font-style:italic;color:var(--text-dim);font-size:1.05rem;line-height:1.8;border-left:2px solid var(--gold);padding-left:20px;text-align:left}
+.hero-quote cite{display:block;margin-top:10px;font-style:normal;font-size:.8rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase}
+
+/* TRANSMISSION */
+.transmission{text-align:center;padding:48px 32px;background:linear-gradient(135deg,rgba(122,176,184,0.06),rgba(201,168,76,0.04));border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius);margin-bottom:64px}
+.transmission-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.transmission p{font-size:1.1rem;line-height:1.9;color:var(--text);font-style:italic;font-weight:300;max-width:640px;margin:0 auto 16px}
+.transmission p:last-child{margin-bottom:0}
+
+/* MODULE CRUMB */
+.module-crumb{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;color:var(--text-dim);text-align:center;margin-bottom:48px;text-transform:uppercase}
+.module-crumb span{color:var(--accent)}
+
+/* CALLOUT */
+.callout{border-left:3px solid var(--gold);background:rgba(201,168,76,0.06);padding:16px 20px;margin:24px 0;border-radius:0 var(--radius) var(--radius) 0}
+.callout p{color:var(--text);font-style:italic;margin:0}
+
+/* CONCEPT LIST */
+.concept-list{list-style:none}
+.concept-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(122,176,184,0.08);color:var(--text-dim);font-size:.93rem}
+.concept-item:last-child{border-bottom:none}
+.concept-bullet{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px}
+
+/* DATA TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.88rem}
+.data-table th{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;padding:10px 14px;border-bottom:1px solid var(--card-border);text-align:left}
+.data-table td{padding:11px 14px;border-bottom:1px solid rgba(122,176,184,0.08);color:var(--text-dim);vertical-align:top}
+.data-table td:first-child{color:var(--gold);font-weight:600;white-space:nowrap}
+.data-table tr:last-child td{border-bottom:none}
+
+/* LINEAGE FLOW */
+.lineage-flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:20px 0}
+.lineage-chip{padding:7px 14px;border:1px solid var(--accent);border-radius:20px;font-family:'Cinzel',serif;font-size:.75rem;color:var(--accent);letter-spacing:.08em;background:rgba(122,176,184,0.06)}
+.lineage-chip.gold{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.06)}
+.lineage-arrow{color:var(--text-dim);font-size:1.1rem}
+
+/* ACCORDION */
+.accordion-item{border:1px solid var(--card-border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.accordion-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;background:var(--card-bg);transition:background .2s}
+.accordion-header:hover{background:rgba(122,176,184,0.08)}
+.accordion-header-text{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:var(--text)}
+.accordion-arrow{color:var(--accent);font-size:1.2rem;transition:transform .3s}
+.accordion-item.open .accordion-arrow{transform:rotate(90deg)}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 20px;font-size:.9rem;color:var(--text-dim);line-height:1.8}
+.accordion-item.open .accordion-body{max-height:400px;padding:16px 20px 20px}
+
+/* WHAT IS ENCODED — clickable layer cards */
+.encoded-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:20px}
+.encoded-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:18px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.encoded-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .25s;transform-origin:left}
+.encoded-card:hover::before,.encoded-card.active::before{transform:scaleX(1)}
+.encoded-card:hover,.encoded-card.active{border-color:var(--accent);background:rgba(122,176,184,0.09)}
+.encoded-card.active{border-color:var(--gold)}
+.encoded-card.active::before{background:var(--gold)}
+.encoded-icon{font-size:1.4rem;margin-bottom:8px}
+.encoded-title{font-family:'Cinzel',serif;font-size:.82rem;color:var(--text);margin-bottom:6px;letter-spacing:.06em}
+.encoded-detail{font-size:.8rem;color:var(--text-dim);max-height:0;overflow:hidden;transition:max-height .3s ease,opacity .3s}
+.encoded-card.active .encoded-detail{max-height:100px;opacity:1}
+.encoded-detail{opacity:0}
+
+/* ANCIENT WORLD INTERACTIVE MAP */
+.sites-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:20px}
+.site-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:18px;transition:border-color .2s,transform .2s;cursor:default}
+.site-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.site-location{font-family:'Cinzel',serif;font-size:.85rem;color:var(--gold);margin-bottom:4px;letter-spacing:.06em}
+.site-date{font-size:.75rem;color:var(--accent);margin-bottom:8px;letter-spacing:.08em}
+.site-desc{font-size:.82rem;color:var(--text-dim);line-height:1.6}
+
+/* FLOWER CANVAS BUILDER */
+.flower-builder{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px;text-align:center}
+#flowerCanvas{display:block;margin:16px auto;max-width:100%;border:1px solid rgba(122,176,184,0.15);border-radius:4px;background:rgba(0,0,0,0.5)}
+.builder-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.build-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:9px 15px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;border-radius:var(--radius);transition:all .2s}
+.build-btn:hover,.build-btn.active{background:var(--accent);color:var(--bg)}
+.build-btn.reset{border-color:rgba(255,255,255,0.2);color:var(--text-dim)}
+.build-btn.reset:hover{background:rgba(255,255,255,0.1);color:var(--text)}
+.builder-status{font-size:.85rem;color:var(--gold);font-style:italic;margin-top:12px;min-height:24px}
+
+/* QUIZ */
+.quiz-question{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:22px;margin-bottom:14px}
+.quiz-q-text{font-family:'Cinzel',serif;font-size:.88rem;color:var(--text);margin-bottom:14px;letter-spacing:.04em;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:9px}
+.quiz-option{padding:10px 15px;border:1px solid rgba(122,176,184,0.2);border-radius:var(--radius);cursor:pointer;transition:all .2s;font-size:.88rem;color:var(--text-dim);background:transparent;text-align:left;width:100%;font-family:'Raleway',sans-serif}
+.quiz-option:hover{border-color:var(--accent);color:var(--text)}
+.quiz-option.correct{border-color:#4CAF50;background:rgba(76,175,80,0.1);color:#81c784}
+.quiz-option.wrong{border-color:#f44336;background:rgba(244,67,54,0.1);color:#e57373}
+.quiz-feedback{margin-top:9px;font-size:.82rem;font-style:italic;min-height:18px}
+.quiz-score-bar{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;text-align:center;display:none;margin-top:16px}
+.score-display{font-family:'Cinzel',serif;font-size:2.5rem;color:var(--gold);margin-bottom:8px}
+#quiz-submit{margin:20px auto 0;display:block;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;padding:12px 32px;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer;border-radius:var(--radius);transition:all .2s}
+#quiz-submit:hover{background:var(--gold);color:var(--bg)}
+
+/* REFLECTION */
+.reflection-prompt{margin-bottom:24px}
+.reflection-q{font-style:italic;color:var(--text);margin-bottom:12px;font-size:.95rem;line-height:1.7}
+.reflection-textarea{width:100%;min-height:116px;background:rgba(0,0,0,0.3);border:1px solid var(--card-border);border-radius:var(--radius);color:var(--text);font-family:'Raleway',sans-serif;font-size:.9rem;padding:14px 16px;resize:vertical;transition:border-color .2s;line-height:1.6}
+.reflection-textarea:focus{outline:none;border-color:var(--accent)}
+.reflection-textarea::placeholder{color:var(--text-dim);opacity:.5}
+
+/* PRACTICAL */
+.practice-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;margin-top:20px}
+.practice-item{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:20px;text-align:center;transition:border-color .2s}
+.practice-item:hover{border-color:var(--accent)}
+.practice-icon{font-size:2rem;margin-bottom:10px}
+.pi-title{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.1em;color:var(--text);margin-bottom:6px}
+.practice-item p{font-size:.82rem}
+
+/* RESOURCES */
+.resource-group{margin-bottom:28px}
+.rg-title{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--card-border)}
+.resource-item{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid rgba(122,176,184,0.06)}
+.resource-item:last-child{border-bottom:none}
+.ri-icon{color:var(--accent);min-width:18px;margin-top:3px;font-size:.9rem}
+.ri-title{color:var(--text);font-weight:600;font-size:.88rem;margin-bottom:2px}
+.ri-meta{color:var(--text-dim);font-size:.78rem}
+
+/* WORKSHOP */
+.workshop-slot{text-align:center;padding:48px;border:1px dashed rgba(201,168,76,0.3);border-radius:var(--radius);background:rgba(201,168,76,0.03)}
+.ws-icon{font-size:2.5rem;margin-bottom:16px;opacity:.5}
+.ws-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--text-dim);letter-spacing:.08em;margin-bottom:8px}
+.ws-sub{color:var(--text-dim);font-size:.85rem;opacity:.6}
+
+/* COMPLETION */
+.completion-card{text-align:center;padding:48px;background:linear-gradient(135deg,rgba(122,176,184,0.08),rgba(201,168,76,0.06));border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius)}
+.completion-title{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--gold);margin-bottom:12px;letter-spacing:.06em}
+.xp-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 24px;background:var(--gold);color:var(--bg);border-radius:24px;font-family:'Cinzel',serif;font-weight:700;font-size:1rem;margin:20px 0;letter-spacing:.08em;opacity:0;transform:scale(.8);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.xp-badge.show{opacity:1;transform:scale(1)}
+.complete-checkbox-wrap{display:flex;align-items:center;justify-content:center;gap:16px;margin:24px 0}
+#complete-checkbox{width:22px;height:22px;accent-color:var(--gold);cursor:pointer}
+.complete-label{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.1em;color:var(--text);cursor:pointer}
+
+/* CONFETTI */
+.confetti-piece{position:fixed;pointer-events:none;z-index:9999;animation:confetti-fall linear forwards}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+/* UP NEXT */
+.up-next-card{display:flex;align-items:center;gap:24px;padding:28px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);cursor:pointer;transition:border-color .2s,transform .2s}
+.up-next-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.un-badge{min-width:56px;height:56px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:700;color:var(--bg);font-size:.9rem}
+.un-info{flex:1}
+.un-label{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:4px}
+.un-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px}
+.un-desc{font-size:.85rem;color:var(--text-dim)}
+.un-arrow{color:var(--accent);font-size:1.5rem;opacity:.6}
+
+/* TESSELLATION DEMO */
+.tess-wrap{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid var(--card-border);margin:20px 0}
+#tessCanvas{display:block;width:100%;max-height:260px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .8s ease forwards}
+
+@media(max-width:680px){
+  .sites-grid{grid-template-columns:1fr 1fr}
+  .encoded-grid{grid-template-columns:1fr 1fr}
+  .practice-items{grid-template-columns:1fr 1fr}
+  .lesson-wrap{padding:40px 16px 90px}
+  .card{padding:20px}
+  #save-bar{padding:8px 12px}
+  .save-btn{padding:6px 12px;font-size:9px}
+}
+@media(max-width:420px){
+  .sites-grid,.encoded-grid,.practice-items{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+<div id="progress-label">G4 · 0%</div>
+
+<div id="save-bar">
+  <span id="save-status">Auto-saves every 90 seconds</span>
+  <div class="save-btns">
+    <button class="save-btn" onclick="saveData()">⟳ Save Progress</button>
+    <button class="save-btn gold" onclick="exportData()">↓ Export Backup</button>
+    <button class="save-btn dim" onclick="importTrigger()">↑ Import</button>
+  </div>
+</div>
+<input type="file" id="import-input" accept=".json" style="display:none" onchange="importData(event)">
+
+<div class="lesson-wrap">
+
+  <div class="module-crumb">The Frequency Academy · <span>Sacred Geometry & Light Body Systems</span> · Lesson G4 of 22</div>
+
+  <!-- HERO -->
+  <section class="hero section">
+    <div class="hero-eyebrow">Sacred Geometry & Light Body Systems</div>
+    <div class="hero-tag">G4 · LESSON FOUR</div>
+    <h1>The Flower of Life</h1>
+    <div class="hero-subtitle">The Master Blueprint</div>
+    <canvas id="heroCanvas" width="280" height="280" style="display:block;margin:0 auto 40px"></canvas>
+    <div class="hero-quote">
+      "The Flower of Life is not a symbol. It is a database. Every sacred form, every geometric relationship, every proportion found in the universe is encoded within its 19 circles. It is the most complete single image in the language of sacred geometry."
+      <cite>— The Frequency Academy</cite>
+    </div>
+  </section>
+
+  <!-- TRANSMISSION -->
+  <section class="section transmission" id="sec-transmission">
+    <div class="transmission-label">✦ Opening Transmission ✦</div>
+    <p>You have drawn the Seed. Seven circles. The complete template of creation in its most fundamental form. Now we let it bloom.</p>
+    <p>Twelve more circles appear, one at a time, each from the same rule — same radius, compass at the intersection, draw the circle. Nineteen total. And when the last circle settles into place, something extraordinary becomes visible: not just a beautiful pattern, but a window. A finite window into an infinite field.</p>
+    <p>What you are looking at has been carved in granite, pressed into marble, drawn in the notebooks of Leonardo, and encoded in the entrance to the Forbidden City. Across thousands of miles and thousands of years — always the same. Not because someone copied it. Because someone recognised it.</p>
+  </section>
+
+  <!-- CORE CONCEPT -->
+  <section class="section" id="sec-intro">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">What Is the Flower of Life?</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>The <span class="highlight">Flower of Life</span> is 19 equal circles arranged in six-fold symmetry, enclosed within a larger boundary circle. It is the direct continuation of the Seed of Life — same rule, same radius, same compass placement at each new intersection — extended until the pattern is complete.</p>
+      <p>But the 19 circles are not the whole picture. The pattern does not stop at the enclosing boundary. It continues in all directions, infinitely. The Flower of Life is a <em>finite window into an infinite tessellation</em> — a pattern that tiles the plane without gaps or overlaps, extending forever. The enclosing circle is a frame. The pattern is boundless.</p>
+      <div class="callout">
+        <p><strong class="gold-text">Symbolic Correspondence:</strong> The Blueprint of All Creation · The Mind of God · The Record of Everything That Has Ever Existed</p>
+      </div>
+      <ul class="concept-list">
+        <li class="concept-item"><div class="concept-bullet"></div>19 equal circles in six-fold symmetry, enclosed in a larger boundary circle</li>
+        <li class="concept-item"><div class="concept-bullet"></div>Constructed by extending the Seed of Life — same rule, same radius, compass at each intersection</li>
+        <li class="concept-item"><div class="concept-bullet"></div>A finite window into an infinite tessellation — the pattern extends in all directions without limit</li>
+        <li class="concept-item"><div class="concept-bullet"></div>The Seed of Life (7 circles) is nested at the centre; the Fruit of Life (13 circles) is extracted from within it</li>
+        <li class="concept-item"><div class="concept-bullet"></div>Appears at Abydos, Ephesus, in Leonardo da Vinci's notebooks, the Forbidden City, and across the ancient world</li>
+        <li class="concept-item"><div class="concept-bullet"></div>Encodes every sacred form: Seed, Egg, Fruit, Metatron's Cube, all 5 Platonic Solids, Sri Yantra, Merkaba</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FROM SEED TO FLOWER -->
+  <section class="section" id="sec-structure">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">From Seed to Flower — Structure & Construction</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <h3 class="sub">The Complete Structure</h3>
+      <p>The Flower of Life is the Seed continued. Start with the 7-circle Seed from G3. Continue placing circles at each new intersection point — same radius, no exceptions — until 12 more circles have been added around the outer ring. 19 total, enclosed in a larger circle.</p>
+      <p>The progression is identical to the Seed — only the scale of completion changes. The Flower is not different from the Seed. It is the Seed in full bloom.</p>
+
+      <h3 class="sub" style="margin-top:22px">The Infinite Tessellation</h3>
+      <p>Most geometric shapes cannot tile an infinite plane without gaps or overlaps. The Flower can — and does. The pattern continues beyond the enclosing circle in all directions, seamlessly and endlessly. This is one of geometry's rarest properties.</p>
+      <div class="callout">
+        <p>The Flower tiles the plane infinitely without gaps — one of the rarest properties in all of geometry. The enclosing circle is a window frame. The pattern is boundless.</p>
+      </div>
+
+      <h3 class="sub" style="margin-top:22px">The Full Lineage</h3>
+      <div class="lineage-flow">
+        <div class="lineage-chip">Point (G1)</div>
+        <div class="lineage-arrow">→</div>
+        <div class="lineage-chip">Circle (G1)</div>
+        <div class="lineage-arrow">→</div>
+        <div class="lineage-chip">Vesica (G2)</div>
+        <div class="lineage-arrow">→</div>
+        <div class="lineage-chip">Seed (G3)</div>
+        <div class="lineage-arrow">→</div>
+        <div class="lineage-chip gold">Flower (G4)</div>
+        <div class="lineage-arrow">→</div>
+        <div class="lineage-chip">Fruit → Metatron (G5)</div>
+        <div class="lineage-arrow">→</div>
+        <div class="lineage-chip">5 Platonic Solids</div>
+      </div>
+    </div>
+
+    <!-- TESSELLATION DEMO -->
+    <div class="card" style="margin-top:20px">
+      <h3 class="sub">Infinite Tessellation — Live Demo</h3>
+      <p style="font-size:.88rem;font-style:italic;margin-bottom:12px">The animated pattern below extends the Flower outward — watch it tile without gaps in all directions.</p>
+      <div class="tess-wrap"><canvas id="tessCanvas"></canvas></div>
+    </div>
+  </section>
+
+  <!-- ANCIENT WORLD -->
+  <section class="section" id="sec-ancient">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">The Flower Across the Ancient World</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>The Flower of Life has been documented at sites around the ancient world that have no known historical connection to one another. Different cultures. Different languages. Different epochs. The same 19 circles in the same arrangement. This is not coincidence — this is recognition.</p>
+      <div class="sites-grid">
+        <div class="site-card">
+          <div class="site-location">Abydos, Egypt</div>
+          <div class="site-date">Temple of Osiris · ~10,500 BCE</div>
+          <div class="site-desc">Carved into granite columns. One of the oldest known examples. The geometry is unmistakable — burned or carved into the stone with a precision that astonishes modern researchers.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-location">Ephesus, Turkey</div>
+          <div class="site-date">Temple of Artemis · ~550 BCE</div>
+          <div class="site-desc">Carved into the marble floor of one of the Seven Wonders of the Ancient World. A civilisation thousands of miles and years from Egypt encoded the same pattern.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-location">Leonardo da Vinci</div>
+          <div class="site-date">Notebooks · ~1490 CE</div>
+          <div class="site-desc">Da Vinci drew the Flower extensively and studied its mathematical properties. His Vitruvian Man uses the same proportional system encoded in the Flower.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-location">Forbidden City, China</div>
+          <div class="site-date">Beijing · Imperial Era</div>
+          <div class="site-desc">Spheres held by stone lions at the entrance encode the Flower of Life pattern — the same geometry present at the threshold of the world's most powerful imperial complex.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-location">Indian Temples</div>
+          <div class="site-date">Hampi, Ajanta · ~500 CE+</div>
+          <div class="site-desc">The Flower appears in stone carvings across ancient Indian temple architecture spanning multiple traditions and centuries.</div>
+        </div>
+        <div class="site-card">
+          <div class="site-location">Phoenician Art</div>
+          <div class="site-date">~1200 BCE</div>
+          <div class="site-desc">Among the earliest portable encodings of the form — appearing in ivory carvings from the ancient Phoenician culture of the Levant.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS ENCODED -->
+  <section class="section" id="sec-encoded">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">What Is Encoded in the Flower</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>The Flower is called the Blueprint of Creation because within its 19-circle structure, every sacred form in this module is already present — simultaneously, in the same template. It is not one form. It is all forms compressed into a single image.</p>
+      <p style="font-style:italic;font-size:.88rem;color:var(--text-dim);margin-bottom:4px">Click each form to reveal what it is and how it is extracted from the Flower:</p>
+      <div class="encoded-grid">
+        <div class="encoded-card" onclick="toggleEncoded(this)">
+          <div class="encoded-icon">⭕</div>
+          <div class="encoded-title">Seed of Life</div>
+          <div class="encoded-detail">The central 7 circles of the Flower are the Seed of Life from G3 — the first complete template, fully present at the heart of its own bloom.</div>
+        </div>
+        <div class="encoded-card" onclick="toggleEncoded(this)">
+          <div class="encoded-icon">🥚</div>
+          <div class="encoded-title">Egg of Life</div>
+          <div class="encoded-detail">The 3D equivalent of the Seed — seven spheres in space, mirroring the first stages of human embryonic cell division. Geometry present before you had a nervous system.</div>
+        </div>
+        <div class="encoded-card" onclick="toggleEncoded(this)">
+          <div class="encoded-icon">✡</div>
+          <div class="encoded-title">Fruit of Life</div>
+          <div class="encoded-detail">13 circles selected from within the Flower by taking every other intersection point. Connecting all 13 centres with straight lines produces Metatron's Cube (G5).</div>
+        </div>
+        <div class="encoded-card" onclick="toggleEncoded(this)">
+          <div class="encoded-icon">◇</div>
+          <div class="encoded-title">Metatron's Cube</div>
+          <div class="encoded-detail">The figure produced by connecting all 13 Fruit of Life centres. Contains all five Platonic Solids simultaneously — the geometric record of every possible 3D form. Studied in G5.</div>
+        </div>
+        <div class="encoded-card" onclick="toggleEncoded(this)">
+          <div class="encoded-icon">🔷</div>
+          <div class="encoded-title">All 5 Platonic Solids</div>
+          <div class="encoded-detail">The tetrahedron, cube, octahedron, dodecahedron, and icosahedron — all five perfectly regular 3D solids — are encoded within Metatron's Cube, which is encoded within the Flower.</div>
+        </div>
+        <div class="encoded-card" onclick="toggleEncoded(this)">
+          <div class="encoded-icon">✶</div>
+          <div class="encoded-title">Star of David / Merkaba</div>
+          <div class="encoded-detail">The Star of David and the Merkaba geometry — two interlocked tetrahedra — are visible throughout the Flower pattern, generated by the same hexagonal structure.</div>
+        </div>
+        <div class="encoded-card" onclick="toggleEncoded(this)">
+          <div class="encoded-icon">△</div>
+          <div class="encoded-title">Sri Yantra</div>
+          <div class="encoded-detail">The triangular geometry of the Sri Yantra — the sacred diagram of Vedic tradition — maps directly to the proportional relationships encoded within the Flower of Life.</div>
+        </div>
+        <div class="encoded-card" onclick="toggleEncoded(this)">
+          <div class="encoded-icon">🧍</div>
+          <div class="encoded-title">Vitruvian Proportion</div>
+          <div class="encoded-detail">The proportional system of Leonardo's Vitruvian Man is derived from the Flower of Life. The same proportions appear in the human body, in classical architecture, and in the 19 circles.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE: FLOWER BUILDER -->
+  <section class="section" id="sec-interactive">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Interactive Construction — Seed to Flower</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="flower-builder">
+      <p style="color:var(--text-dim);font-size:.9rem;margin-bottom:4px">Watch the Flower emerge from the Seed — 19 circles appearing in the same progression you would draw with compass and paper.</p>
+      <canvas id="flowerCanvas" width="460" height="460"></canvas>
+      <div class="builder-controls">
+        <button class="build-btn" id="fb1" onclick="flowerStep(1)">Seed (7)</button>
+        <button class="build-btn" id="fb2" onclick="flowerStep(2)">Ring 2 (12)</button>
+        <button class="build-btn" id="fb3" onclick="flowerStep(3)">Ring 3 (18)</button>
+        <button class="build-btn" id="fb4" onclick="flowerStep(4)">Complete (19)</button>
+        <button class="build-btn" id="fb5" onclick="flowerStep(5)">Highlight Fruit</button>
+        <button class="build-btn reset" onclick="flowerReset()">↺ Reset</button>
+      </div>
+      <div class="builder-status" id="flower-status">Begin with Step 1 — reveal the Seed of Life at the centre.</div>
+    </div>
+  </section>
+
+  <!-- KNOWLEDGE CHECK -->
+  <section class="section" id="sec-quiz">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Knowledge Check</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div id="quiz-container">
+      <div class="quiz-question" id="qq1">
+        <div class="quiz-q-text">1. The Flower of Life consists of how many complete circles?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(1,this,'a')">a) 7 — the same as the Seed of Life</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'b')">b) 13 — the Fruit of Life count</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'c')">c) 19 — one central, six in the Seed ring, twelve in the outer ring</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'d')">d) 24 — six rings of four</button>
+        </div>
+        <div class="quiz-feedback" id="qf1"></div>
+      </div>
+      <div class="quiz-question" id="qq2">
+        <div class="quiz-q-text">2. The Flower of Life is described as a "finite window" because:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(2,this,'a')">a) It can only be seen from certain angles</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'b')">b) The underlying circle pattern tiles the plane infinitely — the 19-circle Flower is one bounded view of that endless field</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'c')">c) It was only known in ancient times</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'d')">d) It encodes a finite number of sacred forms</button>
+        </div>
+        <div class="quiz-feedback" id="qf2"></div>
+      </div>
+      <div class="quiz-question" id="qq3">
+        <div class="quiz-q-text">3. Which location holds one of the oldest known carvings of the Flower of Life, inscribed into granite columns?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(3,this,'a')">a) The Parthenon, Athens</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'b')">b) The Temple of Artemis, Ephesus</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'c')">c) The Temple of Osiris, Abydos, Egypt</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'d')">d) Machu Picchu, Peru</button>
+        </div>
+        <div class="quiz-feedback" id="qf3"></div>
+      </div>
+      <div class="quiz-question" id="qq4">
+        <div class="quiz-q-text">4. The Fruit of Life is extracted from the Flower by:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(4,this,'a')">a) Removing the outer ring of 12 circles</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'b')">b) Selecting 13 circles from within the Flower using a specific skip pattern</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'c')">c) Connecting the 19 centres with straight lines</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'d')">d) Rotating the Seed by 30 degrees</button>
+        </div>
+        <div class="quiz-feedback" id="qf4"></div>
+      </div>
+      <div class="quiz-question" id="qq5">
+        <div class="quiz-q-text">5. TRUE or FALSE: The Flower of Life appears only in ancient Egyptian culture and nowhere else.</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(5,this,'a')">True — it is unique to ancient Egypt</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'b')">False — it has been documented independently at sites in Turkey, China, India, the Levant, and in Leonardo da Vinci's notebooks</button>
+        </div>
+        <div class="quiz-feedback" id="qf5"></div>
+      </div>
+      <div class="quiz-question" id="qq6">
+        <div class="quiz-q-text">6. Connecting the centres of all 13 Fruit of Life circles with straight lines produces:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(6,this,'a')">a) The Sri Yantra</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'b')">b) The Star of David</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'c')">c) Metatron's Cube — which contains all 5 Platonic Solids</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'d')">d) The Vesica Piscis</button>
+        </div>
+        <div class="quiz-feedback" id="qf6"></div>
+      </div>
+    </div>
+    <button id="quiz-submit" onclick="submitQuiz()">Check Answers</button>
+    <div class="quiz-score-bar" id="quiz-score-bar">
+      <div class="score-display" id="quiz-score-display">0/6</div>
+      <p id="quiz-score-msg" style="color:var(--text-dim)"></p>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="section" id="sec-glossary">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Quick Reference — Key Definitions</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div id="glossary-accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Flower of Life</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">Sacred geometry pattern of 19 equal circles in six-fold symmetry, enclosed within a larger circle. The most widely recognised symbol in sacred geometry. Appears in ancient Egypt, Greece, China, India, and Leonardo da Vinci's notebooks.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Fruit of Life</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">The 13-circle pattern within the Flower selected by taking every other intersection. Connecting all 13 centres produces Metatron's Cube — which contains all five Platonic Solids.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Tessellation</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">A tiling of the plane without gaps or overlaps. The Flower of Life circle pattern can tile infinitely — the visible 19-circle Flower is a bounded window of this infinite field. Only a handful of geometric forms possess this property.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Blueprint of Creation</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">The Flower's property of encoding all sacred forms — Seed, Fruit, Metatron's Cube, all Platonic Solids, Sri Yantra, Merkaba — within a single 19-circle template. Not metaphor: a literal description of the informational content of the pattern.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Abydos</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">Ancient Egyptian city on the Nile; site of the Temple of Osiris. Contains one of the oldest known carvings of the Flower of Life, inscribed into granite columns. The age of the carvings is debated, with some researchers dating them to over 10,000 years ago.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Vitruvian Proportion</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">The proportional system encoded in the Flower of Life and used by Leonardo da Vinci in his Vitruvian Man — the same proportions appear in the human body and in classical architecture. The Flower contains human geometry.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICAL -->
+  <section class="section" id="sec-practical">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Practical Application — This Week</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="margin-bottom:20px">The Flower of Life is the most complex construction in the module to this point — and the most rewarding. This week, bring it into physical reality and into your attention.</p>
+      <div class="practice-items">
+        <div class="practice-item">
+          <div class="practice-icon">🌸</div>
+          <div class="pi-title">Draw the Flower</div>
+          <p>Extend your G3 Seed of Life to 19 circles. This requires patience — allow 30–45 minutes. Work with full compass precision. Watch it bloom from the Seed outward.</p>
+        </div>
+        <div class="practice-item">
+          <div class="practice-icon">👁</div>
+          <div class="pi-title">Find the Forms Inside</div>
+          <p>With a coloured pen, trace the Fruit of Life (13 circles). Then connect all 13 centres with straight lines. Observe Metatron's Cube appear from within the Flower.</p>
+        </div>
+        <div class="practice-item">
+          <div class="practice-icon">🌍</div>
+          <div class="pi-title">Research the Sites</div>
+          <p>Look up photographs of the Flower at Abydos, and da Vinci's notebook sketches. Sit with the weight of what you are seeing: different worlds, the same geometry.</p>
+        </div>
+        <div class="practice-item">
+          <div class="practice-icon">🔭</div>
+          <div class="pi-title">Tessellation Meditation</div>
+          <p>Sit with the full Flower you have drawn. Let your eye follow the pattern outward, past the enclosing circle. Sense the infinite field that the 19 circles are a window into.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="section" id="sec-reflection">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Reflection Journal</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="font-style:italic;color:var(--text-dim);margin-bottom:28px">The Flower of Life is one of the most recognised images in the world. These questions invite you to explore why.</p>
+      <div class="reflection-prompt">
+        <div class="reflection-q">1. You have now built the progression: point → circle → Vesica → Seed → Flower. Each contains and generates the next. What does this nested, generative unfolding feel like to you? Is there a metaphor for this process somewhere in your own life — where a small seed has generated unexpected complexity?</div>
+        <textarea class="reflection-textarea" id="ref1" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">2. The Flower is described as all forms compressed into one template — a database rather than a symbol. Does this feel true when you look at it? What do you see inside it? What emerges for you visually, emotionally, or intuitively when you hold the image of 19 circles encoding everything?</div>
+        <textarea class="reflection-textarea" id="ref2" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">3. The Flower appears in Leonardo da Vinci's notebooks alongside his greatest works — paintings, anatomical studies, engineering designs. What does it say about the relationship between art, mathematics, and spiritual understanding that the same extraordinary mind was engaged with all three simultaneously? What does that suggest about the nature of genius?</div>
+        <textarea class="reflection-textarea" id="ref3" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- GO DEEPER -->
+  <section class="section" id="sec-resources">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <h2 class="section-title">Go Deeper — Resources</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div class="resource-group">
+        <div class="rg-title">📚 Books</div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">The Ancient Secret of the Flower of Life Vol. 1 — Drunvalo Melchizedek</div>
+            <div class="ri-meta">Light Technology Publishing, 1998 · ISBN 978-1891824173 · The definitive popular treatment of the flower of life, its ancient appearances, and cosmological significance.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">The Ancient Secret of the Flower of Life Vol. 2 — Drunvalo Melchizedek</div>
+            <div class="ri-meta">Light Technology Publishing, 2000 · ISBN 978-1891824210 · Continues into the Merkaba, DNA, and dimensional geometry derived from the flower of life pattern.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">Sacred Geometry — Robert Lawlor</div>
+            <div class="ri-meta">Inner Traditions, 1982 · ISBN 978-0500810606 · Academic grounding for the geometric constructions underlying the flower of life.</div>
+          </div>
+        </div>
+      </div>
+      <div class="resource-group">
+        <div class="rg-title">🔬 Scientific Studies</div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">Metallic Phase with Long-Range Orientational Order — Shechtman et al. (1984)</div>
+            <div class="ri-meta">Physical Review Letters · Nobel Prize-winning discovery of quasicrystals showing non-repeating geometric patterns related to flower-of-life symmetry.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">Pentaplexity: A Class of Non-Periodic Tilings — Roger Penrose (1979)</div>
+            <div class="ri-meta">Penrose tiling systems exhibit the same rotational symmetries as the flower of life — a mathematical parallel from one of the great minds of 20th-century geometry.</div>
+          </div>
+        </div>
+      </div>
+      <div class="resource-group">
+        <div class="rg-title">🎬 Documentaries</div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">The Flower of Life — Spirit Science Episode 6 (YouTube)</div>
+            <div class="ri-meta">Clear animated introduction to the flower of life pattern and its derivatives.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">Ancient Impossible — History Channel</div>
+            <div class="ri-meta">Episodes covering ancient sites where the flower of life symbol has been found, including the Osirion at Abydos.</div>
+          </div>
+        </div>
+      </div>
+      <div class="resource-group">
+        <div class="rg-title">🌐 Websites</div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">flowerofliferesearch.com</div>
+            <div class="ri-meta">Dedicated to the flower of life with historical photographs, construction guides, and research.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">sacred-geometry.es</div>
+            <div class="ri-meta">Visual library including multiple flower-of-life variations and related patterns.</div>
+          </div>
+        </div>
+      </div>
+      <div class="resource-group">
+        <div class="rg-title">🔗 TFA Lesson Connections</div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">G3 — The Seed of Life</div>
+            <div class="ri-meta">The seed of life is the central cluster within the flower of life — the 7 circles at its heart.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">G5 — Metatron's Cube</div>
+            <div class="ri-meta">Metatron's cube is derived by connecting the centers of all circles in the fruit of life, itself derived from the flower.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="ri-icon">▸</div>
+          <div>
+            <div class="ri-title">G20 — Sacred Geometry in Tensor Rings</div>
+            <div class="ri-meta">Tensor ring coil geometry is often based on the proportions and patterns of the flower of life.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSHOP -->
+  <section class="section" id="sec-workshop">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <h2 class="section-title">Live Workshop</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="workshop-slot">
+      <div class="ws-icon">◎</div>
+      <div class="ws-title">Live Workshop on this topic coming soon</div>
+      <div class="ws-sub">Recordings will appear here once available. Check back or watch for announcements at thefrequencyacademy.net</div>
+    </div>
+  </section>
+
+  <!-- COMPLETION -->
+  <section class="section" id="sec-completion">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <h2 class="section-title">Lesson Complete</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="completion-card">
+      <div class="completion-title">The Flower of Life — Lesson Summary</div>
+      <p style="color:var(--text-dim);max-width:520px;margin:0 auto 24px;font-style:italic">"The Flower of Life is not a symbol. It is a database. Every sacred form, every geometric relationship, every proportion found in the universe is encoded within its 19 circles."</p>
+      <div class="complete-checkbox-wrap">
+        <input type="checkbox" id="complete-checkbox" onchange="onComplete(this)">
+        <label class="complete-label" for="complete-checkbox">I have completed Lesson G4 — The Flower of Life</label>
+      </div>
+      <div class="xp-badge" id="xp-badge">✦ +10 XP Earned ✦</div>
+    </div>
+  </section>
+
+  <!-- UP NEXT -->
+  <section class="section" id="sec-upnext">
+    <div class="section-header">
+      <span class="section-num">14</span>
+      <h2 class="section-title">Up Next in the Module</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="up-next-card">
+      <div class="un-badge">G5</div>
+      <div class="un-info">
+        <div class="un-label">Next Lesson · Sacred Geometry</div>
+        <div class="un-title">Metatron's Cube</div>
+        <div class="un-desc">Within the Flower lies the Fruit of Life — 13 circles that, when their centres are connected by straight lines, produce Metatron's Cube. This extraordinary figure contains all five Platonic Solids simultaneously and is the geometric record of every possible three-dimensional form.</div>
+      </div>
+      <div class="un-arrow">›</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+var STORAGE_KEY = 'tfa_lesson_G4';
+var autosaveTimer = null;
+var quizAnswers = {};
+var correctAnswers = {1:'c',2:'b',3:'c',4:'b',5:'b',6:'c'};
+var quizFeedback = {
+  1:{c:'Correct! The Flower of Life consists of 19 equal circles: the central Seed cluster of 7, plus 12 more in the outer rings.',wrong:'Not quite. The Flower of Life has 19 complete circles in six-fold symmetry.'},
+  2:{b:'Correct! The underlying circle pattern can tile the plane infinitely in all directions. The 19-circle Flower is a bounded window into that infinite, seamless field.',wrong:'Not quite. The Flower is a finite window because the underlying pattern tessellates infinitely in all directions.'},
+  3:{c:'Correct! The Temple of Osiris at Abydos, Egypt, contains the Flower carved into granite columns — one of the oldest known examples, possibly over 10,000 years old.',wrong:'Not quite. The oldest known granite carving is at the Temple of Osiris, Abydos, Egypt.'},
+  4:{b:'Correct! The Fruit of Life is 13 circles selected from within the Flower using a specific skip pattern — every other intersection. Connecting all 13 centres then produces Metatron\'s Cube.',wrong:'Not quite. The Fruit of Life is 13 circles selected from within the Flower by a specific skip pattern.'},
+  5:{b:'Correct! The Flower has been documented independently at Abydos (Egypt), Ephesus (Turkey), the Forbidden City (China), Indian temples, Phoenician ivory carvings, and in da Vinci\'s notebooks.',wrong:'Not quite. The Flower appears independently across at least six major ancient cultures worldwide.'},
+  6:{c:'Correct! Connecting all 13 Fruit of Life centres with straight lines produces Metatron\'s Cube — and within Metatron\'s Cube, all five Platonic Solids are simultaneously present.',wrong:'Not quite. Connecting all 13 Fruit of Life centres produces Metatron\'s Cube, which contains all 5 Platonic Solids.'}
+};
+
+// PROGRESS
+function updateProgress() {
+  var docH = document.documentElement.scrollHeight;
+  var winH = window.innerHeight;
+  var pct = Math.min(100, Math.round((window.scrollY / (docH - winH)) * 100));
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = 'G4 \u00b7 ' + pct + '%';
+}
+window.addEventListener('scroll', updateProgress, {passive:true});
+updateProgress();
+
+// OBSERVER
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.08});
+document.querySelectorAll('.section').forEach(function(s) { observer.observe(s); });
+
+// ACCORDION
+function toggleAccordion(header) {
+  var item = header.closest('.accordion-item');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item.open').forEach(function(i) { i.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+// ENCODED CARDS
+function toggleEncoded(card) {
+  var wasActive = card.classList.contains('active');
+  document.querySelectorAll('.encoded-card.active').forEach(function(c) { c.classList.remove('active'); });
+  if (!wasActive) card.classList.add('active');
+}
+
+// ── HERO FLOWER ANIMATION ──
+(function() {
+  var canvas = document.getElementById('heroCanvas');
+  var ctx = canvas.getContext('2d');
+  var W = 280, H = 280, cx = W/2, cy = H/2, r = 46;
+  var frame = 0;
+
+  function flowerCenters(radius) {
+    var pts = [[cx, cy]];
+    for (var i = 0; i < 6; i++) {
+      var a = i * Math.PI / 3;
+      pts.push([cx + radius * Math.cos(a), cy + radius * Math.sin(a)]);
+    }
+    // Ring 2: 12 circles
+    for (var i = 0; i < 6; i++) {
+      var a1 = i * Math.PI / 3;
+      var a2 = i * Math.PI / 3 + Math.PI / 6;
+      pts.push([cx + 2 * radius * Math.cos(a1), cy + 2 * radius * Math.sin(a1)]);
+      pts.push([cx + Math.sqrt(3) * radius * Math.cos(a2), cy + Math.sqrt(3) * radius * Math.sin(a2)]);
+    }
+    return pts;
+  }
+
+  var centers = flowerCenters(r);
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    var t = frame / 100;
+    for (var i = 0; i < centers.length; i++) {
+      var phase = (i / centers.length) * Math.PI * 2;
+      var alpha = 0.35 + 0.25 * Math.sin(t + phase);
+      var isInner = i < 7;
+      ctx.beginPath();
+      ctx.arc(centers[i][0], centers[i][1], r, 0, Math.PI * 2);
+      ctx.strokeStyle = isInner ? 'rgba(201,168,76,' + alpha + ')' : 'rgba(122,176,184,' + (alpha * 0.8) + ')';
+      ctx.lineWidth = isInner ? 1.4 : 1.0;
+      ctx.stroke();
+    }
+    // Enclosing circle
+    ctx.beginPath();
+    ctx.arc(cx, cy, r * 2.6, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(201,168,76,0.2)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    // Centre dot
+    ctx.beginPath();
+    ctx.arc(cx, cy, 3, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(201,168,76,0.9)';
+    ctx.fill();
+    frame++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── TESSELLATION CANVAS ──
+(function() {
+  var canvas = document.getElementById('tessCanvas');
+  var ctx = canvas.getContext('2d');
+  var W, H;
+  function resize() {
+    W = canvas.offsetWidth;
+    H = 220;
+    canvas.width = W;
+    canvas.height = H;
+  }
+  resize();
+  window.addEventListener('resize', function() { resize(); drawTess(tessOffset); });
+
+  var tessOffset = 0;
+  var animRunning = false;
+
+  function drawTess(offset) {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(0,0,0,0.5)';
+    ctx.fillRect(0, 0, W, H);
+    var r = 28;
+    var dx = r;
+    var dy = r * Math.sqrt(3);
+    var cols = Math.ceil(W / dx) + 4;
+    var rows = Math.ceil(H / dy) + 4;
+    var ox = (offset % (dx * 2));
+
+    for (var row = -2; row < rows; row++) {
+      for (var col = -3; col < cols; col++) {
+        var x = col * dx * 2 + (row % 2) * dx - ox;
+        var y = row * dy / 2;
+        var distFromCenter = Math.sqrt(Math.pow(x - W/2, 2) + Math.pow(y - H/2, 2));
+        var maxD = Math.sqrt(W*W + H*H) / 2;
+        var fade = Math.max(0, 1 - distFromCenter / maxD);
+        var alpha = 0.15 + 0.35 * fade;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(122,176,184,' + alpha + ')';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+    // Central bright cluster
+    var clusterAlpha = 0.6;
+    ctx.beginPath();
+    ctx.arc(W/2, H/2, r, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(201,168,76,' + clusterAlpha + ')';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    for (var i = 0; i < 6; i++) {
+      var a = i * Math.PI / 3;
+      ctx.beginPath();
+      ctx.arc(W/2 + r * Math.cos(a), H/2 + r * Math.sin(a), r, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(122,176,184,0.6)';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+  }
+
+  // Animate when in view
+  var tessObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting && !animRunning) {
+        animRunning = true;
+        (function animTess() {
+          tessOffset += 0.4;
+          drawTess(tessOffset);
+          if (animRunning) requestAnimationFrame(animTess);
+        })();
+      } else if (!e.isIntersecting) {
+        animRunning = false;
+      }
+    });
+  }, {threshold: 0.1});
+  tessObserver.observe(canvas);
+  drawTess(0);
+})();
+
+// ── FLOWER BUILDER ──
+(function() {
+  var canvas = document.getElementById('flowerCanvas');
+  var ctx = canvas.getContext('2d');
+  var W = 460, H = 460, cx = W/2, cy = H/2, r = W * 0.145;
+  var currentStep = 0;
+
+  function buildCenters() {
+    var pts = [[cx, cy]]; // 0: centre
+    // Ring 1: 6 seed circles
+    for (var i = 0; i < 6; i++) {
+      var a = i * Math.PI / 3;
+      pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+    }
+    // Ring 2: 6 at double radius (at same angles)
+    for (var i = 0; i < 6; i++) {
+      var a = i * Math.PI / 3;
+      pts.push([cx + 2*r * Math.cos(a), cy + 2*r * Math.sin(a)]);
+    }
+    // Ring 2: 6 at sqrt(3)*r (between)
+    for (var i = 0; i < 6; i++) {
+      var a = i * Math.PI / 3 + Math.PI / 6;
+      pts.push([cx + Math.sqrt(3)*r * Math.cos(a), cy + Math.sqrt(3)*r * Math.sin(a)]);
+    }
+    return pts; // 19 total
+  }
+
+  var centers = buildCenters();
+
+  // Fruit of Life: indices 0,2,4,6,8,10,12 (every other) -- approximate selection from standard pattern
+  // Use centre + alternating ring-1 and ring-2 pairs
+  var fruitIndices = [0, 1, 3, 5, 7, 9, 11, 8, 10, 12, 13, 14, 16];
+
+  var stepLabels = [
+    'Begin — reveal the Seed of Life at the centre of the Flower.',
+    'Seed of Life (7 circles): the G3 template, present at the heart of the Flower.',
+    'Ring 2 added (12 more circles): the Flower is taking shape. 13 of 19 visible.',
+    'Ring 3 complete (6 more): 18 circles. One final circle to complete the Flower.',
+    'The Flower of Life is complete. 19 circles. The Master Blueprint.',
+    'The Fruit of Life highlighted (13 circles). Connect these centres to produce Metatron\'s Cube.'
+  ];
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(0,0,0,0.5)';
+    ctx.fillRect(0, 0, W, H);
+
+    var teal = '#7ab0b8', gold = '#c9a84c';
+
+    // Determine which circles to show
+    var showCount = 0;
+    if (currentStep >= 1) showCount = 7;   // seed
+    if (currentStep >= 2) showCount = 13;  // ring 2 partial
+    if (currentStep >= 3) showCount = 18;  // ring 3 partial
+    if (currentStep >= 4) showCount = 19;  // complete
+
+    var fruitMode = currentStep >= 5;
+
+    for (var i = 0; i < showCount; i++) {
+      var isFruit = fruitMode && fruitIndices.indexOf(i) !== -1;
+      var isInner = i < 7;
+      var col = isInner ? gold : teal;
+      if (fruitMode) col = isFruit ? gold : 'rgba(122,176,184,0.25)';
+
+      ctx.beginPath();
+      ctx.arc(centers[i][0], centers[i][1], r, 0, Math.PI * 2);
+      ctx.strokeStyle = col;
+      ctx.lineWidth = i === 0 ? 1.8 : 1.2;
+      ctx.stroke();
+
+      if (fruitMode && isFruit) {
+        ctx.beginPath();
+        ctx.arc(centers[i][0], centers[i][1], 4, 0, Math.PI * 2);
+        ctx.fillStyle = gold;
+        ctx.fill();
+      }
+    }
+
+    // Enclosing circle (when complete)
+    if (currentStep >= 4) {
+      ctx.beginPath();
+      ctx.arc(cx, cy, r * 2.73, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(201,168,76,0.4)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Fruit connections
+    if (fruitMode) {
+      ctx.save();
+      ctx.setLineDash([3, 4]);
+      ctx.strokeStyle = 'rgba(201,168,76,0.5)';
+      ctx.lineWidth = 0.8;
+      for (var a = 0; a < fruitIndices.length; a++) {
+        for (var b = a + 1; b < fruitIndices.length; b++) {
+          var pa = centers[fruitIndices[a]];
+          var pb = centers[fruitIndices[b]];
+          ctx.beginPath();
+          ctx.moveTo(pa[0], pa[1]);
+          ctx.lineTo(pb[0], pb[1]);
+          ctx.stroke();
+        }
+      }
+      ctx.setLineDash([]);
+      ctx.restore();
+    }
+
+    // Centre dot
+    ctx.beginPath();
+    ctx.arc(cx, cy, 3.5, 0, Math.PI * 2);
+    ctx.fillStyle = gold;
+    ctx.fill();
+
+    // Completion label
+    if (currentStep >= 4) {
+      ctx.font = 'bold 11px Cinzel,serif';
+      ctx.fillStyle = gold;
+      ctx.textAlign = 'center';
+      ctx.fillText('19 CIRCLES', cx, cy + r * 2.73 + 20);
+    }
+
+    document.getElementById('flower-status').textContent = stepLabels[currentStep];
+  }
+
+  window.flowerStep = function(n) {
+    if (n !== currentStep + 1) return;
+    currentStep = n;
+    ['fb1','fb2','fb3','fb4','fb5'].forEach(function(id, i) {
+      document.getElementById(id).classList.toggle('active', i < n);
+    });
+    draw();
+  };
+
+  window.flowerReset = function() {
+    currentStep = 0;
+    ['fb1','fb2','fb3','fb4','fb5'].forEach(function(id) {
+      document.getElementById(id).classList.remove('active');
+    });
+    draw();
+  };
+  draw();
+})();
+
+// QUIZ
+function quizAnswer(q, btn, choice) {
+  if (quizAnswers[q]) return;
+  quizAnswers[q] = choice;
+  var correct = correctAnswers[q];
+  var buttons = btn.closest('.quiz-options').querySelectorAll('.quiz-option');
+  buttons.forEach(function(b) { b.disabled = true; });
+  if (choice === correct) {
+    btn.classList.add('correct');
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#81c784">&#10003; ' + quizFeedback[q][correct] + '</span>';
+  } else {
+    btn.classList.add('wrong');
+    buttons.forEach(function(b) { if (b.textContent.trim()[0] === correct) b.classList.add('correct'); });
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#e57373">&#10007; ' + quizFeedback[q].wrong + '</span>';
+  }
+  saveData();
+}
+
+function submitQuiz() {
+  var total = Object.keys(correctAnswers).length;
+  var scored = Object.keys(quizAnswers).filter(function(q) { return quizAnswers[q] === correctAnswers[q]; }).length;
+  document.getElementById('quiz-score-bar').style.display = 'block';
+  document.getElementById('quiz-score-display').textContent = scored + '/' + total;
+  var msgs = ['Keep exploring — review each section and try again.','Solid start — revisit the ancient sites and encoded forms sections.','Good foundation — the Flower is becoming familiar.','Excellent — strong command of the Blueprint.','Outstanding — deep understanding of the Flower and its lineage.','Perfect! The Flower of Life is fully mapped in your understanding.'];
+  document.getElementById('quiz-score-msg').textContent = msgs[scored] || msgs[5];
+  document.getElementById('quiz-submit').style.display = 'none';
+  saveData();
+}
+
+// CONFETTI
+function spawnConfetti() {
+  var colors = ['#c9a84c','#7ab0b8','#f0ede6','#9ecdd5','#e8c96d'];
+  for (var i = 0; i < 60; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.cssText = 'left:' + (Math.random()*100) + 'vw;top:-10px;background:' + colors[Math.floor(Math.random()*colors.length)] + ';animation-duration:' + (1.5+Math.random()*2) + 's;animation-delay:' + (Math.random()*0.5) + 's;width:' + (6+Math.random()*6) + 'px;height:' + (6+Math.random()*6) + 'px;border-radius:' + (Math.random()>0.5?'50%':'2px');
+        document.body.appendChild(el);
+        setTimeout(function() { el.remove(); }, 4000);
+      }, i * 30);
+    })(i);
+  }
+}
+
+function onComplete(cb) {
+  var badge = document.getElementById('xp-badge');
+  if (cb.checked) { badge.classList.add('show'); spawnConfetti(); saveData(); }
+  else badge.classList.remove('show');
+}
+
+// SAVE / LOAD
+function gatherData() {
+  return {
+    version: '1.0', lesson: 'G4',
+    timestamp: new Date().toISOString(),
+    reflections: {
+      r1: document.getElementById('ref1').value,
+      r2: document.getElementById('ref2').value,
+      r3: document.getElementById('ref3').value
+    },
+    quiz: { answers: quizAnswers },
+    completed: document.getElementById('complete-checkbox').checked
+  };
+}
+
+function applyData(data) {
+  if (!data) return;
+  if (data.reflections) {
+    ['r1','r2','r3'].forEach(function(k) {
+      if (data.reflections[k]) document.getElementById('ref' + k.slice(1)).value = data.reflections[k];
+    });
+  }
+  if (data.quiz && data.quiz.answers) {
+    quizAnswers = data.quiz.answers;
+    Object.keys(quizAnswers).forEach(function(q) {
+      var choice = quizAnswers[q];
+      var correct = correctAnswers[q];
+      var qEl = document.getElementById('qq' + q);
+      if (!qEl) return;
+      var buttons = qEl.querySelectorAll('.quiz-option');
+      buttons.forEach(function(b) {
+        b.disabled = true;
+        var first = b.textContent.trim()[0];
+        if (first === choice && choice === correct) b.classList.add('correct');
+        else if (first === choice) b.classList.add('wrong');
+        else if (first === correct) b.classList.add('correct');
+      });
+      var fb = quizFeedback[q];
+      var html = choice === correct
+        ? '<span style="color:#81c784">&#10003; ' + fb[correct] + '</span>'
+        : '<span style="color:#e57373">&#10007; ' + fb.wrong + '</span>';
+      document.getElementById('qf' + q).innerHTML = html;
+    });
+  }
+  if (data.completed) {
+    document.getElementById('complete-checkbox').checked = true;
+    document.getElementById('xp-badge').classList.add('show');
+  }
+}
+
+function saveData() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(gatherData()));
+    document.getElementById('save-status').textContent = 'Saved at ' + new Date().toLocaleTimeString();
+  } catch(e) { document.getElementById('save-status').textContent = 'Save failed'; }
+}
+
+function loadData() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) applyData(JSON.parse(raw));
+  } catch(e) {}
+}
+
+function scheduleAutosave() {
+  clearTimeout(autosaveTimer);
+  autosaveTimer = setTimeout(saveData, 90000);
+}
+
+function exportData() {
+  var blob = new Blob([JSON.stringify(gatherData(), null, 2)], {type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'TFA_G4_FlowerOfLife_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click(); URL.revokeObjectURL(url);
+}
+
+function importTrigger() { document.getElementById('import-input').click(); }
+
+function importData(e) {
+  var file = e.target.files[0]; if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    try {
+      var d = JSON.parse(ev.target.result);
+      applyData(d);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+      document.getElementById('save-status').textContent = 'Imported successfully';
+    } catch(err) { document.getElementById('save-status').textContent = 'Import failed'; }
+  };
+  reader.readAsText(file);
+}
+
+setInterval(saveData, 90000);
+window.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>
