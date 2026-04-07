@@ -31,100 +31,100 @@
         {
           "id": "Q3",
           "title": "Wave-Particle Duality",
-          "description": "",
+          "description": "Light, matter, and the boundary between",
           "path": "/01-quantum-physics/quantum-physics/lesson-03/",
           "status": "live"
         },
         {
           "id": "Q4",
           "title": "Quantum Entanglement",
-          "description": "",
+          "description": "Non-local connection across space and time",
           "path": "/01-quantum-physics/quantum-physics/lesson-04/",
           "status": "live"
         },
         {
           "id": "Q5",
           "title": "Superposition & Collapse",
-          "description": "",
+          "description": "All possibilities held until observed",
           "path": "/01-quantum-physics/quantum-physics/lesson-05/",
           "status": "live"
         },
         {
           "id": "Q6",
           "title": "Zero Point Field",
-          "description": "",
+          "description": "The energy of the vacuum — the field beneath all fields",
           "path": "/01-quantum-physics/quantum-physics/lesson-06/",
           "status": "live"
         },
         {
           "id": "Q7",
           "title": "The Measurement Problem",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "description": "Why observation changes outcome — and what that means for you",
+          "path": "/01-quantum-physics/quantum-physics/lesson-07/",
+          "status": "live"
         },
         {
           "id": "Q8",
-          "title": "Quantum Biology",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Cymatics — Sound Made Visible",
+          "description": "How frequency creates form in the physical world",
+          "path": "/01-quantum-physics/quantum-physics/lesson-08/",
+          "status": "live"
         },
         {
           "id": "Q9",
-          "title": "Wave Mechanics",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Wave Mechanics — The Physics of Frequency",
+          "description": "Amplitude, wavelength, phase, interference, and resonance",
+          "path": "/01-quantum-physics/quantum-physics/lesson-09/",
+          "status": "live"
         },
         {
           "id": "Q10",
-          "title": "Cymatics",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Quantum Biology & Wave Mechanics",
+          "description": "How life uses quantum physics — the capstone of quantum foundations",
+          "path": "/01-quantum-physics/quantum-physics/lesson-10/",
+          "status": "live"
         },
         {
           "id": "Q11",
-          "title": "Resonance",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Resonance — Destroyer and Healer",
+          "description": "The law that governs every frequency interaction",
+          "path": "/01-quantum-physics/quantum-physics/lesson-11/",
+          "status": "live"
         },
         {
           "id": "Q12",
-          "title": "Electromagnetic Spectrum",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "The Electromagnetic Spectrum",
+          "description": "From radio waves to gamma rays — your map of all frequency",
+          "path": "/01-quantum-physics/quantum-physics/lesson-12/",
+          "status": "live"
         },
         {
           "id": "Q13",
-          "title": "Scalar Waves",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Scalar Waves — Beyond Hertzian Physics",
+          "description": "The non-Hertzian waves Tesla worked with",
+          "path": "/01-quantum-physics/quantum-physics/lesson-13/",
+          "status": "live"
         },
         {
           "id": "Q14",
-          "title": "Torsion Fields",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Torsion Fields — The Missing Physics",
+          "description": "Spin generates a field. Soviet science proved it.",
+          "path": "/01-quantum-physics/quantum-physics/lesson-14/",
+          "status": "live"
         },
         {
           "id": "Q15",
-          "title": "Bioelectromagnetics",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Bioelectromagnetics — The Electrical Body",
+          "description": "Your heart, cells, and nervous system as electromagnetic systems",
+          "path": "/01-quantum-physics/quantum-physics/lesson-15/",
+          "status": "live"
         },
         {
           "id": "Q16",
-          "title": "Structured Water",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Structured Water — The Fourth Phase",
+          "description": "Dr. Pollack's discovery and the science behind water structuring",
+          "path": "/01-quantum-physics/quantum-physics/lesson-16/",
+          "status": "live"
         }
       ]
     },
