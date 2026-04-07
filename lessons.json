@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-04-06",
+    "lastUpdated": "2026-04-07",
     "totalModules": 16,
     "skoolUrl": "https://www.skool.com/the-frequency-academy-3454/about",
     "baseUrl": "https://thefrequencyacademy-lessons.pages.dev"
@@ -172,7 +172,7 @@
     {
       "code": "SS",
       "number": "04",
-      "title": "Symbolic Sciences \u2014 Numerology",
+      "title": "Symbolic Sciences — Numerology",
       "folder": "04-symbolic-sciences",
       "color": "#c9a84c",
       "totalPlanned": 15,
@@ -221,52 +221,52 @@
         },
         {
           "id": "N7",
-          "title": "Personal Year Cycles",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Numerology & the Human Body",
+          "description": "How sacred numbers are encoded in human biology",
+          "path": "/04-symbolic-sciences/numerology/lesson-07/",
+          "status": "live"
         },
         {
           "id": "N8",
-          "title": "Name Numerology",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Numerology in Architecture & Sacred Space",
+          "description": "The numbers built into the world's most powerful structures",
+          "path": "/04-symbolic-sciences/numerology/lesson-08/",
+          "status": "live"
         },
         {
           "id": "N9",
-          "title": "Sacred Number Patterns",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Numerology & Relationships",
+          "description": "Compatibility, connection & the numbers between people",
+          "path": "/04-symbolic-sciences/numerology/lesson-09/",
+          "status": "live"
         },
         {
           "id": "N10",
-          "title": "Numerology in Practice",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Master Numbers Deep Dive",
+          "description": "11, 22 & 33 — the elevated frequencies",
+          "path": "/04-symbolic-sciences/numerology/lesson-10/",
+          "status": "live"
         },
         {
           "id": "N11",
-          "title": "Integration & Application",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "title": "Numerology & Money",
+          "description": "Wealth cycles, business naming & financial frequency",
+          "path": "/04-symbolic-sciences/numerology/lesson-11/",
+          "status": "live"
         },
         {
           "id": "N12",
           "title": "Numerology in Nature",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "description": "Fibonacci, fractals & the mathematics of the living world",
+          "path": "/04-symbolic-sciences/numerology/lesson-12/",
+          "status": "live"
         },
         {
           "id": "N13",
           "title": "Advanced Chart Reading",
-          "description": "",
-          "path": "",
-          "status": "coming"
+          "description": "Full 5-number chart synthesis",
+          "path": "/04-symbolic-sciences/numerology/lesson-13/",
+          "status": "live"
         },
         {
           "id": "N14",
@@ -325,7 +325,7 @@
         },
         {
           "id": "TM1",
-          "title": "Technomancy \u2014 Introduction",
+          "title": "Technomancy — Introduction",
           "description": "",
           "path": "",
           "status": "coming"
@@ -370,14 +370,14 @@
     {
       "code": "FC",
       "number": "09",
-      "title": "Frequency Charged\u2122 Methodology",
+      "title": "Frequency Charged™ Methodology",
       "folder": "09-frequency-charged-methodology",
       "color": "#2a8a7a",
       "totalPlanned": 27,
       "lessons": [
         {
           "id": "FC1",
-          "title": "What Is Frequency Charged\u2122",
+          "title": "What Is Frequency Charged™",
           "description": "",
           "path": "",
           "status": "coming"
@@ -473,7 +473,7 @@
       "lessons": [
         {
           "id": "SG1",
-          "title": "Inanna's Descent \u2014 Gate One",
+          "title": "Inanna's Descent — Gate One",
           "description": "The Crown",
           "path": "",
           "status": "coming"
@@ -491,22 +491,22 @@
       "lessons": [
         {
           "id": "DL1",
-          "title": "Late Night Resonance \u2014 D Hijaz",
-          "description": "Unreleased handpan \u00b7 Skool members only",
+          "title": "Late Night Resonance — D Hijaz",
+          "description": "Unreleased handpan · Skool members only",
           "path": "",
           "status": "dragon"
         },
         {
           "id": "DL2",
-          "title": "Late Night Resonance \u2014 D Kurd",
-          "description": "Unreleased handpan \u00b7 Skool members only",
+          "title": "Late Night Resonance — D Kurd",
+          "description": "Unreleased handpan · Skool members only",
           "path": "",
           "status": "dragon"
         },
         {
           "id": "DL3",
-          "title": "Late Night Resonance \u2014 E Amara",
-          "description": "Unreleased handpan \u00b7 Skool members only",
+          "title": "Late Night Resonance — E Amara",
+          "description": "Unreleased handpan · Skool members only",
           "path": "",
           "status": "dragon"
         }
