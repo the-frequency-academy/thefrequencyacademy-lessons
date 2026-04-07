@@ -1,1 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N11: Numerology & Money — The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1a3a;--accent:#c9a84c;--accent2:#dfc472;
+  --text:#f0ede6;--dim:rgba(240,237,230,0.60);
+  --card:rgba(0,0,0,0.28);--border:rgba(201,168,76,0.14);--glow:rgba(201,168,76,0.20);
+  --r:12px;--rl:18px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse at 15% 10%,rgba(201,168,76,0.09) 0%,transparent 55%),radial-gradient(ellipse at 85% 90%,rgba(13,26,58,0.8) 0%,transparent 50%);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 8% 12%,rgba(255,255,255,.65) 0%,transparent 100%),radial-gradient(1px 1px at 23% 39%,rgba(255,255,255,.45) 0%,transparent 100%),radial-gradient(1px 1px at 45% 7%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 67% 26%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 82% 15%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 35% 64%,rgba(201,168,76,.38) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 87% 37%,rgba(201,168,76,.26) 0%,transparent 100%)}
+#prog-wrap{position:fixed;top:0;left:0;right:0;z-index:200;height:3px;background:rgba(5,10,28,.9)}
+#prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease;box-shadow:0 0 10px var(--glow)}
+.top-nav{position:fixed;top:3px;left:0;right:0;z-index:199;display:flex;align-items:center;justify-content:space-between;padding:13px 32px;background:rgba(8,14,42,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1)}
+.nav-brand{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--accent);opacity:.8}
+.nav-crumb{font-size:10px;color:var(--dim);letter-spacing:2px}
+.nav-xp{font-family:'Cinzel',serif;font-size:11px;color:var(--accent);letter-spacing:2px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 14px}
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:88px 24px 140px}
+.ls{margin-bottom:68px;opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.ls.visible{opacity:1;transform:translateY(0)}
+.hero{text-align:center;padding:76px 0 56px}
+.hero-eye{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.hero-code{font-family:'Cinzel',serif;font-size:88px;font-weight:900;line-height:1;color:transparent;background:linear-gradient(145deg,var(--accent2) 0%,var(--accent) 55%,rgba(201,168,76,.3) 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,168,76,.2));margin-bottom:10px}
+.hero-title{font-family:'Cinzel',serif;font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:8px}
+.hero-sub{font-size:15px;font-weight:300;font-style:italic;color:var(--dim);letter-spacing:2px;margin-bottom:36px}
+.hero-rule{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 36px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.22);border-radius:30px;padding:7px 22px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent)}
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.sh-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.6;white-space:nowrap}
+.sh-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--glow),transparent)}
+.st{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.tx{background:linear-gradient(135deg,rgba(0,0,0,.36),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--accent);border-radius:var(--r);padding:38px 44px;position:relative;overflow:hidden}
+.tx::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.tx-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--accent);opacity:.6;margin-bottom:18px}
+.tx p{font-size:16px;line-height:1.95;color:rgba(240,237,230,.78);font-style:italic;font-weight:300}
+.tx p+p{margin-top:14px}
+.tx strong{color:var(--accent2);font-style:normal;font-weight:600}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 34px;margin-bottom:18px}
+.card p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.card p:last-child{margin-bottom:0}
+.callout{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:24px 32px;margin:22px 0;text-align:center}
+.callout p{font-family:'Cinzel',serif;font-size:14px;line-height:1.8;color:var(--accent2);letter-spacing:.5px}
+.defs-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.defs-t th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 18px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.defs-t th:last-child{border-right:none}
+.defs-t td{background:rgba(0,0,0,.2);padding:13px 18px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.65}
+.defs-t td:last-child{border-right:none}
+.defs-t td:first-child{color:var(--accent);font-style:italic;font-weight:500;white-space:nowrap}
 
+/* ── LIFE PATH MONEY ARCHETYPES ── */
+.lp-grid{display:flex;flex-direction:column;gap:12px;margin:20px 0}
+.lp-card{border-radius:var(--r);overflow:hidden;border:1px solid rgba(201,168,76,.1);cursor:pointer;transition:border-color .25s}
+.lp-card:hover,.lp-card.open{border-color:rgba(201,168,76,.3)}
+.lp-hd{display:flex;align-items:stretch;min-height:62px}
+.lp-num{min-width:64px;display:flex;align-items:center;justify-content:center;background:rgba(201,168,76,.08);font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:transparent;background-clip:text;-webkit-background-clip:text;background-image:linear-gradient(135deg,var(--accent2),var(--accent));flex-shrink:0;border-right:1px solid rgba(201,168,76,.08)}
+.lp-mid{padding:14px 18px;flex:1;background:rgba(0,0,0,.22)}
+.lp-arch{font-family:'Cinzel',serif;font-size:12px;color:var(--accent);letter-spacing:1px;margin-bottom:4px}
+.lp-snap{font-size:12px;color:var(--dim);line-height:1.5}
+.lp-arr{display:flex;align-items:center;padding:0 16px;font-size:16px;color:var(--accent);opacity:.4;transition:transform .3s;flex-shrink:0;background:rgba(0,0,0,.22)}
+.lp-card.open .lp-arr{transform:rotate(90deg)}
+.lp-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.lp-card.open .lp-body{max-height:300px}
+.lp-content{padding:18px 22px;background:rgba(0,0,0,.18);border-top:1px solid rgba(201,168,76,.07);font-size:13px;color:var(--dim);line-height:1.8}
+.lp-content strong{color:var(--accent2)}
+
+/* ── PERSONAL YEAR TABLE ── */
+.py-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.py-table th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 10px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.py-table th:last-child{border-right:none}
+.py-table td{background:rgba(0,0,0,.2);padding:12px 10px;font-size:12px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.55;vertical-align:top}
+.py-table td:last-child{border-right:none}
+.py-table td:first-child{color:var(--accent);font-family:'Cinzel',serif;font-size:18px;font-weight:700;text-align:center;min-width:36px}
+.py-table td:nth-child(2){color:var(--accent2);font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;white-space:nowrap}
+.py-table .do{color:#6fda9a;font-weight:600}
+.py-table .avoid{color:#e07070}
+.py-row-active td{background:rgba(201,168,76,.1)!important;border-color:rgba(201,168,76,.15)!important}
+
+/* ── BUSINESS NAME TABLE ── */
+.bn-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;margin:18px 0}
+.bn-table th{background:rgba(201,168,76,.12);font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--accent);padding:12px 14px;text-align:left;border-right:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.12)}
+.bn-table th:last-child{border-right:none}
+.bn-table td{background:rgba(0,0,0,.2);padding:12px 14px;font-size:13px;color:var(--text);border-right:1px solid rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.04);line-height:1.6}
+.bn-table td:last-child{border-right:none}
+.bn-table td:first-child{color:var(--accent);font-family:'Cinzel',serif;font-size:18px;font-weight:700;text-align:center;min-width:36px}
+.bn-table td:nth-child(2){color:var(--accent2);font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;white-space:nowrap}
+
+/* ── INTERACTIVE: FINANCIAL FREQUENCY DASHBOARD ── */
+.dash-box{background:rgba(5,10,28,.6);border:1px solid rgba(201,168,76,.18);border-radius:var(--rl);overflow:hidden;margin:24px 0}
+.dash-hd{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.12);padding:16px 26px}
+.dash-hd-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--accent)}
+.dash-body{padding:28px}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px}
+.cf-label{display:block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.7;margin-bottom:6px}
+.cf-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.12);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s;margin-bottom:0}
+.cf-input:focus{border-color:rgba(201,168,76,.35)}
+.cf-input[type=number]{-moz-appearance:textfield}
+.cf-input[type=number]::-webkit-inner-spin-button,.cf-input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
+.dash-row{margin-bottom:18px}
+.calc-btn{width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:30px;padding:14px 32px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.calc-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,168,76,.25)}
+.dash-result{display:none;margin-top:24px;animation:fadeUp .4s ease}
+.dash-result.show{display:block}
+.result-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+.r-card{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:18px;text-align:center}
+.r-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:.65;margin-bottom:8px}
+.r-val{font-family:'Cinzel',serif;font-size:32px;color:var(--accent2);line-height:1;margin-bottom:4px}
+.r-sub{font-size:11px;color:var(--dim);line-height:1.4}
+.reading-panel{background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);border-radius:var(--r);padding:22px 26px;margin-bottom:14px}
+.reading-title{font-family:'Cinzel',serif;font-size:13px;color:var(--accent2);margin-bottom:10px;letter-spacing:1px}
+.reading-body{font-size:13px;color:var(--dim);line-height:1.85}
+.reading-body p{margin-bottom:8px}
+.reading-body p:last-child{margin-bottom:0}
+.do-avoid{display:flex;gap:14px;margin-top:12px;flex-wrap:wrap}
+.do-pill{padding:5px 14px;border-radius:20px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px}
+.pill-do{background:rgba(90,184,122,.12);border:1px solid rgba(90,184,122,.25);color:#6fda9a}
+.pill-avoid{background:rgba(200,80,80,.1);border:1px solid rgba(200,80,80,.2);color:#e07070}
+/* Business name section within dashboard */
+.bn-section{background:rgba(0,0,0,.2);border:1px solid rgba(201,168,76,.1);border-radius:var(--r);padding:20px 22px;margin-top:14px}
+.bn-section-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--accent);opacity:.7;margin-bottom:14px}
+.bn-input-row{display:flex;gap:12px;align-items:flex-end;margin-bottom:14px;flex-wrap:wrap}
+.bn-input-row .cf-input{flex:1;min-width:180px}
+.bn-calc-btn{background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);border-radius:20px;padding:10px 20px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);cursor:pointer;white-space:nowrap;transition:all .2s}
+.bn-calc-btn:hover{background:rgba(201,168,76,.2)}
+.bn-result{display:none;font-size:13px;color:var(--dim);line-height:1.8}
+.bn-result.show{display:block}
+.bn-num-display{font-family:'Cinzel',serif;font-size:36px;color:var(--accent2);text-align:center;margin:10px 0 4px}
+.bn-freq{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);text-align:center;margin-bottom:12px}
+
+/* ── QUIZ ── */
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;margin-bottom:14px;transition:border-color .3s}
+.quiz-item.correct{border-color:rgba(90,184,122,.45);background:rgba(90,184,122,.06)}
+.quiz-item.wrong{border-color:rgba(200,80,80,.4);background:rgba(200,80,80,.05)}
+.quiz-q{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:14px}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:11px 16px;font-size:13px;color:var(--dim);cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:hover{border-color:rgba(201,168,76,.25);color:var(--text);background:rgba(201,168,76,.07)}
+.quiz-opt.ok{border-color:rgba(90,184,122,.5);background:rgba(90,184,122,.1);color:#6fda9a}
+.quiz-opt.no{border-color:rgba(200,80,80,.5);background:rgba(200,80,80,.08);color:#e07070}
+.quiz-opt.show-ok{border-color:rgba(90,184,122,.35);color:#6fda9a}
+.quiz-fb{margin-top:12px;font-size:13px;line-height:1.6;padding:10px 14px;border-radius:8px;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.correct{background:rgba(90,184,122,.08);color:#6fda9a}
+.quiz-fb.wrong{background:rgba(200,80,80,.06);color:#e07070}
+.quiz-score{text-align:center;font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--accent);padding:20px;display:none}
+.quiz-score.show{display:block}
+
+/* ── ACCORDION ── */
+.acc-item{margin-bottom:10px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.acc-hd{width:100%;background:var(--card);border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;transition:background .2s}
+.acc-hd:hover{background:rgba(0,0,0,.38)}
+.acc-ht{font-family:'Cinzel',serif;font-size:13px;color:var(--text);letter-spacing:1px}
+.acc-ic{font-size:18px;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-ic{transform:rotate(45deg)}
+.acc-bd{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-item.open .acc-bd{max-height:600px}
+.acc-ct{padding:20px 22px;font-size:13px;line-height:1.85;color:var(--dim);border-top:1px solid rgba(255,255,255,.04)}
+.acc-ct strong{color:var(--accent2)}
+
+/* ── REFLECTION ── */
+.ref-q{font-family:'Cinzel',serif;font-size:14px;color:var(--accent2);line-height:1.75;margin-bottom:14px;letter-spacing:.5px}
+.ref-ta{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(201,168,76,.12);border-radius:var(--r);padding:18px 22px;color:var(--text);font-family:'Raleway',sans-serif;font-size:14px;line-height:1.85;resize:vertical;min-height:110px;outline:none;transition:border-color .25s;margin-bottom:26px}
+.ref-ta:focus{border-color:rgba(201,168,76,.3);background:rgba(0,0,0,.32)}
+.ref-ta::placeholder{color:rgba(240,237,230,.2)}
+
+/* ── PRACTICE ── */
+.prac-step{display:flex;gap:20px;padding:18px 0;border-bottom:1px solid rgba(201,168,76,.07)}
+.prac-step:last-child{border-bottom:none}
+.prac-n{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--accent);opacity:.3;flex-shrink:0;line-height:1.1;width:36px}
+.prac-content strong{display:block;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--text);margin-bottom:7px}
+.prac-content p{font-size:14px;color:var(--dim);line-height:1.8;margin:0}
+
+/* ── RESOURCES ── */
+.res-list{display:flex;flex-direction:column;gap:10px}
+.res-item{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);transition:border-color .2s}
+.res-item:hover{border-color:rgba(201,168,76,.28)}
+.res-icon{color:var(--accent);font-size:1rem;flex-shrink:0;margin-top:2px}
+.res-info strong{display:block;font-size:14px;color:var(--text);margin-bottom:3px}
+.res-info span{font-size:12px;color:var(--dim)}
+
+/* ── NAV / WORKSHOP / COMP ── */
+.nav-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nav-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:22px 26px;cursor:pointer;transition:all .3s;text-decoration:none}
+.nav-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.nav-card.prev{flex-direction:row-reverse}
+.nav-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:.65;margin-bottom:6px}
+.nav-title{font-family:'Cinzel',serif;font-size:15px;color:var(--text);letter-spacing:1px}
+.nav-arr{font-size:26px;color:var(--accent);opacity:.5;flex-shrink:0}
+.ws{background:rgba(0,0,0,.3);border:1px dashed rgba(201,168,76,.2);border-radius:var(--rl);padding:40px;text-align:center}
+.ws-ic{font-size:34px;margin-bottom:14px;opacity:.45}
+.ws-t{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:var(--accent);margin-bottom:8px;opacity:.6}
+.ws-s{font-size:13px;color:var(--dim)}
+.comp-wrap{background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(0,0,0,.4));border:1px solid rgba(201,168,76,.2);border-radius:var(--rl);padding:48px;text-align:center}
+.comp-t{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--text);margin-bottom:8px}
+.comp-s{font-size:13px;color:var(--dim);margin-bottom:28px}
+.comp-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:40px;padding:17px 44px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0a1025;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.comp-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.28)}
+.comp-btn.done{background:linear-gradient(135deg,#5ab87a,#7de09a)}
+.xp-pop{display:none;font-family:'Cinzel',serif;font-size:14px;color:var(--accent);margin-top:22px;letter-spacing:2px}
+.xp-pop.show{display:block;animation:fadeUp .7s ease}
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(5,10,28,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(201,168,76,.12);padding:13px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.sv-status{font-size:11px;color:var(--dim);letter-spacing:1px}.sv-status span{color:var(--accent);font-family:'Cinzel',serif}
+.sv-actions{display:flex;gap:10px}
+.sv-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.sv-btn.pri{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.3);color:var(--accent)}.sv-btn.pri:hover{background:rgba(201,168,76,.2)}
+.sv-btn.sec{background:transparent;border-color:rgba(255,255,255,.1);color:var(--dim)}.sv-btn.sec:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+#imp-file{display:none}
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(8,14,42,.96);border:1px solid rgba(201,168,76,.28);border-radius:30px;padding:11px 26px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--accent);z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.cf{position:fixed;top:-20px;z-index:9999;border-radius:2px;pointer-events:none;animation:fall 2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:660px){.hero-code{font-size:60px}.hero-title{font-size:17px}.dash-grid{grid-template-columns:1fr}.result-row{grid-template-columns:1fr}.nav-cards{grid-template-columns:1fr}.bn-input-row{flex-direction:column}.top-nav{padding:12px 16px}.nav-crumb{display:none}main{padding-left:16px;padding-right:16px}.tx{padding:26px 22px}}
+</style>
+</head>
+<body>
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+<div class="top-nav">
+  <div class="nav-brand">THE FREQUENCY ACADEMY</div>
+  <div class="nav-crumb">NUMEROLOGY · N11</div>
+  <div class="nav-xp" id="xp-display">0 XP</div>
+</div>
+<div class="toast" id="toast"></div>
+<main>
+
+  <!-- HERO -->
+  <div class="ls hero visible">
+    <div class="hero-eye">Symbolic Sciences · Numerology</div>
+    <div class="hero-code">N11</div>
+    <div class="hero-title">Numerology &amp; Money</div>
+    <div class="hero-sub">Wealth Cycles, Business Naming &amp; Financial Frequency</div>
+    <div class="hero-rule"></div>
+    <div class="hero-tag">⟡ ~20 Min · Financial Alignment</div>
+  </div>
+
+  <!-- TRANSMISSION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">TRANSMISSION</div><div class="sh-rule"></div></div>
+    <div class="tx">
+      <div class="tx-lbl">Opening Transmission · N11</div>
+      <p>Money follows frequency before it follows effort. You can work harder than anyone in the room and still find that material abundance moves <em>around</em> you rather than <em>through</em> you — because the effort is not the issue. <strong>The frequency is.</strong></p>
+      <p>Every financial decision you make — the business you name, the year you launch, the price you set, the income stream you choose — carries a numerological charge. When that charge is aligned with your personal frequency, money moves with unusual ease. When it is misaligned, you fight your own current.</p>
+      <p>This lesson gives you the decoder ring for your financial life. Not to predict — to <em>align</em>.</p>
+    </div>
+  </div>
+
+  <!-- CORE CONCEPT -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">01</div><div class="sh-rule"></div></div>
+    <div class="st">Money Is a Frequency Before It Is a Figure</div>
+    <div class="card">
+      <p>In 2009, two businesses launched in the same week in the same city, in the same industry, with nearly identical capital. One grew to seven figures within three years. The other closed within eighteen months. The founders were equally talented, equally committed, equally willing to work. The difference was not strategy. It was <strong style="color:var(--accent2)">timing and naming</strong> — and both carry numerological signatures.</p>
+      <p>This is not mysticism. It is pattern recognition applied to the oldest data set available to us — the mathematical structure of names, dates, and cycles. Every business name has a digit sum. Every launch date falls within a Personal Year. Every pricing decision has an energetic implication. When these elements are coherently aligned with the individual's numerological profile, the result is not guaranteed success — but it is significantly reduced resistance.</p>
+      <p>The framework in this lesson covers three layers: your <em>innate financial frequency</em> (Life Path archetype), your <em>current timing cycle</em> (Personal Year), and your <em>commercial frequency</em> (business name number). Together, these three give you a working map of your financial alignment.</p>
+    </div>
+    <div class="callout"><p>"Money is not separate from your frequency.<br>It is a direct reflection of it.<br>Change the number and you change the relationship with the resource."</p></div>
+    <div class="card">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:14px">KEY DEFINITIONS</p>
+      <table class="defs-t">
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Wealth Expression</td><td>Your Expression number (all letters of your full birth name) applied specifically to financial life. Describes your natural financial style, how you generate money, and the types of abundance you are most aligned to create.</td></tr>
+          <tr><td>Financial Personal Year</td><td>The application of Personal Year number to financial timing. Each year in the 9-year cycle has a specific relationship to money — from investment years to harvest years to consolidation years.</td></tr>
+          <tr><td>Business Name Number</td><td>The digit sum of all letters in a business name. This number governs the energetic frequency of the business — what it attracts, how it is perceived, and what markets it is most naturally aligned with.</td></tr>
+          <tr><td>Prosperity Year</td><td>Personal Year 8 — the peak financial harvest year in the 9-year cycle. The year of maximum material manifestation, ambition, and abundance return on prior investment.</td></tr>
+          <tr><td>Seed Year</td><td>Personal Year 1 — the beginning of a new 9-year financial cycle. The optimal year for starting new financial endeavours, businesses, or investment strategies.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- LIFE PATH MONEY ARCHETYPES -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">02</div><div class="sh-rule"></div></div>
+    <div class="st">Life Path Money Archetypes</div>
+    <div class="card"><p>Each Life Path has a distinct relationship with money, wealth, and material abundance. The archetype describes both your natural financial strengths and the specific patterns that create resistance. Find yours — and read both sides honestly.</p></div>
+    <div class="lp-grid" id="lp-grid"></div>
+  </div>
+
+  <!-- PERSONAL YEAR FINANCIAL TIMING -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">03</div><div class="sh-rule"></div></div>
+    <div class="st">Personal Year Financial Timing</div>
+    <div class="card"><p>Every year in your 9-year cycle has a specific financial frequency. Align your major money decisions to these cycles and stop fighting your own timing. The most common financial mistake in numerology is harvesting in a planting year — or planting in a completion year. Know where you are in the cycle.</p></div>
+    <div class="card">
+      <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:16px">THE 9-YEAR FINANCIAL CYCLE — use the calculator below to find your current year</p>
+      <div style="overflow-x:auto">
+        <table class="py-table" id="py-table">
+          <thead><tr><th>PY</th><th>Theme</th><th>Financial Meaning</th><th>Do</th><th>Avoid</th></tr></thead>
+          <tbody id="py-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUSINESS NAMING -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">04</div><div class="sh-rule"></div></div>
+    <div class="st">Business Naming Numerology</div>
+    <div class="card"><p>Every business name carries a frequency. That frequency determines what the business attracts — which clients, which markets, which opportunities. Choose a name whose number matches what you want to build. This is not about superstition — it is about energetic coherence between your intention and your brand's vibrational signature.</p></div>
+    <div class="card">
+      <table class="bn-table">
+        <thead><tr><th>#</th><th>Frequency</th><th>Business Best Fit &amp; What It Attracts</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Pioneer / Leader</td><td>Best for: solo brands, startups, innovative products, personal brands. Attracts: early adopters, bold clients, leadership markets.</td></tr>
+          <tr><td>2</td><td>Partnership / Service</td><td>Best for: consulting, counselling, partnership businesses, event coordination. Attracts: clients who need support and collaboration.</td></tr>
+          <tr><td>3</td><td>Creative / Communication</td><td>Best for: media, entertainment, design, marketing, education brands. Attracts: audiences drawn to creativity and joy.</td></tr>
+          <tr><td>4</td><td>Structure / Trust</td><td>Best for: financial services, construction, legal, systems businesses. Attracts: clients who need reliability and long-term trust.</td></tr>
+          <tr><td>5</td><td>Freedom / Experience</td><td>Best for: travel, lifestyle brands, multi-product companies, adventure. Attracts: clients who value freedom and experience.</td></tr>
+          <tr><td>6</td><td>Care / Beauty</td><td>Best for: wellness, health, home, beauty, family services. Attracts: clients seeking care, harmony, and visual beauty.</td></tr>
+          <tr><td>7</td><td>Expertise / Mastery</td><td>Best for: research, technology, niche specialists, spiritual businesses. Attracts: clients seeking deep knowledge and authority.</td></tr>
+          <tr><td>8</td><td>Abundance / Authority</td><td>Best for: executive coaching, luxury brands, financial businesses, large-scale operations. Attracts: clients with significant resources.</td></tr>
+          <tr><td>9</td><td>Mission / Transformation</td><td>Best for: nonprofits, humanitarian brands, holistic and transformational services. Attracts: mission-aligned clients and causes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE: FINANCIAL FREQUENCY DASHBOARD -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">INTERACTIVE</div><div class="sh-rule"></div></div>
+    <div class="st">Financial Frequency Dashboard</div>
+    <div class="card"><p>Enter your birthdate and full birth name to reveal your complete financial frequency profile — your Life Path money archetype, current Personal Year financial cycle, and Wealth Expression. Then calculate the frequency of any business name.</p></div>
+    <div class="dash-box">
+      <div class="dash-hd"><div class="dash-hd-title">YOUR FINANCIAL FREQUENCY PROFILE</div></div>
+      <div class="dash-body">
+        <div class="dash-grid">
+          <div>
+            <label class="cf-label">Birth Day</label>
+            <input class="cf-input" type="number" id="d-day" placeholder="DD" min="1" max="31">
+          </div>
+          <div>
+            <label class="cf-label">Birth Month</label>
+            <input class="cf-input" type="number" id="d-month" placeholder="MM" min="1" max="12">
+          </div>
+        </div>
+        <div class="dash-grid">
+          <div>
+            <label class="cf-label">Birth Year</label>
+            <input class="cf-input" type="number" id="d-year" placeholder="YYYY" min="1900" max="2099">
+          </div>
+          <div>
+            <label class="cf-label">Current Year</label>
+            <input class="cf-input" type="number" id="d-curyear" placeholder="e.g. 2025" min="2020" max="2099">
+          </div>
+        </div>
+        <div class="dash-row">
+          <label class="cf-label">Full Birth Name (as on birth certificate)</label>
+          <input class="cf-input" type="text" id="d-name" placeholder="e.g. Sarah Jane Thompson">
+        </div>
+        <button class="calc-btn" onclick="runDashboard()">Calculate Financial Profile</button>
+
+        <div class="dash-result" id="dash-result">
+          <div class="result-row" id="result-row"></div>
+          <div id="reading-panels"></div>
+          <div class="bn-section">
+            <div class="bn-section-title">BUSINESS / BRAND NAME CALCULATOR</div>
+            <div class="bn-input-row">
+              <input class="cf-input" type="text" id="bn-name" placeholder="Enter any business or brand name">
+              <button class="bn-calc-btn" onclick="calcBusinessName()">Calculate</button>
+            </div>
+            <div class="bn-result" id="bn-result"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">KNOWLEDGE CHECK</div><div class="sh-rule"></div></div>
+    <div class="st">Test Your Understanding</div>
+    <div id="quiz-wrap"></div>
+    <div class="quiz-score" id="quiz-score"></div>
+  </div>
+
+  <!-- QUICK REF -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">QUICK REF</div><div class="sh-rule"></div></div>
+    <div class="st">Financial Numerology Reference</div>
+    <div id="acc-wrap"></div>
+  </div>
+
+  <!-- PRACTICE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">PRACTICE</div><div class="sh-rule"></div></div>
+    <div class="st">This Week in the Physical World</div>
+    <div class="card">
+      <div class="prac-step">
+        <div class="prac-n">1</div>
+        <div class="prac-content"><strong>MAP YOUR CURRENT FINANCIAL CYCLE</strong><p>Calculate your current Personal Year using the dashboard above. Read the financial meaning for that year carefully. Write down three financial decisions or intentions you currently have — and assess whether each one is aligned or misaligned with your current cycle. If you are in Year 7 and planning a major launch, that is the information. What needs to shift?</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">2</div>
+        <div class="prac-content"><strong>READ YOUR LIFE PATH MONEY ARCHETYPE</strong><p>Find your Life Path money archetype above. Write down which elements you most recognise — both the strengths and the shadow challenges. Identify one specific financial pattern in your life right now that maps directly to the archetype's challenges. Name the pattern specifically, not abstractly. Then identify one aligned action that maps to your archetype's natural strength.</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">3</div>
+        <div class="prac-content"><strong>CALCULATE YOUR BUSINESS / BRAND FREQUENCY</strong><p>If you have a business, a personal brand, or are considering a name for either — calculate its number using the dashboard above. Check whether the number aligns with what you want to attract. If it doesn't, experiment with alternative names or spellings. Even a minor spelling change can shift the digit sum. Calculate three variations and compare.</p></div>
+      </div>
+      <div class="prac-step">
+        <div class="prac-n">4</div>
+        <div class="prac-content"><strong>SEVEN-DAY FINANCIAL FREQUENCY JOURNAL</strong><p>Each day this week, notice one financial interaction, decision, or thought. Ask: is this aligned with my current Personal Year energy? Is it aligned with my Life Path archetype's natural strengths? Use the journal below to track your observations. At the end of seven days, identify the one financial habit or decision most in need of realignment.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">REFLECTION</div><div class="sh-rule"></div></div>
+    <div class="st">The Frequency Beneath the Financial</div>
+    <div class="card">
+      <div class="ref-q">1. Look at your Life Path money archetype. Where do you most recognise yourself in the description? Where does it feel least true? What has shaped the gap between the archetype and your current financial reality?</div>
+      <textarea class="ref-ta" id="ref-1" placeholder="Begin writing here..." oninput="autoSave()"></textarea>
+      <div class="ref-q">2. Look at your current Personal Year. Are your major financial activities aligned with the energy of this year? If not, what would it cost you to bring them into alignment? What would it free up?</div>
+      <textarea class="ref-ta" id="ref-2" placeholder="Begin writing here..." oninput="autoSave()"></textarea>
+      <div class="ref-q">3. The opening transmission says: "Money is not separate from your frequency. It is a direct reflection of it." If money were a mirror of your inner frequency right now, what would it be reflecting back to you? Be specific.</div>
+      <textarea class="ref-ta" id="ref-3" placeholder="Begin writing here..." oninput="autoSave()"></textarea>
+    </div>
+  </div>
+
+  <!-- GO DEEPER -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">GO DEEPER</div><div class="sh-rule"></div></div>
+    <div class="st">Extended Study Resources</div>
+    <div class="res-list">
+      <div class="res-item"><div class="res-icon">📖</div><div class="res-info"><strong>The Secret Language of Money — David Krueger</strong><span>A foundational text on the psychology and energetics of money. Bridges the inner frequency work with practical financial behaviour change.</span></div></div>
+      <div class="res-item"><div class="res-icon">📖</div><div class="res-info"><strong>Numerology for Business — Tania Gabrielle</strong><span>Applied numerology for entrepreneurs — business naming, launch timing, and financial cycle alignment with case studies.</span></div></div>
+      <div class="res-item"><div class="res-icon">📖</div><div class="res-info"><strong>The Complete Book of Numerology — David A. Phillips</strong><span>Comprehensive reference including Personal Year financial cycles and Expression-based wealth analysis.</span></div></div>
+      <div class="res-item"><div class="res-icon">🎧</div><div class="res-info"><strong>TFA Audio: Calculating Your Personal Year Financial Cycle</strong><span>Step-by-step guided audio for identifying your current 9-year financial position and planning the next 12 months accordingly. Available in the Member Library.</span></div></div>
+      <div class="res-item"><div class="res-icon">📖</div><div class="res-info"><strong>Glynis Has Your Number — Glynis McCants</strong><span>Includes practical guidance on business naming numerology and aligning professional decisions with personal number cycles.</span></div></div>
+    </div>
+  </div>
+
+  <!-- LIVE WORKSHOP -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">LIVE WORKSHOP</div><div class="sh-rule"></div></div>
+    <div class="ws">
+      <div class="ws-ic">◈</div>
+      <div class="ws-t">Live Workshop: Numerology &amp; Money</div>
+      <div class="ws-s">A live deep-dive on this topic is coming soon. Recordings and supplemental materials will appear here once available. Members will be notified via the Academy portal.</div>
+    </div>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">COMPLETE</div><div class="sh-rule"></div></div>
+    <div class="comp-wrap">
+      <div class="comp-t">Seal This Lesson</div>
+      <div class="comp-s">When you have identified your financial archetype, your current Personal Year cycle, and made at least one aligned financial decision or intention — seal this lesson complete.</div>
+      <button class="comp-btn" id="comp-btn" onclick="markComplete()">⟡ Mark Complete · +10 XP</button>
+      <div class="xp-pop" id="xp-pop">✦ +10 XP Awarded · N11 Complete ✦</div>
+    </div>
+  </div>
+
+  <!-- NAVIGATE -->
+  <div class="ls">
+    <div class="sh"><div class="sh-tag">NAVIGATE</div><div class="sh-rule"></div></div>
+    <div class="nav-cards">
+      <div class="nav-card prev">
+        <div class="nav-arr">←</div>
+        <div><div class="nav-lbl">PREVIOUS</div><div class="nav-title">N10 · Master Numbers Deep Dive</div></div>
+      </div>
+      <div class="nav-card">
+        <div><div class="nav-lbl">NEXT</div><div class="nav-title">N12 · Numerology in Nature</div></div>
+        <div class="nav-arr">→</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div id="save-bar">
+  <div class="sv-status">Auto-save: <span id="save-time">—</span></div>
+  <div class="sv-actions">
+    <input type="file" id="imp-file" accept=".json" onchange="importData(event)">
+    <button class="sv-btn sec" onclick="document.getElementById('imp-file').click()">Import</button>
+    <button class="sv-btn sec" onclick="exportData()">Export</button>
+    <button class="sv-btn pri" onclick="saveData();toast('Saved ✦')">Save</button>
+  </div>
+</div>
+
+<script>
+const KEY='tfa_lesson_N11';let xp=0,saveT,qA=0,qC=0;
+
+// ── DATA ──
+const LP_DATA=[
+  {n:1,arch:'The Pioneer Earner',snap:'Independent, entrepreneurial. Money comes through leadership and innovation.',full:'Money comes through leadership, innovation, and the courage to go first. Thrives in self-employment and first-mover positions. The 1 earns most powerfully when they are initiating something new rather than sustaining something inherited.',challenges:'Investing too early without foundation; going it alone when collaboration would multiply; burning through resources in the excitement of a new venture.'},
+  {n:2,arch:'The Collaborative Wealth Builder',snap:'Money flows through partnerships and being indispensable to others.',full:'Money flows through partnerships, service, and the cultivation of trusted relationships. The 2 creates wealth by making themselves essential to others — through diplomacy, care, and the ability to see what others need before they ask for it.',challenges:'Undercharging; difficulty asking for money directly; over-giving in ways that create financial imbalance; waiting for others to recognise their value rather than naming it.'},
+  {n:3,arch:'The Creative Abundance Generator',snap:'Money flows through creative expression, communication, and joy.',full:'The 3 earns most naturally when they are doing what they love — creating, communicating, performing, teaching, and bringing joy into the world. Financial abundance follows creative output when the 3 gives themselves full permission to express.',challenges:'Inconsistency; spending as fast as money arrives; difficulty with tedious financial disciplines; getting so caught up in the creative flow that the financial infrastructure is neglected.'},
+  {n:4,arch:'The Steady Accumulator',snap:'The most naturally patient financial number. Builds wealth through consistent effort and systems.',full:'The most naturally patient financial number. Builds wealth through consistent effort, reliable systems, and long-term thinking. The 4 is the investor who wins not by picking the best stock but by staying the course through every market cycle. Retirement accounts, compound interest, and long-hold strategies are the 4\'s domain.',challenges:'Rigidity around financial systems; difficulty adapting when the plan needs to change; missing opportunities that require speed and flexibility.'},
+  {n:5,arch:'The Freedom-Based Earner',snap:'Needs multiple income streams, variety, and financial freedom.',full:'Needs multiple income streams, variety, and the sensation of freedom in their financial life. The 5 often does best with portfolio income — multiple revenue sources rather than single-source employment. Diversification is not just a strategy for the 5; it is a psychological requirement.',challenges:'Impulsive spending; financial commitments that feel like cages (mortgages, long contracts); inconsistency in income that mirrors inconsistency in effort; shiny-object syndrome.'},
+  {n:6,arch:'The Service Wealth Builder',snap:'Money flows through service, care, and creating beauty and harmony for others.',full:'Money flows through service, care, and creating beauty, harmony, and wellness for others. The 6 earns by making people\'s lives demonstrably better — and earns most when they are solving a problem they genuinely care about. Clients of the 6 become deeply loyal because the relationship goes beyond transaction.',challenges:'Undervaluing their service; giving away more than they charge; wealth anxiety; the belief that wanting financial abundance conflicts with being a caring person.'},
+  {n:7,arch:'The Intellectual / Specialist Earner',snap:'Wealth comes through expertise, research, and mastery of a specific domain.',full:'Wealth comes through expertise, research, and mastery of a specific domain. The 7 earns most when they are the undisputed authority in a niche — the person others seek out precisely because no one else knows what they know. Depth of knowledge is the 7\'s primary financial asset.',challenges:'Discomfort with money as a topic; tendency to see financial pursuit as beneath them or spiritually compromising; difficulty marketing their expertise; waiting until they feel complete before offering their knowledge.'},
+  {n:8,arch:'The Power Wealth Frequency',snap:'The most naturally financially aligned Life Path. Wired for material authority and large-scale abundance.',full:'The most naturally financially aligned Life Path number. The 8 is genuinely wired for material authority, executive power, and large-scale abundance. Money is not a foreign language to the 8 — it is a native tongue. When operating at full frequency, the 8 is not just financially successful but financially influential.',challenges:'All-or-nothing relationship with money; using wealth as a proxy for self-worth; power dynamics in financial relationships; the shadow of the 8 is not poverty but hollow abundance — having the figure without the fulfilment.'},
+  {n:9,arch:'The Humanitarian Wealth Channel',snap:'Money flows to the 9 as a resource for their larger mission.',full:'Money flows to the 9 as a resource for their larger mission — not as an end in itself. The 9 earns most powerfully when they are in service to something beyond personal gain. Their financial magnetism is directly proportional to the size and authenticity of the mission they are serving.',challenges:'Ambivalence about personal wealth; giving away resources before their own needs are met; difficulty completing financial cycles; the belief that accumulating personal wealth compromises their humanitarian identity.'}
+];
+
+const PY_DATA=[
+  {n:1,theme:'Seed Year',meaning:'Plant new financial seeds. Start businesses, launch products, open investment accounts. The energy of beginning is fully behind you.',do_:'Start',avoid:'Overextend'},
+  {n:2,theme:'Partnership Year',meaning:'Build financial relationships. Negotiate partnerships, contracts, collaborations. Money comes through others right now.',do_:'Collaborate',avoid:'Go solo'},
+  {n:3,theme:'Creative Expansion',meaning:'Financial opportunities through creative expression. Say yes to visibility. Your creative output has maximum magnetic pull.',do_:'Express',avoid:'Hoard'},
+  {n:4,theme:'Build & Consolidate',meaning:'The year of financial structure. Set up systems, budgets, long-term savings plans. Not a year for gambling.',do_:'Build',avoid:'Speculate'},
+  {n:5,theme:'Change & Opportunity',meaning:'Financial pivot year. New income streams open. Be ready to adapt and move quickly when opportunities appear.',do_:'Pivot',avoid:'Resist change'},
+  {n:6,theme:'Service Harvest',meaning:'Income through service, care, family, community. Invest in your home, your relationships, your wellness infrastructure.',do_:'Serve',avoid:'Ignore others'},
+  {n:7,theme:'Refine & Research',meaning:'The financial sabbatical year. Research, analyse, plan. Not a primary harvest year — invest in knowledge and skill.',do_:'Learn',avoid:'Gamble'},
+  {n:8,theme:'Prosperity Harvest',meaning:'The peak financial year. Maximum manifestation energy. Major launches, negotiations, and abundance returns come now.',do_:'Harvest',avoid:'Play small'},
+  {n:9,theme:'Complete & Release',meaning:'Financial completion and release. Clear debt, close old accounts, let go of what is no longer serving. Prepare for Year 1.',do_:'Release',avoid:'Start fresh'}
+];
+
+const BN_DATA=[
+  {n:1,freq:'Pioneer / Leader',fit:'Solo brands, startups, innovative products, personal brands.',attracts:'Early adopters, bold clients, leadership markets.'},
+  {n:2,freq:'Partnership / Service',fit:'Consulting, counselling, partnership businesses, event coordination.',attracts:'Clients who need support and collaboration.'},
+  {n:3,freq:'Creative / Communication',fit:'Media, entertainment, design, marketing, education brands.',attracts:'Audiences drawn to creativity and joy.'},
+  {n:4,freq:'Structure / Trust',fit:'Financial services, construction, legal, systems businesses.',attracts:'Clients who need reliability and long-term trust.'},
+  {n:5,freq:'Freedom / Experience',fit:'Travel, lifestyle brands, multi-product companies, adventure.',attracts:'Clients who value freedom and experience.'},
+  {n:6,freq:'Care / Beauty',fit:'Wellness, health, home, beauty, family services.',attracts:'Clients seeking care, harmony, and visual beauty.'},
+  {n:7,freq:'Expertise / Mastery',fit:'Research, technology, niche specialists, spiritual businesses.',attracts:'Clients seeking deep knowledge and authority.'},
+  {n:8,freq:'Abundance / Authority',fit:'Executive coaching, luxury brands, financial businesses, large-scale operations.',attracts:'Clients with significant resources.'},
+  {n:9,freq:'Mission / Transformation',fit:'Nonprofits, humanitarian brands, holistic and transformational services.',attracts:'Mission-aligned clients and causes.'}
+];
+
+const PV={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
+
+function digitReduce(n){
+  while(n>9&&n!==11&&n!==22&&n!==33){var s=0;while(n>0){s+=n%10;n=Math.floor(n/10);}n=s;}
+  return n;
+}
+function digitReduceSimple(n){
+  while(n>9){var s=0;while(n>0){s+=n%10;n=Math.floor(n/10);}n=s;}
+  return n;
+}
+function calcLP(day,month,year){
+  var digits=String(day)+String(month)+String(year);
+  var sum=0;for(var i=0;i<digits.length;i++)sum+=parseInt(digits[i]);
+  return digitReduce(sum);
+}
+function calcPY(day,month,curYear){
+  var digits=String(day)+String(month)+String(curYear);
+  var sum=0;for(var i=0;i<digits.length;i++)sum+=parseInt(digits[i]);
+  return digitReduceSimple(sum);
+}
+function calcExpression(name){
+  var clean=name.toUpperCase().replace(/[^A-Z]/g,'');
+  var sum=0;for(var i=0;i<clean.length;i++)sum+=PV[clean[i]]||0;
+  return digitReduce(sum);
+}
+function calcBusinessNum(name){
+  var clean=name.toUpperCase().replace(/[^A-Z]/g,'');
+  var sum=0;for(var i=0;i<clean.length;i++)sum+=PV[clean[i]]||0;
+  return digitReduceSimple(sum);
+}
+
+// ── BUILD LP GRID ──
+function buildLPGrid(){
+  var g=document.getElementById('lp-grid');
+  LP_DATA.forEach(function(p){
+    var d=document.createElement('div');
+    d.className='lp-card';
+    d.innerHTML='<div class="lp-hd"><div class="lp-num">'+p.n+'</div><div class="lp-mid"><div class="lp-arch">'+p.arch+'</div><div class="lp-snap">'+p.snap+'</div></div><div class="lp-arr">▶</div></div><div class="lp-body"><div class="lp-content"><p>'+p.full+'</p><p><strong>Financial challenges:</strong> '+p.challenges+'</p></div></div>';
+    d.querySelector('.lp-hd').addEventListener('click',function(){
+      var was=d.classList.contains('open');
+      document.querySelectorAll('.lp-card').forEach(function(c){c.classList.remove('open');});
+      if(!was)d.classList.add('open');
+    });
+    g.appendChild(d);
+  });
+}
+
+// ── BUILD PY TABLE ──
+function buildPYTable(activePY){
+  var tb=document.getElementById('py-tbody');
+  tb.innerHTML='';
+  PY_DATA.forEach(function(py){
+    var tr=document.createElement('tr');
+    if(py.n===activePY)tr.className='py-row-active';
+    tr.innerHTML='<td>'+py.n+(py.n===activePY?' ◀':'' )+'</td><td>'+py.theme+'</td><td>'+py.meaning+'</td><td class="do">✓ '+py.do_+'</td><td class="avoid">✗ '+py.avoid+'</td>';
+    tb.appendChild(tr);
+  });
+}
+
+// ── DASHBOARD ──
+function runDashboard(){
+  var day=parseInt(document.getElementById('d-day').value);
+  var month=parseInt(document.getElementById('d-month').value);
+  var year=parseInt(document.getElementById('d-year').value);
+  var curYear=parseInt(document.getElementById('d-curyear').value)||new Date().getFullYear();
+  var name=document.getElementById('d-name').value.trim();
+  if(!day||!month||!year){alert('Please enter your full birthdate.');return;}
+
+  var lp=calcLP(day,month,year);
+  var lpBase=lp>9?(lp===11?2:lp===22?4:6):lp;
+  var py=calcPY(day,month,curYear);
+  var ex=name?calcExpression(name):null;
+
+  // Update PY table highlight
+  buildPYTable(py);
+
+  var rr=document.getElementById('result-row');
+  rr.innerHTML='';
+  var cards=[['Life Path',lp,'Money Archetype'],['Personal Year '+curYear,py,'Financial Cycle'],ex!==null?['Wealth Expression',ex,'Financial Style']:null];
+  cards.forEach(function(c){
+    if(!c)return;
+    var div=document.createElement('div');
+    div.className='r-card';
+    div.innerHTML='<div class="r-lbl">'+c[0].toUpperCase()+'</div><div class="r-val">'+c[1]+'</div><div class="r-sub">'+c[2]+'</div>';
+    rr.appendChild(div);
+  });
+
+  var panels=document.getElementById('reading-panels');
+  panels.innerHTML='';
+
+  // LP panel
+  var lpData=LP_DATA.find(function(p){return p.n===lpBase;})||LP_DATA[0];
+  var p1=document.createElement('div');p1.className='reading-panel';
+  p1.innerHTML='<div class="reading-title">Life Path '+lp+' — '+lpData.arch+'</div><div class="reading-body"><p>'+lpData.full+'</p><p><strong style="color:var(--accent2)">Your financial challenge to integrate:</strong> '+lpData.challenges+'</p></div>';
+  panels.appendChild(p1);
+
+  // PY panel
+  var pyData=PY_DATA.find(function(p){return p.n===py;})||PY_DATA[0];
+  var p2=document.createElement('div');p2.className='reading-panel';
+  p2.innerHTML='<div class="reading-title">Personal Year '+py+' ('+curYear+') — '+pyData.theme+'</div><div class="reading-body"><p>'+pyData.meaning+'</p><div class="do-avoid"><span class="do-pill pill-do">✓ '+pyData.do_+'</span><span class="do-pill pill-avoid">✗ Avoid: '+pyData.avoid+'</span></div></div>';
+  panels.appendChild(p2);
+
+  // Expression panel
+  if(ex!==null){
+    var exData=BN_DATA.find(function(b){return b.n===(ex>9?digitReduceSimple(ex):ex);})||BN_DATA[0];
+    var p3=document.createElement('div');p3.className='reading-panel';
+    p3.innerHTML='<div class="reading-title">Wealth Expression '+ex+' — '+exData.freq+' Financial Style</div><div class="reading-body"><p>Your natural financial style resonates with the '+exData.freq+' frequency. You are most aligned to generate abundance through work that fits: <strong style="color:var(--accent2)">'+exData.fit+'</strong></p><p>Your natural client / market: '+exData.attracts+'</p></div>';
+    panels.appendChild(p3);
+  }
+
+  document.getElementById('dash-result').classList.add('show');
+  autoSave();
+}
+
+function calcBusinessName(){
+  var name=document.getElementById('bn-name').value.trim();
+  if(!name){alert('Please enter a business or brand name.');return;}
+  var n=calcBusinessNum(name);
+  var data=BN_DATA.find(function(b){return b.n===n;})||BN_DATA[0];
+  var r=document.getElementById('bn-result');
+  r.innerHTML='<div class="bn-num-display">'+n+'</div><div class="bn-freq">'+data.freq+'</div><p><strong style="color:var(--accent2)">Best fit:</strong> '+data.fit+'</p><p><strong style="color:var(--accent2)">Attracts:</strong> '+data.attracts+'</p>';
+  r.classList.add('show');
+  autoSave();
+}
+
+// ── QUIZ ──
+var QD=[
+  {q:'Personal Year 8 is called the Prosperity Harvest year. What does this mean?',opts:['Time to rest and research','The peak financial year — maximum manifestation energy and abundance returns','Time to complete and release old financial obligations','Time to start new businesses and plant seeds'],ans:1,fb:'Personal Year 8 is the peak financial harvest year in the 9-year cycle. Major launches, negotiations, and abundance returns are most supported now.'},
+  {q:'Personal Year 1 is called the Seed Year. What financial action is most aligned with this energy?',opts:['Clear debt and close old accounts','Research and analyse without acting','Start new businesses, open investment accounts, launch products','Harvest returns on prior investments'],ans:2,fb:'Personal Year 1 is optimal for starting new financial endeavours. The energy of beginning is fully behind you — plant the seeds now that Year 8 will harvest.'},
+  {q:'Life Path 8 is described as:',opts:['The most naturally patient financial number','The most naturally financially aligned Life Path — wired for material authority and large-scale abundance','The humanitarian wealth channel','The freedom-based earner needing multiple income streams'],ans:1,fb:'Life Path 8 is the most naturally financially aligned Life Path number. The 8 is genuinely wired for material authority, executive power, and large-scale abundance.'},
+  {q:'Business name number 4 is best for which type of business?',opts:['Media, entertainment, and marketing brands','Nonprofits and humanitarian services','Financial services, construction, legal, and systems businesses','Travel and lifestyle brands'],ans:2,fb:'Business name number 4 carries the Structure / Trust frequency — best for financial services, construction, legal, and systems businesses. It attracts clients who need reliability and long-term trust.'},
+  {q:'A Personal Year 4 is an excellent time for speculative financial investments. True or False?',opts:['True — Year 4 has maximum financial energy','False — Year 4 is for building and consolidating, not speculation','True — the 4 frequency supports bold risk-taking','False — Year 4 should be avoided for all financial decisions'],ans:1,fb:'FALSE. Year 4 is for building structure, setting up systems, and long-term planning. Speculation is explicitly what to avoid in a Year 4 cycle.'},
+  {q:'Life Path 2 earns most naturally through:',opts:['Leadership and solo entrepreneurship','Expertise and niche authority','Partnership, service, and being indispensable to others','Creative expression and communication'],ans:2,fb:'Life Path 2 creates wealth by being indispensable to others — through partnership, diplomacy, and trusted relationships. Money flows through others right now for the 2.'},
+  {q:'Personal Year 9 is best used for:',opts:['Starting major new businesses and financial initiatives','Launching products and making bold investments','Completing financial cycles, clearing debt, and releasing what no longer serves','Building partnerships and negotiating contracts'],ans:2,fb:'Personal Year 9 is for completion and release — clear debt, close old accounts, let go of what is no longer serving. Year 1 is for starting new initiatives; Year 9 is for completing old ones.'}
+];
+
+function buildQuiz(){
+  var w=document.getElementById('quiz-wrap');
+  QD.forEach(function(q,qi){
+    var opts='';
+    q.opts.forEach(function(o,oi){opts+='<button class="quiz-opt" onclick="ansQ('+qi+','+oi+',this)">'+o+'</button>';});
+    var d=document.createElement('div');
+    d.className='quiz-item';d.id='qi-'+qi;
+    d.innerHTML='<div class="quiz-q">Q'+(qi+1)+'. '+q.q+'</div><div class="quiz-opts">'+opts+'</div><div class="quiz-fb" id="qf-'+qi+'"></div>';
+    w.appendChild(d);
+  });
+}
+
+function ansQ(qi,chosen,btn){
+  var item=document.getElementById('qi-'+qi);
+  if(item.dataset.done)return;
+  item.dataset.done='1';
+  var q=QD[qi];
+  item.querySelectorAll('.quiz-opt').forEach(function(o){o.disabled=true;});
+  var fb=document.getElementById('qf-'+qi);
+  if(chosen===q.ans){item.classList.add('correct');btn.classList.add('ok');fb.className='quiz-fb correct show';fb.textContent='✓ '+q.fb;qC++;}
+  else{item.classList.add('wrong');btn.classList.add('no');item.querySelectorAll('.quiz-opt')[q.ans].classList.add('show-ok');fb.className='quiz-fb wrong show';fb.textContent='✗ '+q.fb;}
+  qA++;
+  if(qA===QD.length){var s=document.getElementById('quiz-score');s.className='quiz-score show';var p=Math.round(qC/QD.length*100);s.innerHTML='You answered <strong style="color:var(--accent)">'+qC+' of '+QD.length+'</strong> correctly ('+p+'%).'+(p>=80?' Your financial frequency is now legible.':' Review the archetypes and cycles above — alignment becomes clearer with repetition.');}
+  autoSave();
+}
+
+// ── ACCORDION ──
+var ACCD=[
+  {t:'How to Calculate Your Personal Year',b:'Add your birth month + birth day + the <strong>current year</strong> (not your birth year). Reduce to a single digit. Example: born March 15, calculating for 2025 → 3 + 1+5 + 2+0+2+5 = 3 + 6 + 9 = 18 → 1+8 = <strong>Personal Year 9</strong>. The Personal Year runs from January 1 to December 31 of the calendar year — not from your birthday. Recalculate each January.'},
+  {t:'How to Calculate Your Wealth Expression',b:'Your Wealth Expression is your standard Expression number applied to financial life. Write your full birth name. Assign all letters their Pythagorean values (A=1, B=2 ... Z=8, wrapping from J=1). Add all values. Reduce to a single digit (retaining Master Numbers 11, 22, 33). This number describes your <strong>natural financial style</strong> — how you generate money and the types of abundance you are most aligned to create.'},
+  {t:'How to Calculate a Business Name Number',b:'Write the business name exactly as it appears in use (including "The", "Ltd", "Inc" if they are part of the brand). Assign all letters their Pythagorean values. Add all values. Reduce to a single digit. This is the business\'s frequency — what it <strong>naturally attracts</strong>. To test alternative names, calculate variations: changing one letter or adding/removing a word can shift the number entirely.'},
+  {t:'The Financial Implications of Each Personal Year',b:'<strong>Year 1–3:</strong> Active growth phase. Year 1 plants, Year 2 builds relationships, Year 3 expands creatively. These are years of increasing visibility and investment. <strong>Year 4–6:</strong> Consolidation and service phase. Year 4 structures, Year 5 pivots, Year 6 harvests through service. <strong>Year 7–9:</strong> Completion and preparation phase. Year 7 refines, Year 8 harvests materially, Year 9 completes and releases. Fighting these rhythms is the most common financial mistake in numerological timing.'},
+  {t:'Aligning Business Name and Life Path',b:'Ideally, your business name number should either match your Life Path number (direct resonance), complement it (different but aligned — see N9 compatibility matrix for guidance), or intentionally serve the market you are targeting regardless of your personal number. The highest alignment occurs when your Life Path, your Wealth Expression, and your business name number are all working in the same frequency family. This is not always achievable — but knowing the numbers allows you to <strong>make the choice consciously</strong>.'},
+  {t:'When Year 8 Does Not Produce Abundance',b:'Personal Year 8 is the peak harvest year — but you can only harvest what was planted. If Years 1–7 involved avoidance, disorganisation, or financial stagnation, Year 8 may produce more a reckoning than a harvest. The answer is not despair but recalibration: <strong>identify which prior year\'s work was skipped</strong> and do it now. A delayed Year 4 consolidation can be done within a Year 8 — it just reduces the time available for harvesting. The cycle does not punish; it reflects.'}
+];
+
+function buildAcc(){
+  var w=document.getElementById('acc-wrap');
+  ACCD.forEach(function(item){
+    var d=document.createElement('div');
+    d.className='acc-item';
+    d.innerHTML='<button class="acc-hd"><span class="acc-ht">'+item.t+'</span><span class="acc-ic">+</span></button><div class="acc-bd"><div class="acc-ct">'+item.b+'</div></div>';
+    d.querySelector('.acc-hd').addEventListener('click',function(){d.classList.toggle('open');});
+    w.appendChild(d);
+  });
+}
+
+// ── COMPLETION ──
+function markComplete(){
+  if(document.getElementById('comp-btn').classList.contains('done'))return;
+  xp+=10;updXP();applyDone();saveData();confetti();toast('✦ +10 XP · N11 Sealed ✦');
+}
+function applyDone(){
+  var b=document.getElementById('comp-btn');
+  b.classList.add('done');b.textContent='✦ Lesson Sealed';
+  document.getElementById('xp-pop').classList.add('show');
+}
+function updXP(){document.getElementById('xp-display').textContent=xp+' XP';}
+function confetti(){
+  var cols=['#c9a84c','#dfc472','#f0ede6','#9aa0c8'];
+  for(var i=0;i<60;i++){
+    var el=document.createElement('div');el.className='cf';
+    el.style.cssText='left:'+Math.random()*100+'%;top:-20px;background:'+cols[Math.floor(Math.random()*cols.length)]+';animation-delay:'+Math.random()*.8+'s;animation-duration:'+(1.5+Math.random())+'s;transform:rotate('+Math.random()*360+'deg);width:'+(4+Math.random()*8)+'px;height:'+(4+Math.random()*8)+'px;border-radius:'+(Math.random()>.5?'50%':'2px');
+    document.body.appendChild(el);setTimeout(function(){el.remove();},2800);
+  }
+}
+
+// ── TOAST ──
+function toast(msg){
+  var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2200);
+}
+
+// ── SAVE / LOAD ──
+function getData(){
+  return{version:'1.0',lesson:'N11',ts:new Date().toISOString(),
+    reflections:{r1:document.getElementById('ref-1').value,r2:document.getElementById('ref-2').value,r3:document.getElementById('ref-3').value},
+    calc:{day:document.getElementById('d-day').value,month:document.getElementById('d-month').value,year:document.getElementById('d-year').value,curyear:document.getElementById('d-curyear').value,name:document.getElementById('d-name').value,bn:document.getElementById('bn-name').value},
+    xp:xp,completed:document.getElementById('comp-btn').classList.contains('done')};
+}
+
+function saveData(){
+  localStorage.setItem(KEY,JSON.stringify(getData()));
+  document.getElementById('save-time').textContent='just now';
+}
+function autoSave(){clearTimeout(saveT);saveT=setTimeout(function(){saveData();},90000);}
+
+function loadData(){
+  var raw=localStorage.getItem(KEY);if(!raw)return;
+  try{
+    var d=JSON.parse(raw);
+    if(d.reflections){document.getElementById('ref-1').value=d.reflections.r1||'';document.getElementById('ref-2').value=d.reflections.r2||'';document.getElementById('ref-3').value=d.reflections.r3||'';}
+    if(d.calc){
+      document.getElementById('d-day').value=d.calc.day||'';
+      document.getElementById('d-month').value=d.calc.month||'';
+      document.getElementById('d-year').value=d.calc.year||'';
+      document.getElementById('d-curyear').value=d.calc.curyear||'';
+      document.getElementById('d-name').value=d.calc.name||'';
+      document.getElementById('bn-name').value=d.calc.bn||'';
+      if(d.calc.day&&d.calc.month&&d.calc.year)runDashboard();
+    }
+    if(d.xp){xp=d.xp;updXP();}
+    if(d.completed)applyDone();
+    document.getElementById('save-time').textContent='loaded';
+  }catch(e){}
+}
+
+function exportData(){
+  saveData();
+  var b=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='TFA_N11_backup_'+Date.now()+'.json';a.click();
+}
+function importData(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(ev){try{var d=JSON.parse(ev.target.result);localStorage.setItem(KEY,JSON.stringify(d));loadData();toast('Session restored ✦');}catch(err){toast('Invalid file');}};
+  r.readAsText(f);e.target.value='';
+}
+
+// ── PROGRESS ──
+window.addEventListener('scroll',function(){
+  var doc=document.documentElement;
+  var sc=window.scrollY||doc.scrollTop;
+  var sh=doc.scrollHeight-doc.clientHeight;
+  document.getElementById('prog-fill').style.width=(sh>0?Math.min(100,sc/sh*100):0)+'%';
+},{passive:true});
+
+// ── SCROLL REVEAL ──
+function initReveal(){
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+  document.querySelectorAll('.ls').forEach(function(el){obs.observe(el);});
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',function(){
+  buildLPGrid();
+  buildPYTable(null);
+  buildQuiz();
+  buildAcc();
+  // Pre-fill current year
+  if(!document.getElementById('d-curyear').value){
+    document.getElementById('d-curyear').value=new Date().getFullYear();
+  }
+  loadData();
+  initReveal();
+});
+</script>
+</body>
+</html>
