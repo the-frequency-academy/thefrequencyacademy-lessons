@@ -1,1 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q10 — Quantum Biology & Wave Mechanics | The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--n:#0a1628;--n2:#0d1e38;--n3:#102040;--g:#4a9edd;--g2:#78b8ee;--gb:rgba(74,158,221,0.22);--gf:rgba(74,158,221,0.08);--w:#e8f0f8;--w2:rgba(232,240,248,0.72);--w3:rgba(232,240,248,0.38);--w4:rgba(232,240,248,0.06);--ok:#2a8a7a;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
+body{min-height:100vh;padding-bottom:80px}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--w4);z-index:200}
+.progress-fill{height:100%;background:var(--g);transition:width .4s;width:0%}
+header{background:rgba(10,22,40,0.95);border-bottom:1px solid var(--gb);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:100;backdrop-filter:blur(8px)}
+.hd-left{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.12em}
+.hd-right{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em}
+.hero{text-align:center;padding:60px 24px 40px;max-width:800px;margin:0 auto}
+.eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.22em;color:var(--g);margin-bottom:18px;opacity:0.8}
+.hero h1{font-family:'Cinzel',serif;font-size:38px;font-weight:700;color:var(--w);line-height:1.12;margin-bottom:12px}
+.hero h1 span{color:var(--g)}
+.capstone-badge{display:inline-block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.2em;color:#080e30;background:var(--g);padding:4px 14px;margin-bottom:18px}
+.gold-rule{width:80px;height:2px;background:var(--g);margin:24px auto;opacity:0.6}
+.hero-sub{font-size:16px;color:var(--w3);line-height:1.7;max-width:560px;margin:0 auto}
+.content{max-width:780px;margin:0 auto;padding:0 24px}
+.section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb)}
+.section p{font-size:14px;color:var(--w2);line-height:1.8;margin-bottom:12px}
+.section p:last-child{margin:0}
+.section p strong{color:var(--g2);font-weight:600}
+.section p em{color:var(--g);font-style:normal;font-weight:500}
+.data-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.data-table th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--g);padding:10px 14px;background:var(--gf);border:1px solid var(--gb);text-align:left}
+.data-table td{padding:10px 14px;border:1px solid rgba(74,158,221,0.1);color:var(--w2);line-height:1.6;vertical-align:top}
+.data-table tr:nth-child(even) td{background:rgba(0,0,0,0.15)}
+.data-table td:first-child{color:var(--g2);font-weight:600}
+.viz-section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.viz-section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:6px}
+.viz-sub{font-size:12px;color:var(--w3);margin-bottom:22px;line-height:1.6}
+.viz-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.viz-tab{padding:8px 18px;border-radius:6px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all .18s;border:1px solid var(--gb);background:var(--gf);color:var(--w3)}
+.viz-tab.active{background:var(--g);color:#080e30;border-color:var(--g)}
+.viz-panel{display:none}.viz-panel.active{display:block}
+.bio-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px}
+@media(max-width:600px){.bio-grid{grid-template-columns:1fr 1fr}}
+.bio-card{background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:14px 12px;cursor:pointer;transition:all .18s;text-align:center}
+.bio-card:hover{border-color:var(--g);background:var(--gf)}
+.bio-card.active{border-color:var(--g);background:rgba(74,158,221,0.12)}
+.bio-icon{font-size:22px;margin-bottom:6px}
+.bio-title{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.08em;margin-bottom:3px}
+.bio-effect{font-size:10px;color:var(--w3)}
+.bio-detail{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:20px;display:none;margin-top:4px}
+.bio-detail.show{display:block}
+.bio-detail-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
+.bio-detail-icon{font-size:28px;flex-shrink:0}
+.bio-detail-title{font-family:'Cinzel',serif;font-size:13px;color:var(--g2);letter-spacing:0.06em;margin-bottom:4px}
+.bio-badge{display:inline-block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.1em;padding:2px 8px;border-radius:10px;background:rgba(74,158,221,0.15);border:1px solid var(--gb);color:var(--g)}
+.bio-detail p{font-size:13px;color:var(--w2);line-height:1.75;margin-bottom:10px}
+.bio-detail p:last-child{margin:0}
+.bio-detail strong{color:var(--g2)}
+.bio-source{font-size:11px;color:var(--w3);padding-top:10px;border-top:1px solid var(--gb);margin-top:10px;font-style:italic}
+.ehf-box{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:20px;margin-bottom:16px}
+.ehf-equation{font-family:'Cinzel',serif;font-size:24px;color:var(--g2);text-align:center;margin-bottom:16px;letter-spacing:0.08em}
+.ehf-equation span{color:var(--g)}
+.ehf-result{background:rgba(0,0,0,0.25);border:1px solid var(--gb);border-radius:8px;padding:14px;text-align:center;margin-top:14px}
+.ehf-result-val{font-family:'Cinzel',serif;font-size:22px;color:var(--g2);margin-bottom:4px}
+.ehf-result-label{font-size:10px;color:var(--w3);letter-spacing:0.1em}
+.ehf-presets{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:14px}
+@media(max-width:480px){.ehf-presets{grid-template-columns:1fr 1fr}}
+.ehf-pre{background:var(--gf);border:1px solid var(--gb);border-radius:6px;padding:8px;text-align:center;cursor:pointer;transition:all .15s}
+.ehf-pre:hover{border-color:var(--g)}
+.ehf-pre.active{background:rgba(74,158,221,0.18);border-color:var(--g)}
+.ehf-pre-freq{font-family:'Cinzel',serif;font-size:13px;color:var(--g2)}
+.ehf-pre-name{font-size:10px;color:var(--w3);margin-top:2px}
+.ctrl-group{margin-bottom:14px}
+.ctrl-label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;display:flex;justify-content:space-between;margin-bottom:6px}
+.ctrl-label span{font-size:14px;color:var(--g2)}
+.calc-slider{width:100%;accent-color:var(--g);cursor:pointer}
+.freq-ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--w3);margin-top:4px}
+.wave-canvas-wrap{background:rgba(0,0,0,0.35);border:1px solid var(--gb);border-radius:10px;padding:14px;margin-bottom:12px;overflow:hidden}
+canvas{width:100%;display:block}
+.wave-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+@media(max-width:540px){.wave-grid{grid-template-columns:1fr}}
+.wave-info{background:rgba(0,0,0,0.2);border:1px solid var(--gb);border-radius:6px;padding:10px;font-size:12px;color:var(--w3);line-height:1.65}
+.int-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.int-label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.06em;width:72px;flex-shrink:0}
+.int-bar-wrap{flex:1;height:8px;background:var(--w4);border-radius:4px;overflow:hidden}
+.int-bar{height:100%;border-radius:4px;transition:width .3s}
+.int-pos{background:var(--g)}
+.int-val{font-family:'Cinzel',serif;font-size:12px;color:var(--g2);min-width:48px;text-align:right}
+.int-note{font-size:12px;color:var(--w3);line-height:1.6;margin-top:12px;padding:10px 14px;background:var(--gf);border-radius:8px;border-left:2px solid var(--g)}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:560px){.concept-grid{grid-template-columns:1fr}}
+.concept-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px}
+.concept-card h4{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.concept-card p{font-size:12px;color:var(--w3);line-height:1.65;margin:0}
+.concept-card .tfa{font-size:11px;color:var(--g2);margin-top:7px;padding-top:7px;border-top:1px solid var(--gb);display:block;line-height:1.5}
+.mr-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+@media(max-width:560px){.mr-grid{grid-template-columns:1fr}}
+.mr-card{background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:13px 15px;display:flex;gap:12px;align-items:flex-start}
+.mr-code{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em;flex-shrink:0;min-width:28px}
+.mr-title{font-family:'Cinzel',serif;font-size:11px;color:var(--w);letter-spacing:0.04em;margin-bottom:3px}
+.mr-desc{font-size:11px;color:var(--w3);line-height:1.5}
+.accordion{margin-top:8px}
+.acc-item{border:1px solid var(--gb);border-radius:8px;margin-bottom:7px;overflow:hidden}
+.acc-head{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.06em;background:var(--gf);transition:background .15s}
+.acc-head:hover{background:rgba(255,255,255,0.04)}
+.acc-body{display:none;padding:14px 16px;font-size:13px;color:var(--w2);line-height:1.75;border-top:1px solid var(--gb)}
+.acc-body.open{display:block}
+.acc-arrow{transition:transform .2s;font-size:11px}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body strong{color:var(--g2)}
+.practice-steps{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.ps{display:flex;gap:14px;padding:14px;background:var(--gf);border:1px solid var(--gb);border-radius:8px}
+.ps-n{font-family:'Cinzel',serif;font-size:13px;color:var(--g);min-width:28px;font-weight:700;padding-top:1px}
+.ps-t{font-size:13px;color:var(--w2);line-height:1.65}
+.ps-t strong{color:var(--g2);font-weight:600}
+.res-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(232,240,248,0.05)}
+.res-item:last-child{border:none}
+.res-icon{font-size:15px;flex-shrink:0;padding-top:2px}
+.res-title{font-size:13px;color:var(--w);font-weight:500;margin-bottom:2px}
+.res-auth{font-size:11px;color:var(--g2);margin-bottom:3px}
+.res-desc{font-size:11px;color:var(--w3);line-height:1.5}
+.reflection-prompt{background:var(--n3);border-left:3px solid var(--g);border-radius:0 8px 8px 0;padding:16px 18px;margin-bottom:12px}
+.reflection-prompt p{font-size:13px;color:var(--w2);line-height:1.65;font-style:italic;margin:0}
+textarea{width:100%;background:var(--w4);border:1px solid var(--gb);border-radius:8px;padding:12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;resize:vertical;min-height:88px;outline:none;line-height:1.6;transition:border-color .2s;margin-top:8px}
+textarea:focus{border-color:var(--g)}
+textarea::placeholder{color:var(--w3)}
+.workshop{background:var(--gf);border:1px dashed var(--gb);border-radius:12px;padding:22px;text-align:center;margin-bottom:20px}
+.workshop h3{font-family:'Cinzel',serif;font-size:13px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.workshop p{font-size:12px;color:var(--w3);line-height:1.65}
+.completion-box{background:var(--gf);border:1px solid var(--gb);border-radius:12px;padding:24px;text-align:center;margin-top:20px}
+.completion-box h3{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.08em;margin-bottom:10px}
+.completion-box p{font-size:13px;color:var(--w3);margin-bottom:16px;line-height:1.6}
+.complete-btn{padding:12px 28px;border-radius:8px;background:var(--g);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:0.1em;color:#080e30;transition:all .15s}
+.complete-btn:hover{background:var(--g2)}
+.complete-btn.done{background:var(--ok);cursor:default}
+.xp-flash{display:none;margin-top:12px;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.08em}
+.xp-flash.show{display:block}
+.nav-lessons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:480px){.nav-lessons{grid-template-columns:1fr}}
+.nav-lesson{background:var(--n3);border:1px solid var(--gb);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;transition:all .18s}
+.nav-lesson:hover{background:var(--gf);border-color:var(--g)}
+.nav-lesson.prev{flex-direction:row-reverse}
+.nav-label{font-size:10px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.12em;margin-bottom:4px;text-transform:uppercase}
+.nav-title{font-size:13px;color:var(--w);font-family:'Cinzel',serif}
+.nav-arrow{font-size:20px;color:var(--g)}
+.save-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,0.97);border-top:1px solid var(--gb);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;backdrop-filter:blur(8px)}
+.save-status{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.08em}
+.save-btns{display:flex;gap:8px}
+.save-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all .15s;border:1px solid var(--gb)}
+.save-btn.primary{background:var(--g);color:#080e30;border-color:var(--g)}.save-btn.primary:hover{background:var(--g2)}
+.save-btn.ghost{background:var(--gf);color:var(--g)}.save-btn.ghost:hover{background:rgba(255,255,255,0.06)}
+#importFile{display:none}
+</style>
+</head>
+<body>
 
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <div class="hd-left">THE FREQUENCY ACADEMY &middot; QUANTUM PHYSICS &amp; SCIENCES</div>
+  <div class="hd-right">Q10 &middot; LESSON 10 OF 10 &middot; CAPSTONE</div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">QUANTUM PHYSICS &amp; SCIENCES &middot; Q10</div>
+  <div class="capstone-badge">MODULE CAPSTONE</div>
+  <h1>Quantum Biology<br>&amp; <span>Wave Mechanics</span></h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">For decades, scientists believed quantum effects couldn't survive in warm, wet living systems. They were wrong. Life doesn't just tolerate quantum effects — life <em style="color:var(--g);font-style:italic">requires</em> them. This changes everything about what frequency work actually is.</p>
+</div>
+
+<div style="max-width:840px;margin:0 auto 32px;padding:0 24px">
+  <div style="background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:14px">
+    <div style="font-size:24px">&#x1F3AC;</div>
+    <div>
+      <div style="font-family:Cinzel,serif;font-size:11px;color:var(--g);letter-spacing:0.1em;margin-bottom:4px">VIDEO LESSON</div>
+      <div style="font-size:13px;color:var(--w3);line-height:1.5">A video transmission for this lesson is coming soon. The interactive lesson below contains the full teaching content &mdash; explore it now and the video will be added here when available.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <h2>The Transmission</h2>
+    <p>Plants have been running quantum computers for three billion years. Birds navigate continents using entangled electrons in their eyes. Your digestion relies on particles tunneling through barriers that classical physics says are impenetrable. Life did not wait for us to discover quantum mechanics &mdash; life mastered it at the very beginning.</p>
+    <p>This lesson is the capstone of your Quantum Foundations. Not because it summarizes what came before &mdash; but because it answers the question everything before was building toward: <strong>why does working with frequency actually work?</strong> The answer is peer-reviewed biology and wave physics. It is the operating system your body has been running on your entire life.</p>
+    <p>You have the quantum theory. Now you see where it lives &mdash; inside every cell, every enzyme, every breath. After this, frequency work is no longer a belief. It is an informed interaction with your own quantum biological reality.</p>
+  </div>
+
+  <div class="section">
+    <h2>Quantum Biology &mdash; Life Runs on Quantum</h2>
+    <p>The traditional view held that quantum effects &mdash; superposition, entanglement, tunneling, coherence &mdash; were too fragile to survive in the warm, wet, chemically chaotic environment of living cells. The thermal noise alone should collapse any quantum state almost instantly. Biology, the argument went, was strictly classical physics.</p>
+    <p>In 2007, researchers at UC Berkeley published findings in <em>Nature</em> that changed the field permanently. Quantum coherence was not just surviving inside a living photosynthetic system. It was being actively exploited for near-perfect energy transfer efficiency. The discovery launched quantum biology as a serious scientific discipline, and the evidence has only accumulated since.</p>
+    <p><strong>The central finding:</strong> biological systems have evolved over billions of years to harness quantum effects that we only discovered in the last century. Evolution arrived at quantum mechanics because quantum mechanics is more efficient than anything classical physics can offer &mdash; and efficiency is what natural selection selects for.</p>
+
+    <table class="data-table" style="margin-top:16px">
+      <thead><tr><th>Biological Process</th><th>Quantum Effect</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td>Photosynthesis</td><td>Quantum Coherence &amp; Superposition</td><td>UC Berkeley 2007 (Nature): energy explores all paths simultaneously, collapses to most efficient. ~95% efficiency vs ~20% solar panels.</td></tr>
+        <tr><td>Bird Navigation</td><td>Quantum Entanglement</td><td>Cryptochrome protein creates entangled radical pairs sensitive to Earth's magnetic field. Birds literally see magnetic field lines overlaid on vision.</td></tr>
+        <tr><td>Enzyme Function</td><td>Quantum Tunneling</td><td>Particles tunnel through energy barriers classical chemistry cannot cross. Enzymes work faster than classical physics allows. Happening in you right now.</td></tr>
+        <tr><td>Sense of Smell</td><td>Quantum Vibration</td><td>Molecules may be identified by vibrational frequency, not just shape &mdash; explaining why differently-shaped molecules can smell identical.</td></tr>
+        <tr><td>DNA Repair</td><td>Quantum Tunneling</td><td>Electrons may tunnel along the DNA helix to locate damage sites, enabling rapid identification and repair of genetic material.</td></tr>
+        <tr><td>Consciousness</td><td>Quantum Coherence in Microtubules</td><td>Penrose-Hameroff Orch OR theory: brain microtubules may maintain quantum coherence enabling awareness. Actively debated &mdash; seriously proposed.</td></tr>
+      </tbody>
+    </table>
+
+    <div style="background:var(--gf);border-left:2px solid var(--g);border-radius:0 8px 8px 0;padding:14px 16px;margin-top:16px">
+      <p style="font-size:13px;margin:0;color:var(--w2)"><strong style="color:var(--g2)">The profound implication:</strong> if your biology runs on quantum effects, then working with frequency is not alternative wellness &mdash; it is working with your actual operating system. Plants have been doing quantum computing for 3 billion years. Your body already knows this. What we are doing in this Academy is remembering.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Wave Mechanics &mdash; The Physics of Frequency</h2>
+    <p>Quantum biology tells us <em>that</em> life uses quantum effects. Wave mechanics tells us <em>how</em> those effects operate and how you can interact with them consciously. Every frequency device, every healing practice, every vibration-based application runs on the physics of waves.</p>
+    <p>A wave is a disturbance that transfers energy through space or matter without transferring the matter itself. Sound, light, electromagnetic, and brain waves all follow the same fundamental physics, described by three properties:</p>
+
+    <div class="concept-grid" style="margin-top:16px">
+      <div class="concept-card">
+        <h4>Frequency (f)</h4>
+        <p>Number of complete wave cycles per second. Measured in Hertz (Hz). 1 Hz = one cycle per second. 432 Hz = 432 oscillations every second.</p>
+        <span class="tfa">When we specify a healing frequency, we are specifying exactly how many oscillations per second the biological system will encounter.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Wavelength (&lambda;)</h4>
+        <p>Distance between consecutive wave peaks. Frequency and wavelength are inversely related: high frequency = short wavelength; low frequency = long wavelength.</p>
+        <span class="tfa">Shake a rope fast: short waves. Slow: long waves. Gamma rays have atomic-scale wavelengths. Radio waves can be miles long. Same physics, every scale.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Amplitude</h4>
+        <p>Wave height from baseline to peak. Determines intensity or power. In sound: amplitude is volume. In light: brightness. Frequency and amplitude are independent.</p>
+        <span class="tfa">Two waves share the same frequency but different amplitudes &mdash; same pitch, different loudness. Amplifying a frequency increases amplitude, not frequency itself.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Interference</h4>
+        <p><strong>Constructive:</strong> peaks align with peaks &mdash; waves amplify. <strong>Destructive:</strong> peaks align with troughs &mdash; waves cancel. Power scales with amplitude squared.</p>
+        <span class="tfa">Constructive: laser light, heart coherence, resonance amplification. Destructive: noise-canceling headphones. Aligned waves are exponentially more powerful.</span>
+      </div>
+    </div>
+
+    <h2 style="margin-top:24px">The Fundamental Equation: E = hf</h2>
+    <p>Energy equals Planck's constant multiplied by frequency. This is the heart of quantum mechanics and the physical foundation for why frequency work does anything at all.</p>
+    <p><strong>What it means:</strong> frequency IS energy. Each quantum of electromagnetic radiation carries energy whose size is determined entirely by its frequency. Higher frequency = higher energy per quantum. This is why UV causes sunburn and radio waves do not: UV has higher frequency, therefore more energy per quantum delivered to biological tissue.</p>
+    <p>Applied to biology: different frequencies carry different amounts of energy into the system they interact with. This is the physical mechanism explaining why specific frequencies produce specific biological effects. The frequency determines the energy delivered. Resonance determines whether the system absorbs it efficiently.</p>
+
+    <div style="background:var(--gf);border-left:2px solid var(--g);border-radius:0 8px 8px 0;padding:14px 16px;margin-top:4px">
+      <p style="font-size:13px;margin:0;color:var(--w2)"><strong style="color:var(--g2)">Standing waves:</strong> when waves reflect and interfere with themselves, they create stationary patterns with fixed nodes (zero movement) and antinodes (maximum vibration). Cymatic patterns are standing waves. Your body's biofield may contain standing wave structures. Tensor ring fields may generate standing waves. This connects every physical frequency tool to the physics in this lesson.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Bringing It Together &mdash; Frequency Meets Biology</h2>
+    <p>Quantum biology and wave mechanics are two halves of a single explanation. Quantum effects in biology are wave phenomena &mdash; wave functions, wave interference, wave coherence. When you apply a frequency to your body, you are introducing waves into a quantum biological system that has evolved over billions of years to respond to them.</p>
+
+    <div class="concept-grid" style="margin-top:12px">
+      <div class="concept-card">
+        <h4>Resonance</h4>
+        <p>When applied frequency matches a biological system's natural frequency, energy transfers with maximum efficiency. Wave mechanics meeting quantum biology.</p>
+        <span class="tfa">Tensor rings tuned to specific cubits generate frequencies that resonate with biological systems. Precision matters more than power.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Coherence</h4>
+        <p>Phase-aligned waves constructively interfere, amplifying total power exponentially. Heart coherence creates a stronger biofield through this mechanism.</p>
+        <span class="tfa">The laser versus the lightbulb is constructive interference. Your coherent heart field is doing the same physics at the biological scale.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Cymatics</h4>
+        <p>Frequency creates standing wave patterns that organize matter into geometric form. Your biological structures may be standing wave phenomena.</p>
+        <span class="tfa">Sound healing introduces frequencies that create beneficial standing wave patterns in your body's water medium &mdash; cymatics at molecular scale.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Biofield</h4>
+        <p>Your electromagnetic field is a measurable wave phenomenon &mdash; frequencies radiating from your body interacting with your environment.</p>
+        <span class="tfa">Frequency devices interact with your biofield through wave physics. You are simultaneously receiver and transmitter of frequency information.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Quantum Tunneling</h4>
+        <p>Your enzymes work because particles tunnel through energy barriers &mdash; faster than classical physics permits. Your biology already runs quantum effects.</p>
+        <span class="tfa">Frequency work isn't introducing quantum mechanics to your body. It's consciously working with quantum mechanics your body already runs on.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Photosynthesis Model</h4>
+        <p>Nature's quantum machine: superposition explores all energy transfer paths simultaneously; coherence collapses to the most efficient route at ~95% efficiency.</p>
+        <span class="tfa">The template for frequency healing &mdash; allow the system to find its most efficient path through resonance, rather than forcing it through power alone.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE -->
+  <div class="viz-section">
+    <h2>Quantum &amp; Wave Explorer</h2>
+    <p class="viz-sub">Two tools for this capstone. The Biology Explorer goes deep on each quantum biology discovery with full evidence. The Wave Calculator lets you work directly with E&nbsp;=&nbsp;hf, wavelength, and interference physics.</p>
+
+    <div class="viz-tabs">
+      <button class="viz-tab active" onclick="switchTab('bio',this)">Biology Explorer</button>
+      <button class="viz-tab" onclick="switchTab('wave',this)">Wave Calculator</button>
+    </div>
+
+    <!-- BIO EXPLORER -->
+    <div class="viz-panel active" id="tab-bio">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:18px">Select any example to see the full science &mdash; mechanism, evidence, and what it means for frequency work. These are not metaphors. This is peer-reviewed biology.</p>
+      <div class="bio-grid">
+        <div class="bio-card" onclick="showBio('photo',0)"><div class="bio-icon">&#x1F33F;</div><div class="bio-title">Photosynthesis</div><div class="bio-effect">Quantum Coherence</div></div>
+        <div class="bio-card" onclick="showBio('bird',1)"><div class="bio-icon">&#x1F426;</div><div class="bio-title">Bird Navigation</div><div class="bio-effect">Quantum Entanglement</div></div>
+        <div class="bio-card" onclick="showBio('enzyme',2)"><div class="bio-icon">&#x26A1;</div><div class="bio-title">Enzyme Function</div><div class="bio-effect">Quantum Tunneling</div></div>
+        <div class="bio-card" onclick="showBio('smell',3)"><div class="bio-icon">&#x1F443;</div><div class="bio-title">Sense of Smell</div><div class="bio-effect">Quantum Vibration</div></div>
+        <div class="bio-card" onclick="showBio('dna',4)"><div class="bio-icon">&#x1F9EC;</div><div class="bio-title">DNA Repair</div><div class="bio-effect">Quantum Tunneling</div></div>
+        <div class="bio-card" onclick="showBio('consciousness',5)"><div class="bio-icon">&#x1F9E0;</div><div class="bio-title">Consciousness</div><div class="bio-effect">Quantum Coherence</div></div>
+      </div>
+
+      <div class="bio-detail" id="bio-photo">
+        <div class="bio-detail-head"><div class="bio-detail-icon">&#x1F33F;</div><div><div class="bio-detail-title">Photosynthesis &mdash; The Quantum Computing Plant</div><div class="bio-badge">ESTABLISHED SCIENCE &middot; PEER-REVIEWED</div></div></div>
+        <p>Plants convert sunlight to chemical energy with efficiency approaching 95%. Our best engineered solar panels achieve roughly 20%. In 2007, Graham Fleming's team at UC Berkeley published findings in <em>Nature</em> that explained the gap permanently.</p>
+        <p>When light hits the photosynthetic antenna complex, the energy doesn't randomly walk toward the reaction center. It exists in quantum <strong>superposition</strong> &mdash; all possible energy transfer pathways are explored simultaneously &mdash; then collapses into the most efficient route. The plant runs a quantum algorithm to optimize energy transfer, at room temperature, in wet biological conditions. Life figured out quantum computing three billion years before we discovered it.</p>
+        <p>The protein scaffold surrounding the photosynthetic complex actively protects coherent quantum states from thermal decoherence long enough for efficient transfer to complete &mdash; overturning the assumption that warm, wet environments destroy quantum effects.</p>
+        <div class="bio-source">Engel et al. (2007). "Evidence for wavelike energy transfer through quantum coherence in photosynthetic systems." Nature, 446, 782&ndash;786. UC Berkeley / Lawrence Berkeley National Laboratory.</div>
+      </div>
+
+      <div class="bio-detail" id="bio-bird">
+        <div class="bio-detail-head"><div class="bio-detail-icon">&#x1F426;</div><div><div class="bio-detail-title">Bird Navigation &mdash; The Quantum Compass</div><div class="bio-badge">ESTABLISHED SCIENCE &middot; PEER-REVIEWED</div></div></div>
+        <p>European robins migrate thousands of miles annually with extraordinary precision. Their magnetic compass is located in their eyes &mdash; in a protein called <strong>cryptochrome</strong>. When blue light hits cryptochrome, it creates pairs of electrons in a quantum radical pair state &mdash; entangled electrons whose spin states are sensitive to magnetic field orientation.</p>
+        <p>Earth's magnetic field influences these quantum spin states, which alters the protein's chemistry, which changes the bird's visual perception. Birds literally see magnetic field lines as patterns overlaid on their vision &mdash; a heads-up display generated by quantum entanglement. The mechanism is sensitive to field orientations too subtle for any classical sensor of comparable size. Only quantum effects explain the measured sensitivity.</p>
+        <p>Researchers confirmed the mechanism by exposing birds to radiofrequency electromagnetic fields that disrupt quantum spin states &mdash; this impaired magnetic sensing while leaving other senses intact, directly demonstrating the quantum basis.</p>
+        <div class="bio-source">Ritz, T. et al. (2004). "Resonance effects indicate a radical pair mechanism for avian magnetic compass." Nature. Hore &amp; Mouritsen (2016). "The Radical-Pair Mechanism of Magnetoreception." Annual Review of Biophysics.</div>
+      </div>
+
+      <div class="bio-detail" id="bio-enzyme">
+        <div class="bio-detail-head"><div class="bio-detail-icon">&#x26A1;</div><div><div class="bio-detail-title">Enzyme Function &mdash; Quantum Tunneling in Your Digestion</div><div class="bio-badge">ESTABLISHED SCIENCE &middot; PEER-REVIEWED</div></div></div>
+        <p>Without enzymes, digestion would take years rather than hours. Immune responses couldn't function. DNA couldn't replicate. And for decades, the speed at which enzymes work couldn't be fully explained by classical chemistry. The answer is <strong>quantum tunneling</strong>.</p>
+        <p>In classical physics, a particle must have enough energy to climb over an energy barrier to complete a chemical reaction. Quantum mechanics changes this: particles have wave properties, and wave functions can penetrate and pass through barriers they classically couldn't cross. In enzyme catalysis, protons and electrons routinely tunnel through energy barriers during hydrogen transfer &mdash; happening faster than any classical mechanism permits.</p>
+        <p>This is measurable through kinetic isotope effects: replacing hydrogen with heavier deuterium (same chemistry, different mass, slower tunneling rate) slows the reaction in ways that only make sense if quantum tunneling is the primary mechanism. Your alcohol dehydrogenase, lactate dehydrogenase, and dozens of other enzymes show clear tunneling signatures. Your digestion runs on quantum mechanics right now.</p>
+        <div class="bio-source">Scrutton, N.S. (2009). "Chemical biology: Quantum tunnelling in enzyme-catalysed reactions." Natural Product Reports. Hammes-Schiffer &amp; Stuchebrukhov (2010). "Theory of Coupled Electron and Proton Transfer Reactions." Chemical Reviews.</div>
+      </div>
+
+      <div class="bio-detail" id="bio-smell">
+        <div class="bio-detail-head"><div class="bio-detail-icon">&#x1F443;</div><div><div class="bio-detail-title">Sense of Smell &mdash; Quantum Vibration Recognition</div><div class="bio-badge">EMERGING HYPOTHESIS &middot; ACTIVELY RESEARCHED</div></div></div>
+        <p>The conventional lock-and-key model of olfaction says molecules bind to receptors based on shape. The problem: molecules with nearly identical shapes can smell completely different, and molecules with completely different shapes can smell nearly identical. Biophysicist Luca Turin proposed an alternative in 1996: olfactory receptors detect molecules by their <strong>vibrational frequency</strong>, not just shape.</p>
+        <p>In Turin's model, electrons in the receptor tunnel through the odorant molecule &mdash; but only when the molecule's vibrational frequency matches the energy gap of the electron transfer. Different molecules, same vibrational frequency: same smell. Same shape, different vibrational frequency: different smell. If correct, your nose is a quantum vibrational spectrometer, and smell is fundamentally a frequency phenomenon.</p>
+        <p>Evidence: fruit flies trained to discriminate between deuterated and normal versions of the same molecule (same shape, different mass, different vibrational frequency) can detect the difference &mdash; which should be impossible if shape alone determines smell. The debate continues, but the quantum vibration hypothesis is actively published and taken seriously.</p>
+        <div class="bio-source">Turin, L. (1996). "A spectroscopic mechanism for primary olfactory reception." Chemical Senses. Gane, S. et al. (2013). "Molecular vibration-sensing component in Drosophila melanogaster olfaction." PLOS ONE.</div>
+      </div>
+
+      <div class="bio-detail" id="bio-dna">
+        <div class="bio-detail-head"><div class="bio-detail-icon">&#x1F9EC;</div><div><div class="bio-detail-title">DNA Repair &mdash; Quantum Search Along the Helix</div><div class="bio-badge">ACTIVE RESEARCH AREA</div></div></div>
+        <p>Your DNA sustains thousands of lesions per cell per day from UV radiation, free radicals, and chemical agents. The repair machinery that finds and fixes these lesions operates with remarkable speed &mdash; far faster than classical search mechanisms could account for.</p>
+        <p>Research suggests that <strong>electrons tunnel along the DNA helix</strong>, conducting current over distances of tens of base pairs. Damage disrupts this electron transport. Repair proteins may use the conductivity of the DNA strand itself as a quality-control signal &mdash; undamaged DNA conducts; damaged DNA doesn't. The discontinuity signals the damage location, enabling rapid targeted repair.</p>
+        <p>Additionally, proton tunneling in DNA base pairs may contribute to spontaneous mutations: the hydrogen bonds holding base pairs together involve protons that can tunnel between states, occasionally creating tautomeric forms that misread during replication. Quantum mechanics may be a source of genetic variation &mdash; and therefore a driver of evolution itself.</p>
+        <div class="bio-source">Genereux &amp; Barton (2010). "Mechanisms for DNA Charge Transport." Chemical Reviews. Godbeer et al. (2015). "Modelling proton tunnelling in the adenine&ndash;thymine base pair." Physical Chemistry Chemical Physics.</div>
+      </div>
+
+      <div class="bio-detail" id="bio-consciousness">
+        <div class="bio-detail-head"><div class="bio-detail-icon">&#x1F9E0;</div><div><div class="bio-detail-title">Consciousness &mdash; The Penrose-Hameroff Hypothesis</div><div class="bio-badge">THEORETICAL &middot; ACTIVELY DEBATED</div></div></div>
+        <p>Physicist Roger Penrose and anesthesiologist Stuart Hameroff proposed that consciousness arises from quantum processes in <strong>microtubules</strong> &mdash; protein scaffolding inside neurons. Their Orchestrated Objective Reduction (Orch OR) theory proposes that microtubules maintain quantum coherence long enough to support the quantum computation underlying conscious experience.</p>
+        <p>Critics argue that thermal noise in the brain collapses quantum coherence far too quickly for it to play a functional role in thought. Supporters point to the discovery that biological systems <em>can</em> maintain coherence despite thermal noise (photosynthesis demonstrated this) and to growing evidence that microtubules have electromagnetic properties suited to sustaining quantum states.</p>
+        <p>The significance for frequency work: if consciousness involves quantum coherence in biological structures, then frequencies that interact with those structures could influence conscious experience directly &mdash; not metaphorically but mechanistically. This is the physical basis for brainwave entrainment, meditation, and frequency-based consciousness work. The debate is ongoing; the direction is serious science.</p>
+        <div class="bio-source">Penrose, R. (1994). Shadows of the Mind. Oxford University Press. Hameroff &amp; Penrose (2014). "Consciousness in the Universe: A Review of the 'Orch OR' Theory." Physics of Life Reviews.</div>
+      </div>
+    </div>
+
+    <!-- WAVE CALCULATOR -->
+    <div class="viz-panel" id="tab-wave">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:20px">Work directly with wave physics. The E&nbsp;=&nbsp;hf calculator shows how frequency determines energy. The wave visualizer displays all three properties simultaneously. The interference tool demonstrates why coherence amplifies exponentially.</p>
+
+      <!-- E=hf -->
+      <div class="ehf-box">
+        <div class="ehf-equation"><span>E</span> = <span>h</span> &times; <span>f</span></div>
+        <p style="font-size:12px;color:var(--w3);text-align:center;margin-bottom:16px">Energy = Planck's constant (6.626 &times; 10&minus;34 J&middot;s) &times; Frequency</p>
+        <div class="ctrl-group">
+          <label class="ctrl-label">FREQUENCY &nbsp;<span id="ehfFreqDisplay">432</span> Hz</label>
+          <input type="range" class="calc-slider" id="ehfSlider" min="1" max="1000" value="432" oninput="updateEhf(false)">
+          <div class="freq-ticks"><span>1 Hz</span><span>250 Hz</span><span>500 Hz</span><span>750 Hz</span><span>1000 Hz</span></div>
+        </div>
+        <div class="ehf-result">
+          <div class="ehf-result-val" id="ehfResult">2.862 &times; 10&minus;31 J</div>
+          <div class="ehf-result-label">ENERGY PER QUANTUM (JOULES)</div>
+        </div>
+        <div style="margin-top:14px">
+          <div style="font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;margin-bottom:8px">PRESET FREQUENCIES</div>
+          <div class="ehf-presets">
+            <div class="ehf-pre" id="pre-432" onclick="setPreset(432,'432','Natural A')"><div class="ehf-pre-freq">432 Hz</div><div class="ehf-pre-name">Natural A</div></div>
+            <div class="ehf-pre" id="pre-528" onclick="setPreset(528,'528','Solfeggio Mi')"><div class="ehf-pre-freq">528 Hz</div><div class="ehf-pre-name">Solfeggio Mi</div></div>
+            <div class="ehf-pre" id="pre-8" onclick="setPreset(8,'7.83','Schumann')"><div class="ehf-pre-freq">7.83 Hz</div><div class="ehf-pre-name">Schumann</div></div>
+            <div class="ehf-pre" id="pre-40" onclick="setPreset(40,'40','Gamma Brain')"><div class="ehf-pre-freq">40 Hz</div><div class="ehf-pre-name">Gamma Brain</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wave visualizer -->
+      <div style="background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:18px;margin-bottom:16px">
+        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em;margin-bottom:14px">WAVE PROPERTIES VISUALIZER</div>
+        <div class="wave-grid">
+          <div>
+            <div class="ctrl-group">
+              <label class="ctrl-label">FREQUENCY &nbsp;<span id="wFreqVal">3</span> cycles</label>
+              <input type="range" class="calc-slider" id="wFreq" min="1" max="8" value="3" oninput="drawWaveViz()">
+            </div>
+            <div class="ctrl-group">
+              <label class="ctrl-label">AMPLITUDE &nbsp;<span id="wAmpVal">60</span>%</label>
+              <input type="range" class="calc-slider" id="wAmp" min="20" max="100" value="60" oninput="drawWaveViz()">
+            </div>
+          </div>
+          <div class="wave-info" id="waveInfo">
+            Frequency and wavelength are inversely related.<br>Amplitude is independent of frequency.
+          </div>
+        </div>
+        <div class="wave-canvas-wrap" style="margin-top:4px">
+          <canvas id="waveCanvas" style="height:100px"></canvas>
+        </div>
+        <div style="display:flex;gap:16px;font-size:11px;color:var(--w3);margin-top:8px;font-family:'Cinzel',serif;letter-spacing:0.04em;flex-wrap:wrap">
+          <span><span style="color:var(--g)">&#9632;</span> Wave</span>
+          <span>Frequency &uarr; = Wavelength &darr;</span>
+          <span>Amplitude changes power, not pitch</span>
+        </div>
+      </div>
+
+      <!-- Interference -->
+      <div style="background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:18px">
+        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em;margin-bottom:10px">INTERFERENCE EXPLORER</div>
+        <p style="font-size:12px;color:var(--w3);line-height:1.6;margin-bottom:14px">Adjust phase offset between two identical waves. 0&deg; = fully constructive (peaks align, maximum amplification). 180&deg; = fully destructive (peaks meet troughs, complete cancellation). Power scales with amplitude squared.</p>
+        <div class="ctrl-group">
+          <label class="ctrl-label">PHASE OFFSET &nbsp;<span id="phaseDisplay">0</span>&deg;</label>
+          <input type="range" class="calc-slider" id="phaseSlider" min="0" max="180" value="0" oninput="updateInterference()">
+          <div class="freq-ticks"><span>0&deg; Constructive</span><span>90&deg; Partial</span><span>180&deg; Destructive</span></div>
+        </div>
+        <div style="margin-top:14px">
+          <div class="int-row">
+            <div class="int-label">AMPLITUDE</div>
+            <div class="int-bar-wrap"><div class="int-bar int-pos" id="intAmpBar" style="width:100%"></div></div>
+            <div class="int-val" id="intAmpVal">200%</div>
+          </div>
+          <div class="int-row">
+            <div class="int-label">POWER</div>
+            <div class="int-bar-wrap"><div class="int-bar int-pos" id="intPowBar" style="width:100%"></div></div>
+            <div class="int-val" id="intPowVal">400%</div>
+          </div>
+        </div>
+        <div class="int-note" id="intNote">Fully constructive interference &mdash; peaks align with peaks. Both waves add together, doubling amplitude and quadrupling power (power scales with amplitude squared). This is how laser light works, how heart coherence amplifies the biofield, and why coherence practice is not just calming &mdash; it is exponentially more energetically powerful than the same energy incoherent.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE REVIEW -->
+  <div class="section">
+    <h2>Quantum Foundations &mdash; Complete Review</h2>
+    <p style="margin-bottom:16px">You have completed the full Quantum Foundations module. Here is what you now understand &mdash; not as facts, but as a new framework for understanding yourself and reality:</p>
+    <div class="mr-grid">
+      <div class="mr-card"><div class="mr-code">Q2</div><div><div class="mr-title">Wave-Particle Duality</div><div class="mr-desc">Reality is both wave and particle &mdash; potential and manifest simultaneously. You exist as both.</div></div></div>
+      <div class="mr-card"><div class="mr-code">Q3</div><div><div class="mr-title">Superposition</div><div class="mr-desc">All possibilities exist until observation collapses them into actuality. Intention shapes reality.</div></div></div>
+      <div class="mr-card"><div class="mr-code">Q4</div><div><div class="mr-title">Entanglement</div><div class="mr-desc">Once connected, always connected. Separation is illusion. Everything is linked through the field.</div></div></div>
+      <div class="mr-card"><div class="mr-code">Q5</div><div><div class="mr-title">Zero Point Field</div><div class="mr-desc">Infinite energy underlies all reality. You are immersed in a sea of quantum potential.</div></div></div>
+      <div class="mr-card"><div class="mr-code">Q6</div><div><div class="mr-title">Coherence</div><div class="mr-desc">Alignment amplifies power exponentially. Laser vs. lightbulb &mdash; coherence is the difference.</div></div></div>
+      <div class="mr-card"><div class="mr-code">Q7</div><div><div class="mr-title">Resonance</div><div class="mr-desc">Matching frequencies transfer energy with maximum efficiency. Precision over power.</div></div></div>
+      <div class="mr-card"><div class="mr-code">Q8</div><div><div class="mr-title">Cymatics</div><div class="mr-desc">Sound creates form. Frequency organizes matter. You are a cymatic being shaped by vibration.</div></div></div>
+      <div class="mr-card"><div class="mr-code">Q9</div><div><div class="mr-title">Biofield</div><div class="mr-desc">You are electromagnetic. Your quantum antenna radiates and receives frequency information.</div></div></div>
+      <div class="mr-card" style="border-color:var(--g);background:rgba(74,158,221,0.05);grid-column:1/-1"><div class="mr-code" style="color:var(--g2)">Q10</div><div><div class="mr-title" style="color:var(--g)">Quantum Biology &amp; Wave Mechanics</div><div class="mr-desc">Life IS quantum. Frequency IS energy. E&nbsp;=&nbsp;hf. The bridge from theory to practice is now complete. You are not doing something alternative. You are doing physics, biology, and quantum mechanics.</div></div></div>
+    </div>
+  </div>
+
+  <!-- ACCORDION -->
+  <div class="section">
+    <h2>Quick Reference</h2>
+    <div class="accordion" id="accWrap"></div>
+  </div>
+
+  <!-- PRACTICE -->
+  <div class="section">
+    <h2>This Week's Practice</h2>
+    <p style="margin-bottom:16px">Five practices for five days. Each one is about direct experience &mdash; not reading about quantum biology but feeling it, and applying the physics consciously.</p>
+    <div class="practice-steps">
+      <div class="ps"><div class="ps-n">1</div><div class="ps-t"><strong>Observe photosynthesis in action.</strong> Spend 10 minutes near a plant in sunlight. Know that inside every leaf, quantum coherence is routing energy with ~95% efficiency right now &mdash; superposition exploring all paths, collapsing to the optimal route. You are watching quantum computing. Let that change how you experience plants.</div></div>
+      <div class="ps"><div class="ps-n">2</div><div class="ps-t"><strong>Apply E&nbsp;=&nbsp;hf to your frequency choices.</strong> When you choose music or tones this week, be explicit: you are selecting a specific energy per quantum to interact with your biological systems. 432 Hz and 528 Hz are not arbitrary numbers &mdash; they are specific energy values. Use the Wave Calculator above to feel the difference before you listen.</div></div>
+      <div class="ps"><div class="ps-n">3</div><div class="ps-t"><strong>Practice heart coherence with the physics in mind.</strong> Breathe in 5 counts, out 5 counts for 5 minutes. This creates constructive interference in your biofield &mdash; aligned waves amplifying exponentially. Hold the interference explorer in mind as you breathe. You are doing wave physics. Power scales with amplitude squared &mdash; coherence is not gentle, it is powerful.</div></div>
+      <div class="ps"><div class="ps-n">4</div><div class="ps-t"><strong>Work with your water intentionally.</strong> When you prepare or structure water, you are introducing coherent frequencies into a medium that responds via wave physics. The water's molecular structure reorganizes around the frequency &mdash; cymatics at molecular scale. Understand the mechanism as you do it. Physics informed by intention is more precise than either alone.</div></div>
+      <div class="ps"><div class="ps-n">5</div><div class="ps-t"><strong>Write your integration statement.</strong> In your own words, without jargon: why does frequency work? What is the biological mechanism? What is the wave physics? Write one paragraph you could share with someone who has no background. The ability to explain something plainly is the test of whether you truly understand it.</div></div>
+    </div>
+  </div>
+
+  <!-- GO DEEPER -->
+  <div class="section">
+    <h2>Go Deeper</h2>
+    <div class="res-item">
+      <div class="res-icon">&#x1F4D6;</div>
+      <div><div class="res-title">Life on the Edge &mdash; Jim Al-Khalili &amp; Johnjoe McFadden</div><div class="res-auth">Crown Publishers, 2014</div><div class="res-desc">The definitive accessible introduction to quantum biology. Covers photosynthesis, bird navigation, enzyme tunneling, smell, and consciousness with full scientific rigor. The best single book on this subject for a non-specialist.</div></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">&#x1F52C;</div>
+      <div><div class="res-title">Engel et al. &mdash; "Evidence for wavelike energy transfer through quantum coherence in photosynthetic systems"</div><div class="res-auth">Nature, Vol. 446, 2007 &mdash; UC Berkeley / Lawrence Berkeley National Laboratory</div><div class="res-desc">The paper that launched quantum biology as a serious field. Documents quantum coherence in the FMO complex. Abstract freely accessible at Nature.com.</div></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">&#x1F4D6;</div>
+      <div><div class="res-title">The Field &mdash; Lynne McTaggart</div><div class="res-auth">HarperCollins</div><div class="res-desc">Science journalism covering Zero Point Field, biophoton research, and quantum biological effects &mdash; directly connecting quantum physics to frequency healing applications. Well-sourced and accessible.</div></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">&#x1F4D6;</div>
+      <div><div class="res-title">The Body Electric &mdash; Robert O. Becker &amp; Gary Selden</div><div class="res-auth">Morrow</div><div class="res-desc">Becker's pioneering research into electromagnetic effects on biological systems. The scientific foundation for understanding why the body responds to external frequency fields. Essential for anyone working with frequency devices.</div></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">&#x1F4D6;</div>
+      <div><div class="res-title">Shadows of the Mind &mdash; Roger Penrose</div><div class="res-auth">Oxford University Press, 1994</div><div class="res-desc">Penrose's full argument for quantum effects in consciousness, including the Orch OR theory. The most serious scientific case for consciousness as a quantum phenomenon. Dense but foundational.</div></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">&#x279C;</div>
+      <div><div class="res-title">Up Next: Frequency Fundamentals (F Series)</div><div class="res-auth">The Frequency Academy &middot; Next Module</div><div class="res-desc">You have the WHY. Now learn the WHAT and the HOW &mdash; which frequencies do what, the Solfeggio scale, 432 Hz vs 440 Hz, specific frequency applications, how to choose frequencies for specific purposes. Your quantum foundation makes everything that follows make sense.</div></div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="section">
+    <h2>Reflection Journal</h2>
+    <div class="reflection-prompt"><p>How does knowing that life runs on quantum effects &mdash; that photosynthesis uses coherence, birds use entanglement, your enzymes use tunneling right now &mdash; change your view of frequency work? What shifts when you understand that working with frequency is working with your actual biological operating system?</p></div>
+    <textarea id="ref1" placeholder="Write here &mdash; your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px"><p>Which quantum biology example surprised or moved you most &mdash; photosynthesis, bird navigation, enzyme tunneling, smell, DNA repair, or consciousness? What is it about that particular example that lands most powerfully for you, and why?</p></div>
+    <textarea id="ref2" placeholder="Write here &mdash; your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px"><p>Looking back across the full Quantum Foundations module &mdash; Q2 through Q10 &mdash; what is your single biggest insight? Not a fact you learned, but a genuine shift in how you understand yourself, your body, or reality. What do you now see differently?</p></div>
+    <textarea id="ref3" placeholder="Write here &mdash; your responses are saved locally..." oninput="autoSave()"></textarea>
+  </div>
+
+  <div class="workshop">
+    <h3>Live Workshop: Quantum Biology &amp; Wave Mechanics</h3>
+    <p>A live capstone deep-dive on this topic is coming soon. Recordings and supplemental materials will appear here once available. Members will be notified via the Academy portal.</p>
+  </div>
+
+  <div class="completion-box">
+    <h3>Complete Quantum Foundations</h3>
+    <p>When you have explored the interactive tools, completed this week's practice, and written at least one reflection &mdash; mark this lesson and the module complete.</p>
+    <button class="complete-btn" id="completeBtn" onclick="markComplete()">Mark Complete &middot; +10 XP</button>
+    <div class="xp-flash" id="xpFlash">&#x2736; +10 XP Awarded &middot; Quantum Foundations Complete</div>
+  </div>
+
+  <div class="nav-lessons">
+    <a class="nav-lesson prev" href="../lesson-9/">
+      <div class="nav-arrow">&larr;</div>
+      <div><div class="nav-label">Previous &middot; Q9</div><div class="nav-title">The Biofield</div></div>
+    </a>
+    <a class="nav-lesson" href="../../frequency-fundamentals/lesson-1/">
+      <div><div class="nav-label">Next &middot; F1 &middot; New Module</div><div class="nav-title">Frequency Fundamentals</div></div>
+      <div class="nav-arrow">&rarr;</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="save-bar">
+  <div class="save-status" id="saveStatus">Auto-save active</div>
+  <div class="save-btns">
+    <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+    <button class="save-btn ghost" onclick="document.getElementById('importFile').click()">Import</button>
+    <button class="save-btn ghost" onclick="exportData()">Export</button>
+    <button class="save-btn primary" onclick="saveNow()">Save</button>
+  </div>
+</div>
+
+<script>
+var KEY='tfa_q10';
+var saveTimer;
+
+function switchTab(id,btn){
+  document.querySelectorAll('.viz-tab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.viz-panel').forEach(function(p){p.classList.remove('active')});
+  btn.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='wave'){setTimeout(function(){drawWaveViz();updateEhf(true);updateInterference();},50);}
+}
+
+var activeBio=null;
+function showBio(id,idx){
+  document.querySelectorAll('.bio-detail').forEach(function(d){d.classList.remove('show')});
+  document.querySelectorAll('.bio-card').forEach(function(c){c.classList.remove('active')});
+  if(activeBio===id){activeBio=null;return;}
+  var el=document.getElementById('bio-'+id);
+  if(el)el.classList.add('show');
+  var cards=document.querySelectorAll('.bio-card');
+  if(cards[idx])cards[idx].classList.add('active');
+  activeBio=id;
+}
+
+var H=6.626e-34;
+function fmtE(e){
+  var exp=Math.floor(Math.log10(Math.abs(e)));
+  var c=(e/Math.pow(10,exp)).toFixed(3);
+  var sups=['0','1','2','3','4','5','6','7','8','9'];
+  var expStr=String(Math.abs(exp)).split('').map(function(d){return sups[parseInt(d)];}).join('');
+  var sign=exp<0?'\u207b':'';
+  return c+' \u00d7 10'+sign+expStr+' J';
+}
+function updateEhf(fromPreset){
+  var f=parseFloat(document.getElementById('ehfSlider').value);
+  if(!fromPreset)document.getElementById('ehfFreqDisplay').textContent=Math.round(f);
+  document.getElementById('ehfResult').textContent=fmtE(H*f);
+}
+function setPreset(f,label,name){
+  document.getElementById('ehfSlider').value=Math.min(1000,f);
+  document.getElementById('ehfFreqDisplay').textContent=label;
+  document.getElementById('ehfResult').textContent=fmtE(H*f);
+  document.querySelectorAll('.ehf-pre').forEach(function(p){p.classList.remove('active')});
+}
+
+function drawWaveViz(){
+  var freq=parseInt(document.getElementById('wFreq').value);
+  var amp=parseInt(document.getElementById('wAmp').value);
+  document.getElementById('wFreqVal').textContent=freq;
+  document.getElementById('wAmpVal').textContent=amp;
+  var v=343,hz=freq*100,lam=(v/hz).toFixed(3);
+  document.getElementById('waveInfo').innerHTML=
+    '<strong style="color:var(--g2)">At '+hz+' Hz audio:</strong><br>Wavelength \u2248 '+lam+' m<br><br>'+
+    '<strong style="color:var(--g2)">Rule:</strong><br>Frequency \u2191 \u2192 Wavelength \u2193<br>Amplitude is independent of both';
+  var c=document.getElementById('waveCanvas');
+  if(!c)return;
+  c.width=c.offsetWidth*(window.devicePixelRatio||1);
+  c.height=100*(window.devicePixelRatio||1);
+  var ctx=c.getContext('2d');
+  ctx.scale(window.devicePixelRatio||1,window.devicePixelRatio||1);
+  var W=c.offsetWidth,H=100,cy=H/2;
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='rgba(74,158,221,0.1)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(W,cy);ctx.stroke();
+  var ampPx=(amp/100)*(cy*0.85);
+  ctx.beginPath();ctx.strokeStyle='#4a9edd';ctx.lineWidth=2;
+  for(var x=0;x<W;x++){
+    var y=cy-Math.sin((x/W)*Math.PI*2*freq)*ampPx;
+    x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+  if(freq<=4){
+    var wl=W/freq;
+    ctx.strokeStyle='rgba(201,168,76,0.35)';ctx.lineWidth=1;ctx.setLineDash([3,3]);
+    ctx.beginPath();ctx.moveTo(0,cy+ampPx+12);ctx.lineTo(wl,cy+ampPx+12);ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle='rgba(201,168,76,0.6)';ctx.font='9px Cinzel,serif';ctx.textAlign='center';
+    ctx.fillText('\u03bb',wl/2,cy+ampPx+22);ctx.textAlign='left';
+  }
+  ctx.strokeStyle='rgba(120,184,238,0.3)';ctx.lineWidth=1;ctx.setLineDash([2,2]);
+  ctx.beginPath();ctx.moveTo(14,cy);ctx.lineTo(14,cy-ampPx);ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle='rgba(120,184,238,0.5)';ctx.font='9px Cinzel,serif';
+  ctx.fillText('A',4,cy-ampPx/2+4);
+  ctx.fillStyle='rgba(232,240,248,0.25)';ctx.font='10px Cinzel,serif';
+  ctx.fillText('f='+freq+' cycles \u00b7 A='+amp+'%',8,14);
+}
+
+function updateInterference(){
+  var ph=parseInt(document.getElementById('phaseSlider').value);
+  document.getElementById('phaseDisplay').textContent=ph;
+  var rad=ph*Math.PI/180;
+  var amp=Math.abs(Math.cos(rad/2))*2;
+  var pow=amp*amp;
+  var ap=Math.round(amp*100),pp=Math.round(pow*100);
+  document.getElementById('intAmpBar').style.width=(ap/200*100)+'%';
+  document.getElementById('intPowBar').style.width=(pp/400*100)+'%';
+  document.getElementById('intAmpVal').textContent=ap+'%';
+  document.getElementById('intPowVal').textContent=pp+'%';
+  var note=document.getElementById('intNote');
+  if(ph<=20){
+    note.textContent='Fully constructive interference \u2014 peaks align with peaks. Both waves add together, doubling amplitude and quadrupling power (power scales with amplitude squared). This is how laser light works, how heart coherence amplifies the biofield, and why coherent frequency practice is exponentially more powerful than incoherent exposure at the same energy.';
+    note.style.borderColor='var(--g)';
+  }else if(ph<=80){
+    note.textContent='Partial interference \u2014 waves are partially aligned, partially opposing. Energy transfer is still occurring but efficiency is reduced. This is why approximate frequency matching produces partial effects \u2014 and why precisely tuned frequencies outperform broad-spectrum approaches significantly.';
+    note.style.borderColor='rgba(201,168,76,0.6)';
+  }else if(ph<=130){
+    note.textContent='Near-destructive interference \u2014 waves are significantly out of phase, spending most energy opposing each other. Amplitude falls to '+(ap)+'% of a single wave. This is the energetic cost of incoherence \u2014 and the physical reason stressed, anxious states reduce biological resilience and healing capacity.';
+    note.style.borderColor='rgba(180,100,60,0.6)';
+  }else{
+    note.textContent='Fully destructive interference \u2014 peaks align perfectly with troughs, waves cancel completely. Zero amplitude, zero power transfer. This is the principle behind noise-canceling headphones and frequency-based neutralization devices: a precisely phase-inverted wave cancels the target frequency entirely.';
+    note.style.borderColor='rgba(180,60,60,0.6)';
+  }
+}
+
+var ACC=[
+  {t:'Quantum Biology \u2014 Key Terms',
+   b:'<strong>Quantum Biology:</strong> The scientific study of quantum mechanical effects in living systems. Peer-reviewed research in Nature, Science, PNAS.<br><br><strong>Quantum Coherence:</strong> Phase alignment of quantum states enabling efficient energy transfer. Used in photosynthesis at biological temperatures.<br><br><strong>Quantum Tunneling:</strong> Particles passing through energy barriers they classically could not cross. Enables enzyme function and DNA processes.<br><br><strong>Cryptochrome:</strong> Protein in bird retinas that uses entangled radical pairs to sense Earth\'s magnetic field direction.<br><br><strong>Orch OR:</strong> Orchestrated Objective Reduction \u2014 Penrose-Hameroff hypothesis that quantum processes in microtubules give rise to consciousness.'},
+  {t:'Wave Mechanics \u2014 Key Terms',
+   b:'<strong>Frequency (f):</strong> Cycles per second, measured in Hertz. 432 Hz = 432 complete oscillations per second.<br><br><strong>Wavelength (\u03bb):</strong> Distance between wave peaks. \u03bb = v/f. Inversely related to frequency: high f = short \u03bb.<br><br><strong>Amplitude:</strong> Wave height from baseline to peak. Determines power/intensity. Independent of frequency.<br><br><strong>Constructive Interference:</strong> Peaks align with peaks \u2014 waves amplify. Power scales with amplitude squared.<br><br><strong>Destructive Interference:</strong> Peaks align with troughs \u2014 waves cancel. Basis of noise-canceling technology.<br><br><strong>Standing Wave:</strong> Stationary pattern from interfering waves. Fixed nodes (zero motion) and antinodes (maximum motion). Cymatic patterns are standing waves.'},
+  {t:'E = hf \u2014 The Fundamental Equation Explained',
+   b:'E = h \u00d7 f &nbsp;&nbsp; Energy = Planck\'s constant (6.626 \u00d7 10\u207b\u00b3\u2074 J\u00b7s) \u00d7 Frequency<br><br><strong>What it means:</strong> Energy comes in discrete packets (quanta). Each packet\'s energy depends entirely on frequency. Higher frequency = higher energy per quantum.<br><br><strong>Why UV causes sunburn, radio waves don\'t:</strong> UV has higher frequency than radio waves, therefore more energy per photon. Enough to damage biological molecules. Radio waves don\'t have enough energy per quantum to do the same.<br><br><strong>For frequency work:</strong> Choosing a frequency is choosing an energy delivery rate into biological systems. 528 Hz delivers more energy per quantum than 432 Hz. Resonance determines whether that energy is absorbed efficiently by the target system.'},
+  {t:'Photosynthesis Quantum Efficiency \u2014 The Full Numbers',
+   b:'Commercial solar panel efficiency: ~20%<br>Best laboratory solar panel: ~47%<br>Photosynthetic quantum efficiency (per captured photon): ~95%<br><br>The gap exists because photosynthesis uses quantum superposition to route energy. All possible transfer pathways are explored simultaneously; the wave function collapses to the most efficient route. Classical systems can only try one pathway at a time, losing energy at each step.<br><br><strong>The temperature paradox:</strong> Quantum coherence was expected to require near-absolute-zero temperatures. Photosynthetic proteins maintain coherence at ~25\u00b0C by using the surrounding protein scaffold to protect quantum states from thermal decoherence long enough for efficient transfer to complete.'},
+  {t:'Constructive vs Destructive Interference \u2014 Full Applications',
+   b:'<strong>Constructive (amplifying):</strong><br>\u00b7 Laser light: all photons phase-aligned, power vastly exceeds sum of individual photons<br>\u00b7 Heart coherence: phase-aligned heart field waves constructively interfere, amplifying biofield<br>\u00b7 Resonance: matching frequency adds to natural oscillation each cycle, accumulating amplitude<br>\u00b7 Tensor ring fields: coherent standing waves sustained within the ring cavity<br><br><strong>Destructive (canceling):</strong><br>\u00b7 Noise-canceling headphones: mic detects ambient sound, generates phase-inverted signal<br>\u00b7 EMF neutralization devices: matching and inverting target frequency<br>\u00b7 Biological incoherence: stress creates destructive interference in the body\'s own field<br><br><strong>Key:</strong> Power scales with amplitude squared. Doubling amplitude = quadrupling power. Coherence is exponential, not additive.'},
+  {t:'The Complete Quantum Foundations Map',
+   b:'Q2: Wave-Particle Duality \u2192 Reality as both potential and manifest<br>Q3: Superposition \u2192 All possibilities until observation collapses them<br>Q4: Entanglement \u2192 Non-local connection through the field<br>Q5: Zero Point Field \u2192 The infinite energy substrate of reality<br>Q6: Coherence \u2192 Alignment amplifies exponentially<br>Q7: Resonance \u2192 Matching frequencies for maximum transfer<br>Q8: Cymatics \u2192 Sound creating visible form and structure<br>Q9: Biofield \u2192 You as electromagnetic transmitter and receiver<br>Q10: Quantum Biology \u2192 Life running on quantum effects<br>Q10: Wave Mechanics \u2192 E=hf; frequency is energy; physics of all waves<br><br><strong>The thread:</strong> You are a quantum being immersed in a field of frequency. Your biology evolved to harness quantum effects. Frequency work is informed, conscious interaction with your actual operating system.'}
+];
+
+function buildAcc(){
+  var w=document.getElementById('accWrap');
+  ACC.forEach(function(item){
+    var d=document.createElement('div');d.className='acc-item';
+    d.innerHTML='<div class="acc-head" onclick="toggleAcc(this)"><span>'+item.t+'</span><span class="acc-arrow">\u25be</span></div><div class="acc-body">'+item.b+'</div>';
+    w.appendChild(d);
+  });
+}
+function toggleAcc(head){
+  var body=head.nextElementSibling,arrow=head.querySelector('.acc-arrow');
+  var isOpen=body.classList.contains('open');
+  document.querySelectorAll('.acc-body.open').forEach(function(b){b.classList.remove('open')});
+  document.querySelectorAll('.acc-arrow.open').forEach(function(a){a.classList.remove('open')});
+  if(!isOpen){body.classList.add('open');arrow.classList.add('open');}
+}
+
+function markComplete(){
+  var btn=document.getElementById('completeBtn');
+  if(btn.classList.contains('done'))return;
+  btn.classList.add('done');btn.textContent='\u2713 Quantum Foundations Complete';
+  document.getElementById('xpFlash').classList.add('show');
+  saveNow();
+}
+
+function getData(){
+  return{v:1,lesson:'Q10',ts:new Date().toISOString(),
+    r1:document.getElementById('ref1').value,
+    r2:document.getElementById('ref2').value,
+    r3:document.getElementById('ref3').value,
+    done:document.getElementById('completeBtn').classList.contains('done')};
+}
+function saveNow(){
+  localStorage.setItem(KEY,JSON.stringify(getData()));
+  document.getElementById('saveStatus').textContent='Saved '+new Date().toLocaleTimeString();
+}
+function autoSave(){clearTimeout(saveTimer);saveTimer=setTimeout(saveNow,90000);}
+function loadData(){
+  var raw=localStorage.getItem(KEY);if(!raw)return;
+  try{
+    var d=JSON.parse(raw);
+    if(d.r1)document.getElementById('ref1').value=d.r1;
+    if(d.r2)document.getElementById('ref2').value=d.r2;
+    if(d.r3)document.getElementById('ref3').value=d.r3;
+    if(d.done){var btn=document.getElementById('completeBtn');btn.classList.add('done');btn.textContent='\u2713 Quantum Foundations Complete';document.getElementById('xpFlash').classList.add('show');}
+    document.getElementById('saveStatus').textContent='Session restored';
+  }catch(e){}
+}
+function exportData(){
+  saveNow();
+  var b=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);
+  a.download='TFA_Q10_backup_'+Date.now()+'.json';a.click();
+}
+function importData(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(ev){try{var d=JSON.parse(ev.target.result);localStorage.setItem(KEY,JSON.stringify(d));loadData();}catch(err){}};
+  r.readAsText(f);e.target.value='';
+}
+
+window.addEventListener('scroll',function(){
+  var doc=document.documentElement,sc=window.scrollY||doc.scrollTop,sh=doc.scrollHeight-doc.clientHeight;
+  document.getElementById('progressFill').style.width=(sh>0?Math.min(100,sc/sh*100):0)+'%';
+},{passive:true});
+
+document.addEventListener('DOMContentLoaded',function(){
+  buildAcc();loadData();
+  updateEhf(true);updateInterference();drawWaveViz();
+  window.addEventListener('resize',function(){drawWaveViz();});
+});
+</script>
+</body>
+</html>
