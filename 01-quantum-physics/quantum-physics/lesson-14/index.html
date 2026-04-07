@@ -1,1 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q14 — Torsion Fields | The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--n:#0a1628;--n2:#0d1e38;--n3:#102040;--g:#4a9edd;--g2:#78b8ee;--gb:rgba(74,158,221,0.22);--gf:rgba(74,158,221,0.08);--w:#e8f0f8;--w2:rgba(232,240,248,0.72);--w3:rgba(232,240,248,0.38);--w4:rgba(232,240,248,0.06);--ok:#2a8a7a;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
+body{min-height:100vh;padding-bottom:80px}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--w4);z-index:200}
+.progress-fill{height:100%;background:var(--g);transition:width .4s;width:0%}
+header{background:rgba(10,22,40,0.95);border-bottom:1px solid var(--gb);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:100;backdrop-filter:blur(8px)}
+.hd-left{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.12em}
+.hd-right{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em}
+.hero{text-align:center;padding:60px 24px 40px;max-width:800px;margin:0 auto}
+.eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.22em;color:var(--g);margin-bottom:18px;opacity:0.8}
+.hero h1{font-family:'Cinzel',serif;font-size:44px;font-weight:700;color:var(--w);line-height:1.12;margin-bottom:12px}
+.hero h1 span{color:var(--g)}
+.gold-rule{width:80px;height:2px;background:var(--g);margin:24px auto;opacity:0.6}
+.hero-sub{font-size:16px;color:var(--w3);line-height:1.7;max-width:560px;margin:0 auto}
+.content{max-width:780px;margin:0 auto;padding:0 24px}
+.section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb)}
+.section p{font-size:14px;color:var(--w2);line-height:1.8;margin-bottom:12px}
+.section p:last-child{margin:0}
+.section p strong{color:var(--g2);font-weight:600}
+.section p em{color:var(--g);font-style:normal;font-weight:500}
 
+/* TABLES */
+.data-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.data-table th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--g);padding:10px 14px;background:var(--gf);border:1px solid var(--gb);text-align:left}
+.data-table td{padding:10px 14px;border:1px solid rgba(74,158,221,0.1);color:var(--w2);line-height:1.6;vertical-align:top}
+.data-table tr:nth-child(even) td{background:rgba(0,0,0,0.15)}
+.data-table td:first-child{color:var(--g2);font-weight:600}
+
+/* CALLOUT */
+.callout{background:var(--gf);border-left:2px solid var(--g);border-radius:0 8px 8px 0;padding:14px 16px;margin:16px 0}
+.callout-label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.12em;margin-bottom:6px}
+.callout p{font-size:13px;color:var(--w2);margin:0;line-height:1.7}
+.callout.amber{border-left-color:rgba(220,190,80,0.7);background:rgba(220,190,80,0.06)}
+.callout.amber .callout-label{color:rgba(220,190,80,0.9)}
+.callout.amber p{color:rgba(232,240,248,0.65)}
+
+/* INTERACTIVE */
+.viz-section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.viz-section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:6px}
+.viz-sub{font-size:12px;color:var(--w3);margin-bottom:22px;line-height:1.6}
+.viz-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.viz-tab{padding:8px 18px;border-radius:6px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all .18s;border:1px solid var(--gb);background:var(--gf);color:var(--w3)}
+.viz-tab.active{background:var(--g);color:#080e30;border-color:var(--g)}
+.viz-panel{display:none}.viz-panel.active{display:block}
+
+/* TORSION VISUALIZER */
+.torsion-vis-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:560px){.torsion-vis-wrap{grid-template-columns:1fr}}
+.torsion-panel{background:rgba(0,0,0,0.3);border:1px solid var(--gb);border-radius:8px;padding:14px;text-align:center}
+.torsion-panel-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.1em;margin-bottom:10px}
+.torsion-panel-title.right{color:#4a9edd}
+.torsion-panel-title.left{color:rgba(220,120,100,0.9)}
+canvas.tors-c{display:block;margin:0 auto;width:100%;max-width:220px}
+.torsion-desc{font-size:11px;color:var(--w3);line-height:1.55;margin-top:10px}
+.torsion-note{font-size:12px;color:var(--w3);line-height:1.65;padding:10px 14px;background:var(--gf);border-radius:6px;border-left:2px solid var(--g);margin-top:4px}
+.torsion-speed-wrap{display:flex;align-items:center;gap:12px;margin-bottom:14px;justify-content:center}
+.torsion-speed-wrap label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em}
+.torsion-speed-wrap input[type=range]{width:140px;accent-color:var(--g);cursor:pointer}
+.torsion-speed-wrap span{font-family:'Cinzel',serif;font-size:11px;color:var(--g2);min-width:50px}
+
+/* GENERATORS EXPLORER */
+.gen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+@media(max-width:560px){.gen-grid{grid-template-columns:1fr 1fr}}
+.gen-card{background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:14px 10px;cursor:pointer;transition:all .18s;text-align:center}
+.gen-card:hover{border-color:var(--g);transform:translateY(-1px)}
+.gen-card.active{border-color:var(--g);background:rgba(74,158,221,0.1)}
+.gen-card.natural .gen-card-icon{color:rgba(100,220,140,0.9)}
+.gen-card.artificial .gen-card-icon{color:#4a9edd}
+.gen-card-icon{font-size:20px;margin-bottom:6px}
+.gen-card-name{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.07em;margin-bottom:2px}
+.gen-card-type{font-size:9px;color:var(--w3);letter-spacing:0.08em;text-transform:uppercase}
+.gen-detail{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:18px;display:none;animation:fadeIn .2s ease}
+.gen-detail.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.gen-detail h4{font-family:'Cinzel',serif;font-size:13px;color:var(--g2);margin-bottom:10px;letter-spacing:0.06em}
+.gen-detail p{font-size:13px;color:var(--w2);line-height:1.75;margin-bottom:8px}
+.gen-detail p:last-child{margin:0}
+.gen-detail .tfa-note{font-size:12px;color:var(--g);border-top:1px solid var(--gb);margin-top:12px;padding-top:10px;line-height:1.6;font-style:italic}
+
+/* RESEARCHER CARDS */
+.researcher-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px}
+@media(max-width:560px){.researcher-grid{grid-template-columns:1fr}}
+.res-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px;cursor:pointer;transition:all .18s;text-align:center}
+.res-card:hover{border-color:var(--g);transform:translateY(-1px)}
+.res-card.active{border-color:var(--g);background:rgba(74,158,221,0.08)}
+.res-card-icon{font-size:22px;margin-bottom:8px}
+.res-card-name{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em;margin-bottom:3px}
+.res-card-role{font-size:10px;color:var(--w3);line-height:1.5}
+.res-detail{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:20px;display:none;animation:fadeIn .2s ease}
+.res-detail.show{display:block}
+.res-detail h4{font-family:'Cinzel',serif;font-size:13px;color:var(--g2);margin-bottom:10px;letter-spacing:0.06em}
+.res-detail p{font-size:13px;color:var(--w2);line-height:1.75;margin-bottom:8px}
+.res-detail p:last-child{margin:0}
+.res-detail .significance{font-size:12px;color:var(--g);border-top:1px solid var(--gb);margin-top:12px;padding-top:10px;line-height:1.6;font-style:italic}
+
+/* ACCORDION */
+.accordion{margin-top:8px}
+.acc-item{border:1px solid var(--gb);border-radius:8px;margin-bottom:7px;overflow:hidden}
+.acc-head{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.06em;background:var(--gf);transition:background .15s}
+.acc-head:hover{background:rgba(255,255,255,0.04)}
+.acc-body{display:none;padding:14px 16px;font-size:13px;color:var(--w2);line-height:1.75;border-top:1px solid var(--gb)}
+.acc-body.open{display:block}
+.acc-arrow{transition:transform .2s;font-size:11px}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body strong{color:var(--g2)}
+
+/* CONCEPT GRID */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:580px){.concept-grid{grid-template-columns:1fr}}
+.concept-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px}
+.concept-card h4{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.concept-card p{font-size:12px;color:var(--w3);line-height:1.65;margin:0}
+.concept-card .tfa{font-size:11px;color:var(--g2);margin-top:7px;padding-top:7px;border-top:1px solid var(--gb);display:block;line-height:1.5}
+
+/* PROPERTIES LIST */
+.prop-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.prop-item-s{display:flex;gap:14px;padding:14px;background:var(--gf);border:1px solid var(--gb);border-radius:8px}
+.prop-num{font-family:'Cinzel',serif;font-size:15px;color:var(--g);min-width:28px;font-weight:700;padding-top:1px;flex-shrink:0}
+.prop-content h4{font-family:'Cinzel',serif;font-size:12px;color:var(--g2);letter-spacing:0.08em;margin-bottom:5px}
+.prop-content p{font-size:13px;color:var(--w2);line-height:1.65;margin:0}
+.prop-content .caveat{font-size:11px;color:var(--w3);margin-top:6px;padding:6px 10px;background:rgba(220,190,80,0.05);border-left:1px solid rgba(220,190,80,0.3);border-radius:0 4px 4px 0;line-height:1.6}
+
+/* PRACTICE STEPS */
+.practice-steps{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.ps{display:flex;gap:14px;padding:14px;background:var(--gf);border:1px solid var(--gb);border-radius:8px}
+.ps-n{font-family:'Cinzel',serif;font-size:13px;color:var(--g);min-width:28px;font-weight:700;padding-top:1px}
+.ps-t{font-size:13px;color:var(--w2);line-height:1.65}
+.ps-t strong{color:var(--g2);font-weight:600}
+
+/* RESOURCES */
+.res-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(232,240,248,0.05)}
+.res-item:last-child{border:none}
+.res-icon{font-size:15px;flex-shrink:0;padding-top:2px}
+.res-title{font-size:13px;color:var(--w);font-weight:500;margin-bottom:2px}
+.res-auth{font-size:11px;color:var(--g2);margin-bottom:3px}
+.res-desc{font-size:11px;color:var(--w3);line-height:1.5}
+
+/* REFLECTION */
+.reflection-prompt{background:var(--n3);border-left:3px solid var(--g);border-radius:0 8px 8px 0;padding:16px 18px;margin-bottom:12px}
+.reflection-prompt p{font-size:13px;color:var(--w2);line-height:1.65;font-style:italic;margin:0}
+textarea{width:100%;background:var(--w4);border:1px solid var(--gb);border-radius:8px;padding:12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;resize:vertical;min-height:88px;outline:none;line-height:1.6;transition:border-color .2s;margin-top:8px}
+textarea:focus{border-color:var(--g)}
+textarea::placeholder{color:var(--w3)}
+
+/* WORKSHOP */
+.workshop{background:var(--gf);border:1px dashed var(--gb);border-radius:12px;padding:22px;text-align:center;margin-bottom:20px}
+.workshop h3{font-family:'Cinzel',serif;font-size:13px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.workshop p{font-size:12px;color:var(--w3);line-height:1.65}
+
+/* COMPLETION */
+.completion-box{background:var(--gf);border:1px solid var(--gb);border-radius:12px;padding:24px;text-align:center;margin-top:20px}
+.completion-box h3{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.08em;margin-bottom:10px}
+.completion-box p{font-size:13px;color:var(--w3);margin-bottom:16px;line-height:1.6}
+.complete-btn{padding:12px 28px;border-radius:8px;background:var(--g);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:0.1em;color:#080e30;transition:all .15s}
+.complete-btn:hover{background:var(--g2)}
+.complete-btn.done{background:var(--ok);cursor:default}
+.xp-flash{display:none;margin-top:12px;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.08em}
+.xp-flash.show{display:block}
+
+/* NAV */
+.nav-lessons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:480px){.nav-lessons{grid-template-columns:1fr}}
+.nav-lesson{background:var(--n3);border:1px solid var(--gb);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;transition:all .18s}
+.nav-lesson:hover{background:var(--gf);border-color:var(--g)}
+.nav-lesson.prev{flex-direction:row-reverse}
+.nav-label{font-size:10px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.12em;margin-bottom:4px;text-transform:uppercase}
+.nav-title{font-size:13px;color:var(--w);font-family:'Cinzel',serif}
+.nav-arrow{font-size:20px;color:var(--g)}
+
+/* SAVE BAR */
+.save-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,0.97);border-top:1px solid var(--gb);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;backdrop-filter:blur(8px)}
+.save-status{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.08em}
+.save-btns{display:flex;gap:8px}
+.save-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all .15s;border:1px solid var(--gb)}
+.save-btn.primary{background:var(--g);color:#080e30;border-color:var(--g)}.save-btn.primary:hover{background:var(--g2)}
+.save-btn.ghost{background:var(--gf);color:var(--g)}.save-btn.ghost:hover{background:rgba(255,255,255,0.06)}
+#importFile{display:none}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <div class="hd-left">THE FREQUENCY ACADEMY · QUANTUM PHYSICS & SCIENCES</div>
+  <div class="hd-right">Q14 · LESSON 14 OF 16</div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">QUANTUM PHYSICS & SCIENCES · Q14</div>
+  <h1>Torsion Fields — <span>The Missing Physics</span></h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">Mass creates gravity. Charge creates electromagnetism. Spin creates torsion. Every particle, atom, galaxy — and you — generates torsion fields. Soviet scientists spent decades researching this. The West largely ignored it. This lesson goes into the physics they found.</p>
+</div>
+
+<div style="max-width:840px;margin:0 auto 32px;padding:0 24px">
+  <div style="background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:14px">
+    <div style="font-size:24px">🎬</div>
+    <div>
+      <div style="font-family:Cinzel,serif;font-size:11px;color:var(--g);letter-spacing:0.1em;margin-bottom:4px">VIDEO LESSON</div>
+      <div style="font-size:13px;color:var(--w3);line-height:1.5">A video transmission for this lesson is coming soon. The interactive lesson below contains the full teaching content — explore it now and the video will be added here when available.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- TRANSMISSION -->
+  <div class="section">
+    <h2>The Transmission</h2>
+    <p>Physics teaches four fundamental forces. Gravity — generated by mass, bending spacetime. Electromagnetism — generated by charge, producing light and magnetism. The strong nuclear force, binding atomic nuclei. The weak nuclear force, governing radioactive decay. Four forces explain everything, we are told.</p>
+    <p>But what if spin — the angular momentum intrinsic to every particle in existence — generates its own field? Not a force like gravity that curves spacetime, but a force that <em>twists</em> it. A torsion. A fifth fundamental interaction, one that can transmit information instantaneously, that has handedness like a screw or a spiral galaxy, that can be stored in water and crystals and focused by geometry, and that may interact directly with consciousness.</p>
+    <p>For over fifty years, Soviet scientists pursued exactly this. More than twenty research institutes. Hundreds of papers. Billions of rubles in funding. The researchers were serious physicists — astrophysicists, mathematical physicists, biophysicists — not fringe figures. The West largely ignored the work. When the Soviet Union collapsed, much of it scattered or was classified. But the research exists. And the physics has a foundation that goes back to Einstein himself.</p>
+  </div>
+
+  <!-- WHAT ARE TORSION FIELDS -->
+  <div class="section">
+    <h2>What Are Torsion Fields?</h2>
+    <p>The word "torsion" comes from the Latin <em>torquere</em> — to twist. A torsion field is theorized to be a field generated by angular momentum — by spin. Every elementary particle has spin: electrons, protons, neutrons, quarks. It is an intrinsic quantum property, as fundamental as mass or charge. And just as those properties generate their respective fields, spin may generate its own.</p>
+    <p>The key insight: <strong>mass bends spacetime</strong> — that is Einstein's general relativity, curvature. <strong>Spin twists spacetime</strong> — that is torsion. A completely different geometry on the same fabric. Einstein himself recognized this and collaborated with mathematician Élie Cartan in the 1920s to develop what became known as Einstein-Cartan theory: an extension of general relativity that mathematically includes torsion alongside curvature. Mainstream physics followed the curvature branch — the part describing gravity. Soviet scientists followed the torsion branch.</p>
+    <p>In Einstein-Cartan theory, torsion is a tensor field arising from the spin density of matter. It couples to the intrinsic spin of particles rather than to their mass. In empty space, torsion propagates as a wave — a torsion wave, distinct from gravitational waves (which are curvature waves) and from electromagnetic waves (which are charge-driven oscillations). If this wave exists physically and is detectable, it constitutes a fourth type of fundamental field alongside gravity, electromagnetism, and the nuclear forces.</p>
+
+    <table class="data-table" style="margin-top:16px">
+      <thead><tr><th>Force</th><th>Source</th><th>What It Does</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Gravity</td><td>Mass</td><td>Attracts matter; bends spacetime (curvature)</td><td>Established</td></tr>
+        <tr><td>Electromagnetism</td><td>Electric charge</td><td>Light, magnetism, chemistry, all EM phenomena</td><td>Established</td></tr>
+        <tr><td>Strong Nuclear</td><td>Color charge</td><td>Binds quarks into protons and neutrons</td><td>Established</td></tr>
+        <tr><td>Weak Nuclear</td><td>Weak charge</td><td>Radioactive decay, flavor-changing interactions</td><td>Established</td></tr>
+        <tr><td>Torsion</td><td>Spin (angular momentum)</td><td>Twists spacetime; carries spin-based information field</td><td>Frontier / theoretical</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:16px">
+      <div class="callout-label">THE EINSTEIN-CARTAN CONNECTION</div>
+      <p>Einstein-Cartan theory is not fringe physics. It is a mathematically rigorous extension of general relativity published in peer-reviewed physics literature. The mainstream chose to work with the simpler version — curvature only, zero torsion — because for ordinary matter densities, torsion effects are predicted to be negligible. But "negligible in ordinary conditions" is not the same as "nonexistent." Soviet researchers argued that at the quantum scale and under specific conditions, torsion effects could be non-negligible and detectable.</p>
+    </div>
+  </div>
+
+  <!-- PROPERTIES -->
+  <div class="section">
+    <h2>Five Theorized Properties of Torsion Fields</h2>
+    <p style="margin-bottom:16px">Soviet and Russian researchers attributed the following properties to torsion fields, based on their experimental programs. Epistemic status: these are theorized properties with experimental support from specific research programs. They have not been verified to mainstream physics standards.</p>
+
+    <div class="prop-list">
+      <div class="prop-item-s">
+        <div class="prop-num">01</div>
+        <div class="prop-content">
+          <h4>Instantaneous Propagation</h4>
+          <p>Torsion may travel faster than light — potentially instantaneously. Nikolai Kozyrev's astronomical observations suggested that torsion signals from distant stars arrived before their light, indicating propagation velocities far exceeding c. If torsion is a twist in spacetime itself rather than a disturbance propagating through spacetime, it may not be bound by the relativistic speed limit that applies to EM radiation.</p>
+          <div class="caveat">Epistemic note: Kozyrev's methodology has been contested. Superluminal propagation would require revision of special relativity or careful reframing as a near-field or vacuum effect. The strongest experimental basis for this claim remains Kozyrev's astronomical data and some Soviet apparatus results that have not been independently replicated to mainstream standards.</div>
+        </div>
+      </div>
+      <div class="prop-item-s">
+        <div class="prop-num">02</div>
+        <div class="prop-content">
+          <h4>Information Without Energy</h4>
+          <p>Torsion does not heat, push mechanically, or transfer energy in the conventional thermodynamic sense. It transmits patterns, signatures, and organizational information — spin-state configurations — without the energy cost of Hertzian EM transmission. This is analogous to the scalar wave property explored in Q13. The difference is that torsion has a specific proposed mechanism: it is a spin-state field, and spin-state information can be copied without energy expenditure in the same way that information can be copied without mass transfer.</p>
+          <div class="caveat">Epistemic note: the information-energy relationship is genuinely subtle (see Landauer's principle). A torsion field that carries zero conventional energy while transmitting meaningful information would require careful theoretical formalization. Rein's biophysical experiments offer some empirical basis, but mechanism remains unclear.</div>
+        </div>
+      </div>
+      <div class="prop-item-s">
+        <div class="prop-num">03</div>
+        <div class="prop-content">
+          <h4>Handedness — Right and Left Torsion</h4>
+          <p>Torsion fields have chirality — a handedness determined by the direction of spin. Right-hand torsion (clockwise rotation viewed from above) is associated with ordering, coherence, and life-enhancing effects. Left-hand torsion (counter-clockwise) is associated with disordering and entropic effects. This mirrors the chirality found throughout biology: DNA winds right-handed, amino acids are left-handed, sugars are right-handed. If torsion interacts with biological spin systems, chirality would be the primary selectivity mechanism — left-hand torsion interacting differently with right-handed DNA than right-hand torsion does.</p>
+          <div class="caveat">Epistemic note: chirality in torsion theory is mathematically well-founded in Einstein-Cartan theory, which distinguishes between the two torsion tensor orientations. The specific association with "beneficial" vs "harmful" effects is more speculative and relies on biological experiment results that haven't been widely replicated.</div>
+        </div>
+      </div>
+      <div class="prop-item-s">
+        <div class="prop-num">04</div>
+        <div class="prop-content">
+          <h4>Can Be Stored in Materials</h4>
+          <p>Torsion signatures can be "charged" into materials — water, crystals, metals — where the information persists after the torsion source is removed. The proposed mechanism: materials with organized atomic or molecular spin structure (water's hydrogen bond network, crystal lattices, metal conducting electron spin systems) can align their intrinsic spin states to the incoming torsion field, encoding the torsion signature as a stable spin-state configuration. This is the proposed physics behind "charged" objects in frequency work — the object's spin system holds a torsion imprint.</p>
+          <div class="caveat">Epistemic note: this property requires stable spin coherence over macroscopic timescales and temperatures — something quantum decoherence generally prevents in bulk matter. The water memory debate (connected to Emoto and Benveniste) is relevant here. The property is consistent with torsion theory but lacks independent verification.</div>
+        </div>
+      </div>
+      <div class="prop-item-s">
+        <div class="prop-num">05</div>
+        <div class="prop-content">
+          <h4>Interacts with Consciousness</h4>
+          <p>Focused human attention may generate measurable torsion fields. Kozyrev's mirror experiments — using aluminum cylinders to focus torsion — produced conditions in which subjects reported telepathic impressions, remote viewing experiences, and altered time perception. Akimov and Shipov proposed that consciousness is a torsion phenomenon — that awareness itself is a spin-organized field pattern in the quantum vacuum, and that torsion is the physical carrier of consciousness-to-matter interaction.</p>
+          <div class="caveat">Epistemic note: this is the most speculative property and the most difficult to evaluate. The Kozyrev mirror experiments are documented but involve inherently subjective measurement. The identification of consciousness with torsion fields is a philosophical as much as a scientific claim. It remains one of the most compelling and least verified aspects of the framework.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE -->
+  <div class="viz-section">
+    <h2>Torsion Fields Explorer</h2>
+    <p class="viz-sub">Three tools: the Torsion Visualizer animates right-hand and left-hand torsion fields so you can see the handedness distinction directly. The Generators Explorer provides deep dives on natural and artificial torsion sources. The Researcher Profiles cover the key scientists from the Soviet torsion program.</p>
+
+    <div class="viz-tabs">
+      <button class="viz-tab active" onclick="switchTab('visual', this)">Torsion Visualizer</button>
+      <button class="viz-tab" onclick="switchTab('generators', this)">Generators Explorer</button>
+      <button class="viz-tab" onclick="switchTab('researchers', this)">Soviet Researchers</button>
+    </div>
+
+    <!-- TAB 1: TORSION VISUALIZER -->
+    <div class="viz-panel active" id="tab-visual">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:14px">The two torsion polarities shown side by side. Right-hand torsion (clockwise spiral) is associated with ordering and coherence. Left-hand torsion (counter-clockwise) is associated with entropic effects. Adjust the spin rate below.</p>
+
+      <div class="torsion-speed-wrap">
+        <label>SPIN RATE</label>
+        <input type="range" id="spinSpeed" min="0.3" max="3" step="0.1" value="1" oninput="updateSpeed()">
+        <span id="speedLabel">1.0×</span>
+      </div>
+
+      <div class="torsion-vis-wrap">
+        <div class="torsion-panel">
+          <div class="torsion-panel-title right">RIGHT-HAND TORSION · Clockwise</div>
+          <canvas class="tors-c" id="cRight" width="200" height="200"></canvas>
+          <div class="torsion-desc">Clockwise spin (viewed from above)<br>Associated with ordering · coherence · life-enhancement<br>Right-hand DNA helix · beneficial coil winding direction</div>
+        </div>
+        <div class="torsion-panel">
+          <div class="torsion-panel-title left">LEFT-HAND TORSION · Counter-clockwise</div>
+          <canvas class="tors-c" id="cLeft" width="200" height="200"></canvas>
+          <div class="torsion-desc">Counter-clockwise spin (viewed from above)<br>Associated with disordering · entropy<br>Contrasts with biological chirality preferences</div>
+        </div>
+      </div>
+
+      <div class="torsion-note">Chirality — handedness — is one of the most biologically significant distinctions in nature. DNA winds right-handed. Most amino acids in life are left-handed (L-amino acids). Most sugars are right-handed (D-sugars). If torsion fields interact with these biological spin systems, handedness becomes the primary channel of selectivity: right-hand torsion resonates preferentially with right-hand DNA, left-hand torsion with left-hand amino acids. This is the proposed physics behind why winding direction matters in tensor rings and coils.</div>
+    </div>
+
+    <!-- TAB 2: GENERATORS EXPLORER -->
+    <div class="viz-panel" id="tab-generators">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:14px">Both natural and artificial systems generate torsion fields through spin and angular momentum. Select any generator to explore its proposed torsion mechanism and practical implications.</p>
+
+      <div style="font-family:'Cinzel',serif;font-size:10px;color:var(--w3);letter-spacing:0.1em;margin-bottom:6px">NATURAL TORSION GENERATORS</div>
+      <div class="gen-grid" id="natGrid"></div>
+
+      <div style="font-family:'Cinzel',serif;font-size:10px;color:var(--w3);letter-spacing:0.1em;margin:14px 0 6px">ARTIFICIAL TORSION GENERATORS</div>
+      <div class="gen-grid" id="artGrid"></div>
+
+      <div class="gen-detail" id="genDetail"></div>
+    </div>
+
+    <!-- TAB 3: RESEARCHERS -->
+    <div class="viz-panel" id="tab-researchers">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:16px">The Soviet torsion research program was substantial — not fringe science. Three key researchers defined the field across experimental, theoretical, and applied dimensions.</p>
+      <div class="researcher-grid" id="resGrid"></div>
+      <div class="res-detail" id="resDetail"></div>
+      <div style="background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:14px 16px;margin-top:14px">
+        <div style="font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;margin-bottom:8px">THE SCALE OF THE PROGRAM</div>
+        <p style="font-size:13px;color:var(--w2);line-height:1.7;margin:0">Over 20 Soviet and Russian research institutes. Hundreds of peer-reviewed papers in Russian-language journals. Billions of rubles in funding during the Soviet period. Applications explored in medicine, metallurgy, agriculture, and defense. When the Soviet Union collapsed in 1991, funding dried up and many researchers dispersed — some to international academic positions, some to private industry, some simply stopped publishing. The research did not disappear. It became harder to access.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TORSION IN FREQUENCY WORK -->
+  <div class="section">
+    <h2>Torsion in Frequency Practice — The Missing Mechanism</h2>
+    <p>Torsion theory provides proposed mechanisms for several frequency practices that lack adequate conventional explanations — situations where the effects reported exceed what standard EM can produce at the relevant intensities and distances.</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <h4>Spin Direction in Coils &amp; Rings</h4>
+        <p>Winding direction in tensor rings, bifilar coils, and other copper geometries determines the chirality of the spin dynamics — and therefore the handedness of the torsion field generated.</p>
+        <span class="tfa">→ Clockwise winding creates right-hand torsion (ordering). Counter-clockwise creates left-hand torsion. This is the physics basis for the instruction to wind tensor rings in a specific direction — it is not arbitrary preference but a determination of torsion polarity.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Sacred Geometry as Torsion Technology</h4>
+        <p>Geometric shapes — pyramids, cones, spirals, tori — focus and direct torsion fields through phytorsion. The shape itself acts as a torsion lens, concentrating the field at specific focal points.</p>
+        <span class="tfa">→ The concentration effect of pyramid geometry at the apex and one-third height point is the proposed mechanism for pyramid energy research. The torus shape continuously circulates torsion in a self-sustaining geometry. Sacred geometry is functional torsion engineering expressed in form.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Water Vortexing = Torsion Charging</h4>
+        <p>Vortexing water creates angular momentum in the water — a macroscopic spin that generates torsion fields which can reorder water's hydrogen bond network through the spin-coupling mechanism.</p>
+        <span class="tfa">→ This is the proposed physics behind why vortexed water shows different surface tension, crystallization, and biological activity than non-vortexed water. Oxygenation alone does not explain the magnitude of observed differences. Torsion charging provides a second mechanism operating simultaneously.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Crystal Amplification</h4>
+        <p>Quartz and other crystals have highly organized atomic lattice structures with coherent spin arrangements. This coherent spin produces a coherent torsion field — and may amplify incoming torsion signals through resonant coupling.</p>
+        <span class="tfa">→ The proposed mechanism for crystal enhancement of frequency devices: the crystal's coherent lattice spin provides a torsion amplification stage beyond what the device produces through EM alone. Different crystal structures would amplify different torsion signatures based on their lattice chirality.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Intention as Torsion Generation</h4>
+        <p>If consciousness is a spin-organized field pattern — as Akimov and Shipov proposed — then focused intention generates a measurable torsion field. Device charging with intention is not metaphorical: it is proposed to be a physical imprinting process.</p>
+        <span class="tfa">→ The Kozyrev mirror experiments, where focused human attention produced detectable effects at a distance through torsion-focusing apparatus, provide the primary experimental basis for this claim. The reproducibility of these results is the key open question.</span>
+      </div>
+      <div class="concept-card">
+        <h4>The Ancient Names for Torsion</h4>
+        <p>Chi (Chinese), prana (Sanskrit), orgone (Reich), élan vital (Bergson), od (Reichenbach) — every culture that developed a concept of life force described it as a field with properties matching torsion: directional, chirally differentiated, storable, interacting with consciousness.</p>
+        <span class="tfa">→ Torsion field theory is not a new discovery that validates ancient wisdom. It is a physics framework that maps onto what ancient practitioners documented through empirical observation. The map and the territory have been developing independently and are now converging.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <div class="section">
+    <h2>Quick Reference</h2>
+    <div class="accordion" id="accWrap"></div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="section">
+    <h2>This Week's Practice — Engage Torsion Consciously</h2>
+    <p style="margin-bottom:16px">Torsion is generated by spin and focused by geometry. This week, engage both deliberately — and document what you observe.</p>
+    <div class="practice-steps">
+      <div class="ps"><div class="ps-n">1</div><div class="ps-t"><strong>Vortex water with conscious torsion intent.</strong> Fill a glass or pitcher with water. Stir it clockwise — right-hand torsion — for 30–60 seconds, sustaining focused awareness on the spiral motion. Do not treat this as mechanical. Engage with the spin as a torsion-generating act. Then stir counter-clockwise for the same duration. Taste both and compare. Also observe any difference in how each glass feels to hold. Record what you notice without interpreting prematurely.</div></div>
+      <div class="ps"><div class="ps-n">2</div><div class="ps-t"><strong>Map the spin direction of every coil and ring you work with.</strong> For each tensor ring, coil, or wound device in your practice: determine whether the winding is clockwise or counter-clockwise from the top. Using torsion theory, identify the torsion polarity each device generates. Consider whether the devices you use most are predominantly right-hand or left-hand wound, and whether this aligns with the effects you observe from them.</div></div>
+      <div class="ps"><div class="ps-n">3</div><div class="ps-t"><strong>Practice conscious torsion generation through focused attention.</strong> Sit quietly. Hold a crystal or tensor ring. Establish heart coherence first. Then, with sustained focused attention on the object, visualize a clockwise spiral emanating from your awareness into the object — torsion imprinting through intention. Hold this for 3–5 minutes. Compare the object's perceived field before and after. This is not visualization for psychological effect — you are testing Akimov and Shipov's claim that focused consciousness generates measurable torsion. Your sensation is data.</div></div>
+      <div class="ps"><div class="ps-n">4</div><div class="ps-t"><strong>Build or assemble a simple geometric torsion concentrator.</strong> A pyramid form — even made from cardboard or copper wire — over a glass of water is the most accessible phytorsion experiment. Place water under a pyramid (oriented north-south, apex above) for 20–30 minutes. Compare to an identical control glass left in the open. This replicates experiments documented in Soviet pyramid research. Record methodology and result carefully enough that it would be reproducible.</div></div>
+    </div>
+  </div>
+
+  <!-- GO DEEPER -->
+  <div class="section">
+    <h2>Go Deeper</h2>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">Theory of Physical Vacuum — Gennady Shipov</div>
+        <div class="res-auth">ST-Center, Moscow, 1993</div>
+        <div class="res-desc">The most mathematically rigorous treatment of torsion field theory available from a Soviet-era researcher. Shipov extends Einstein-Cartan theory to include full torsion tensor dynamics and proposes the physical vacuum as the medium for torsion propagation. Dense but the primary theoretical source.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">Kozyrev's Papers — Nikolai Kozyrev</div>
+        <div class="res-auth">Various Soviet physics journals, 1950s–1980s</div>
+        <div class="res-desc">Kozyrev's original papers on "causal mechanics" and time density are the experimental foundation of the Soviet torsion research program. Available through Russian academic archives. His astronomical observations claiming instantaneous torsion detection from distant stars are the most frequently cited primary source.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔬</div>
+      <div>
+        <div class="res-title">The Einstein-Cartan Theory — Elie Cartan &amp; Albert Einstein</div>
+        <div class="res-auth">Comptes Rendus de l'Académie des Sciences, 1922–1930</div>
+        <div class="res-desc">The foundational mathematical work establishing torsion as a legitimate extension of general relativity. Cartan's original papers and the Einstein-Cartan correspondence are in French. Modern reviews of Einstein-Cartan theory in English are available through the Living Reviews in Relativity open-access journal.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">Pyramid Power Research — Soviet Academy of Sciences</div>
+        <div class="res-auth">Various Russian researchers, 1990s–2000s</div>
+        <div class="res-desc">Extensive Soviet and Russian research on pyramidal geometry as torsion concentrators, conducted by Alexander Golod and others. Documents effects on water structure, seed germination, viral concentrations, and radioactive decay rates inside pyramid structures. Primary source for phytorsion experimental data.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">The Source Field Investigations — David Wilcock</div>
+        <div class="res-auth">Dutton Adult, 2011</div>
+        <div class="res-desc">A comprehensive popular synthesis of torsion field research, Soviet science, sacred geometry, and consciousness research. Not primary research — a compilation and interpretation — but provides the broadest accessible overview of the field. Read alongside primary sources for calibration.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔗</div>
+      <div>
+        <div class="res-title">Previous: Q13 — Scalar Waves</div>
+        <div class="res-auth">The Frequency Academy · Quantum Physics &amp; Sciences</div>
+        <div class="res-desc">Scalar waves and torsion fields share key properties: both carry information without conventional energy, both interact with consciousness, both have been researched outside mainstream Western physics. Torsion adds the specific mechanism of spin as the generating source — and the Einstein-Cartan mathematical foundation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="section">
+    <h2>Reflection Journal</h2>
+
+    <div class="reflection-prompt">
+      <p>How does understanding torsion fields change how you think about your frequency devices — tensor rings, coils, and anything with a winding direction? Does torsion theory explain effects you have observed that conventional EM could not account for? Which devices are you looking at differently now?</p>
+    </div>
+    <textarea id="ref1" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>Torsion research was extensive in the Soviet Union and largely ignored in the West. Why do you think that asymmetry exists? What does it tell you about how scientific institutions determine what is worth investigating — and what the consequences are of those decisions for the field of frequency work?</p>
+    </div>
+    <textarea id="ref2" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>Chi, prana, orgone, life force — the workbook proposes that torsion is the physics behind all of these ancient and 20th-century concepts. Where do you stand on that connection? Does having a physics framework for life force change how you relate to it — or does it feel like a reduction of something that resists reduction?</p>
+    </div>
+    <textarea id="ref3" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>Akimov and Shipov proposed that consciousness is itself a torsion phenomenon — a spin-organized field pattern in the vacuum. If this is true, what does it mean for your understanding of intention, awareness, and the relationship between your mind and the physical devices you work with?</p>
+    </div>
+    <textarea id="ref4" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="workshop">
+    <h3>Live Workshop: Torsion Fields — The Missing Physics</h3>
+    <p>A live deep-dive on this topic is coming soon. Recordings and supplemental materials will appear here once available. Members will be notified via the Academy portal.</p>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="completion-box">
+    <h3>Mark Lesson Complete</h3>
+    <p>When you have explored all three interactive tabs, completed this week's vortex water experiment, and written at least two reflections — mark this lesson complete.</p>
+    <button class="complete-btn" id="completeBtn" onclick="markComplete()">Mark Complete · +10 XP</button>
+    <div class="xp-flash" id="xpFlash">✦ +10 XP Awarded</div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-lessons">
+    <a class="nav-lesson prev" href="../lesson-13/">
+      <div class="nav-arrow">←</div>
+      <div>
+        <div class="nav-label">Previous · Q13</div>
+        <div class="nav-title">Scalar Waves</div>
+      </div>
+    </a>
+    <a class="nav-lesson" href="../lesson-15/">
+      <div>
+        <div class="nav-label">Next · Q15</div>
+        <div class="nav-title">Zero Point Energy</div>
+      </div>
+      <div class="nav-arrow">→</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="save-bar">
+  <div class="save-status" id="saveStatus">Auto-save active</div>
+  <div class="save-btns">
+    <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+    <button class="save-btn ghost" onclick="document.getElementById('importFile').click()">Import</button>
+    <button class="save-btn ghost" onclick="exportData()">Export</button>
+    <button class="save-btn primary" onclick="saveNow()">Save</button>
+  </div>
+</div>
+
+<script>
+var KEY = 'tfa_q14';
+var saveTimer;
+var animId;
+var torsionT = 0;
+var spinRate = 1;
+
+// ── TABS ──
+function switchTab(id, btn) {
+  document.querySelectorAll('.viz-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.viz-panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+  if (id === 'visual') startTorsionAnim();
+  else { if (animId) cancelAnimationFrame(animId); animId = null; }
+}
+
+// ── TORSION VISUALIZER ──
+function updateSpeed() {
+  spinRate = parseFloat(document.getElementById('spinSpeed').value);
+  document.getElementById('speedLabel').textContent = spinRate.toFixed(1) + '×';
+}
+
+function startTorsionAnim() {
+  if (animId) cancelAnimationFrame(animId);
+  function frame() {
+    torsionT += 0.025 * spinRate;
+    drawTorsion('cRight', 1);
+    drawTorsion('cLeft', -1);
+    animId = requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+function drawTorsion(id, dir) {
+  var c = document.getElementById(id);
+  if (!c) return;
+  var dpr = window.devicePixelRatio || 1;
+  var size = Math.min(c.parentElement.offsetWidth - 28, 200);
+  c.width = size * dpr;
+  c.height = size * dpr;
+  c.style.width = size + 'px';
+  c.style.height = size + 'px';
+  var ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  var W = size, H = size, cx = W / 2, cy = H / 2, R = size * 0.42;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = 'rgba(6,15,30,0.7)';
+  ctx.fillRect(0, 0, W, H);
+
+  var color = dir > 0 ? '#4a9edd' : 'rgba(220,120,100,0.9)';
+  var colorFade = dir > 0 ? 'rgba(74,158,221,' : 'rgba(220,120,100,';
+
+  // Draw spiral arms
+  var numArms = 3;
+  for (var arm = 0; arm < numArms; arm++) {
+    var armOffset = (arm / numArms) * Math.PI * 2;
+    ctx.beginPath();
+    for (var i = 0; i <= 200; i++) {
+      var frac = i / 200;
+      var angle = dir * (frac * Math.PI * 6 + torsionT + armOffset);
+      var r = frac * R;
+      var x = cx + r * Math.cos(angle);
+      var y = cy + r * Math.sin(angle);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = colorFade + (0.15 + 0.4 * (arm / numArms)) + ')';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  // Outer rotating particles
+  var numPts = 12;
+  for (var j = 0; j < numPts; j++) {
+    var angle2 = dir * torsionT + (j / numPts) * Math.PI * 2;
+    var rOuter = R * (0.7 + 0.3 * Math.sin(torsionT * 0.5 + j * 0.8));
+    var px = cx + rOuter * Math.cos(angle2);
+    var py = cy + rOuter * Math.sin(angle2);
+    var brightness = 0.4 + 0.5 * Math.abs(Math.sin(torsionT + j));
+    ctx.beginPath();
+    ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+    ctx.fillStyle = colorFade + brightness + ')';
+    ctx.fill();
+  }
+
+  // Inner glow
+  var grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 0.3);
+  grd.addColorStop(0, colorFade + '0.18)');
+  grd.addColorStop(1, 'transparent');
+  ctx.fillStyle = grd;
+  ctx.beginPath();
+  ctx.arc(cx, cy, R * 0.3, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Center dot
+  ctx.beginPath();
+  ctx.arc(cx, cy, 3, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
+
+  // Direction label
+  ctx.fillStyle = colorFade + '0.5)';
+  ctx.font = '9px Cinzel, serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(dir > 0 ? '↻ CLOCKWISE' : '↺ COUNTER-CLOCKWISE', cx, H - 8);
+}
+
+// ── GENERATORS DATA ──
+var NAT_GENS = [
+  { id:'dna', icon:'🧬', name:'DNA', type:'Natural',
+    title:'DNA — The Molecular Torsion Antenna',
+    desc1:'The DNA double helix is a right-handed spiral — it winds clockwise when viewed from above, advancing along its axis. This is not arbitrary. All known life on Earth uses right-handed DNA. The consistent chirality across all biology suggests an alignment with a preferred torsion polarity — right-hand torsion — that predates the emergence of species.',
+    desc2:'Because DNA is a spiral structure with organized atomic spin, it functions simultaneously as a torsion generator and receiver. Each cell nucleus contains approximately 2 meters of DNA wound into a right-handed helix — a tightly coiled torsion antenna constantly generating and receiving right-hand torsion fields.',
+    tfa:'→ Glen Rein\'s research on scalar and torsion effects on DNA replication rates connects directly here. If DNA is a torsion antenna, its replication rate would be sensitive to incoming torsion fields — particularly those matching the right-hand chirality of the helix. This is the proposed mechanism for torsion-based DNA repair and regeneration claims.'
+  },
+  { id:'galaxy', icon:'🌌', name:'Galaxies', type:'Natural',
+    title:'Spiral Galaxies — Massive Torsion Generators',
+    desc1:'Spiral galaxies rotate — billions of stars orbiting a common center, the entire mass distribution spinning. This is angular momentum at cosmic scale. By torsion field theory, this rotation generates a torsion field that propagates outward from the galactic plane, filling the surrounding space with a cosmic torsion background.',
+    desc2:'The Milky Way is a barred spiral galaxy rotating at approximately 220 km/s at the Sun\'s orbital radius. Our solar system orbits the galactic center once approximately every 225 million years. We are continuously bathed in the torsion field of the galaxy — a slow, enormous, pervasive spin that may constitute a background torsion field similar in concept to the Schumann resonance for EM.',
+    tfa:'→ Kozyrev\'s astronomical experiments claimed to detect instantaneous torsion signals from distant stars and galaxies — arriving before the light from those objects. If torsion propagates faster than c, the galactic torsion background reaches Earth effectively instantaneously from our reference frame. We are not just in a gravitational field from the galaxy. We may be in its torsion field as well.'
+  },
+  { id:'vortex', icon:'🌊', name:'Water Vortex', type:'Natural',
+    title:'Water Vortexes — Liquid Torsion Generators',
+    desc1:'When water spirals — in a vortex, a whirlpool, a river bend, a tornado — the organized circular motion of the water molecules creates a macroscopic angular momentum field. By torsion theory, this angular momentum generates a torsion field aligned with the rotation axis of the vortex.',
+    desc2:'Viktor Schauberger, the Austrian naturalist and hydrologist, documented extensive observations of vortex water showing different properties from still water: enhanced vitality in fish, different dissolution properties, different biological activity in soil. His concept of "living water" maps onto torsion-charged water — water whose hydrogen bond network has been reorganized by the torsion field generated during vortex motion.',
+    tfa:'→ This is the physics basis for vortex water devices. The spiral motion is not primarily about oxygenation (though that occurs). It is a torsion imprinting process: the angular momentum of the vortex generates a right-hand torsion field (if the vortex spirals clockwise downward, as is natural in the Northern Hemisphere) that reorganizes water\'s spin-coupled hydrogen bond network.'
+  },
+  { id:'pyramid', icon:'△', name:'Pyramids', type:'Natural',
+    title:'Pyramids & Cones — Phytorsion Concentrators',
+    desc1:'Phytorsion is torsion generated or concentrated by geometric shapes rather than by rotating matter. Pyramidal and conical geometries focus torsion fields at their apex and at specific internal resonance points — approximately one-third height from the base in the case of the Great Pyramid proportions.',
+    desc2:'Soviet pyramid research, conducted by Alexander Golod and colleagues, placed experimental objects inside large pyramid structures and documented: changes in water crystal structure, increased seed germination rates, changes in the electrical resistance of materials, and altered radioactive decay rates. These effects persisted after the pyramidal structure was removed — suggesting torsion storage in the treated materials.',
+    tfa:'→ If geometric shape alone can focus and concentrate torsion fields without any moving parts or electrical power, then sacred geometry is literally functional technology. The Flower of Life, the torus, the pyramid are not decorative. They are proposed torsion optics — shape-based systems for directing and focusing spin fields.'
+  },
+  { id:'tornado', icon:'🌪️', name:'Hurricanes & Tornadoes', type:'Natural',
+    title:'Large-Scale Vortices — Torsion at Weather Scale',
+    desc1:'Hurricanes, tornadoes, waterspouts, and dust devils are macroscopic vortex systems with organized angular momentum at scales from meters to thousands of kilometers. By torsion theory, these systems generate substantial torsion fields aligned with their rotation axes.',
+    desc2:'The counter-clockwise rotation of Northern Hemisphere hurricanes (cyclonic rotation) would generate left-hand torsion by this theory. Anticyclonic systems (clockwise) would generate right-hand torsion. If torsion fields interact with biological systems, large-scale atmospheric vortex systems could potentially influence populations beneath them through torsion field exposure — a speculative but internally consistent extension of the theory.',
+    tfa:'→ This connects to traditional wisdom about the relationship between weather patterns and health, mood, and consciousness states. Chinook winds, foehn, sirocco — traditional medicine documented the health effects of specific wind patterns long before torsion physics existed as a concept. Torsion theory provides a proposed mechanism.'
+  }
+];
+
+var ART_GENS = [
+  { id:'gyro', icon:'⚙️', name:'Gyroscopes', type:'Artificial',
+    title:'Spinning Discs & Gyroscopes — Pure Rotational Torsion',
+    desc1:'A spinning gyroscope or disc generates torsion through the simplest possible mechanism: physical rotation. Unlike vortex water or spiraling geometry, a gyroscope converts electrical or mechanical energy directly into angular momentum and therefore directly into torsion field generation.',
+    desc2:'Experiments with rapidly spinning discs have documented anomalous weight reduction effects and unusual spatial behavior — the gyroscopic anomaly experiments conducted by Eric Laithwaite and others. Some researchers interpret these anomalies as torsion-gravitational coupling: the torsion field of the spinning disc interacting with the local gravitational field in ways not predicted by standard physics.',
+    tfa:'→ High-speed spinning motors inside frequency devices may generate torsion fields as a byproduct of their rotation — not through their electromagnetic output but through their angular momentum. If you use any device with a spinning component, consider that the rotational torsion may be part of its mechanism.'
+  },
+  { id:'coils', icon:'🔁', name:'Bifilar Coils', type:'Artificial',
+    title:'Bifilar & Caduceus Coils — Electrical Torsion Generation',
+    desc1:'In bifilar and caduceus coil configurations, opposing current flows create canceling electromagnetic fields — but the opposing spiral current paths create a spin dynamic. Current flowing in a spiral creates angular momentum in the electromagnetic field. When two opposing spirals run simultaneously, the EM fields cancel but the angular momentum components may not fully cancel — leaving a residual torsion component.',
+    desc2:'This is the proposed connection between scalar wave generation (Q13) and torsion generation: both are proposed to emerge from the same opposing-winding configuration. The scalar component (longitudinal EM) and the torsion component (spin field) may be two aspects of the same non-Hertzian phenomenon — or may be distinct phenomena produced by the same geometry.',
+    tfa:'→ Coil winding direction, number of turns, wire gauge, and material all influence the specific torsion signature generated. Tesla\'s bifilar coil patent and the caduceus coil tradition both arrived at opposing-winding configurations through different paths — suggesting the same geometry is being discovered independently across different research traditions.'
+  },
+  { id:'rings', icon:'◯', name:'Tensor Rings', type:'Artificial',
+    title:'Tensor Rings — Standing Torsion Wave Hypothesis',
+    desc1:'Tensor rings are closed copper loops wound at cubit-based dimensions. The proposed torsion mechanism: the continuous copper loop, at the right dimensional ratio, creates conditions for a standing torsion wave within the ring plane — analogous to how a resonant cavity sustains standing EM waves, but for the spin field.',
+    desc2:'The winding direction of the copper wire determines the chirality of the torsion field generated. A clockwise winding creates a right-hand torsion field extending above and below the ring plane as a column. The specific cubit measurement determines the dimensional resonance that sustains the standing torsion wave rather than allowing it to dissipate.',
+    tfa:'→ This is the most complete proposed mechanism for tensor ring function: not primarily EM (which is negligible at tensor ring scales), not purely scalar (which lacks the chirality specificity), but standing torsion wave — a spin field geometry sustained by the ring\'s dimensional resonance. The cubit measurement determines which torsion wave geometry is stable.'
+  },
+  { id:'crystals', icon:'💎', name:'Crystals', type:'Artificial',
+    title:'Crystals — Coherent Spin Lattices as Torsion Amplifiers',
+    desc1:'In a crystalline lattice, atoms are arranged in a highly organized, repeating three-dimensional structure. Each atom has electrons with spin, and in a crystal the spin states of electrons can be coherently organized across the entire lattice — unlike in amorphous materials where spin states are random. This coherent spin organization means the crystal generates a coherent, organized torsion field rather than the randomized torsion noise of disordered matter.',
+    desc2:'Quartz in particular has a trigonal crystal system with a helical arrangement of silicon-oxygen tetrahedra — a spiral structure at the molecular level. This built-in chirality means quartz crystals generate chiral torsion fields. The left or right-handedness of a specific quartz crystal (determined by its optical rotation — whether it rotates polarized light clockwise or counter-clockwise) determines its torsion polarity.',
+    tfa:'→ Crystal orientation, crystal handedness (left-quartz vs right-quartz), and crystal placement all affect the torsion geometry produced. When you place a crystal near a device or on your body, its coherent spin lattice is proposed to both receive and amplify incoming torsion fields — acting as a torsion resonator tuned to its lattice geometry and chirality.'
+  },
+  { id:'consciousness', icon:'🧠', name:'Consciousness', type:'Artificial',
+    title:'Consciousness — The Ultimate Torsion Generator',
+    desc1:'Akimov and Shipov\'s most controversial and potentially most significant proposal: consciousness is itself a torsion phenomenon. Awareness, attention, intention — these may be spin-organized field patterns in the quantum vacuum that generate and interact with torsion fields. If mind is a torsion field, then focused human attention is not merely a psychological state but a physical field generator.',
+    desc2:'The Kozyrev mirror experiments provided experimental context: aluminum cylinders shaped to focus torsion fields were used in consciousness research at the Institute of the Brain in Novosibirsk. Subjects inside or near the mirrors reported heightened intuitive perceptions, telepathic impressions, and altered time experience — effects attributed to enhanced torsion field coupling between subjects.',
+    tfa:'→ If this is accurate, every moment of focused awareness is a torsion emission event. The quality of your attention — scattered or coherent, anxious or calm, fearful or loving — determines the torsion signature you generate and therefore what you imprint into devices, water, and your environment. Consciousness is not separate from frequency technology. It may be the primary frequency technology.'
+  }
+];
+
+var activeGen = null;
+
+function buildGenerators() {
+  var natGrid = document.getElementById('natGrid');
+  var artGrid = document.getElementById('artGrid');
+
+  NAT_GENS.forEach(function(g) {
+    var card = document.createElement('div');
+    card.className = 'gen-card natural';
+    card.id = 'gcard-' + g.id;
+    card.onclick = function() { showGen(g, card); };
+    card.innerHTML = '<div class="gen-card-icon">' + g.icon + '</div><div class="gen-card-name">' + g.name + '</div><div class="gen-card-type">Natural</div>';
+    natGrid.appendChild(card);
+  });
+
+  ART_GENS.forEach(function(g) {
+    var card = document.createElement('div');
+    card.className = 'gen-card artificial';
+    card.id = 'gcard-' + g.id;
+    card.onclick = function() { showGen(g, card); };
+    card.innerHTML = '<div class="gen-card-icon">' + g.icon + '</div><div class="gen-card-name">' + g.name + '</div><div class="gen-card-type">Artificial</div>';
+    artGrid.appendChild(card);
+  });
+}
+
+function showGen(g, card) {
+  document.querySelectorAll('.gen-card').forEach(function(c) { c.classList.remove('active'); });
+  var det = document.getElementById('genDetail');
+  det.classList.remove('show');
+
+  if (activeGen === g.id) { activeGen = null; return; }
+  activeGen = g.id;
+  card.classList.add('active');
+
+  det.innerHTML =
+    '<h4>' + g.title + '</h4>' +
+    '<p>' + g.desc1 + '</p>' +
+    '<p>' + g.desc2 + '</p>' +
+    '<div class="tfa-note">' + g.tfa + '</div>';
+  det.classList.add('show');
+}
+
+// ── RESEARCHERS DATA ──
+var RESEARCHERS = [
+  {
+    id:'kozyrev', icon:'⭐', name:'Nikolai Kozyrev', role:'1908–1983 · Astrophysicist',
+    title:'Nikolai Kozyrev — The Originator',
+    b1:'Nikolai Kozyrev was a Soviet astrophysicist who spent several years in a Stalinist labor camp for "anti-Soviet activity" before returning to the Pulkovo Observatory and publishing landmark work on stellar energy. His astronomical observations led him to a theoretical framework he called "causal mechanics" — a physics of time and causality that included what he identified as a physical influence propagating instantaneously.',
+    b2:'His most documented experiments involved telescopes equipped with sensors at the focal point. He claimed to detect signals from stars at their current calculated position — rather than at their apparent position offset by light travel time — suggesting that something was arriving from the stars faster than light. He theorized this was a torsion-like field associated with stellar processes.',
+    b3:'Kozyrev also developed a series of laboratory experiments demonstrating apparent time-asymmetric physical effects — phenomena that behaved differently depending on temporal direction in ways he attributed to a "flow of time" with physical properties, including what he called the density of time.',
+    sig:'→ Kozyrev is the primary experimental source for Soviet torsion research. His astronomical observations are the most frequently cited evidence for instantaneous propagation. His Kozyrev mirrors — aluminum cylinders designed to focus his theorized causal field — became the apparatus for subsequent consciousness research.'
+  },
+  {
+    id:'akimov', icon:'🔭', name:'Anatoly Akimov', role:'1938–2007 · Program Director',
+    title:'Anatoly Akimov — The Builder',
+    b1:'Anatoly Akimov served as director of the Soviet (and later Russian) government torsion field research programs — the Center for Non-Traditional Technologies and the International Institute of Theoretical and Applied Physics. He was the key figure who transformed torsion research from individual academic work into a coordinated government program with institutional resources.',
+    b2:'Akimov\'s primary contributions were organizational and applied: he coordinated experimental programs across multiple institutes, documented torsion effects in physical materials (metallurgy, semiconductors), and developed proposals for torsion-based communication systems. He claimed that torsion generators had been developed that could transmit information at superluminal velocities.',
+    b3:'He also extended the theoretical framework to consciousness, arguing that focused human attention generates measurable torsion fields — and that this provided a physical mechanism for phenomena like telepathy, remote viewing, and intentional healing. This connected torsion physics directly to the consciousness research tradition.',
+    sig:'→ Akimov\'s institutional role means that the Soviet torsion program\'s scope, funding scale, and application domains are largely documented through his reports and publications. His work connecting torsion to consciousness is the theoretical foundation for understanding intention as a physical field phenomenon.'
+  },
+  {
+    id:'shipov', icon:'📐', name:'Gennady Shipov', role:'b. 1938 · Mathematical Physicist',
+    title:'Gennady Shipov — The Theorist',
+    b1:'Gennady Shipov is a mathematical physicist who extended the Einstein-Cartan framework into a comprehensive "Theory of Physical Vacuum" — arguably the most mathematically rigorous attempt to formalize torsion field physics. His work adds torsion tensor dynamics to the standard GR formalism and derives vacuum equations that include torsion wave solutions.',
+    b2:'Shipov\'s framework proposes five levels of matter: physical vacuum (primary spin field), torsion fields, physical fields (EM and gravity), matter, and physical bodies. In his model, torsion fields are more fundamental than EM — they are the medium from which EM fields and matter condense. This inverts the conventional hierarchy where fields are properties of matter.',
+    b3:'His extended Einstein-Cartan equations produce solutions describing torsion waves propagating through the physical vacuum at velocities greater than c — providing the mathematical basis for the superluminal propagation claims that Kozyrev observed experimentally. Shipov\'s work also includes derivations connecting torsion to consciousness through the vacuum spin structure.',
+    sig:'→ Shipov provides the mathematical backbone of torsion field theory. His Theory of Physical Vacuum is the most complete available formalization. It is unpublished in Western peer-reviewed journals but has been published in Russian academic outlets and is available in English translation through his institute.'
+  }
+];
+
+var activeRes = null;
+
+function buildResearchers() {
+  var grid = document.getElementById('resGrid');
+  RESEARCHERS.forEach(function(r) {
+    var card = document.createElement('div');
+    card.className = 'res-card';
+    card.id = 'rcard-' + r.id;
+    card.onclick = function() { showRes(r, card); };
+    card.innerHTML = '<div class="res-card-icon">' + r.icon + '</div><div class="res-card-name">' + r.name + '</div><div class="res-card-role">' + r.role + '</div>';
+    grid.appendChild(card);
+  });
+}
+
+function showRes(r, card) {
+  document.querySelectorAll('.res-card').forEach(function(c) { c.classList.remove('active'); });
+  var det = document.getElementById('resDetail');
+  det.classList.remove('show');
+  if (activeRes === r.id) { activeRes = null; return; }
+  activeRes = r.id;
+  card.classList.add('active');
+  det.innerHTML = '<h4>' + r.title + '</h4><p>' + r.b1 + '</p><p>' + r.b2 + '</p><p>' + r.b3 + '</p><div class="significance">' + r.sig + '</div>';
+  det.classList.add('show');
+}
+
+// ── ACCORDION ──
+var ACC = [
+  { t:'Key Terms — Torsion Field Physics',
+    b:'<strong>Torsion Field:</strong> Theorized field generated by angular momentum / spin. A twist in spacetime rather than a curvature. Described mathematically in Einstein-Cartan theory as the torsion tensor.<br><br><strong>Spin:</strong> Intrinsic angular momentum — a fundamental quantum property of all particles. Electrons have spin-½; photons have spin-1; gravitons (theoretical) have spin-2. Every particle with spin potentially generates torsion.<br><br><strong>Right-Hand Torsion:</strong> Clockwise rotation viewed from above. Associated with ordering, coherence, and life-enhancing effects. Right-handed DNA, beneficial coil winding direction.<br><br><strong>Left-Hand Torsion:</strong> Counter-clockwise rotation. Associated with disordering and entropy. Contrasts with the right-hand chirality predominant in biological systems.<br><br><strong>Phytorsion:</strong> Torsion generated or concentrated by geometric shapes. Pyramids, cones, spirals focus torsion at specific points. Shape alone can be a torsion lens without moving parts or electrical input.<br><br><strong>Kozyrev Mirror:</strong> An aluminum cylinder used to concentrate torsion fields for consciousness research. Developed from Kozyrev\'s causal mechanics framework. Used in experiments at the Institute of the Brain in Novosibirsk.<br><br><strong>Einstein-Cartan Theory:</strong> Extension of general relativity including torsion alongside curvature. Developed in collaboration between Einstein and mathematician Élie Cartan in the 1920s. The mathematical foundation of torsion field physics.' },
+  { t:'Einstein-Cartan Theory — The Mathematical Foundation',
+    b:'Standard general relativity (Einstein, 1915) describes gravity as the curvature of spacetime caused by mass-energy. The mathematical structure uses a curvature tensor (the Riemann tensor) derived from the metric tensor — the quantity describing distances in spacetime.<br><br>Einstein-Cartan theory (1922–1930) adds a second geometric quantity: the torsion tensor. While curvature describes how spacetime curves around masses, torsion describes how spacetime twists around spinning matter. A complete connection on a Riemannian manifold has both curvature and torsion components; standard GR sets torsion to zero by assumption (the "symmetric connection" assumption).<br><br><strong>The physical interpretation:</strong> In Einstein-Cartan theory, torsion couples to the spin density of matter — just as curvature couples to the energy-momentum density. In regions of high spin density (like the interior of neutron stars or dense spinning matter), torsion effects would be non-negligible. At ordinary matter densities, torsion is predicted to be extremely small — which is why setting it to zero works well for most GR applications.<br><br><strong>Why this matters for frequency work:</strong> Torsion field theory is not pseudoscience invented outside mainstream physics. It emerges naturally from the full mathematical structure of general relativity when the symmetric connection assumption is relaxed. Soviet researchers followed the full mathematics. Mainstream physics chose the simpler subset.' },
+  { t:'Chirality in Biology — Why Right-Hand Torsion Matters',
+    b:'Biological molecules are chiral — they have handedness. This chirality is not arbitrary: life on Earth uses a specific subset of possible molecular orientations with almost perfect consistency.<br><br><strong>Amino acids:</strong> All 20 standard amino acids in living proteins are left-handed (L-amino acids). Right-handed (D-amino acids) are not incorporated into proteins (with rare exceptions in some bacterial cell walls). No one fully understands why life chose L-amino acids.<br><br><strong>Sugars:</strong> Almost all biological sugars are right-handed (D-sugars). D-glucose, D-ribose, D-deoxyribose (in DNA) — all right-handed.<br><br><strong>DNA:</strong> The double helix is right-handed. Wind it counter-clockwise and you get Z-DNA — a rare, high-energy form.<br><br><strong>The torsion implication:</strong> If torsion fields have chirality, and if biological systems are chirally specific, then the interaction between applied torsion and biology would be chirality-dependent. Right-hand torsion would couple efficiently with right-handed DNA; left-hand torsion might interfere with it. This is the proposed physics behind why spin direction matters in frequency devices — it is not arbitrary preference but a determination of chirality match with biological targets.' },
+  { t:'The Kozyrev Mirror Experiments',
+    b:'The Kozyrev mirror experiments were conducted primarily at the Institute of the Brain of the Russian Academy of Medical Sciences in Novosibirsk, under the direction of Natalya Koroleva and colleagues, from the 1990s through the 2000s.<br><br><strong>The apparatus:</strong> A cylinder of curved aluminum sheeting, approximately 1–2 meters in diameter and 2–3 meters tall, shaped to act as a focusing reflector for torsion fields — based on the geometry Kozyrev proposed for his causal field. The interior of the cylinder was theorized to accumulate and concentrate torsion fields, particularly those generated by or aimed at conscious subjects inside.<br><br><strong>Experimental protocols:</strong> Subjects (typically isolated) would sit inside the Kozyrev mirror and attempt to make perceptual contact with another isolated subject at a distance — sometimes thousands of kilometers away. Simultaneous recording of both subjects\' experiences would then be compared.<br><br><strong>Reported results:</strong> Statistically significant matching of perceptual experiences between isolated subjects; subjects reporting sensations of expanded temporal perception; some subjects reporting apparent access to memories or impressions from individuals not present.<br><br><strong>Epistemic status:</strong> The experiments were conducted with appropriate isolation controls but have not been independently replicated outside Russia to mainstream standards. The theoretical interpretation (torsion focusing of consciousness) assumes the conclusion. The empirical results, if real, are significant regardless of the interpretation.' },
+  { t:'Torsion vs. Scalar Waves — Similarities and Differences',
+    b:'Torsion fields and scalar waves share several theoretical properties and are often discussed together. They are also distinct concepts with different proposed generating mechanisms.<br><br><strong>Shared properties:</strong><br>· Both carry information without conventional energy transfer<br>· Both claimed to propagate at superluminal velocities<br>· Both proposed to interact with consciousness<br>· Both proposed to be storable in materials<br>· Both produced by opposing-winding coil configurations<br>· Both outside mainstream physics acceptance<br><br><strong>Key differences:</strong><br>· Scalar waves are longitudinal EM disturbances — oscillations in the electromagnetic potential<br>· Torsion fields are spacetime twist fields — oscillations in the spin structure of spacetime itself<br>· Scalar waves are Maxwell-derived (extended equations); torsion is Einstein-Cartan derived<br>· Torsion has chirality (handedness) as a fundamental property; scalar waves are proposed as chirally neutral<br>· Torsion has a clearer mathematical foundation in established physics (Einstein-Cartan theory) than scalar waves do<br><br><strong>In practice:</strong> Many frequency devices may generate both simultaneously. A caduceus coil produces opposing EM fields (scalar wave mechanism) and opposing spiral current patterns (torsion mechanism). The two phenomena may be different aspects of the same non-Hertzian field regime.' }
+];
+
+function buildAcc() {
+  var w = document.getElementById('accWrap');
+  ACC.forEach(function(item) {
+    var d = document.createElement('div');
+    d.className = 'acc-item';
+    d.innerHTML = '<div class="acc-head" onclick="toggleAcc(this)"><span>' + item.t + '</span><span class="acc-arrow">▾</span></div><div class="acc-body">' + item.b + '</div>';
+    w.appendChild(d);
+  });
+}
+function toggleAcc(head) {
+  var body = head.nextElementSibling;
+  var arrow = head.querySelector('.acc-arrow');
+  var isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body.open').forEach(function(b) { b.classList.remove('open'); });
+  document.querySelectorAll('.acc-arrow.open').forEach(function(a) { a.classList.remove('open'); });
+  if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
+}
+
+// ── COMPLETION ──
+function markComplete() {
+  var btn = document.getElementById('completeBtn');
+  if (btn.classList.contains('done')) return;
+  btn.classList.add('done');
+  btn.textContent = '✓ Complete';
+  document.getElementById('xpFlash').classList.add('show');
+  saveNow();
+}
+
+// ── SAVE / LOAD ──
+function getData() {
+  return {
+    v: 1, lesson: 'Q14', ts: new Date().toISOString(),
+    r1: document.getElementById('ref1').value,
+    r2: document.getElementById('ref2').value,
+    r3: document.getElementById('ref3').value,
+    r4: document.getElementById('ref4').value,
+    done: document.getElementById('completeBtn').classList.contains('done')
+  };
+}
+function saveNow() {
+  localStorage.setItem(KEY, JSON.stringify(getData()));
+  document.getElementById('saveStatus').textContent = 'Saved ' + new Date().toLocaleTimeString();
+}
+function autoSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 90000);
+}
+function loadData() {
+  var raw = localStorage.getItem(KEY);
+  if (!raw) return;
+  try {
+    var d = JSON.parse(raw);
+    if (d.r1) document.getElementById('ref1').value = d.r1;
+    if (d.r2) document.getElementById('ref2').value = d.r2;
+    if (d.r3) document.getElementById('ref3').value = d.r3;
+    if (d.r4) document.getElementById('ref4').value = d.r4;
+    if (d.done) {
+      var btn = document.getElementById('completeBtn');
+      btn.classList.add('done'); btn.textContent = '✓ Complete';
+      document.getElementById('xpFlash').classList.add('show');
+    }
+    document.getElementById('saveStatus').textContent = 'Session restored';
+  } catch(e) {}
+}
+function exportData() {
+  saveNow();
+  var b = new Blob([JSON.stringify(getData(), null, 2)], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(b);
+  a.download = 'TFA_Q14_backup_' + Date.now() + '.json';
+  a.click();
+}
+function importData(e) {
+  var f = e.target.files[0];
+  if (!f) return;
+  var r = new FileReader();
+  r.onload = function(ev) {
+    try {
+      var d = JSON.parse(ev.target.result);
+      localStorage.setItem(KEY, JSON.stringify(d));
+      loadData();
+    } catch(err) {}
+  };
+  r.readAsText(f);
+  e.target.value = '';
+}
+
+// ── PROGRESS BAR ──
+window.addEventListener('scroll', function() {
+  var doc = document.documentElement;
+  var sc = window.scrollY || doc.scrollTop;
+  var sh = doc.scrollHeight - doc.clientHeight;
+  document.getElementById('progressFill').style.width = (sh > 0 ? Math.min(100, sc / sh * 100) : 0) + '%';
+}, { passive: true });
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  buildGenerators();
+  buildResearchers();
+  buildAcc();
+  loadData();
+  startTorsionAnim();
+  window.addEventListener('resize', function() {
+    if (document.getElementById('tab-visual').classList.contains('active')) {
+      drawTorsion('cRight', 1);
+      drawTorsion('cLeft', -1);
+    }
+  });
+});
+</script>
+</body>
+</html>
