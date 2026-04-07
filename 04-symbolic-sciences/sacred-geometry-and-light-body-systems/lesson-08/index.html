@@ -1,1 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G8 &middot; The Fibonacci Sequence &middot; The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c1418;
+  --accent: #7ab0b8;
+  --accent2: #9ecdd5;
+  --text: #f0ede6;
+  --text-dim: rgba(240,237,230,0.65);
+  --gold: #c9a84c;
+  --card-bg: rgba(0,0,0,0.32);
+  --card-border: rgba(122,176,184,0.18);
+  --radius: 6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;line-height:1.75;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(122,176,184,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 90%,rgba(201,168,76,0.04) 0%,transparent 50%);pointer-events:none;z-index:0}
 
+#progress-bar-wrap{position:fixed;top:0;left:0;right:0;z-index:1000;height:3px;background:rgba(0,0,0,0.5)}
+#progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--accent));transition:width .4s ease;box-shadow:0 0 12px rgba(201,168,76,.6)}
+#progress-label{position:fixed;top:8px;right:16px;z-index:1001;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.15em;color:var(--accent2);opacity:.8}
+
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:1000;background:rgba(6,13,16,.95);border-top:1px solid var(--card-border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;backdrop-filter:blur(12px)}
+#save-status{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;color:var(--text-dim)}
+.save-btns{display:flex;gap:8px}
+.save-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;padding:8px 18px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;border-radius:var(--radius);transition:all .2s;text-transform:uppercase}
+.save-btn:hover{background:var(--accent);color:var(--bg)}
+.save-btn.gold{border-color:var(--gold);color:var(--gold)}
+.save-btn.gold:hover{background:var(--gold);color:var(--bg)}
+.save-btn.dim{border-color:rgba(255,255,255,.2);color:var(--text-dim)}
+.save-btn.dim:hover{background:rgba(255,255,255,.1);color:var(--text)}
+
+.lesson-wrap{max-width:860px;margin:0 auto;padding:56px 24px 100px;position:relative;z-index:1}
+
+.section{margin-bottom:64px;opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.section.visible{opacity:1;transform:none}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.section-num{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);min-width:32px;opacity:.6}
+.section-title{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:600;color:var(--text);letter-spacing:.06em;flex:1}
+.section-rule{height:1px;flex:1;background:linear-gradient(90deg,var(--accent),transparent);opacity:.3}
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px 32px;margin-bottom:20px;backdrop-filter:blur(8px)}
+p{margin-bottom:16px;color:var(--text-dim)}
+p:last-child{margin-bottom:0}
+.hi{color:var(--accent);font-weight:600}
+.gt{color:var(--gold)}
+h3.sub{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;color:var(--accent2);margin-bottom:14px;text-transform:uppercase}
+
+.hero{text-align:center;padding:80px 0 60px}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.hero-tag{display:inline-block;border:1px solid var(--accent);padding:4px 16px;border-radius:20px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:32px}
+.hero h1{font-family:'Cinzel',serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:700;color:var(--text);line-height:1.15;margin-bottom:12px;letter-spacing:.04em}
+.hero-subtitle{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);letter-spacing:.15em;margin-bottom:40px;font-weight:400}
+.hero-quote{max-width:640px;margin:0 auto 48px;font-style:italic;color:var(--text-dim);font-size:1rem;line-height:1.8;border-left:2px solid var(--gold);padding-left:20px;text-align:left}
+.hero-quote cite{display:block;margin-top:10px;font-style:normal;font-size:.8rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase}
+
+.transmission{text-align:center;padding:48px 32px;background:linear-gradient(135deg,rgba(122,176,184,.06),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);margin-bottom:64px}
+.transmission-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.transmission p{font-size:1.1rem;line-height:1.9;color:var(--text);font-style:italic;font-weight:300;max-width:640px;margin:0 auto 16px}
+.transmission p:last-child{margin-bottom:0}
+
+.module-crumb{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;color:var(--text-dim);text-align:center;margin-bottom:48px;text-transform:uppercase}
+.module-crumb span{color:var(--accent)}
+
+.callout{border-left:3px solid var(--gold);background:rgba(201,168,76,.06);padding:16px 20px;margin:20px 0;border-radius:0 var(--radius) var(--radius) 0}
+.callout p{color:var(--text);font-style:italic;margin:0}
+
+.concept-list{list-style:none}
+.concept-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid rgba(122,176,184,.08);color:var(--text-dim);font-size:.92rem}
+.concept-item:last-child{border-bottom:none}
+.cb{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:9px}
+
+/* SEQUENCE DISPLAY */
+.seq-display{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:20px 0}
+.seq-num{font-family:'Cinzel',serif;font-size:1.1rem;padding:10px 14px;border:1px solid var(--card-border);border-radius:var(--radius);color:var(--text-dim);background:var(--card-bg);transition:all .4s;min-width:52px;text-align:center}
+.seq-num.lit{color:var(--gold);border-color:var(--gold);background:rgba(201,168,76,.1);transform:scale(1.08)}
+.seq-num.phi-pair{color:var(--accent);border-color:var(--accent);background:rgba(122,176,184,.08)}
+.seq-dots{font-family:'Cinzel',serif;font-size:1.2rem;color:var(--text-dim);display:flex;align-items:center;padding:0 4px}
+
+/* RATIO CONVERGENCE INTERACTIVE */
+.convergence-box{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px}
+.conv-track{margin:20px 0;position:relative}
+.conv-track-label{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.12em;color:var(--text-dim);margin-bottom:8px;text-transform:uppercase}
+.conv-bar-wrap{position:relative;height:40px;background:rgba(0,0,0,.4);border:1px solid var(--card-border);border-radius:var(--radius);overflow:visible}
+.conv-phi-line{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--gold);opacity:.8}
+.conv-phi-label{position:absolute;top:-20px;font-family:'Cinzel',serif;font-size:.68rem;color:var(--gold);letter-spacing:.08em;white-space:nowrap}
+.conv-dot{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;transform:translate(-50%,-50%);transition:left .5s cubic-bezier(.34,1.2,.64,1)}
+.conv-ratio-display{text-align:center;margin-top:12px}
+.conv-ratio-val{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--accent);transition:color .3s}
+.conv-ratio-val.above{color:#e57373}
+.conv-ratio-val.below{color:#81c784}
+.conv-ratio-val.exact{color:var(--gold)}
+.conv-ratio-label{font-size:.78rem;color:var(--text-dim);margin-top:2px}
+.conv-row{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.conv-term-box{background:rgba(122,176,184,.06);border:1px solid rgba(122,176,184,.15);border-radius:var(--radius);padding:10px 16px;text-align:center;min-width:80px}
+.conv-term-n{font-family:'Cinzel',serif;font-size:.72rem;color:var(--text-dim);letter-spacing:.08em}
+.conv-term-v{font-family:'Cinzel',serif;font-size:1.2rem;color:var(--accent)}
+.conv-btn-row{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.conv-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:9px 18px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;border-radius:var(--radius);transition:all .2s}
+.conv-btn:hover{background:var(--accent);color:var(--bg)}
+.conv-btn.reset{border-color:rgba(255,255,255,.2);color:var(--text-dim)}
+.conv-btn.reset:hover{background:rgba(255,255,255,.1);color:var(--text)}
+.conv-table{width:100%;border-collapse:collapse;margin-top:20px;font-size:.84rem}
+.conv-table th{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;padding:8px 10px;border-bottom:1px solid var(--card-border);text-align:left}
+.conv-table td{padding:7px 10px;border-bottom:1px solid rgba(122,176,184,.07);color:var(--text-dim);vertical-align:middle}
+.conv-table td:first-child{color:var(--gold);font-weight:600;font-family:'Cinzel',serif}
+.conv-table td.above{color:#e57373}
+.conv-table td.below{color:#81c784}
+.conv-table td.exact{color:var(--gold)}
+.conv-table tr.highlight td{background:rgba(201,168,76,.06)}
+
+/* GOLDEN ANGLE CANVAS */
+.angle-wrap{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;text-align:center}
+.angle-canvases{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:16px 0}
+#angleCanvas1,#angleCanvas2{border:1px solid rgba(122,176,184,.15);border-radius:4px;background:rgba(0,0,0,.5)}
+.angle-labels{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.angle-label{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;color:var(--text-dim);text-align:center}
+.angle-label span{color:var(--gold);display:block;font-size:.9rem}
+.angle-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.ab{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:9px 16px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;border-radius:var(--radius);transition:all .2s}
+.ab:hover,.ab.active{background:var(--accent);color:var(--bg)}
+
+/* DATA TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.86rem}
+.data-table th{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;padding:9px 12px;border-bottom:1px solid var(--card-border);text-align:left}
+.data-table td{padding:10px 12px;border-bottom:1px solid rgba(122,176,184,.08);color:var(--text-dim);vertical-align:top}
+.data-table td:first-child{color:var(--gold);font-weight:600}
+.data-table tr:last-child td{border-bottom:none}
+
+/* MATH BOX */
+.math-box{background:rgba(122,176,184,.07);border:1px solid rgba(122,176,184,.2);border-radius:var(--radius);padding:18px 24px;margin:18px 0;text-align:center}
+.math-eq{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--accent);letter-spacing:.06em;margin-bottom:6px}
+.math-sub{font-size:.83rem;color:var(--text-dim);font-style:italic}
+
+/* PETAL COUNT */
+.petal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin:18px 0}
+.petal-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:14px;text-align:center}
+.petal-num{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--gold)}
+.petal-name{font-size:.78rem;color:var(--text-dim);margin-top:4px}
+
+/* ACCORDION */
+.accordion-item{border:1px solid var(--card-border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.accordion-header{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;cursor:pointer;background:var(--card-bg);transition:background .2s}
+.accordion-header:hover{background:rgba(122,176,184,.08)}
+.accordion-header-text{font-family:'Cinzel',serif;font-size:.84rem;letter-spacing:.1em;color:var(--text)}
+.accordion-arrow{color:var(--accent);font-size:1.2rem;transition:transform .3s}
+.accordion-item.open .accordion-arrow{transform:rotate(90deg)}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 20px;font-size:.9rem;color:var(--text-dim);line-height:1.8}
+.accordion-item.open .accordion-body{max-height:400px;padding:14px 20px 18px}
+
+/* QUIZ */
+.quiz-question{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:22px;margin-bottom:13px}
+.quiz-q-text{font-family:'Cinzel',serif;font-size:.87rem;color:var(--text);margin-bottom:14px;letter-spacing:.04em;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:8px}
+.quiz-option{padding:10px 14px;border:1px solid rgba(122,176,184,.2);border-radius:var(--radius);cursor:pointer;transition:all .2s;font-size:.87rem;color:var(--text-dim);background:transparent;text-align:left;width:100%;font-family:'Raleway',sans-serif}
+.quiz-option:hover{border-color:var(--accent);color:var(--text)}
+.quiz-option.correct{border-color:#4CAF50;background:rgba(76,175,80,.1);color:#81c784}
+.quiz-option.wrong{border-color:#f44336;background:rgba(244,67,54,.1);color:#e57373}
+.quiz-feedback{margin-top:8px;font-size:.81rem;font-style:italic;min-height:18px}
+.quiz-score-bar{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;text-align:center;display:none;margin-top:16px}
+.score-display{font-family:'Cinzel',serif;font-size:2.4rem;color:var(--gold);margin-bottom:8px}
+#quiz-submit{margin:20px auto 0;display:block;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;padding:12px 32px;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer;border-radius:var(--radius);transition:all .2s}
+#quiz-submit:hover{background:var(--gold);color:var(--bg)}
+
+/* REFLECTION */
+.reflection-prompt{margin-bottom:22px}
+.reflection-q{font-style:italic;color:var(--text);margin-bottom:10px;font-size:.94rem;line-height:1.7}
+.reflection-textarea{width:100%;min-height:110px;background:rgba(0,0,0,.3);border:1px solid var(--card-border);border-radius:var(--radius);color:var(--text);font-family:'Raleway',sans-serif;font-size:.9rem;padding:13px 15px;resize:vertical;transition:border-color .2s;line-height:1.6}
+.reflection-textarea:focus{outline:none;border-color:var(--accent)}
+.reflection-textarea::placeholder{color:var(--text-dim);opacity:.5}
+
+/* PRACTICAL */
+.practice-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:14px;margin-top:18px}
+.practice-item{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:18px;text-align:center;transition:border-color .2s}
+.practice-item:hover{border-color:var(--accent)}
+.pi-icon{font-size:1.9rem;margin-bottom:9px}
+.pi-title{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;color:var(--text);margin-bottom:5px}
+.practice-item p{font-size:.8rem}
+
+/* RESOURCES */
+.rg{margin-bottom:26px}
+.rg-title{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--card-border)}
+.ri{display:flex;gap:13px;padding:10px 0;border-bottom:1px solid rgba(122,176,184,.06)}
+.ri:last-child{border-bottom:none}
+.ri-icon{color:var(--accent);min-width:16px;margin-top:3px}
+.ri-title{color:var(--text);font-weight:600;font-size:.86rem;margin-bottom:2px}
+.ri-meta{color:var(--text-dim);font-size:.77rem}
+
+.workshop-slot{text-align:center;padding:44px;border:1px dashed rgba(201,168,76,.3);border-radius:var(--radius);background:rgba(201,168,76,.03)}
+.ws-icon{font-size:2.2rem;margin-bottom:14px;opacity:.5}
+.ws-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--text-dim);letter-spacing:.08em;margin-bottom:7px}
+.ws-sub{color:var(--text-dim);font-size:.84rem;opacity:.6}
+
+.completion-card{text-align:center;padding:44px;background:linear-gradient(135deg,rgba(122,176,184,.08),rgba(201,168,76,.06));border:1px solid rgba(201,168,76,.3);border-radius:var(--radius)}
+.completion-title{font-family:'Cinzel',serif;font-size:1.35rem;color:var(--gold);margin-bottom:12px;letter-spacing:.06em}
+.xp-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 24px;background:var(--gold);color:var(--bg);border-radius:24px;font-family:'Cinzel',serif;font-weight:700;font-size:1rem;margin:18px 0;letter-spacing:.08em;opacity:0;transform:scale(.8);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.xp-badge.show{opacity:1;transform:scale(1)}
+.complete-checkbox-wrap{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px 0}
+#complete-checkbox{width:22px;height:22px;accent-color:var(--gold);cursor:pointer}
+.complete-label{font-family:'Cinzel',serif;font-size:.88rem;letter-spacing:.1em;color:var(--text);cursor:pointer}
+
+.confetti-piece{position:fixed;pointer-events:none;z-index:9999;animation:confetti-fall linear forwards}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+.up-next-card{display:flex;align-items:center;gap:22px;padding:26px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);cursor:pointer;transition:border-color .2s,transform .2s}
+.up-next-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.un-badge{min-width:54px;height:54px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:700;color:var(--bg);font-size:.88rem}
+.un-info{flex:1}
+.un-label{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:4px}
+.un-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px}
+.un-desc{font-size:.83rem;color:var(--text-dim)}
+.un-arrow{color:var(--accent);font-size:1.5rem;opacity:.6}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .8s ease forwards}
+
+@media(max-width:680px){
+  .angle-canvases{flex-direction:column;align-items:center}
+  .petal-grid{grid-template-columns:repeat(3,1fr)}
+  .practice-items{grid-template-columns:1fr 1fr}
+  .lesson-wrap{padding:40px 16px 90px}
+  .card{padding:18px}
+  #save-bar{padding:8px 12px}
+  .save-btn{padding:6px 12px;font-size:9px}
+  .seq-num{font-size:.9rem;padding:8px 10px;min-width:42px}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+<div id="progress-label">G8 &middot; 0%</div>
+
+<div id="save-bar">
+  <span id="save-status">Auto-saves every 90 seconds</span>
+  <div class="save-btns">
+    <button class="save-btn" onclick="saveData()">&#x27F3; Save Progress</button>
+    <button class="save-btn gold" onclick="exportData()">&#x2193; Export Backup</button>
+    <button class="save-btn dim" onclick="importTrigger()">&#x2191; Import</button>
+  </div>
+</div>
+<input type="file" id="import-input" accept=".json" style="display:none" onchange="importData(event)">
+
+<div class="lesson-wrap">
+
+  <div class="module-crumb">The Frequency Academy &middot; <span>Sacred Geometry &amp; Light Body Systems</span> &middot; Lesson G8 of 22</div>
+
+  <!-- HERO -->
+  <section class="hero section">
+    <div class="hero-eyebrow">Sacred Geometry &amp; Light Body Systems</div>
+    <div class="hero-tag">G8 &middot; LESSON EIGHT</div>
+    <h1>The Fibonacci Sequence</h1>
+    <div class="hero-subtitle">Nature's Growth Code</div>
+    <canvas id="heroCanvas" width="340" height="180" style="display:block;margin:0 auto 40px;border-radius:4px"></canvas>
+    <div class="hero-quote">
+      "Nature does not think in phi. It thinks in Fibonacci. The sequence 1, 1, 2, 3, 5, 8, 13&hellip; is nature's achievable, integer-based approximation of the infinite Golden Ratio. Every spiral petal, every sunflower seed, every nautilus chamber is the universe computing its way toward divine proportion one step at a time."
+      <cite>&mdash; The Frequency Academy</cite>
+    </div>
+  </section>
+
+  <!-- TRANSMISSION -->
+  <section class="section transmission" id="sec-transmission">
+    <div class="transmission-label">&#10022; Opening Transmission &#10022;</div>
+    <p>Phi is irrational. Infinite. Impossible to express as a fraction or an integer. And living systems &mdash; plants growing toward light, shells building chamber by chamber, seeds packing for survival &mdash; do not have access to infinite precision. They need something achievable. An integer-based, step-by-step approximation of the infinite that they can implement one growth at a time.</p>
+    <p>That approximation is the Fibonacci Sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34&hellip; One rule. Applied again and again. Each step getting closer to phi. Never arriving. Always approaching.</p>
+    <p>This is the universe computing its way toward divine proportion. And you are living in the result.</p>
+  </section>
+
+  <!-- CORE CONCEPT -->
+  <section class="section" id="sec-intro">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">The Fibonacci Sequence &mdash; One Rule, Infinite Complexity</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>The <span class="hi">Fibonacci Sequence</span> is defined by one rule: each term is the sum of the two before it. Starting from 1, 1: the sequence is 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233&hellip; An infinite sequence from two seed values and one operation.</p>
+      <p>Named for <span class="gt">Leonardo of Pisa (Fibonacci)</span>, who introduced it to European mathematics in 1202 CE in his Liber Abaci. But it was known in Indian mathematics centuries earlier, in the work of Virahanka and Hemachandra, who used it to count rhythmic patterns in Sanskrit poetry. The sequence predates the name.</p>
+      <div class="callout">
+        <p>The Fibonacci Sequence is the only integer sequence whose consecutive ratios converge toward phi. It is nature's achievable version of the infinite &mdash; the finite reaching toward the transcendental.</p>
+      </div>
+      <ul class="concept-list">
+        <li class="concept-item"><div class="cb"></div>Rule: each term = sum of the two preceding terms. Seed values: 1, 1</li>
+        <li class="concept-item"><div class="cb"></div>Consecutive ratios oscillate above and below phi, converging with each step, never reaching it exactly</li>
+        <li class="concept-item"><div class="cb"></div>Sunflower spirals: always consecutive Fibonacci numbers (34/55, 55/89, 89/144)</li>
+        <li class="concept-item"><div class="cb"></div>Petal counts in flowers almost always Fibonacci numbers: 3, 5, 8, 13, 21, 34</li>
+        <li class="concept-item"><div class="cb"></div>The golden angle (137.508&deg; = 360&deg;/&phi;&sup2;) is why Fibonacci appears in biological growth</li>
+        <li class="concept-item"><div class="cb"></div>Fibonacci Spiral approximates but is not identical to the perfect Golden Spiral</li>
+      </ul>
+    </div>
+
+    <!-- SEQUENCE DISPLAY -->
+    <div class="card" style="text-align:center">
+      <h3 class="sub">The Sequence &mdash; First 16 Terms</h3>
+      <div class="seq-display" id="seq-display">
+        <!-- Populated by JS -->
+      </div>
+      <p style="font-size:.82rem;font-style:italic;margin-top:12px">Each number is the sum of the two before it. The sequence continues infinitely by the same single rule.</p>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE: CONVERGENCE EXPLORER -->
+  <section class="section" id="sec-interactive">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Interactive Convergence &mdash; Watch the Ratio Approach Phi</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="convergence-box">
+      <p style="color:var(--text-dim);font-size:.88rem;margin-bottom:4px">Advance through the sequence one term at a time and watch the ratio of consecutive terms oscillate toward phi &mdash; above, then below, then above, closing in forever.</p>
+
+      <div class="conv-track">
+        <div class="conv-track-label">Ratio position relative to phi (1.6180&hellip;)</div>
+        <div class="conv-bar-wrap" id="conv-bar-wrap">
+          <div class="conv-phi-line" id="conv-phi-line"></div>
+          <div class="conv-phi-label" id="conv-phi-label">&phi; = 1.618&hellip;</div>
+          <div class="conv-dot" id="conv-dot" style="background:var(--gold);top:50%"></div>
+        </div>
+      </div>
+
+      <div class="conv-ratio-display">
+        <div class="conv-ratio-val" id="conv-ratio-val">1.0000</div>
+        <div class="conv-ratio-label" id="conv-ratio-label">F(2)/F(1) = 1/1 &mdash; Term 2</div>
+      </div>
+
+      <div class="conv-row">
+        <div class="conv-term-box">
+          <div class="conv-term-n">F(n&minus;1)</div>
+          <div class="conv-term-v" id="conv-fn1">1</div>
+        </div>
+        <div style="font-family:'Cinzel',serif;font-size:1.4rem;color:var(--text-dim);display:flex;align-items:center">/</div>
+        <div class="conv-term-box">
+          <div class="conv-term-n">F(n)</div>
+          <div class="conv-term-v" id="conv-fn">1</div>
+        </div>
+        <div style="font-family:'Cinzel',serif;font-size:1.4rem;color:var(--text-dim);display:flex;align-items:center">=</div>
+        <div class="conv-term-box" style="border-color:var(--gold);background:rgba(201,168,76,.08)">
+          <div class="conv-term-n">Ratio</div>
+          <div class="conv-term-v" id="conv-ratio-small" style="color:var(--gold)">1.0000</div>
+        </div>
+      </div>
+
+      <div class="conv-btn-row">
+        <button class="conv-btn" onclick="convNext()">Next Term &#8594;</button>
+        <button class="conv-btn" onclick="convPlay()">Auto-Play</button>
+        <button class="conv-btn reset" onclick="convReset()">&#x21BA; Reset</button>
+      </div>
+
+      <!-- Table -->
+      <table class="conv-table" id="conv-table">
+        <thead><tr><th>Term n</th><th>F(n)</th><th>F(n)/F(n-1)</th><th>vs &phi;</th></tr></thead>
+        <tbody id="conv-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FIBONACCI IN NATURE -->
+  <section class="section" id="sec-nature">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Fibonacci in Nature</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <h3 class="sub">Why Nature Uses Fibonacci</h3>
+      <p>The Fibonacci growth pattern solves a specific biological problem: how to pack structures (seeds, leaves, scales) as efficiently as possible while allowing each new structure to grow without disturbing the ones before it. The answer is the golden angle &mdash; and Fibonacci numbers emerge as a natural consequence.</p>
+      <p>Sunflowers have 34 and 55 spirals, or 55 and 89, or 89 and 144 &mdash; always consecutive Fibonacci numbers. Not because sunflowers know Fibonacci. Because Fibonacci growth is what emerges when a living system optimises space, light, and resources without central planning.</p>
+
+      <h3 class="sub" style="margin-top:22px">Petal Counts &mdash; Fibonacci in Flowers</h3>
+      <p style="font-size:.88rem;color:var(--text-dim);margin-bottom:12px">Most flower petal counts are Fibonacci numbers. The most common exceptions are hybrid varieties where selective breeding has altered the growth program.</p>
+      <div class="petal-grid">
+        <div class="petal-card"><div class="petal-num">3</div><div class="petal-name">Lily, Iris</div></div>
+        <div class="petal-card"><div class="petal-num">5</div><div class="petal-name">Buttercup, Rose</div></div>
+        <div class="petal-card"><div class="petal-num">8</div><div class="petal-name">Delphinium</div></div>
+        <div class="petal-card"><div class="petal-num">13</div><div class="petal-name">Ragwort, Corn</div></div>
+        <div class="petal-card"><div class="petal-num">21</div><div class="petal-name">Aster, Chicory</div></div>
+        <div class="petal-card"><div class="petal-num">34</div><div class="petal-name">Plantain, Pyrethrum</div></div>
+      </div>
+
+      <div style="overflow-x:auto;margin-top:20px">
+        <table class="data-table">
+          <thead><tr><th>Domain</th><th>Fibonacci in Action</th><th>Numbers Involved</th></tr></thead>
+          <tbody>
+            <tr><td>Sunflowers</td><td>Spiral seed counts in the head</td><td>34 and 55, or 55 and 89, or 89 and 144 &mdash; always consecutive Fibonacci numbers</td></tr>
+            <tr><td>Pine Cones</td><td>Spiral scale counts</td><td>8 and 13 spirals in most species. Always consecutive Fibonacci numbers.</td></tr>
+            <tr><td>Nautilus Shell</td><td>Chambered spiral growth</td><td>The cross-section of a nautilus approximates a Fibonacci / phi spiral</td></tr>
+            <tr><td>Leaf Arrangement</td><td>Fraction of turn between successive leaves</td><td>Fractions with Fibonacci denominators (1/2, 1/3, 2/5, 3/8, 5/13) minimise leaf overlap</td></tr>
+            <tr><td>Human Genome</td><td>Base pair ratios in DNA</td><td>B-DNA double helix has proportions that approximate Fibonacci ratios at the molecular scale</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLDEN ANGLE -->
+  <section class="section" id="sec-angle">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">The Golden Angle &mdash; Nature's Optimal Packing Solution</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>The <span class="hi">golden angle</span> is the key to understanding why Fibonacci appears in biological growth. It is derived directly from phi:</p>
+      <div class="math-box">
+        <div class="math-eq">360&deg; &divide; &phi;&sup2; &asymp; 137.508&deg;</div>
+        <div class="math-sub">The golden angle &mdash; the angle between consecutive elements in any phi-based growing structure</div>
+      </div>
+      <p>When a plant grows a new leaf, seed, or petal by turning 137.5&deg; from the previous one, two remarkable things happen simultaneously: no two elements ever fall in exactly the same radial position (because 137.5&deg; is an irrational fraction of 360&deg;), and the packing is maximally efficient &mdash; no wasted space.</p>
+      <p>Compare this to a rational angle like 120&deg; (one-third of a circle): every third element aligns exactly with those before it, creating visible lines and wasted gaps. The golden angle eliminates alignment entirely &mdash; an infinitely non-repeating sequence of positions.</p>
+      <div class="callout">
+        <p>The plant is not computing phi. It is growing. And the geometry of that growth &mdash; constrained by space, light, and cellular biology &mdash; converges on Fibonacci as the inevitable optimal solution.</p>
+      </div>
+    </div>
+
+    <!-- GOLDEN ANGLE INTERACTIVE DEMO -->
+    <div class="angle-wrap">
+      <p style="font-size:.86rem;color:var(--text-dim);font-style:italic;margin-bottom:12px">Compare packing with a rational angle vs the golden angle. Watch how gaps form with simple fractions &mdash; and disappear entirely with 137.5&deg;.</p>
+      <div class="angle-canvases">
+        <div>
+          <canvas id="angleCanvas1" width="220" height="220"></canvas>
+          <div class="angle-label">Simple Angle<span id="angle1-label">120&deg;</span></div>
+        </div>
+        <div>
+          <canvas id="angleCanvas2" width="220" height="220"></canvas>
+          <div class="angle-label">Golden Angle<span>137.508&deg;</span></div>
+        </div>
+      </div>
+      <div class="angle-controls">
+        <button class="ab active" id="aa90" onclick="setAngle1(90,'90deg',this)">90&deg;</button>
+        <button class="ab" id="aa120" onclick="setAngle1(120,'120deg',this)">120&deg;</button>
+        <button class="ab" id="aa144" onclick="setAngle1(144,'144deg',this)">144&deg;</button>
+        <button class="ab" id="aa180" onclick="setAngle1(180,'180deg',this)">180&deg;</button>
+      </div>
+      <p style="font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:10px">Dots represent successive seeds/leaves placed at the chosen angle. Gold = right canvas always uses the golden angle 137.508&deg;.</p>
+    </div>
+  </section>
+
+  <!-- FIB VS GOLDEN SPIRAL -->
+  <section class="section" id="sec-distinction">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Fibonacci vs Golden Spiral &mdash; The Distinction</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>The <span class="hi">Fibonacci Spiral</span> is drawn by connecting the corners of squares whose sizes are consecutive Fibonacci numbers: 1, 1, 2, 3, 5, 8, 13&hellip; Each quarter-turn arc fits inside one of these squares. The spiral grows, but not perfectly uniformly &mdash; the ratio between successive quarter-arcs alternates slightly because Fibonacci ratios alternate above and below phi.</p>
+      <p>The <span class="hi">Golden Spiral</span> (from G7) grows by exactly phi at every quarter turn &mdash; perfectly, continuously, without variation. The Fibonacci Spiral approximates it but never exactly equals it, because phi is irrational and Fibonacci ratios are all rational.</p>
+      <div class="math-box">
+        <div class="math-eq">Fibonacci Spiral &rarr; &phi; &nbsp;&nbsp;&nbsp; Golden Spiral = &phi; exactly</div>
+        <div class="math-sub">The difference is the difference between the integer and the transcendental &mdash; between the material and the divine proportion</div>
+      </div>
+      <p>This distinction is not trivial. It expresses the deepest relationship in this module: Fibonacci is the universe's achievable, integer-based approximation of phi. The material world reaching toward the divine proportion, step by step, forever. As close as nature can get. Never arriving. Always approaching.</p>
+    </div>
+  </section>
+
+  <!-- KNOWLEDGE CHECK -->
+  <section class="section" id="sec-quiz">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Knowledge Check</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div id="quiz-container">
+      <div class="quiz-question" id="qq1">
+        <div class="quiz-q-text">1. What is the rule that generates the Fibonacci Sequence?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(1,this,'a')">a) Each term is twice the previous term</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'b')">b) Each term equals the previous term multiplied by phi</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'c')">c) Each term is the sum of the two preceding terms</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'d')">d) Each term is the square of the previous term</button>
+        </div>
+        <div class="quiz-feedback" id="qf1"></div>
+      </div>
+      <div class="quiz-question" id="qq2">
+        <div class="quiz-q-text">2. The ratio of consecutive Fibonacci terms converges toward phi but never reaches it because:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(2,this,'a')">a) The sequence stops before reaching phi</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'b')">b) Fibonacci ratios are all rational fractions; phi is irrational &mdash; the finite cannot exactly express the infinite</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'c')">c) Fibonacci numbers are always odd</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'d')">d) The ratio alternates in sign and can never settle</button>
+        </div>
+        <div class="quiz-feedback" id="qf2"></div>
+      </div>
+      <div class="quiz-question" id="qq3">
+        <div class="quiz-q-text">3. A sunflower with 55 clockwise spirals will most likely have how many counterclockwise spirals?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(3,this,'a')">a) 50</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'b')">b) 60</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'c')">c) 89 &mdash; the next Fibonacci number</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'d')">d) 100</button>
+        </div>
+        <div class="quiz-feedback" id="qf3"></div>
+      </div>
+      <div class="quiz-question" id="qq4">
+        <div class="quiz-q-text">4. The golden angle (approximately 137.5&deg;) is derived from:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(4,this,'a')">a) 360&deg; divided by 3</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'b')">b) 360&deg; divided by phi squared (&phi;&sup2;)</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'c')">c) The angle of an equilateral triangle</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'d')">d) 180&deg; minus the Fibonacci number 42</button>
+        </div>
+        <div class="quiz-feedback" id="qf4"></div>
+      </div>
+      <div class="quiz-question" id="qq5">
+        <div class="quiz-q-text">5. TRUE or FALSE: The Fibonacci Sequence was first discovered in European mathematics by Leonardo of Pisa.</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(5,this,'a')">True &mdash; Fibonacci invented the sequence in 1202 CE</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'b')">False &mdash; it was known in Indian mathematics centuries earlier, in the work of Virahanka and Hemachandra</button>
+        </div>
+        <div class="quiz-feedback" id="qf5"></div>
+      </div>
+      <div class="quiz-question" id="qq6">
+        <div class="quiz-q-text">6. The Fibonacci Spiral and the Golden Spiral are:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(6,this,'a')">a) Identical &mdash; different names for the same spiral</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'b')">b) Similar but distinct: the Fibonacci Spiral approximates the Golden Spiral but never exactly equals it</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'c')">c) Unrelated &mdash; they grow in opposite directions</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'d')">d) The Fibonacci Spiral is larger than the Golden Spiral</button>
+        </div>
+        <div class="quiz-feedback" id="qf6"></div>
+      </div>
+    </div>
+    <button id="quiz-submit" onclick="submitQuiz()">Check Answers</button>
+    <div class="quiz-score-bar" id="quiz-score-bar">
+      <div class="score-display" id="quiz-score-display">0/6</div>
+      <p id="quiz-score-msg" style="color:var(--text-dim)"></p>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="section" id="sec-glossary">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Quick Reference &mdash; Key Definitions</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div id="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Fibonacci Sequence</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The integer sequence 1, 1, 2, 3, 5, 8, 13, 21&hellip; where each term is the sum of the two preceding terms. Named for Leonardo of Pisa (Fibonacci), who introduced it to European mathematics in 1202 CE, though it was known in Indian mathematics much earlier.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Convergence</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The property of a sequence whose terms approach a fixed value without necessarily reaching it. The ratios of consecutive Fibonacci terms converge toward phi, oscillating above and below it, getting closer with each step. The convergence is mathematically proven to be exact in the limit.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Golden Angle</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The angle 360&deg;/&phi;&sup2; &asymp; 137.508&deg;. The angle between consecutive elements in a Fibonacci-based growing structure. Using this angle guarantees that no two elements ever share the same radial position, producing maximally efficient packing. It is the irrational angle that prevents any alignment from repeating.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Phyllotaxis</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The arrangement of leaves, seeds, and other plant organs according to Fibonacci and phi-based angles. The most efficient possible arrangement for maximising light exposure and minimising overlap. Governed by the golden angle between consecutive growth points.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Fibonacci Spiral</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">A spiral drawn by connecting the corners of squares whose sizes are consecutive Fibonacci numbers (1, 1, 2, 3, 5, 8, 13&hellip;). Approximates but does not exactly equal the Golden Spiral, which grows by exactly phi at every quarter turn. The Fibonacci Spiral converges toward the Golden Spiral with each additional step.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Additive Generation</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The rule that defines the Fibonacci Sequence: each term = the sum of the two preceding terms. The entire infinite sequence is generated by this single simple rule applied repeatedly from the seed values 1, 1. The infinite arising from the minimal.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICAL -->
+  <section class="section" id="sec-practical">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Practical Application &mdash; This Week</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="margin-bottom:18px">Fibonacci is everywhere in the living world once you know to look. This week, find it &mdash; in nature, in the garden, and on paper.</p>
+      <div class="practice-items">
+        <div class="practice-item">
+          <div class="pi-icon">&#127803;</div>
+          <div class="pi-title">Count Sunflower Spirals</div>
+          <p>Find a sunflower (in person or photograph). Count the clockwise spirals and the counterclockwise spirals. Write both numbers down. Are they consecutive Fibonacci numbers?</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#127807;</div>
+          <div class="pi-title">Count Petals</div>
+          <p>Find five different flowers. Count the petals on each. Which are Fibonacci numbers? Look for buttercups (5), daisies (13 or 21), lilies (3). Note any exceptions.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#9999;&#65039;</div>
+          <div class="pi-title">Draw the Fibonacci Spiral</div>
+          <p>On graph paper, draw squares of sizes 1, 1, 2, 3, 5, 8, 13 arranged in the Fibonacci pattern. Draw quarter-circle arcs through each. Compare to the Golden Spiral from G7.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#128200;</div>
+          <div class="pi-title">Extend the Sequence</div>
+          <p>Calculate Fibonacci terms through F(20). Compute the ratio F(n)/F(n-1) for each. Watch it converge. At which term is the ratio accurate to 4 decimal places of phi?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="section" id="sec-reflection">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Reflection Journal</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="font-style:italic;color:var(--text-dim);margin-bottom:26px">Fibonacci is nature's growth code. These questions invite you to encounter it in your world &mdash; and in yourself.</p>
+      <div class="reflection-prompt">
+        <div class="reflection-q">1. Go outside and find a sunflower, a pine cone, or a plant with visible spiral phyllotaxis. Count the spirals in each direction. Write the numbers here. Are they consecutive Fibonacci numbers? What does it feel like to find this mathematical pattern in a living thing? Does it change how you perceive the plant?</div>
+        <textarea class="reflection-textarea" id="ref1" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">2. The lesson describes Fibonacci as nature's "approximation of the infinite" &mdash; every term is a rational number, phi is irrational and unreachable. Is there something in your own life that feels like a Fibonacci sequence: an approach toward something you are getting closer to but have not yet reached? What is the phi you are asymptotically approaching?</div>
+        <textarea class="reflection-textarea" id="ref2" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">3. The golden angle (137.5&deg;) produces perfect packing in plant growth through a local rule applied repeatedly &mdash; no central planning, no overview, just one turn at a time. Complex, beautiful order emerging from a simple local rule. Can you think of other systems &mdash; social, biological, spiritual, creative &mdash; where complex global order arises from a simple local rule applied repeatedly?</div>
+        <textarea class="reflection-textarea" id="ref3" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- GO DEEPER -->
+  <section class="section" id="sec-resources">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <h2 class="section-title">Go Deeper &mdash; Resources</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div class="rg">
+        <div class="rg-title">&#128218; Books</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Fibonacci's Liber Abaci &mdash; Leonardo of Pisa, trans. Sigler (Springer, 2002)</div><div class="ri-meta">ISBN 978-0387954196 &middot; The original 13th-century text in which Fibonacci introduced his sequence to European mathematics.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Golden Ratio &mdash; Mario Livio (Broadway Books, 2002)</div><div class="ri-meta">ISBN 978-0767908153 &middot; Extensive treatment of the Fibonacci sequence and its convergence toward phi.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Phyllotaxis: A Systemic Study in Plant Morphogenesis &mdash; Roger V. Jean (Cambridge, 1994)</div><div class="ri-meta">Scientific study of how Fibonacci numbers govern plant growth patterns including spiral arrangements.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">A Beginner's Guide to Constructing the Universe &mdash; Michael S. Schneider (HarperCollins, 1994)</div><div class="ri-meta">ISBN 978-0060926717 &middot; Chapter on Fibonacci and phi in the context of universal pattern formation.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#128300; Scientific Studies</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Phyllotaxis and the Fibonacci Series &mdash; Mitchison, G.J. (Science, 1977)</div><div class="ri-meta">Mathematical explanation of why Fibonacci ratios maximise packing efficiency in plant structures.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Algorithmic Beauty of Plants &mdash; Prusinkiewicz &amp; Lindenmayer (Springer, 1990)</div><div class="ri-meta">Computational study of how simple growth rules generate Fibonacci-patterned plant forms.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#127916; Documentaries</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Nature by Numbers &mdash; Cristobal Vila (Vimeo, free)</div><div class="ri-meta">Beautifully animated short film showing Fibonacci and phi throughout living nature.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Great Math Mystery &mdash; PBS NOVA (2015)</div><div class="ri-meta">Explores why mathematics, including Fibonacci patterns, appears so consistently in the natural world.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#127760; Websites</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">fibonaccinature.com</div><div class="ri-meta">Photographic documentation of Fibonacci patterns across the natural world.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">mathworld.wolfram.com/FibonacciNumber.html</div><div class="ri-meta">Rigorous mathematical reference for Fibonacci number properties.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#128279; TFA Lesson Connections</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G7 &mdash; The Golden Ratio (Phi)</div><div class="ri-meta">The Fibonacci sequence converges on phi; the two lessons form a natural pair.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G12 &mdash; The Krystic Spiral vs Fibonacci</div><div class="ri-meta">G12 contrasts the Fibonacci spiral with the Krystic spiral from a sovereignty perspective.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">N12 &mdash; Numerology in Nature</div><div class="ri-meta">Fibonacci numbers are among the most prominent examples of number patterns in the natural world.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSHOP -->
+  <section class="section" id="sec-workshop">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <h2 class="section-title">Live Workshop</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="workshop-slot">
+      <div class="ws-icon">&#9678;</div>
+      <div class="ws-title">Live Workshop on this topic coming soon</div>
+      <div class="ws-sub">Recordings will appear here once available. Check back or watch for announcements at thefrequencyacademy.net</div>
+    </div>
+  </section>
+
+  <!-- COMPLETION -->
+  <section class="section" id="sec-completion">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <h2 class="section-title">Lesson Complete</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="completion-card">
+      <div class="completion-title">The Fibonacci Sequence &mdash; Lesson Summary</div>
+      <p style="color:var(--text-dim);max-width:540px;margin:0 auto 22px;font-style:italic">"Nature does not think in phi. It thinks in Fibonacci. Every spiral petal, every sunflower seed, every nautilus chamber is the universe computing its way toward divine proportion one step at a time."</p>
+      <div class="complete-checkbox-wrap">
+        <input type="checkbox" id="complete-checkbox" onchange="onComplete(this)">
+        <label class="complete-label" for="complete-checkbox">I have completed Lesson G8 &mdash; The Fibonacci Sequence</label>
+      </div>
+      <div class="xp-badge" id="xp-badge">&#10022; +10 XP Earned &#10022;</div>
+    </div>
+  </section>
+
+  <!-- UP NEXT -->
+  <section class="section" id="sec-upnext">
+    <div class="section-header">
+      <span class="section-num">14</span>
+      <h2 class="section-title">Up Next in the Module</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="up-next-card">
+      <div class="un-badge">G9</div>
+      <div class="un-info">
+        <div class="un-label">Next Lesson &middot; Sacred Geometry</div>
+        <div class="un-title">Toroidal Fields</div>
+        <div class="un-desc">The torus is the shape of every energy field in the universe &mdash; from subatomic particles to the human heart field to the magnetosphere of the Earth. G9 explores the geometry of the torus, its mathematical properties, and why it is the fundamental shape of self-sustaining, self-referencing energy systems.</div>
+      </div>
+      <div class="un-arrow">&#8250;</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+var STORAGE_KEY = 'tfa_lesson_G8';
+var autosaveTimer = null;
+var quizAnswers = {};
+var PHI = (1 + Math.sqrt(5)) / 2;
+var GOLDEN_ANGLE_DEG = 360 / (PHI * PHI);
+
+// Fibonacci data
+var fibSeq = [1,1];
+for (var i = 2; i < 20; i++) fibSeq.push(fibSeq[i-1] + fibSeq[i-2]);
+
+var correctAnswers = {1:'c',2:'b',3:'c',4:'b',5:'b',6:'b'};
+var quizFeedback = {
+  1:{c:'Correct! Each term is the sum of the two preceding terms. Starting from 1, 1: 1+1=2, 1+2=3, 2+3=5, and so on forever.',wrong:'Not quite. The rule is simple: each term = the sum of the two preceding terms.'},
+  2:{b:'Correct! All Fibonacci ratios are rational fractions (integer divided by integer). Phi is irrational -- it cannot be expressed as any fraction. The rational can only approach the irrational asymptotically, never reaching it.',wrong:'Not quite. Fibonacci ratios are all rational; phi is irrational. The finite (rational) can only approach but never exactly equal the infinite (irrational).'},
+  3:{c:'Correct! 55 and 89 are consecutive Fibonacci numbers (55, 89 are both in the sequence). Sunflower spiral counts are always consecutive Fibonacci pairs.',wrong:'Not quite. A sunflower with 55 spirals in one direction will almost always have 89 in the other -- the next Fibonacci number.'},
+  4:{b:'Correct! The golden angle = 360 divided by phi-squared = 360 divided by 2.618 = approximately 137.508 degrees.',wrong:'Not quite. The golden angle = 360 divided by phi-squared, approximately 137.508 degrees.'},
+  5:{b:'Correct! The sequence was known in Indian mathematics centuries before Fibonacci, in the work of Virahanka and Hemachandra, who used it to count rhythmic patterns in Sanskrit poetry. Fibonacci introduced it to European mathematics in 1202 CE.',wrong:'Not quite. The sequence was known in Indian mathematics centuries before Fibonacci -- he introduced it to Europe, not to the world.'},
+  6:{b:'Correct! The Fibonacci Spiral is drawn from squares of Fibonacci sizes -- it approximates the Golden Spiral but never exactly equals it, because the Fibonacci ratios approach phi without reaching it.',wrong:'Not quite. They are similar but distinct. The Fibonacci Spiral approximates the Golden Spiral but never exactly equals it.'}
+};
+
+// PROGRESS
+function updateProgress() {
+  var dH = document.documentElement.scrollHeight, wH = window.innerHeight;
+  var pct = Math.min(100, Math.round((window.scrollY / (dH - wH)) * 100));
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = 'G8 \u00b7 ' + pct + '%';
+}
+window.addEventListener('scroll', updateProgress, {passive:true});
+updateProgress();
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.08});
+document.querySelectorAll('.section').forEach(function(s) { observer.observe(s); });
+
+function toggleAccordion(h) {
+  var item = h.closest('.accordion-item');
+  var open = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item.open').forEach(function(i) { i.classList.remove('open'); });
+  if (!open) item.classList.add('open');
+}
+
+// SEQUENCE DISPLAY
+(function() {
+  var display = document.getElementById('seq-display');
+  var show = [1,1,2,3,5,8,13,21,34,55,89,144,233,377];
+  var html = '';
+  for (var i = 0; i < show.length; i++) {
+    html += '<div class="seq-num" id="sn' + i + '">' + show[i] + '</div>';
+  }
+  html += '<div class="seq-dots">&hellip;</div>';
+  display.innerHTML = html;
+  // Animate: light up pairs
+  var idx = 0;
+  function animPair() {
+    document.querySelectorAll('.seq-num').forEach(function(n) { n.classList.remove('lit','phi-pair'); });
+    if (idx < show.length - 1) {
+      var el1 = document.getElementById('sn' + idx);
+      var el2 = document.getElementById('sn' + (idx+1));
+      if (el1) el1.classList.add('phi-pair');
+      if (el2) el2.classList.add('phi-pair');
+    }
+    idx = (idx + 1) % (show.length - 1);
+  }
+  setInterval(animPair, 1200);
+  animPair();
+})();
+
+// CONVERGENCE EXPLORER
+var convIdx = 0;
+var convRows = [];
+var convAuto = null;
+
+function convBuildRow(n) {
+  var a = fibSeq[n-1], b = fibSeq[n];
+  var ratio = b / a;
+  var diff = ratio - PHI;
+  var cls = Math.abs(diff) < 0.0001 ? 'exact' : (diff > 0 ? 'above' : 'below');
+  var sign = diff > 0 ? 'above phi' : (Math.abs(diff) < 0.0001 ? '= phi' : 'below phi');
+  return {n: n+1, a: a, b: b, ratio: ratio, cls: cls, sign: sign};
+}
+
+function convUpdate() {
+  var row = convRows[convIdx];
+  if (!row) return;
+  var ratio = row.ratio;
+  var pct = Math.max(2, Math.min(98, ((ratio - 0.9) / (2.2 - 0.9)) * 100));
+  var phiPct = ((PHI - 0.9) / (2.2 - 0.9)) * 100;
+
+  var barWrap = document.getElementById('conv-bar-wrap');
+  var W = barWrap.offsetWidth || 400;
+  document.getElementById('conv-phi-line').style.left = phiPct + '%';
+  document.getElementById('conv-phi-label').style.left = phiPct + '%';
+  var dot = document.getElementById('conv-dot');
+  dot.style.left = pct + '%';
+  dot.style.background = row.cls === 'above' ? '#e57373' : (row.cls === 'exact' ? 'var(--gold)' : '#81c784');
+
+  var ratioEl = document.getElementById('conv-ratio-val');
+  ratioEl.textContent = ratio.toFixed(6);
+  ratioEl.className = 'conv-ratio-val ' + row.cls;
+  document.getElementById('conv-ratio-label').textContent = 'F(' + (row.n) + ')/F(' + (row.n-1) + ') = ' + row.b + '/' + row.a;
+  document.getElementById('conv-fn1').textContent = row.a;
+  document.getElementById('conv-fn').textContent = row.b;
+  document.getElementById('conv-ratio-small').textContent = ratio.toFixed(6);
+
+  // Table
+  var tbody = document.getElementById('conv-tbody');
+  var existing = tbody.querySelectorAll('tr');
+  existing.forEach(function(r) { r.classList.remove('highlight'); });
+  var tr = document.createElement('tr');
+  tr.className = 'highlight';
+  tr.innerHTML = '<td>' + row.n + '</td><td>' + row.b + '</td><td class="' + row.cls + '">' + ratio.toFixed(7) + '</td><td class="' + row.cls + '">' + row.sign + '</td>';
+  if (tbody.firstChild) tbody.insertBefore(tr, tbody.firstChild);
+  else tbody.appendChild(tr);
+  if (tbody.children.length > 12) tbody.removeChild(tbody.lastChild);
+}
+
+window.convNext = function() {
+  if (convIdx < 15) {
+    convIdx++;
+    if (!convRows[convIdx]) convRows[convIdx] = convBuildRow(convIdx);
+    convUpdate();
+  }
+};
+
+window.convPlay = function() {
+  if (convAuto) { clearInterval(convAuto); convAuto = null; return; }
+  convAuto = setInterval(function() {
+    if (convIdx >= 15) { clearInterval(convAuto); convAuto = null; return; }
+    convNext();
+  }, 800);
+};
+
+window.convReset = function() {
+  if (convAuto) { clearInterval(convAuto); convAuto = null; }
+  convIdx = 0;
+  convRows = [];
+  document.getElementById('conv-tbody').innerHTML = '';
+  convRows[0] = convBuildRow(0);
+  convUpdate();
+};
+
+// Init convergence
+convRows[0] = convBuildRow(0);
+setTimeout(convUpdate, 100);
+
+// HERO CANVAS
+(function() {
+  var c = document.getElementById('heroCanvas');
+  var ctx = c.getContext('2d');
+  var W = 340, H = 180;
+  var frame = 0;
+  var terms = [1,1,2,3,5,8,13,21,34,55,89,144];
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle = 'rgba(0,0,0,0.5)';
+    ctx.fillRect(0,0,W,H);
+    var maxVal = 144;
+    var barW = (W - 40) / terms.length;
+    var t = frame / 60;
+    for (var i = 0; i < terms.length; i++) {
+      var bh = (terms[i] / maxVal) * (H - 40);
+      var x = 20 + i * barW;
+      var pulse = 0.6 + 0.2 * Math.sin(t + i * 0.5);
+      var isGold = i % 2 === 0;
+      ctx.fillStyle = isGold ? 'rgba(201,168,76,' + pulse + ')' : 'rgba(122,176,184,' + pulse + ')';
+      ctx.fillRect(x + 2, H - 20 - bh, barW - 4, bh);
+      if (terms[i] <= 21) {
+        ctx.font = '9px Cinzel,serif';
+        ctx.fillStyle = 'rgba(240,237,230,0.6)';
+        ctx.textAlign = 'center';
+        ctx.fillText(terms[i], x + barW/2, H - 22 - bh);
+      }
+    }
+    // Phi line approximation
+    var phiHeight = (PHI / 2.618) * (H - 40) * 0.8;
+    ctx.beginPath();
+    ctx.setLineDash([4,4]);
+    ctx.moveTo(20, H - 20 - phiHeight);
+    ctx.lineTo(W - 20, H - 20 - phiHeight);
+    ctx.strokeStyle = 'rgba(201,168,76,0.3)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.font = '10px Cinzel,serif';
+    ctx.fillStyle = 'rgba(201,168,76,0.5)';
+    ctx.textAlign = 'right';
+    ctx.fillText('1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144...', W - 8, H - 6);
+    frame++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// GOLDEN ANGLE PACKING DEMO
+var angle1Deg = 90;
+var angle1AnimId = null;
+var angle2AnimId = null;
+var dotCount = 0;
+var MAX_DOTS = 200;
+
+function drawPacking(canvasId, angleDeg, count) {
+  var c = document.getElementById(canvasId);
+  var ctx = c.getContext('2d');
+  var W = c.width, H = c.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = 'rgba(0,0,0,0.5)';
+  ctx.fillRect(0,0,W,H);
+  var cx = W/2, cy = H/2;
+  var maxR = Math.min(W,H) * 0.46;
+  var angleRad = (angleDeg * Math.PI) / 180;
+  var isGolden = angleDeg > 137 && angleDeg < 138;
+  for (var i = 0; i < count; i++) {
+    var r = Math.sqrt(i + 1) * maxR / Math.sqrt(MAX_DOTS);
+    if (r > maxR) break;
+    var theta = i * angleRad;
+    var x = cx + r * Math.cos(theta);
+    var y = cy + r * Math.sin(theta);
+    var t = i / count;
+    ctx.beginPath();
+    ctx.arc(x, y, 2.5, 0, Math.PI*2);
+    ctx.fillStyle = isGolden
+      ? 'rgba(201,168,76,' + (0.5 + 0.5 * t) + ')'
+      : 'rgba(122,176,184,' + (0.4 + 0.5 * t) + ')';
+    ctx.fill();
+  }
+  ctx.font = 'bold 11px Cinzel,serif';
+  ctx.fillStyle = isGolden ? 'rgba(201,168,76,0.8)' : 'rgba(122,176,184,0.7)';
+  ctx.textAlign = 'center';
+  ctx.fillText(angleDeg.toFixed(1) + '\u00b0', cx, H - 8);
+}
+
+function animatePackings() {
+  dotCount = 0;
+  function step() {
+    dotCount = Math.min(dotCount + 3, MAX_DOTS);
+    drawPacking('angleCanvas1', angle1Deg, dotCount);
+    drawPacking('angleCanvas2', GOLDEN_ANGLE_DEG, dotCount);
+    if (dotCount < MAX_DOTS) requestAnimationFrame(step);
+  }
+  step();
+}
+
+window.setAngle1 = function(deg, label, btn) {
+  angle1Deg = deg;
+  document.getElementById('angle1-label').textContent = label;
+  document.querySelectorAll('.ab').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  animatePackings();
+};
+
+// Init after a short delay
+setTimeout(animatePackings, 600);
+
+// QUIZ
+function quizAnswer(q, btn, choice) {
+  if (quizAnswers[q]) return;
+  quizAnswers[q] = choice;
+  var correct = correctAnswers[q];
+  var buttons = btn.closest('.quiz-options').querySelectorAll('.quiz-option');
+  buttons.forEach(function(b) { b.disabled = true; });
+  if (choice === correct) {
+    btn.classList.add('correct');
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#81c784">&#10003; ' + quizFeedback[q][correct] + '</span>';
+  } else {
+    btn.classList.add('wrong');
+    buttons.forEach(function(b) { if (b.textContent.trim()[0] === correct) b.classList.add('correct'); });
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#e57373">&#10007; ' + quizFeedback[q].wrong + '</span>';
+  }
+  saveData();
+}
+
+function submitQuiz() {
+  var total = Object.keys(correctAnswers).length;
+  var scored = Object.keys(quizAnswers).filter(function(q) { return quizAnswers[q] === correctAnswers[q]; }).length;
+  document.getElementById('quiz-score-bar').style.display = 'block';
+  document.getElementById('quiz-score-display').textContent = scored + '/' + total;
+  var msgs = ['Review the sequence rule and golden angle sections and try again.','Good start -- revisit the convergence and nature sections.','Solid grasp of Fibonacci -- the sequence is becoming familiar.','Excellent -- strong understanding of convergence and nature.','Outstanding -- deep command of Fibonacci and the golden angle.','Perfect! The growth code is fully understood.'];
+  document.getElementById('quiz-score-msg').textContent = msgs[scored] || msgs[5];
+  document.getElementById('quiz-submit').style.display = 'none';
+  saveData();
+}
+
+function spawnConfetti() {
+  var colors = ['#c9a84c','#7ab0b8','#f0ede6','#9ecdd5','#e8c96d'];
+  for (var i = 0; i < 60; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.cssText = 'left:' + (Math.random()*100) + 'vw;top:-10px;background:' + colors[Math.floor(Math.random()*colors.length)] + ';animation-duration:' + (1.5+Math.random()*2) + 's;animation-delay:' + (Math.random()*.5) + 's;width:' + (6+Math.random()*6) + 'px;height:' + (6+Math.random()*6) + 'px;border-radius:' + (Math.random()>.5?'50%':'2px');
+        document.body.appendChild(el);
+        setTimeout(function() { el.remove(); }, 4000);
+      }, i * 30);
+    })(i);
+  }
+}
+
+function onComplete(cb) {
+  var badge = document.getElementById('xp-badge');
+  if (cb.checked) { badge.classList.add('show'); spawnConfetti(); saveData(); }
+  else badge.classList.remove('show');
+}
+
+function gatherData() {
+  return {
+    version:'1.0', lesson:'G8',
+    timestamp: new Date().toISOString(),
+    reflections:{r1:document.getElementById('ref1').value,r2:document.getElementById('ref2').value,r3:document.getElementById('ref3').value},
+    quiz:{answers:quizAnswers},
+    completed:document.getElementById('complete-checkbox').checked
+  };
+}
+function applyData(data) {
+  if (!data) return;
+  if (data.reflections) {
+    ['r1','r2','r3'].forEach(function(k) {
+      var el = document.getElementById('ref' + k.slice(1));
+      if (el && data.reflections[k]) el.value = data.reflections[k];
+    });
+  }
+  if (data.quiz && data.quiz.answers) {
+    quizAnswers = data.quiz.answers;
+    Object.keys(quizAnswers).forEach(function(q) {
+      var choice = quizAnswers[q], correct = correctAnswers[q];
+      var qEl = document.getElementById('qq' + q); if (!qEl) return;
+      var btns = qEl.querySelectorAll('.quiz-option');
+      btns.forEach(function(b) {
+        b.disabled = true;
+        var f = b.textContent.trim()[0];
+        if (f === choice && choice === correct) b.classList.add('correct');
+        else if (f === choice) b.classList.add('wrong');
+        else if (f === correct) b.classList.add('correct');
+      });
+      var html = choice === correct
+        ? '<span style="color:#81c784">&#10003; ' + quizFeedback[q][correct] + '</span>'
+        : '<span style="color:#e57373">&#10007; ' + quizFeedback[q].wrong + '</span>';
+      document.getElementById('qf' + q).innerHTML = html;
+    });
+  }
+  if (data.completed) {
+    document.getElementById('complete-checkbox').checked = true;
+    document.getElementById('xp-badge').classList.add('show');
+  }
+}
+function saveData() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(gatherData())); document.getElementById('save-status').textContent = 'Saved at ' + new Date().toLocaleTimeString(); }
+  catch(e) { document.getElementById('save-status').textContent = 'Save failed'; }
+}
+function loadData() {
+  try { var r = localStorage.getItem(STORAGE_KEY); if (r) applyData(JSON.parse(r)); } catch(e) {}
+}
+function scheduleAutosave() { clearTimeout(autosaveTimer); autosaveTimer = setTimeout(saveData, 90000); }
+function exportData() {
+  var blob = new Blob([JSON.stringify(gatherData(),null,2)],{type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'TFA_G8_FibonacciSequence_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click(); URL.revokeObjectURL(url);
+}
+function importTrigger() { document.getElementById('import-input').click(); }
+function importData(e) {
+  var file = e.target.files[0]; if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    try { var d = JSON.parse(ev.target.result); applyData(d); localStorage.setItem(STORAGE_KEY,JSON.stringify(d)); document.getElementById('save-status').textContent = 'Imported successfully'; }
+    catch(err) { document.getElementById('save-status').textContent = 'Import failed'; }
+  };
+  reader.readAsText(file);
+}
+setInterval(saveData, 90000);
+window.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>
