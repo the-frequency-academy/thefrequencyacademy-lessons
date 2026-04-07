@@ -1,1 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G7 &middot; The Golden Ratio &mdash; Phi &middot; The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c1418;
+  --accent: #7ab0b8;
+  --accent2: #9ecdd5;
+  --text: #f0ede6;
+  --text-dim: rgba(240,237,230,0.65);
+  --gold: #c9a84c;
+  --card-bg: rgba(0,0,0,0.32);
+  --card-border: rgba(122,176,184,0.18);
+  --radius: 6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;line-height:1.75;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(122,176,184,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 90%,rgba(201,168,76,0.04) 0%,transparent 50%);pointer-events:none;z-index:0}
 
+#progress-bar-wrap{position:fixed;top:0;left:0;right:0;z-index:1000;height:3px;background:rgba(0,0,0,0.5)}
+#progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--accent));transition:width .4s ease;box-shadow:0 0 12px rgba(201,168,76,.6)}
+#progress-label{position:fixed;top:8px;right:16px;z-index:1001;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.15em;color:var(--accent2);opacity:.8}
+
+#save-bar{position:fixed;bottom:0;left:0;right:0;z-index:1000;background:rgba(6,13,16,.95);border-top:1px solid var(--card-border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;backdrop-filter:blur(12px)}
+#save-status{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;color:var(--text-dim)}
+.save-btns{display:flex;gap:8px}
+.save-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;padding:8px 18px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;border-radius:var(--radius);transition:all .2s;text-transform:uppercase}
+.save-btn:hover{background:var(--accent);color:var(--bg)}
+.save-btn.gold{border-color:var(--gold);color:var(--gold)}
+.save-btn.gold:hover{background:var(--gold);color:var(--bg)}
+.save-btn.dim{border-color:rgba(255,255,255,.2);color:var(--text-dim)}
+.save-btn.dim:hover{background:rgba(255,255,255,.1);color:var(--text)}
+
+.lesson-wrap{max-width:860px;margin:0 auto;padding:56px 24px 100px;position:relative;z-index:1}
+
+.section{margin-bottom:64px;opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.section.visible{opacity:1;transform:none}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.section-num{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);min-width:32px;opacity:.6}
+.section-title{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:600;color:var(--text);letter-spacing:.06em;flex:1}
+.section-rule{height:1px;flex:1;background:linear-gradient(90deg,var(--accent),transparent);opacity:.3}
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px 32px;margin-bottom:20px;backdrop-filter:blur(8px)}
+p{margin-bottom:16px;color:var(--text-dim)}
+p:last-child{margin-bottom:0}
+.hi{color:var(--accent);font-weight:600}
+.gt{color:var(--gold)}
+h3.sub{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;color:var(--accent2);margin-bottom:14px;text-transform:uppercase}
+
+.hero{text-align:center;padding:80px 0 60px}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.hero-tag{display:inline-block;border:1px solid var(--accent);padding:4px 16px;border-radius:20px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:32px}
+.hero h1{font-family:'Cinzel',serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:700;color:var(--text);line-height:1.15;margin-bottom:12px;letter-spacing:.04em}
+.hero-subtitle{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);letter-spacing:.15em;margin-bottom:40px;font-weight:400}
+.hero-quote{max-width:640px;margin:0 auto 48px;font-style:italic;color:var(--text-dim);font-size:1.02rem;line-height:1.8;border-left:2px solid var(--gold);padding-left:20px;text-align:left}
+.hero-quote cite{display:block;margin-top:10px;font-style:normal;font-size:.8rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase}
+
+.transmission{text-align:center;padding:48px 32px;background:linear-gradient(135deg,rgba(122,176,184,.06),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);margin-bottom:64px}
+.transmission-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;opacity:.8}
+.transmission p{font-size:1.1rem;line-height:1.9;color:var(--text);font-style:italic;font-weight:300;max-width:640px;margin:0 auto 16px}
+.transmission p:last-child{margin-bottom:0}
+
+.module-crumb{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;color:var(--text-dim);text-align:center;margin-bottom:48px;text-transform:uppercase}
+.module-crumb span{color:var(--accent)}
+
+.callout{border-left:3px solid var(--gold);background:rgba(201,168,76,.06);padding:16px 20px;margin:20px 0;border-radius:0 var(--radius) var(--radius) 0}
+.callout p{color:var(--text);font-style:italic;margin:0}
+
+.concept-list{list-style:none}
+.concept-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid rgba(122,176,184,.08);color:var(--text-dim);font-size:.92rem}
+.concept-item:last-child{border-bottom:none}
+.cb{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:9px}
+
+/* PHI CALCULATOR — INTERACTIVE */
+.phi-calc{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px}
+.phi-display{font-family:'Cinzel',serif;font-size:2.8rem;color:var(--gold);text-align:center;margin:16px 0 8px;letter-spacing:.04em}
+.phi-sub{text-align:center;font-size:.82rem;color:var(--text-dim);margin-bottom:24px;letter-spacing:.1em}
+.phi-props{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+.phi-prop{background:rgba(122,176,184,.06);border:1px solid rgba(122,176,184,.15);border-radius:var(--radius);padding:16px;text-align:center}
+.phi-prop-eq{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--accent);margin-bottom:4px}
+.phi-prop-label{font-size:.75rem;color:var(--text-dim);letter-spacing:.08em}
+.ratio-tester{margin-top:20px}
+.ratio-label{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.12em;color:var(--accent2);margin-bottom:10px;text-transform:uppercase}
+.ratio-inputs{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ratio-input{background:rgba(0,0,0,.3);border:1px solid var(--card-border);border-radius:var(--radius);color:var(--text);font-family:'Raleway',sans-serif;font-size:1rem;padding:10px 14px;width:120px;transition:border-color .2s}
+.ratio-input:focus{outline:none;border-color:var(--gold)}
+.ratio-sep{color:var(--text-dim);font-family:'Cinzel',serif;font-size:1.2rem}
+.ratio-result{flex:1;min-width:200px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:12px 16px}
+.ratio-result-val{font-family:'Cinzel',serif;font-size:1.2rem;color:var(--gold)}
+.ratio-result-label{font-size:.78rem;color:var(--text-dim);margin-top:2px}
+.phi-bar-wrap{margin-top:20px}
+.phi-bar-label{font-size:.8rem;color:var(--text-dim);margin-bottom:6px;font-style:italic}
+.phi-bar{height:32px;background:rgba(0,0,0,.4);border:1px solid var(--card-border);border-radius:var(--radius);position:relative;overflow:hidden;cursor:pointer}
+.phi-bar-a{position:absolute;left:0;top:0;bottom:0;background:var(--gold);opacity:.85;transition:width .4s}
+.phi-bar-b{position:absolute;right:0;top:0;bottom:0;background:var(--accent);opacity:.7;transition:width .4s}
+.phi-bar-marker{position:absolute;top:0;bottom:0;width:2px;background:#fff;opacity:.5;transition:left .4s}
+.phi-bar-label-a{position:absolute;left:8px;top:50%;transform:translateY(-50%);font-family:'Cinzel',serif;font-size:.7rem;color:var(--bg);letter-spacing:.06em;font-weight:700}
+.phi-bar-label-b{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:'Cinzel',serif;font-size:.7rem;color:var(--bg);letter-spacing:.06em;font-weight:700}
+
+/* GOLDEN RECTANGLE CANVAS */
+.spiral-wrap{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;text-align:center}
+#spiralCanvas{display:block;margin:0 auto;max-width:100%;border-radius:4px}
+.spiral-controls{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px}
+.sp-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:9px 16px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;border-radius:var(--radius);transition:all .2s}
+.sp-btn:hover,.sp-btn.active{background:var(--accent);color:var(--bg)}
+
+/* DATA TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.86rem}
+.data-table th{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;padding:9px 12px;border-bottom:1px solid var(--card-border);text-align:left}
+.data-table td{padding:10px 12px;border-bottom:1px solid rgba(122,176,184,.08);color:var(--text-dim);vertical-align:top}
+.data-table td:first-child{color:var(--gold);font-weight:600}
+.data-table tr:last-child td{border-bottom:none}
+
+/* MATH BOX */
+.math-box{background:rgba(122,176,184,.07);border:1px solid rgba(122,176,184,.2);border-radius:var(--radius);padding:18px 24px;margin:18px 0;text-align:center}
+.math-eq{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--accent);letter-spacing:.06em;margin-bottom:6px}
+.math-sub{font-size:.83rem;color:var(--text-dim);font-style:italic}
+
+/* BODY PHI MAP */
+.body-map{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.body-ratio{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:16px}
+.body-ratio-name{font-family:'Cinzel',serif;font-size:.8rem;color:var(--gold);margin-bottom:4px;letter-spacing:.06em}
+.body-ratio-detail{font-size:.82rem;color:var(--text-dim);line-height:1.6}
+.body-ratio-val{font-family:'Cinzel',serif;font-size:1rem;color:var(--accent);margin-top:4px}
+
+/* ACCORDION */
+.accordion-item{border:1px solid var(--card-border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.accordion-header{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;cursor:pointer;background:var(--card-bg);transition:background .2s}
+.accordion-header:hover{background:rgba(122,176,184,.08)}
+.accordion-header-text{font-family:'Cinzel',serif;font-size:.84rem;letter-spacing:.1em;color:var(--text)}
+.accordion-arrow{color:var(--accent);font-size:1.2rem;transition:transform .3s}
+.accordion-item.open .accordion-arrow{transform:rotate(90deg)}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 20px;font-size:.9rem;color:var(--text-dim);line-height:1.8}
+.accordion-item.open .accordion-body{max-height:400px;padding:14px 20px 18px}
+
+/* QUIZ */
+.quiz-question{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:22px;margin-bottom:13px}
+.quiz-q-text{font-family:'Cinzel',serif;font-size:.87rem;color:var(--text);margin-bottom:14px;letter-spacing:.04em;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:8px}
+.quiz-option{padding:10px 14px;border:1px solid rgba(122,176,184,.2);border-radius:var(--radius);cursor:pointer;transition:all .2s;font-size:.87rem;color:var(--text-dim);background:transparent;text-align:left;width:100%;font-family:'Raleway',sans-serif}
+.quiz-option:hover{border-color:var(--accent);color:var(--text)}
+.quiz-option.correct{border-color:#4CAF50;background:rgba(76,175,80,.1);color:#81c784}
+.quiz-option.wrong{border-color:#f44336;background:rgba(244,67,54,.1);color:#e57373}
+.quiz-feedback{margin-top:8px;font-size:.81rem;font-style:italic;min-height:18px}
+.quiz-score-bar{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;text-align:center;display:none;margin-top:16px}
+.score-display{font-family:'Cinzel',serif;font-size:2.4rem;color:var(--gold);margin-bottom:8px}
+#quiz-submit{margin:20px auto 0;display:block;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;padding:12px 32px;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer;border-radius:var(--radius);transition:all .2s}
+#quiz-submit:hover{background:var(--gold);color:var(--bg)}
+
+/* REFLECTION */
+.reflection-prompt{margin-bottom:22px}
+.reflection-q{font-style:italic;color:var(--text);margin-bottom:10px;font-size:.94rem;line-height:1.7}
+.reflection-textarea{width:100%;min-height:110px;background:rgba(0,0,0,.3);border:1px solid var(--card-border);border-radius:var(--radius);color:var(--text);font-family:'Raleway',sans-serif;font-size:.9rem;padding:13px 15px;resize:vertical;transition:border-color .2s;line-height:1.6}
+.reflection-textarea:focus{outline:none;border-color:var(--accent)}
+.reflection-textarea::placeholder{color:var(--text-dim);opacity:.5}
+
+/* PRACTICAL */
+.practice-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:14px;margin-top:18px}
+.practice-item{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:18px;text-align:center;transition:border-color .2s}
+.practice-item:hover{border-color:var(--accent)}
+.pi-icon{font-size:1.9rem;margin-bottom:9px}
+.pi-title{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;color:var(--text);margin-bottom:5px}
+.practice-item p{font-size:.8rem}
+
+/* RESOURCES */
+.rg{margin-bottom:26px}
+.rg-title{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--card-border)}
+.ri{display:flex;gap:13px;padding:10px 0;border-bottom:1px solid rgba(122,176,184,.06)}
+.ri:last-child{border-bottom:none}
+.ri-icon{color:var(--accent);min-width:16px;margin-top:3px;font-size:.85rem}
+.ri-title{color:var(--text);font-weight:600;font-size:.86rem;margin-bottom:2px}
+.ri-meta{color:var(--text-dim);font-size:.77rem}
+
+/* WORKSHOP / COMPLETION / UP NEXT */
+.workshop-slot{text-align:center;padding:44px;border:1px dashed rgba(201,168,76,.3);border-radius:var(--radius);background:rgba(201,168,76,.03)}
+.ws-icon{font-size:2.2rem;margin-bottom:14px;opacity:.5}
+.ws-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--text-dim);letter-spacing:.08em;margin-bottom:7px}
+.ws-sub{color:var(--text-dim);font-size:.84rem;opacity:.6}
+
+.completion-card{text-align:center;padding:44px;background:linear-gradient(135deg,rgba(122,176,184,.08),rgba(201,168,76,.06));border:1px solid rgba(201,168,76,.3);border-radius:var(--radius)}
+.completion-title{font-family:'Cinzel',serif;font-size:1.35rem;color:var(--gold);margin-bottom:12px;letter-spacing:.06em}
+.xp-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 24px;background:var(--gold);color:var(--bg);border-radius:24px;font-family:'Cinzel',serif;font-weight:700;font-size:1rem;margin:18px 0;letter-spacing:.08em;opacity:0;transform:scale(.8);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.xp-badge.show{opacity:1;transform:scale(1)}
+.complete-checkbox-wrap{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px 0}
+#complete-checkbox{width:22px;height:22px;accent-color:var(--gold);cursor:pointer}
+.complete-label{font-family:'Cinzel',serif;font-size:.88rem;letter-spacing:.1em;color:var(--text);cursor:pointer}
+
+.confetti-piece{position:fixed;pointer-events:none;z-index:9999;animation:confetti-fall linear forwards}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+.up-next-card{display:flex;align-items:center;gap:22px;padding:26px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);cursor:pointer;transition:border-color .2s,transform .2s}
+.up-next-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.un-badge{min-width:54px;height:54px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:700;color:var(--bg);font-size:.88rem}
+.un-info{flex:1}
+.un-label{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:4px}
+.un-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px}
+.un-desc{font-size:.83rem;color:var(--text-dim)}
+.un-arrow{color:var(--accent);font-size:1.5rem;opacity:.6}
+
+/* PHI DOMAINS GRID */
+.domains-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:20px}
+.domain-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:18px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.domain-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .25s;transform-origin:left}
+.domain-card:hover::after,.domain-card.open::after{transform:scaleX(1)}
+.domain-card:hover,.domain-card.open{border-color:var(--gold);background:rgba(201,168,76,.06)}
+.domain-icon{font-size:1.4rem;margin-bottom:8px}
+.domain-name{font-family:'Cinzel',serif;font-size:.85rem;color:var(--text);margin-bottom:4px;letter-spacing:.06em}
+.domain-example{font-size:.78rem;color:var(--accent);margin-bottom:8px}
+.domain-detail{font-size:.82rem;color:var(--text-dim);max-height:0;overflow:hidden;transition:max-height .3s ease}
+.domain-card.open .domain-detail{max-height:100px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .8s ease forwards}
+
+@media(max-width:680px){
+  .phi-props{grid-template-columns:1fr}
+  .body-map{grid-template-columns:1fr}
+  .domains-grid{grid-template-columns:1fr 1fr}
+  .practice-items{grid-template-columns:1fr 1fr}
+  .lesson-wrap{padding:40px 16px 90px}
+  .card{padding:18px}
+  #save-bar{padding:8px 12px}
+  .save-btn{padding:6px 12px;font-size:9px}
+}
+@media(max-width:400px){
+  .domains-grid,.practice-items{grid-template-columns:1fr}
+  .ratio-inputs{flex-direction:column;align-items:stretch}
+  .ratio-input{width:100%}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+<div id="progress-label">G7 &middot; 0%</div>
+
+<div id="save-bar">
+  <span id="save-status">Auto-saves every 90 seconds</span>
+  <div class="save-btns">
+    <button class="save-btn" onclick="saveData()">&#x27F3; Save Progress</button>
+    <button class="save-btn gold" onclick="exportData()">&#x2193; Export Backup</button>
+    <button class="save-btn dim" onclick="importTrigger()">&#x2191; Import</button>
+  </div>
+</div>
+<input type="file" id="import-input" accept=".json" style="display:none" onchange="importData(event)">
+
+<div class="lesson-wrap">
+
+  <div class="module-crumb">The Frequency Academy &middot; <span>Sacred Geometry &amp; Light Body Systems</span> &middot; Lesson G7 of 22</div>
+
+  <!-- HERO -->
+  <section class="hero section">
+    <div class="hero-eyebrow">Sacred Geometry &amp; Light Body Systems</div>
+    <div class="hero-tag">G7 &middot; LESSON SEVEN</div>
+    <h1>The Golden Ratio &mdash; Phi</h1>
+    <div class="hero-subtitle">The Proportion of Living Form</div>
+    <canvas id="heroCanvas" width="320" height="200" style="display:block;margin:0 auto 40px;border-radius:4px"></canvas>
+    <div class="hero-quote">
+      "Phi is not a human invention. It is the proportion the universe uses when it wants something to grow in a way that is self-similar at every scale &mdash; where the part relates to the whole the way the whole relates to everything larger. It is the mathematical signature of life."
+      <cite>&mdash; The Frequency Academy</cite>
+    </div>
+  </section>
+
+  <!-- TRANSMISSION -->
+  <section class="section transmission" id="sec-transmission">
+    <div class="transmission-label">&#10022; Opening Transmission &#10022;</div>
+    <p>There is a proportion in the spiral of a nautilus, in the spacing of petals on a rose, in the ratio of your forearm to your hand, in the geometry of the dodecahedron, in the facade of the Parthenon, in the arms of a spiral galaxy. One proportion. Called phi. Approximately 1.618.</p>
+    <p>This is not coincidence. Phi is the only ratio for which the part relates to the whole in the exact same way the whole relates to everything larger. It is self-referencing all the way down &mdash; and all the way up. The proportion the universe uses when it wants something to grow without losing itself.</p>
+    <p>You have been living in phi your entire life. Today, you learn to see it.</p>
+  </section>
+
+  <!-- CORE CONCEPT -->
+  <section class="section" id="sec-intro">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">What Is Phi?</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p><span class="hi">Phi (&phi;)</span> is defined by a specific proportion: take a line and divide it into a longer segment (a) and a shorter segment (b). The proportion is phi when the ratio of the longer to the shorter equals the ratio of the whole to the longer. Expressed as a formula: a/b = (a+b)/a. There is exactly one ratio for which this holds &mdash; and it equals (1 + &radic;5) &divide; 2 &asymp; 1.6180339887&hellip;</p>
+      <p>Like &pi; and &radic;3, phi is irrational &mdash; infinite, non-repeating, impossible to express as an exact fraction. The universe's third great irrational proportion, encoded in the proportion of living growth.</p>
+      <div class="callout">
+        <p><strong class="gt">The defining identities:</strong> 1/&phi; = &phi; &minus; 1 = 0.618&hellip; and &phi;&sup2; = &phi; + 1 = 2.618&hellip; &mdash; phi is self-referencing at every level. No other number has these properties.</p>
+      </div>
+      <ul class="concept-list">
+        <li class="concept-item"><div class="cb"></div>Phi = (1 + &radic;5) &divide; 2 &asymp; 1.6180339887&hellip; &mdash; irrational, infinite, non-repeating</li>
+        <li class="concept-item"><div class="cb"></div>The only number where 1/&phi; = &phi; &minus; 1 and &phi;&sup2; = &phi; + 1 &mdash; self-referencing at every level</li>
+        <li class="concept-item"><div class="cb"></div>The Golden Rectangle (width:height = &phi;) is self-similar: remove a square and the rest is also a Golden Rectangle</li>
+        <li class="concept-item"><div class="cb"></div>The Golden Spiral grows by &phi; at every quarter turn &mdash; the same spiral in nautilus shells, galaxies, hurricanes</li>
+        <li class="concept-item"><div class="cb"></div>Encoded in the human body: forearm/hand, height/navel, finger segment ratios all approximate &phi;</li>
+        <li class="concept-item"><div class="cb"></div>Encoded in both the dodecahedron and icosahedron &mdash; the Platonic Solids of cosmos and water</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE: PHI CALCULATOR + RATIO TESTER -->
+  <section class="section" id="sec-interactive">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Phi Calculator &mdash; Explore the Properties</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="phi-calc">
+      <div class="phi-display">&phi; = 1.6180339887&hellip;</div>
+      <div class="phi-sub">THE GOLDEN RATIO &middot; (1 + &radic;5) &divide; 2</div>
+
+      <div class="phi-props">
+        <div class="phi-prop">
+          <div class="phi-prop-eq">1 / &phi; = 0.6180339&hellip;</div>
+          <div class="phi-prop-label">Reciprocal = &phi; &minus; 1 exactly</div>
+        </div>
+        <div class="phi-prop">
+          <div class="phi-prop-eq">&phi;&sup2; = 2.6180339&hellip;</div>
+          <div class="phi-prop-label">Square = &phi; + 1 exactly</div>
+        </div>
+        <div class="phi-prop">
+          <div class="phi-prop-eq">&phi; &minus; 1/&phi; = 1</div>
+          <div class="phi-prop-label">Phi minus its reciprocal equals unity</div>
+        </div>
+        <div class="phi-prop">
+          <div class="phi-prop-eq">&phi; = 1 + 1/(1 + 1/(1 + &hellip;))</div>
+          <div class="phi-prop-label">Infinite continued fraction &mdash; the simplest possible</div>
+        </div>
+      </div>
+
+      <div class="ratio-tester">
+        <div class="ratio-label">Ratio Tester &mdash; Enter any two lengths to see how close to &phi; they are</div>
+        <div class="ratio-inputs">
+          <input class="ratio-input" type="number" id="ratio-a" value="161.8" placeholder="Longer (a)" oninput="calcRatio()">
+          <span class="ratio-sep">:</span>
+          <input class="ratio-input" type="number" id="ratio-b" value="100" placeholder="Shorter (b)" oninput="calcRatio()">
+          <div class="ratio-result">
+            <div class="ratio-result-val" id="ratio-result-val">1.618</div>
+            <div class="ratio-result-label" id="ratio-result-label">Ratio a/b &mdash; exact phi = 1.6180...</div>
+          </div>
+        </div>
+        <div class="phi-bar-wrap">
+          <div class="phi-bar-label">Visual proportion: gold = a, teal = b &mdash; at phi, the gold portion is 61.8% of the whole</div>
+          <div class="phi-bar" id="phi-bar">
+            <div class="phi-bar-a" id="phi-bar-a" style="width:61.8%"><div class="phi-bar-label-a">a</div></div>
+            <div class="phi-bar-b" id="phi-bar-b" style="width:38.2%"><div class="phi-bar-label-b">b</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLDEN RECTANGLE + SPIRAL -->
+  <section class="section" id="sec-rectangle">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">The Golden Rectangle &amp; Golden Spiral</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>Draw a rectangle whose width-to-height ratio is phi. That is a <span class="hi">Golden Rectangle</span>. Now remove the largest possible square from it. The remaining rectangle &mdash; smaller &mdash; is also a Golden Rectangle, proportionally identical to the original. Remove the square from that. Same. Again. Again. Infinitely.</p>
+      <p>Connect the corners of these successively smaller squares with a smooth curve and you produce the <span class="hi">Golden Spiral</span> &mdash; a logarithmic spiral that grows by exactly &phi; at every quarter turn. Perfectly self-similar, perfectly proportional, forever. The same spiral found in nautilus shells, galaxy arms, hurricane formations, and the growth of ram's horns.</p>
+      <div class="callout">
+        <p><strong class="gt">Symbolic correspondence:</strong> Beauty &middot; Living Proportion &middot; Growth &middot; The Proportion of the Soul &middot; Divine Harmony</p>
+      </div>
+    </div>
+    <div class="spiral-wrap">
+      <p style="font-size:.86rem;color:var(--text-dim);font-style:italic;margin-bottom:14px">Watch the Golden Rectangle unfold &mdash; each square removal reveals another perfect Golden Rectangle. The spiral traces the corners.</p>
+      <canvas id="spiralCanvas" width="500" height="340"></canvas>
+      <div class="spiral-controls">
+        <button class="sp-btn active" id="sb-rect" onclick="setSpiralMode('rect',this)">Rectangle Only</button>
+        <button class="sp-btn" id="sb-squares" onclick="setSpiralMode('squares',this)">Show Squares</button>
+        <button class="sp-btn" id="sb-spiral" onclick="setSpiralMode('spiral',this)">Draw Spiral</button>
+        <button class="sp-btn" id="sb-all" onclick="setSpiralMode('all',this)">Full View</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHI IN THE BODY -->
+  <section class="section" id="sec-body">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Phi in the Human Body</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p>Your body is an expression of phi. These are not approximate observations &mdash; they are the proportional relationships that Leonardo da Vinci was documenting in the Vitruvian Man: the human body as a phi-based geometric system, the proportion of the universe encoded in living form.</p>
+      <div class="body-map">
+        <div class="body-ratio">
+          <div class="body-ratio-name">Height to Navel</div>
+          <div class="body-ratio-detail">Total height divided by height at the navel (floor to navel)</div>
+          <div class="body-ratio-val">&asymp; &phi; (1.618)</div>
+        </div>
+        <div class="body-ratio">
+          <div class="body-ratio-name">Forearm to Hand</div>
+          <div class="body-ratio-detail">Length of forearm (elbow to wrist) divided by hand length (wrist to fingertip)</div>
+          <div class="body-ratio-val">&asymp; &phi; (1.618)</div>
+        </div>
+        <div class="body-ratio">
+          <div class="body-ratio-name">Finger Sections</div>
+          <div class="body-ratio-detail">Each section of the finger relates to the next section by approximately phi, from tip to base</div>
+          <div class="body-ratio-val">&asymp; &phi; (1.618)</div>
+        </div>
+        <div class="body-ratio">
+          <div class="body-ratio-name">Facial Proportions</div>
+          <div class="body-ratio-detail">Width of face to width of mouth, nose width to eye width, and other classical facial ratios all approximate phi</div>
+          <div class="body-ratio-val">&asymp; &phi; (1.618)</div>
+        </div>
+      </div>
+      <div class="math-box" style="margin-top:20px">
+        <div class="math-eq">Vitruvian Man &mdash; da Vinci, c.1490 CE</div>
+        <div class="math-sub">Leonardo's famous study of human proportions was an exploration of phi in the living body &mdash; the geometry of the universe encoded in the structure of a human being.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHI ACROSS DOMAINS -->
+  <section class="section" id="sec-domains">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Phi in Nature, Architecture &amp; the Platonic Solids</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="font-style:italic;font-size:.88rem;color:var(--text-dim);margin-bottom:18px">Click any domain to reveal the specific phi relationship.</p>
+      <div class="domains-grid">
+        <div class="domain-card" onclick="toggleDomain(this)">
+          <div class="domain-icon">&#127800;</div>
+          <div class="domain-name">Botany</div>
+          <div class="domain-example">Phyllotaxis &middot; Sunflowers &middot; Pine Cones</div>
+          <div class="domain-detail">Sunflower seeds arrange in two spirals of Fibonacci counts (usually 34 and 55, or 55 and 89). The angle between consecutive seeds is approximately 137.5&deg; &mdash; the golden angle, directly derived from phi. This maximises exposure to light and space for every seed simultaneously.</div>
+        </div>
+        <div class="domain-card" onclick="toggleDomain(this)">
+          <div class="domain-icon">&#128014;</div>
+          <div class="domain-name">Nature &mdash; Nautilus</div>
+          <div class="domain-example">Nautilus Shell Cross-Section</div>
+          <div class="domain-detail">The nautilus shell cross-section is one of the most celebrated examples of the Golden Spiral in nature. Each chamber is phi-proportional to the last. The same logarithmic spiral appears in galaxy arms, hurricane formations, and the growth of ram's horns &mdash; at scales from centimetres to hundreds of thousands of light-years.</div>
+        </div>
+        <div class="domain-card" onclick="toggleDomain(this)">
+          <div class="domain-icon">&#127963;&#65039;</div>
+          <div class="domain-name">Architecture</div>
+          <div class="domain-example">Parthenon &middot; Great Pyramid &middot; Notre Dame</div>
+          <div class="domain-detail">The facade of the Parthenon (Athens, 447 BCE) encodes phi in its proportions &mdash; the ratio of width to height of the facade is phi. The Great Pyramid of Giza encodes phi in the ratio of its apothem (slant height of a face) to half the base length. These are deliberate encodings by builders who understood the proportion.</div>
+        </div>
+        <div class="domain-card" onclick="toggleDomain(this)">
+          <div class="domain-icon">&#127912;</div>
+          <div class="domain-name">Art</div>
+          <div class="domain-example">Da Vinci &middot; Botticelli &middot; Le Corbusier</div>
+          <div class="domain-detail">Leonardo da Vinci used phi throughout his compositions, including the Last Supper and Vitruvian Man. Botticelli's Birth of Venus encodes phi. Le Corbusier built his entire architectural system (the Modulor) on phi proportions, claiming the human body and phi defined the ideal proportions for built space.</div>
+        </div>
+        <div class="domain-card" onclick="toggleDomain(this)">
+          <div class="domain-icon">&#9670;</div>
+          <div class="domain-name">Platonic Solids</div>
+          <div class="domain-example">Dodecahedron &middot; Icosahedron</div>
+          <div class="domain-detail">Both the dodecahedron and icosahedron have edge ratios that encode phi. The diagonal of each pentagonal face of the dodecahedron is phi times its edge length. The vertices of the icosahedron can be defined using three golden rectangles. These two Platonic Solids &mdash; cosmos and water &mdash; are inseparable from phi.</div>
+        </div>
+        <div class="domain-card" onclick="toggleDomain(this)">
+          <div class="domain-icon">&#127925;</div>
+          <div class="domain-name">Music</div>
+          <div class="domain-example">Debussy &middot; Bartok &middot; Sacred Frequencies</div>
+          <div class="domain-detail">Bela Bartok and Claude Debussy used phi-based proportions in musical structure and timing. The climax of many Bartok compositions occurs at the phi point of the piece. Several sacred frequencies (432 Hz, 528 Hz) have phi-based relationships to one another and to the natural harmonic series.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE PHI APPEARS TABLE -->
+  <section class="section" id="sec-table">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Complete Reference &mdash; Where Phi Appears</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead><tr><th>Domain</th><th>Example</th><th>Phi Relationship</th></tr></thead>
+        <tbody>
+          <tr><td>Human Body</td><td>Face, hand, arm proportions</td><td>Ratio of forearm to hand, total height to navel height, facial proportions all approximate phi</td></tr>
+          <tr><td>Botany</td><td>Phyllotaxis: leaf and seed arrangement</td><td>Sunflower seeds, pine cone spirals, and leaf arrangements around stems follow phi-based spiral counts</td></tr>
+          <tr><td>Architecture</td><td>Parthenon, Great Pyramid, Notre Dame</td><td>Facade proportions of the Parthenon encode phi. The Great Pyramid apothem-to-base ratio is phi.</td></tr>
+          <tr><td>Art</td><td>Da Vinci, Botticelli, Le Corbusier</td><td>The Golden Rectangle has been used consciously and intuitively by artists throughout history</td></tr>
+          <tr><td>Platonic Solids</td><td>Dodecahedron, Icosahedron</td><td>Edge ratios of both encode phi. Their geometry is inseparable from phi.</td></tr>
+          <tr><td>Music</td><td>Fibonacci ratios in composition</td><td>Debussy, Bartok, and others have used phi-based proportions in musical structure and timing</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- KNOWLEDGE CHECK -->
+  <section class="section" id="sec-quiz">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Knowledge Check</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div id="quiz-container">
+      <div class="quiz-question" id="qq1">
+        <div class="quiz-q-text">1. Phi is exactly equal to:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(1,this,'a')">a) 3.14159&hellip; (pi)</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'b')">b) 1.4142&hellip; (the square root of 2)</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'c')">c) (1 + &radic;5) &divide; 2 &asymp; 1.6180339887&hellip;</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'d')">d) 1.5 exactly &mdash; the three-to-two ratio</button>
+        </div>
+        <div class="quiz-feedback" id="qf1"></div>
+      </div>
+      <div class="quiz-question" id="qq2">
+        <div class="quiz-q-text">2. Which of the following correctly states a unique self-referencing property of phi?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(2,this,'a')">a) &phi; &times; &phi; = 3</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'b')">b) 1/&phi; = &phi; &minus; 1 exactly (approximately 0.618)</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'c')">c) &phi; + &phi; = 2&phi; (like any number)</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'d')">d) &phi; = &pi; &minus; 1.526</button>
+        </div>
+        <div class="quiz-feedback" id="qf2"></div>
+      </div>
+      <div class="quiz-question" id="qq3">
+        <div class="quiz-q-text">3. When you remove a square from a Golden Rectangle, the remaining shape is:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(3,this,'a')">a) A random rectangle with no special properties</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'b')">b) A square</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'c')">c) Another Golden Rectangle &mdash; proportionally identical to the original</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'d')">d) A rectangle with ratio 1:2</button>
+        </div>
+        <div class="quiz-feedback" id="qf3"></div>
+      </div>
+      <div class="quiz-question" id="qq4">
+        <div class="quiz-q-text">4. The arrangement of seeds in a sunflower follows phi proportions because:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(4,this,'a')">a) Sunflowers were bred to have this property by ancient mathematicians</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'b')">b) It maximises exposure to light and space for every seed simultaneously &mdash; the optimal packing solution</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'c')">c) The number of seeds always equals a Fibonacci number</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'d')">d) It is a coincidence with no functional explanation</button>
+        </div>
+        <div class="quiz-feedback" id="qf4"></div>
+      </div>
+      <div class="quiz-question" id="qq5">
+        <div class="quiz-q-text">5. Which two Platonic Solids have edge ratios that directly encode phi?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(5,this,'a')">a) Tetrahedron and Cube</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'b')">b) Cube and Octahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'c')">c) Dodecahedron and Icosahedron</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'d')">d) Octahedron and Icosahedron</button>
+        </div>
+        <div class="quiz-feedback" id="qf5"></div>
+      </div>
+      <div class="quiz-question" id="qq6">
+        <div class="quiz-q-text">6. TRUE or FALSE: The Golden Spiral and the Fibonacci Spiral are identical &mdash; they are the same spiral.</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(6,this,'a')">True &mdash; they are the same spiral with different names</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'b')">False &mdash; the Golden Spiral grows by exactly phi at every quarter turn; the Fibonacci Spiral approximates it but never achieves it</button>
+        </div>
+        <div class="quiz-feedback" id="qf6"></div>
+      </div>
+    </div>
+    <button id="quiz-submit" onclick="submitQuiz()">Check Answers</button>
+    <div class="quiz-score-bar" id="quiz-score-bar">
+      <div class="score-display" id="quiz-score-display">0/6</div>
+      <p id="quiz-score-msg" style="color:var(--text-dim)"></p>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="section" id="sec-glossary">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Quick Reference &mdash; Key Definitions</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div id="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Phi (&phi;)</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The Golden Ratio &asymp; 1.6180339887&hellip; Defined by a/b = (a+b)/a &mdash; the proportion where the larger part relates to the smaller as the whole relates to the larger. The only number equal to its own square minus 1, and to 1 plus its own reciprocal. Irrational, infinite, transcendental.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Golden Rectangle</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">A rectangle with width-to-height ratio equal to phi. When a square is removed from it, the remaining rectangle is also a Golden Rectangle &mdash; self-similar at every scale. This property continues infinitely, generating the sequence of squares from which the Golden Spiral is drawn.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Golden Spiral</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">A logarithmic spiral that grows by a factor of phi with every quarter turn. Found in nautilus shells, galaxy arms, plant growth spirals, hurricane formation. Emerges from the successive squares of the Golden Rectangle. Distinguished from the Fibonacci Spiral, which approximates it but never exactly equals it.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Phyllotaxis</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The arrangement of leaves, seeds, and petals in plants. Sunflower seed spirals, pine cone scales, and leaf arrangements around stems follow phi-based counts &mdash; the proportion that maximises exposure to light and space. The golden angle (137.5&deg;, derived from phi) governs the angular spacing between each new growth.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Self-Similarity</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">The property of a form that looks the same at multiple scales. The Golden Spiral and Golden Rectangle are perfectly self-similar. This property is characteristic of phi-based growth and of fractal geometry. Self-similarity means the part contains the whole &mdash; the same pattern repeating at every level of magnification.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Golden Section</span>
+            <span class="accordion-arrow">&#8250;</span>
+          </div>
+          <div class="accordion-body">Another name for the Golden Ratio &mdash; the specific point that divides a line segment in the ratio 1:&phi;, such that the smaller part relates to the larger as the larger relates to the whole. Used in classical art, architecture, and design to identify the most harmonious point of division.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICAL -->
+  <section class="section" id="sec-practical">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Practical Application &mdash; This Week</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="margin-bottom:18px">Phi is everywhere once you know to look. This week, develop your phi perception &mdash; in your body, in nature, and on paper.</p>
+      <div class="practice-items">
+        <div class="practice-item">
+          <div class="pi-icon">&#9998;&#65039;</div>
+          <div class="pi-title">Draw the Golden Rectangle</div>
+          <p>Construct a Golden Rectangle with ruler and compass. Then remove squares successively to generate 6 nested Golden Rectangles. Draw the spiral through the corners. Allow 20 minutes.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#128110;</div>
+          <div class="pi-title">Measure Your Body</div>
+          <p>Measure your total height and your height at the navel. Divide. Measure your forearm and hand. Divide. Compare to 1.618. What do you find? Record your measurements and the ratios.</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#128269;</div>
+          <div class="pi-title">Find Phi in Nature</div>
+          <p>Look at a sunflower (in person or in a photo) and count the spirals in each direction. Find a nautilus shell image online. Notice the spiral. Where else do you find it this week?</p>
+        </div>
+        <div class="practice-item">
+          <div class="pi-icon">&#127981;</div>
+          <div class="pi-title">Golden Calipers</div>
+          <p>If possible, acquire a pair of golden ratio calipers. Measure objects around you. Notice which things feel beautiful and which feel proportionally uncomfortable. Does phi predict the difference?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="section" id="sec-reflection">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <h2 class="section-title">Reflection Journal</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <p style="font-style:italic;color:var(--text-dim);margin-bottom:26px">Phi is called the proportion of beauty and the proportion of life. These questions invite you to find it in your world.</p>
+      <div class="reflection-prompt">
+        <div class="reflection-q">1. Look at your own hand &mdash; the ratio of your forearm to your hand, the sections of your fingers. Measure them if you can. What do you notice? Does your body feel like an expression of phi? What does it mean that the same proportion the universe uses for galaxy spirals is encoded in the structure of your hand?</div>
+        <textarea class="reflection-textarea" id="ref1" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">2. The same spiral &mdash; growing by phi at every quarter turn &mdash; appears in nautilus shells, galaxy arms, hurricane formations, and plant growth. What does it mean to you that the same mathematical proportion governs growth at the scale of a seed, a storm, and a galaxy? Is this the universe using the same grammar across different scales of itself?</div>
+        <textarea class="reflection-textarea" id="ref2" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-q">3. Phi is sometimes called the Divine Proportion and has been associated with beauty, harmony, and the soul since antiquity. Does phi feel beautiful to you? When you look at a Golden Rectangle or a Golden Spiral, does it have a quality different from other rectangles and spirals? If so, what is that quality &mdash; and why do you think we are wired to perceive it?</div>
+        <textarea class="reflection-textarea" id="ref3" placeholder="Your response..." oninput="scheduleAutosave()"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- GO DEEPER -->
+  <section class="section" id="sec-resources">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <h2 class="section-title">Go Deeper &mdash; Resources</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card">
+      <div class="rg">
+        <div class="rg-title">&#128218; Books</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Golden Ratio &mdash; Mario Livio (Broadway Books, 2002)</div><div class="ri-meta">ISBN 978-0767908153 &middot; A rigorous and readable account of phi's mathematical properties and its appearances in nature, art, and architecture.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Sacred Geometry &mdash; Robert Lawlor (Inner Traditions, 1982)</div><div class="ri-meta">ISBN 978-0500810606 &middot; Presents phi as a foundational proportion in sacred geometric systems and living form.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Golden Ratio: The Story of Phi &mdash; Keith Devlin (Walker &amp; Company, 2005)</div><div class="ri-meta">A mathematician's perspective on the history and reality of phi, separating fact from mythology.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Power of Limits &mdash; Gyorgy Doczi (Shambhala, 1981)</div><div class="ri-meta">ISBN 978-1590304051 &middot; Documents the appearance of phi proportions across natural and human-made forms through precise measurement.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#128300; Scientific Studies</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Phyllotaxis and the Fibonacci Series &mdash; Mitchison, G.J. (Science, 1977)</div><div class="ri-meta">Demonstrates mathematically why phi and Fibonacci ratios appear in plant growth patterns.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Golden Ratio and Fibonacci Numbers &mdash; Dunlap, R.A. (World Scientific, 1997)</div><div class="ri-meta">Mathematical treatment of the relationship between phi and Fibonacci sequences with biological applications.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#127916; Documentaries</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">The Golden Ratio &mdash; various YouTube educators (search: phi golden ratio nature)</div><div class="ri-meta">Multiple high-quality visual explorations of phi in nature, art, and mathematics are freely available.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">Donald in Mathmagic Land &mdash; Disney (1959)</div><div class="ri-meta">Classic short film presenting the golden ratio through art, architecture, and nature &mdash; still relevant and accessible.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#127760; Websites</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">goldennumber.net</div><div class="ri-meta">Gary Meisner's comprehensive reference site for phi with measurements across nature and design.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">fibonaccinature.com</div><div class="ri-meta">Photographic documentation of Fibonacci and phi appearances in living systems.</div></div></div>
+      </div>
+      <div class="rg">
+        <div class="rg-title">&#128279; TFA Lesson Connections</div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G8 &mdash; The Fibonacci Sequence</div><div class="ri-meta">Phi is the limit of the ratio of consecutive Fibonacci numbers; the two topics are inseparable.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">N3 &mdash; Frequency Correlations</div><div class="ri-meta">Many sacred frequencies (432 Hz, 528 Hz) have phi-based relationships to one another.</div></div></div>
+        <div class="ri"><div class="ri-icon">&#9658;</div><div><div class="ri-title">G19 &mdash; Numerology-Geometry Fusion</div><div class="ri-meta">Phi is a key geometric proportion used in constructing sigil matrices.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSHOP -->
+  <section class="section" id="sec-workshop">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <h2 class="section-title">Live Workshop</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="workshop-slot">
+      <div class="ws-icon">&#9678;</div>
+      <div class="ws-title">Live Workshop on this topic coming soon</div>
+      <div class="ws-sub">Recordings will appear here once available. Check back or watch for announcements at thefrequencyacademy.net</div>
+    </div>
+  </section>
+
+  <!-- COMPLETION -->
+  <section class="section" id="sec-completion">
+    <div class="section-header">
+      <span class="section-num">14</span>
+      <h2 class="section-title">Lesson Complete</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="completion-card">
+      <div class="completion-title">The Golden Ratio &mdash; Phi &mdash; Lesson Summary</div>
+      <p style="color:var(--text-dim);max-width:540px;margin:0 auto 22px;font-style:italic">"Phi is not a human invention. It is the proportion the universe uses when it wants something to grow in a way that is self-similar at every scale. It is the mathematical signature of life."</p>
+      <div class="complete-checkbox-wrap">
+        <input type="checkbox" id="complete-checkbox" onchange="onComplete(this)">
+        <label class="complete-label" for="complete-checkbox">I have completed Lesson G7 &mdash; The Golden Ratio, Phi</label>
+      </div>
+      <div class="xp-badge" id="xp-badge">&#10022; +10 XP Earned &#10022;</div>
+    </div>
+  </section>
+
+  <!-- UP NEXT -->
+  <section class="section" id="sec-upnext">
+    <div class="section-header">
+      <span class="section-num">15</span>
+      <h2 class="section-title">Up Next in the Module</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="up-next-card">
+      <div class="un-badge">G8</div>
+      <div class="un-info">
+        <div class="un-label">Next Lesson &middot; Sacred Geometry</div>
+        <div class="un-title">The Fibonacci Sequence</div>
+        <div class="un-desc">The Fibonacci Sequence (1, 1, 2, 3, 5, 8, 13, 21&hellip;) is the most famous number sequence in mathematics. Each number is the sum of the two before it, and as the sequence progresses, consecutive ratios approach phi ever more closely. G8 explores the relationship between Fibonacci and phi, and why the sequence is nature's preferred growth code.</div>
+      </div>
+      <div class="un-arrow">&#8250;</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+var STORAGE_KEY = 'tfa_lesson_G7';
+var autosaveTimer = null;
+var quizAnswers = {};
+var PHI = (1 + Math.sqrt(5)) / 2;
+
+var correctAnswers = {1:'c',2:'b',3:'c',4:'b',5:'c',6:'b'};
+var quizFeedback = {
+  1:{c:'Correct! Phi = (1 + root-5) divided by 2, approximately 1.6180339887. Like pi and root-3, phi is irrational -- infinite and non-repeating.',wrong:'Not quite. Phi = (1 + root-5) divided by 2, approximately 1.6180339887.'},
+  2:{b:'Correct! 1/phi = phi minus 1 = 0.618... exactly. This means dividing 1 by phi gives you phi minus 1 -- a self-referencing property unique to this number.',wrong:'Not quite. The unique property is 1/phi = phi minus 1 exactly. No other number has this property.'},
+  3:{c:'Correct! The remaining rectangle is another Golden Rectangle -- proportionally identical to the original. This self-similarity continues infinitely, and the sequence of squares generates the Golden Spiral.',wrong:'Not quite. The remaining shape is another Golden Rectangle -- the same proportions as the original. This is the defining self-similar property of phi.'},
+  4:{b:'Correct! The golden angle (137.5 degrees, derived from phi) between consecutive seeds maximises the exposure of every seed to light and space simultaneously. This is the optimal packing solution -- the universe finding the most efficient arrangement.',wrong:'Not quite. Phi-based phyllotaxis maximises the exposure of every seed to light and space simultaneously -- it is the optimal packing solution.'},
+  5:{c:'Correct! Both the dodecahedron and icosahedron have edge ratios that encode phi. The diagonal of each pentagonal dodecahedron face is phi times its edge. The icosahedron vertices can be defined using three golden rectangles.',wrong:'Not quite. The dodecahedron and icosahedron are the two Platonic Solids whose geometry directly encodes phi.'},
+  6:{b:'Correct! The Golden Spiral grows by exactly phi at every quarter turn -- it is perfectly self-similar. The Fibonacci Spiral approximates it with increasing accuracy but never achieves it exactly.',wrong:'Not quite. They are similar but not identical. The Golden Spiral grows by exactly phi at every quarter turn; the Fibonacci Spiral approximates it but never precisely achieves it.'}
+};
+
+// PROGRESS
+function updateProgress() {
+  var dH = document.documentElement.scrollHeight, wH = window.innerHeight;
+  var pct = Math.min(100, Math.round((window.scrollY / (dH - wH)) * 100));
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = 'G7 \u00b7 ' + pct + '%';
+}
+window.addEventListener('scroll', updateProgress, {passive:true});
+updateProgress();
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.08});
+document.querySelectorAll('.section').forEach(function(s) { observer.observe(s); });
+
+function toggleAccordion(h) {
+  var item = h.closest('.accordion-item');
+  var open = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item.open').forEach(function(i) { i.classList.remove('open'); });
+  if (!open) item.classList.add('open');
+}
+
+function toggleDomain(card) {
+  var wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.domain-card.open').forEach(function(c) { c.classList.remove('open'); });
+  if (!wasOpen) card.classList.add('open');
+}
+
+// RATIO CALCULATOR
+function calcRatio() {
+  var a = parseFloat(document.getElementById('ratio-a').value) || 0;
+  var b = parseFloat(document.getElementById('ratio-b').value) || 0;
+  var resultEl = document.getElementById('ratio-result-val');
+  var labelEl = document.getElementById('ratio-result-label');
+  var barA = document.getElementById('phi-bar-a');
+  var barB = document.getElementById('phi-bar-b');
+
+  if (b === 0 || a <= 0) {
+    resultEl.textContent = '--';
+    labelEl.textContent = 'Enter positive values above';
+    return;
+  }
+
+  var ratio = a / b;
+  var pctA = (a / (a + b)) * 100;
+  var pctB = 100 - pctA;
+  barA.style.width = pctA + '%';
+  barB.style.width = pctB + '%';
+
+  var diff = Math.abs(ratio - PHI);
+  var pct = (diff / PHI * 100).toFixed(2);
+  resultEl.textContent = ratio.toFixed(6);
+  if (diff < 0.01) {
+    labelEl.textContent = 'Essentially phi! Within ' + pct + '% of 1.61803...';
+    resultEl.style.color = '#81c784';
+  } else if (diff < 0.05) {
+    labelEl.textContent = 'Close to phi -- ' + pct + '% off. Phi = 1.61803...';
+    resultEl.style.color = 'var(--gold)';
+  } else {
+    labelEl.textContent = ratio > PHI ? 'Above phi by ' + pct + '%. Phi = 1.61803...' : 'Below phi by ' + pct + '%. Phi = 1.61803...';
+    resultEl.style.color = 'var(--accent)';
+  }
+}
+
+// HERO CANVAS -- animated golden spiral
+(function() {
+  var c = document.getElementById('heroCanvas');
+  var ctx = c.getContext('2d');
+  var W = 320, H = 200;
+  var t = 0;
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(0,0,0,0.5)';
+    ctx.fillRect(0, 0, W, H);
+
+    // Draw golden spiral
+    var cx = W * 0.38, cy = H * 0.5;
+    var a = 2;
+    var b = Math.log(PHI) / (Math.PI / 2);
+    var rotOffset = t * 0.008;
+
+    ctx.beginPath();
+    var first = true;
+    for (var angle = 0; angle < Math.PI * 6; angle += 0.05) {
+      var r = a * Math.exp(b * (angle + rotOffset));
+      if (r > 160) break;
+      var x = cx + r * Math.cos(angle);
+      var y = cy + r * Math.sin(angle);
+      if (first) { ctx.moveTo(x, y); first = false; }
+      else ctx.lineTo(x, y);
+    }
+    var alpha = 0.6 + 0.2 * Math.sin(t * 0.03);
+    ctx.strokeStyle = 'rgba(201,168,76,' + alpha + ')';
+    ctx.lineWidth = 1.8;
+    ctx.stroke();
+
+    // Second, dimmer spiral offset
+    ctx.beginPath();
+    first = true;
+    for (var angle = 0; angle < Math.PI * 6; angle += 0.05) {
+      var r2 = a * Math.exp(b * (angle + rotOffset + 1));
+      if (r2 > 160) break;
+      var x2 = cx + r2 * Math.cos(angle);
+      var y2 = cy + r2 * Math.sin(angle);
+      if (first) { ctx.moveTo(x2, y2); first = false; }
+      else ctx.lineTo(x2, y2);
+    }
+    ctx.strokeStyle = 'rgba(122,176,184,0.35)';
+    ctx.lineWidth = 1.0;
+    ctx.stroke();
+
+    // Phi symbol
+    ctx.font = 'bold 28px Cinzel,serif';
+    ctx.fillStyle = 'rgba(201,168,76,' + (0.7 + 0.2 * Math.sin(t * 0.04)) + ')';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('\u03C6', W * 0.78, H * 0.5);
+    ctx.font = '12px Cinzel,serif';
+    ctx.fillStyle = 'rgba(122,176,184,0.6)';
+    ctx.fillText('1.6180339887...', W * 0.78, H * 0.5 + 28);
+
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// SPIRAL CANVAS
+var spiralMode = 'rect';
+
+function setSpiralMode(mode, btn) {
+  spiralMode = mode;
+  document.querySelectorAll('.sp-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  drawSpiral();
+}
+
+function drawSpiral() {
+  var c = document.getElementById('spiralCanvas');
+  var ctx = c.getContext('2d');
+  var W = c.width, H = c.height;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = 'rgba(0,0,0,0.5)';
+  ctx.fillRect(0, 0, W, H);
+
+  var teal = '#7ab0b8', gold = '#c9a84c', white = 'rgba(240,237,230,0.8)';
+
+  // Build nested golden rectangles
+  // Start with a rectangle W*0.85 tall, phi times wider
+  var rects = [];
+  var x = W * 0.06, y = H * 0.08;
+  var h = H * 0.84, w = h * PHI;
+  if (w > W * 0.88) { w = W * 0.88; h = w / PHI; }
+  rects.push({x:x, y:y, w:w, h:h});
+
+  // Generate nested rectangles
+  var dirs = ['right', 'down', 'left', 'up'];
+  var cur = {x:x, y:y, w:w, h:h};
+  for (var i = 0; i < 8; i++) {
+    var dir = dirs[i % 4];
+    var sq, remaining;
+    if (dir === 'right' || dir === 'left') {
+      sq = cur.h;
+      remaining = {w: cur.w - sq, h: cur.h};
+      if (dir === 'right') {
+        sq = {x: cur.x, y: cur.y, s: cur.h};
+        remaining = {x: cur.x + cur.h, y: cur.y, w: cur.w - cur.h, h: cur.h};
+      } else {
+        sq = {x: cur.x + cur.w - cur.h, y: cur.y, s: cur.h};
+        remaining = {x: cur.x, y: cur.y, w: cur.w - cur.h, h: cur.h};
+      }
+    } else {
+      if (dir === 'down') {
+        sq = {x: cur.x, y: cur.y, s: cur.w};
+        remaining = {x: cur.x, y: cur.y + cur.w, w: cur.w, h: cur.h - cur.w};
+      } else {
+        sq = {x: cur.x, y: cur.y + cur.h - cur.w, s: cur.w};
+        remaining = {x: cur.x, y: cur.y, w: cur.w, h: cur.h - cur.w};
+      }
+    }
+    rects.push({x: remaining.x, y: remaining.y, w: remaining.w, h: remaining.h, sq: sq});
+    cur = {x: remaining.x, y: remaining.y, w: remaining.w, h: remaining.h};
+    if (cur.w < 4 || cur.h < 4) break;
+  }
+
+  // Draw outer rectangle
+  ctx.strokeStyle = gold;
+  ctx.lineWidth = 2;
+  ctx.strokeRect(x, y, w, h);
+
+  // Draw inner squares and rectangles
+  if (spiralMode === 'squares' || spiralMode === 'all') {
+    var sqColors = ['rgba(201,168,76,0.2)','rgba(122,176,184,0.15)','rgba(201,168,76,0.12)','rgba(122,176,184,0.1)'];
+    for (var i = 1; i < rects.length; i++) {
+      var r = rects[i];
+      if (!r.sq) continue;
+      ctx.fillStyle = sqColors[i % sqColors.length];
+      ctx.fillRect(r.sq.x, r.sq.y, r.sq.s, r.sq.s);
+      ctx.strokeStyle = i % 2 === 0 ? 'rgba(201,168,76,0.5)' : 'rgba(122,176,184,0.5)';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(r.sq.x, r.sq.y, r.sq.s, r.sq.s);
+      ctx.strokeStyle = 'rgba(122,176,184,0.3)';
+      ctx.strokeRect(r.x, r.y, r.w, r.h);
+    }
+  }
+
+  // Draw spiral
+  if (spiralMode === 'spiral' || spiralMode === 'all') {
+    ctx.beginPath();
+    // Approximate spiral through quarter circles
+    var spiralRects = [];
+    var cx2 = x, cy2 = y, cw = w, ch = h;
+    var dirs2 = ['right','down','left','up'];
+    spiralRects.push({x:cx2, y:cy2, w:cw, h:ch});
+    for (var i = 0; i < 7; i++) {
+      var d = dirs2[i % 4];
+      var ns;
+      if (d === 'right') { ns={x:cx2,y:cy2,w:ch,h:ch}; cx2+=ch; cw=cw-ch; }
+      else if (d === 'down') { ns={x:cx2,y:cy2,w:cw,h:cw}; cy2+=cw; ch=ch-cw; }
+      else if (d === 'left') { ns={x:cx2+cw-ch,y:cy2,w:ch,h:ch}; cw=cw-ch; }
+      else { ns={x:cx2,y:cy2+ch-cw,w:cw,h:cw}; ch=ch-cw; }
+      spiralRects.push(ns);
+    }
+
+    ctx.beginPath();
+    ctx.moveTo(spiralRects[0].x, spiralRects[0].y + spiralRects[0].h);
+    for (var i = 0; i < spiralRects.length && i < 7; i++) {
+      var r2 = spiralRects[i];
+      var d2 = dirs2[i % 4];
+      var sx, sy, ex, ey, arcCx, arcCy, startA, endA;
+      if (d2 === 'right') { arcCx=r2.x+r2.w; arcCy=r2.y+r2.h; startA=Math.PI; endA=1.5*Math.PI; }
+      else if (d2 === 'down') { arcCx=r2.x; arcCy=r2.y+r2.h; startA=1.5*Math.PI; endA=2*Math.PI; }
+      else if (d2 === 'left') { arcCx=r2.x; arcCy=r2.y; startA=0; endA=0.5*Math.PI; }
+      else { arcCx=r2.x+r2.w; arcCy=r2.y; startA=0.5*Math.PI; endA=Math.PI; }
+      var rad = Math.min(r2.w, r2.h);
+      ctx.arc(arcCx, arcCy, rad, startA, endA);
+    }
+    ctx.strokeStyle = gold;
+    ctx.lineWidth = 2.5;
+    ctx.shadowColor = 'rgba(201,168,76,0.5)';
+    ctx.shadowBlur = 8;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+  }
+
+  // Label
+  ctx.font = '11px Cinzel,serif';
+  ctx.fillStyle = 'rgba(201,168,76,0.7)';
+  ctx.textAlign = 'left';
+  ctx.fillText('width : height = \u03C6', x + 8, y + 16);
+}
+
+drawSpiral();
+
+// QUIZ
+function quizAnswer(q, btn, choice) {
+  if (quizAnswers[q]) return;
+  quizAnswers[q] = choice;
+  var correct = correctAnswers[q];
+  var buttons = btn.closest('.quiz-options').querySelectorAll('.quiz-option');
+  buttons.forEach(function(b) { b.disabled = true; });
+  if (choice === correct) {
+    btn.classList.add('correct');
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#81c784">&#10003; ' + quizFeedback[q][correct] + '</span>';
+  } else {
+    btn.classList.add('wrong');
+    buttons.forEach(function(b) { if (b.textContent.trim()[0] === correct) b.classList.add('correct'); });
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#e57373">&#10007; ' + quizFeedback[q].wrong + '</span>';
+  }
+  saveData();
+}
+
+function submitQuiz() {
+  var total = Object.keys(correctAnswers).length;
+  var scored = Object.keys(quizAnswers).filter(function(q) { return quizAnswers[q] === correctAnswers[q]; }).length;
+  document.getElementById('quiz-score-bar').style.display = 'block';
+  document.getElementById('quiz-score-display').textContent = scored + '/' + total;
+  var msgs = ['Review the phi definition and properties sections and try again.','Good start -- revisit the self-referencing identities and the domains table.','Solid grasp of phi -- the proportion is becoming familiar.','Excellent -- strong understanding of phi and its appearances.','Outstanding -- deep command of the Golden Ratio.','Perfect! Phi is fully understood at every scale.'];
+  document.getElementById('quiz-score-msg').textContent = msgs[scored] || msgs[5];
+  document.getElementById('quiz-submit').style.display = 'none';
+  saveData();
+}
+
+function spawnConfetti() {
+  var colors = ['#c9a84c','#7ab0b8','#f0ede6','#9ecdd5','#e8c96d'];
+  for (var i = 0; i < 60; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.cssText = 'left:' + (Math.random()*100) + 'vw;top:-10px;background:' + colors[Math.floor(Math.random()*colors.length)] + ';animation-duration:' + (1.5+Math.random()*2) + 's;animation-delay:' + (Math.random()*.5) + 's;width:' + (6+Math.random()*6) + 'px;height:' + (6+Math.random()*6) + 'px;border-radius:' + (Math.random()>.5?'50%':'2px');
+        document.body.appendChild(el);
+        setTimeout(function() { el.remove(); }, 4000);
+      }, i * 30);
+    })(i);
+  }
+}
+
+function onComplete(cb) {
+  var badge = document.getElementById('xp-badge');
+  if (cb.checked) { badge.classList.add('show'); spawnConfetti(); saveData(); }
+  else badge.classList.remove('show');
+}
+
+function gatherData() {
+  return {
+    version:'1.0', lesson:'G7',
+    timestamp: new Date().toISOString(),
+    reflections:{r1:document.getElementById('ref1').value,r2:document.getElementById('ref2').value,r3:document.getElementById('ref3').value},
+    quiz:{answers:quizAnswers},
+    completed:document.getElementById('complete-checkbox').checked
+  };
+}
+
+function applyData(data) {
+  if (!data) return;
+  if (data.reflections) {
+    ['r1','r2','r3'].forEach(function(k) {
+      var el = document.getElementById('ref' + k.slice(1));
+      if (el && data.reflections[k]) el.value = data.reflections[k];
+    });
+  }
+  if (data.quiz && data.quiz.answers) {
+    quizAnswers = data.quiz.answers;
+    Object.keys(quizAnswers).forEach(function(q) {
+      var choice = quizAnswers[q], correct = correctAnswers[q];
+      var qEl = document.getElementById('qq' + q); if (!qEl) return;
+      var btns = qEl.querySelectorAll('.quiz-option');
+      btns.forEach(function(b) {
+        b.disabled = true;
+        var f = b.textContent.trim()[0];
+        if (f === choice && choice === correct) b.classList.add('correct');
+        else if (f === choice) b.classList.add('wrong');
+        else if (f === correct) b.classList.add('correct');
+      });
+      var html = choice === correct
+        ? '<span style="color:#81c784">&#10003; ' + quizFeedback[q][correct] + '</span>'
+        : '<span style="color:#e57373">&#10007; ' + quizFeedback[q].wrong + '</span>';
+      document.getElementById('qf' + q).innerHTML = html;
+    });
+  }
+  if (data.completed) {
+    document.getElementById('complete-checkbox').checked = true;
+    document.getElementById('xp-badge').classList.add('show');
+  }
+}
+
+function saveData() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(gatherData())); document.getElementById('save-status').textContent = 'Saved at ' + new Date().toLocaleTimeString(); }
+  catch(e) { document.getElementById('save-status').textContent = 'Save failed'; }
+}
+function loadData() {
+  try { var r = localStorage.getItem(STORAGE_KEY); if (r) applyData(JSON.parse(r)); } catch(e) {}
+}
+function scheduleAutosave() { clearTimeout(autosaveTimer); autosaveTimer = setTimeout(saveData, 90000); }
+function exportData() {
+  var blob = new Blob([JSON.stringify(gatherData(),null,2)],{type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'TFA_G7_GoldenRatioPhi_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click(); URL.revokeObjectURL(url);
+}
+function importTrigger() { document.getElementById('import-input').click(); }
+function importData(e) {
+  var file = e.target.files[0]; if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    try { var d = JSON.parse(ev.target.result); applyData(d); localStorage.setItem(STORAGE_KEY,JSON.stringify(d)); document.getElementById('save-status').textContent = 'Imported successfully'; }
+    catch(err) { document.getElementById('save-status').textContent = 'Import failed'; }
+  };
+  reader.readAsText(file);
+}
+setInterval(saveData, 90000);
+window.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>
