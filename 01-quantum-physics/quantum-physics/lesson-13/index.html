@@ -1,1 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q13 — Scalar Waves | The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--n:#0a1628;--n2:#0d1e38;--n3:#102040;--g:#4a9edd;--g2:#78b8ee;--gb:rgba(74,158,221,0.22);--gf:rgba(74,158,221,0.08);--w:#e8f0f8;--w2:rgba(232,240,248,0.72);--w3:rgba(232,240,248,0.38);--w4:rgba(232,240,248,0.06);--ok:#2a8a7a;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
+body{min-height:100vh;padding-bottom:80px}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--w4);z-index:200}
+.progress-fill{height:100%;background:var(--g);transition:width .4s;width:0%}
+header{background:rgba(10,22,40,0.95);border-bottom:1px solid var(--gb);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:100;backdrop-filter:blur(8px)}
+.hd-left{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.12em}
+.hd-right{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em}
+.hero{text-align:center;padding:60px 24px 40px;max-width:800px;margin:0 auto}
+.eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.22em;color:var(--g);margin-bottom:18px;opacity:0.8}
+.hero h1{font-family:'Cinzel',serif;font-size:44px;font-weight:700;color:var(--w);line-height:1.12;margin-bottom:12px}
+.hero h1 span{color:var(--g)}
+.gold-rule{width:80px;height:2px;background:var(--g);margin:24px auto;opacity:0.6}
+.hero-sub{font-size:16px;color:var(--w3);line-height:1.7;max-width:560px;margin:0 auto}
+.content{max-width:780px;margin:0 auto;padding:0 24px}
+.section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb)}
+.section p{font-size:14px;color:var(--w2);line-height:1.8;margin-bottom:12px}
+.section p:last-child{margin:0}
+.section p strong{color:var(--g2);font-weight:600}
+.section p em{color:var(--g);font-style:normal;font-weight:500}
 
+/* TABLES */
+.data-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.data-table th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--g);padding:10px 14px;background:var(--gf);border:1px solid var(--gb);text-align:left}
+.data-table td{padding:10px 14px;border:1px solid rgba(74,158,221,0.1);color:var(--w2);line-height:1.6;vertical-align:top}
+.data-table tr:nth-child(even) td{background:rgba(0,0,0,0.15)}
+.data-table td:first-child{color:var(--g2);font-weight:600}
+
+/* CALLOUT */
+.callout{background:var(--gf);border-left:2px solid var(--g);border-radius:0 8px 8px 0;padding:14px 16px;margin:16px 0}
+.callout-label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.12em;margin-bottom:6px}
+.callout p{font-size:13px;color:var(--w2);margin:0;line-height:1.7}
+.callout.amber{border-left-color:rgba(220,190,80,0.7);background:rgba(220,190,80,0.06)}
+.callout.amber .callout-label{color:rgba(220,190,80,0.9)}
+.callout.amber p{color:rgba(232,240,248,0.65)}
+
+/* INTERACTIVE */
+.viz-section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.viz-section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:6px}
+.viz-sub{font-size:12px;color:var(--w3);margin-bottom:22px;line-height:1.6}
+.viz-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.viz-tab{padding:8px 18px;border-radius:6px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all .18s;border:1px solid var(--gb);background:var(--gf);color:var(--w3)}
+.viz-tab.active{background:var(--g);color:#080e30;border-color:var(--g)}
+.viz-panel{display:none}.viz-panel.active{display:block}
+
+/* WAVE VISUALIZER */
+.wave-viz-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:560px){.wave-viz-wrap{grid-template-columns:1fr}}
+.wave-panel{background:rgba(0,0,0,0.3);border:1px solid var(--gb);border-radius:8px;padding:14px}
+.wave-panel-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.1em;margin-bottom:10px;text-align:center}
+.wave-panel-title.hertzian{color:#4a9edd}
+.wave-panel-title.scalar{color:#78b8ee}
+canvas.wave-c{display:block;width:100%;height:90px}
+.wave-desc{font-size:11px;color:var(--w3);line-height:1.55;margin-top:10px;text-align:center}
+.wave-controls{display:flex;gap:10px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
+.wave-ctrl-btn{padding:7px 16px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.08em;cursor:pointer;border:1px solid var(--gb);background:var(--gf);color:var(--w3);transition:all .18s}
+.wave-ctrl-btn.active{background:var(--g);color:#080e30;border-color:var(--g)}
+.wave-compare-note{font-size:12px;color:var(--w3);line-height:1.65;padding:10px 14px;background:var(--gf);border-radius:6px;border-left:2px solid var(--g);margin-top:4px}
+
+/* RESEARCHER CARDS */
+.researcher-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+@media(max-width:560px){.researcher-grid{grid-template-columns:1fr}}
+.res-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px;cursor:pointer;transition:all .18s}
+.res-card:hover{border-color:var(--g);transform:translateY(-1px)}
+.res-card.active{border-color:var(--g);background:rgba(74,158,221,0.08)}
+.res-card-icon{font-size:22px;margin-bottom:8px}
+.res-card-name{font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.08em;margin-bottom:3px}
+.res-card-role{font-size:11px;color:var(--w3);line-height:1.5}
+.res-detail{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:20px;display:none;animation:fadeIn .2s ease}
+.res-detail.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.res-detail h4{font-family:'Cinzel',serif;font-size:13px;color:var(--g2);margin-bottom:10px;letter-spacing:0.06em}
+.res-detail p{font-size:13px;color:var(--w2);line-height:1.75;margin-bottom:8px}
+.res-detail p:last-child{margin:0}
+.res-detail .significance{font-size:12px;color:var(--g);border-top:1px solid var(--gb);margin-top:12px;padding-top:12px;line-height:1.6;font-style:italic}
+
+/* PROPERTIES EXPLORER */
+.prop-list{display:flex;flex-direction:column;gap:8px}
+.prop-item{background:var(--n3);border:1px solid var(--gb);border-radius:8px;overflow:hidden}
+.prop-trigger{display:flex;gap:14px;padding:14px 16px;cursor:pointer;transition:background .15s;align-items:flex-start}
+.prop-trigger:hover{background:rgba(74,158,221,0.05)}
+.prop-item.open .prop-trigger{background:rgba(74,158,221,0.06)}
+.prop-num{font-family:'Cinzel',serif;font-size:13px;color:var(--g);min-width:24px;font-weight:700;padding-top:1px;flex-shrink:0}
+.prop-title{font-family:'Cinzel',serif;font-size:12px;color:var(--g2);letter-spacing:0.06em;margin-bottom:3px}
+.prop-tagline{font-size:11px;color:var(--w3);line-height:1.5}
+.prop-arrow{margin-left:auto;font-size:11px;color:var(--g);flex-shrink:0;transition:transform .2s;margin-top:2px}
+.prop-item.open .prop-arrow{transform:rotate(180deg)}
+.prop-body{display:none;padding:0 16px 16px 54px;font-size:13px;color:var(--w2);line-height:1.75;border-top:1px solid rgba(74,158,221,0.08)}
+.prop-body.open{display:block}
+.prop-body strong{color:var(--g2)}
+.prop-body .caveat{font-size:11px;color:var(--w3);margin-top:8px;line-height:1.6;padding:8px 10px;background:rgba(220,190,80,0.05);border-left:1px solid rgba(220,190,80,0.3);border-radius:0 4px 4px 0}
+
+/* ACCORDION */
+.accordion{margin-top:8px}
+.acc-item{border:1px solid var(--gb);border-radius:8px;margin-bottom:7px;overflow:hidden}
+.acc-head{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.06em;background:var(--gf);transition:background .15s}
+.acc-head:hover{background:rgba(255,255,255,0.04)}
+.acc-body{display:none;padding:14px 16px;font-size:13px;color:var(--w2);line-height:1.75;border-top:1px solid var(--gb)}
+.acc-body.open{display:block}
+.acc-arrow{transition:transform .2s;font-size:11px}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body strong{color:var(--g2)}
+
+/* CONCEPT GRID */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:580px){.concept-grid{grid-template-columns:1fr}}
+.concept-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px}
+.concept-card h4{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.concept-card p{font-size:12px;color:var(--w3);line-height:1.65;margin:0}
+.concept-card .tfa{font-size:11px;color:var(--g2);margin-top:7px;padding-top:7px;border-top:1px solid var(--gb);display:block;line-height:1.5}
+
+/* PRACTICE STEPS */
+.practice-steps{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.ps{display:flex;gap:14px;padding:14px;background:var(--gf);border:1px solid var(--gb);border-radius:8px}
+.ps-n{font-family:'Cinzel',serif;font-size:13px;color:var(--g);min-width:28px;font-weight:700;padding-top:1px}
+.ps-t{font-size:13px;color:var(--w2);line-height:1.65}
+.ps-t strong{color:var(--g2);font-weight:600}
+
+/* RESOURCES */
+.res-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(232,240,248,0.05)}
+.res-item:last-child{border:none}
+.res-icon{font-size:15px;flex-shrink:0;padding-top:2px}
+.res-title{font-size:13px;color:var(--w);font-weight:500;margin-bottom:2px}
+.res-auth{font-size:11px;color:var(--g2);margin-bottom:3px}
+.res-desc{font-size:11px;color:var(--w3);line-height:1.5}
+
+/* REFLECTION */
+.reflection-prompt{background:var(--n3);border-left:3px solid var(--g);border-radius:0 8px 8px 0;padding:16px 18px;margin-bottom:12px}
+.reflection-prompt p{font-size:13px;color:var(--w2);line-height:1.65;font-style:italic;margin:0}
+textarea{width:100%;background:var(--w4);border:1px solid var(--gb);border-radius:8px;padding:12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;resize:vertical;min-height:88px;outline:none;line-height:1.6;transition:border-color .2s;margin-top:8px}
+textarea:focus{border-color:var(--g)}
+textarea::placeholder{color:var(--w3)}
+
+/* WORKSHOP */
+.workshop{background:var(--gf);border:1px dashed var(--gb);border-radius:12px;padding:22px;text-align:center;margin-bottom:20px}
+.workshop h3{font-family:'Cinzel',serif;font-size:13px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.workshop p{font-size:12px;color:var(--w3);line-height:1.65}
+
+/* COMPLETION */
+.completion-box{background:var(--gf);border:1px solid var(--gb);border-radius:12px;padding:24px;text-align:center;margin-top:20px}
+.completion-box h3{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.08em;margin-bottom:10px}
+.completion-box p{font-size:13px;color:var(--w3);margin-bottom:16px;line-height:1.6}
+.complete-btn{padding:12px 28px;border-radius:8px;background:var(--g);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:0.1em;color:#080e30;transition:all .15s}
+.complete-btn:hover{background:var(--g2)}
+.complete-btn.done{background:var(--ok);cursor:default}
+.xp-flash{display:none;margin-top:12px;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.08em}
+.xp-flash.show{display:block}
+
+/* NAV */
+.nav-lessons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:480px){.nav-lessons{grid-template-columns:1fr}}
+.nav-lesson{background:var(--n3);border:1px solid var(--gb);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;transition:all .18s}
+.nav-lesson:hover{background:var(--gf);border-color:var(--g)}
+.nav-lesson.prev{flex-direction:row-reverse}
+.nav-label{font-size:10px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.12em;margin-bottom:4px;text-transform:uppercase}
+.nav-title{font-size:13px;color:var(--w);font-family:'Cinzel',serif}
+.nav-arrow{font-size:20px;color:var(--g)}
+
+/* SAVE BAR */
+.save-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,0.97);border-top:1px solid var(--gb);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;backdrop-filter:blur(8px)}
+.save-status{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.08em}
+.save-btns{display:flex;gap:8px}
+.save-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all .15s;border:1px solid var(--gb)}
+.save-btn.primary{background:var(--g);color:#080e30;border-color:var(--g)}.save-btn.primary:hover{background:var(--g2)}
+.save-btn.ghost{background:var(--gf);color:var(--g)}.save-btn.ghost:hover{background:rgba(255,255,255,0.06)}
+#importFile{display:none}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <div class="hd-left">THE FREQUENCY ACADEMY · QUANTUM PHYSICS & SCIENCES</div>
+  <div class="hd-right">Q13 · LESSON 13 OF 16</div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">QUANTUM PHYSICS & SCIENCES · Q13</div>
+  <h1>Scalar Waves — <span>Beyond Hertzian Physics</span></h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">The electromagnetic spectrum from the last lesson represents one type of wave — transverse, Hertzian. Tesla believed there was another. Waves that pass through everything, carry information without energy loss, and may operate by physics not yet fully mapped. This is the frontier he was working at when his papers were seized.</p>
+</div>
+
+<div style="max-width:840px;margin:0 auto 32px;padding:0 24px">
+  <div style="background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:14px">
+    <div style="font-size:24px">🎬</div>
+    <div>
+      <div style="font-family:Cinzel,serif;font-size:11px;color:var(--g);letter-spacing:0.1em;margin-bottom:4px">VIDEO LESSON</div>
+      <div style="font-size:13px;color:var(--w3);line-height:1.5">A video transmission for this lesson is coming soon. The interactive lesson below contains the full teaching content — explore it now and the video will be added here when available.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- TRANSMISSION -->
+  <div class="section">
+    <h2>The Transmission</h2>
+    <p>Nikola Tesla was perhaps the greatest inventor who ever lived. AC electricity. Radio. Remote control. The foundations of the modern world. But Tesla claimed his greatest discoveries were never released to the public. He spoke of energy transmission without wires. Of waves that could pass through the Earth itself. Of power drawn from the fabric of space.</p>
+    <p>When Tesla died in 1943, the FBI seized his papers. Many were never returned. What he was working on that warranted that response — many researchers believe the answer is what we now call scalar waves.</p>
+    <p>In the previous lesson, we mapped the electromagnetic spectrum — radio to gamma. All of that is Hertzian physics: transverse electromagnetic waves, well understood, well measured. But there is theoretical and experimental evidence for another type of wave entirely. Waves that do not follow the rules of Hertz and Maxwell. Waves that may explain phenomena conventional physics cannot account for. Waves that may be at the heart of how tensor rings and many frequency devices actually work. This lesson goes beyond Hertzian physics into the territory Tesla was mapping at the turn of the last century — and that researchers have continued to explore since.</p>
+  </div>
+
+  <!-- TWO TYPES OF WAVES -->
+  <div class="section">
+    <h2>Two Types of Waves — The Foundational Distinction</h2>
+    <p>To understand scalar waves, the starting point is understanding what makes Hertzian waves "Hertzian." Heinrich Hertz proved Maxwell's theory of electromagnetic waves in 1887. The waves he demonstrated — and everything in the electromagnetic spectrum we studied — are <strong>transverse</strong> waves. Transverse means the oscillation is perpendicular to the direction of travel. Imagine a wave on a rope: the rope moves up and down, but the wave travels horizontally. In EM waves, electric and magnetic fields oscillate at right angles to the wave's direction of propagation.</p>
+    <p>But there is a second type of wave: <strong>longitudinal</strong>. In a longitudinal wave, the oscillation is parallel to the direction of travel. Sound is a longitudinal wave — air compresses and expands in the same direction the sound moves. Think of a slinky compressed and released: the compression wave travels along its length, not perpendicular to it.</p>
+    <p>Here is the question that opens the door to scalar physics: <em>can electromagnetic energy also travel as longitudinal waves?</em> Maxwell's original equations, as formulated in 1865, contained terms that could describe longitudinal EM components. When Oliver Heaviside and others simplified those equations into the four equations used today, those terms were removed. What remains — the simplified Maxwell equations — describes only transverse waves.</p>
+
+    <div class="callout">
+      <div class="callout-label">THE HISTORICAL MOMENT</div>
+      <p>Tesla believed something was lost in that simplification. He called these waves "non-Hertzian" and insisted they were fundamentally different from what Hertz had demonstrated. Today, researchers call them scalar waves, longitudinal electromagnetic waves, or Tesla waves. Whether the simplification of Maxwell's equations discarded something real — or whether those terms were mathematically equivalent and properly removed — remains a point of genuine physics debate.</p>
+    </div>
+
+    <table class="data-table" style="margin-top:16px">
+      <thead><tr><th>Property</th><th>Hertzian (Transverse)</th><th>Scalar (Longitudinal) — Theorized</th></tr></thead>
+      <tbody>
+        <tr><td>Oscillation direction</td><td>Perpendicular to travel</td><td>Parallel to travel</td></tr>
+        <tr><td>Natural example</td><td>Light, radio waves, all EM spectrum</td><td>Sound (acoustic analog)</td></tr>
+        <tr><td>Faraday cage behavior</td><td>Blocked completely</td><td>May pass through unaffected</td></tr>
+        <tr><td>Decay with distance</td><td>Yes — inverse square law</td><td>May maintain strength</td></tr>
+        <tr><td>Energy transmission</td><td>Carries thermal/electrical energy</td><td>May carry information without thermal effects</td></tr>
+        <tr><td>Mainstream acceptance</td><td>Fully established physics</td><td>Frontier / disputed</td></tr>
+        <tr><td>Tesla's interest</td><td>Starting point he moved beyond</td><td>Primary research focus</td></tr>
+        <tr><td>Frequency device relevance</td><td>Standard EM devices</td><td>Tensor rings, caduceus coils, orgone devices</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- INTERACTIVE -->
+  <div class="viz-section">
+    <h2>Scalar Waves Explorer</h2>
+    <p class="viz-sub">Three tools: the Wave Visualizer animates the core distinction between transverse and longitudinal waves. The Properties Explorer expands each theorized scalar property with evidence and applications. The Researcher Profiles give depth on the key scientists who have investigated scalar phenomena.</p>
+
+    <div class="viz-tabs">
+      <button class="viz-tab active" onclick="switchTab('waves', this)">Wave Visualizer</button>
+      <button class="viz-tab" onclick="switchTab('props', this)">Properties Explorer</button>
+      <button class="viz-tab" onclick="switchTab('researchers', this)">Researcher Profiles</button>
+    </div>
+
+    <!-- TAB 1: WAVE VISUALIZER -->
+    <div class="viz-panel active" id="tab-waves">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:16px">The animations show the fundamental difference between the two wave types. In transverse waves, the medium oscillates perpendicular to travel. In longitudinal waves, the medium oscillates parallel to travel — as compressions and rarefactions propagating in the same direction as the wave.</p>
+
+      <div class="wave-controls">
+        <button class="wave-ctrl-btn active" id="btn-both" onclick="setWaveMode('both', this)">Show Both</button>
+        <button class="wave-ctrl-btn" id="btn-hertz" onclick="setWaveMode('hertz', this)">Hertzian Only</button>
+        <button class="wave-ctrl-btn" id="btn-scalar" onclick="setWaveMode('scalar', this)">Scalar / Longitudinal Only</button>
+      </div>
+
+      <div class="wave-viz-wrap" id="waveVizWrap">
+        <div class="wave-panel" id="panel-hertz">
+          <div class="wave-panel-title hertzian">HERTZIAN · Transverse EM Wave</div>
+          <canvas class="wave-c" id="cHertz" height="90"></canvas>
+          <div class="wave-desc">Oscillation ↕ perpendicular to direction of travel →<br>Electric &amp; magnetic fields oscillate at right angles to propagation.<br>Examples: light, radio, all standard EM.</div>
+        </div>
+        <div class="wave-panel" id="panel-scalar">
+          <div class="wave-panel-title scalar">SCALAR · Longitudinal Wave</div>
+          <canvas class="wave-c" id="cScalar" height="90"></canvas>
+          <div class="wave-desc">Oscillation → parallel to direction of travel →<br>Compression and rarefaction zones propagate in the same direction.<br>Acoustic analog: sound through air.</div>
+        </div>
+      </div>
+
+      <div class="wave-compare-note" id="waveNote">
+        Both wave types transmit energy through oscillation — but in fundamentally different geometries. The transverse EM wave (left) is what Hertz and Maxwell described and what the entire electromagnetic spectrum is built on. The longitudinal wave (right) shows the geometry Tesla theorized for scalar waves — oscillation in the direction of travel, potentially enabling different interactions with matter, different propagation characteristics, and different biological effects.
+      </div>
+    </div>
+
+    <!-- TAB 2: PROPERTIES EXPLORER -->
+    <div class="viz-panel" id="tab-props">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:16px">Five theorized properties distinguish scalar waves from Hertzian EM. Click each property to expand the evidence, the proposed mechanism, and the practical implications. The honest epistemic status of each claim is included.</p>
+
+      <div class="prop-list" id="propList"></div>
+
+      <div class="callout amber" style="margin-top:16px">
+        <div class="callout-label">HONEST EPISTEMIC POSITION</div>
+        <p>None of these properties have been demonstrated to mainstream physics standards. Absence of proof is not proof of absence — especially in a field where the primary researcher had his papers seized and the funding landscape is heavily skewed toward conventional physics. Hold these properties as serious hypotheses, not established facts. The distinction matters for both intellectual integrity and practical application.</p>
+      </div>
+    </div>
+
+    <!-- TAB 3: RESEARCHER PROFILES -->
+    <div class="viz-panel" id="tab-researchers">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:16px">The scalar wave lineage runs from Tesla's Colorado Springs experiments through a series of researchers who have carried the work forward across different disciplines and decades. Select a researcher to read their contribution and its significance.</p>
+
+      <div class="researcher-grid" id="researcherGrid"></div>
+      <div class="res-detail" id="resDetail"></div>
+
+      <div style="background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:14px 16px;margin-top:14px">
+        <div style="font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;margin-bottom:8px">THE PATTERN ACROSS RESEARCHERS</div>
+        <p style="font-size:13px;color:var(--w2);line-height:1.7;margin:0">Researchers across different fields, different countries, different decades report phenomena that do not fit Hertzian physics. Military physicists, academic electrical engineers, biophysicists — all pointing to something beyond the conventional electromagnetic spectrum. Whether we call it scalar, longitudinal, torsion, or Tesla waves, the pattern of anomalous reports is consistent. Something is being detected that the current framework does not account for.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCALAR IN FREQUENCY WORK -->
+  <div class="section">
+    <h2>Scalar Waves in Frequency Practice — Where Theory Meets Application</h2>
+    <p>The most practical question: how does scalar wave theory map onto the frequency devices and practices in actual use? Several of the most widely deployed frequency tools have proposed scalar mechanisms that explain effects that standard EM cannot.</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <h4>Tensor Rings</h4>
+        <p>When copper wire is formed into a closed loop at cubit-based dimensions, tensor ring theory proposes that a standing columnar scalar wave forms within the ring — extending above and below the plane.</p>
+        <span class="tfa">→ This explains why tensor rings affect water structure and biological systems despite producing negligible conventional EM fields. If the mechanism is scalar rather than Hertzian, the cubit measurement matters because it determines the standing wave geometry, not a broadcast frequency.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Caduceus &amp; Bifilar Coils</h4>
+        <p>In a caduceus coil, wire winds in opposing helical directions. The electromagnetic fields from opposing windings cancel each other — conventional EM output approaches zero.</p>
+        <span class="tfa">→ What remains theoretically is the scalar component — the longitudinal component that doesn't cancel because it operates in a different geometric dimension. Tesla's bifilar coil operates on the same principle. These configurations may be scalar generators precisely because they null the Hertzian component.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Water Structuring</h4>
+        <p>Scalar fields are theorized to have unique effects on water's hydrogen bond network, surface tension, and crystallization behavior — different from standard EM field effects.</p>
+        <span class="tfa">→ This is the proposed mechanism behind tensor ring water charging. Standard EM fields at tensor ring intensities are too weak to produce the measurable water structure changes that researchers report. A scalar mechanism — if real — would not have this limitation, since scalar energy may interact with matter differently than Hertzian EM.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Orgone and Related Devices</h4>
+        <p>Wilhelm Reich's orgone accumulator and related devices involve alternating organic and metallic layers that some scalar researchers connect to scalar field generation and concentration.</p>
+        <span class="tfa">→ The connection between Reich's work and scalar theory is proposed but not definitively established. The common thread is: effects on biological systems that exceed what conventional EM at the intensities involved should produce — suggesting a different mechanism.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Intention and Device Charging</h4>
+        <p>Some researchers propose that consciousness interacts more readily with scalar fields than with Hertzian EM — because scalar waves carry information without conventional energy, and consciousness may be fundamentally informational.</p>
+        <span class="tfa">→ If this is correct, it provides a proposed mechanism for why intentional state during device creation and use matters. It is not mysticism — it is a physics hypothesis: that informational fields (scalar) couple with informational systems (consciousness) more efficiently than energy fields (Hertzian EM).</span>
+      </div>
+      <div class="concept-card">
+        <h4>Torsion Fields</h4>
+        <p>Torsion fields — proposed twist or spin fields in spacetime — are a related but distinct concept explored by Russian physicist Anatoly Akimov and others, particularly in Soviet-era research.</p>
+        <span class="tfa">→ Torsion field theory overlaps with scalar wave theory in proposing a class of field phenomena not captured by standard Maxwell electromagnetics. Some researchers use the terms interchangeably; others distinguish them. Both describe proposed informational fields that interact with biological systems through non-thermal mechanisms.</span>
+      </div>
+    </div>
+
+    <p style="margin-top:20px">Much of frequency technology may work through scalar principles — even when the creators do not use that terminology. Orgone, torsion fields, tensor rings, zero-point devices: they may all be accessing the same deeper layer of physics that Tesla was working at. A layer that mainstream science has not yet fully mapped — and in some cases has actively avoided mapping.</p>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <div class="section">
+    <h2>Quick Reference</h2>
+    <div class="accordion" id="accWrap"></div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="section">
+    <h2>This Week's Practice — Engage the Scalar Territory</h2>
+    <p style="margin-bottom:16px">You cannot directly verify scalar waves with consumer equipment. But you can develop an informed relationship with the theory, the devices, and your own direct experience. This week: three practices that engage scalar wave territory honestly.</p>
+    <div class="practice-steps">
+      <div class="ps"><div class="ps-n">1</div><div class="ps-t"><strong>Map the proposed scalar mechanisms in your existing practice.</strong> List every frequency device or practice you currently use — tensor rings, orgonite, PEMF, caduceus coils, tuning forks, structured water, anything. For each one, write two sentences: what the conventional EM explanation for its effects would be, and what the scalar explanation would be. Where there is a gap between conventional EM capabilities at the device's intensity and the effects reported, scalar theory may be doing explanatory work. Identify which of your tools has the largest such gap.</div></div>
+      <div class="ps"><div class="ps-n">2</div><div class="ps-t"><strong>Run a deliberate tensor ring water test.</strong> Fill two identical glasses from the same tap at the same time. Place one inside a tensor ring (or stack) for 20–30 minutes. Taste both. Record what you notice. This is not a controlled experiment — no double-blind, no controls for expectation effects. But it is direct engagement with the phenomenon scalar water structuring theory attempts to explain. Repeat across several days before forming a conclusion.</div></div>
+      <div class="ps"><div class="ps-n">3</div><div class="ps-t"><strong>Study Konstantin Meyl's Faraday cage experiment documentation.</strong> Meyl has published detailed accounts of demonstrations where scalar signals are transmitted through Faraday cages — the result, if real, that most directly distinguishes scalar from Hertzian waves. Search "Meyl scalar wave Faraday cage" and read the experimental descriptions carefully. Evaluate the methodology, not just the claim. Ask: what would it take for this to be reproducible? What controls are present? What controls are absent? This is how you engage frontier science without either credulity or dismissal.</div></div>
+      <div class="ps"><div class="ps-n">4</div><div class="ps-t"><strong>Locate your personal epistemic line.</strong> The workbook asks: "You don't have to believe everything — but you should know this territory exists." Find your actual position. Not your performed position — your honest one. What would it take for you to consider scalar waves provisionally real? What evidence would shift you toward greater confidence? What evidence would shift you away? Having a clear answer to those questions is more valuable than any particular conclusion about scalar physics.</div></div>
+    </div>
+  </div>
+
+  <!-- GO DEEPER -->
+  <div class="section">
+    <h2>Go Deeper</h2>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">Scalar Waves — Konstantin Meyl</div>
+        <div class="res-auth">INDEL GmbH, 2003</div>
+        <div class="res-desc">The most rigorous academic treatment of scalar wave theory available. Meyl extends Maxwell's equations mathematically to include longitudinal components and documents experimental demonstrations. Dense but essential for anyone who wants the physics rather than the popularization.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">Excalibur Briefing — Thomas Bearden</div>
+        <div class="res-auth">Strawberry Hill Press, 1980</div>
+        <div class="res-desc">Bearden's foundational text connecting scalar electromagnetic theory to zero-point energy, healing applications, and proposed weapons development. Some claims are more speculative than others — read with calibrated skepticism. The physics framework is the valuable part.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔬</div>
+      <div>
+        <div class="res-title">Tesla's Colorado Springs Notes 1899–1900 — Nikola Tesla</div>
+        <div class="res-auth">Nolit, Belgrade, 1978 (facsimile edition)</div>
+        <div class="res-desc">Tesla's actual experimental notebooks from his Colorado Springs period — where he first documented phenomena he described as non-Hertzian. Dense technical content but the primary source for understanding what Tesla was actually observing and claiming. Available through academic libraries.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔬</div>
+      <div>
+        <div class="res-title">Effect of Scalar and Conventional EM Fields on the Growth of E. coli — Glen Rein</div>
+        <div class="res-auth">Proceeds of the 26th Intersociety Energy Conversion Conference, 1991</div>
+        <div class="res-desc">One of the most directly relevant experimental papers for frequency healers. Rein's controlled comparison of scalar vs. conventional EM effects on biological systems is the foundation for the claim that scalar fields interact with biology differently. Primary research literature, not popular science.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">The Energy Machine of T. Henry Moray — Moray B. King</div>
+        <div class="res-auth">Adventures Unlimited Press, 2005</div>
+        <div class="res-desc">Documents T. Henry Moray's radiant energy device, which may have operated on scalar/zero-point principles. Provides historical context for the scalar energy extraction lineage that runs parallel to Tesla's work.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔗</div>
+      <div>
+        <div class="res-title">Previous: Q12 — The Electromagnetic Spectrum</div>
+        <div class="res-auth">The Frequency Academy · Quantum Physics &amp; Sciences</div>
+        <div class="res-desc">Q13 is what lies beyond the electromagnetic spectrum mapped in Q12. Hertzian EM — radio through gamma — is the territory Q12 covered. Scalar waves are the proposed territory that lies orthogonal to it, in a direction Hertz's framework does not describe.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="section">
+    <h2>Reflection Journal</h2>
+
+    <div class="reflection-prompt">
+      <p>How does understanding scalar wave theory change how you think about the frequency devices you work with? Which of your tools now makes more sense through a scalar lens than through a conventional EM lens? What does this reframing shift in how you work with them?</p>
+    </div>
+    <textarea id="ref1" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>Why do you think Tesla's scalar research was suppressed or largely ignored by mainstream science and by the institutions that seized his papers? What does that pattern of suppression tell you about how physics — and knowledge generally — develops and is gatekept? Where does this pattern appear in other fields you know?</p>
+    </div>
+    <textarea id="ref2" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>Have you experienced effects from a device or healing practice that conventional EM could not explain at the intensities involved? Describe the experience and the gap between expected and actual effect. How might scalar theory account for it — and what would a rigorous test of that explanation look like?</p>
+    </div>
+    <textarea id="ref3" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>Where is your personal line between open inquiry and credulity when it comes to frontier physics claims? What criteria do you apply — or want to apply — when evaluating claims that sit outside mainstream scientific consensus? How does scalar wave theory sit against those criteria?</p>
+    </div>
+    <textarea id="ref4" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="workshop">
+    <h3>Live Workshop: Scalar Waves — Beyond Hertzian Physics</h3>
+    <p>A live deep-dive on this topic is coming soon. Recordings and supplemental materials will appear here once available. Members will be notified via the Academy portal.</p>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="completion-box">
+    <h3>Mark Lesson Complete</h3>
+    <p>When you have explored all three interactive tabs, worked through this week's practice, and written at least two reflections — mark this lesson complete.</p>
+    <button class="complete-btn" id="completeBtn" onclick="markComplete()">Mark Complete · +10 XP</button>
+    <div class="xp-flash" id="xpFlash">✦ +10 XP Awarded</div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-lessons">
+    <a class="nav-lesson prev" href="../lesson-12/">
+      <div class="nav-arrow">←</div>
+      <div>
+        <div class="nav-label">Previous · Q12</div>
+        <div class="nav-title">The Electromagnetic Spectrum</div>
+      </div>
+    </a>
+    <a class="nav-lesson" href="../lesson-14/">
+      <div>
+        <div class="nav-label">Next · Q14</div>
+        <div class="nav-title">Zero Point Energy</div>
+      </div>
+      <div class="nav-arrow">→</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="save-bar">
+  <div class="save-status" id="saveStatus">Auto-save active</div>
+  <div class="save-btns">
+    <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+    <button class="save-btn ghost" onclick="document.getElementById('importFile').click()">Import</button>
+    <button class="save-btn ghost" onclick="exportData()">Export</button>
+    <button class="save-btn primary" onclick="saveNow()">Save</button>
+  </div>
+</div>
+
+<script>
+var KEY = 'tfa_q13';
+var saveTimer;
+var waveAnimId;
+var waveT = 0;
+var waveMode = 'both';
+
+// ── TABS ──
+function switchTab(id, btn) {
+  document.querySelectorAll('.viz-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.viz-panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+  if (id === 'waves') startWaveAnim();
+  else { if (waveAnimId) cancelAnimationFrame(waveAnimId); waveAnimId = null; }
+}
+
+// ── WAVE VISUALIZER ──
+function setWaveMode(mode, btn) {
+  waveMode = mode;
+  document.querySelectorAll('.wave-ctrl-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  var hp = document.getElementById('panel-hertz');
+  var sp = document.getElementById('panel-scalar');
+  var wrap = document.getElementById('waveVizWrap');
+  var note = document.getElementById('waveNote');
+  if (mode === 'both') {
+    hp.style.display = ''; sp.style.display = '';
+    wrap.style.gridTemplateColumns = '1fr 1fr';
+    note.textContent = 'Both wave types transmit energy through oscillation — but in fundamentally different geometries. The transverse EM wave (left) is what Hertz and Maxwell described and what the entire electromagnetic spectrum is built on. The longitudinal wave (right) shows the geometry Tesla theorized for scalar waves — oscillation in the direction of travel, potentially enabling different interactions with matter, different propagation characteristics, and different biological effects.';
+  } else if (mode === 'hertz') {
+    hp.style.display = ''; sp.style.display = 'none';
+    wrap.style.gridTemplateColumns = '1fr';
+    note.textContent = 'Hertzian transverse waves: the electric and magnetic fields oscillate perpendicular to the direction of travel. This is all standard EM radiation — light, radio, X-rays. The EM spectrum from Q12 is entirely Hertzian. These waves are well-characterized, well-measured, and form the foundation of all conventional wireless technology.';
+  } else {
+    hp.style.display = 'none'; sp.style.display = '';
+    wrap.style.gridTemplateColumns = '1fr';
+    note.textContent = 'Scalar / longitudinal waves: oscillation parallel to the direction of travel, creating compression and rarefaction zones that propagate in the same direction as the wave. Sound in air is a familiar acoustic analog. If scalar EM waves exist, they would behave very differently from Hertzian EM — potentially passing through conductive barriers, not following the inverse square law, and interacting with matter through compression of the electromagnetic medium rather than transverse field oscillation.';
+  }
+}
+
+function startWaveAnim() {
+  if (waveAnimId) cancelAnimationFrame(waveAnimId);
+  function frame() {
+    waveT += 0.04;
+    if (document.getElementById('panel-hertz').style.display !== 'none') drawHertz();
+    if (document.getElementById('panel-scalar').style.display !== 'none') drawScalar();
+    waveAnimId = requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+function drawHertz() {
+  var c = document.getElementById('cHertz');
+  if (!c) return;
+  var dpr = window.devicePixelRatio || 1;
+  c.width = c.parentElement.offsetWidth * dpr;
+  c.height = 90 * dpr;
+  var ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  var W = c.width / dpr, H = 90, cy = H / 2;
+  ctx.fillStyle = 'rgba(6,15,30,0.6)';
+  ctx.fillRect(0, 0, W, H);
+
+  // Electric field (vertical oscillation)
+  ctx.beginPath();
+  ctx.strokeStyle = '#4a9edd';
+  ctx.lineWidth = 2;
+  for (var x = 0; x < W; x++) {
+    var t = x / W;
+    var y = cy + Math.sin(t * Math.PI * 4 - waveT) * cy * 0.65;
+    x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // Direction arrow
+  ctx.strokeStyle = 'rgba(232,240,248,0.25)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Arrow head
+  ctx.fillStyle = 'rgba(74,158,221,0.6)';
+  ctx.beginPath(); ctx.moveTo(W - 10, cy - 5); ctx.lineTo(W, cy); ctx.lineTo(W - 10, cy + 5); ctx.fill();
+
+  // Label
+  ctx.fillStyle = 'rgba(232,240,248,0.3)';
+  ctx.font = '9px Cinzel, serif';
+  ctx.fillText('→ direction of travel', 6, H - 6);
+  ctx.fillStyle = 'rgba(74,158,221,0.5)';
+  ctx.fillText('↕ E field oscillation', 6, 14);
+}
+
+function drawScalar() {
+  var c = document.getElementById('cScalar');
+  if (!c) return;
+  var dpr = window.devicePixelRatio || 1;
+  c.width = c.parentElement.offsetWidth * dpr;
+  c.height = 90 * dpr;
+  var ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  var W = c.width / dpr, H = 90, cy = H / 2;
+  ctx.fillStyle = 'rgba(6,15,30,0.6)';
+  ctx.fillRect(0, 0, W, H);
+
+  // Longitudinal compression zones
+  var numParticles = 40;
+  var baseSpacing = W / numParticles;
+
+  for (var i = 0; i < numParticles; i++) {
+    var baseX = (i + 0.5) * baseSpacing;
+    var compress = Math.sin(i / numParticles * Math.PI * 4 - waveT) * baseSpacing * 0.4;
+    var px = baseX + compress;
+    var density = 1 - Math.abs(compress) / (baseSpacing * 0.4) * 0.5;
+    var radius = 3 + density * 2;
+    var alpha = 0.3 + density * 0.55;
+
+    ctx.beginPath();
+    ctx.arc(px, cy, radius, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(120,184,238,' + alpha + ')';
+    ctx.fill();
+  }
+
+  // Dense zone labels
+  ctx.fillStyle = 'rgba(232,240,248,0.3)';
+  ctx.font = '9px Cinzel, serif';
+  ctx.fillText('→ direction of travel', 6, H - 6);
+  ctx.fillStyle = 'rgba(120,184,238,0.5)';
+  ctx.fillText('→ oscillation (compression/rarefaction)', 6, 14);
+
+  // Direction arrow
+  ctx.strokeStyle = 'rgba(232,240,248,0.15)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = 'rgba(120,184,238,0.5)';
+  ctx.beginPath(); ctx.moveTo(W - 10, cy - 5); ctx.lineTo(W, cy); ctx.lineTo(W - 10, cy + 5); ctx.fill();
+}
+
+// ── PROPERTIES EXPLORER ──
+var PROPS = [
+  {
+    num: '01', title: 'No Decay Over Distance',
+    tagline: 'May maintain field strength independent of distance — no inverse square law',
+    body: 'Normal electromagnetic radiation follows the inverse square law: intensity decreases proportionally to the square of the distance from the source. Double the distance, you get one-quarter the intensity. This is why radio transmission requires enormous power for long-distance broadcasting, and why most frequency devices have limited range.<br><br>Scalar waves, if they exist, may not follow this law. Because they are theorized to be longitudinal disturbances in the quantum vacuum rather than transverse EM radiation, they may propagate without the geometric spreading that causes the inverse square decline. Tesla designed Wardenclyffe Tower specifically to test this — to transmit electrical energy through the Earth to receivers anywhere on the planet without power loss proportional to distance.<br><br><strong>The implication for frequency work:</strong> if scalar waves don\'t decay with distance, devices generating them could theoretically maintain their field strength at any range. This would explain reports of frequency devices having effects at distances that conventional EM cannot account for.',
+    caveat: 'Mainstream physics: no form of propagating energy has been demonstrated to violate the inverse square law. Non-decay would require a mechanism that has not been experimentally verified to mainstream standards.'
+  },
+  {
+    num: '02', title: 'Penetrates Faraday Cages',
+    tagline: 'Passes through conductive shielding that blocks all normal EM',
+    body: 'A Faraday cage is a conductive enclosure that completely blocks all standard electromagnetic radiation. This is an established, reproducible, well-understood physical phenomenon. Put your phone in a Faraday cage — it loses signal. Put EM-sensitive equipment in one — all external EM is attenuated to unmeasurable levels.<br><br>Konstantin Meyl\'s scalar wave demonstrations, among others, claim to show that signals transmitted from a scalar wave apparatus are received inside a Faraday cage where no Hertzian signal could penetrate. If replicated under rigorous conditions, this would be the single most direct demonstration that a non-Hertzian propagation mechanism exists.<br><br><strong>The implication for frequency work:</strong> if scalar signals pass through Faraday cages, then conventional EM shielding does not protect against scalar sources — but also means scalar-generating devices could reach biological targets that Faraday shielding would otherwise block.',
+    caveat: 'Meyl\'s experiments have not been independently replicated to the satisfaction of mainstream physics reviewers. Claims of Faraday cage penetration require extraordinarily careful experimental design to rule out leakage, ground loop effects, and other conventional explanations.'
+  },
+  {
+    num: '03', title: 'Information Without Energy',
+    tagline: 'Carries patterns and signatures without thermal energy transfer',
+    body: 'Hertzian electromagnetic waves carry energy — this is how your microwave heats food, how a radio transmitter heats its antenna resistively, how light warms surfaces. The energy is real and measurable in thermal terms.<br><br>Scalar waves are theorized to carry information — patterns, signatures, structural organization — without transferring energy in the conventional thermal sense. This is not the same as saying they carry no energy at all; rather, it is the claim that their primary interaction with matter is informational rather than energetic in the Hertzian sense.<br><br><strong>Glen Rein\'s research</strong> on scalar versus Hertzian effects on DNA replication rates found different biological responses to the two field types — with scalar fields producing measurable biological effects without the thermal effects conventional EM would produce at equivalent intensities.<br><br><strong>The implication for frequency work:</strong> this property, if real, is foundational. It explains how information-carrying frequencies could affect biological systems without heating them, how water could be "structured" without a thermal mechanism, and how scalar devices could produce biological effects at intensities too low for conventional EM to be the mechanism.',
+    caveat: 'The distinction between "information" and "energy" is itself contested territory. In information theory and physics, information has entropy relationships to energy (Landauer\'s principle). The claim requires more precise formalization than most presentations provide.'
+  },
+  {
+    num: '04', title: 'Faster Than Light (Superluminal)',
+    tagline: 'May not be bound by c — propagates at superluminal velocities in some models',
+    body: 'In standard physics, c — the speed of light, approximately 299,792,458 m/s in vacuum — is the universal speed limit for the propagation of information and energy. Special relativity has this as a foundational principle, supported by enormous experimental evidence across many domains.<br><br>Some scalar wave researchers, including Meyl, propose that scalar waves propagate at superluminal velocities — faster than light. The theoretical basis is that if scalar waves are longitudinal disturbances in the quantum vacuum (the zero-point field), they may propagate through the vacuum as a pressure wave rather than as an EM perturbation, and the velocity of such pressure waves may not be bound by c.<br><br><strong>The implication:</strong> this is the most speculative of the five properties and the most difficult to reconcile with established physics. However, it connects scalar wave theory to quantum nonlocality, to the measurement problem, and to proposals about the quantum vacuum as a medium with physical properties.',
+    caveat: 'This is the property most in tension with established physics. Special relativity is one of the most extensively tested theories in science. Any claim of superluminal information transfer carries an extraordinary burden of proof. Some researchers interpret apparent superluminal effects as near-field phenomena rather than true superluminal propagation.'
+  },
+  {
+    num: '05', title: 'Temporal Interaction',
+    tagline: 'May interact with time as well as space — connects to torsion field physics',
+    body: 'The most speculative scalar wave property: that scalar waves have a temporal component and may interact with time itself, not just space. This is connected to torsion field physics — the proposal that spacetime has a spin/torsion component that standard general relativity ignores, and that this torsion component can be the carrier of scalar/torsion waves.<br><br>In Bearden\'s formulation, scalar waves represent oscillations in the time dimension of spacetime rather than (or in addition to) the spatial dimensions. This would make them fundamentally different from any EM wave — they would be changes in the local rate of time flow rather than oscillations of field values in space.<br><br>Some researchers connect this to retrocausality — the possibility of information traveling backward in time — and to the delayed-choice quantum experiments covered in Q7, where the past appears to be affected by present observations.<br><br><strong>The implication for frequency work:</strong> if scalar waves interact with time, then their effects might include influences on past states — connecting to intention-based retroactive healing concepts and to quantum measurement models.',
+    caveat: 'This is the most speculative claim in scalar wave theory and connects to interpretational questions in physics that are genuinely unresolved. It should be held as a thought experiment that connects physics frontiers, not as an established mechanism.'
+  }
+];
+
+function buildProps() {
+  var list = document.getElementById('propList');
+  PROPS.forEach(function(p, i) {
+    var item = document.createElement('div');
+    item.className = 'prop-item';
+    item.id = 'prop-' + i;
+    item.innerHTML =
+      '<div class="prop-trigger" onclick="toggleProp(' + i + ')">' +
+        '<div class="prop-num">' + p.num + '</div>' +
+        '<div><div class="prop-title">' + p.title + '</div><div class="prop-tagline">' + p.tagline + '</div></div>' +
+        '<div class="prop-arrow">▾</div>' +
+      '</div>' +
+      '<div class="prop-body" id="propbody-' + i + '">' + p.body + '<div class="caveat"><strong style="color:rgba(220,190,80,0.85)">Epistemic note:</strong> ' + p.caveat + '</div></div>';
+    list.appendChild(item);
+  });
+}
+
+function toggleProp(i) {
+  var item = document.getElementById('prop-' + i);
+  var body = document.getElementById('propbody-' + i);
+  var isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.prop-item').forEach(function(el) { el.classList.remove('open'); });
+  document.querySelectorAll('.prop-body').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) { item.classList.add('open'); body.classList.add('open'); }
+}
+
+// ── RESEARCHER PROFILES ──
+var RESEARCHERS = [
+  {
+    id: 'tesla', icon: '⚡', name: 'Nikola Tesla', role: '1856–1943 · Inventor & Electrical Engineer',
+    title: 'Nikola Tesla — The Originator',
+    bio: 'Tesla\'s Colorado Springs experiments in 1899 produced phenomena he could not explain with Hertzian physics. Working with his magnifying transmitter — a massive resonant coil system — he lit lamps wirelessly at great distances, reported receiving signals of apparent extraterrestrial origin, and claimed to have transmitted power through the Earth itself.',
+    bio2: 'He explicitly distinguished his discoveries from Hertz\'s: "The Hertz wave theory of wireless transmission is untenable," he wrote in 1919. Tesla believed the phenomena he observed required a different framework — longitudinal waves propagating through the Earth and atmosphere as through a conducting medium, not transverse EM waves radiating through space.',
+    bio3: 'Wardenclyffe Tower (1901–1917) was Tesla\'s attempt to demonstrate global wireless power transmission using these non-Hertzian principles. It was never completed — JP Morgan withdrew funding when he realized the system might make metered electrical billing impossible. The tower was demolished in 1917. When Tesla died in 1943, the FBI removed his papers. Some were eventually returned to his native Yugoslavia; others were never recovered.',
+    significance: '→ Tesla is the originating researcher whose direct experimental observations launched the scalar wave lineage. His claim to have been working with non-Hertzian waves is documented in his own writings. Whether his interpretation was correct, or whether he was observing conventional EM effects he misattributed, remains open.'
+  },
+  {
+    id: 'bearden', icon: '🔭', name: 'Thomas Bearden', role: '1930–2022 · Military Physicist & Researcher',
+    title: 'Thomas Bearden — The Theorist',
+    bio: 'Lieutenant Colonel Thomas Bearden (US Army, retired) was a nuclear engineer and systems analyst who devoted his post-military career to developing a theoretical framework for scalar electromagnetics. His central proposal: scalar waves are oscillations in the potentials of spacetime — changes in the electromagnetic potential structure of the vacuum rather than oscillations of the field values themselves.',
+    bio2: 'Bearden argued that Maxwell\'s original quaternion equations contained scalar EM components that were discarded when Heaviside and Gibbs reformulated the equations in vector form in the 1880s. In his view, this mathematical simplification removed scalar electromagnetics from mainstream physics — not because the phenomena disappeared, but because the theoretical framework no longer contained the terms needed to describe them.',
+    bio3: 'He documented what he called Soviet scalar weapons research during the Cold War and connected scalar electromagnetic phenomena to zero-point energy extraction. His book "Energy from the Vacuum" (2002) is the most comprehensive available treatment of scalar EM from an engineering perspective.',
+    significance: '→ Bearden provided the theoretical framework that most subsequent scalar wave researchers reference. His military background and systematic documentation of cross-national research gave scalar theory credibility in certain engineering communities. His more speculative claims (scalar weapons, free energy) should be evaluated separately from his physics framework.'
+  },
+  {
+    id: 'meyl', icon: '🔬', name: 'Konstantin Meyl', role: 'Born 1952 · German Physicist & Professor',
+    title: 'Konstantin Meyl — The Experimentalist',
+    bio: 'Professor Konstantin Meyl at the University of Applied Sciences Furtwangen in Germany is the researcher who has made the most sustained experimental attempt to demonstrate scalar wave transmission. He developed a miniaturized Tesla coil apparatus specifically designed for scalar wave experiments — a transmitter-receiver pair that he claims demonstrates transmission characteristics not possible with Hertzian EM.',
+    bio2: 'His central experimental claim: the apparatus transmits energy and signal without the directional characteristics of EM radiation, can transmit through Faraday cages, and shows velocity characteristics that differ from c. He has presented these demonstrations at academic conferences and sells experimental kits for independent replication.',
+    bio3: 'Meyl also developed extended Maxwell equations that include longitudinal EM components — a mathematical framework that, if correct, would show that standard Maxwell electromagnetics is a subset of a more complete field theory. His work is published in books (not peer-reviewed journals) and has not passed peer review in mainstream physics.',
+    significance: '→ Meyl is the most scientifically credentialed active scalar wave experimentalist. His Faraday cage demonstrations, if replicated under independent conditions, would constitute the most direct evidence for non-Hertzian propagation. His experimental kits make independent replication possible, which is more than most scalar wave researchers offer.'
+  },
+  {
+    id: 'rein', icon: '🧬', name: 'Glen Rein', role: 'Biophysicist & Researcher',
+    title: 'Glen Rein — The Biophysicist',
+    bio: 'Glen Rein worked at the Quantum Biology Research Lab and produced the most directly application-relevant scalar wave research for frequency healers. His key studies examined the biological effects of scalar fields compared to conventional EM fields — attempting to answer the question most practitioners care about: do scalar fields actually do something different to living systems?',
+    bio2: 'His most cited result: experiments comparing the effects of scalar wave generators versus conventional EM sources on E. coli DNA replication rates. He reported that scalar fields produced effects on DNA replication that conventional EM fields of equivalent intensity did not produce — and that these effects were not attributable to thermal mechanisms.',
+    bio3: 'Rein also investigated the interaction between scalar fields and human intention, reporting evidence that intentional states could modulate scalar field effects on biological systems. This connects scalar wave theory directly to consciousness-biology interaction models and provides a proposed mechanism for intentional healing modalities.',
+    significance: '→ Rein\'s research is the primary scientific basis for the claim that scalar fields interact with biology differently than Hertzian EM. His DNA studies are the most frequently cited evidence for scalar biological effects. His work on intention-scalar interaction connects scalar physics to the measurement problem and consciousness research.'
+  }
+];
+
+var activeResearcher = null;
+
+function buildResearchers() {
+  var grid = document.getElementById('researcherGrid');
+  RESEARCHERS.forEach(function(r) {
+    var card = document.createElement('div');
+    card.className = 'res-card';
+    card.id = 'rcard-' + r.id;
+    card.onclick = function() { showResearcher(r.id, card); };
+    card.innerHTML =
+      '<div class="res-card-icon">' + r.icon + '</div>' +
+      '<div class="res-card-name">' + r.name + '</div>' +
+      '<div class="res-card-role">' + r.role + '</div>';
+    grid.appendChild(card);
+  });
+}
+
+function showResearcher(id, card) {
+  document.querySelectorAll('.res-card').forEach(function(c) { c.classList.remove('active'); });
+  document.getElementById('resDetail').innerHTML = '';
+  document.getElementById('resDetail').classList.remove('show');
+
+  if (activeResearcher === id) { activeResearcher = null; return; }
+  activeResearcher = id;
+  card.classList.add('active');
+
+  var r = RESEARCHERS.find(function(x) { return x.id === id; });
+  var det = document.getElementById('resDetail');
+  det.innerHTML =
+    '<h4>' + r.title + '</h4>' +
+    '<p>' + r.bio + '</p>' +
+    '<p>' + r.bio2 + '</p>' +
+    '<p>' + r.bio3 + '</p>' +
+    '<div class="significance">' + r.significance + '</div>';
+  det.classList.add('show');
+}
+
+// ── ACCORDION ──
+var ACC = [
+  { t: 'Key Terms — Hertzian vs. Scalar Physics',
+    b: '<strong>Hertzian Waves:</strong> Standard transverse electromagnetic waves — the entire EM spectrum from radio to gamma. Oscillation is perpendicular to direction of travel. Named for Heinrich Hertz who demonstrated them in 1887.<br><br><strong>Scalar Waves:</strong> Theorized longitudinal electromagnetic waves — oscillation parallel to direction of travel. Not accepted by mainstream physics as an established phenomenon, but the subject of ongoing theoretical and experimental research since Tesla.<br><br><strong>Transverse Wave:</strong> Wave in which the oscillation is at right angles to the direction of propagation. All standard EM is transverse. Analogy: ocean waves (surface moves up and down; wave travels horizontally).<br><br><strong>Longitudinal Wave:</strong> Wave in which oscillation is parallel to direction of propagation. Sound is longitudinal. Analogy: slinky pushed and pulled.<br><br><strong>Tesla Coil:</strong> A high-frequency resonant transformer circuit. May produce scalar components alongside conventional EM output — this is the proposed mechanism for some of Tesla\'s anomalous observations at Colorado Springs.<br><br><strong>Torsion Field:</strong> A proposed field arising from the spin/torsion of matter — related to but distinct from scalar waves. Russian research (Akimov, Shipov) explored torsion as a separate fundamental field.<br><br><strong>Standing Columnar Wave:</strong> The scalar wave geometry theorized to form inside tensor rings — a column of organized energy extending above and below the ring plane.<br><br><strong>Phase Conjugation:</strong> A wave phenomenon where a wave and its time-reversed counterpart are combined. Associated with scalar wave generation in some theoretical models — the time-reversed component is the "scalar" aspect.' },
+  { t: 'Maxwell\'s Original Equations — What Was Removed',
+    b: 'This is the historical crux of the scalar wave debate. James Clerk Maxwell published his electromagnetic theory in 1865 using quaternion mathematics — a mathematical framework that includes scalar terms (zero-rank tensors) alongside vector terms.<br><br>In the 1880s, Oliver Heaviside and Josiah Gibbs reformulated Maxwell\'s equations into the four vector equations taught today. This reformulation was mathematically simpler and practically more useful for engineering applications. But scalar wave proponents argue that this simplification discarded something physical — the longitudinal EM components described by the scalar terms in Maxwell\'s original quaternion formulation.<br><br><strong>The mainstream position:</strong> The reformulation was mathematically rigorous. The discarded terms were either zero in free space or reducible to gauge freedoms — mathematical artifacts rather than physical fields. The simplified four equations are complete within their domain.<br><br><strong>The scalar wave position:</strong> The reformulation imposed a gauge condition (the Lorenz gauge or Coulomb gauge) that zeros out scalar potential terms that are physically real. By working in the full unrestricted gauge, longitudinal EM components appear naturally.<br><br>Meyl\'s extended Maxwell equations attempt to formalize this — showing the full equations before gauge restriction, and arguing that the restricted (standard) equations are a special case rather than the complete theory.' },
+  { t: 'Caduceus & Bifilar Coils — Scalar Geometry Explained',
+    b: 'The most accessible route to understanding scalar wave generation in devices is through coil geometry.<br><br><strong>Bifilar coil:</strong> Two wires wound together in parallel (side by side) on a single coil form. When wound so that current flows in opposite directions in adjacent windings, the magnetic fields cancel — because for every current element going one way, an adjacent element has current going the other way. The net magnetic field outside the coil approaches zero.<br><br><strong>Caduceus coil:</strong> Two wires wound in opposing helical directions on the same form — one winding clockwise, one counterclockwise. The opposing windings produce opposing electromagnetic fields that cancel in the same way. The conventional EM emission approaches zero.<br><br><strong>The scalar hypothesis:</strong> When the Hertzian (transverse) component is cancelled by opposing windings, what remains is theorized to be the scalar component — the longitudinal component that does not cancel because it operates in the dimension of travel rather than transverse to it. The coil becomes a "scalar generator" by nulling everything Hertzian.<br><br>Tesla\'s bifilar coil patent (US 512,340, 1894) describes a flat bifilar winding specifically designed for purposes that include unusual capacitance properties — properties that some researchers interpret as evidence of scalar component generation.' },
+  { t: 'Tensor Rings — Scalar Field Mechanism Proposed',
+    b: 'Tensor rings are closed copper loops wound at dimensions based on sacred cubit measurements. The proposed scalar mechanism is a standing columnar wave — a scalar field geometry that forms inside the ring and extends as a column above and below the ring plane.<br><br><strong>The proposed mechanism step by step:</strong><br>1. The continuous copper loop, when at cubit-based dimensions, creates conditions for a specific resonant frequency (the cubit frequency, in the range of ~144 MHz for the Lost Cubit).<br>2. At these dimensions, a standing scalar wave forms within the ring — analogous to how a resonant cavity sustains standing EM waves, but for scalar rather than Hertzian components.<br>3. This standing scalar wave creates a columnar field — essentially a scalar beam extending perpendicular to the ring plane.<br>4. The scalar field interacts with water, biological tissue, and other materials in the column through the information-carrying (non-thermal) mechanism attributed to scalar waves.<br><br><strong>Why this explanation is needed:</strong> Conventional EM from a copper loop at tensor ring scales and copper purity produces negligible field strength at the distances where effects are reported. The inverse square law ensures that a small unpowered copper ring cannot produce measurable Hertzian EM effects at meaningful ranges. A scalar mechanism — if real — would not have this limitation.' },
+  { t: 'The Wardenclyffe Tower — Tesla\'s Scalar Demonstration Attempt',
+    b: 'Wardenclyffe Tower (Shoreham, New York, 1901–1917) was Tesla\'s most ambitious project — a 57-meter wooden tower topped by a large metal dome, designed to transmit electrical power and communications globally through the Earth.<br><br>Tesla\'s design was based on his theory that the Earth itself could be made to resonate electrically — acting as a conductive medium through which his "magnifying transmitter" could project power to receivers anywhere on the planet. This is fundamentally different from conventional radio transmission, which works by radiating Hertzian waves through the atmosphere.<br><br>JP Morgan funded the initial construction but withdrew financing in 1901 — reportedly when he realized that a system enabling anyone to draw power from the Earth through a simple receiver would make metered electricity billing impossible. The tower was never completed and was demolished in 1917 as a security measure during WWI.<br><br><strong>What Wardenclyffe tells us about scalar theory:</strong> If Tesla\'s system was based on longitudinal ground conduction rather than Hertzian radiation, it would explain both why he believed it could work globally (ground conduction would not follow the inverse square law of EM radiation) and why it looked so different from conventional radio towers of the era. It would also explain Morgan\'s alarm — a scalar power grid could not be metered in the conventional sense.' }
+];
+
+function buildAcc() {
+  var w = document.getElementById('accWrap');
+  ACC.forEach(function(item) {
+    var d = document.createElement('div');
+    d.className = 'acc-item';
+    d.innerHTML = '<div class="acc-head" onclick="toggleAcc(this)"><span>' + item.t + '</span><span class="acc-arrow">▾</span></div><div class="acc-body">' + item.b + '</div>';
+    w.appendChild(d);
+  });
+}
+function toggleAcc(head) {
+  var body = head.nextElementSibling;
+  var arrow = head.querySelector('.acc-arrow');
+  var isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body.open').forEach(function(b) { b.classList.remove('open'); });
+  document.querySelectorAll('.acc-arrow.open').forEach(function(a) { a.classList.remove('open'); });
+  if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
+}
+
+// ── COMPLETION ──
+function markComplete() {
+  var btn = document.getElementById('completeBtn');
+  if (btn.classList.contains('done')) return;
+  btn.classList.add('done');
+  btn.textContent = '✓ Complete';
+  document.getElementById('xpFlash').classList.add('show');
+  saveNow();
+}
+
+// ── SAVE / LOAD ──
+function getData() {
+  return {
+    v: 1, lesson: 'Q13', ts: new Date().toISOString(),
+    r1: document.getElementById('ref1').value,
+    r2: document.getElementById('ref2').value,
+    r3: document.getElementById('ref3').value,
+    r4: document.getElementById('ref4').value,
+    done: document.getElementById('completeBtn').classList.contains('done')
+  };
+}
+function saveNow() {
+  localStorage.setItem(KEY, JSON.stringify(getData()));
+  document.getElementById('saveStatus').textContent = 'Saved ' + new Date().toLocaleTimeString();
+}
+function autoSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 90000);
+}
+function loadData() {
+  var raw = localStorage.getItem(KEY);
+  if (!raw) return;
+  try {
+    var d = JSON.parse(raw);
+    if (d.r1) document.getElementById('ref1').value = d.r1;
+    if (d.r2) document.getElementById('ref2').value = d.r2;
+    if (d.r3) document.getElementById('ref3').value = d.r3;
+    if (d.r4) document.getElementById('ref4').value = d.r4;
+    if (d.done) {
+      var btn = document.getElementById('completeBtn');
+      btn.classList.add('done'); btn.textContent = '✓ Complete';
+      document.getElementById('xpFlash').classList.add('show');
+    }
+    document.getElementById('saveStatus').textContent = 'Session restored';
+  } catch(e) {}
+}
+function exportData() {
+  saveNow();
+  var b = new Blob([JSON.stringify(getData(), null, 2)], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(b);
+  a.download = 'TFA_Q13_backup_' + Date.now() + '.json';
+  a.click();
+}
+function importData(e) {
+  var f = e.target.files[0];
+  if (!f) return;
+  var r = new FileReader();
+  r.onload = function(ev) {
+    try {
+      var d = JSON.parse(ev.target.result);
+      localStorage.setItem(KEY, JSON.stringify(d));
+      loadData();
+    } catch(err) {}
+  };
+  r.readAsText(f);
+  e.target.value = '';
+}
+
+// ── PROGRESS BAR ──
+window.addEventListener('scroll', function() {
+  var doc = document.documentElement;
+  var sc = window.scrollY || doc.scrollTop;
+  var sh = doc.scrollHeight - doc.clientHeight;
+  document.getElementById('progressFill').style.width = (sh > 0 ? Math.min(100, sc / sh * 100) : 0) + '%';
+}, { passive: true });
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  buildProps();
+  buildResearchers();
+  buildAcc();
+  loadData();
+  startWaveAnim();
+  window.addEventListener('resize', function() {
+    if (document.getElementById('tab-waves').classList.contains('active')) {
+      if (document.getElementById('panel-hertz').style.display !== 'none') drawHertz();
+      if (document.getElementById('panel-scalar').style.display !== 'none') drawScalar();
+    }
+  });
+});
+</script>
+</body>
+</html>
