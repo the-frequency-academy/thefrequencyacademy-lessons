@@ -3,18 +3,1847 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coming Soon · The Frequency Academy</title>
+<title>G2 · Vesica Piscis · The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Georgia',serif;background:#0d1240;color:#f5f0e8;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center}
-h1{font-size:1.2rem;letter-spacing:.2em;color:#c9a84c;margin-bottom:1rem;text-transform:uppercase}
-p{color:#a09880;font-size:.85rem;letter-spacing:.1em}
+:root {
+  --bg: #0c1418;
+  --accent: #7ab0b8;
+  --accent2: #9ecdd5;
+  --text: #f0ede6;
+  --text-dim: rgba(240,237,230,0.65);
+  --gold: #c9a84c;
+  --navy-deep: #060d10;
+  --card-bg: rgba(0,0,0,0.32);
+  --card-border: rgba(122,176,184,0.18);
+  --radius: 6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Starfield bg */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(122,176,184,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 90%, rgba(201,168,76,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, rgba(6,13,16,0.3) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar-wrap {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 3px;
+  background: rgba(0,0,0,0.5);
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--accent));
+  transition: width 0.4s ease;
+  box-shadow: 0 0 12px rgba(201,168,76,0.6);
+}
+#progress-label {
+  position: fixed; top: 8px; right: 16px; z-index: 1001;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--accent2);
+  opacity: 0.8;
+}
+
+/* ── SAVE BAR ── */
+#save-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(6,13,16,0.95);
+  border-top: 1px solid var(--card-border);
+  padding: 10px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+  backdrop-filter: blur(12px);
+}
+#save-status {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+}
+.save-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  padding: 8px 18px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+.save-btn:hover { background: var(--accent); color: var(--bg); }
+.save-btn.gold { border-color: var(--gold); color: var(--gold); }
+.save-btn.gold:hover { background: var(--gold); color: var(--bg); }
+.save-btns { display: flex; gap: 8px; }
+
+/* ── LAYOUT ── */
+.lesson-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 56px 24px 100px;
+  position: relative; z-index: 1;
+}
+
+/* ── HERO ── */
+.hero {
+  text-align: center;
+  padding: 80px 0 60px;
+  position: relative;
+}
+.hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity: 0.8;
+}
+.hero-tag {
+  display: inline-block;
+  border: 1px solid var(--accent);
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+.hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+.hero-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+.hero-quote {
+  max-width: 600px;
+  margin: 0 auto 48px;
+  font-style: italic;
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  border-left: 2px solid var(--gold);
+  padding-left: 20px;
+  text-align: left;
+}
+.hero-quote cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+/* Vesica SVG animation */
+.vesica-animation {
+  width: 220px;
+  height: 140px;
+  margin: 0 auto 48px;
+  display: block;
+}
+
+/* ── VESICA CANVAS ── */
+#vesica-canvas-hero {
+  display: block;
+  margin: 0 auto 48px;
+}
+
+/* ── SECTION ── */
+.section {
+  margin-bottom: 64px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.section.visible { opacity: 1; transform: none; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.section-num {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  min-width: 32px;
+  opacity: 0.6;
+}
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.06em;
+  flex: 1;
+}
+.section-title-rule {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 0.3;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(8px);
+}
+
+p { margin-bottom: 16px; color: var(--text-dim); }
+p:last-child { margin-bottom: 0; }
+
+.highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
+.gold-text { color: var(--gold); }
+
+/* ── TRANSMISSION ── */
+.transmission {
+  text-align: center;
+  padding: 48px 32px;
+  background: linear-gradient(135deg, rgba(122,176,184,0.06), rgba(201,168,76,0.04));
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: var(--radius);
+  margin-bottom: 64px;
+}
+.transmission-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity: 0.8;
+}
+.transmission p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: var(--text);
+  font-style: italic;
+  font-weight: 300;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ── SUB-SECTION TITLES ── */
+h3.sub-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: var(--accent2);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+/* ── CALLOUT ── */
+.callout {
+  border-left: 3px solid var(--gold);
+  background: rgba(201,168,76,0.06);
+  padding: 16px 20px;
+  margin: 24px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.callout p { color: var(--text); font-style: italic; margin: 0; }
+
+/* ── STEP LIST ── */
+.step-list { list-style: none; }
+.step-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+.step-num {
+  min-width: 40px; height: 40px;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.step-content h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: 0.06em;
+}
+.step-content p { margin: 0; }
+
+/* ── DATA TABLE ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.9rem;
+}
+.data-table th {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--card-border);
+  text-align: left;
+}
+.data-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(122,176,184,0.08);
+  color: var(--text-dim);
+  vertical-align: top;
+}
+.data-table td:first-child { color: var(--gold); font-weight: 600; }
+.data-table tr:last-child td { border-bottom: none; }
+
+/* ── TRADITIONS GRID ── */
+.traditions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.tradition-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.tradition-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.tradition-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+.tradition-form {
+  color: var(--gold);
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.tradition-desc { font-size: 0.85rem; color: var(--text-dim); }
+
+/* ── INTERACTIVE: COMPASS BUILDER ── */
+.compass-builder {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+}
+.builder-canvas-wrap {
+  position: relative;
+  display: inline-block;
+  margin: 20px 0;
+}
+#builderCanvas {
+  border: 1px solid rgba(122,176,184,0.2);
+  border-radius: 4px;
+  display: block;
+  background: rgba(0,0,0,0.4);
+  max-width: 100%;
+}
+.builder-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.build-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: all 0.2s;
+}
+.build-btn:hover, .build-btn.active { background: var(--accent); color: var(--bg); }
+.build-btn.reset { border-color: rgba(255,255,255,0.2); color: var(--text-dim); }
+.build-btn.reset:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+.builder-status {
+  font-size: 0.85rem;
+  color: var(--gold);
+  font-style: italic;
+  margin-top: 12px;
+  min-height: 24px;
+}
+
+/* ── QUIZ ── */
+.quiz-question {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.quiz-q-text {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border: 1px solid rgba(122,176,184,0.2);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  background: transparent;
+  text-align: left;
+  width: 100%;
+  font-family: 'Raleway', sans-serif;
+}
+.quiz-option:hover { border-color: var(--accent); color: var(--text); }
+.quiz-option.correct { border-color: #4CAF50; background: rgba(76,175,80,0.1); color: #81c784; }
+.quiz-option.wrong { border-color: #f44336; background: rgba(244,67,54,0.1); color: #e57373; }
+.quiz-feedback {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-style: italic;
+  min-height: 20px;
+}
+.quiz-score-bar {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  display: none;
+}
+.score-display {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+#quiz-submit {
+  margin-top: 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 12px 32px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: all 0.2s;
+  display: block;
+  margin-left: auto; margin-right: auto;
+}
+#quiz-submit:hover { background: var(--gold); color: var(--bg); }
+
+/* ── ACCORDION ── */
+.accordion-item {
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  cursor: pointer;
+  background: var(--card-bg);
+  transition: background 0.2s;
+}
+.accordion-header:hover { background: rgba(122,176,184,0.08); }
+.accordion-header-text {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--text);
+}
+.accordion-arrow {
+  color: var(--accent);
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+.accordion-item.open .accordion-arrow { transform: rotate(90deg); }
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+.accordion-item.open .accordion-body {
+  max-height: 600px;
+  padding: 16px 20px 20px;
+}
+
+/* ── REFLECTION ── */
+.reflection-prompt {
+  margin-bottom: 24px;
+}
+.reflection-q {
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.reflection-textarea {
+  width: 100%;
+  min-height: 120px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.9rem;
+  padding: 14px 16px;
+  resize: vertical;
+  transition: border-color 0.2s;
+  line-height: 1.6;
+}
+.reflection-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.reflection-textarea::placeholder { color: var(--text-dim); opacity: 0.5; }
+
+/* ── RESOURCES ── */
+.resource-group { margin-bottom: 28px; }
+.resource-group-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--card-border);
+}
+.resource-item {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(122,176,184,0.06);
+}
+.resource-item:last-child { border-bottom: none; }
+.resource-icon { color: var(--accent); font-size: 1rem; min-width: 20px; margin-top: 2px; }
+.resource-info { flex: 1; }
+.resource-title { color: var(--text); font-weight: 600; font-size: 0.9rem; margin-bottom: 2px; }
+.resource-meta { color: var(--text-dim); font-size: 0.8rem; }
+
+/* ── WORKSHOP SLOT ── */
+.workshop-slot {
+  text-align: center;
+  padding: 48px;
+  border: 1px dashed rgba(201,168,76,0.3);
+  border-radius: var(--radius);
+  background: rgba(201,168,76,0.03);
+}
+.workshop-icon { font-size: 2.5rem; margin-bottom: 16px; opacity: 0.5; }
+.workshop-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.workshop-sub { color: var(--text-dim); font-size: 0.85rem; opacity: 0.6; }
+
+/* ── COMPLETION ── */
+.completion-card {
+  text-align: center;
+  padding: 48px;
+  background: linear-gradient(135deg, rgba(122,176,184,0.08), rgba(201,168,76,0.06));
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: var(--radius);
+}
+.completion-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+  letter-spacing: 0.06em;
+}
+.xp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 24px;
+  background: var(--gold);
+  color: var(--bg);
+  border-radius: 24px;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 20px 0;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.xp-badge.show { opacity: 1; transform: scale(1); }
+.complete-checkbox-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 24px 0;
+}
+#complete-checkbox {
+  width: 22px; height: 22px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+.complete-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* ── CONFETTI ── */
+.confetti-piece {
+  position: fixed;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 9999;
+  animation: confetti-fall linear forwards;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* ── UP NEXT ── */
+.up-next-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.up-next-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.up-next-badge {
+  min-width: 56px; height: 56px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  color: var(--bg);
+  font-size: 0.9rem;
+}
+.up-next-info { flex: 1; }
+.up-next-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.up-next-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.up-next-desc { font-size: 0.85rem; color: var(--text-dim); }
+.up-next-arrow { color: var(--accent); font-size: 1.5rem; opacity: 0.6; }
+
+/* ── KEY CONCEPTS LIST ── */
+.concept-list { list-style: none; }
+.concept-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(122,176,184,0.08);
+  color: var(--text-dim);
+  font-size: 0.93rem;
+}
+.concept-item:last-child { border-bottom: none; }
+.concept-bullet {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+/* ── GLOSSARY TERMS ── */
+.glossary-term {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(122,176,184,0.08);
+}
+.glossary-term:last-child { border-bottom: none; }
+.term-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+  margin-bottom: 6px;
+  letter-spacing: 0.06em;
+}
+.term-def { font-size: 0.9rem; color: var(--text-dim); }
+
+/* ── MATH DISPLAY ── */
+.math-highlight {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: var(--accent);
+  text-align: center;
+  padding: 16px;
+  background: rgba(122,176,184,0.06);
+  border-radius: var(--radius);
+  margin: 16px 0;
+  letter-spacing: 0.08em;
+}
+
+/* ── PRACTICAL APP ── */
+.practice-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.practice-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.practice-item:hover { border-color: var(--accent); }
+.practice-icon { font-size: 2rem; margin-bottom: 10px; }
+.practice-item-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.practice-item p { font-size: 0.82rem; }
+
+/* ── MODULE BREADCRUMB ── */
+.module-crumb {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 48px;
+  text-transform: uppercase;
+}
+.module-crumb span { color: var(--accent); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .lesson-wrap { padding: 40px 16px 90px; }
+  .hero h1 { font-size: 2rem; }
+  .card { padding: 20px; }
+  .traditions-grid { grid-template-columns: 1fr; }
+  .practice-items { grid-template-columns: 1fr 1fr; }
+  #save-bar { padding: 8px 12px; }
+  .save-btn { padding: 6px 12px; font-size: 9px; }
+}
+
+/* ── GENERATING FORMS SECTION ── */
+.forms-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0;
+}
+.form-chip {
+  padding: 8px 16px;
+  border: 1px solid var(--accent);
+  border-radius: 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  background: rgba(122,176,184,0.06);
+}
+.form-arrow {
+  color: var(--text-dim);
+  font-size: 1.2rem;
+}
+
+/* Fade in on load */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero { animation: fadeUp 0.8s ease forwards; }
 </style>
 </head>
 <body>
-<div>
-<h1>Lesson Coming Soon</h1>
-<p>The Frequency Academy · Check back soon</p>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar-wrap">
+  <div id="progress-bar"></div>
 </div>
+<div id="progress-label">G2 · 0%</div>
+
+<!-- SAVE BAR -->
+<div id="save-bar">
+  <span id="save-status">Auto-saves every 90 seconds</span>
+  <div class="save-btns">
+    <button class="save-btn" onclick="saveData()">⟳ Save Progress</button>
+    <button class="save-btn gold" onclick="exportData()">↓ Export Backup</button>
+    <button class="save-btn" onclick="importTrigger()" style="border-color:rgba(255,255,255,0.2);color:var(--text-dim)">↑ Import</button>
+  </div>
+</div>
+<input type="file" id="import-input" accept=".json" style="display:none" onchange="importData(event)">
+
+<div class="lesson-wrap">
+
+  <!-- MODULE BREADCRUMB -->
+  <div class="module-crumb">
+    The Frequency Academy · <span>Sacred Geometry & Light Body Systems</span> · Lesson G2 of 22
+  </div>
+
+  <!-- HERO -->
+  <section class="hero section">
+    <div class="hero-eyebrow">Sacred Geometry & Light Body Systems</div>
+    <div class="hero-tag">G2 · LESSON TWO</div>
+    <h1>Vesica Piscis</h1>
+    <div class="hero-subtitle">The Womb of Creation</div>
+    
+    <!-- Animated Vesica SVG -->
+    <svg class="vesica-animation" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="circleGrad1" cx="40%" cy="50%">
+          <stop offset="0%" stop-color="#7ab0b8" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#7ab0b8" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="circleGrad2" cx="60%" cy="50%">
+          <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+        </radialGradient>
+        <clipPath id="circle1clip">
+          <circle cx="88" cy="70" r="55"/>
+        </clipPath>
+        <clipPath id="circle2clip">
+          <circle cx="132" cy="70" r="55"/>
+        </clipPath>
+        <style>
+          .c1 { animation: pulse1 3s ease-in-out infinite; }
+          .c2 { animation: pulse2 3s ease-in-out infinite 0.5s; }
+          .vesica-fill { animation: glowVesica 3s ease-in-out infinite; }
+          @keyframes pulse1 { 0%,100%{opacity:0.6} 50%{opacity:1} }
+          @keyframes pulse2 { 0%,100%{opacity:0.6} 50%{opacity:1} }
+          @keyframes glowVesica { 0%,100%{opacity:0.4} 50%{opacity:0.8} }
+        </style>
+      </defs>
+      <!-- Circle 1 fill -->
+      <circle cx="88" cy="70" r="55" fill="url(#circleGrad1)" class="c1"/>
+      <!-- Circle 2 fill -->
+      <circle cx="132" cy="70" r="55" fill="url(#circleGrad2)" class="c2"/>
+      <!-- Vesica intersection fill -->
+      <path d="M110,19.2 A55,55 0 0,0 110,120.8 A55,55 0 0,0 110,19.2 Z" fill="rgba(201,168,76,0.15)" class="vesica-fill"/>
+      <!-- Circle 1 stroke -->
+      <circle cx="88" cy="70" r="55" fill="none" stroke="#7ab0b8" stroke-width="1.2" class="c1" opacity="0.7"/>
+      <!-- Circle 2 stroke -->
+      <circle cx="132" cy="70" r="55" fill="none" stroke="#c9a84c" stroke-width="1.2" class="c2" opacity="0.7"/>
+      <!-- Center points -->
+      <circle cx="88" cy="70" r="3" fill="#7ab0b8" opacity="0.9"/>
+      <circle cx="132" cy="70" r="3" fill="#c9a84c" opacity="0.9"/>
+      <!-- Intersection points -->
+      <circle cx="110" cy="22.7" r="2.5" fill="#f0ede6" opacity="0.7"/>
+      <circle cx="110" cy="117.3" r="2.5" fill="#f0ede6" opacity="0.7"/>
+    </svg>
+
+    <div class="hero-quote">
+      "Two circles, one overlap. In that overlap — the eye of God, the womb of creation, the root of every sacred form that follows."
+      <cite>— The Frequency Academy</cite>
+    </div>
+  </section>
+
+  <!-- 1. OPENING TRANSMISSION -->
+  <section class="section transmission" id="sec-transmission">
+    <div class="transmission-label">✦ Opening Transmission ✦</div>
+    <p>In the beginning, there was one circle — the Point and its field, pure unity, the breath of the cosmos before it knew itself in relationship. Then something extraordinary happened. That first field of awareness reached outward, placed itself at its own edge, and breathed a second circle into being at exactly the right distance — neither too close, nor too far.</p>
+    <p>In that act of reaching, of meeting, of overlap: a new space appeared. An eye. A womb. A lens through which all complexity would be born. The Vesica Piscis is the first moment the universe knew itself as both one and two — and in that knowing, created everything else.</p>
+    <p>You are not just learning geometry. You are remembering the grammar of creation.</p>
+  </section>
+
+  <!-- 2. CORE CONCEPT -->
+  <section class="section" id="sec-intro">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">What Is the Vesica Piscis?</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="card">
+      <p>The <span class="highlight">Vesica Piscis</span> — Latin for <em>"bladder of a fish"</em> — is the lens-shaped region created when two circles of identical radius are placed so that the edge of each circle passes directly through the centre of the other. It is the second act of sacred geometry, arising the moment G1's singular circle is joined by its twin.</p>
+      <p>What makes this construction extraordinary is not its beauty alone — though it is undeniably beautiful — but what is <em>encoded within it</em>. The ratio of the vesica's width to its height is exactly <strong>1:√3</strong> (1 to the square root of 3, approximately 1.732). Like π embedded in the circle, this irrational number lives permanently in the most fundamental two-circle relationship possible. The infinite is written into the first act of relationship.</p>
+      <div class="callout">
+        <p>The Vesica Piscis is not one form among many. It is the generative womb of the entire geometric lineage — the source from which all sacred forms that follow in this module emerge.</p>
+      </div>
+      <ul class="concept-list">
+        <li class="concept-item"><div class="concept-bullet"></div>Formed by two equal circles, each passing through the other's centre</li>
+        <li class="concept-item"><div class="concept-bullet"></div>Encodes √3 in its width-to-height ratio — an irrational, infinite number like π</li>
+        <li class="concept-item"><div class="concept-bullet"></div>Directly generates the equilateral triangle — the first polygon in sacred geometry</li>
+        <li class="concept-item"><div class="concept-bullet"></div>Is the geometric parent of every subsequent sacred form: hexagon, Star of David, Seed of Life, Flower of Life</li>
+        <li class="concept-item"><div class="concept-bullet"></div>Appears across Christian, Egyptian, Islamic, Celtic, and Masonic traditions as the eye, the womb, the overlap of worlds</li>
+        <li class="concept-item"><div class="concept-bullet"></div>The intentional drawing practice charges the geometry with meaning — geometry is both mathematics and meditation</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. CONSTRUCTION STEPS -->
+  <section class="section" id="sec-construction">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Constructing the Vesica Piscis</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="card">
+      <p style="font-style:italic; color:var(--text-dim); margin-bottom:24px;">The Vesica Piscis is the first geometric construction in the sacred geometry tradition. Every form that follows in this module is built on or within it.</p>
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Draw the First Circle</h4>
+            <p>Place your compass needle anywhere on a blank page. Open to any radius r. Draw a complete circle. Mark the centre point <span class="gold-text">A</span>.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Place the Second Centre</h4>
+            <p>Without changing the radius, move the compass needle to any point on the circumference of the first circle. Mark this as centre point <span class="gold-text">B</span>.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Draw the Second Circle</h4>
+            <p>With the needle at B, draw a second complete circle of exactly the same radius. This circle will pass directly through the centre A of the first circle.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Identify the Vesica</h4>
+            <p>The lens-shaped region where the circles overlap is the Vesica Piscis. There are two intersection points where the circles cross — mark these <span class="gold-text">C</span> and <span class="gold-text">D</span>.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h4>Find the Triangle</h4>
+            <p>Connect A, B, and either C or D. Because AB = AC = BC = r (the radius), this is a perfect equilateral triangle. The Vesica Piscis has just generated the first polygon.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- MATHEMATICS TABLE -->
+    <div class="card" style="margin-top:20px;">
+      <h3 class="sub-title">The Mathematics of the Vesica Piscis</h3>
+      <p style="font-style:italic; margin-bottom:16px;">Like the circle before it, the Vesica Piscis encodes an irrational, infinite number in its most fundamental proportions.</p>
+      <div class="math-highlight">Width : Height = 1 : √3 ≈ 1 : 1.732…</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Measurement</th><th>Formula</th><th>Value</th><th>Significance</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Width (A to B)</td><td>= r</td><td>1 unit</td><td>Distance between circle centres — also the radius of both circles</td></tr>
+          <tr><td>Height (C to D)</td><td>r × √3</td><td>√3 ≈ 1.732</td><td>Full height of the lens from intersection point to intersection point</td></tr>
+          <tr><td>Width:Height ratio</td><td>1 : √3</td><td>1 : 1.732…</td><td>An irrational ratio — like π, it cannot be expressed as a finite decimal</td></tr>
+          <tr><td>Triangle side</td><td>= r</td><td>All sides equal</td><td>The equilateral triangle generated has all sides equal to the radius</td></tr>
+          <tr><td>Triangle angles</td><td>= 60°</td><td>3 × 60° = 180°</td><td>The first polygon is also the most balanced — all angles identical</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 4. WOMB OF CREATION -->
+  <section class="section" id="sec-womb">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">The Womb of Creation — Why This Form Matters</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="card">
+      <h3 class="sub-title">The First Duality</h3>
+      <p>In G1 we had one circle — the unity of the Point and its field. When we add the second circle and overlap them at the radius, we create the first duality. Two distinct circles. Two distinct centres. Two fields of awareness in relationship.</p>
+      <p>The Vesica Piscis is the space between them. The overlap. The zone of meeting, of resonance, of creation that happens when two fields intersect. In metaphysical terms, it is the womb — the creative space that appears when two become aware of each other and reach toward each other at exactly the right distance.</p>
+      <div class="callout">
+        <p><strong class="gold-text">Symbolic Correspondence:</strong> Duality · The Meeting Place · The Womb · The Eye of God · Creative Potential</p>
+      </div>
+
+      <h3 class="sub-title" style="margin-top:24px;">What It Generates</h3>
+      <p>From the Vesica Piscis, the entire geometric lineage unfolds:</p>
+      <div class="forms-flow">
+        <div class="form-chip">Vesica Piscis</div>
+        <div class="form-arrow">→</div>
+        <div class="form-chip">Equilateral Triangle</div>
+        <div class="form-arrow">→</div>
+        <div class="form-chip">Hexagon</div>
+        <div class="form-arrow">→</div>
+        <div class="form-chip">Star of David / Merkaba</div>
+        <div class="form-arrow">→</div>
+        <div class="form-chip">Seed of Life (G3)</div>
+        <div class="form-arrow">→</div>
+        <div class="form-chip">Flower of Life (G4)</div>
+      </div>
+      <p style="text-align:center; font-style:italic; font-size:0.85rem; color:var(--gold); margin-top:4px;">The single greatest act in constructing sacred geometry: the second circle.</p>
+    </div>
+  </section>
+
+  <!-- 5. TRADITIONS -->
+  <section class="section" id="sec-traditions">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">The Vesica Piscis Across Traditions</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="card">
+      <p>This is one of the most cross-cultural symbols in human history — appearing across at least six major wisdom traditions, each recognising the same fundamental truth encoded in two overlapping circles.</p>
+      <div class="traditions-grid">
+        <div class="tradition-card">
+          <div class="tradition-name">Christian Art</div>
+          <div class="tradition-form">Mandorla / Vesica</div>
+          <div class="tradition-desc">The almond-shaped aureole surrounding Christ, the Virgin, or saints in glory. Represents the meeting of the human and divine.</div>
+        </div>
+        <div class="tradition-card">
+          <div class="tradition-name">Christian Symbol</div>
+          <div class="tradition-form">Ichthys (Fish)</div>
+          <div class="tradition-desc">The outline of the Vesica Piscis used as the early Christian fish symbol. Predates and outlasts specific doctrines.</div>
+        </div>
+        <div class="tradition-card">
+          <div class="tradition-name">Freemasonry</div>
+          <div class="tradition-form">The Point within Two Circles</div>
+          <div class="tradition-desc">The Vesica framing the point — symbolising the soul bounded by universal law and divine proportion.</div>
+        </div>
+        <div class="tradition-card">
+          <div class="tradition-name">Ancient Egypt</div>
+          <div class="tradition-form">Eye of Horus / Ra</div>
+          <div class="tradition-desc">The almond eye shape — the Vesica Piscis as the eye of divine consciousness looking out from the eternal field.</div>
+        </div>
+        <div class="tradition-card">
+          <div class="tradition-name">Celtic</div>
+          <div class="tradition-form">The Celtic Lens</div>
+          <div class="tradition-desc">The vesica appears throughout Celtic knotwork and illuminated manuscripts as a symbol of the overlap of worlds.</div>
+        </div>
+        <div class="tradition-card">
+          <div class="tradition-name">Islamic Geometry</div>
+          <div class="tradition-form">Al-Mandal</div>
+          <div class="tradition-desc">The foundational lens shape used in the construction of complex Islamic geometric patterns and star polygons.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. INTERACTIVE ELEMENT — COMPASS BUILDER -->
+  <section class="section" id="sec-interactive">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Interactive Construction — Build It Step by Step</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="compass-builder">
+      <p style="color:var(--text-dim); margin-bottom:4px; font-size:0.9rem;">Follow the sacred geometry tradition: construct the Vesica Piscis one step at a time, just as a geometer would with compass and straightedge.</p>
+      <canvas id="builderCanvas" width="520" height="340"></canvas>
+      <div class="builder-controls">
+        <button class="build-btn" id="btn-step1" onclick="builderStep(1)">Step 1: First Circle</button>
+        <button class="build-btn" id="btn-step2" onclick="builderStep(2)">Step 2: Second Centre</button>
+        <button class="build-btn" id="btn-step3" onclick="builderStep(3)">Step 3: Second Circle</button>
+        <button class="build-btn" id="btn-step4" onclick="builderStep(4)">Step 4: The Vesica</button>
+        <button class="build-btn" id="btn-step5" onclick="builderStep(5)">Step 5: The Triangle</button>
+        <button class="build-btn reset" onclick="builderReset()">↺ Reset</button>
+      </div>
+      <div class="builder-status" id="builder-status">Begin with Step 1 — draw the first circle.</div>
+    </div>
+  </section>
+
+  <!-- 7. GLOSSARY / QUICK REFERENCE -->
+  <section class="section" id="sec-glossary">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Quick Reference — Key Definitions</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="card">
+      <div id="glossary-accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Vesica Piscis</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">Latin for 'bladder of a fish.' The lens-shaped region formed by the intersection of two circles of equal radius, where the edge of each circle passes through the centre of the other. The width to height ratio is 1:√3.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Intersection</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">The region where two geometric forms overlap. In the case of two equal circles positioned so each passes through the other's centre, the intersection is the Vesica Piscis — a mandorla or almond shape.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Mandorla</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">Italian for 'almond.' Another name for the Vesica Piscis shape, used in art and iconography. In Christian art, the mandorla surrounds the figure of Christ or the Virgin Mary in representations of divine transcendence.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">√3 (Root 3)</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">The square root of 3, approximately 1.732. The ratio of the width of the Vesica Piscis to its height is exactly 1:√3. This irrational number — like π — cannot be expressed as a finite decimal, encoding the infinite in the most basic two-circle relationship.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Equilateral Triangle</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">A triangle with all three sides equal and all angles 60°. The equilateral triangle is the first polygon that emerges from the Vesica Piscis — its three vertices are the two circle centres and one of the two intersection points. This makes the Vesica Piscis the geometric parent of the triangle.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-header-text">Ichthys</span>
+            <span class="accordion-arrow">›</span>
+          </div>
+          <div class="accordion-body">The ancient Christian fish symbol. Two arcs forming a fish shape — directly derived from the outline of the Vesica Piscis. The symbol predates Christianity and encodes the same sacred geometry across traditions.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. KNOWLEDGE CHECK QUIZ -->
+  <section class="section" id="sec-quiz">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Knowledge Check</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div id="quiz-container">
+      <div class="quiz-question" id="qq1">
+        <div class="quiz-q-text">1. The ratio of the width to height of the Vesica Piscis is:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(1,this,'a')">a) 1 : √2 (the square root of 2)</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'b')">b) 1 : √3 (the square root of 3)</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'c')">c) 1 : π (the ratio of pi)</button>
+          <button class="quiz-option" onclick="quizAnswer(1,this,'d')">d) 1 : φ (the golden ratio)</button>
+        </div>
+        <div class="quiz-feedback" id="qf1"></div>
+      </div>
+      <div class="quiz-question" id="qq2">
+        <div class="quiz-q-text">2. What is the Latin translation of 'Vesica Piscis'?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(2,this,'a')">a) Eye of God</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'b')">b) Womb of Creation</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'c')">c) Bladder of a Fish</button>
+          <button class="quiz-option" onclick="quizAnswer(2,this,'d')">d) Lens of Light</button>
+        </div>
+        <div class="quiz-feedback" id="qf2"></div>
+      </div>
+      <div class="quiz-question" id="qq3">
+        <div class="quiz-q-text">3. The equilateral triangle generated by the Vesica Piscis has all sides equal to:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(3,this,'a')">a) The diameter of the circles</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'b')">b) The height of the Vesica (C to D)</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'c')">c) The radius r of the two circles</button>
+          <button class="quiz-option" onclick="quizAnswer(3,this,'d')">d) Half the circumference</button>
+        </div>
+        <div class="quiz-feedback" id="qf3"></div>
+      </div>
+      <div class="quiz-question" id="qq4">
+        <div class="quiz-q-text">4. Which of the following does NOT emerge directly from the Vesica Piscis construction?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(4,this,'a')">a) The equilateral triangle</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'b')">b) The Fibonacci spiral</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'c')">c) The Star of David / Merkaba seed</button>
+          <button class="quiz-option" onclick="quizAnswer(4,this,'d')">d) The hexagon</button>
+        </div>
+        <div class="quiz-feedback" id="qf4"></div>
+      </div>
+      <div class="quiz-question" id="qq5">
+        <div class="quiz-q-text">5. The mandorla in Christian art represents:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(5,this,'a')">a) The Holy Trinity</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'b')">b) The meeting of the human and divine</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'c')">c) The seven days of creation</button>
+          <button class="quiz-option" onclick="quizAnswer(5,this,'d')">d) The twelve apostles</button>
+        </div>
+        <div class="quiz-feedback" id="qf5"></div>
+      </div>
+      <div class="quiz-question" id="qq6">
+        <div class="quiz-q-text">6. TRUE or FALSE: The Vesica Piscis shape appears only in Western Christian iconography.</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(6,this,'a')">True — it is unique to Christian art</button>
+          <button class="quiz-option" onclick="quizAnswer(6,this,'b')">False — it appears across at least six major traditions including Egyptian, Islamic, and Celtic</button>
+        </div>
+        <div class="quiz-feedback" id="qf6"></div>
+      </div>
+    </div>
+    <button id="quiz-submit" onclick="submitQuiz()">Check Answers</button>
+    <div class="quiz-score-bar" id="quiz-score-bar">
+      <div class="score-display" id="quiz-score-display">0/6</div>
+      <p id="quiz-score-msg" style="color:var(--text-dim);"></p>
+    </div>
+  </section>
+
+  <!-- 9. PRACTICAL APPLICATION -->
+  <section class="section" id="sec-practical">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Practical Application — This Week</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="card">
+      <p style="margin-bottom:20px;">The Vesica Piscis is not a concept to hold in the mind — it is a practice to work with the hands and inhabit with awareness. This week, bring the geometry into your physical world.</p>
+      <div class="practice-items">
+        <div class="practice-item">
+          <div class="practice-icon">🧭</div>
+          <div class="practice-item-title">Construction Practice</div>
+          <p>Draw the Vesica Piscis with compass and straightedge following the 5 steps. Allow 15–20 minutes. Work through all four constructions: basic vesica, equilateral triangle, double triangle, and intentional drawing.</p>
+        </div>
+        <div class="practice-item">
+          <div class="practice-icon">👁</div>
+          <div class="practice-item-title">Spot the Vesica</div>
+          <p>Find at least three vesica shapes in your environment this week — in architecture, logos, religious art, or nature. Photograph them. Notice what traditions or contexts they arise in.</p>
+        </div>
+        <div class="practice-item">
+          <div class="practice-icon">✍️</div>
+          <div class="practice-item-title">Intentional Drawing</div>
+          <p>Draw one final Vesica Piscis with full intention. Before placing the first circle, choose what the two centres represent — two aspects of yourself, two people, two qualities in relationship. Draw slowly.</p>
+        </div>
+        <div class="practice-item">
+          <div class="practice-icon">📐</div>
+          <div class="practice-item-title">Verify the Math</div>
+          <p>After constructing your Vesica, measure the width and height with a ruler. Divide height by width. You should get approximately 1.732 — the square root of 3. Verify the infinite in your own drawing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. REFLECTION JOURNAL -->
+  <section class="section" id="sec-reflection">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Reflection Journal</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="card">
+      <p style="font-style:italic; color:var(--text-dim); margin-bottom:28px;">The Vesica Piscis is the geometry of relationship — what happens in the overlap between two fields. These questions invite you to meet it from the inside.</p>
+      
+      <div class="reflection-prompt">
+        <div class="reflection-q">1. In G1, the Point and Circle modelled consciousness and its field. In G2, the second circle introduces another field of awareness, and the Vesica is the space of their meeting. Think of a significant relationship in your own life — a partnership, friendship, or collaboration. What is the 'vesica' between you — the zone of genuine creative overlap? What is only possible in that space?</div>
+        <textarea class="reflection-textarea" id="ref1" placeholder="Your response…" oninput="scheduleAutosave()"></textarea>
+      </div>
+      
+      <div class="reflection-prompt">
+        <div class="reflection-q">2. The lesson states that the Vesica Piscis is the geometric template from which all subsequent sacred forms emerge. Does it surprise you that such complexity — triangles, hexagons, the Star of David, the Seed of Life, ultimately the Flower of Life — all comes from this single act of adding a second circle? What does this suggest about how complexity arises in the universe?</div>
+        <textarea class="reflection-textarea" id="ref2" placeholder="Your response…" oninput="scheduleAutosave()"></textarea>
+      </div>
+      
+      <div class="reflection-prompt">
+        <div class="reflection-q">3. The Vesica Piscis appears in Christian art, Egyptian iconography, Islamic geometric patterns, Celtic knotwork, and Freemasonry. It is one of the most cross-cultural symbols in human history. Why do you think this particular shape has resonated so deeply across such different traditions? What does it encode that speaks beyond doctrine?</div>
+        <textarea class="reflection-textarea" id="ref3" placeholder="Your response…" oninput="scheduleAutosave()"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. GO DEEPER -->
+  <section class="section" id="sec-resources">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <h2 class="section-title">Go Deeper — Resources</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="card">
+      <div class="resource-group">
+        <div class="resource-group-title">📚 Books</div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">Sacred Geometry — Robert Lawlor</div>
+            <div class="resource-meta">Inner Traditions, 1982 · ISBN 978-0500810606 · Devotes substantial coverage to the vesica piscis as the second act of creation and the generator of all subsequent forms.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">The Geometry of Art and Life — Matila Ghyka</div>
+            <div class="resource-meta">Dover Publications, 1977 · ISBN 978-0486235424 · A scholarly treatment of geometric proportions including the vesica piscis and its role in classical art and architecture.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">Drawing Geometry — Jon Allen</div>
+            <div class="resource-meta">Floris Books, 2007 · ISBN 978-0863153952 · Step-by-step construction guides for sacred geometric forms, starting with the vesica piscis.</div>
+          </div>
+        </div>
+      </div>
+      <div class="resource-group">
+        <div class="resource-group-title">🔬 Scientific Studies</div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">Space Structures: Their Harmony and Counterpoint — Loeb, A.L. (1976)</div>
+            <div class="resource-meta">Examines how the proportions of the vesica piscis (√3) appear throughout structural and natural systems.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">Symmetry: A Unifying Concept — Hargittai, I. & M. (1994)</div>
+            <div class="resource-meta">Covers how the intersecting-circle geometry generates the key symmetry ratios found throughout nature.</div>
+          </div>
+        </div>
+      </div>
+      <div class="resource-group">
+        <div class="resource-group-title">🎬 Documentaries</div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">The Sacred Geometry Movie — Spirit Science (YouTube)</div>
+            <div class="resource-meta">Accessible visual introduction to the vesica piscis and its appearance throughout sacred traditions.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">How the Universe Works — Science Channel</div>
+            <div class="resource-meta">Episodes on the mathematical structure of the cosmos touch on the geometric relationships the vesica piscis embodies.</div>
+          </div>
+        </div>
+      </div>
+      <div class="resource-group">
+        <div class="resource-group-title">🌐 Websites</div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">sacred-geometry.es/vesica-piscis</div>
+            <div class="resource-meta">Detailed construction guide and historical context for the vesica piscis across cultures.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">mathworld.wolfram.com</div>
+            <div class="resource-meta">Rigorous mathematical treatment of the vesica piscis and its derived proportions.</div>
+          </div>
+        </div>
+      </div>
+      <div class="resource-group">
+        <div class="resource-group-title">🔗 TFA Lesson Connections</div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">G1 — The Point and the Circle</div>
+            <div class="resource-meta">The vesica piscis is generated by the intersection of two circles of equal radius — G1's foundational form.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">G3 — The Seed of Life</div>
+            <div class="resource-meta">The vesica piscis is the building block from which the seed of life is constructed.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="resource-icon">▸</div>
+          <div class="resource-info">
+            <div class="resource-title">G7 — The Golden Ratio</div>
+            <div class="resource-meta">The vesica proportions (1:√3) are closely related to the proportional systems explored in G7.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. WORKSHOP SLOT -->
+  <section class="section" id="sec-workshop">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <h2 class="section-title">Live Workshop</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="workshop-slot">
+      <div class="workshop-icon">◎</div>
+      <div class="workshop-title">Live Workshop on this topic coming soon</div>
+      <div class="workshop-sub">Recordings will appear here once available. Check back or watch for announcements at thefrequencyacademy.net</div>
+    </div>
+  </section>
+
+  <!-- 13. COMPLETION -->
+  <section class="section" id="sec-completion">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <h2 class="section-title">Lesson Complete</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="completion-card">
+      <div class="completion-title">Lesson Summary</div>
+      <p style="color:var(--text-dim); max-width:520px; margin:0 auto 24px; font-style:italic;">"Two circles, one overlap. In that overlap — the eye of God, the womb of creation, the root of every sacred form that follows."</p>
+      <div class="complete-checkbox-wrap">
+        <input type="checkbox" id="complete-checkbox" onchange="onComplete(this)">
+        <label class="complete-label" for="complete-checkbox">I have completed Lesson G2 — Vesica Piscis</label>
+      </div>
+      <div class="xp-badge" id="xp-badge">✦ +10 XP Earned ✦</div>
+    </div>
+  </section>
+
+  <!-- 14. UP NEXT -->
+  <section class="section" id="sec-upnext">
+    <div class="section-header">
+      <span class="section-num">14</span>
+      <h2 class="section-title">Up Next in the Module</h2>
+      <div class="section-title-rule"></div>
+    </div>
+    <div class="up-next-card">
+      <div class="up-next-badge">G3</div>
+      <div class="up-next-info">
+        <div class="up-next-label">Next Lesson · Sacred Geometry</div>
+        <div class="up-next-title">The Seed of Life</div>
+        <div class="up-next-desc">Add five more circles to the Vesica Piscis construction and the Seed of Life appears — seven circles forming the foundational template of creation. Encoding the seven days of Genesis, the seven chakras, and the seven musical notes.</div>
+      </div>
+      <div class="up-next-arrow">›</div>
+    </div>
+  </section>
+
+</div><!-- /lesson-wrap -->
+
+<script>
+// ── CONSTANTS ──
+const STORAGE_KEY = 'tfa_lesson_G2';
+let autosaveTimer = null;
+let quizAnswers = {};
+const correctAnswers = { 1:'b', 2:'c', 3:'c', 4:'b', 5:'b', 6:'b' };
+const quizFeedback = {
+  1: { b: "Correct! The width:height ratio is 1:√3 (approximately 1.732) — the square root of 3, an irrational number like π, encoded in the most basic two-circle relationship.", wrong: "Not quite. The ratio is 1:√3 — the square root of 3, approximately 1.732." },
+  2: { c: "Correct! 'Vesica Piscis' translates from Latin as 'bladder of a fish' — a name that reflects the lens-shaped form's resemblance to a fish's air bladder.", wrong: "Not quite. 'Vesica Piscis' is Latin for 'bladder of a fish.'" },
+  3: { c: "Correct! The equilateral triangle has all sides equal to the radius r — connecting the two circle centres (A and B) and either intersection point (C or D).", wrong: "Not quite. The triangle sides all equal r — the radius of the two circles." },
+  4: { b: "Correct! The Fibonacci spiral does not directly emerge from the Vesica Piscis construction. The triangle, hexagon, Merkaba seed, Seed of Life, and Flower of Life all emerge from it.", wrong: "Not quite. The Fibonacci spiral is not a direct product of the Vesica Piscis." },
+  5: { b: "Correct! The mandorla represents the meeting point of the human and divine — the same creative overlap encoded in the Vesica Piscis geometry.", wrong: "Not quite. The mandorla in Christian art represents the meeting of the human and divine." },
+  6: { b: "Correct! The Vesica Piscis appears across at least six major traditions: Christian, Freemasonry, Ancient Egypt, Celtic, Islamic geometry, and more.", wrong: "Not quite. The Vesica Piscis appears across at least six major traditions worldwide." }
+};
+
+// ── PROGRESS BAR ──
+function updateProgress() {
+  const sections = document.querySelectorAll('.section');
+  const windowH = window.innerHeight;
+  const docH = document.documentElement.scrollHeight;
+  const scrolled = window.scrollY;
+  const pct = Math.min(100, Math.round((scrolled / (docH - windowH)) * 100));
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = 'G2 · ' + pct + '%';
+}
+
+// ── INTERSECTION OBSERVER ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+// ── ACCORDION ──
+function toggleAccordion(header) {
+  const item = header.closest('.accordion-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── QUIZ ──
+function quizAnswer(q, btn, choice) {
+  if (quizAnswers[q]) return;
+  quizAnswers[q] = choice;
+  const correct = correctAnswers[q];
+  const buttons = btn.closest('.quiz-options').querySelectorAll('.quiz-option');
+  buttons.forEach(b => b.disabled = true);
+  if (choice === correct) {
+    btn.classList.add('correct');
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#81c784">✓ ' + quizFeedback[q][correct] + '</span>';
+  } else {
+    btn.classList.add('wrong');
+    buttons.forEach(b => { if (b.textContent.startsWith(correct)) b.classList.add('correct'); });
+    document.getElementById('qf' + q).innerHTML = '<span style="color:#e57373">✗ ' + quizFeedback[q].wrong + '</span>';
+  }
+  saveData();
+}
+
+function submitQuiz() {
+  const total = Object.keys(correctAnswers).length;
+  const scored = Object.keys(quizAnswers).filter(q => quizAnswers[q] === correctAnswers[q]).length;
+  const bar = document.getElementById('quiz-score-bar');
+  bar.style.display = 'block';
+  document.getElementById('quiz-score-display').textContent = scored + '/' + total;
+  const msgs = ['Keep studying — review the sections and try again!', 'Good effort — review the traditions and construction steps.', 'Solid foundation — you know the core concepts.', 'Excellent — the geometry is becoming familiar.', 'Outstanding — deep understanding of the Vesica Piscis!', 'Perfect! You have mastered this lesson!'];
+  document.getElementById('quiz-score-msg').textContent = msgs[scored] || msgs[5];
+  document.getElementById('quiz-submit').style.display = 'none';
+  saveData();
+}
+
+// ── COMPASS BUILDER ──
+const canvas = document.getElementById('builderCanvas');
+const ctx = canvas.getContext('2d');
+let builderCurrentStep = 0;
+
+const CW = canvas.width, CH = canvas.height;
+const cx1 = CW * 0.38, cy = CH * 0.5, r = CH * 0.38;
+const cx2 = cx1 + r;
+
+// Intersection points
+const ix_y_offset = Math.sqrt(r*r - (r/2)*(r/2));
+const ixC = { x: cx1 + r/2, y: cy - ix_y_offset };
+const ixD = { x: cx1 + r/2, y: cy + ix_y_offset };
+
+const steps_desc = [
+  'Begin with Step 1 — draw the first circle.',
+  'Step 1: Place compass at centre A. Draw the first circle with radius r.',
+  'Step 2: Place compass at point B — on the circumference of the first circle, at distance r from A.',
+  'Step 3: Draw the second circle with the same radius from centre B. It passes through A.',
+  'Step 4: The Vesica Piscis is revealed — the lens-shaped overlap. Mark intersection points C and D.',
+  'Step 5: Connect A, B, and C — the equilateral triangle emerges. All sides = r. The first polygon is born.'
+];
+
+function drawBuilder() {
+  ctx.clearRect(0, 0, CW, CH);
+  const s = builderCurrentStep;
+
+  // Background
+  ctx.fillStyle = 'rgba(0,0,0,0.5)';
+  ctx.fillRect(0, 0, CW, CH);
+
+  const gold = '#c9a84c', teal = '#7ab0b8', white = 'rgba(240,237,230,0.85)', dim = 'rgba(240,237,230,0.4)';
+
+  function circle(x, y, rad, color, lw, dash) {
+    ctx.save();
+    ctx.beginPath();
+    if (dash) ctx.setLineDash(dash);
+    ctx.arc(x, y, rad, 0, Math.PI * 2);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lw;
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore();
+  }
+
+  function dot(x, y, color, rad2, label, labelPos) {
+    ctx.beginPath();
+    ctx.arc(x, y, rad2, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+    if (label) {
+      ctx.font = 'bold 13px Cinzel, serif';
+      ctx.fillStyle = color;
+      ctx.fillText(label, x + (labelPos ? labelPos[0] : 8), y + (labelPos ? labelPos[1] : -8));
+    }
+  }
+
+  function line(x1, y1, x2, y2, color, lw) {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+    ctx.strokeStyle = color; ctx.lineWidth = lw;
+    ctx.stroke();
+  }
+
+  if (s >= 1) circle(cx1, cy, r, teal, 1.5, []);
+  if (s >= 1) dot(cx1, cy, teal, 4, 'A', [-18, -4]);
+
+  if (s >= 2) dot(cx2, cy, gold, 4, 'B', [8, -4]);
+
+  if (s >= 3) circle(cx2, cy, r, gold, 1.5, []);
+
+  if (s >= 4) {
+    // Fill vesica
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx1, cy, r, -Math.PI/3, Math.PI/3);
+    ctx.arc(cx2, cy, r, Math.PI - Math.PI/3, Math.PI + Math.PI/3, true);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(201,168,76,0.12)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(201,168,76,0.5)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.restore();
+    dot(ixC.x, ixC.y, white, 4, 'C', [8, -6]);
+    dot(ixD.x, ixD.y, white, 4, 'D', [8, 8]);
+  }
+
+  if (s >= 5) {
+    // Triangle
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(cx1, cy); ctx.lineTo(cx2, cy); ctx.lineTo(ixC.x, ixC.y); ctx.closePath();
+    ctx.strokeStyle = 'rgba(122,176,184,0.8)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4,3]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(122,176,184,0.05)';
+    ctx.fill();
+    ctx.restore();
+    // Label
+    ctx.font = '11px Raleway, sans-serif';
+    ctx.fillStyle = teal;
+    ctx.fillText('All sides = r', (cx1 + cx2)/2, cy + 22);
+  }
+
+  document.getElementById('builder-status').textContent = steps_desc[s];
+}
+
+function builderStep(n) {
+  if (n !== builderCurrentStep + 1 && n > 1) return;
+  builderCurrentStep = n;
+  document.querySelectorAll('[id^="btn-step"]').forEach((b, i) => {
+    b.classList.toggle('active', i < n);
+  });
+  drawBuilder();
+}
+
+function builderReset() {
+  builderCurrentStep = 0;
+  document.querySelectorAll('[id^="btn-step"]').forEach(b => b.classList.remove('active'));
+  drawBuilder();
+}
+
+drawBuilder();
+
+// ── CONFETTI ──
+function spawnConfetti() {
+  const colors = ['#c9a84c', '#7ab0b8', '#f0ede6', '#9ecdd5', '#e8c96d'];
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'confetti-piece';
+      el.style.cssText = `
+        left:${Math.random()*100}vw;
+        top:-10px;
+        background:${colors[Math.floor(Math.random()*colors.length)]};
+        animation-duration:${1.5 + Math.random()*2}s;
+        animation-delay:${Math.random()*0.5}s;
+        transform:rotate(${Math.random()*360}deg);
+        width:${6+Math.random()*6}px;
+        height:${6+Math.random()*6}px;
+        border-radius:${Math.random()>0.5?'50%':'2px'};
+      `;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 4000);
+    }, i * 30);
+  }
+}
+
+function onComplete(cb) {
+  const badge = document.getElementById('xp-badge');
+  if (cb.checked) {
+    badge.classList.add('show');
+    spawnConfetti();
+    saveData();
+  } else {
+    badge.classList.remove('show');
+  }
+}
+
+// ── SAVE / LOAD ──
+function gatherData() {
+  return {
+    version: '1.0',
+    lesson: 'G2',
+    timestamp: new Date().toISOString(),
+    reflections: {
+      r1: document.getElementById('ref1').value,
+      r2: document.getElementById('ref2').value,
+      r3: document.getElementById('ref3').value
+    },
+    quiz: { answers: quizAnswers },
+    completed: document.getElementById('complete-checkbox').checked,
+    builderStep: builderCurrentStep
+  };
+}
+
+function applyData(data) {
+  if (!data) return;
+  if (data.reflections) {
+    if (data.reflections.r1) document.getElementById('ref1').value = data.reflections.r1;
+    if (data.reflections.r2) document.getElementById('ref2').value = data.reflections.r2;
+    if (data.reflections.r3) document.getElementById('ref3').value = data.reflections.r3;
+  }
+  if (data.quiz && data.quiz.answers) {
+    // Replay answers
+    quizAnswers = data.quiz.answers;
+    Object.keys(quizAnswers).forEach(q => {
+      const choice = quizAnswers[q];
+      const correct = correctAnswers[q];
+      const qEl = document.getElementById('qq' + q);
+      if (!qEl) return;
+      const buttons = qEl.querySelectorAll('.quiz-option');
+      buttons.forEach(b => b.disabled = true);
+      if (choice === correct) {
+        buttons.forEach(b => { if (b.textContent.startsWith(choice)) b.classList.add('correct'); });
+        document.getElementById('qf' + q).innerHTML = '<span style="color:#81c784">✓ ' + quizFeedback[q][correct] + '</span>';
+      } else {
+        buttons.forEach(b => {
+          if (b.textContent.startsWith(choice)) b.classList.add('wrong');
+          if (b.textContent.startsWith(correct)) b.classList.add('correct');
+        });
+        document.getElementById('qf' + q).innerHTML = '<span style="color:#e57373">✗ ' + quizFeedback[q].wrong + '</span>';
+      }
+    });
+  }
+  if (data.completed) {
+    document.getElementById('complete-checkbox').checked = true;
+    document.getElementById('xp-badge').classList.add('show');
+  }
+  if (data.builderStep && data.builderStep > 0) {
+    for (let i = 1; i <= data.builderStep; i++) builderStep(i);
+  }
+}
+
+function saveData() {
+  try {
+    const d = gatherData();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+    const now = new Date();
+    document.getElementById('save-status').textContent = 'Saved at ' + now.toLocaleTimeString();
+  } catch(e) {
+    document.getElementById('save-status').textContent = 'Save failed';
+  }
+}
+
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) applyData(JSON.parse(raw));
+  } catch(e) {}
+}
+
+function scheduleAutosave() {
+  clearTimeout(autosaveTimer);
+  autosaveTimer = setTimeout(saveData, 90000);
+}
+
+function exportData() {
+  const d = gatherData();
+  const blob = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'TFA_G2_VesicaPiscis_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importTrigger() {
+  document.getElementById('import-input').click();
+}
+
+function importData(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    try {
+      const d = JSON.parse(ev.target.result);
+      applyData(d);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+      document.getElementById('save-status').textContent = 'Imported successfully';
+    } catch(err) {
+      document.getElementById('save-status').textContent = 'Import failed — invalid file';
+    }
+  };
+  reader.readAsText(file);
+}
+
+// Autosave every 90s
+setInterval(saveData, 90000);
+
+// Load on start
+window.addEventListener('DOMContentLoaded', loadData);
+</script>
 </body>
 </html>
