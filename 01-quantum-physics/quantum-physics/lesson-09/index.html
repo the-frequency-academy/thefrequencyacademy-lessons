@@ -1,1 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q9 — Wave Mechanics | The Frequency Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--n:#0a1628;--n2:#0d1e38;--n3:#102040;--g:#4a9edd;--g2:#78b8ee;--gb:rgba(74,158,221,0.22);--gf:rgba(74,158,221,0.08);--w:#e8f0f8;--w2:rgba(232,240,248,0.72);--w3:rgba(232,240,248,0.38);--w4:rgba(232,240,248,0.06);--ok:#2a8a7a;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
+body{min-height:100vh;padding-bottom:80px}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--w4);z-index:200}
+.progress-fill{height:100%;background:var(--g);transition:width .4s;width:0%}
+header{background:rgba(10,22,40,0.95);border-bottom:1px solid var(--gb);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:100;backdrop-filter:blur(8px)}
+.hd-left{font-family:'Cinzel',serif;font-size:11px;color:var(--w3);letter-spacing:0.12em}
+.hd-right{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.1em}
+.hero{text-align:center;padding:60px 24px 40px;max-width:800px;margin:0 auto}
+.eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.22em;color:var(--g);margin-bottom:18px;opacity:0.8}
+.hero h1{font-family:'Cinzel',serif;font-size:44px;font-weight:700;color:var(--w);line-height:1.12;margin-bottom:12px}
+.hero h1 span{color:var(--g)}
+.gold-rule{width:80px;height:2px;background:var(--g);margin:24px auto;opacity:0.6}
+.hero-sub{font-size:16px;color:var(--w3);line-height:1.7;max-width:560px;margin:0 auto}
+.content{max-width:780px;margin:0 auto;padding:0 24px}
+.section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb)}
+.section p{font-size:14px;color:var(--w2);line-height:1.8;margin-bottom:12px}
+.section p:last-child{margin:0}
+.section p strong{color:var(--g2);font-weight:600}
+.section p em{color:var(--g);font-style:normal;font-weight:500}
+h3.sub{font-family:'Cinzel',serif;font-size:12px;color:var(--g2);letter-spacing:0.1em;margin:20px 0 10px;text-transform:uppercase}
 
+/* TABLES */
+.data-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.data-table th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--g);padding:10px 14px;background:var(--gf);border:1px solid var(--gb);text-align:left}
+.data-table td{padding:10px 14px;border:1px solid rgba(74,158,221,0.1);color:var(--w2);line-height:1.6;vertical-align:top}
+.data-table tr:nth-child(even) td{background:rgba(0,0,0,0.15)}
+.data-table td:first-child{color:var(--g2);font-weight:600}
+
+/* CALLOUT */
+.callout{background:var(--gf);border-left:2px solid var(--g);border-radius:0 8px 8px 0;padding:14px 16px;margin:16px 0}
+.callout p{font-size:13px;color:var(--w2);margin:0;line-height:1.7}
+.callout-label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.12em;margin-bottom:6px}
+
+/* INTERACTIVE */
+.viz-section{background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:28px;margin-bottom:20px}
+.viz-section h2{font-family:'Cinzel',serif;font-size:15px;color:var(--g);letter-spacing:0.1em;margin-bottom:6px}
+.viz-sub{font-size:12px;color:var(--w3);margin-bottom:22px;line-height:1.6}
+.viz-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.viz-tab{padding:8px 18px;border-radius:6px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all .18s;border:1px solid var(--gb);background:var(--gf);color:var(--w3)}
+.viz-tab.active{background:var(--g);color:#080e30;border-color:var(--g)}
+.viz-panel{display:none}.viz-panel.active{display:block}
+
+/* WAVE CALCULATOR */
+.calc-wrap{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:20px}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:520px){.calc-row{grid-template-columns:1fr}}
+.calc-group label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.calc-group label span{color:var(--g2);font-size:13px}
+.calc-group input[type=number]{width:100%;background:rgba(0,0,0,0.3);border:1px solid var(--gb);border-radius:6px;padding:10px 12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.calc-group input[type=number]:focus{border-color:var(--g)}
+.calc-group select{width:100%;background:rgba(0,0,0,0.3);border:1px solid var(--gb);border-radius:6px;padding:10px 12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;outline:none;cursor:pointer}
+.calc-results{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+@media(max-width:520px){.calc-results{grid-template-columns:1fr}}
+.calc-result{background:rgba(74,158,221,0.06);border:1px solid var(--gb);border-radius:8px;padding:14px}
+.calc-result-label{font-family:'Cinzel',serif;font-size:10px;color:var(--w3);letter-spacing:0.1em;margin-bottom:6px}
+.calc-result-value{font-family:'Cinzel',serif;font-size:22px;color:var(--g2);margin-bottom:2px;word-break:break-all}
+.calc-result-unit{font-size:11px;color:var(--w3)}
+.spectrum-badge{display:inline-block;padding:4px 10px;border-radius:10px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.08em;margin-top:8px;border:1px solid var(--gb);background:rgba(74,158,221,0.1);color:var(--g2)}
+.calc-context{font-size:12px;color:var(--w3);line-height:1.65;margin-top:10px;padding:10px 12px;background:var(--gf);border-radius:6px;border-left:2px solid var(--g)}
+.freq-presets{margin-top:14px}
+.freq-presets-label{font-family:'Cinzel',serif;font-size:10px;color:var(--w3);letter-spacing:0.1em;margin-bottom:8px}
+.preset-group{margin-bottom:10px}
+.preset-group-label{font-size:10px;color:var(--g);font-family:'Cinzel',serif;letter-spacing:0.06em;margin-bottom:5px}
+.preset-btns{display:flex;flex-wrap:wrap;gap:5px}
+.preset-btn{padding:5px 10px;border-radius:5px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.06em;cursor:pointer;transition:all .15s;border:1px solid var(--gb);background:var(--gf);color:var(--g2)}
+.preset-btn:hover{background:rgba(74,158,221,0.15);border-color:var(--g)}
+
+/* INTERFERENCE VISUALIZER */
+.int-controls{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:520px){.int-controls{grid-template-columns:1fr}}
+.int-ctrl label{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;display:flex;justify-content:space-between;margin-bottom:5px}
+.int-ctrl label span{color:var(--g2);font-size:12px}
+.int-ctrl input[type=range]{width:100%;accent-color:var(--g);cursor:pointer}
+.wave-canvas-wrap{background:rgba(0,0,0,0.3);border:1px solid var(--gb);border-radius:8px;padding:10px 12px;margin-bottom:8px;overflow:hidden}
+.wave-canvas-wrap canvas{width:100%;display:block}
+.wave-legend{font-size:11px;color:var(--w3);display:flex;gap:14px;margin-top:5px;flex-wrap:wrap;font-family:'Cinzel',serif;letter-spacing:0.05em}
+.int-state{font-size:13px;color:var(--w2);line-height:1.7;padding:12px 14px;background:var(--gf);border-radius:8px;border-left:2px solid var(--g);margin-top:4px}
+.int-state strong{color:var(--g2)}
+
+/* CONCEPT GRID */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:580px){.concept-grid{grid-template-columns:1fr}}
+.concept-card{background:var(--n3);border:1px solid var(--gb);border-radius:10px;padding:16px}
+.concept-card h4{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.concept-card p{font-size:12px;color:var(--w3);line-height:1.65;margin:0}
+.concept-card .tfa{font-size:11px;color:var(--g2);margin-top:7px;padding-top:7px;border-top:1px solid var(--gb);display:block;line-height:1.5}
+
+/* ACCORDION */
+.accordion{margin-top:8px}
+.acc-item{border:1px solid var(--gb);border-radius:8px;margin-bottom:7px;overflow:hidden}
+.acc-head{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.06em;background:var(--gf);transition:background .15s}
+.acc-head:hover{background:rgba(255,255,255,0.04)}
+.acc-body{display:none;padding:14px 16px;font-size:13px;color:var(--w2);line-height:1.75;border-top:1px solid var(--gb)}
+.acc-body.open{display:block}
+.acc-arrow{transition:transform .2s;font-size:11px}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body strong{color:var(--g2)}
+
+/* PRACTICE STEPS */
+.practice-steps{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.ps{display:flex;gap:14px;padding:14px;background:var(--gf);border:1px solid var(--gb);border-radius:8px}
+.ps-n{font-family:'Cinzel',serif;font-size:13px;color:var(--g);min-width:28px;font-weight:700;padding-top:1px}
+.ps-t{font-size:13px;color:var(--w2);line-height:1.65}
+.ps-t strong{color:var(--g2);font-weight:600}
+
+/* RESOURCES */
+.res-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(232,240,248,0.05)}
+.res-item:last-child{border:none}
+.res-icon{font-size:15px;flex-shrink:0;padding-top:2px}
+.res-title{font-size:13px;color:var(--w);font-weight:500;margin-bottom:2px}
+.res-auth{font-size:11px;color:var(--g2);margin-bottom:3px}
+.res-desc{font-size:11px;color:var(--w3);line-height:1.5}
+
+/* REFLECTION */
+.reflection-prompt{background:var(--n3);border-left:3px solid var(--g);border-radius:0 8px 8px 0;padding:16px 18px;margin-bottom:12px}
+.reflection-prompt p{font-size:13px;color:var(--w2);line-height:1.65;font-style:italic;margin:0}
+textarea{width:100%;background:var(--w4);border:1px solid var(--gb);border-radius:8px;padding:12px;color:var(--w);font-family:'Raleway',sans-serif;font-size:13px;resize:vertical;min-height:88px;outline:none;line-height:1.6;transition:border-color .2s;margin-top:8px}
+textarea:focus{border-color:var(--g)}
+textarea::placeholder{color:var(--w3)}
+
+/* WORKSHOP */
+.workshop{background:var(--gf);border:1px dashed var(--gb);border-radius:12px;padding:22px;text-align:center;margin-bottom:20px}
+.workshop h3{font-family:'Cinzel',serif;font-size:13px;color:var(--g);letter-spacing:0.08em;margin-bottom:8px}
+.workshop p{font-size:12px;color:var(--w3);line-height:1.65}
+
+/* COMPLETION */
+.completion-box{background:var(--gf);border:1px solid var(--gb);border-radius:12px;padding:24px;text-align:center;margin-top:20px}
+.completion-box h3{font-family:'Cinzel',serif;font-size:14px;color:var(--g);letter-spacing:0.08em;margin-bottom:10px}
+.completion-box p{font-size:13px;color:var(--w3);margin-bottom:16px;line-height:1.6}
+.complete-btn{padding:12px 28px;border-radius:8px;background:var(--g);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:0.1em;color:#080e30;transition:all .15s}
+.complete-btn:hover{background:var(--g2)}
+.complete-btn.done{background:var(--ok);cursor:default}
+.xp-flash{display:none;margin-top:12px;font-family:'Cinzel',serif;font-size:12px;color:var(--g);letter-spacing:0.08em}
+.xp-flash.show{display:block}
+
+/* NAV */
+.nav-lessons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:480px){.nav-lessons{grid-template-columns:1fr}}
+.nav-lesson{background:var(--n3);border:1px solid var(--gb);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;transition:all .18s}
+.nav-lesson:hover{background:var(--gf);border-color:var(--g)}
+.nav-lesson.prev{flex-direction:row-reverse}
+.nav-label{font-size:10px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.12em;margin-bottom:4px;text-transform:uppercase}
+.nav-title{font-size:13px;color:var(--w);font-family:'Cinzel',serif}
+.nav-arrow{font-size:20px;color:var(--g)}
+
+/* SAVE BAR */
+.save-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,0.97);border-top:1px solid var(--gb);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;backdrop-filter:blur(8px)}
+.save-status{font-size:11px;color:var(--w3);font-family:'Cinzel',serif;letter-spacing:0.08em}
+.save-btns{display:flex;gap:8px}
+.save-btn{padding:7px 14px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all .15s;border:1px solid var(--gb)}
+.save-btn.primary{background:var(--g);color:#080e30;border-color:var(--g)}.save-btn.primary:hover{background:var(--g2)}
+.save-btn.ghost{background:var(--gf);color:var(--g)}.save-btn.ghost:hover{background:rgba(255,255,255,0.06)}
+#importFile{display:none}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <div class="hd-left">THE FREQUENCY ACADEMY · QUANTUM PHYSICS & SCIENCES</div>
+  <div class="hd-right">Q9 · LESSON 9 OF 16</div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">QUANTUM PHYSICS & SCIENCES · Q9</div>
+  <h1>Wave Mechanics — <span>The Physics of Frequency</span></h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">The universe does not push things into place. It vibrates them there. Every force you have ever felt was a wave arriving before words could name it. You have been fluent in this language longer than you have been conscious of speaking it. This lesson gives you the grammar.</p>
+</div>
+
+<div style="max-width:840px;margin:0 auto 32px;padding:0 24px">
+  <div style="background:var(--n2);border:1px solid var(--gb);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:14px">
+    <div style="font-size:24px">🎬</div>
+    <div>
+      <div style="font-family:Cinzel,serif;font-size:11px;color:var(--g);letter-spacing:0.1em;margin-bottom:4px">VIDEO LESSON</div>
+      <div style="font-size:13px;color:var(--w3);line-height:1.5">A video transmission for this lesson is coming soon. The interactive lesson below contains the full teaching content — explore it now and the video will be added here when available.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- TRANSMISSION -->
+  <div class="section">
+    <h2>The Transmission</h2>
+    <p>Stand on the bank of a river and throw a stone into the center. Rings spread outward across the surface. They reach your bank. They touch your feet. Now ask: what traveled from the stone to you?</p>
+    <p>Not the water. The water molecules are doing what they always do — oscillating in place, rising and falling with each passing ring, returning to their original position. The water that was near the stone is still near the stone. Nothing moved from there to here.</p>
+    <p>What traveled was the <em>pattern</em> — the organization, the disturbance, the information encoded in the geometry of the wave. This is the first and most important thing to understand about waves: they are not the movement of matter. They are the movement of form through matter. A wave is organized energy traveling through a medium, leaving that medium essentially unchanged while transmitting something — information, energy, structure — across space.</p>
+    <p>This distinction matters profoundly for frequency work. When you apply a frequency to a biological system, you are not sending particles into the body. You are sending pattern. You are sending information encoded in the geometry of oscillation. And biological systems — which are themselves organized patterns of oscillation — can read that information in ways we are only beginning to measure.</p>
+  </div>
+
+  <!-- ANCIENT UNDERSTANDING -->
+  <div class="section">
+    <h2>The Ancient Understanding — Reality Is Vibration</h2>
+    <p>Every major wisdom tradition arrived at the same fundamental insight through different paths: reality is vibration. The architecture of the cosmos is tonal, not mechanical.</p>
+    <p>In the Vedic tradition, the universe begins with sound. <em>Nada Brahma</em> — the world is sound. Not sound in the acoustic sense, but sound as vibration, as the primordial oscillation from which all form condenses. The Sanskrit concept of <em>spanda</em> — the divine pulse, the trembling at the heart of all creation — describes exactly what modern physics has confirmed: that matter at its root is not solid, not still, but perpetually oscillating. Subatomic particles are not billiard balls; they are standing waves in quantum fields.</p>
+    <p>The Pythagoreans did not merely compose music. They built a cosmology on ratio and proportion. The Music of the Spheres was their term for the mathematical relationships between planetary orbits — ratios they found to be identical to the harmonic ratios between musical intervals. They were not speaking metaphorically. They were asserting that the same mathematics governing the harmonic series governs the organization of the cosmos. Modern orbital mechanics has not disproven this — it has deepened it.</p>
+    <p>In the Chinese medical tradition, qi moves through the body in patterns that are explicitly wave-like: rhythmic, cyclical, subject to resonance and dissonance, capable of being conducted and blocked. The meridian system is a frequency map of the body's wave patterns before it is anything else. The treatment modalities — acupuncture, sound healing, breathwork — all function by introducing organized wave patterns into a system that has drifted toward disorganization.</p>
+    <p>The Egyptian mystery schools encoded their understanding of wave physics into architecture. The proportions of the Great Pyramid produce resonant frequencies corresponding to biological systems. The King's Chamber, when struck, produces tones measurably similar to the natural resonant frequencies of the human body. This was not accidental engineering. The builders understood that space is a wave instrument — that geometry is frequency made permanent.</p>
+
+    <div class="callout">
+      <div class="callout-label">THE CONVERGENCE</div>
+      <p>The convergence is not that science has validated spirituality, or that spirituality anticipated science. The convergence is that reality has one structure, and different cultures found different windows into it. Wave mechanics is the view through the physics window. The ancient teachings are views through the experiential window. They describe the same room.</p>
+    </div>
+  </div>
+
+  <!-- CORE PHYSICS -->
+  <div class="section">
+    <h2>The Physics — Four Properties That Describe Every Wave</h2>
+    <p>Physics defines a wave as a disturbance that propagates through space, transferring energy from one location to another without transferring the medium itself. Every wave — sound, light, electromagnetic, gravitational — obeys the same fundamental relationships. Four properties completely describe any wave.</p>
+
+    <h3 class="sub">Frequency (f)</h3>
+    <p><strong>Frequency</strong> is how many complete oscillation cycles occur per second, measured in Hertz (Hz). A wave cycling 440 times per second has a frequency of 440 Hz. Frequency is the wave's primary identity. It determines the wave's energy via E = hf, its biological effects, and what it can interact with through resonance. When we say a sound has a particular pitch, we are saying it has a particular frequency. When we say a color is blue, we are describing light at approximately 630–680 terahertz. When we say a healing frequency has an effect, we are making a claim about what a specific oscillation rate does to matter.</p>
+
+    <h3 class="sub">Wavelength (λ)</h3>
+    <p><strong>Wavelength</strong> is the physical distance between two identical points on consecutive cycles — peak to peak. Wavelength and frequency are inversely proportional, governed by the wave equation: wave speed = frequency × wavelength (v = fλ). In a given medium, wave speed is constant. So if frequency increases, wavelength must decrease proportionally. This is why gamma radiation — with frequencies in the exahertz range — has wavelengths smaller than an atomic nucleus, while AM radio waves have wavelengths measured in hundreds of meters. High frequency compresses the wave. Low frequency stretches it.</p>
+
+    <h3 class="sub">Amplitude</h3>
+    <p><strong>Amplitude</strong> is the wave's magnitude — the maximum displacement from the baseline equilibrium position. Amplitude is independent of frequency. Two waves can have identical frequencies and completely different amplitudes: same pitch, different volume. Power scales with the square of amplitude: double the amplitude, quadruple the power. This is why a small increase in field coherence produces a much larger increase in effective field power than a small increase in raw amplitude alone.</p>
+
+    <h3 class="sub">Phase</h3>
+    <p><strong>Phase</strong> describes where a wave is in its cycle at any given moment, expressed as an angle from 0° to 360°. Phase becomes critically important when two or more waves occupy the same space, because their phase relationship determines what they do to each other. Two waves in phase amplify. Two waves 180° out of phase cancel. Phase coherence — multiple waves locked in the same point of their cycle — is the physical mechanism behind every form of coherent amplification, from laser light to heart coherence to unified group intention.</p>
+  </div>
+
+  <!-- INTERFERENCE & STANDING WAVES -->
+  <div class="section">
+    <h2>Interference, Standing Waves, and Resonance</h2>
+
+    <h3 class="sub">Interference — The Mathematics of Meeting</h3>
+    <p>When two waves occupy the same space, they obey the superposition principle: the result at any point is the sum of the individual waves at that point. <strong>Constructive interference</strong> occurs when waves are in phase — peaks align with peaks, troughs with troughs. Amplitudes add directly. Two identical waves in perfect phase alignment produce a result with twice the amplitude and four times the power. This is the physics behind laser light, heart coherence fields, and the amplification that occurs when a community holds unified intention.</p>
+    <p><strong>Destructive interference</strong> occurs when waves are out of phase — peaks meeting troughs. At 180° out of phase, waves cancel completely. This is the mechanism behind noise-canceling headphones, which generate waves that are precise mirror images of ambient noise. It is also the proposed mechanism for certain EMF-neutralizing devices — not blocking the field, but introducing a precise out-of-phase counterpart that cancels it through destructive interference.</p>
+
+    <h3 class="sub">Standing Waves — Frequency Frozen in Space</h3>
+    <p>When a wave traveling through a medium encounters a boundary and reflects back on itself, the incoming and reflected waves interfere continuously. Under the right conditions — when the medium's length is an integer multiple of the half-wavelength — the interference produces a standing wave: a pattern that appears stationary. These fixed points are called <strong>nodes</strong> — points of complete destructive interference, zero displacement. Between nodes are <strong>antinodes</strong> — points of maximum constructive interference, maximum amplitude.</p>
+    <p>Standing waves are not a curiosity. They are the structural basis of organized form. Atoms exist because electrons form standing wave patterns in their orbitals. The sound from a string instrument is a standing wave in that string. The resonant fields of tensor rings are standing wave geometries — specific frequency patterns that maintain stable spatial structure through continuous wave interference. This is why tensor ring dimensions matter: the ring's physical dimensions determine which standing wave patterns are stable within its cavity.</p>
+
+    <h3 class="sub">Resonance — When Systems Agree</h3>
+    <p>Every physical system has natural frequencies at which it prefers to oscillate — determined by its physical dimensions, mass, and material properties. A wine glass has a resonant frequency. A crystal has several. Your chest cavity has resonant frequencies. The Earth-ionosphere cavity resonates at approximately 7.83 Hz — the Schumann resonance.</p>
+    <p>When an external oscillation matches one of a system's natural frequencies, energy transfer becomes maximally efficient. The system absorbs the incoming frequency and amplifies it. This is why a singer can shatter glass with a sustained note at the glass's natural frequency using far less energy than would be required to break it mechanically. Resonance is the most efficient form of energy transfer that exists. In frequency healing, resonance is the primary mechanism — applied frequencies are effective not because they force change but because they meet biological systems at their natural oscillation rates, enabling energy transfer with minimal resistance.</p>
+
+    <h3 class="sub">E = hf — Frequency Is Energy</h3>
+    <p>The equation <strong>E = hf</strong> — Energy equals Planck's constant times frequency — is one of the foundational equations of quantum mechanics, and it directly connects wave physics to biology. It tells us that frequency is not just a characteristic of waves — it is a measure of energy. Higher frequency means higher energy per quantum. This is why ultraviolet light damages DNA but visible light does not: UV photons carry enough energy per quantum to break chemical bonds; visible photons do not. For audible frequencies, individual quanta are tiny — but biological systems respond to the organized, coherent pattern of an applied field, not to individual quanta. This is why coherence matters: a coherent field maintains a stable phase relationship that biological systems can recognize and respond to through resonance. An incoherent field of equal power is indistinguishable from noise.</p>
+  </div>
+
+  <!-- KEY CONCEPTS GRID -->
+  <div class="section">
+    <h2>Key Concepts — Seven Ideas to Carry Forward</h2>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <h4>Frequency (f)</h4>
+        <p>Cycles per second, measured in Hertz. The wave's primary identity. Determines energy, perceptual quality (pitch/color), and resonant targets.</p>
+        <span class="tfa">→ Therapeutic frequencies are specific because resonance is specific. Broad-spectrum approaches scatter. Targeted frequencies concentrate.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Amplitude</h4>
+        <p>Maximum displacement from equilibrium. Determines intensity. Power ∝ amplitude². Independent of frequency — same pitch, different volume.</p>
+        <span class="tfa">→ More power is not automatically better. A low-amplitude coherent frequency resonating precisely with a target can outperform a high-amplitude incoherent signal.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Wavelength (λ)</h4>
+        <p>Distance between wave peaks. Inversely proportional to frequency via v = fλ. Determines what physical structures a wave can couple with.</p>
+        <span class="tfa">→ Wavelengths similar in scale to a biological structure enable efficient coupling. Different frequency ranges are used for different applications for this reason.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Phase</h4>
+        <p>Position in the wave cycle, 0–360°. Phase coherence between waves determines constructive or destructive interference.</p>
+        <span class="tfa">→ Group practice amplifies when participants are in phase. Two instruments playing at 180° out of phase produce near-silence despite full volume. Phase is everything.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Interference</h4>
+        <p>What happens when waves share space. Constructive (in phase): amplitudes add, power multiplies. Destructive (out of phase): amplitudes cancel.</p>
+        <span class="tfa">→ EMF neutralization devices, noise-canceling headphones, and coherence amplification all operate on interference principles. The mechanism is always wave superposition.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Standing Waves</h4>
+        <p>Pattern created by a wave interfering with its own reflection. Fixed nodes (still points) and antinodes (maximum motion). Appears stationary; energy still moves.</p>
+        <span class="tfa">→ Tensor ring fields are standing wave geometries. Cymatic patterns are visible standing waves. Atomic orbital shapes are electron standing wave patterns.</span>
+      </div>
+      <div class="concept-card">
+        <h4>Resonance</h4>
+        <p>Maximum energy transfer when applied frequency matches a system's natural frequency. Small inputs at resonant frequency produce large responses.</p>
+        <span class="tfa">→ All effective frequency healing operates through resonance. Finding the resonant match is the art. Forcing change without resonance is inefficient and potentially harmful.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE -->
+  <div class="viz-section">
+    <h2>Wave Mechanics Explorer</h2>
+    <p class="viz-sub">Two tools: the Wave Calculator computes real frequency properties using v = fλ and E = hf — enter any frequency and see wavelength, energy, period, and spectrum context. The Interference Visualizer shows what happens when two waves meet, with live animation of constructive, destructive, and beat-frequency interference.</p>
+
+    <div class="viz-tabs">
+      <button class="viz-tab active" onclick="switchTab('calc', this)">Wave Calculator</button>
+      <button class="viz-tab" onclick="switchTab('int', this)">Interference Visualizer</button>
+    </div>
+
+    <!-- TAB 1: WAVE CALCULATOR -->
+    <div class="viz-panel active" id="tab-calc">
+      <div class="calc-wrap">
+        <div class="calc-row">
+          <div class="calc-group">
+            <label>FREQUENCY (Hz) <span id="freqDisplay">432</span> Hz</label>
+            <input type="number" id="freqInput" value="432" min="0.001" step="any" oninput="runCalc()">
+          </div>
+          <div class="calc-group">
+            <label>MEDIUM</label>
+            <select id="medium" onchange="runCalc()">
+              <option value="340">Sound in Air (340 m/s)</option>
+              <option value="1480">Sound in Water (1,480 m/s)</option>
+              <option value="1540">Sound in Body Tissue (1,540 m/s)</option>
+              <option value="299792458">Electromagnetic / Light (c)</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-results">
+          <div class="calc-result">
+            <div class="calc-result-label">WAVELENGTH</div>
+            <div class="calc-result-value" id="calcWavelength">—</div>
+            <div class="calc-result-unit" id="calcWavelengthUnit"></div>
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">PERIOD (1 cycle)</div>
+            <div class="calc-result-value" id="calcPeriod">—</div>
+            <div class="calc-result-unit" id="calcPeriodUnit"></div>
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">ENERGY PER QUANTUM (E = hf)</div>
+            <div class="calc-result-value" id="calcEnergy">—</div>
+            <div class="calc-result-unit">Joules</div>
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">ENERGY IN eV</div>
+            <div class="calc-result-value" id="calcEv">—</div>
+            <div class="calc-result-unit">electron-volts</div>
+          </div>
+        </div>
+        <div style="margin-top:10px">
+          <span class="spectrum-badge" id="spectrumBadge">—</span>
+        </div>
+        <div class="calc-context" id="calcContext">—</div>
+
+        <div class="freq-presets">
+          <div class="freq-presets-label">QUICK SELECT — COMMON FREQUENCIES</div>
+
+          <div class="preset-group">
+            <div class="preset-group-label">BRAINWAVES &amp; EARTH</div>
+            <div class="preset-btns">
+              <button class="preset-btn" onclick="setFreq(0.5)">0.5 Hz · Delta</button>
+              <button class="preset-btn" onclick="setFreq(4)">4 Hz · Theta</button>
+              <button class="preset-btn" onclick="setFreq(7.83)">7.83 Hz · Schumann</button>
+              <button class="preset-btn" onclick="setFreq(10)">10 Hz · Alpha</button>
+              <button class="preset-btn" onclick="setFreq(20)">20 Hz · Beta</button>
+              <button class="preset-btn" onclick="setFreq(40)">40 Hz · Gamma</button>
+            </div>
+          </div>
+
+          <div class="preset-group">
+            <div class="preset-group-label">SOLFEGGIO &amp; HEALING</div>
+            <div class="preset-btns">
+              <button class="preset-btn" onclick="setFreq(174)">174 Hz</button>
+              <button class="preset-btn" onclick="setFreq(285)">285 Hz</button>
+              <button class="preset-btn" onclick="setFreq(396)">396 Hz</button>
+              <button class="preset-btn" onclick="setFreq(417)">417 Hz</button>
+              <button class="preset-btn" onclick="setFreq(432)">432 Hz</button>
+              <button class="preset-btn" onclick="setFreq(440)">440 Hz · A4</button>
+              <button class="preset-btn" onclick="setFreq(528)">528 Hz</button>
+              <button class="preset-btn" onclick="setFreq(639)">639 Hz</button>
+              <button class="preset-btn" onclick="setFreq(741)">741 Hz</button>
+              <button class="preset-btn" onclick="setFreq(852)">852 Hz</button>
+              <button class="preset-btn" onclick="setFreq(963)">963 Hz</button>
+            </div>
+          </div>
+
+          <div class="preset-group">
+            <div class="preset-group-label">PLANETARY (CONVERTED TO Hz)</div>
+            <div class="preset-btns">
+              <button class="preset-btn" onclick="setFreq(0.0000116)">Earth Year</button>
+              <button class="preset-btn" onclick="setFreq(0.0000116 * 365)">Earth Day</button>
+              <button class="preset-btn" onclick="setFreq(0.000000423)">Lunar Cycle</button>
+              <button class="preset-btn" onclick="setFreq(126.22)">Earth · Octave 126 Hz</button>
+              <button class="preset-btn" onclick="setFreq(136.1)">Om / AUM · 136.1 Hz</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: INTERFERENCE VISUALIZER -->
+    <div class="viz-panel" id="tab-int">
+      <p style="font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:18px">Adjust two wave parameters and see the superposition result in real time. Match frequencies and set phase to 0° for constructive interference. Match frequencies and set phase to 180° for destructive cancellation. Separate frequencies to create a beat pattern.</p>
+
+      <div class="int-controls">
+        <div class="int-ctrl">
+          <label>WAVE A — FREQUENCY <span id="fA_label">5</span> Hz</label>
+          <input type="range" id="fA" min="1" max="20" value="5" step="0.5" oninput="updateInt()">
+        </div>
+        <div class="int-ctrl">
+          <label>WAVE A — AMPLITUDE <span id="aA_label">1.0</span></label>
+          <input type="range" id="aA" min="0.1" max="2" value="1" step="0.1" oninput="updateInt()">
+        </div>
+        <div class="int-ctrl">
+          <label>WAVE B — FREQUENCY <span id="fB_label">5</span> Hz</label>
+          <input type="range" id="fB" min="1" max="20" value="5" step="0.5" oninput="updateInt()">
+        </div>
+        <div class="int-ctrl">
+          <label>PHASE OFFSET <span id="phase_label">0°</span></label>
+          <input type="range" id="phaseOff" min="0" max="360" value="0" step="1" oninput="updateInt()">
+        </div>
+      </div>
+
+      <div class="wave-canvas-wrap">
+        <canvas id="cA" height="60"></canvas>
+        <div class="wave-legend"><span style="color:var(--g)">■</span> Wave A &nbsp; <span id="wA_info" style="color:var(--w3)"></span></div>
+      </div>
+      <div class="wave-canvas-wrap">
+        <canvas id="cB" height="60"></canvas>
+        <div class="wave-legend"><span style="color:rgba(220,190,100,0.85)">■</span> Wave B &nbsp; <span id="wB_info" style="color:var(--w3)"></span></div>
+      </div>
+      <div class="wave-canvas-wrap">
+        <canvas id="cResult" height="90"></canvas>
+        <div class="wave-legend"><span style="color:var(--g2)">■</span> Superposition (A + B)</div>
+      </div>
+
+      <div class="int-state" id="intState">—</div>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <div class="section">
+    <h2>Quick Reference</h2>
+    <div class="accordion" id="accWrap"></div>
+  </div>
+
+  <!-- PRACTICAL APPLICATION -->
+  <div class="section">
+    <h2>This Week's Practice — Map Your Body's Frequencies</h2>
+    <p style="margin-bottom:16px">You already contain multiple oscillating systems with measurable natural frequencies. This week, work with three of them directly. Use the wave calculator above for each one.</p>
+    <div class="practice-steps">
+      <div class="ps"><div class="ps-n">1</div><div class="ps-t"><strong>Respiratory cycle.</strong> Count your natural breaths per minute at rest without altering your breathing. Calculate: breaths ÷ 60 = Hz. Most people breathe at 0.2–0.3 Hz at rest. At coherent breathing rate (5–6 breaths/min), this drops to 0.083–0.1 Hz. Enter both numbers in the wave calculator with "Sound in Body Tissue" selected. Note what wavelength results — and what physical scale inside your body that wavelength corresponds to.</div></div>
+      <div class="ps"><div class="ps-n">2</div><div class="ps-t"><strong>Heart rate.</strong> Take your resting pulse. Calculate: beats per minute ÷ 60 = Hz. 60 BPM is exactly 1 Hz. Enter that frequency in the calculator. The wavelength in body tissue will be in the range of hundreds of meters — your heart's fundamental frequency wave is too long to fit inside the body. What the body works with are harmonics. Calculate and enter the 5th, 10th, and 20th harmonics of your heart rate and observe how wavelength scales with each. Note which harmonic wavelength falls closest to the size of a major organ.</div></div>
+      <div class="ps"><div class="ps-n">3</div><div class="ps-t"><strong>Dominant brainwave state.</strong> Assess honestly: waking before fully arising is theta (4–8 Hz). Relaxed alert reading is alpha (8–12 Hz). Focused problem-solving is beta (12–30 Hz). Peak creative or meditative states are gamma (30–100 Hz). Enter your dominant state's representative frequency. Compute wavelength in body tissue. Notice what physical scale that wavelength corresponds to inside the brain.</div></div>
+      <div class="ps"><div class="ps-n">4</div><div class="ps-t"><strong>Journal.</strong> Which of these frequencies surprised you. Which one, if you had to give an honest answer, is the frequency you are most consistently broadcasting — not in your best moments, but as your carrier wave. What would have to shift, physiologically, for that to change.</div></div>
+    </div>
+  </div>
+
+  <!-- GO DEEPER -->
+  <div class="section">
+    <h2>Go Deeper</h2>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">The Physics of Sound — Richard Berg &amp; David Stork</div>
+        <div class="res-auth">Pearson, 3rd edition</div>
+        <div class="res-desc">The most rigorous yet accessible academic treatment of wave mechanics as it applies to sound — interference, resonance, standing waves, harmonics — with genuine mathematical depth but clear exposition. The reference for wave physics done properly.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">The Tao of Physics — Fritjof Capra</div>
+        <div class="res-auth">Shambhala, 1975 (many editions)</div>
+        <div class="res-desc">The book that mapped the convergence between modern physics and Eastern mystical traditions most rigorously. Capra draws precise parallels between quantum field theory and the wave-based cosmologies of Hinduism, Buddhism, and Taoism — without compromising either side.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">📖</div>
+      <div>
+        <div class="res-title">Music and the Mind — Anthony Storr</div>
+        <div class="res-auth">Free Press, 1992</div>
+        <div class="res-desc">Examines the deep relationship between music (organized wave patterns) and human psychology, biology, and consciousness — from evolutionary theory through neurological response through the healing traditions. Bridges wave physics and human experience without oversimplification.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔬</div>
+      <div>
+        <div class="res-title">Schumann Resonances — W.O. Schumann (1952)</div>
+        <div class="res-auth">Zeitschrift für Naturforschung — original paper</div>
+        <div class="res-desc">Schumann predicted the Earth-ionosphere cavity resonant frequency from first principles — before it was measured. The original paper demonstrates exactly how the wave equation produces 7.83 Hz from the cavity dimensions. A landmark in applied wave mechanics.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🎬</div>
+      <div>
+        <div class="res-title">Standing Waves and Resonance — Physics Demonstrations</div>
+        <div class="res-auth">MIT OpenCourseWare — YouTube</div>
+        <div class="res-desc">MIT's physics demonstration series on standing waves and resonance. The Chladni plate experiment, Melde's experiment, and resonance tube demonstrations — the same physics underlying tensor ring fields and sound healing, shown clearly in controlled laboratory conditions.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">🔗</div>
+      <div>
+        <div class="res-title">Next: Q10 — Quantum Biology &amp; Wave Mechanics (Capstone)</div>
+        <div class="res-auth">The Frequency Academy · Quantum Physics &amp; Sciences</div>
+        <div class="res-desc">Q10 is where the wave physics learned here becomes the operating system of life itself. Photosynthesis runs on quantum wave coherence. Your enzymes use quantum tunneling. Birds navigate using quantum entanglement. Your biology is not responding to frequency — it is frequency, organized into self-sustaining wave patterns.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="section">
+    <h2>Reflection Journal</h2>
+
+    <div class="reflection-prompt">
+      <p>When you move through different environments — a forest, a hospital, a crowded market, a sacred space — your body responds before your mind categorizes the place. You feel something before you think something. Given that every environment is producing and reflecting specific wave patterns, and that your biological systems respond through resonance — what are you actually detecting in those moments? What part of you is doing that detecting?</p>
+    </div>
+    <textarea id="ref1" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>Constructive interference requires two things to be in phase — at the same frequency, at the same point in the cycle, at the same time. Think about the relationships and collaborations in your life that produced results disproportionate to what either party could produce alone. Think about the ones that consumed enormous energy and produced little. In the language of wave physics — what was the phase relationship in each case?</p>
+    </div>
+    <textarea id="ref2" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+
+    <div class="reflection-prompt" style="margin-top:16px">
+      <p>If your habitual emotional state is a frequency — a specific oscillation pattern your biofield maintains — then it is recruiting resonant experiences and passing through non-resonant ones. Not through mystical law, but through wave mechanics: resonant systems couple efficiently. What frequency does your emotional baseline actually broadcast? Not what you wish it broadcasted. What is the carrier wave you walk into every room with? What would have to shift — physiologically, not psychologically — for that carrier wave to change?</p>
+    </div>
+    <textarea id="ref3" placeholder="Write here — your responses are saved locally..." oninput="autoSave()"></textarea>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="workshop">
+    <h3>Live Workshop: Wave Mechanics — The Physics of Frequency</h3>
+    <p>A live deep-dive on this topic is coming soon. Recordings and supplemental materials will appear here once available. Members will be notified via the Academy portal.</p>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="completion-box">
+    <h3>Mark Lesson Complete</h3>
+    <p>When you have used both calculator tabs, mapped your three body frequencies in the practice, and written at least one reflection — mark this lesson complete.</p>
+    <button class="complete-btn" id="completeBtn" onclick="markComplete()">Mark Complete · +10 XP</button>
+    <div class="xp-flash" id="xpFlash">✦ +10 XP Awarded</div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-lessons">
+    <a class="nav-lesson prev" href="../lesson-8/">
+      <div class="nav-arrow">←</div>
+      <div>
+        <div class="nav-label">Previous · Q8</div>
+        <div class="nav-title">Cymatics — Sound Made Visible</div>
+      </div>
+    </a>
+    <a class="nav-lesson" href="../lesson-10/">
+      <div>
+        <div class="nav-label">Next · Q10</div>
+        <div class="nav-title">Quantum Biology — Capstone</div>
+      </div>
+      <div class="nav-arrow">→</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="save-bar">
+  <div class="save-status" id="saveStatus">Auto-save active</div>
+  <div class="save-btns">
+    <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+    <button class="save-btn ghost" onclick="document.getElementById('importFile').click()">Import</button>
+    <button class="save-btn ghost" onclick="exportData()">Export</button>
+    <button class="save-btn primary" onclick="saveNow()">Save</button>
+  </div>
+</div>
+
+<script>
+var KEY = 'tfa_q9';
+var saveTimer;
+var intAnimId;
+var intT = 0;
+
+// ── TABS ──
+function switchTab(id, btn) {
+  document.querySelectorAll('.viz-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.viz-panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+  if (id === 'int') { updateInt(); startIntAnim(); }
+  else { if (intAnimId) cancelAnimationFrame(intAnimId); intAnimId = null; }
+}
+
+// ── WAVE CALCULATOR ──
+var H_PLANCK = 6.62607015e-34;
+var EV = 1.602176634e-19;
+
+var SPECTRUM = [
+  { max: 0.001, label: 'Sub-infrasound', context: 'Frequencies below 0.001 Hz correspond to very slow biological rhythms — circadian cycles, hormonal oscillations, and geological processes. These interact with the body through slow biological clock mechanisms rather than acoustic wave pressure.' },
+  { max: 20,    label: 'Infrasound', context: 'Infrasound (below 20 Hz) is inaudible but physically felt. This range includes Schumann resonances (7.83 Hz and harmonics), brainwave states (delta, theta, alpha, beta, gamma), and the body\'s major oscillating systems — heart, lungs, and whole-body resonance. Highly relevant to PEMF, grounding, and biofield work.' },
+  { max: 200,   label: 'Low Audible', context: 'Low audible frequencies produce bass tones felt as much as heard. Sound healing in this range works through physical resonance of body cavities — chest, abdomen, skull — as well as acoustic perception. Tibetan bowls, gongs, and bass tuning forks operate primarily here.' },
+  { max: 2000,  label: 'Mid Audible', context: 'The primary range of human speech and most musical instruments. Solfeggio frequencies (174–963 Hz), tuning fork therapies, and vocal toning all work within this range. Interference and resonance effects in biological tissue are particularly relevant here.' },
+  { max: 20000, label: 'High Audible / Upper Audible', context: 'Upper audible range through the limit of human hearing (~20,000 Hz). Cymatics demonstrations typically work in this range. Tissue resonance effects shift toward smaller structures — cells and organelles rather than organ cavities.' },
+  { max: 1e6,   label: 'Ultrasound', context: 'Above 20,000 Hz: ultrasound. Used in diagnostic imaging and therapeutic applications (physiotherapy ultrasound, lithotripsy). At therapeutic intensities, produces heating and mechanical effects in tissue. At diagnostic intensities, maps tissue structure through reflection.' },
+  { max: 3e8,   label: 'Radio Frequency', context: 'Radio and VHF frequencies. This range includes many EMF sources of concern in bioelectromagnetics research. The biological effects of RF exposure at low intensities are an active area of research. Schumann harmonics are electromagnetic waves in the ELF (extremely low frequency) portion of this range.' },
+  { max: 3e11,  label: 'Microwave', context: 'Microwave frequencies (GHz). Wi-Fi, cellular, and microwave oven frequencies fall here. At high intensities, microwave energy heats tissue through molecular rotation. At ambient intensities, biological effects remain studied and debated.' },
+  { max: 4.3e14,'label': 'Infrared', context: 'Infrared radiation — experienced as heat. The body itself radiates in the far infrared range (~10 THz). Near-infrared (NIR) therapy uses wavelengths that penetrate tissue and are absorbed by cellular components including cytochrome c oxidase, influencing ATP production.' },
+  { max: 7.5e14,'label': 'Visible Light', context: 'Visible light (approximately 430–750 THz). Photobiomodulation (low-level laser therapy) uses specific visible and near-infrared wavelengths that are absorbed by cellular chromophores. Color therapy and full-spectrum light therapy operate in this range.' },
+  { max: 3e16,  label: 'Ultraviolet', context: 'Ultraviolet frequencies. UV-A and UV-B drive vitamin D synthesis in skin. UV-C has germicidal properties. UV photons carry enough energy per quantum (via E = hf) to break chemical bonds, including DNA bonds — the mechanism behind UV-induced mutation and cancer risk.' },
+  { max: Infinity, label: 'X-ray / Gamma', context: 'X-ray and gamma ray frequencies. Photons at these energies carry enough quantum energy to ionize atoms — removing electrons from molecules including DNA. Medical imaging uses controlled doses; therapeutic radiation uses precisely targeted doses for cancer treatment.' }
+];
+
+function getSpectrum(f) {
+  for (var i = 0; i < SPECTRUM.length; i++) {
+    if (f < SPECTRUM[i].max) return SPECTRUM[i];
+  }
+  return SPECTRUM[SPECTRUM.length - 1];
+}
+
+function formatWavelength(m) {
+  if (m >= 1e6)   return { v: (m / 1e6).toPrecision(4),  u: 'Mm (megameters)' };
+  if (m >= 1000)  return { v: (m / 1000).toPrecision(4), u: 'km' };
+  if (m >= 1)     return { v: m.toPrecision(4),           u: 'm' };
+  if (m >= 0.01)  return { v: (m * 100).toPrecision(4),   u: 'cm' };
+  if (m >= 0.001) return { v: (m * 1000).toPrecision(4),  u: 'mm' };
+  if (m >= 1e-6)  return { v: (m * 1e6).toPrecision(4),   u: 'μm (micrometers)' };
+  if (m >= 1e-9)  return { v: (m * 1e9).toPrecision(4),   u: 'nm (nanometers)' };
+  if (m >= 1e-12) return { v: (m * 1e12).toPrecision(4),  u: 'pm (picometers)' };
+  return { v: m.toExponential(3), u: 'm' };
+}
+
+function formatPeriod(s) {
+  if (s >= 3600)  return { v: (s / 3600).toPrecision(4),  u: 'hours' };
+  if (s >= 60)    return { v: (s / 60).toPrecision(4),    u: 'minutes' };
+  if (s >= 1)     return { v: s.toPrecision(4),            u: 'seconds' };
+  if (s >= 0.001) return { v: (s * 1000).toPrecision(4),  u: 'milliseconds' };
+  if (s >= 1e-6)  return { v: (s * 1e6).toPrecision(4),   u: 'microseconds' };
+  return { v: s.toExponential(3), u: 's' };
+}
+
+function formatEnergy(j) {
+  if (j >= 1)      return j.toPrecision(4);
+  if (j >= 1e-10)  return j.toExponential(3);
+  return j.toExponential(3);
+}
+
+function setFreq(hz) {
+  document.getElementById('freqInput').value = hz;
+  runCalc();
+}
+
+function runCalc() {
+  var f = parseFloat(document.getElementById('freqInput').value);
+  var v = parseFloat(document.getElementById('medium').value);
+  if (!f || f <= 0) return;
+
+  document.getElementById('freqDisplay').textContent = f >= 1e9 ? (f / 1e9).toPrecision(4) + ' GHz' :
+    f >= 1e6 ? (f / 1e6).toPrecision(4) + ' MHz' :
+    f >= 1000 ? (f / 1000).toPrecision(4) + ' kHz' : f + ' Hz';
+
+  var lambda = v / f;
+  var wl = formatWavelength(lambda);
+  document.getElementById('calcWavelength').textContent = wl.v;
+  document.getElementById('calcWavelengthUnit').textContent = wl.u;
+
+  var period = 1 / f;
+  var per = formatPeriod(period);
+  document.getElementById('calcPeriod').textContent = per.v;
+  document.getElementById('calcPeriodUnit').textContent = per.u;
+
+  var E = H_PLANCK * f;
+  document.getElementById('calcEnergy').textContent = E.toExponential(4);
+  document.getElementById('calcEv').textContent = (E / EV).toExponential(4);
+
+  var spec = getSpectrum(f);
+  document.getElementById('spectrumBadge').textContent = spec.label;
+  document.getElementById('calcContext').textContent = spec.context;
+}
+
+// ── INTERFERENCE VISUALIZER ──
+function updateInt() {
+  var fA = parseFloat(document.getElementById('fA').value);
+  var fB = parseFloat(document.getElementById('fB').value);
+  var aA = parseFloat(document.getElementById('aA').value);
+  var phase = parseFloat(document.getElementById('phaseOff').value);
+
+  document.getElementById('fA_label').textContent = fA;
+  document.getElementById('fB_label').textContent = fB;
+  document.getElementById('aA_label').textContent = aA.toFixed(1);
+  document.getElementById('phase_label').textContent = phase + '°';
+  document.getElementById('wA_info').textContent = fA + ' Hz, amp ' + aA.toFixed(1);
+  document.getElementById('wB_info').textContent = fB + ' Hz, amp 1.0';
+
+  var diff = Math.abs(fA - fB);
+  var phaseR = phase * Math.PI / 180;
+  var state;
+
+  if (diff < 0.5) {
+    if (phase <= 10 || phase >= 350) {
+      state = '<strong>Constructive interference.</strong> Frequencies match, waves in phase. Amplitudes add directly. Combined power = (A₁ + A₂)² = ' + Math.pow(aA + 1, 2).toFixed(1) + '× a single wave. This is the physics of laser coherence, heart field amplification, and synchronized group intention.';
+    } else if (phase >= 170 && phase <= 190) {
+      state = '<strong>Destructive interference.</strong> Frequencies match, waves 180° out of phase. Amplitudes cancel. Power approaches zero despite both waves at full intensity. This is the mechanism of noise-canceling headphones and proposed EMF-neutralizing devices.';
+    } else {
+      var constructFrac = Math.round(Math.cos(phaseR / 2) * Math.cos(phaseR / 2) * 100);
+      state = '<strong>Partial interference at ' + phase + '°.</strong> Frequencies matched, phase partially offset. ' + constructFrac + '% constructive effect — amplification reduced from maximum. Phase coherence between two systems does not require perfection, but improvement is continuous and measurable.';
+    }
+  } else {
+    state = '<strong>Beat frequency.</strong> Frequencies differ by ' + diff.toFixed(1) + ' Hz — the result oscillates between constructive and destructive interference at ' + diff.toFixed(1) + ' cycles per second. This beat frequency is audible as a throbbing when two close musical tones are played together. In biofield work, beat frequencies between two applied fields may produce secondary oscillations at the difference frequency — which can be targeted at biological systems independently.';
+  }
+  document.getElementById('intState').innerHTML = state;
+}
+
+function startIntAnim() {
+  if (intAnimId) cancelAnimationFrame(intAnimId);
+  function frame() {
+    intT += 0.03;
+    drawInterference();
+    intAnimId = requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+function drawInterference() {
+  var fA = parseFloat(document.getElementById('fA').value);
+  var fB = parseFloat(document.getElementById('fB').value);
+  var aA = parseFloat(document.getElementById('aA').value);
+  var phase = parseFloat(document.getElementById('phaseOff').value) * Math.PI / 180;
+
+  drawWave('cA', fA, aA, 0, '#4a9edd', 60);
+  drawWave('cB', fB, 1.0, phase, 'rgba(220,190,100,0.85)', 60);
+  drawWaveResult('cResult', fA, fB, aA, 1.0, phase);
+}
+
+function drawWave(id, freq, amp, phaseShift, color, h) {
+  var c = document.getElementById(id);
+  if (!c) return;
+  var dpr = window.devicePixelRatio || 1;
+  c.width = c.parentElement.offsetWidth * dpr;
+  c.height = h * dpr;
+  var ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  var W = c.width / dpr, H = h, cy = H / 2;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = 'rgba(6,15,30,0.5)';
+  ctx.fillRect(0, 0, W, H);
+  ctx.beginPath();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  for (var x = 0; x < W; x++) {
+    var t = x / W;
+    var y = cy - Math.sin(t * Math.PI * 2 * freq * 0.8 + intT * freq * 0.3 + phaseShift) * cy * 0.72 * amp;
+    x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+}
+
+function drawWaveResult(id, fA, fB, aA, aB, phase) {
+  var c = document.getElementById(id);
+  if (!c) return;
+  var dpr = window.devicePixelRatio || 1;
+  c.width = c.parentElement.offsetWidth * dpr;
+  c.height = 90 * dpr;
+  var ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  var W = c.width / dpr, H = 90, cy = H / 2;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = 'rgba(6,15,30,0.5)';
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.beginPath();
+  ctx.strokeStyle = '#78b8ee';
+  ctx.lineWidth = 2.5;
+  var maxAmp = aA + aB;
+  for (var x = 0; x < W; x++) {
+    var t = x / W;
+    var yA = Math.sin(t * Math.PI * 2 * fA * 0.8 + intT * fA * 0.3) * aA;
+    var yB = Math.sin(t * Math.PI * 2 * fB * 0.8 + intT * fB * 0.3 + phase) * aB;
+    var sum = yA + yB;
+    var y = cy - (sum / (maxAmp + 0.01)) * cy * 0.78;
+    y = Math.max(3, Math.min(H - 3, y));
+    x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+}
+
+// ── ACCORDION ──
+var ACC = [
+  { t: 'The Wave Equation — v = fλ',
+    b: 'The fundamental wave equation <strong>v = fλ</strong> (wave speed = frequency × wavelength) governs all wave propagation. In any given medium, wave speed is approximately constant — determined by the medium\'s physical properties (density, elasticity, electromagnetic permeability). This means frequency and wavelength are inversely bound: if frequency doubles, wavelength halves. If frequency halves, wavelength doubles.<br><br>Wave speed in common media:<br>· Sound in air (20°C): ~340 m/s<br>· Sound in water (25°C): ~1,480 m/s<br>· Sound in soft tissue: ~1,540 m/s<br>· Sound in bone: ~3,000–4,000 m/s<br>· Light in vacuum (c): 299,792,458 m/s<br><br>Note that sound travels faster in denser, stiffer media — the opposite of what intuition might suggest. Stiffness, not density alone, is the key variable. This is why frequencies travel through bone very efficiently and why ultrasound imaging can resolve tissue boundaries.' },
+  { t: 'Harmonic Series — Overtones and Timbre',
+    b: 'When a physical system vibrates at its fundamental frequency (f), it simultaneously produces vibrations at integer multiples: 2f, 3f, 4f, 5f... These are called harmonics or overtones. The fundamental is the loudest; harmonics diminish in amplitude with higher order.<br><br>Harmonics determine timbre — the quality of a sound that makes a violin and a flute playing the same note sound different. Both play the same fundamental frequency, but the relative amplitudes of their harmonics differ dramatically.<br><br>In frequency healing, harmonics mean that applying a single frequency simultaneously activates resonances at all its harmonic multiples. A 432 Hz tone also activates 864 Hz, 1296 Hz, and so on. This is why some frequencies are described as having broad biological relevance — their harmonic series intersects with multiple biological resonance windows simultaneously.' },
+  { t: 'The Schumann Resonances — Earth\'s Wave Signature',
+    b: 'The cavity between Earth\'s surface and the lower ionosphere forms a resonant electromagnetic chamber. Lightning strikes — approximately 50 per second worldwide — continuously excite electromagnetic waves in this cavity. The cavity\'s dimensions (approximately 7.83 Hz fundamental based on Earth\'s circumference) determine which frequencies sustain as standing waves.<br><br><strong>The five primary Schumann resonances:</strong><br>· 7.83 Hz (fundamental)<br>· 14.3 Hz (2nd harmonic)<br>· 20.8 Hz (3rd harmonic)<br>· 27.3 Hz (4th harmonic)<br>· 33.8 Hz (5th harmonic)<br><br>These frequencies overlap with human brainwave states: 7.83 Hz sits at the alpha-theta boundary; 14.3 Hz falls in low beta; higher harmonics reach into beta and low gamma. The argument that human nervous systems are calibrated to Earth\'s electromagnetic field through evolutionary exposure is the physics basis for grounding and earthing practices.' },
+  { t: 'Frequency Ranges and Biological Interaction',
+    b: '<strong>Infrasound (below 20 Hz):</strong> Inaudible but physically felt. Includes Schumann resonances, brainwave states, heart rate, and whole-body resonant frequencies. PEMF therapy, grounding, and some sound healing devices work in this range.<br><br><strong>Audible (20–20,000 Hz):</strong> Cymatics range, tuning fork frequencies, Solfeggio frequencies, all vocal toning. Direct tissue resonance through acoustic pressure waves. Standing wave formation in body cavities.<br><br><strong>Ultrasound (20,000 Hz+):</strong> Medical imaging and physiotherapy ultrasound. Wavelengths approach cellular scale — enabling high-resolution imaging and direct cellular mechanical stimulation.<br><br><strong>Radio frequency (MHz–GHz):</strong> Cellular, Wi-Fi, and microwave frequencies. Non-ionizing radiation — does not carry enough quantum energy (E = hf) to break chemical bonds. Biological effect mechanisms at ambient intensities remain studied.<br><br><strong>Infrared (THz):</strong> Heat. The body radiates at ~10 THz. Near-infrared therapy (NIR) penetrates tissue and is absorbed by mitochondrial enzymes.<br><br><strong>Visible light (430–750 THz):</strong> Photobiomodulation. Specific wavelengths absorbed by cellular chromophores. Established clinical applications in wound healing and pain management.' },
+  { t: 'Phase, Coherence, and Group Amplification',
+    b: 'Phase describes the position of a wave in its cycle at a given moment. Two waves of identical frequency and amplitude can produce completely different results depending on their phase relationship:<br><br>· <strong>0° offset (in phase):</strong> Perfect constructive interference. Amplitudes add. Power = (A₁ + A₂)² — four times the power of one wave for two equal waves.<br>· <strong>90° offset:</strong> Partial interference. Net amplitude = √2 times one wave. Power = 2× one wave.<br>· <strong>180° offset (antiphase):</strong> Perfect destructive interference. Amplitudes cancel completely. Power = 0.<br><br><strong>Group coherence physics:</strong> When N sources are perfectly in phase, combined amplitude = N × single amplitude, combined power = N² × single power. Ten coherent participants produce 100× the power of one. This is the wave physics of group intention practices — not mystical amplification, but constructive interference applied to biological field sources.' },
+  { t: 'Standing Waves in Biological Systems',
+    b: 'Standing waves form whenever a wave reflects within a bounded medium and interferes with itself. They are defined by nodes (zero displacement) and antinodes (maximum displacement). The positions of nodes and antinodes are determined entirely by the wavelength and boundary conditions — which means frequency determines the spatial pattern of the standing wave.<br><br><strong>Biological standing waves:</strong><br>· <strong>Organ cavities:</strong> The chest cavity, skull, and nasal sinuses act as resonant chambers. Specific frequencies produce standing waves with antinodes at biologically significant locations. This is the physical basis for the therapeutic effects of specific vocal tones and bowl frequencies.<br>· <strong>DNA:</strong> The DNA helix forms a wave-like structure with characteristic dimensions. Standing wave patterns at specific frequencies may couple efficiently with DNA geometry.<br>· <strong>Tensor ring fields:</strong> The continuous loop conductor establishes boundary conditions for the electromagnetic field. The ring\'s circumference (determined by cubit measurement) selects which frequencies sustain as stable standing wave geometries within the field structure.<br>· <strong>Cell membranes:</strong> The phospholipid bilayer has characteristic thickness (~7–10 nm) and electrical properties that create resonant conditions for specific frequency ranges relevant to membrane potential dynamics.' }
+];
+
+function buildAcc() {
+  var w = document.getElementById('accWrap');
+  ACC.forEach(function(item) {
+    var d = document.createElement('div');
+    d.className = 'acc-item';
+    d.innerHTML = '<div class="acc-head" onclick="toggleAcc(this)"><span>' + item.t + '</span><span class="acc-arrow">▾</span></div><div class="acc-body">' + item.b + '</div>';
+    w.appendChild(d);
+  });
+}
+function toggleAcc(head) {
+  var body = head.nextElementSibling;
+  var arrow = head.querySelector('.acc-arrow');
+  var isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body.open').forEach(function(b) { b.classList.remove('open'); });
+  document.querySelectorAll('.acc-arrow.open').forEach(function(a) { a.classList.remove('open'); });
+  if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
+}
+
+// ── COMPLETION ──
+function markComplete() {
+  var btn = document.getElementById('completeBtn');
+  if (btn.classList.contains('done')) return;
+  btn.classList.add('done');
+  btn.textContent = '✓ Complete';
+  document.getElementById('xpFlash').classList.add('show');
+  saveNow();
+}
+
+// ── SAVE / LOAD ──
+function getData() {
+  return {
+    v: 1, lesson: 'Q9', ts: new Date().toISOString(),
+    r1: document.getElementById('ref1').value,
+    r2: document.getElementById('ref2').value,
+    r3: document.getElementById('ref3').value,
+    done: document.getElementById('completeBtn').classList.contains('done')
+  };
+}
+function saveNow() {
+  localStorage.setItem(KEY, JSON.stringify(getData()));
+  document.getElementById('saveStatus').textContent = 'Saved ' + new Date().toLocaleTimeString();
+}
+function autoSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 90000);
+}
+function loadData() {
+  var raw = localStorage.getItem(KEY);
+  if (!raw) return;
+  try {
+    var d = JSON.parse(raw);
+    if (d.r1) document.getElementById('ref1').value = d.r1;
+    if (d.r2) document.getElementById('ref2').value = d.r2;
+    if (d.r3) document.getElementById('ref3').value = d.r3;
+    if (d.done) {
+      var btn = document.getElementById('completeBtn');
+      btn.classList.add('done'); btn.textContent = '✓ Complete';
+      document.getElementById('xpFlash').classList.add('show');
+    }
+    document.getElementById('saveStatus').textContent = 'Session restored';
+  } catch(e) {}
+}
+function exportData() {
+  saveNow();
+  var b = new Blob([JSON.stringify(getData(), null, 2)], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(b);
+  a.download = 'TFA_Q9_backup_' + Date.now() + '.json';
+  a.click();
+}
+function importData(e) {
+  var f = e.target.files[0];
+  if (!f) return;
+  var r = new FileReader();
+  r.onload = function(ev) {
+    try {
+      var d = JSON.parse(ev.target.result);
+      localStorage.setItem(KEY, JSON.stringify(d));
+      loadData();
+    } catch(err) {}
+  };
+  r.readAsText(f);
+  e.target.value = '';
+}
+
+// ── PROGRESS BAR ──
+window.addEventListener('scroll', function() {
+  var doc = document.documentElement;
+  var sc = window.scrollY || doc.scrollTop;
+  var sh = doc.scrollHeight - doc.clientHeight;
+  document.getElementById('progressFill').style.width = (sh > 0 ? Math.min(100, sc / sh * 100) : 0) + '%';
+}, { passive: true });
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  buildAcc();
+  loadData();
+  runCalc();
+  window.addEventListener('resize', function() {
+    if (document.getElementById('tab-int').classList.contains('active')) drawInterference();
+  });
+});
+</script>
+</body>
+</html>
