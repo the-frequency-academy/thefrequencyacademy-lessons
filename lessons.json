@@ -143,106 +143,106 @@
           "id": "N1",
           "title": "The Language of Numbers",
           "description": "Numbers as frequency — the foundation of symbolic science",
-          "path": "/04-symbolic-sciences/numerology/lesson-01/",
+          "path": "/04-symbolic-sciences/numerology/lesson-01-language-of-numbers/",
           "status": "live"
         },
         {
           "id": "N2",
           "title": "Personal Numerology",
           "description": "Life path, destiny, and soul numbers",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-02/",
+          "status": "live"
         },
         {
           "id": "N3",
           "title": "The Seed of Life",
           "description": "Numerology encoded in sacred geometry",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-03/",
+          "status": "live"
         },
         {
           "id": "N4",
           "title": "Sacred Numbers in Device Work",
           "description": "How numbers amplify intention in frequency technology",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-04/",
+          "status": "live"
         },
         {
           "id": "N5",
           "title": "Timing with Numbers",
           "description": "Cycles, years, and the numerology of time",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-05/",
+          "status": "live"
         },
         {
           "id": "N6",
           "title": "Sound and Music",
           "description": "The numerical basis of harmony and frequency",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-06/",
+          "status": "live"
         },
         {
           "id": "N7",
           "title": "Numerology & the Human Body",
           "description": "Your body as a living numerical system",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-07/",
+          "status": "live"
         },
         {
           "id": "N8",
           "title": "Numerology in Architecture",
           "description": "Sacred proportion in built space",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-08/",
+          "status": "live"
         },
         {
           "id": "N9",
           "title": "Numerology & Relationships",
           "description": "Compatibility, dynamics, and sacred contracts",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-09/",
+          "status": "live"
         },
         {
           "id": "N10",
           "title": "Master Numbers Deep Dive",
           "description": "11, 22, 33 — the gateway numbers",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-10/",
+          "status": "live"
         },
         {
           "id": "N11",
           "title": "Numerology & Money",
           "description": "Abundance codes and frequency alignment",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-11/",
+          "status": "live"
         },
         {
           "id": "N12",
           "title": "Numerology in Nature",
           "description": "Fibonacci, phi, and the numbers of the natural world",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-12/",
+          "status": "live"
         },
         {
           "id": "N13",
           "title": "Advanced Chart Reading",
           "description": "Building and interpreting the full numerological map",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-13/",
+          "status": "live"
         },
         {
           "id": "N14",
           "title": "Numerology & Your Purpose",
           "description": "Your soul's mission — Dragon easter egg",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-14/",
+          "status": "live"
         },
         {
           "id": "N15",
           "title": "Putting It All Together",
           "description": "Module finale — the complete numerological practitioner",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/numerology/lesson-15/",
+          "status": "live"
         }
       ]
     },
@@ -397,64 +397,64 @@
           "id": "G1",
           "title": "The Point and the Circle",
           "description": "The origin of all form — where geometry begins",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-01/",
+          "status": "live"
         },
         {
           "id": "G2",
           "title": "The Vesica Piscis",
           "description": "The womb of creation — where two worlds meet",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-02/",
+          "status": "live"
         },
         {
           "id": "G3",
           "title": "The Seed of Life",
           "description": "Seven circles, seven days, the seed of all creation",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-03/",
+          "status": "live"
         },
         {
           "id": "G4",
           "title": "The Flower of Life",
           "description": "The blueprint of existence in 19 overlapping circles",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-04/",
+          "status": "live"
         },
         {
           "id": "G5",
           "title": "Metatron's Cube",
           "description": "The 13-circle grid containing all Platonic Solids",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-05/",
+          "status": "live"
         },
         {
           "id": "G6",
           "title": "The Platonic Solids",
           "description": "The five perfect forms — building blocks of all matter",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-06/",
+          "status": "live"
         },
         {
           "id": "G7",
           "title": "The Golden Ratio — Phi",
           "description": "1.618 — the divine proportion woven through all life",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-07/",
+          "status": "live"
         },
         {
           "id": "G8",
           "title": "The Fibonacci Sequence",
           "description": "Nature's counting system — the spiral of becoming",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-08/",
+          "status": "live"
         },
         {
           "id": "G9",
           "title": "Toroidal Fields",
           "description": "The shape of energy — from atoms to galaxies",
-          "path": "",
-          "status": "coming"
+          "path": "/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-09/",
+          "status": "live"
         },
         {
           "id": "G10",
@@ -3649,22 +3649,22 @@
           "id": "MS1",
           "title": "Creating Sacred Space",
           "description": "The foundational ceremony — opening the field",
-          "path": "",
-          "status": "coming"
+          "path": "/11-meditations-and-soundscapes/creating-sacred-space/lesson-01/",
+          "status": "live"
         },
         {
           "id": "MS2",
           "title": "Breathwork Preparation",
           "description": "Grounding, Birthing, and Holotropic breath — video exists",
-          "path": "",
-          "status": "coming"
+          "path": "/11-meditations-and-soundscapes/breathwork/lesson-1/",
+          "status": "live"
         },
         {
           "id": "MS3",
           "title": "Dropping Into the Heart",
           "description": "A guided heart-field activation meditation",
-          "path": "",
-          "status": "coming"
+          "path": "/11-meditations-and-soundscapes/dropping%20into%20the%20heart/",
+          "status": "live"
         },
         {
           "id": "MS4",
