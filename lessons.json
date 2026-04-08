@@ -8,7 +8,6 @@
     "baseUrl": "https://thefrequencyacademy-lessons.pages.dev"
   },
   "modules": [
-
     {
       "code": "Q",
       "number": "01",
@@ -17,25 +16,120 @@
       "color": "#4a90d9",
       "totalPlanned": 16,
       "lessons": [
-        { "id": "Q1",  "title": "What Is Quantum Physics",                       "description": "The foundation of frequency science",                              "path": "/01-quantum-physics/quantum-physics/lesson-01/",  "status": "live" },
-        { "id": "Q2",  "title": "The Observer Effect",                           "description": "How consciousness shapes reality",                               "path": "/01-quantum-physics/quantum-physics/lesson-02/",  "status": "live" },
-        { "id": "Q3",  "title": "Wave-Particle Duality",                         "description": "Light, matter, and the boundary between",                        "path": "/01-quantum-physics/quantum-physics/lesson-03/",  "status": "live" },
-        { "id": "Q4",  "title": "Quantum Entanglement",                          "description": "Non-local connection across space and time",                     "path": "/01-quantum-physics/quantum-physics/lesson-04/",  "status": "live" },
-        { "id": "Q5",  "title": "Superposition & Collapse",                      "description": "All possibilities held until observed",                         "path": "/01-quantum-physics/quantum-physics/lesson-05/",  "status": "live" },
-        { "id": "Q6",  "title": "Zero Point Field",                              "description": "The energy of the vacuum — the field beneath all fields",        "path": "/01-quantum-physics/quantum-physics/lesson-06/",  "status": "live" },
-        { "id": "Q7",  "title": "The Measurement Problem",                       "description": "Why observation changes outcome — and what that means for you",  "path": "/01-quantum-physics/quantum-physics/lesson-07/",  "status": "live" },
-        { "id": "Q8",  "title": "Cymatics — Sound Made Visible",                 "description": "How frequency creates form in the physical world",               "path": "/01-quantum-physics/quantum-physics/lesson-08/",  "status": "live" },
-        { "id": "Q9",  "title": "Wave Mechanics — The Physics of Frequency",     "description": "Amplitude, wavelength, phase, interference, and resonance",      "path": "/01-quantum-physics/quantum-physics/lesson-09/",  "status": "live" },
-        { "id": "Q10", "title": "Quantum Biology & Wave Mechanics",              "description": "How life uses quantum physics — module capstone",                "path": "/01-quantum-physics/quantum-physics/lesson-10/",  "status": "live" },
-        { "id": "Q11", "title": "Resonance — Destroyer and Healer",              "description": "The law that governs every frequency interaction",               "path": "/01-quantum-physics/quantum-physics/lesson-11/",  "status": "live" },
-        { "id": "Q12", "title": "The Electromagnetic Spectrum",                  "description": "From radio waves to gamma rays — your map of all frequency",    "path": "/01-quantum-physics/quantum-physics/lesson-12/",  "status": "live" },
-        { "id": "Q13", "title": "Scalar Waves — Beyond Hertzian Physics",        "description": "The non-Hertzian waves Tesla worked with",                      "path": "/01-quantum-physics/quantum-physics/lesson-13/",  "status": "live" },
-        { "id": "Q14", "title": "Torsion Fields — The Missing Physics",          "description": "Spin generates a field. Soviet science proved it.",              "path": "/01-quantum-physics/quantum-physics/lesson-14/",  "status": "live" },
-        { "id": "Q15", "title": "Bioelectromagnetics — The Electrical Body",     "description": "Your heart, cells, and nervous system as electromagnetic systems","path": "/01-quantum-physics/quantum-physics/lesson-15/",  "status": "live" },
-        { "id": "Q16", "title": "Structured Water — The Fourth Phase",           "description": "Dr. Pollack's discovery and the science behind water structuring","path": "/01-quantum-physics/quantum-physics/lesson-16/",  "status": "live" }
+        {
+          "id": "Q1",
+          "title": "What Is Quantum Physics",
+          "description": "The foundation of frequency science",
+          "path": "/01-quantum-physics/quantum-physics/lesson-01/",
+          "status": "live"
+        },
+        {
+          "id": "Q2",
+          "title": "The Observer Effect",
+          "description": "How consciousness shapes reality",
+          "path": "/01-quantum-physics/quantum-physics/lesson-02/",
+          "status": "live"
+        },
+        {
+          "id": "Q3",
+          "title": "Wave-Particle Duality",
+          "description": "Light, matter, and the boundary between",
+          "path": "/01-quantum-physics/quantum-physics/lesson-03/",
+          "status": "live"
+        },
+        {
+          "id": "Q4",
+          "title": "Quantum Entanglement",
+          "description": "Non-local connection across space and time",
+          "path": "/01-quantum-physics/quantum-physics/lesson-04/",
+          "status": "live"
+        },
+        {
+          "id": "Q5",
+          "title": "Superposition & Collapse",
+          "description": "All possibilities held until observed",
+          "path": "/01-quantum-physics/quantum-physics/lesson-05/",
+          "status": "live"
+        },
+        {
+          "id": "Q6",
+          "title": "Zero Point Field",
+          "description": "The energy of the vacuum \u2014 the field beneath all fields",
+          "path": "/01-quantum-physics/quantum-physics/lesson-06/",
+          "status": "live"
+        },
+        {
+          "id": "Q7",
+          "title": "The Measurement Problem",
+          "description": "Why observation changes outcome \u2014 and what that means for you",
+          "path": "/01-quantum-physics/quantum-physics/lesson-07/",
+          "status": "live"
+        },
+        {
+          "id": "Q8",
+          "title": "Cymatics \u2014 Sound Made Visible",
+          "description": "How frequency creates form in the physical world",
+          "path": "/01-quantum-physics/quantum-physics/lesson-08/",
+          "status": "live"
+        },
+        {
+          "id": "Q9",
+          "title": "Wave Mechanics \u2014 The Physics of Frequency",
+          "description": "Amplitude, wavelength, phase, interference, and resonance",
+          "path": "/01-quantum-physics/quantum-physics/lesson-09/",
+          "status": "live"
+        },
+        {
+          "id": "Q10",
+          "title": "Quantum Biology & Wave Mechanics",
+          "description": "How life uses quantum physics \u2014 module capstone",
+          "path": "/01-quantum-physics/quantum-physics/lesson-10/",
+          "status": "live"
+        },
+        {
+          "id": "Q11",
+          "title": "Resonance \u2014 Destroyer and Healer",
+          "description": "The law that governs every frequency interaction",
+          "path": "/01-quantum-physics/quantum-physics/lesson-11/",
+          "status": "live"
+        },
+        {
+          "id": "Q12",
+          "title": "The Electromagnetic Spectrum",
+          "description": "From radio waves to gamma rays \u2014 your map of all frequency",
+          "path": "/01-quantum-physics/quantum-physics/lesson-12/",
+          "status": "live"
+        },
+        {
+          "id": "Q13",
+          "title": "Scalar Waves \u2014 Beyond Hertzian Physics",
+          "description": "The non-Hertzian waves Tesla worked with",
+          "path": "/01-quantum-physics/quantum-physics/lesson-13/",
+          "status": "live"
+        },
+        {
+          "id": "Q14",
+          "title": "Torsion Fields \u2014 The Missing Physics",
+          "description": "Spin generates a field. Soviet science proved it.",
+          "path": "/01-quantum-physics/quantum-physics/lesson-14/",
+          "status": "live"
+        },
+        {
+          "id": "Q15",
+          "title": "Bioelectromagnetics \u2014 The Electrical Body",
+          "description": "Your heart, cells, and nervous system as electromagnetic systems",
+          "path": "/01-quantum-physics/quantum-physics/lesson-15/",
+          "status": "live"
+        },
+        {
+          "id": "Q16",
+          "title": "Structured Water \u2014 The Fourth Phase",
+          "description": "Dr. Pollack's discovery and the science behind water structuring",
+          "path": "/01-quantum-physics/quantum-physics/lesson-16/",
+          "status": "live"
+        }
       ]
     },
-
     {
       "code": "CS",
       "number": "02",
@@ -44,44 +138,253 @@
       "color": "#8b5cf6",
       "totalPlanned": 35,
       "lessons": [
-        { "id": "CS1",  "title": "What Is Consciousness",                         "description": "Defining the indefinable",                                       "path": "", "status": "coming" },
-        { "id": "CS2",  "title": "Levels of Awareness",                           "description": "The spectrum from survival to transcendence",                   "path": "", "status": "coming" },
-        { "id": "CS3",  "title": "The Conscious, Subconscious & Superconscious",  "description": "Three minds, one field",                                         "path": "", "status": "coming" },
-        { "id": "CS4",  "title": "Brainwave States & Consciousness",              "description": "Delta, theta, alpha, beta, gamma — and how to navigate them",   "path": "", "status": "coming" },
-        { "id": "CS5",  "title": "The Pineal Gland — The Frequency Antenna",      "description": "Biology, DMT, and the third eye",                               "path": "", "status": "coming" },
-        { "id": "CS6",  "title": "Memory, Trauma & Cellular Storage",             "description": "How the body holds the past",                                    "path": "", "status": "coming" },
-        { "id": "CS7",  "title": "Reprogramming the Subconscious",                "description": "Theta states, belief loops, and frequency correction",          "path": "", "status": "coming" },
-        { "id": "CS8",  "title": "The Ego, the Shadow & Integration",             "description": "Jungian psychology meets frequency science",                    "path": "", "status": "coming" },
-        { "id": "CS9",  "title": "Consciousness & the Quantum Field",             "description": "The observer, collapse, and co-creation",                       "path": "", "status": "coming" },
-        { "id": "CS10", "title": "Remote Viewing & Non-Local Perception",         "description": "CIA research and the science of extended mind",                  "path": "", "status": "coming" },
-        { "id": "CS11", "title": "Morphic Fields & Collective Memory",            "description": "Rupert Sheldrake and the field that connects all life",          "path": "", "status": "coming" },
-        { "id": "CS12", "title": "The Akashic Field",                             "description": "Universal memory and how to access it",                         "path": "", "status": "coming" },
-        { "id": "CS13", "title": "Dreams, Hypnagogia & Theta Access",             "description": "Consciousness at the threshold",                                 "path": "", "status": "coming" },
-        { "id": "CS14", "title": "Plant Medicine & Expanded States",              "description": "Frequency, ceremony, and consciousness expansion",               "path": "", "status": "coming" },
-        { "id": "CS15", "title": "Breathwork & Consciousness Shift",              "description": "Holotropic, rebirthing, and conscious connected breathing",      "path": "", "status": "coming" },
-        { "id": "CS16", "title": "Meditation Science — What Actually Happens",    "description": "Neuroscience, brainwaves, and measurable transformation",        "path": "", "status": "coming" },
-        { "id": "CS17", "title": "Intention, Focus & Manifestation Mechanics",    "description": "The physics of directed consciousness",                          "path": "", "status": "coming" },
-        { "id": "CS18", "title": "Heart-Brain Coherence",                         "description": "HeartMath, HRV, and the intelligence of the heart",             "path": "", "status": "coming" },
-        { "id": "CS19", "title": "Epigenetics & Consciousness",                   "description": "How awareness rewrites DNA expression",                         "path": "", "status": "coming" },
-        { "id": "CS20", "title": "The Holographic Universe",                      "description": "Bohm, Pribram, and the implicate order",                        "path": "", "status": "coming" },
-        { "id": "CS21", "title": "Simulation Theory & Sacred Reality",            "description": "Are we in a constructed reality — and does it matter?",          "path": "", "status": "coming" },
-        { "id": "CS22", "title": "Time, Timelines & Temporal Mechanics",          "description": "Consciousness, causality, and choosing your timeline",           "path": "", "status": "coming" },
-        { "id": "CS23", "title": "Psychic Abilities & Frequency Development",     "description": "The science and practice of extended perception",                "path": "", "status": "coming" },
-        { "id": "CS24", "title": "Emotional Frequency & the Hawkins Scale",       "description": "Calibrating your emotional body",                                "path": "", "status": "coming" },
-        { "id": "CS25", "title": "The Pain Body & Eckhart Tolle",                 "description": "Presence, reactivity, and the stored emotional field",           "path": "", "status": "coming" },
-        { "id": "CS26", "title": "Collective Consciousness & Global Fields",      "description": "The Global Consciousness Project and mass mind",                 "path": "", "status": "coming" },
-        { "id": "CS27", "title": "Consciousness After Death",                     "description": "NDE research, continuity, and what the data shows",              "path": "", "status": "coming" },
-        { "id": "CS28", "title": "The Sovereignty Codes",                         "description": "Reclaiming your frequency field",                                "path": "", "status": "coming" },
-        { "id": "CS29", "title": "Energy Hygiene & Psychic Protection",           "description": "Maintaining a clean field in a noisy world",                    "path": "", "status": "coming" },
-        { "id": "CS30", "title": "The Body as Consciousness Instrument",          "description": "Somatic intelligence and embodied awareness",                    "path": "", "status": "coming" },
-        { "id": "CS31", "title": "Multidimensional Self & Higher Aspects",        "description": "Soul, oversoul, and the layers of identity",                     "path": "", "status": "coming" },
-        { "id": "CS32", "title": "Consciousness & Sacred Ceremony",               "description": "How ritual creates field conditions for transformation",          "path": "", "status": "coming" },
-        { "id": "CS33", "title": "Kundalini, Shakti & the Rising Current",        "description": "The frequency of awakening in the body",                        "path": "", "status": "coming" },
-        { "id": "CS34", "title": "Integrating Expanded States",                   "description": "Grounding, anchoring, and living the shift",                    "path": "", "status": "coming" },
-        { "id": "CS35", "title": "Your Consciousness Practice — Module Capstone", "description": "Synthesis, tools, and your ongoing development",                 "path": "", "status": "coming" }
+        {
+          "id": "CS1",
+          "title": "What Is Consciousness",
+          "description": "Defining the indefinable",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS2",
+          "title": "Levels of Awareness",
+          "description": "The spectrum from survival to transcendence",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS3",
+          "title": "The Conscious, Subconscious & Superconscious",
+          "description": "Three minds, one field",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS4",
+          "title": "Brainwave States & Consciousness",
+          "description": "Delta, theta, alpha, beta, gamma \u2014 and how to navigate them",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS5",
+          "title": "The Pineal Gland \u2014 The Frequency Antenna",
+          "description": "Biology, DMT, and the third eye",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS6",
+          "title": "Memory, Trauma & Cellular Storage",
+          "description": "How the body holds the past",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS7",
+          "title": "Reprogramming the Subconscious",
+          "description": "Theta states, belief loops, and frequency correction",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS8",
+          "title": "The Ego, the Shadow & Integration",
+          "description": "Jungian psychology meets frequency science",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS9",
+          "title": "Consciousness & the Quantum Field",
+          "description": "The observer, collapse, and co-creation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS10",
+          "title": "Remote Viewing & Non-Local Perception",
+          "description": "CIA research and the science of extended mind",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS11",
+          "title": "Morphic Fields & Collective Memory",
+          "description": "Rupert Sheldrake and the field that connects all life",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS12",
+          "title": "The Akashic Field",
+          "description": "Universal memory and how to access it",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS13",
+          "title": "Dreams, Hypnagogia & Theta Access",
+          "description": "Consciousness at the threshold",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS14",
+          "title": "Plant Medicine & Expanded States",
+          "description": "Frequency, ceremony, and consciousness expansion",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS15",
+          "title": "Breathwork & Consciousness Shift",
+          "description": "Holotropic, rebirthing, and conscious connected breathing",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS16",
+          "title": "Meditation Science \u2014 What Actually Happens",
+          "description": "Neuroscience, brainwaves, and measurable transformation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS17",
+          "title": "Intention, Focus & Manifestation Mechanics",
+          "description": "The physics of directed consciousness",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS18",
+          "title": "Heart-Brain Coherence",
+          "description": "HeartMath, HRV, and the intelligence of the heart",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS19",
+          "title": "Epigenetics & Consciousness",
+          "description": "How awareness rewrites DNA expression",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS20",
+          "title": "The Holographic Universe",
+          "description": "Bohm, Pribram, and the implicate order",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS21",
+          "title": "Simulation Theory & Sacred Reality",
+          "description": "Are we in a constructed reality \u2014 and does it matter?",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS22",
+          "title": "Time, Timelines & Temporal Mechanics",
+          "description": "Consciousness, causality, and choosing your timeline",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS23",
+          "title": "Psychic Abilities & Frequency Development",
+          "description": "The science and practice of extended perception",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS24",
+          "title": "Emotional Frequency & the Hawkins Scale",
+          "description": "Calibrating your emotional body",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS25",
+          "title": "The Pain Body & Eckhart Tolle",
+          "description": "Presence, reactivity, and the stored emotional field",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS26",
+          "title": "Collective Consciousness & Global Fields",
+          "description": "The Global Consciousness Project and mass mind",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS27",
+          "title": "Consciousness After Death",
+          "description": "NDE research, continuity, and what the data shows",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS28",
+          "title": "The Sovereignty Codes",
+          "description": "Reclaiming your frequency field",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS29",
+          "title": "Energy Hygiene & Psychic Protection",
+          "description": "Maintaining a clean field in a noisy world",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS30",
+          "title": "The Body as Consciousness Instrument",
+          "description": "Somatic intelligence and embodied awareness",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS31",
+          "title": "Multidimensional Self & Higher Aspects",
+          "description": "Soul, oversoul, and the layers of identity",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS32",
+          "title": "Consciousness & Sacred Ceremony",
+          "description": "How ritual creates field conditions for transformation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS33",
+          "title": "Kundalini, Shakti & the Rising Current",
+          "description": "The frequency of awakening in the body",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS34",
+          "title": "Integrating Expanded States",
+          "description": "Grounding, anchoring, and living the shift",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CS35",
+          "title": "Your Consciousness Practice \u2014 Module Capstone",
+          "description": "Synthesis, tools, and your ongoing development",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "A",
       "number": "03",
@@ -90,78 +393,357 @@
       "color": "#1e6b8c",
       "totalPlanned": 38,
       "lessons": [
-        { "id": "A1",  "title": "Astrology as Frequency",                         "description": "The planets as oscillating fields",                              "path": "", "status": "coming" },
-        { "id": "A2",  "title": "The Natal Chart as Frequency Map",               "description": "Your personal electromagnetic blueprint",                        "path": "", "status": "coming" },
-        { "id": "A3",  "title": "The Sun, Moon & Rising",                         "description": "The three core frequencies of identity",                         "path": "", "status": "coming" },
-        { "id": "A4",  "title": "Planetary Frequencies — Hz Values",              "description": "Each planet's measurable electromagnetic signature",             "path": "", "status": "coming" },
-        { "id": "A5",  "title": "Transits, Cycles & Timing",                      "description": "Astrology as a timing science",                                  "path": "", "status": "coming" },
-        { "id": "A6",  "title": "The Lunar Cycle & Frequency Work",               "description": "Working with Moon phases in ceremony and device charging",       "path": "", "status": "coming" },
-        { "id": "A7",  "title": "Retrogrades & Field Disruption",                 "description": "Why planetary stations shift the electromagnetic environment",    "path": "", "status": "coming" },
-        { "id": "A8",  "title": "Fixed Stars & Ancient Stellar Codes",            "description": "Sirius, Pleiades, Orion — the stellar transmitters",             "path": "", "status": "coming" },
-        { "id": "A9",  "title": "Galactic Astrology",                             "description": "The Galactic Center and deep cosmic frequency",                  "path": "", "status": "coming" },
-        { "id": "A10", "title": "Asteroids & Minor Bodies",                       "description": "Chiron, Lilith, and the sub-frequencies of the chart",          "path": "", "status": "coming" }
+        {
+          "id": "A1",
+          "title": "Astrology as Frequency",
+          "description": "The planets as oscillating fields",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "A2",
+          "title": "The Natal Chart as Frequency Map",
+          "description": "Your personal electromagnetic blueprint",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "A3",
+          "title": "The Sun, Moon & Rising",
+          "description": "The three core frequencies of identity",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "A4",
+          "title": "Planetary Frequencies \u2014 Hz Values",
+          "description": "Each planet's measurable electromagnetic signature",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "A5",
+          "title": "Transits, Cycles & Timing",
+          "description": "Astrology as a timing science",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "A6",
+          "title": "The Lunar Cycle & Frequency Work",
+          "description": "Working with Moon phases in ceremony and device charging",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "A7",
+          "title": "Retrogrades & Field Disruption",
+          "description": "Why planetary stations shift the electromagnetic environment",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "A8",
+          "title": "Fixed Stars & Ancient Stellar Codes",
+          "description": "Sirius, Pleiades, Orion \u2014 the stellar transmitters",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "A9",
+          "title": "Galactic Astrology",
+          "description": "The Galactic Center and deep cosmic frequency",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "A10",
+          "title": "Asteroids & Minor Bodies",
+          "description": "Chiron, Lilith, and the sub-frequencies of the chart",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "SS",
       "number": "04",
-      "title": "Symbolic Sciences — Numerology",
+      "title": "Symbolic Sciences \u2014 Numerology",
       "folder": "04-symbolic-sciences",
       "color": "#c9a84c",
       "totalPlanned": 15,
       "lessons": [
-        { "id": "N1",  "title": "The Language of Numbers",                        "description": "Vibration encoded in mathematics",                              "path": "/04-symbolic-sciences/numerology/lesson-01-language-of-numbers/", "status": "live" },
-        { "id": "N2",  "title": "Personal Numerology",                            "description": "Your four core numbers",                                       "path": "/04-symbolic-sciences/numerology/lesson-02/", "status": "live" },
-        { "id": "N3",  "title": "Frequency Correlations",                         "description": "111, 222, 333, 369 & repeating numbers",                      "path": "/04-symbolic-sciences/numerology/lesson-03/", "status": "live" },
-        { "id": "N4",  "title": "Sacred Numbers in Device Work",                  "description": "How numbers are encoded into the devices you build",           "path": "/04-symbolic-sciences/numerology/lesson-04/", "status": "live" },
-        { "id": "N5",  "title": "Timing With Numbers",                            "description": "Personal Year, Universal Year & the 9-Year Cycle",            "path": "/04-symbolic-sciences/numerology/lesson-05/", "status": "live" },
-        { "id": "N6",  "title": "Numerology in Sound & Music",                    "description": "432 Hz, 528 Hz & the Solfeggio frequencies",                  "path": "/04-symbolic-sciences/numerology/lesson-06/", "status": "live" },
-        { "id": "N7",  "title": "Numerology & the Human Body",                    "description": "How sacred numbers are encoded in human biology",             "path": "/04-symbolic-sciences/numerology/lesson-07/", "status": "live" },
-        { "id": "N8",  "title": "Numerology in Architecture & Sacred Space",      "description": "The numbers built into the world's most powerful structures",  "path": "/04-symbolic-sciences/numerology/lesson-08/", "status": "live" },
-        { "id": "N9",  "title": "Numerology & Relationships",                     "description": "Compatibility, connection & the numbers between people",       "path": "/04-symbolic-sciences/numerology/lesson-09/", "status": "live" },
-        { "id": "N10", "title": "Master Numbers Deep Dive",                       "description": "11, 22 & 33 — the elevated frequencies",                      "path": "/04-symbolic-sciences/numerology/lesson-10/", "status": "live" },
-        { "id": "N11", "title": "Numerology & Money",                             "description": "Wealth cycles, business naming & financial frequency",         "path": "/04-symbolic-sciences/numerology/lesson-11/", "status": "live" },
-        { "id": "N12", "title": "Numerology in Nature",                           "description": "Fibonacci, fractals & the mathematics of the living world",   "path": "/04-symbolic-sciences/numerology/lesson-12/", "status": "live" },
-        { "id": "N13", "title": "Advanced Chart Reading",                         "description": "Full 5-number chart synthesis",                               "path": "/04-symbolic-sciences/numerology/lesson-13/", "status": "live" },
-        { "id": "N14", "title": "Numerology & Your Purpose",                      "description": "Life Path, destiny & the numbers that point you home",        "path": "/04-symbolic-sciences/numerology/lesson-14/", "status": "live" },
-        { "id": "N15", "title": "Putting It All Together",                        "description": "Module synthesis & your personal frequency practice",         "path": "/04-symbolic-sciences/numerology/lesson-15/", "status": "live" }
+        {
+          "id": "N1",
+          "title": "The Language of Numbers",
+          "description": "Vibration encoded in mathematics",
+          "path": "/04-symbolic-sciences/numerology/lesson-01-language-of-numbers/",
+          "status": "live"
+        },
+        {
+          "id": "N2",
+          "title": "Personal Numerology",
+          "description": "Your four core numbers",
+          "path": "/04-symbolic-sciences/numerology/lesson-02/",
+          "status": "live"
+        },
+        {
+          "id": "N3",
+          "title": "Frequency Correlations",
+          "description": "111, 222, 333, 369 & repeating numbers",
+          "path": "/04-symbolic-sciences/numerology/lesson-03/",
+          "status": "live"
+        },
+        {
+          "id": "N4",
+          "title": "Sacred Numbers in Device Work",
+          "description": "How numbers are encoded into the devices you build",
+          "path": "/04-symbolic-sciences/numerology/lesson-04/",
+          "status": "live"
+        },
+        {
+          "id": "N5",
+          "title": "Timing With Numbers",
+          "description": "Personal Year, Universal Year & the 9-Year Cycle",
+          "path": "/04-symbolic-sciences/numerology/lesson-05/",
+          "status": "live"
+        },
+        {
+          "id": "N6",
+          "title": "Numerology in Sound & Music",
+          "description": "432 Hz, 528 Hz & the Solfeggio frequencies",
+          "path": "/04-symbolic-sciences/numerology/lesson-06/",
+          "status": "live"
+        },
+        {
+          "id": "N7",
+          "title": "Numerology & the Human Body",
+          "description": "How sacred numbers are encoded in human biology",
+          "path": "/04-symbolic-sciences/numerology/lesson-07/",
+          "status": "live"
+        },
+        {
+          "id": "N8",
+          "title": "Numerology in Architecture & Sacred Space",
+          "description": "The numbers built into the world's most powerful structures",
+          "path": "/04-symbolic-sciences/numerology/lesson-08/",
+          "status": "live"
+        },
+        {
+          "id": "N9",
+          "title": "Numerology & Relationships",
+          "description": "Compatibility, connection & the numbers between people",
+          "path": "/04-symbolic-sciences/numerology/lesson-09/",
+          "status": "live"
+        },
+        {
+          "id": "N10",
+          "title": "Master Numbers Deep Dive",
+          "description": "11, 22 & 33 \u2014 the elevated frequencies",
+          "path": "/04-symbolic-sciences/numerology/lesson-10/",
+          "status": "live"
+        },
+        {
+          "id": "N11",
+          "title": "Numerology & Money",
+          "description": "Wealth cycles, business naming & financial frequency",
+          "path": "/04-symbolic-sciences/numerology/lesson-11/",
+          "status": "live"
+        },
+        {
+          "id": "N12",
+          "title": "Numerology in Nature",
+          "description": "Fibonacci, fractals & the mathematics of the living world",
+          "path": "/04-symbolic-sciences/numerology/lesson-12/",
+          "status": "live"
+        },
+        {
+          "id": "N13",
+          "title": "Advanced Chart Reading",
+          "description": "Full 5-number chart synthesis",
+          "path": "/04-symbolic-sciences/numerology/lesson-13/",
+          "status": "live"
+        },
+        {
+          "id": "N14",
+          "title": "Numerology & Your Purpose",
+          "description": "Life Path, destiny & the numbers that point you home",
+          "path": "/04-symbolic-sciences/numerology/lesson-14/",
+          "status": "live"
+        },
+        {
+          "id": "N15",
+          "title": "Putting It All Together",
+          "description": "Module synthesis & your personal frequency practice",
+          "path": "/04-symbolic-sciences/numerology/lesson-15/",
+          "status": "live"
+        }
       ]
     },
-
     {
       "code": "G",
       "number": "04b",
-      "title": "Symbolic Sciences — Sacred Geometry & Light Body",
+      "title": "Symbolic Sciences \u2014 Sacred Geometry & Light Body",
       "folder": "04-symbolic-sciences",
       "color": "#c9a84c",
       "totalPlanned": 22,
       "lessons": [
-        { "id": "G1",  "title": "The Point and the Circle",                       "description": "The origin of all form",                                         "path": "", "status": "coming" },
-        { "id": "G2",  "title": "Vesica Piscis",                                  "description": "The womb of creation",                                           "path": "", "status": "coming" },
-        { "id": "G3",  "title": "The Seed of Life",                               "description": "Seven circles, one template",                                    "path": "", "status": "coming" },
-        { "id": "G4",  "title": "The Flower of Life",                             "description": "The master blueprint",                                           "path": "", "status": "coming" },
-        { "id": "G5",  "title": "Metatron's Cube",                                "description": "The 13 circles and the Platonic Solids within",                  "path": "", "status": "coming" },
-        { "id": "G6",  "title": "The Platonic Solids",                            "description": "The five shapes of all creation",                               "path": "", "status": "coming" },
-        { "id": "G7",  "title": "The Golden Ratio — Phi",                         "description": "The proportion of living form",                                  "path": "", "status": "coming" },
-        { "id": "G8",  "title": "The Fibonacci Sequence",                         "description": "Nature's growth code",                                           "path": "", "status": "coming" },
-        { "id": "G9",  "title": "Toroidal Fields",                                "description": "The shape of all energy systems",                               "path": "", "status": "coming" },
-        { "id": "G10", "title": "The Kathara Grid",                               "description": "The 12-tree template of creation",                              "path": "", "status": "coming" },
-        { "id": "G11", "title": "Kathara Grid Anatomy",                           "description": "Centers, lines and shields",                                     "path": "", "status": "coming" },
-        { "id": "G12", "title": "The Krystic Spiral vs. Fibonacci",               "description": "Two spirals, two directions — sovereignty contrast",             "path": "", "status": "coming" },
-        { "id": "G13", "title": "Morphogenetic Fields",                           "description": "The blueprint behind physical form",                            "path": "", "status": "coming" },
-        { "id": "G14", "title": "The 12-Strand DNA Template",                     "description": "Your full genetic and energetic potential",                      "path": "", "status": "coming" },
-        { "id": "G15", "title": "The Merkaba",                                    "description": "The light body vehicle",                                         "path": "", "status": "coming" },
-        { "id": "G16", "title": "Merkaba Geometry",                               "description": "Counter-rotating tetrahedra and activation",                    "path": "", "status": "coming" },
-        { "id": "G17", "title": "Krystal River Host & Ascension Mechanics",       "description": "The architecture of ascension",                                  "path": "", "status": "coming" },
-        { "id": "G18", "title": "Geometry as Language",                           "description": "The foundation of sigils",                                       "path": "", "status": "coming" },
-        { "id": "G19", "title": "Numerology-Geometry Fusion",                     "description": "Creating sigil matrices",                                        "path": "", "status": "coming" },
-        { "id": "G20", "title": "Sacred Geometry in Tensor Rings",                "description": "Frequency tools and scalar fields",                             "path": "", "status": "coming" },
-        { "id": "G21", "title": "Crystal Grids & Geometry",                       "description": "Designing intentional energy fields",                           "path": "", "status": "coming" },
-        { "id": "G22", "title": "Applying Geometry to Device Design",             "description": "Module synthesis and your geometry practice",                   "path": "", "status": "coming" }
+        {
+          "id": "G1",
+          "title": "The Point and the Circle",
+          "description": "The origin of all form",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G2",
+          "title": "Vesica Piscis",
+          "description": "The womb of creation",
+          "path": "/04-symbolic-sciences/sacred-geometry/lesson-G2/",
+          "status": "live"
+        },
+        {
+          "id": "G3",
+          "title": "The Seed of Life",
+          "description": "Seven circles, one template",
+          "path": "/04-symbolic-sciences/sacred-geometry/lesson-G3/",
+          "status": "live"
+        },
+        {
+          "id": "G4",
+          "title": "The Flower of Life",
+          "description": "The master blueprint",
+          "path": "/04-symbolic-sciences/sacred-geometry/lesson-G4/",
+          "status": "live"
+        },
+        {
+          "id": "G5",
+          "title": "Metatron's Cube",
+          "description": "The 13 circles and the Platonic Solids within",
+          "path": "/04-symbolic-sciences/sacred-geometry/lesson-G5/",
+          "status": "live"
+        },
+        {
+          "id": "G6",
+          "title": "The Platonic Solids",
+          "description": "The five shapes of all creation",
+          "path": "/04-symbolic-sciences/sacred-geometry/lesson-G6/",
+          "status": "live"
+        },
+        {
+          "id": "G7",
+          "title": "The Golden Ratio \u2014 Phi",
+          "description": "The proportion of living form",
+          "path": "/04-symbolic-sciences/sacred-geometry/lesson-G7/",
+          "status": "live"
+        },
+        {
+          "id": "G8",
+          "title": "The Fibonacci Sequence",
+          "description": "Nature's growth code",
+          "path": "/04-symbolic-sciences/sacred-geometry/lesson-G8/",
+          "status": "live"
+        },
+        {
+          "id": "G9",
+          "title": "Toroidal Fields",
+          "description": "The shape of all energy systems",
+          "path": "/04-symbolic-sciences/sacred-geometry/lesson-G9/",
+          "status": "live"
+        },
+        {
+          "id": "G10",
+          "title": "The Kathara Grid",
+          "description": "The 12-tree template of creation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G11",
+          "title": "Kathara Grid Anatomy",
+          "description": "Centers, lines and shields",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G12",
+          "title": "The Krystic Spiral vs. Fibonacci",
+          "description": "Two spirals, two directions \u2014 sovereignty contrast",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G13",
+          "title": "Morphogenetic Fields",
+          "description": "The blueprint behind physical form",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G14",
+          "title": "The 12-Strand DNA Template",
+          "description": "Your full genetic and energetic potential",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G15",
+          "title": "The Merkaba",
+          "description": "The light body vehicle",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G16",
+          "title": "Merkaba Geometry",
+          "description": "Counter-rotating tetrahedra and activation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G17",
+          "title": "Krystal River Host & Ascension Mechanics",
+          "description": "The architecture of ascension",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G18",
+          "title": "Geometry as Language",
+          "description": "The foundation of sigils",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G19",
+          "title": "Numerology-Geometry Fusion",
+          "description": "Creating sigil matrices",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G20",
+          "title": "Sacred Geometry in Tensor Rings",
+          "description": "Frequency tools and scalar fields",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G21",
+          "title": "Crystal Grids & Geometry",
+          "description": "Designing intentional energy fields",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "G22",
+          "title": "Applying Geometry to Device Design",
+          "description": "Module synthesis and your geometry practice",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "EH",
       "number": "05",
@@ -170,57 +752,344 @@
       "color": "#5ab87a",
       "totalPlanned": 48,
       "lessons": [
-        { "id": "EH1",  "title": "What Is Energy Healing",                        "description": "The history and science of working with life force",             "path": "", "status": "coming" },
-        { "id": "EH2",  "title": "The Subtle Body — Layers and Structure",        "description": "Etheric, astral, mental, causal bodies",                        "path": "", "status": "coming" },
-        { "id": "EH3",  "title": "The Chakra System",                             "description": "Seven centers, seven frequencies",                              "path": "", "status": "coming" },
-        { "id": "EH4",  "title": "The Meridian System",                           "description": "Qi pathways and the map of life force",                         "path": "", "status": "coming" },
-        { "id": "EH5",  "title": "Prana, Chi & Life Force",                       "description": "Ancient names for the universal field",                         "path": "", "status": "coming" },
-        { "id": "EH6",  "title": "Reiki & Hands-On Healing",                      "description": "The lineage, the attunements, and the field",                   "path": "", "status": "coming" },
-        { "id": "EH7",  "title": "Pranic Healing & Bioplasmic Body",              "description": "Master Choa Kok Sui and the energy body",                       "path": "", "status": "coming" },
-        { "id": "EH8",  "title": "Qigong & Tai Chi as Frequency Practice",        "description": "Moving meditation and field cultivation",                       "path": "", "status": "coming" },
-        { "id": "EH9",  "title": "Sound Healing Lineages",                        "description": "Tibetan bowls, tuning forks, and the voice",                    "path": "", "status": "coming" },
-        { "id": "EH10", "title": "Shamanic Healing Traditions",                   "description": "Extraction, soul retrieval, and the spirit world",              "path": "", "status": "coming" },
-        { "id": "EH11", "title": "Egyptian Healing Arts",                         "description": "Temple practices, sacred oils, and the Djed",                   "path": "", "status": "coming" },
-        { "id": "EH12", "title": "Ayurvedic Healing & Frequency",                 "description": "Doshas, herbs, and the vibrational body",                       "path": "", "status": "coming" },
-        { "id": "EH13", "title": "Acupuncture & Electromagnetic Medicine",        "description": "Needles, meridians, and measurable field effects",              "path": "", "status": "coming" },
-        { "id": "EH14", "title": "Distance Healing — The Science",                "description": "Non-local healing and the quantum field",                        "path": "", "status": "coming" },
-        { "id": "EH15", "title": "The Biofield — Scientific Evidence",            "description": "Research, measurement, and validation",                         "path": "", "status": "coming" },
-        { "id": "EH16", "title": "Healing Crisis & Integration",                  "description": "What happens when the field reorganizes",                       "path": "", "status": "coming" },
-        { "id": "EH17", "title": "Building Your Healing Practice",                "description": "Ethics, boundaries, and professional energy work",              "path": "", "status": "coming" },
-        { "id": "EH18", "title": "Energy Healing — Module Capstone",              "description": "Synthesis of all healing lineages and your practice",           "path": "", "status": "coming" },
-        { "id": "EM1",  "title": "What Is Elemental Mysticism",                   "description": "Earth, water, fire, air, ether as frequency",                   "path": "", "status": "coming" },
-        { "id": "EM2",  "title": "Earth Element — Grounding & Foundation",        "description": "The frequency of stability and materialization",                 "path": "", "status": "coming" },
-        { "id": "EM3",  "title": "Water Element — Flow & Emotion",                "description": "The frequency of feeling and adaptability",                     "path": "", "status": "coming" },
-        { "id": "EM4",  "title": "Fire Element — Will & Transformation",          "description": "The frequency of power and change",                             "path": "", "status": "coming" },
-        { "id": "EM5",  "title": "Air Element — Mind & Communication",            "description": "The frequency of thought and connection",                       "path": "", "status": "coming" },
-        { "id": "EM6",  "title": "Ether / Akasha — The Fifth Element",            "description": "The source field and the template of all creation",             "path": "", "status": "coming" },
-        { "id": "EM7",  "title": "Elemental Ceremony & Device Work",              "description": "Working with elements in frequency practice",                   "path": "", "status": "coming" },
-        { "id": "EM8",  "title": "The Four Directions & Sacred Orientations",     "description": "Compass work, altars, and spatial frequency",                   "path": "", "status": "coming" },
-        { "id": "EM9",  "title": "Elemental Imbalances & Healing",                "description": "Reading and correcting elemental frequency in the body",        "path": "", "status": "coming" },
-        { "id": "EM10", "title": "Elemental Mysticism — Capstone",                "description": "Building your elemental practice",                              "path": "", "status": "coming" },
-        { "id": "FM1",  "title": "Fairy Mysteries — Introduction",                "description": "The Fae, the Sidhe, and the frequency of nature intelligence",   "path": "", "status": "coming" },
-        { "id": "FM2",  "title": "Nature Spirits & Elemental Beings",             "description": "Devas, sprites, and the consciousness of the land",             "path": "", "status": "coming" },
-        { "id": "FM3",  "title": "Working With Fairy Rings & Sacred Sites",       "description": "Ley lines, vortexes, and Fae gateways",                         "path": "", "status": "coming" },
-        { "id": "FM4",  "title": "Celtic Fairy Lore & Frequency Codes",           "description": "The Tuatha Dé Danann and ancient Irish wisdom",                 "path": "", "status": "coming" },
-        { "id": "FM5",  "title": "The Unseelie & Seelie Courts",                  "description": "Polarity, shadow, and the full spectrum of Fae",                "path": "", "status": "coming" },
-        { "id": "FM6",  "title": "Plant Spirits & Flower Essences",               "description": "Communication with the plant kingdom",                          "path": "", "status": "coming" },
-        { "id": "FM7",  "title": "Tree Consciousness & the Forest Field",         "description": "Working with old growth and arboreal intelligence",              "path": "", "status": "coming" },
-        { "id": "FM8",  "title": "Water Spirits & Sacred Springs",                "description": "Undines, mermaids, and the consciousness of water",             "path": "", "status": "coming" },
-        { "id": "FM9",  "title": "Communicating With Nature Intelligence",         "description": "Protocol, respect, and building a relationship",                "path": "", "status": "coming" },
-        { "id": "FM10", "title": "Fairy Mysteries — Capstone",                    "description": "Integrating Fae wisdom into your frequency practice",           "path": "", "status": "coming" },
-        { "id": "DW1",  "title": "Introduction to Dragon Energy",                 "description": "What dragons are and why they matter in frequency work",         "path": "", "status": "coming" },
-        { "id": "DW2",  "title": "Earth Dragons — Ley Lines and Grids",           "description": "The great serpents of the planetary grid",                       "path": "", "status": "coming" },
-        { "id": "DW3",  "title": "Fire Dragons — Kundalini and Transformation",   "description": "The rising serpent fire and spiritual awakening",               "path": "", "status": "coming" },
-        { "id": "DW4",  "title": "Water Dragons — Emotional Depth",               "description": "The dragons of the deep and emotional alchemy",                  "path": "", "status": "coming" },
-        { "id": "DW5",  "title": "Air Dragons — Thought and Vision",              "description": "Mental clarity and the dragons of the sky",                      "path": "", "status": "coming" },
-        { "id": "DW6",  "title": "Dragon Kundalini Practices",                    "description": "Working with dragon fire in the body",                          "path": "", "status": "coming" },
-        { "id": "DW7",  "title": "Dragons and Device Placement",                  "description": "Invoking dragon guardians in frequency work",                   "path": "", "status": "coming" },
-        { "id": "DW8",  "title": "Advanced Dragon Work",                          "description": "Deep relationship and long-term practice",                       "path": "", "status": "coming" },
-        { "id": "DW9",  "title": "Spirit/Aether Dragons — The Fifth Dragon",      "description": "Transcending elements — the cosmic dragon",                     "path": "", "status": "coming" },
-        { "id": "DW10", "title": "Dragon Guardians — Long-Term Relationships",    "description": "Building lifelong partnerships with dragon consciousness",       "path": "", "status": "coming" }
+        {
+          "id": "EH1",
+          "title": "What Is Energy Healing",
+          "description": "The history and science of working with life force",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH2",
+          "title": "The Subtle Body \u2014 Layers and Structure",
+          "description": "Etheric, astral, mental, causal bodies",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH3",
+          "title": "The Chakra System",
+          "description": "Seven centers, seven frequencies",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH4",
+          "title": "The Meridian System",
+          "description": "Qi pathways and the map of life force",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH5",
+          "title": "Prana, Chi & Life Force",
+          "description": "Ancient names for the universal field",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH6",
+          "title": "Reiki & Hands-On Healing",
+          "description": "The lineage, the attunements, and the field",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH7",
+          "title": "Pranic Healing & Bioplasmic Body",
+          "description": "Master Choa Kok Sui and the energy body",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH8",
+          "title": "Qigong & Tai Chi as Frequency Practice",
+          "description": "Moving meditation and field cultivation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH9",
+          "title": "Sound Healing Lineages",
+          "description": "Tibetan bowls, tuning forks, and the voice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH10",
+          "title": "Shamanic Healing Traditions",
+          "description": "Extraction, soul retrieval, and the spirit world",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH11",
+          "title": "Egyptian Healing Arts",
+          "description": "Temple practices, sacred oils, and the Djed",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH12",
+          "title": "Ayurvedic Healing & Frequency",
+          "description": "Doshas, herbs, and the vibrational body",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH13",
+          "title": "Acupuncture & Electromagnetic Medicine",
+          "description": "Needles, meridians, and measurable field effects",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH14",
+          "title": "Distance Healing \u2014 The Science",
+          "description": "Non-local healing and the quantum field",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH15",
+          "title": "The Biofield \u2014 Scientific Evidence",
+          "description": "Research, measurement, and validation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH16",
+          "title": "Healing Crisis & Integration",
+          "description": "What happens when the field reorganizes",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH17",
+          "title": "Building Your Healing Practice",
+          "description": "Ethics, boundaries, and professional energy work",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EH18",
+          "title": "Energy Healing \u2014 Module Capstone",
+          "description": "Synthesis of all healing lineages and your practice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EM1",
+          "title": "What Is Elemental Mysticism",
+          "description": "Earth, water, fire, air, ether as frequency",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EM2",
+          "title": "Earth Element \u2014 Grounding & Foundation",
+          "description": "The frequency of stability and materialization",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EM3",
+          "title": "Water Element \u2014 Flow & Emotion",
+          "description": "The frequency of feeling and adaptability",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EM4",
+          "title": "Fire Element \u2014 Will & Transformation",
+          "description": "The frequency of power and change",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EM5",
+          "title": "Air Element \u2014 Mind & Communication",
+          "description": "The frequency of thought and connection",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EM6",
+          "title": "Ether / Akasha \u2014 The Fifth Element",
+          "description": "The source field and the template of all creation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EM7",
+          "title": "Elemental Ceremony & Device Work",
+          "description": "Working with elements in frequency practice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EM8",
+          "title": "The Four Directions & Sacred Orientations",
+          "description": "Compass work, altars, and spatial frequency",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EM9",
+          "title": "Elemental Imbalances & Healing",
+          "description": "Reading and correcting elemental frequency in the body",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "EM10",
+          "title": "Elemental Mysticism \u2014 Capstone",
+          "description": "Building your elemental practice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FM1",
+          "title": "Fairy Mysteries \u2014 Introduction",
+          "description": "The Fae, the Sidhe, and the frequency of nature intelligence",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FM2",
+          "title": "Nature Spirits & Elemental Beings",
+          "description": "Devas, sprites, and the consciousness of the land",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FM3",
+          "title": "Working With Fairy Rings & Sacred Sites",
+          "description": "Ley lines, vortexes, and Fae gateways",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FM4",
+          "title": "Celtic Fairy Lore & Frequency Codes",
+          "description": "The Tuatha D\u00e9 Danann and ancient Irish wisdom",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FM5",
+          "title": "The Unseelie & Seelie Courts",
+          "description": "Polarity, shadow, and the full spectrum of Fae",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FM6",
+          "title": "Plant Spirits & Flower Essences",
+          "description": "Communication with the plant kingdom",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FM7",
+          "title": "Tree Consciousness & the Forest Field",
+          "description": "Working with old growth and arboreal intelligence",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FM8",
+          "title": "Water Spirits & Sacred Springs",
+          "description": "Undines, mermaids, and the consciousness of water",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FM9",
+          "title": "Communicating With Nature Intelligence",
+          "description": "Protocol, respect, and building a relationship",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FM10",
+          "title": "Fairy Mysteries \u2014 Capstone",
+          "description": "Integrating Fae wisdom into your frequency practice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "DW1",
+          "title": "Introduction to Dragon Energy",
+          "description": "What dragons are and why they matter in frequency work",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "DW2",
+          "title": "Earth Dragons \u2014 Ley Lines and Grids",
+          "description": "The great serpents of the planetary grid",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "DW3",
+          "title": "Fire Dragons \u2014 Kundalini and Transformation",
+          "description": "The rising serpent fire and spiritual awakening",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "DW4",
+          "title": "Water Dragons \u2014 Emotional Depth",
+          "description": "The dragons of the deep and emotional alchemy",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "DW5",
+          "title": "Air Dragons \u2014 Thought and Vision",
+          "description": "Mental clarity and the dragons of the sky",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "DW6",
+          "title": "Dragon Kundalini Practices",
+          "description": "Working with dragon fire in the body",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "DW7",
+          "title": "Dragons and Device Placement",
+          "description": "Invoking dragon guardians in frequency work",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "DW8",
+          "title": "Advanced Dragon Work",
+          "description": "Deep relationship and long-term practice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "DW9",
+          "title": "Spirit/Aether Dragons \u2014 The Fifth Dragon",
+          "description": "Transcending elements \u2014 the cosmic dragon",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "DW10",
+          "title": "Dragon Guardians \u2014 Long-Term Relationships",
+          "description": "Building lifelong partnerships with dragon consciousness",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "AL",
       "number": "06",
@@ -229,68 +1098,421 @@
       "color": "#c0803a",
       "totalPlanned": 59,
       "lessons": [
-        { "id": "OF1",  "title": "What Is Orgonite",                              "description": "History, Wilhelm Reich, and the piezoelectric mechanism",        "path": "", "status": "coming" },
-        { "id": "OF2",  "title": "The Orgone Field — Science & Theory",           "description": "Biophotons, scalar fields, and the life force in matter",        "path": "", "status": "coming" },
-        { "id": "OF3",  "title": "Metals & Conductors in Orgonite",               "description": "Copper, aluminium, iron — what each does",                       "path": "", "status": "coming" },
-        { "id": "OF4",  "title": "Resins — The Organic Matrix",                   "description": "Polyester, epoxy, and bio-based resins",                         "path": "", "status": "coming" },
-        { "id": "OF5",  "title": "Crystal Selection for Orgonite",                "description": "Quartz, shungite, selenite — choosing the right stone",          "path": "", "status": "coming" },
-        { "id": "OF6",  "title": "Sacred Geometry in Orgonite Design",            "description": "Coils, grids, and embedded geometry",                           "path": "", "status": "coming" },
-        { "id": "OF7",  "title": "Basic Orgonite — The Tower Buster",             "description": "First pour: materials, ratios, and curing",                      "path": "", "status": "coming" },
-        { "id": "OF8",  "title": "Intermediate Orgonite — The HHG",               "description": "Holy Hand Grenade — copper coil, crystal tip, sacred ratios",    "path": "", "status": "coming" },
-        { "id": "OF9",  "title": "Advanced Orgonite — The Chembuster",            "description": "Large-scale atmospheric device building",                        "path": "", "status": "coming" },
-        { "id": "OF10", "title": "Orgonite Charging & Intention Setting",         "description": "Imprinting your devices with frequency",                         "path": "", "status": "coming" },
-        { "id": "OF11", "title": "Gifting & Field Work",                          "description": "Deploying devices in the landscape",                             "path": "", "status": "coming" },
-        { "id": "OF12", "title": "Orgonite — Testing, Troubleshooting & Care",   "description": "Pendulum testing, cleaning, and maintenance",                    "path": "", "status": "coming" },
-        { "id": "CA1",  "title": "Crystal Consciousness & Intelligence",          "description": "How crystals think, communicate, and hold frequency",            "path": "", "status": "coming" },
-        { "id": "CA2",  "title": "Quartz — The Master Oscillator",                "description": "Piezoelectricity, amplification, and the crystal lattice",       "path": "", "status": "coming" },
-        { "id": "CA3",  "title": "Black Crystals — Shungite, Tourmaline, Obsidian","description": "Grounding, protection, and EMF harmonization",                "path": "", "status": "coming" },
-        { "id": "CA4",  "title": "High-Vibration Crystals",                       "description": "Selenite, moldavite, apophyllite, and celestial frequencies",    "path": "", "status": "coming" },
-        { "id": "CA5",  "title": "Crystal Programming & Clearing",                "description": "How to charge, clear, and encode a crystal",                    "path": "", "status": "coming" },
-        { "id": "CA6",  "title": "Crystal Water & Elixirs",                       "description": "Gem essences, structured water, and crystal-charged hydration",  "path": "", "status": "coming" },
-        { "id": "CA7",  "title": "Crystal Grids — Foundations",                   "description": "Sacred geometry grids for space activation",                    "path": "", "status": "coming" },
-        { "id": "CA8",  "title": "Crystal Grids — Advanced",                      "description": "Compound grids, activation sequences, and field maintenance",    "path": "", "status": "coming" },
-        { "id": "CA9",  "title": "Crystals in Device Work",                       "description": "Integrating crystals into orgonite, tensor rings, and coils",   "path": "", "status": "coming" },
-        { "id": "CA10", "title": "Crystal Journeying & Inner Work",               "description": "Using crystals as portals for inner exploration",                "path": "", "status": "coming" },
-        { "id": "CA11", "title": "Crystal Business & Ethical Sourcing",           "description": "The ethics and economics of crystal work",                       "path": "", "status": "coming" },
-        { "id": "CA12", "title": "Crystal Alchemy — Module Capstone",             "description": "Your complete crystal practice",                                 "path": "", "status": "coming" },
-        { "id": "SM1",  "title": "Sacred Metals — Introduction",                  "description": "The alchemical and electromagnetic properties of metals",        "path": "", "status": "coming" },
-        { "id": "SM2",  "title": "Copper — The Conductor",                        "description": "Tensor rings, coils, and the frequency of Venus",               "path": "", "status": "coming" },
-        { "id": "SM3",  "title": "Gold — The Solar Metal",                        "description": "Colloidal gold, alchemy, and spiritual frequency",              "path": "", "status": "coming" },
-        { "id": "SM4",  "title": "Silver — The Lunar Metal",                      "description": "Colloidal silver, antimicrobial frequency, and the Moon",       "path": "", "status": "coming" },
-        { "id": "SM5",  "title": "Iron & Steel — Grounding & Protection",         "description": "The frequency of Mars and protective field work",               "path": "", "status": "coming" },
-        { "id": "SM6",  "title": "Tin, Lead & Planetary Metals",                  "description": "The complete alchemical metal system",                          "path": "", "status": "coming" },
-        { "id": "SM7",  "title": "Metals in Device Work",                         "description": "Combining metals for specific frequency outcomes",              "path": "", "status": "coming" },
-        { "id": "SM8",  "title": "Sacred Metals — Capstone",                      "description": "Building your metal alchemy practice",                          "path": "", "status": "coming" },
-        { "id": "RH1",  "title": "Sacred Resins — Frankincense, Myrrh & Copal",  "description": "The ancient frequency medicines",                               "path": "", "status": "coming" },
-        { "id": "RH2",  "title": "Sacred Herbs & Plant Allies",                   "description": "Mugwort, sage, cedar, and the plant frequency library",         "path": "", "status": "coming" },
-        { "id": "RH3",  "title": "Essential Oils & Frequency",                    "description": "High-frequency oils and how to work with them",                 "path": "", "status": "coming" },
-        { "id": "RH4",  "title": "Smudging, Censing & Space Clearing",            "description": "Smoke as frequency tool",                                        "path": "", "status": "coming" },
-        { "id": "RH5",  "title": "Flower Essences & Vibrational Medicine",        "description": "Bach, FES, and the frequency of flowers",                       "path": "", "status": "coming" },
-        { "id": "RH6",  "title": "Clays, Zeolites & Mineral Substances",          "description": "Earth medicines and their electromagnetic properties",          "path": "", "status": "coming" },
-        { "id": "RH7",  "title": "Sacred Substances in Ceremony",                 "description": "Cacao, blue lotus, and ceremonial frequency",                   "path": "", "status": "coming" },
-        { "id": "RH8",  "title": "Resins, Herbs & Substances — Capstone",         "description": "Building your plant alchemy practice",                          "path": "", "status": "coming" },
-        { "id": "PG1",  "title": "Introduction to Plasma & GANS",                 "description": "Mehran Keshe and the plasma science revolution",                 "path": "", "status": "coming" },
-        { "id": "PG2",  "title": "Making GANS — Gas in Aqeous Nano Solid State", "description": "CO2, ZnO, CH3, and CuO2 GANS production",                      "path": "", "status": "coming" },
-        { "id": "PG3",  "title": "GANS Plasma Water",                             "description": "Creating and using GANS-charged water",                         "path": "", "status": "coming" },
-        { "id": "PG4",  "title": "The Magrav — Plasma Energy Devices",            "description": "Building a Magrav-Power system",                                "path": "", "status": "coming" },
-        { "id": "PG5",  "title": "GANS in Device Work & Healing",                 "description": "Integrating plasma technology with frequency devices",          "path": "", "status": "coming" },
-        { "id": "PG6",  "title": "GANS Applications — Advanced Work",             "description": "Agriculture, water, environment, and self",                     "path": "", "status": "coming" },
-        { "id": "OR1",  "title": "What Is Ormus / ORME",                          "description": "David Hudson's discovery and the white powder gold",            "path": "", "status": "coming" },
-        { "id": "OR2",  "title": "The Wet Method",                                "description": "Lye precipitation and Ormus production",                        "path": "", "status": "coming" },
-        { "id": "OR3",  "title": "The Dry Method",                                "description": "High-heat Ormus extraction",                                    "path": "", "status": "coming" },
-        { "id": "OR4",  "title": "Ormus in Device Work",                          "description": "Adding Ormus to orgonite and other devices",                   "path": "", "status": "coming" },
-        { "id": "OR5",  "title": "Ormus for Personal Use",                        "description": "Safe protocols, dosing, and integration",                       "path": "", "status": "coming" },
-        { "id": "OR6",  "title": "Advanced Ormus Alchemy",                        "description": "Plant-derived Ormus and the philosopher's stone lineage",       "path": "", "status": "coming" },
-        { "id": "CM1",  "title": "What Are Colloidals",                           "description": "Nanoparticles, suspension, and bioavailability",                 "path": "", "status": "coming" },
-        { "id": "CM2",  "title": "Making Colloidal Silver",                       "description": "Equipment, process, and storage",                               "path": "", "status": "coming" },
-        { "id": "CM3",  "title": "Making Colloidal Gold",                         "description": "Reduction chemistry and gold nanoparticles",                    "path": "", "status": "coming" },
-        { "id": "CM4",  "title": "Making Colloidal Copper",                       "description": "The Venus metal in suspension",                                 "path": "", "status": "coming" },
-        { "id": "CM5",  "title": "Colloidals in Devices",                         "description": "Adding colloidal metals to orgonite and grids",                 "path": "", "status": "coming" },
-        { "id": "CM6",  "title": "Colloidals for Personal Use",                   "description": "Internal and external applications",                            "path": "", "status": "coming" },
-        { "id": "CM7",  "title": "Advanced Colloidal Work",                       "description": "Monatomic elements, bimetallic suspensions, and beyond",        "path": "", "status": "coming" }
+        {
+          "id": "OF1",
+          "title": "What Is Orgonite",
+          "description": "History, Wilhelm Reich, and the piezoelectric mechanism",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OF2",
+          "title": "The Orgone Field \u2014 Science & Theory",
+          "description": "Biophotons, scalar fields, and the life force in matter",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OF3",
+          "title": "Metals & Conductors in Orgonite",
+          "description": "Copper, aluminium, iron \u2014 what each does",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OF4",
+          "title": "Resins \u2014 The Organic Matrix",
+          "description": "Polyester, epoxy, and bio-based resins",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OF5",
+          "title": "Crystal Selection for Orgonite",
+          "description": "Quartz, shungite, selenite \u2014 choosing the right stone",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OF6",
+          "title": "Sacred Geometry in Orgonite Design",
+          "description": "Coils, grids, and embedded geometry",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OF7",
+          "title": "Basic Orgonite \u2014 The Tower Buster",
+          "description": "First pour: materials, ratios, and curing",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OF8",
+          "title": "Intermediate Orgonite \u2014 The HHG",
+          "description": "Holy Hand Grenade \u2014 copper coil, crystal tip, sacred ratios",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OF9",
+          "title": "Advanced Orgonite \u2014 The Chembuster",
+          "description": "Large-scale atmospheric device building",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OF10",
+          "title": "Orgonite Charging & Intention Setting",
+          "description": "Imprinting your devices with frequency",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OF11",
+          "title": "Gifting & Field Work",
+          "description": "Deploying devices in the landscape",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OF12",
+          "title": "Orgonite \u2014 Testing, Troubleshooting & Care",
+          "description": "Pendulum testing, cleaning, and maintenance",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA1",
+          "title": "Crystal Consciousness & Intelligence",
+          "description": "How crystals think, communicate, and hold frequency",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA2",
+          "title": "Quartz \u2014 The Master Oscillator",
+          "description": "Piezoelectricity, amplification, and the crystal lattice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA3",
+          "title": "Black Crystals \u2014 Shungite, Tourmaline, Obsidian",
+          "description": "Grounding, protection, and EMF harmonization",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA4",
+          "title": "High-Vibration Crystals",
+          "description": "Selenite, moldavite, apophyllite, and celestial frequencies",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA5",
+          "title": "Crystal Programming & Clearing",
+          "description": "How to charge, clear, and encode a crystal",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA6",
+          "title": "Crystal Water & Elixirs",
+          "description": "Gem essences, structured water, and crystal-charged hydration",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA7",
+          "title": "Crystal Grids \u2014 Foundations",
+          "description": "Sacred geometry grids for space activation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA8",
+          "title": "Crystal Grids \u2014 Advanced",
+          "description": "Compound grids, activation sequences, and field maintenance",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA9",
+          "title": "Crystals in Device Work",
+          "description": "Integrating crystals into orgonite, tensor rings, and coils",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA10",
+          "title": "Crystal Journeying & Inner Work",
+          "description": "Using crystals as portals for inner exploration",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA11",
+          "title": "Crystal Business & Ethical Sourcing",
+          "description": "The ethics and economics of crystal work",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CA12",
+          "title": "Crystal Alchemy \u2014 Module Capstone",
+          "description": "Your complete crystal practice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SM1",
+          "title": "Sacred Metals \u2014 Introduction",
+          "description": "The alchemical and electromagnetic properties of metals",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SM2",
+          "title": "Copper \u2014 The Conductor",
+          "description": "Tensor rings, coils, and the frequency of Venus",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SM3",
+          "title": "Gold \u2014 The Solar Metal",
+          "description": "Colloidal gold, alchemy, and spiritual frequency",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SM4",
+          "title": "Silver \u2014 The Lunar Metal",
+          "description": "Colloidal silver, antimicrobial frequency, and the Moon",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SM5",
+          "title": "Iron & Steel \u2014 Grounding & Protection",
+          "description": "The frequency of Mars and protective field work",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SM6",
+          "title": "Tin, Lead & Planetary Metals",
+          "description": "The complete alchemical metal system",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SM7",
+          "title": "Metals in Device Work",
+          "description": "Combining metals for specific frequency outcomes",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SM8",
+          "title": "Sacred Metals \u2014 Capstone",
+          "description": "Building your metal alchemy practice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RH1",
+          "title": "Sacred Resins \u2014 Frankincense, Myrrh & Copal",
+          "description": "The ancient frequency medicines",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RH2",
+          "title": "Sacred Herbs & Plant Allies",
+          "description": "Mugwort, sage, cedar, and the plant frequency library",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RH3",
+          "title": "Essential Oils & Frequency",
+          "description": "High-frequency oils and how to work with them",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RH4",
+          "title": "Smudging, Censing & Space Clearing",
+          "description": "Smoke as frequency tool",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RH5",
+          "title": "Flower Essences & Vibrational Medicine",
+          "description": "Bach, FES, and the frequency of flowers",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RH6",
+          "title": "Clays, Zeolites & Mineral Substances",
+          "description": "Earth medicines and their electromagnetic properties",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RH7",
+          "title": "Sacred Substances in Ceremony",
+          "description": "Cacao, blue lotus, and ceremonial frequency",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RH8",
+          "title": "Resins, Herbs & Substances \u2014 Capstone",
+          "description": "Building your plant alchemy practice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "PG1",
+          "title": "Introduction to Plasma & GANS",
+          "description": "Mehran Keshe and the plasma science revolution",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "PG2",
+          "title": "Making GANS \u2014 Gas in Aqeous Nano Solid State",
+          "description": "CO2, ZnO, CH3, and CuO2 GANS production",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "PG3",
+          "title": "GANS Plasma Water",
+          "description": "Creating and using GANS-charged water",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "PG4",
+          "title": "The Magrav \u2014 Plasma Energy Devices",
+          "description": "Building a Magrav-Power system",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "PG5",
+          "title": "GANS in Device Work & Healing",
+          "description": "Integrating plasma technology with frequency devices",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "PG6",
+          "title": "GANS Applications \u2014 Advanced Work",
+          "description": "Agriculture, water, environment, and self",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OR1",
+          "title": "What Is Ormus / ORME",
+          "description": "David Hudson's discovery and the white powder gold",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OR2",
+          "title": "The Wet Method",
+          "description": "Lye precipitation and Ormus production",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OR3",
+          "title": "The Dry Method",
+          "description": "High-heat Ormus extraction",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OR4",
+          "title": "Ormus in Device Work",
+          "description": "Adding Ormus to orgonite and other devices",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OR5",
+          "title": "Ormus for Personal Use",
+          "description": "Safe protocols, dosing, and integration",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "OR6",
+          "title": "Advanced Ormus Alchemy",
+          "description": "Plant-derived Ormus and the philosopher's stone lineage",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CM1",
+          "title": "What Are Colloidals",
+          "description": "Nanoparticles, suspension, and bioavailability",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CM2",
+          "title": "Making Colloidal Silver",
+          "description": "Equipment, process, and storage",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CM3",
+          "title": "Making Colloidal Gold",
+          "description": "Reduction chemistry and gold nanoparticles",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CM4",
+          "title": "Making Colloidal Copper",
+          "description": "The Venus metal in suspension",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CM5",
+          "title": "Colloidals in Devices",
+          "description": "Adding colloidal metals to orgonite and grids",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CM6",
+          "title": "Colloidals for Personal Use",
+          "description": "Internal and external applications",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "CM7",
+          "title": "Advanced Colloidal Work",
+          "description": "Monatomic elements, bimetallic suspensions, and beyond",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "EM7",
       "number": "07",
@@ -299,55 +1521,330 @@
       "color": "#5ab87a",
       "totalPlanned": 46,
       "lessons": [
-        { "id": "IH1",  "title": "What Is Electromagnetic Healing",               "description": "The science behind field-based medicine",                        "path": "", "status": "coming" },
-        { "id": "IH2",  "title": "The History of EM Medicine",                    "description": "From Galvani to Rife — the suppressed lineage",                 "path": "", "status": "coming" },
-        { "id": "IH3",  "title": "The Biofield — Your EM Anatomy",                "description": "Measuring and mapping the human energy field",                  "path": "", "status": "coming" },
-        { "id": "IH4",  "title": "PEMF — Pulsed Electromagnetic Field Therapy",   "description": "FDA-approved mechanisms and clinical applications",             "path": "", "status": "coming" },
-        { "id": "IH5",  "title": "Frequency Specificity & Biological Targets",    "description": "Which frequencies affect which tissues",                        "path": "", "status": "coming" },
-        { "id": "IH6",  "title": "The Schumann Resonance & Biological Entrainment","description": "Earth's heartbeat and your nervous system",                   "path": "", "status": "coming" },
-        { "id": "IH7",  "title": "Light Therapy & Photobiomodulation",            "description": "Infrared, red light, and mitochondrial activation",             "path": "", "status": "coming" },
-        { "id": "IH8",  "title": "Sound Healing — Mechanisms & Applications",     "description": "Frequencies, entrainment, and therapeutic sound",               "path": "", "status": "coming" },
-        { "id": "IH9",  "title": "Grounding, Earthing & DC Field Therapy",        "description": "Electron transfer and the body-Earth connection",               "path": "", "status": "coming" },
-        { "id": "IH10", "title": "Building Your EM Healing Protocol",             "description": "Integrating multiple modalities into a cohesive practice",      "path": "", "status": "coming" },
-        { "id": "MW1",  "title": "Georges Lakhovsky — The Man and the Vision",    "description": "The inventor of the Multi-Wave Oscillator",                     "path": "", "status": "coming" },
-        { "id": "MW2",  "title": "The Cellular Oscillation Theory",               "description": "Every cell is a transmitter and receiver",                      "path": "", "status": "coming" },
-        { "id": "MW3",  "title": "How the MWO Works",                             "description": "Circuits, coils, and the full frequency range",                 "path": "", "status": "coming" },
-        { "id": "MW4",  "title": "The MWO and Cancer Research",                   "description": "Historical documentation and clinical reports",                 "path": "", "status": "coming" },
-        { "id": "MW5",  "title": "Building and Using a Modern MWO",               "description": "Construction, safety, and protocol",                           "path": "", "status": "coming" },
-        { "id": "MW6",  "title": "MWO Applications",                              "description": "Protocols and documented outcomes",                             "path": "", "status": "coming" },
-        { "id": "MW7",  "title": "MWO and Orgonite — Combined Device Work",       "description": "Stacking technologies for enhanced effect",                    "path": "", "status": "coming" },
-        { "id": "MW8",  "title": "Advanced MWO Practice and Modern Lineages",     "description": "Where the technology stands today",                            "path": "", "status": "coming" },
-        { "id": "RF1",  "title": "Royal Raymond Rife — Life and Discovery",       "description": "The man who could cure cancer with frequency",                  "path": "", "status": "coming" },
-        { "id": "RF2",  "title": "The Universal Microscope",                      "description": "Rife's instrument and what it revealed",                        "path": "", "status": "coming" },
-        { "id": "RF3",  "title": "Mortal Oscillatory Rate — MOR Theory",          "description": "The specific frequency that destroys pathogens",                "path": "", "status": "coming" },
-        { "id": "RF4",  "title": "The 1934 Cancer Clinic",                        "description": "Documented outcomes and the suppression that followed",         "path": "", "status": "coming" },
-        { "id": "RF5",  "title": "Modern Rife Technology",                        "description": "Plasma tubes, contact pads, and contemporary devices",         "path": "", "status": "coming" },
-        { "id": "RF6",  "title": "Rife Frequency Databases",                      "description": "CAFL, Spooky2, and frequency set research",                    "path": "", "status": "coming" },
-        { "id": "RF7",  "title": "Rife Protocols — Beginner",                     "description": "Safe starting points and session design",                      "path": "", "status": "coming" },
-        { "id": "RF8",  "title": "Rife Protocols — Advanced",                     "description": "Sweep frequencies, carrier waves, and complex sets",           "path": "", "status": "coming" },
-        { "id": "RF9",  "title": "Rife and Lyme — A Case Study",                  "description": "The most documented modern application",                       "path": "", "status": "coming" },
-        { "id": "RF10", "title": "Rife Technology — Capstone",                    "description": "Building your Rife practice",                                  "path": "", "status": "coming" },
-        { "id": "SC1",  "title": "Scalar Technology — Introduction",              "description": "Beyond Hertz — the longitudinal wave devices",                  "path": "", "status": "coming" },
-        { "id": "SC2",  "title": "The Scalar Field Generator",                    "description": "How to build a basic scalar wave emitter",                     "path": "", "status": "coming" },
-        { "id": "SC3",  "title": "Caduceus & Bifilar Coils",                      "description": "The coil configurations that cancel conventional EM",           "path": "", "status": "coming" },
-        { "id": "SC4",  "title": "Scalar Healing Protocols",                      "description": "Information transfer without energy — the healing model",       "path": "", "status": "coming" },
-        { "id": "SC5",  "title": "Scalar and Water Structuring",                  "description": "Using scalar fields to charge and structure water",             "path": "", "status": "coming" },
-        { "id": "SC6",  "title": "Scalar and Consciousness",                      "description": "Intention amplification through scalar devices",               "path": "", "status": "coming" },
-        { "id": "SC7",  "title": "Combining Scalar with Other Modalities",        "description": "Stacking scalar with Rife, PEMF, and orgonite",                "path": "", "status": "coming" },
-        { "id": "SC8",  "title": "Scalar Technology — Capstone",                  "description": "Your scalar practice and device integration",                  "path": "", "status": "coming" },
-        { "id": "TT1",  "title": "Tesla Technology — Introduction",               "description": "The devices Tesla built that changed everything",               "path": "", "status": "coming" },
-        { "id": "TT2",  "title": "The Tesla Coil",                                "description": "Resonant transformer and high-frequency EM",                   "path": "", "status": "coming" },
-        { "id": "TT3",  "title": "The Magnifying Transmitter",                    "description": "Wardenclyffe and global energy transmission",                  "path": "", "status": "coming" },
-        { "id": "TT4",  "title": "Tesla's Non-Hertzian Discoveries",              "description": "The waves that weren't supposed to exist",                     "path": "", "status": "coming" },
-        { "id": "TT5",  "title": "The Tesla Violet Ray",                          "description": "Handheld plasma devices and their applications",               "path": "", "status": "coming" },
-        { "id": "TT6",  "title": "The Tesla Bioelectric Circuit",                 "description": "High-frequency current and the body",                          "path": "", "status": "coming" },
-        { "id": "TT7",  "title": "Rebuilding Tesla's Work",                       "description": "Modern replication and what the builders have found",          "path": "", "status": "coming" },
-        { "id": "TT8",  "title": "Tesla and Zero-Point Energy",                   "description": "Free energy — the real research",                              "path": "", "status": "coming" },
-        { "id": "TT9",  "title": "Integrating Tesla Technology",                  "description": "Combining Tesla devices with your practice",                   "path": "", "status": "coming" },
-        { "id": "TT10", "title": "Tesla Technology — Capstone",                   "description": "The complete Tesla healing arts practice",                     "path": "", "status": "coming" }
+        {
+          "id": "IH1",
+          "title": "What Is Electromagnetic Healing",
+          "description": "The science behind field-based medicine",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "IH2",
+          "title": "The History of EM Medicine",
+          "description": "From Galvani to Rife \u2014 the suppressed lineage",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "IH3",
+          "title": "The Biofield \u2014 Your EM Anatomy",
+          "description": "Measuring and mapping the human energy field",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "IH4",
+          "title": "PEMF \u2014 Pulsed Electromagnetic Field Therapy",
+          "description": "FDA-approved mechanisms and clinical applications",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "IH5",
+          "title": "Frequency Specificity & Biological Targets",
+          "description": "Which frequencies affect which tissues",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "IH6",
+          "title": "The Schumann Resonance & Biological Entrainment",
+          "description": "Earth's heartbeat and your nervous system",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "IH7",
+          "title": "Light Therapy & Photobiomodulation",
+          "description": "Infrared, red light, and mitochondrial activation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "IH8",
+          "title": "Sound Healing \u2014 Mechanisms & Applications",
+          "description": "Frequencies, entrainment, and therapeutic sound",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "IH9",
+          "title": "Grounding, Earthing & DC Field Therapy",
+          "description": "Electron transfer and the body-Earth connection",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "IH10",
+          "title": "Building Your EM Healing Protocol",
+          "description": "Integrating multiple modalities into a cohesive practice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MW1",
+          "title": "Georges Lakhovsky \u2014 The Man and the Vision",
+          "description": "The inventor of the Multi-Wave Oscillator",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MW2",
+          "title": "The Cellular Oscillation Theory",
+          "description": "Every cell is a transmitter and receiver",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MW3",
+          "title": "How the MWO Works",
+          "description": "Circuits, coils, and the full frequency range",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MW4",
+          "title": "The MWO and Cancer Research",
+          "description": "Historical documentation and clinical reports",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MW5",
+          "title": "Building and Using a Modern MWO",
+          "description": "Construction, safety, and protocol",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MW6",
+          "title": "MWO Applications",
+          "description": "Protocols and documented outcomes",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MW7",
+          "title": "MWO and Orgonite \u2014 Combined Device Work",
+          "description": "Stacking technologies for enhanced effect",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MW8",
+          "title": "Advanced MWO Practice and Modern Lineages",
+          "description": "Where the technology stands today",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RF1",
+          "title": "Royal Raymond Rife \u2014 Life and Discovery",
+          "description": "The man who could cure cancer with frequency",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RF2",
+          "title": "The Universal Microscope",
+          "description": "Rife's instrument and what it revealed",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RF3",
+          "title": "Mortal Oscillatory Rate \u2014 MOR Theory",
+          "description": "The specific frequency that destroys pathogens",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RF4",
+          "title": "The 1934 Cancer Clinic",
+          "description": "Documented outcomes and the suppression that followed",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RF5",
+          "title": "Modern Rife Technology",
+          "description": "Plasma tubes, contact pads, and contemporary devices",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RF6",
+          "title": "Rife Frequency Databases",
+          "description": "CAFL, Spooky2, and frequency set research",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RF7",
+          "title": "Rife Protocols \u2014 Beginner",
+          "description": "Safe starting points and session design",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RF8",
+          "title": "Rife Protocols \u2014 Advanced",
+          "description": "Sweep frequencies, carrier waves, and complex sets",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RF9",
+          "title": "Rife and Lyme \u2014 A Case Study",
+          "description": "The most documented modern application",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "RF10",
+          "title": "Rife Technology \u2014 Capstone",
+          "description": "Building your Rife practice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SC1",
+          "title": "Scalar Technology \u2014 Introduction",
+          "description": "Beyond Hertz \u2014 the longitudinal wave devices",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SC2",
+          "title": "The Scalar Field Generator",
+          "description": "How to build a basic scalar wave emitter",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SC3",
+          "title": "Caduceus & Bifilar Coils",
+          "description": "The coil configurations that cancel conventional EM",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SC4",
+          "title": "Scalar Healing Protocols",
+          "description": "Information transfer without energy \u2014 the healing model",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SC5",
+          "title": "Scalar and Water Structuring",
+          "description": "Using scalar fields to charge and structure water",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SC6",
+          "title": "Scalar and Consciousness",
+          "description": "Intention amplification through scalar devices",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SC7",
+          "title": "Combining Scalar with Other Modalities",
+          "description": "Stacking scalar with Rife, PEMF, and orgonite",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SC8",
+          "title": "Scalar Technology \u2014 Capstone",
+          "description": "Your scalar practice and device integration",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TT1",
+          "title": "Tesla Technology \u2014 Introduction",
+          "description": "The devices Tesla built that changed everything",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TT2",
+          "title": "The Tesla Coil",
+          "description": "Resonant transformer and high-frequency EM",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TT3",
+          "title": "The Magnifying Transmitter",
+          "description": "Wardenclyffe and global energy transmission",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TT4",
+          "title": "Tesla's Non-Hertzian Discoveries",
+          "description": "The waves that weren't supposed to exist",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TT5",
+          "title": "The Tesla Violet Ray",
+          "description": "Handheld plasma devices and their applications",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TT6",
+          "title": "The Tesla Bioelectric Circuit",
+          "description": "High-frequency current and the body",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TT7",
+          "title": "Rebuilding Tesla's Work",
+          "description": "Modern replication and what the builders have found",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TT8",
+          "title": "Tesla and Zero-Point Energy",
+          "description": "Free energy \u2014 the real research",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TT9",
+          "title": "Integrating Tesla Technology",
+          "description": "Combining Tesla devices with your practice",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TT10",
+          "title": "Tesla Technology \u2014 Capstone",
+          "description": "The complete Tesla healing arts practice",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "HM",
       "number": "08",
@@ -356,42 +1853,172 @@
       "color": "#6b3fa0",
       "totalPlanned": 36,
       "lessons": [
-        { "id": "HM1",  "title": "The Nature of Magic",                           "description": "What magic actually is — physics, consciousness, and will",      "path": "", "status": "coming" },
-        { "id": "HM2",  "title": "Sigil Creation",                                "description": "Austin Osman Spare, chaos magic, and the frequency of intent",  "path": "", "status": "coming" },
-        { "id": "HM3",  "title": "Charging & Activating Sigils",                  "description": "Gnosis, orgasm, exhaustion, and other charging methods",        "path": "", "status": "coming" },
-        { "id": "HM4",  "title": "Talismans & Amulets",                           "description": "Physical containers for magical frequency",                     "path": "", "status": "coming" },
-        { "id": "HM5",  "title": "Ritual Structure & Sacred Space",               "description": "Casting, invocation, and the architecture of ceremony",         "path": "", "status": "coming" },
-        { "id": "HM6",  "title": "Ceremonial Magic Lineages",                     "description": "Hermetic Order of the Golden Dawn, Thelema, and beyond",        "path": "", "status": "coming" },
-        { "id": "HM7",  "title": "Kabbalah & the Tree of Life",                   "description": "The 10 Sephiroth as frequency nodes",                          "path": "", "status": "coming" },
-        { "id": "HM8",  "title": "Enochian Magic & Angelic Frequencies",          "description": "John Dee, Edward Kelley, and the angelic language",            "path": "", "status": "coming" },
-        { "id": "TM1",  "title": "Technomancy — Introduction",                    "description": "Magic through technology",                                      "path": "", "status": "coming" },
-        { "id": "TM2",  "title": "Digital Ritual Space",                          "description": "Creating sacred space in the digital environment",              "path": "", "status": "coming" },
-        { "id": "TM3",  "title": "Technology as Wand",                            "description": "Consecrating and working with digital tools",                  "path": "", "status": "coming" },
-        { "id": "TM4",  "title": "Sacred Broadcast",                              "description": "Transmitting frequency through digital channels",               "path": "", "status": "coming" },
-        { "id": "TM5",  "title": "Internet as Sacred Broadcast",                  "description": "Using the network as a frequency amplifier",                   "path": "", "status": "coming" },
-        { "id": "TM6",  "title": "Memes, Reification & Memetic Magic",            "description": "@thedragonfrequency case study",                               "path": "", "status": "coming" }
+        {
+          "id": "HM1",
+          "title": "The Nature of Magic",
+          "description": "What magic actually is \u2014 physics, consciousness, and will",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "HM2",
+          "title": "Sigil Creation",
+          "description": "Austin Osman Spare, chaos magic, and the frequency of intent",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "HM3",
+          "title": "Charging & Activating Sigils",
+          "description": "Gnosis, orgasm, exhaustion, and other charging methods",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "HM4",
+          "title": "Talismans & Amulets",
+          "description": "Physical containers for magical frequency",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "HM5",
+          "title": "Ritual Structure & Sacred Space",
+          "description": "Casting, invocation, and the architecture of ceremony",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "HM6",
+          "title": "Ceremonial Magic Lineages",
+          "description": "Hermetic Order of the Golden Dawn, Thelema, and beyond",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "HM7",
+          "title": "Kabbalah & the Tree of Life",
+          "description": "The 10 Sephiroth as frequency nodes",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "HM8",
+          "title": "Enochian Magic & Angelic Frequencies",
+          "description": "John Dee, Edward Kelley, and the angelic language",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM1",
+          "title": "Technomancy \u2014 Introduction",
+          "description": "Magic through technology",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM2",
+          "title": "Digital Ritual Space",
+          "description": "Creating sacred space in the digital environment",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM3",
+          "title": "Technology as Wand",
+          "description": "Consecrating and working with digital tools",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM4",
+          "title": "Sacred Broadcast",
+          "description": "Transmitting frequency through digital channels",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM5",
+          "title": "Internet as Sacred Broadcast",
+          "description": "Using the network as a frequency amplifier",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "TM6",
+          "title": "Memes, Reification & Memetic Magic",
+          "description": "@thedragonfrequency case study",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "FC",
       "number": "09",
-      "title": "Frequency Charged™ Methodology",
+      "title": "Frequency Charged\u2122 Methodology",
       "folder": "09-frequency-charged-methodology",
       "color": "#2a8a7a",
       "totalPlanned": 27,
       "lessons": [
-        { "id": "FC1",  "title": "What Is Frequency Charged™",                    "description": "The method, the lineage, and the philosophy",                   "path": "", "status": "coming" },
-        { "id": "FC2",  "title": "The Five Pillars of Frequency Work",            "description": "Intention, material, geometry, coherence, activation",          "path": "", "status": "coming" },
-        { "id": "FC3",  "title": "Device Typology",                               "description": "Understanding every category of frequency device",             "path": "", "status": "coming" },
-        { "id": "FC4",  "title": "Charging Protocols",                            "description": "How to imprint a device with intention",                       "path": "", "status": "coming" },
-        { "id": "FC5",  "title": "Testing & Verification",                        "description": "Dowsing, muscle testing, and biofeedback methods",             "path": "", "status": "coming" },
-        { "id": "FC6",  "title": "The Frequency Charged™ Environment",            "description": "Designing your home and workspace as a frequency field",       "path": "", "status": "coming" },
-        { "id": "FC7",  "title": "Frequency Charged™ Water Protocols",            "description": "Complete water structuring system",                            "path": "", "status": "coming" },
-        { "id": "FC8",  "title": "The Daily Practice",                            "description": "Morning activations, evening coherence, and daily rhythm",     "path": "", "status": "coming" }
+        {
+          "id": "FC1",
+          "title": "What Is Frequency Charged\u2122",
+          "description": "The method, the lineage, and the philosophy",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FC2",
+          "title": "The Five Pillars of Frequency Work",
+          "description": "Intention, material, geometry, coherence, activation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FC3",
+          "title": "Device Typology",
+          "description": "Understanding every category of frequency device",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FC4",
+          "title": "Charging Protocols",
+          "description": "How to imprint a device with intention",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FC5",
+          "title": "Testing & Verification",
+          "description": "Dowsing, muscle testing, and biofeedback methods",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FC6",
+          "title": "The Frequency Charged\u2122 Environment",
+          "description": "Designing your home and workspace as a frequency field",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FC7",
+          "title": "Frequency Charged\u2122 Water Protocols",
+          "description": "Complete water structuring system",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FC8",
+          "title": "The Daily Practice",
+          "description": "Morning activations, evening coherence, and daily rhythm",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "E",
       "number": "10",
@@ -400,17 +2027,64 @@
       "color": "#3a7a4a",
       "totalPlanned": 25,
       "lessons": [
-        { "id": "E1",  "title": "The Body as Instrument",                         "description": "Your body is the most sophisticated frequency device you own",   "path": "", "status": "coming" },
-        { "id": "E2",  "title": "Breathwork as Frequency Work",                   "description": "The mechanics of conscious breathing",                         "path": "", "status": "coming" },
-        { "id": "E3",  "title": "Toning, Chanting & the Voice",                   "description": "Your voice as a healing tool",                                 "path": "", "status": "coming" },
-        { "id": "E4",  "title": "Movement & Somatic Frequency",                   "description": "Dance, shaking, and embodied frequency work",                  "path": "", "status": "coming" },
-        { "id": "E5",  "title": "Fasting, Food & Frequency",                      "description": "What you eat affects your electromagnetic field",              "path": "", "status": "coming" },
-        { "id": "E6",  "title": "Sleep, Dreams & Night Practice",                 "description": "The frequency work that happens while you sleep",              "path": "", "status": "coming" },
-        { "id": "E7",  "title": "Nature Immersion & Field Coherence",             "description": "How time in nature resets your frequency",                     "path": "", "status": "coming" },
-        { "id": "E8",  "title": "Cold, Heat & Electromagnetic Contrast",          "description": "Temperature therapy and the biofield",                         "path": "", "status": "coming" }
+        {
+          "id": "E1",
+          "title": "The Body as Instrument",
+          "description": "Your body is the most sophisticated frequency device you own",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "E2",
+          "title": "Breathwork as Frequency Work",
+          "description": "The mechanics of conscious breathing",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "E3",
+          "title": "Toning, Chanting & the Voice",
+          "description": "Your voice as a healing tool",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "E4",
+          "title": "Movement & Somatic Frequency",
+          "description": "Dance, shaking, and embodied frequency work",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "E5",
+          "title": "Fasting, Food & Frequency",
+          "description": "What you eat affects your electromagnetic field",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "E6",
+          "title": "Sleep, Dreams & Night Practice",
+          "description": "The frequency work that happens while you sleep",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "E7",
+          "title": "Nature Immersion & Field Coherence",
+          "description": "How time in nature resets your frequency",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "E8",
+          "title": "Cold, Heat & Electromagnetic Contrast",
+          "description": "Temperature therapy and the biofield",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "MS",
       "number": "11",
@@ -419,19 +2093,78 @@
       "color": "#1a6b8a",
       "totalPlanned": 20,
       "lessons": [
-        { "id": "MS1",  "title": "Creating Sacred Space",                         "description": "The foundation of ceremonial practice",                        "path": "/11-meditations-and-soundscapes/creating-sacred-space/lesson-01/", "status": "live" },
-        { "id": "MS2",  "title": "Breathwork Preparation",                        "description": "3 foundational techniques",                                    "path": "/11-meditations-and-soundscapes/breathwork/lesson-1/", "status": "live" },
-        { "id": "MS3",  "title": "Dropping Into the Heart",                       "description": "Heart coherence meditation",                                   "path": "/11-meditations-and-soundscapes/dropping%20into%20the%20heart/", "status": "live" },
-        { "id": "MS4",  "title": "Morning Activation",                            "description": "Free gift meditation",                                         "path": "", "status": "coming" },
-        { "id": "MS5",  "title": "Theta Wave Journey",                            "description": "Deep theta induction soundscape",                             "path": "", "status": "coming" },
-        { "id": "MS6",  "title": "Schumann Resonance Immersion",                  "description": "7.83 Hz grounding meditation",                                "path": "", "status": "coming" },
-        { "id": "MS7",  "title": "Solfeggio Frequency Series — 396 Hz",           "description": "Liberation from fear and guilt",                              "path": "", "status": "coming" },
-        { "id": "MS8",  "title": "Solfeggio Frequency Series — 528 Hz",           "description": "DNA repair and transformation",                               "path": "", "status": "coming" },
-        { "id": "MS9",  "title": "Solfeggio Frequency Series — 639 Hz",           "description": "Relationships and connection",                                 "path": "", "status": "coming" },
-        { "id": "MS10", "title": "Solfeggio Frequency Series — 741 Hz",           "description": "Awakening intuition and expression",                          "path": "", "status": "coming" }
+        {
+          "id": "MS1",
+          "title": "Creating Sacred Space",
+          "description": "The foundation of ceremonial practice",
+          "path": "/11-meditations-and-soundscapes/creating-sacred-space/lesson-01/",
+          "status": "live"
+        },
+        {
+          "id": "MS2",
+          "title": "Breathwork Preparation",
+          "description": "3 foundational techniques",
+          "path": "/11-meditations-and-soundscapes/breathwork/lesson-1/",
+          "status": "live"
+        },
+        {
+          "id": "MS3",
+          "title": "Dropping Into the Heart",
+          "description": "Heart coherence meditation",
+          "path": "/11-meditations-and-soundscapes/dropping%20into%20the%20heart/",
+          "status": "live"
+        },
+        {
+          "id": "MS4",
+          "title": "Morning Activation",
+          "description": "Free gift meditation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MS5",
+          "title": "Theta Wave Journey",
+          "description": "Deep theta induction soundscape",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MS6",
+          "title": "Schumann Resonance Immersion",
+          "description": "7.83 Hz grounding meditation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MS7",
+          "title": "Solfeggio Frequency Series \u2014 396 Hz",
+          "description": "Liberation from fear and guilt",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MS8",
+          "title": "Solfeggio Frequency Series \u2014 528 Hz",
+          "description": "DNA repair and transformation",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MS9",
+          "title": "Solfeggio Frequency Series \u2014 639 Hz",
+          "description": "Relationships and connection",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "MS10",
+          "title": "Solfeggio Frequency Series \u2014 741 Hz",
+          "description": "Awakening intuition and expression",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "R",
       "number": "12",
@@ -440,14 +2173,43 @@
       "color": "#5a3a8a",
       "totalPlanned": 28,
       "lessons": [
-        { "id": "R1",  "title": "The Planes of Existence",                        "description": "Physical, astral, mental, causal — the layered cosmos",         "path": "", "status": "coming" },
-        { "id": "R2",  "title": "Astral Travel & Out-of-Body Experience",         "description": "The science and practice of conscious projection",             "path": "", "status": "coming" },
-        { "id": "R3",  "title": "The Spirit World — Evidence & Interaction",      "description": "What science says about non-physical intelligence",            "path": "", "status": "coming" },
-        { "id": "R4",  "title": "Ancestors, Guides & Helping Spirits",            "description": "Building relationships with non-physical allies",              "path": "", "status": "coming" },
-        { "id": "R5",  "title": "The Underworld Journey",                         "description": "Shamanic descent and shadow integration",                      "path": "", "status": "coming" }
+        {
+          "id": "R1",
+          "title": "The Planes of Existence",
+          "description": "Physical, astral, mental, causal \u2014 the layered cosmos",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "R2",
+          "title": "Astral Travel & Out-of-Body Experience",
+          "description": "The science and practice of conscious projection",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "R3",
+          "title": "The Spirit World \u2014 Evidence & Interaction",
+          "description": "What science says about non-physical intelligence",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "R4",
+          "title": "Ancestors, Guides & Helping Spirits",
+          "description": "Building relationships with non-physical allies",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "R5",
+          "title": "The Underworld Journey",
+          "description": "Shamanic descent and shadow integration",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "SG",
       "number": "13",
@@ -456,16 +2218,57 @@
       "color": "#8a3a6a",
       "totalPlanned": 83,
       "lessons": [
-        { "id": "SG1",  "title": "Inanna's Descent — Gate One",                   "description": "The Crown — surrendering the lapis lazuli crown",              "path": "", "status": "coming" },
-        { "id": "SG2",  "title": "Inanna's Descent — Gate Two",                   "description": "The Third Eye — surrendering the lapis lazuli rod",            "path": "", "status": "coming" },
-        { "id": "SG3",  "title": "Inanna's Descent — Gate Three",                 "description": "The Throat — surrendering the lapis lazuli necklace",          "path": "", "status": "coming" },
-        { "id": "SG4",  "title": "Inanna's Descent — Gate Four",                  "description": "The Heart — surrendering the breastplate",                     "path": "", "status": "coming" },
-        { "id": "SG5",  "title": "Inanna's Descent — Gate Five",                  "description": "The Solar Plexus — surrendering the golden ring",              "path": "", "status": "coming" },
-        { "id": "SG6",  "title": "Inanna's Descent — Gate Six",                   "description": "The Sacral — surrendering the lapis measuring rod",            "path": "", "status": "coming" },
-        { "id": "SG7",  "title": "Inanna's Descent — Gate Seven",                 "description": "The Root — surrendering the royal robe",                       "path": "", "status": "coming" }
+        {
+          "id": "SG1",
+          "title": "Inanna's Descent \u2014 Gate One",
+          "description": "The Crown \u2014 surrendering the lapis lazuli crown",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SG2",
+          "title": "Inanna's Descent \u2014 Gate Two",
+          "description": "The Third Eye \u2014 surrendering the lapis lazuli rod",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SG3",
+          "title": "Inanna's Descent \u2014 Gate Three",
+          "description": "The Throat \u2014 surrendering the lapis lazuli necklace",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SG4",
+          "title": "Inanna's Descent \u2014 Gate Four",
+          "description": "The Heart \u2014 surrendering the breastplate",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SG5",
+          "title": "Inanna's Descent \u2014 Gate Five",
+          "description": "The Solar Plexus \u2014 surrendering the golden ring",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SG6",
+          "title": "Inanna's Descent \u2014 Gate Six",
+          "description": "The Sacral \u2014 surrendering the lapis measuring rod",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "SG7",
+          "title": "Inanna's Descent \u2014 Gate Seven",
+          "description": "The Root \u2014 surrendering the royal robe",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "DL",
       "number": "14",
@@ -475,12 +2278,29 @@
       "totalPlanned": 20,
       "skoolOnly": true,
       "lessons": [
-        { "id": "DL1",  "title": "Late Night Resonance — D Hijaz",                "description": "Unreleased handpan · Skool members only",                      "path": "", "status": "dragon" },
-        { "id": "DL2",  "title": "Late Night Resonance — D Kurd",                 "description": "Unreleased handpan · Skool members only",                      "path": "", "status": "dragon" },
-        { "id": "DL3",  "title": "Late Night Resonance — E Amara",                "description": "Unreleased handpan · Skool members only",                      "path": "", "status": "dragon" }
+        {
+          "id": "DL1",
+          "title": "Late Night Resonance \u2014 D Hijaz",
+          "description": "Unreleased handpan \u00b7 Skool members only",
+          "path": "",
+          "status": "dragon"
+        },
+        {
+          "id": "DL2",
+          "title": "Late Night Resonance \u2014 D Kurd",
+          "description": "Unreleased handpan \u00b7 Skool members only",
+          "path": "",
+          "status": "dragon"
+        },
+        {
+          "id": "DL3",
+          "title": "Late Night Resonance \u2014 E Amara",
+          "description": "Unreleased handpan \u00b7 Skool members only",
+          "path": "",
+          "status": "dragon"
+        }
       ]
     },
-
     {
       "code": "FF",
       "number": "15",
@@ -489,14 +2309,43 @@
       "color": "#b05540",
       "totalPlanned": 31,
       "lessons": [
-        { "id": "FF1",  "title": "Introduction to Device Building",               "description": "What the Forge is and how to use it",                          "path": "", "status": "coming" },
-        { "id": "FF2",  "title": "Tower Buster — Quick Build",                    "description": "15-minute orgonite pour",                                      "path": "", "status": "coming" },
-        { "id": "FF3",  "title": "Tensor Ring — Lost Cubit",                      "description": "Cut, strip, form, and activate",                               "path": "", "status": "coming" },
-        { "id": "FF4",  "title": "Crystal Grid — Flower of Life",                 "description": "Set up and activate a basic crystal grid",                    "path": "", "status": "coming" },
-        { "id": "FF5",  "title": "Water Structuring Protocol",                    "description": "The complete system in under 20 minutes",                      "path": "", "status": "coming" }
+        {
+          "id": "FF1",
+          "title": "Introduction to Device Building",
+          "description": "What the Forge is and how to use it",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FF2",
+          "title": "Tower Buster \u2014 Quick Build",
+          "description": "15-minute orgonite pour",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FF3",
+          "title": "Tensor Ring \u2014 Lost Cubit",
+          "description": "Cut, strip, form, and activate",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FF4",
+          "title": "Crystal Grid \u2014 Flower of Life",
+          "description": "Set up and activate a basic crystal grid",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "FF5",
+          "title": "Water Structuring Protocol",
+          "description": "The complete system in under 20 minutes",
+          "path": "",
+          "status": "coming"
+        }
       ]
     },
-
     {
       "code": "L",
       "number": "16",
@@ -505,10 +2354,15 @@
       "color": "#2a6a8a",
       "totalPlanned": 10,
       "lessons": [
-        { "id": "L1",   "title": "Academy Companion",                             "description": "Your AI guide through the curriculum",                         "path": "/Companion/Companion.html", "status": "live" }
+        {
+          "id": "L1",
+          "title": "Academy Companion",
+          "description": "Your AI guide through the curriculum",
+          "path": "/Companion/Companion.html",
+          "status": "live"
+        }
       ]
     },
-
     {
       "code": "SP",
       "number": "17",
@@ -518,10 +2372,15 @@
       "totalPlanned": 5,
       "vip": true,
       "lessons": [
-        { "id": "SP1",  "title": "Welcome to The Sovereign Path",                 "description": "VIP 1:1 Mentorship with BabaKeegs",                            "path": "/17-TheSovereignPath/lesson-01-welcome/", "status": "live" }
+        {
+          "id": "SP1",
+          "title": "Welcome to The Sovereign Path",
+          "description": "VIP 1:1 Mentorship with BabaKeegs",
+          "path": "/17-TheSovereignPath/lesson-01-welcome/",
+          "status": "live"
+        }
       ]
     },
-
     {
       "code": "BA",
       "number": "18",
@@ -530,13 +2389,42 @@
       "color": "#4a8a3a",
       "totalPlanned": 20,
       "lessons": [
-        { "id": "BA1",  "title": "Sacred Secretions",                             "description": "The body as frequency transmitter",                            "path": "", "status": "ready" },
-        { "id": "BA2",  "title": "Nutrition as Frequency",                        "description": "High-vibration foods and the electromagnetic body",            "path": "", "status": "coming" },
-        { "id": "BA3",  "title": "Structured Water & the Body",                   "description": "Fourth-phase water and cellular hydration",                   "path": "", "status": "coming" },
-        { "id": "BA4",  "title": "Fasting, Autophagy & Field Clarity",            "description": "How fasting cleans the electromagnetic body",                 "path": "", "status": "coming" },
-        { "id": "BA5",  "title": "Sleep Optimization as Frequency Work",          "description": "Delta waves, melatonin, and nightly regeneration",            "path": "", "status": "coming" }
+        {
+          "id": "BA1",
+          "title": "Sacred Secretions",
+          "description": "The body as frequency transmitter",
+          "path": "",
+          "status": "ready"
+        },
+        {
+          "id": "BA2",
+          "title": "Nutrition as Frequency",
+          "description": "High-vibration foods and the electromagnetic body",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "BA3",
+          "title": "Structured Water & the Body",
+          "description": "Fourth-phase water and cellular hydration",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "BA4",
+          "title": "Fasting, Autophagy & Field Clarity",
+          "description": "How fasting cleans the electromagnetic body",
+          "path": "",
+          "status": "coming"
+        },
+        {
+          "id": "BA5",
+          "title": "Sleep Optimization as Frequency Work",
+          "description": "Delta waves, melatonin, and nightly regeneration",
+          "path": "",
+          "status": "coming"
+        }
       ]
     }
-
   ]
 }
