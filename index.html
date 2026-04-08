@@ -42,15 +42,16 @@ body{background:var(--navy);color:var(--white);font-family:'Raleway',sans-serif;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* Cinematic space glow — no clipping */
-  filter:
-    drop-shadow(0 0 22px rgba(255,107,26,0.55))
-    drop-shadow(0 0 55px rgba(80,160,255,0.25))
-    drop-shadow(0 0 90px rgba(201,168,76,0.15));
   background: transparent;
   transform-origin: center center;
-  /* blend into dark background seamlessly */
+  /* WebM gets true alpha — MP4 Safari fallback uses screen blend to remove dark bg */
   mix-blend-mode: screen;
+  /* Amplify the dragon's glow and colors so it reads against the page */
+  filter:
+    brightness(1.15)
+    saturate(1.2)
+    drop-shadow(0 0 20px rgba(255,120,40,0.5))
+    drop-shadow(0 0 50px rgba(100,180,255,0.2));
 }
 #tfa-dragon-hitbox {
   position: fixed;
@@ -104,8 +105,8 @@ body{background:var(--navy);color:var(--white);font-family:'Raleway',sans-serif;
 .db-btn-close { background:transparent; border:none; color:rgba(240,234,216,0.5); font-size:10px; cursor:pointer; text-align:right; padding:4px 0 0; font-family:'Raleway',sans-serif; letter-spacing:1px; transition:color .15s; pointer-events:auto; display:block; }
 .db-btn-close:hover { color:#C9A84C; }
 @keyframes dragonGlow {
-  0%,100% { filter: drop-shadow(0 0 22px rgba(255,107,26,.55)) drop-shadow(0 0 55px rgba(80,160,255,.25)) drop-shadow(0 0 90px rgba(201,168,76,.15)); }
-  50%      { filter: drop-shadow(0 0 40px rgba(255,107,26,.9)) drop-shadow(0 0 80px rgba(80,160,255,.4)) drop-shadow(0 0 120px rgba(201,168,76,.35)); }
+  0%,100% { filter: brightness(1.15) saturate(1.2) drop-shadow(0 0 20px rgba(255,120,40,.5)) drop-shadow(0 0 50px rgba(100,180,255,.2)); }
+  50%      { filter: brightness(1.35) saturate(1.4) drop-shadow(0 0 45px rgba(255,120,40,.9)) drop-shadow(0 0 90px rgba(100,180,255,.45)) drop-shadow(0 0 120px rgba(201,168,76,.4)); }
 }
 #tfa-dragon-video.speaking { animation: dragonGlow 1.4s ease-in-out infinite; }
 @media(max-width:600px){ #tfa-dragon-avatar{width:200px;height:114px;} #tfa-dragon-bubble{max-width:200px;} }
@@ -1099,9 +1100,10 @@ footer a { color:var(--gold); text-decoration:none; }
   <video id="tfa-dragon-video"
     autoplay loop muted playsinline preload="auto"
   >
-    <!-- Upload dragon.mp4 to your Cloudflare Pages /assets/ folder -->
+    <!-- WebM with alpha transparency (Chrome/Firefox/Edge) -->
+    <source src="/assets/dragon.webm" type="video/webm">
+    <!-- MP4 fallback (Safari) — mix-blend-mode:screen handles background removal -->
     <source src="/assets/dragon.mp4" type="video/mp4">
-    <source src="dragon.mp4" type="video/mp4">
   </video>
 </div>
 <div id="tfa-dragon-hitbox"></div>
