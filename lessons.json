@@ -21,112 +21,112 @@
           "id": "Q1",
           "title": "What Is Quantum Physics",
           "description": "The foundation of frequency science",
-          "path": "/01-quantum-physics/lesson-Q1/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-01/",
           "status": "live"
         },
         {
           "id": "Q2",
           "title": "The Observer Effect",
           "description": "How consciousness shapes reality — video exists",
-          "path": "/01-quantum-physics/lesson-Q2/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-02/",
           "status": "live"
         },
         {
           "id": "Q3",
           "title": "Wave-Particle Duality",
           "description": "Light, matter, and the boundary between",
-          "path": "/01-quantum-physics/lesson-Q3/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-03/",
           "status": "live"
         },
         {
           "id": "Q4",
           "title": "Quantum Entanglement",
           "description": "Non-local connection across space and time",
-          "path": "/01-quantum-physics/lesson-Q4/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-04/",
           "status": "live"
         },
         {
           "id": "Q5",
           "title": "Zero Point Field",
           "description": "The energy of the vacuum — the field beneath all fields",
-          "path": "/01-quantum-physics/lesson-Q5/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-05/",
           "status": "live"
         },
         {
           "id": "Q6",
           "title": "Quantum Coherence in Biology",
           "description": "How life uses quantum effects",
-          "path": "/01-quantum-physics/lesson-Q6/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-06/",
           "status": "live"
         },
         {
           "id": "Q7",
           "title": "The Double Slit Experiment",
           "description": "Why observation changes outcome",
-          "path": "/01-quantum-physics/lesson-Q7/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-07/",
           "status": "live"
         },
         {
           "id": "Q8",
           "title": "Superposition & Consciousness",
           "description": "All possibilities held until observed",
-          "path": "/01-quantum-physics/lesson-Q8/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-08/",
           "status": "live"
         },
         {
           "id": "Q9",
           "title": "Quantum Tunneling",
           "description": "Moving through barriers — the impossible made real",
-          "path": "/01-quantum-physics/lesson-Q9/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-09/",
           "status": "live"
         },
         {
           "id": "Q10",
           "title": "Non-Locality & Healing",
           "description": "Action at a distance and what it means for healers",
-          "path": "/01-quantum-physics/lesson-Q10/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-10/",
           "status": "live"
         },
         {
           "id": "Q11",
           "title": "Planck Scale Reality",
           "description": "The quantum foam beneath all creation",
-          "path": "/01-quantum-physics/lesson-Q11/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-11/",
           "status": "live"
         },
         {
           "id": "Q12",
           "title": "Quantum Field Theory Basics",
           "description": "Fields, particles, and the nature of reality",
-          "path": "/01-quantum-physics/lesson-Q12/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-12/",
           "status": "live"
         },
         {
           "id": "Q13",
           "title": "Frequency & Quantum States",
           "description": "How vibration operates at the quantum level",
-          "path": "/01-quantum-physics/lesson-Q13/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-13/",
           "status": "live"
         },
         {
           "id": "Q14",
           "title": "The Measurement Problem",
           "description": "Why the act of knowing changes what is known",
-          "path": "/01-quantum-physics/lesson-Q14/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-14/",
           "status": "live"
         },
         {
           "id": "Q15",
           "title": "Quantum Biology & Living Systems",
           "description": "Photosynthesis, birds, enzymes — life is quantum",
-          "path": "/01-quantum-physics/lesson-Q15/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-15/",
           "status": "live"
         },
         {
           "id": "Q16",
           "title": "Integration — You Are Quantum",
           "description": "Living the quantum reality — module capstone",
-          "path": "/01-quantum-physics/lesson-Q16/",
+          "path": "/01-quantum-physics/quantum-physics/lesson-16/",
           "status": "live"
         }
       ]
@@ -143,7 +143,7 @@
           "id": "N1",
           "title": "The Language of Numbers",
           "description": "Numbers as frequency — the foundation of symbolic science",
-          "path": "/02-symbolic-sciences/numerology/lesson-N1/",
+          "path": "/04-symbolic-sciences/numerology/lesson-01/",
           "status": "live"
         },
         {
@@ -397,64 +397,64 @@
           "id": "G1",
           "title": "The Point and the Circle",
           "description": "The origin of all form — where geometry begins",
-          "path": "/02-symbolic-sciences/sacred-geometry/lesson-G1/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "G2",
           "title": "The Vesica Piscis",
           "description": "The womb of creation — where two worlds meet",
-          "path": "/02-symbolic-sciences/sacred-geometry/lesson-G2/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "G3",
           "title": "The Seed of Life",
           "description": "Seven circles, seven days, the seed of all creation",
-          "path": "/02-symbolic-sciences/sacred-geometry/lesson-G3/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "G4",
           "title": "The Flower of Life",
           "description": "The blueprint of existence in 19 overlapping circles",
-          "path": "/02-symbolic-sciences/sacred-geometry/lesson-G4/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "G5",
           "title": "Metatron's Cube",
           "description": "The 13-circle grid containing all Platonic Solids",
-          "path": "/02-symbolic-sciences/sacred-geometry/lesson-G5/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "G6",
           "title": "The Platonic Solids",
           "description": "The five perfect forms — building blocks of all matter",
-          "path": "/02-symbolic-sciences/sacred-geometry/lesson-G6/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "G7",
           "title": "The Golden Ratio — Phi",
           "description": "1.618 — the divine proportion woven through all life",
-          "path": "/02-symbolic-sciences/sacred-geometry/lesson-G7/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "G8",
           "title": "The Fibonacci Sequence",
           "description": "Nature's counting system — the spiral of becoming",
-          "path": "/02-symbolic-sciences/sacred-geometry/lesson-G8/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "G9",
           "title": "Toroidal Fields",
           "description": "The shape of energy — from atoms to galaxies",
-          "path": "/02-symbolic-sciences/sacred-geometry/lesson-G9/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "G10",
@@ -3649,22 +3649,22 @@
           "id": "MS1",
           "title": "Creating Sacred Space",
           "description": "The foundational ceremony — opening the field",
-          "path": "/11-meditations/lesson-MS1/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "MS2",
           "title": "Breathwork Preparation",
           "description": "Grounding, Birthing, and Holotropic breath — video exists",
-          "path": "/11-meditations/lesson-MS2/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "MS3",
           "title": "Dropping Into the Heart",
           "description": "A guided heart-field activation meditation",
-          "path": "/11-meditations/lesson-MS3/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "MS4",
@@ -4252,8 +4252,8 @@
           "id": "BA1",
           "title": "Sacred Secretions",
           "description": "The oil that anoints — the body's sacred chemistry",
-          "path": "/16-bioalchemy/lesson-BA1/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "BA2",
@@ -4402,8 +4402,8 @@
           "id": "LS1",
           "title": "Tribal Journey of Remembrance",
           "description": "The inaugural ceremony — live recording",
-          "path": "/17-live-sessions/lesson-LS1/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         }
       ]
     },
@@ -4428,22 +4428,22 @@
           "id": "DVA_P1_1",
           "title": "Grounding Breath",
           "description": "The first pillar — grounding breathwork",
-          "path": "/standalone/dva/lesson-1/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "DVA_P1_2",
           "title": "Birthing Breath",
           "description": "Opening the creative channel through breath",
-          "path": "/standalone/dva/lesson-2/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "DVA_P1_3",
           "title": "Holotropic Breath",
           "description": "The three-part breath for expanded states",
-          "path": "/standalone/dva/lesson-3/",
-          "status": "live"
+          "path": "",
+          "status": "coming"
         },
         {
           "id": "DVA_P2_1",
