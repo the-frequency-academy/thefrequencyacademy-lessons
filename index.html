@@ -3,516 +3,1669 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Frequency Academy — Lessons</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>The Frequency Academy — Full Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-:root{
-  --n:#080e30;--n2:#0d1540;--n3:#111b52;
-  --g:#c9a84c;--g2:#e2c06a;
-  --gf:rgba(201,168,76,0.08);--gb:rgba(201,168,76,0.22);
-  --w:#f0ede6;--w2:rgba(240,237,230,0.72);--w3:rgba(240,237,230,0.38);--w4:rgba(240,237,230,0.06);
-  --ok:#2a8a7a;--miss:#b05540;
+:root {
+  --navy: #0D1240;
+  --navy-mid: #111850;
+  --navy-light: #1a2266;
+  --gold: #C9A84C;
+  --gold-light: #e8c96a;
+  --gold-dim: rgba(201,168,76,0.12);
+  --gold-border: rgba(201,168,76,0.28);
+  --white: #f0ead8;
+  --muted: rgba(240,234,216,0.5);
+  --dragon-fire: #ff6b1a;
+  --dragon-glow: rgba(255,107,26,0.35);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{background:var(--n);color:var(--w);font-family:'Raleway',sans-serif;scroll-behavior:smooth}
-body{min-height:100vh}
-.bg{position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(ellipse 70% 40% at 20% 10%,rgba(201,168,76,0.06) 0%,transparent 55%),
-  radial-gradient(ellipse 100% 100% at 50% 50%,#080e30 0%,#040820 100%)}
-.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(201,168,76,0.02) 60px),
-  repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(201,168,76,0.02) 60px)}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--white);font-family:'Raleway',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;}
 
-.hero{position:relative;z-index:2;text-align:center;padding:60px 24px 40px}
-.hero-sigil{font-size:48px;opacity:0.35;margin-bottom:16px;animation:pulse 5s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:.25}50%{opacity:.45}}
-.hero h1{font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--g);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px}
-.hero p{font-size:13px;color:var(--w3);line-height:1.7;max-width:480px;margin:0 auto 24px}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{padding:10px 22px;border-radius:8px;font-family:'Cinzel',serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-decoration:none;transition:all .18s;border:1px solid var(--gb);cursor:pointer;display:inline-block}
-.btn-gold{background:var(--g);color:var(--n);border-color:var(--g)}.btn-gold:hover{background:var(--g2)}
-.btn-ghost{background:var(--gf);color:var(--g)}.btn-ghost:hover{background:rgba(201,168,76,0.16)}
+/* ── STARFIELD ── */
+#starfield{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
-.stats{position:relative;z-index:2;display:flex;justify-content:center;flex-wrap:wrap;
-  border-top:1px solid var(--gb);border-bottom:1px solid var(--gb);
-  background:rgba(8,14,48,0.6);backdrop-filter:blur(8px);margin-bottom:48px}
-.stat{padding:16px 32px;text-align:center;border-right:1px solid var(--gb)}
-.stat:last-child{border-right:none}
-.stat-n{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--g)}
-.stat-l{font-size:11px;color:var(--w3);letter-spacing:0.06em;margin-top:2px}
+/* ══════════════════════════════════
+   DRAGON
+══════════════════════════════════ */
+#dragon-wrap {
+  position: fixed;
+  z-index: 900;
+  pointer-events: none;
+  left: 0; top: 0;
+  width: 0; height: 0;
+  transition: none;
+}
 
-/* SEARCH / FILTER BAR */
-.toolbar{position:relative;z-index:2;max-width:1100px;margin:0 auto 32px;padding:0 24px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.search-wrap{flex:1;min-width:200px;position:relative}
-.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--w3);font-size:13px;pointer-events:none}
-#search{width:100%;background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:9px 12px 9px 32px;color:var(--w);font-family:'Raleway',sans-serif;font-size:12px;outline:none;transition:border-color .2s}
-#search:focus{border-color:var(--g)}
-#search::placeholder{color:var(--w3)}
-.filter-btns{display:flex;gap:6px;flex-wrap:wrap}
-.filter-btn{padding:7px 14px;border-radius:6px;font-size:10px;font-family:'Cinzel',serif;letter-spacing:0.08em;border:1px solid var(--gb);background:var(--w4);color:var(--w3);cursor:pointer;transition:all .15s}
-.filter-btn.active,.filter-btn:hover{background:var(--gf);color:var(--g);border-color:var(--g)}
-#no-results{display:none;text-align:center;padding:48px;color:var(--w3);font-size:13px;font-style:italic;position:relative;z-index:2}
+#dragon-svg {
+  position: absolute;
+  width: 180px;
+  height: 115px;
+  filter: drop-shadow(0 0 12px var(--dragon-glow)) drop-shadow(0 0 4px rgba(255,107,26,0.5));
+  transform-origin: center center;
+}
 
-main{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 24px 120px}
+.dragon-bubble {
+  position: absolute;
+  background: rgba(13,18,64,0.97);
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: var(--gold);
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s, transform 0.3s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  pointer-events: none;
+  letter-spacing: 0.5px;
+  max-width: 220px;
+  white-space: normal;
+  line-height: 1.5;
+}
+.dragon-bubble::after {
+  content: '';
+  position: absolute;
+  width: 8px; height: 8px;
+  background: rgba(13,18,64,0.97);
+  border-right: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+  transform: rotate(45deg);
+  bottom: -5px; left: 18px;
+}
+.dragon-bubble.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.dragon-bubble.tip-top::after {
+  bottom: auto; top: -5px;
+  border-right: none; border-bottom: none;
+  border-left: 1px solid var(--gold-border);
+  border-top: 1px solid var(--gold-border);
+}
 
-.mod{margin-bottom:40px;transition:opacity .2s}
-.mod.hidden{display:none}
-.mod-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gb)}
-.mod-code{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--n);background:var(--g);padding:4px 10px;border-radius:4px;letter-spacing:0.1em;flex-shrink:0}
-.mod-name{font-family:'Cinzel',serif;font-size:15px;color:var(--w);letter-spacing:0.06em;font-weight:600}
-.mod-ct{margin-left:auto;font-size:11px;color:var(--w3);white-space:nowrap}
+/* fire breath particle */
+@keyframes fireParticle {
+  0%   { opacity:1; transform: translate(0,0) scale(1); }
+  100% { opacity:0; transform: translate(var(--tx),var(--ty)) scale(0.2); }
+}
+.fire-p {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 899;
+  animation: fireParticle 0.7s ease-out forwards;
+}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
-.card{background:var(--n3);border:1px solid rgba(240,237,230,0.06);border-radius:10px;padding:14px 16px;text-decoration:none;transition:all .18s;display:flex;flex-direction:column;gap:5px;position:relative;overflow:hidden}
-.card.live{border-left:3px solid var(--ok);cursor:pointer}.card.live:hover{background:var(--gf);border-color:var(--gb);transform:translateY(-1px)}
-.card.ready{border-left:3px solid var(--g);opacity:0.7;cursor:default;pointer-events:none}
-.card.coming{border-left:3px solid rgba(240,237,230,0.08);opacity:0.4;cursor:default;pointer-events:none}
-.card.dragon{border-left:3px solid #8b4513;opacity:0.75;cursor:default;pointer-events:none}
-.card.vip{border-left:3px solid var(--g);cursor:pointer}.card.vip:hover{background:var(--gf);border-color:var(--gb);transform:translateY(-1px)}
-.ct{display:flex;align-items:center;gap:8px}
-.cc{font-family:'Cinzel',serif;font-size:10px;color:var(--g);letter-spacing:0.1em;font-weight:600}
-.cs{margin-left:auto;font-size:9px;padding:2px 7px;border-radius:8px}
-.s-live{background:rgba(42,138,122,0.2);color:#7dd4c8}
-.s-ready{background:rgba(201,168,76,0.15);color:var(--g)}
-.s-coming{background:rgba(240,237,230,0.05);color:var(--w3)}
-.s-dragon{background:rgba(139,69,19,0.25);color:#c8855a}
-.s-vip{background:rgba(201,168,76,0.2);color:var(--g2)}
-.cn{font-size:13px;color:var(--w);line-height:1.4;font-weight:500}
-.cd{font-size:11px;color:var(--w3);line-height:1.4}
-.ca{position:absolute;right:14px;bottom:14px;color:var(--g);font-size:14px;opacity:0;transition:opacity .18s}
-.card.live:hover .ca,.card.vip:hover .ca{opacity:1}
-.more{background:var(--w4);border:1px dashed rgba(240,237,230,0.08);border-radius:10px;padding:12px 16px;font-size:11px;color:var(--w3);text-align:center;font-style:italic;display:flex;align-items:center;justify-content:center}
-.more a{color:var(--g);text-decoration:none}
+/* ══════════════════════════════════
+   FLOATING FREQ PLAYER
+══════════════════════════════════ */
+#freq-player {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  z-index: 950;
+  width: 310px;
+  background: rgba(11,15,52,0.97);
+  border: 1px solid var(--gold-border);
+  border-radius: 16px;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.06);
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+#freq-player.collapsed { transform: translateY(calc(100% - 50px)); }
+#freq-player-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 18px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--gold-border);
+  user-select: none;
+}
+#freq-player-header .title { font-family:'Cinzel',serif; font-size:10px; letter-spacing:2.5px; color:var(--gold); text-transform:uppercase; }
+.toggle-icon { color:var(--gold); font-size:12px; transition:transform 0.3s; }
+#freq-player.collapsed .toggle-icon { transform:rotate(180deg); }
+#freq-body { padding:15px 17px 17px; }
+.freq-label { font-family:'Cinzel',serif; font-size:9px; letter-spacing:1.8px; color:var(--muted); text-transform:uppercase; margin-bottom:9px; }
+.freq-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:5px; margin-bottom:13px; }
+.freq-btn {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:8px; padding:7px 3px;
+  cursor:pointer; text-align:center;
+  transition:all 0.2s; color:var(--white);
+}
+.freq-btn:hover { border-color:var(--gold-border); background:var(--gold-dim); }
+.freq-btn.active { background:var(--gold-dim); border-color:var(--gold); box-shadow:0 0 10px rgba(201,168,76,0.2); }
+.freq-btn .hz { font-family:'Cinzel',serif; font-size:10px; font-weight:600; color:var(--gold); display:block; }
+.freq-btn .fname { font-size:8px; color:var(--muted); display:block; margin-top:2px; }
+.freq-controls { display:flex; align-items:center; gap:10px; margin-bottom:11px; }
+.play-btn {
+  width:38px; height:38px; border-radius:50%;
+  background:var(--gold); border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:transform 0.15s, box-shadow 0.15s;
+  box-shadow:0 0 14px rgba(201,168,76,0.4);
+}
+.play-btn:hover { transform:scale(1.08); box-shadow:0 0 22px rgba(201,168,76,0.6); }
+.play-btn svg { fill:var(--navy); width:14px; }
+.vol-wrap { flex:1; }
+.vol-label { font-size:8px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:5px; }
+input[type=range] { -webkit-appearance:none; width:100%; height:3px; background:rgba(255,255,255,0.1); border-radius:2px; outline:none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:11px; height:11px; border-radius:50%; background:var(--gold); cursor:pointer; }
+.freq-now {
+  display:flex; align-items:center; gap:8px;
+  padding:9px 11px;
+  background:rgba(255,255,255,0.025);
+  border-radius:8px; border:1px solid rgba(255,255,255,0.05);
+}
+.freq-now .fdot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; transition:background 0.4s; }
+.freq-now .fdot.playing { animation:pulse-dot 1.4s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.6);opacity:0.5;} }
+.freq-now .info { flex:1; }
+.now-hz { font-family:'Cinzel',serif; font-size:12px; color:var(--gold); font-weight:600; }
+.now-name { font-size:9px; color:var(--muted); }
+.waveform { display:flex; align-items:center; gap:2px; height:18px; }
+.waveform span { display:block; width:3px; background:var(--gold); border-radius:2px; opacity:0.35; height:3px; }
+.waveform.playing span { opacity:0.7; animation:wavebar 0.8s ease-in-out infinite alternate; }
+.waveform.playing span:nth-child(1){animation-delay:0s;}
+.waveform.playing span:nth-child(2){animation-delay:0.12s;}
+.waveform.playing span:nth-child(3){animation-delay:0.22s;}
+.waveform.playing span:nth-child(4){animation-delay:0.16s;}
+.waveform.playing span:nth-child(5){animation-delay:0.06s;}
+@keyframes wavebar { from{height:2px;} to{height:14px;} }
 
-/* LOADING STATE */
-#loading{position:relative;z-index:2;text-align:center;padding:80px 24px;color:var(--w3)}
-.ld-sigil{font-size:36px;opacity:0.3;animation:pulse 2s ease-in-out infinite;display:block;margin-bottom:12px}
-.ld-txt{font-size:12px;letter-spacing:0.1em}
+/* ── LAYOUT ── */
+.container { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 32px; }
 
-footer{position:relative;z-index:2;text-align:center;padding:24px;border-top:1px solid var(--gb);font-size:11px;color:var(--w3);letter-spacing:0.06em}
-footer a{color:var(--g);text-decoration:none}
-.footer-updated{font-size:10px;color:rgba(240,237,230,0.2);margin-top:6px}
+/* ── HEADER ── */
+header { padding:80px 0 50px; text-align:center; }
+.logo-area { margin-bottom:28px; }
+.logo-area img { height:58px; opacity:0.92; filter:drop-shadow(0 0 20px rgba(201,168,76,0.3)); }
+.logo-text-fallback { display:none; font-family:'Cinzel',serif; font-size:17px; color:var(--gold); letter-spacing:3px; }
+.eyebrow { font-family:'Cinzel',serif; font-size:9px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:14px; opacity:0.75; }
+h1 { font-family:'Cinzel',serif; font-size:clamp(30px,5vw,54px); font-weight:700; line-height:1.15; margin-bottom:14px; text-shadow:0 0 60px rgba(201,168,76,0.15); }
+h1 span { color:var(--gold); }
+.tagline { font-size:13px; color:var(--muted); letter-spacing:1.5px; font-style:italic; margin-bottom:40px; }
 
-/* FLOATING CHAT */
-.fab{position:fixed;bottom:28px;right:28px;z-index:999;width:58px;height:58px;border-radius:50%;background:var(--g);border:none;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 28px rgba(201,168,76,0.4);transition:all .2s;color:var(--n)}
-.fab:hover{background:var(--g2);transform:scale(1.06)}
+/* ── STATS ── */
+.stats-row { display:flex; justify-content:center; gap:36px; margin-bottom:60px; flex-wrap:wrap; }
+.stat { text-align:center; padding:0 18px; border-right:1px solid var(--gold-border); }
+.stat:last-child { border-right:none; }
+.stat .num { font-family:'Cinzel',serif; font-size:26px; color:var(--gold); display:block; }
+.stat .lbl { font-size:9px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; }
 
-.cpanel{position:fixed;bottom:100px;right:28px;z-index:998;width:370px;height:500px;background:var(--n2);border:1px solid var(--gb);border-radius:16px;display:none;flex-direction:column;box-shadow:0 8px 48px rgba(0,0,0,0.6);overflow:hidden}
-.cpanel.open{display:flex;animation:su .22s ease}
-@keyframes su{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.cph{padding:13px 15px;border-bottom:1px solid var(--gb);display:flex;align-items:center;gap:10px;background:rgba(8,14,48,0.85);flex-shrink:0}
-.cph-av{width:32px;height:32px;border-radius:50%;background:var(--gf);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.cph-info{flex:1}
-.cph-name{font-family:'Cinzel',serif;font-size:11px;color:var(--g);letter-spacing:0.08em}
-.cph-sub{font-size:10px;color:var(--w3);margin-top:1px}
-.cph-x{background:none;border:none;color:var(--w3);cursor:pointer;font-size:20px;line-height:1;padding:2px;transition:color .15s}
-.cph-x:hover{color:var(--w)}
-.cmsgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
-.cmsgs::-webkit-scrollbar{width:3px}
-.cmsgs::-webkit-scrollbar-thumb{background:var(--gb);border-radius:2px}
-.cwelcome{text-align:center;padding:14px 6px}
-.cwelcome .wsig{font-size:28px;opacity:0.35;margin-bottom:8px}
-.cwelcome h3{font-family:'Cinzel',serif;font-size:13px;color:var(--g);letter-spacing:0.06em;margin-bottom:6px}
-.cwelcome p{font-size:11px;color:var(--w3);line-height:1.65}
-.cstarts{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;justify-content:center}
-.cstart{padding:5px 10px;border-radius:14px;background:var(--w4);border:1px solid var(--gb);color:var(--w2);font-size:10px;cursor:pointer;transition:all .15s}
-.cstart:hover{background:var(--gf);border-color:var(--g);color:var(--w)}
-.cm{display:flex;gap:7px}
-.cm.u{flex-direction:row-reverse}
-.cmav{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px}
-.cm.u .cmav{background:var(--gf);border:1px solid var(--gb);color:var(--g);font-family:'Cinzel',serif;font-weight:700}
-.cm.b .cmav{background:var(--n3);border:1px solid var(--gb)}
-.cmbub{max-width:82%;padding:9px 12px;border-radius:10px;font-size:12px;line-height:1.65}
-.cm.u .cmbub{background:var(--gf);border:1px solid var(--gb);color:var(--w);border-radius:10px 2px 10px 10px}
-.cm.b .cmbub{background:var(--n3);border:1px solid rgba(255,255,255,0.05);color:var(--w2);border-radius:2px 10px 10px 10px}
-.cm.b .cmbub strong{color:var(--g2);font-weight:600}
-.cm.b .cmbub p{margin-bottom:5px}.cm.b .cmbub p:last-child{margin:0}
-.cm.b .cmbub ul{padding-left:14px;margin-bottom:5px}
-.trow{display:flex;gap:3px;padding:6px 10px;align-items:center}
-.td{width:4px;height:4px;border-radius:50%;background:var(--g);opacity:.3;animation:blink 1.2s infinite}
-.td:nth-child(2){animation-delay:.2s}.td:nth-child(3){animation-delay:.4s}
-@keyframes blink{0%,100%{opacity:.2}50%{opacity:.8}}
-.cinp-row{padding:10px 12px;border-top:1px solid var(--gb);display:flex;gap:6px;align-items:flex-end;flex-shrink:0;background:rgba(8,14,48,0.5)}
-.cinp{flex:1;background:var(--n3);border:1px solid var(--gb);border-radius:8px;padding:8px 11px;resize:none;color:var(--w);font-family:'Raleway',sans-serif;font-size:12px;outline:none;min-height:36px;max-height:80px;overflow-y:auto;line-height:1.4;transition:border-color .2s}
-.cinp:focus{border-color:var(--g)}
-.cinp::placeholder{color:var(--w3)}
-.csend{width:36px;height:36px;border-radius:8px;flex-shrink:0;background:var(--g);border:none;cursor:pointer;font-size:14px;color:var(--n);transition:all .15s;display:flex;align-items:center;justify-content:center}
-.csend:hover{background:var(--g2)}.csend:disabled{opacity:.35;cursor:not-allowed}
+/* ── CONTROLS ── */
+.controls-bar { display:flex; align-items:center; gap:14px; margin-bottom:36px; flex-wrap:wrap; }
+.search-wrap { flex:1; min-width:200px; position:relative; }
+.search-wrap input {
+  width:100%; background:rgba(255,255,255,0.035);
+  border:1px solid var(--gold-border); border-radius:10px;
+  padding:11px 15px 11px 40px; color:var(--white);
+  font-family:'Raleway',sans-serif; font-size:13px; outline:none;
+  transition:border-color 0.2s, box-shadow 0.2s;
+}
+.search-wrap input:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,0.08); }
+.search-wrap input::placeholder { color:var(--muted); }
+.search-icon { position:absolute; left:13px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:13px; pointer-events:none; }
+.filter-btns { display:flex; gap:7px; flex-wrap:wrap; }
+.filter-btn { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:9px 15px; color:var(--muted); font-family:'Cinzel',serif; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:all 0.2s; }
+.filter-btn:hover, .filter-btn.active { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
+
+/* ── MODULE CARDS ── */
+.modules-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:18px; margin-bottom:70px; }
+.module-card {
+  background:rgba(255,255,255,0.022);
+  border:1px solid rgba(255,255,255,0.065);
+  border-radius:16px; overflow:hidden;
+  transition:transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  animation:fadeUp 0.5s both;
+  position: relative;
+}
+.module-card:hover { transform:translateY(-4px); border-color:var(--gold-border); box-shadow:0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.08); }
+/* "NEW" badge for new modules */
+.module-card.is-new::before {
+  content:'NEW';
+  position:absolute; top:12px; right:12px;
+  background:var(--dragon-fire); color:#fff;
+  font-family:'Cinzel',serif; font-size:8px; letter-spacing:1.5px;
+  padding:3px 8px; border-radius:20px;
+  z-index:2;
+  box-shadow:0 0 10px var(--dragon-glow);
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:translateY(0);} }
+.module-header { display:flex; align-items:center; gap:13px; padding:17px 18px 13px; border-bottom:1px solid rgba(255,255,255,0.045); }
+.module-badge { width:40px; height:40px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-family:'Cinzel',serif; font-size:11px; font-weight:700; color:var(--navy); flex-shrink:0; }
+.module-meta { flex:1; min-width:0; }
+.module-title { font-family:'Cinzel',serif; font-size:13px; font-weight:600; color:var(--white); margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.module-freq-tag { display:inline-flex; align-items:center; gap:5px; font-size:8px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding:2px 7px; border-radius:20px; border:1px solid rgba(255,255,255,0.07); }
+.module-freq-tag .fdot2 { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+.play-freq-btn { width:30px; height:30px; border-radius:50%; border:1px solid var(--gold-border); background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s; flex-shrink:0; color:var(--gold); }
+.play-freq-btn:hover, .play-freq-btn.playing { background:var(--gold-dim); border-color:var(--gold); box-shadow:0 0 10px rgba(201,168,76,0.3); }
+.play-freq-btn svg { width:11px; fill:currentColor; }
+.lessons-list { padding:10px 18px 14px; }
+.lesson-row { display:flex; align-items:center; gap:9px; padding:8px 9px; border-radius:7px; cursor:pointer; transition:background 0.15s; text-decoration:none; color:inherit; }
+.lesson-row:hover { background:rgba(255,255,255,0.04); }
+.lesson-num { font-family:'Cinzel',serif; font-size:9px; color:var(--muted); width:20px; flex-shrink:0; text-align:right; }
+.lesson-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; opacity:0.6; }
+.lesson-text { flex:1; min-width:0; }
+.lesson-name { font-size:11.5px; font-weight:400; color:var(--white); opacity:0.88; }
+.lesson-desc { font-size:9.5px; color:var(--muted); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.lesson-arrow { color:var(--muted); font-size:9px; opacity:0; transition:opacity 0.15s,transform 0.15s; transform:translateX(-4px); }
+.lesson-row:hover .lesson-arrow { opacity:1; transform:translateX(0); }
+.more-lessons { display:flex; align-items:center; gap:6px; padding:7px 9px; color:var(--gold); font-size:10.5px; cursor:pointer; border-radius:6px; border:none; background:none; transition:background 0.15s; font-family:'Raleway',sans-serif; width:100%; margin-top:3px; }
+.more-lessons:hover { background:rgba(201,168,76,0.06); }
+.lessons-extra { display:none; }
+.lessons-extra.visible { display:block; }
+
+/* ── NEXT LESSON SUGGESTION ── */
+.next-lesson-section { margin-bottom:60px; }
+.section-eyebrow { font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; margin-bottom:16px; padding-left:2px; }
+.next-lesson-card {
+  position:relative;
+  background:linear-gradient(135deg, rgba(201,168,76,0.07) 0%, rgba(255,107,26,0.04) 100%);
+  border:1px solid var(--gold-border);
+  border-radius:16px;
+  padding:24px 28px;
+  display:flex; align-items:center; gap:20px;
+  cursor:pointer;
+  transition:box-shadow 0.25s, transform 0.25s;
+  text-decoration:none; color:inherit;
+  overflow:hidden;
+}
+.next-lesson-card:hover { transform:translateY(-3px); box-shadow:0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.2); }
+.next-lesson-card::before {
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse at 90% 50%, rgba(255,107,26,0.06) 0%, transparent 70%);
+  pointer-events:none;
+}
+.nl-badge { width:56px; height:56px; border-radius:12px; background:var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Cinzel',serif; font-size:13px; font-weight:700; color:var(--navy); flex-shrink:0; }
+.nl-text { flex:1; }
+.nl-eyebrow { font-size:9px; letter-spacing:2px; color:var(--gold); text-transform:uppercase; font-family:'Cinzel',serif; margin-bottom:5px; }
+.nl-title { font-family:'Cinzel',serif; font-size:18px; font-weight:600; color:var(--white); margin-bottom:4px; }
+.nl-desc { font-size:12px; color:var(--muted); }
+.nl-arrow { font-size:22px; color:var(--gold); opacity:0.5; transition:opacity 0.2s, transform 0.2s; }
+.next-lesson-card:hover .nl-arrow { opacity:1; transform:translateX(4px); }
+/* dragon peek spot — dragon will appear here */
+.dragon-peek-anchor { position:absolute; top:-20px; right:100px; width:0; height:0; }
+
+/* ── COMING MODULES ── */
+.coming-modules { margin-bottom:70px; }
+.coming-title { font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; margin-bottom:18px; padding-left:2px; }
+.coming-grid { display:flex; flex-wrap:wrap; gap:9px; }
+.coming-chip { display:flex; align-items:center; gap:7px; padding:7px 13px; background:rgba(255,255,255,0.018); border:1px solid rgba(255,255,255,0.055); border-radius:100px; font-size:10px; color:var(--muted); font-family:'Cinzel',serif; letter-spacing:0.5px; }
+.coming-chip .lock { opacity:0.35; font-size:9px; }
+
+/* ── DIVIDER ── */
+.divider { height:1px; background:linear-gradient(to right, transparent, var(--gold-border), transparent); margin:50px 0; }
+
+/* ── FOOTER ── */
+footer { text-align:center; padding:36px 0 56px; border-top:1px solid var(--gold-border); }
+.footer-logo { font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-bottom:8px; }
+footer p { font-size:10.5px; color:var(--muted); }
+footer a { color:var(--gold); text-decoration:none; }
+
+
+/* ── EXCLUSIVE HEALING FREQUENCIES SECTION ── */
+.freq-dl-section {
+  margin-bottom: 70px;
+}
+.freq-dl-header { text-align:center; margin-bottom:36px; }
+.freq-dl-eyebrow { font-family:'Cinzel',serif; font-size:9px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:12px; opacity:0.7; }
+.freq-dl-title { font-family:'Cinzel',serif; font-size:clamp(22px,3.5vw,36px); font-weight:700; color:var(--white); margin-bottom:12px; }
+.freq-dl-sub { font-size:12px; color:var(--muted); max-width:600px; margin:0 auto; line-height:1.7; }
+
+/* tabs */
+.fdl-tabs { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:32px; }
+.fdl-tab {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:100px; padding:10px 22px;
+  color:var(--muted); font-family:'Cinzel',serif; font-size:10px;
+  letter-spacing:1.5px; text-transform:uppercase;
+  cursor:pointer; transition:all 0.2s;
+}
+.fdl-tab:hover { border-color:var(--gold-border); color:var(--gold); }
+.fdl-tab.active { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); box-shadow:0 0 16px rgba(201,168,76,0.15); }
+
+/* panels */
+.fdl-panel { display:none; }
+.fdl-panel.active { display:block; }
+.fdl-intro { margin-bottom:20px; padding:14px 18px; background:rgba(255,255,255,0.02); border-left:2px solid var(--gold); border-radius:0 8px 8px 0; font-size:12px; color:var(--muted); line-height:1.7; }
+
+/* freq cards grid */
+.fdl-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
+  gap:14px;
+}
+
+/* individual freq card */
+.fdl-card {
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px; padding:18px 16px 14px;
+  transition:transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  animation:fadeUp 0.4s both;
+}
+.fdl-card:hover { transform:translateY(-3px); border-color:var(--gold-border); box-shadow:0 8px 28px rgba(0,0,0,0.35); }
+
+.fdl-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.fdl-hz { font-family:'Cinzel',serif; font-size:20px; font-weight:700; color:var(--gold); line-height:1; }
+.fdl-hz-unit { font-size:10px; color:var(--muted); font-family:'Raleway',sans-serif; margin-top:2px; }
+.fdl-color-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-top:4px; box-shadow:0 0 8px currentColor; }
+
+.fdl-name { font-family:'Cinzel',serif; font-size:12px; font-weight:600; color:var(--white); margin-bottom:4px; }
+.fdl-desc { font-size:10px; color:var(--muted); line-height:1.5; margin-bottom:14px; }
+
+.fdl-actions { display:flex; gap:8px; }
+.fdl-play-btn, .fdl-dl-btn {
+  flex:1; display:flex; align-items:center; justify-content:center; gap:5px;
+  padding:8px 6px; border-radius:8px; cursor:pointer;
+  font-family:'Cinzel',serif; font-size:9px; letter-spacing:1px;
+  text-transform:uppercase; transition:all 0.18s; border:1px solid;
+}
+.fdl-play-btn {
+  background:rgba(255,255,255,0.04);
+  border-color:rgba(255,255,255,0.1);
+  color:var(--muted);
+}
+.fdl-play-btn:hover, .fdl-play-btn.playing {
+  background:var(--gold-dim); border-color:var(--gold); color:var(--gold);
+}
+.fdl-dl-btn {
+  background:rgba(201,168,76,0.08);
+  border-color:var(--gold-border);
+  color:var(--gold);
+}
+.fdl-dl-btn:hover { background:rgba(201,168,76,0.18); box-shadow:0 0 10px rgba(201,168,76,0.2); }
+.fdl-dl-btn.generating { opacity:0.6; cursor:default; }
+.fdl-icon { font-size:11px; }
+
+.fdl-note {
+  display:flex; align-items:flex-start; gap:10px;
+  margin-top:28px; padding:14px 18px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:10px; font-size:11px; color:var(--muted); line-height:1.6;
+}
+.fdl-note span:first-child { font-size:18px; flex-shrink:0; }
+
+@media(max-width:600px){
+  .fdl-grid { grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); }
+}
+@media(max-width:600px){
+  .container{padding:0 16px;}
+  #freq-player{width:calc(100vw - 24px);right:12px;}
+  .modules-grid{grid-template-columns:1fr;}
+  .stats-row{gap:16px;}
+  .stat{padding:0 8px;}
+  #dragon-svg{width:140px;height:105px;}
+}
+
+/* ══ AI COMPANION ══ */
+#companion-btn {
+  position:fixed; bottom:28px; left:28px; z-index:960;
+  width:56px; height:56px; border-radius:50%;
+  background:linear-gradient(135deg,#0d1240,#1a2266);
+  border:1px solid var(--gold-border);
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  font-size:22px; box-shadow:0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.1);
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+#companion-btn:hover { transform:scale(1.1); box-shadow:0 6px 32px rgba(201,168,76,0.25); }
+#companion-btn .comp-ping {
+  position:absolute; top:0; right:0; width:12px; height:12px;
+  background:var(--gold); border-radius:50%;
+  border:2px solid var(--navy);
+  animation:comp-pulse 2s ease-in-out infinite;
+}
+@keyframes comp-pulse { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.4);opacity:0.6;} }
+
+#companion-panel {
+  position:fixed; bottom:96px; left:28px; z-index:960;
+  width:340px; height:520px;
+  background:rgba(10,13,46,0.98);
+  border:1px solid var(--gold-border);
+  border-radius:20px;
+  display:flex; flex-direction:column;
+  box-shadow:0 16px 60px rgba(0,0,0,0.7);
+  backdrop-filter:blur(24px);
+  opacity:0; transform:translateY(16px) scale(0.97);
+  pointer-events:none;
+  transition:opacity 0.28s, transform 0.28s;
+  overflow:hidden;
+}
+#companion-panel.open { opacity:1; transform:translateY(0) scale(1); pointer-events:all; }
+
+.comp-header {
+  display:flex; align-items:center; gap:10px;
+  padding:14px 16px 12px;
+  border-bottom:1px solid var(--gold-border);
+  flex-shrink:0;
+}
+.comp-avatar {
+  width:34px; height:34px; border-radius:50%;
+  background:linear-gradient(135deg,#1a3a50,#0d1240);
+  border:1px solid var(--gold-border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; flex-shrink:0;
+}
+.comp-header-text { flex:1; }
+.comp-name { font-family:'Cinzel',serif; font-size:11px; color:var(--gold); letter-spacing:1px; }
+.comp-status { font-size:9px; color:var(--muted); display:flex; align-items:center; gap:5px; }
+.comp-status-dot { width:6px; height:6px; border-radius:50%; background:#27ae60; animation:comp-pulse 2s infinite; }
+.comp-close { background:none; border:none; color:var(--muted); cursor:pointer; font-size:16px; padding:4px; transition:color 0.15s; }
+.comp-close:hover { color:var(--gold); }
+
+/* quick starters */
+.comp-starters { display:flex; flex-wrap:wrap; gap:6px; padding:10px 12px 0; flex-shrink:0; }
+.comp-starter {
+  font-size:9.5px; padding:5px 10px; border-radius:20px;
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+  color:var(--muted); cursor:pointer; font-family:'Cinzel',serif;
+  letter-spacing:0.5px; transition:all 0.15s; white-space:nowrap;
+}
+.comp-starter:hover { border-color:var(--gold-border); color:var(--gold); background:var(--gold-dim); }
+
+.comp-messages {
+  flex:1; overflow-y:auto; padding:12px 14px; display:flex; flex-direction:column; gap:10px;
+  scroll-behavior:smooth;
+}
+.comp-messages::-webkit-scrollbar { width:3px; }
+.comp-messages::-webkit-scrollbar-thumb { background:var(--gold-border); border-radius:2px; }
+
+.comp-msg { display:flex; gap:8px; align-items:flex-start; animation:fadeUp 0.3s both; }
+.comp-msg.user { flex-direction:row-reverse; }
+.comp-msg-avatar { width:24px; height:24px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:11px; }
+.comp-msg.bot  .comp-msg-avatar { background:linear-gradient(135deg,#1a3a50,#0d1240); border:1px solid var(--gold-border); }
+.comp-msg.user .comp-msg-avatar { background:rgba(201,168,76,0.15); border:1px solid var(--gold-border); }
+.comp-msg-text {
+  max-width:82%; padding:9px 12px; border-radius:12px;
+  font-size:12px; line-height:1.6; color:var(--white);
+}
+.comp-msg.bot  .comp-msg-text { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); border-radius:4px 12px 12px 12px; }
+.comp-msg.user .comp-msg-text { background:rgba(201,168,76,0.1);  border:1px solid var(--gold-border); border-radius:12px 4px 12px 12px; text-align:right; }
+
+.comp-typing { display:flex; gap:4px; align-items:center; padding:4px 2px; }
+.comp-typing span { width:5px; height:5px; border-radius:50%; background:var(--gold); opacity:0.5; animation:typingdot 1.2s ease-in-out infinite; }
+.comp-typing span:nth-child(2){animation-delay:0.2s;}
+.comp-typing span:nth-child(3){animation-delay:0.4s;}
+@keyframes typingdot { 0%,80%,100%{transform:scale(1);opacity:0.4;} 40%{transform:scale(1.4);opacity:1;} }
+
+.comp-input-wrap {
+  display:flex; gap:8px; padding:10px 12px 14px;
+  border-top:1px solid rgba(255,255,255,0.05); flex-shrink:0;
+}
+.comp-input {
+  flex:1; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px; padding:9px 12px; color:var(--white);
+  font-family:'Raleway',sans-serif; font-size:12px; outline:none; resize:none;
+  transition:border-color 0.2s; height:38px; line-height:1.4;
+}
+.comp-input:focus { border-color:var(--gold-border); }
+.comp-input::placeholder { color:var(--muted); }
+.comp-send {
+  width:38px; height:38px; border-radius:10px; background:var(--gold);
+  border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:transform 0.15s; font-size:14px;
+}
+.comp-send:hover { transform:scale(1.08); }
+.comp-send:disabled { opacity:0.4; cursor:default; transform:none; }
+
+@media(max-width:500px){
+  #companion-panel { width:calc(100vw - 24px); left:12px; bottom:88px; height:460px; }
+}
 </style>
 </head>
 <body>
-<div class="bg"></div>
-<div class="bg-grid"></div>
 
-<div class="hero">
-  <div class="hero-sigil">✦</div>
-  <h1>The Frequency Academy</h1>
-  <p>A living mystery school at the intersection of ancient wisdom and modern frequency science.</p>
-  <div class="hero-btns">
-    <a href="https://www.skool.com/the-frequency-academy-3454/about" target="_blank" class="btn btn-gold">Join the Academy on Skool</a>
-    <div class="btn btn-ghost" onclick="openChat()">◈ Ask the Academy Guide</div>
+<canvas id="starfield"></canvas>
+
+<!-- ══ DRAGON ══ -->
+<div id="dragon-wrap">
+  <div class="dragon-bubble" id="dragon-bubble"></div>
+  <svg id="dragon-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Body scale gradient: copper/bronze like the video -->
+    <radialGradient id="dBodyGrad" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#c87a3a"/>
+      <stop offset="50%" stop-color="#7a3a12"/>
+      <stop offset="100%" stop-color="#3a1206"/>
+    </radialGradient>
+    <!-- Head dark rich brown -->
+    <radialGradient id="dHeadGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#2e1810"/>
+      <stop offset="70%" stop-color="#160c06"/>
+      <stop offset="100%" stop-color="#0a0604"/>
+    </radialGradient>
+    <!-- Galaxy spiral eye -->
+    <radialGradient id="dEyeGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe06a"/>
+      <stop offset="25%" stop-color="#e8a020"/>
+      <stop offset="55%" stop-color="#00d4aa"/>
+      <stop offset="100%" stop-color="#003355"/>
+    </radialGradient>
+    <!-- Iridescent mane gradient -->
+    <linearGradient id="dManeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffcc"/>
+      <stop offset="35%" stop-color="#22ccaa"/>
+      <stop offset="65%" stop-color="#7733bb"/>
+      <stop offset="100%" stop-color="#ff55aa"/>
+    </linearGradient>
+    <!-- Curled horn gradient: grey-silver like the grey dragon reference -->
+    <linearGradient id="dHornGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d8d0c8"/>
+      <stop offset="50%" stop-color="#a09090"/>
+      <stop offset="100%" stop-color="#604840"/>
+    </linearGradient>
+    <!-- Belly lighter -->
+    <linearGradient id="dBellyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c87840" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#7a4418" stop-opacity="0.4"/>
+    </linearGradient>
+    <!-- Nebula mist -->
+    <radialGradient id="dMistGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(180,110,60,0.45)"/>
+      <stop offset="100%" stop-color="rgba(60,20,5,0)"/>
+    </radialGradient>
+    <filter id="dGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="dSoftGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ── NEBULA / COSMIC MIST trailing behind ── -->
+  <ellipse cx="260" cy="115" rx="55" ry="22" fill="url(#dMistGrad)" opacity="0.55"/>
+  <ellipse cx="295" cy="108" rx="30" ry="13" fill="url(#dMistGrad)" opacity="0.35"/>
+
+  <!-- ══════════════════════════════════
+       SERPENTINE BODY — long S-curve
+       Chinese dragon = long snake body
+  ══════════════════════════════════ -->
+  <!-- Main body tube with gentle S curve -->
+  <path d="M80 108 Q140 88 200 100 Q245 110 280 98 Q300 92 310 100 Q300 112 278 114 Q248 122 205 114 Q148 104 88 126 Q80 130 72 122Z"
+        fill="url(#dBodyGrad)"/>
+  <!-- Belly/underside lighter -->
+  <path d="M85 114 Q145 96 202 107 Q246 116 278 106 Q296 100 308 104 Q296 112 275 114 Q247 120 204 113 Q148 103 86 122Z"
+        fill="url(#dBellyGrad)"/>
+
+  <!-- OVERLAPPING SCALE ROWS — copper with teal/blue edge highlights, Chinese style -->
+  <!-- Row 1: top dorsal scales -->
+  <ellipse cx="105" cy="101" rx="12" ry="7" fill="#994422" stroke="#5ac8d8" stroke-width="0.8" stroke-opacity="0.55"/>
+  <ellipse cx="126" cy="96"  rx="12" ry="7" fill="#954020" stroke="#5ac8d8" stroke-width="0.8" stroke-opacity="0.55"/>
+  <ellipse cx="147" cy="93"  rx="12" ry="7" fill="#903c1e" stroke="#5ac8d8" stroke-width="0.8" stroke-opacity="0.5"/>
+  <ellipse cx="168" cy="93"  rx="11" ry="6" fill="#8a381a" stroke="#5ac8d8" stroke-width="0.7" stroke-opacity="0.5"/>
+  <ellipse cx="188" cy="95"  rx="11" ry="6" fill="#843416" stroke="#4ab8c8" stroke-width="0.7" stroke-opacity="0.45"/>
+  <ellipse cx="208" cy="98"  rx="10" ry="6" fill="#7e3014" stroke="#4ab8c8" stroke-width="0.7" stroke-opacity="0.4"/>
+  <ellipse cx="227" cy="100" rx="9"  ry="5" fill="#762c10" stroke="#3aa8b8" stroke-width="0.6" stroke-opacity="0.35"/>
+  <ellipse cx="244" cy="102" rx="8"  ry="5" fill="#6e2a0e" stroke="#3aa8b8" stroke-width="0.6" stroke-opacity="0.3"/>
+  <ellipse cx="260" cy="103" rx="7"  ry="4" fill="#66260c" stroke="#2a98a8" stroke-width="0.5" stroke-opacity="0.25"/>
+  <!-- Row 2 offset -->
+  <ellipse cx="115" cy="109" rx="11" ry="6" fill="#883c1e" stroke="#3a90b0" stroke-width="0.6" stroke-opacity="0.4"/>
+  <ellipse cx="136" cy="104" rx="11" ry="6" fill="#843818" stroke="#3a90b0" stroke-width="0.6" stroke-opacity="0.4"/>
+  <ellipse cx="157" cy="101" rx="11" ry="6" fill="#803416" stroke="#3a90b0" stroke-width="0.5" stroke-opacity="0.35"/>
+  <ellipse cx="177" cy="101" rx="10" ry="6" fill="#7a3012" stroke="#3a90b0" stroke-width="0.5" stroke-opacity="0.3"/>
+  <ellipse cx="196" cy="103" rx="9"  ry="5" fill="#722c10" stroke="#2a80a0" stroke-width="0.5" stroke-opacity="0.25"/>
+  <!-- Underbelly scales — rounded, lighter, Chinese dragon style -->
+  <ellipse cx="120" cy="118" rx="10" ry="5" fill="#b86830" opacity="0.5"/>
+  <ellipse cx="140" cy="115" rx="10" ry="5" fill="#b06028" opacity="0.45"/>
+  <ellipse cx="160" cy="113" rx="9"  ry="5" fill="#a85820" opacity="0.4"/>
+  <ellipse cx="179" cy="114" rx="9"  ry="4" fill="#a0501c" opacity="0.35"/>
+
+  <!-- SPINE — dark ridge line -->
+  <path d="M83 106 Q145 88 202 98 Q246 108 280 96" stroke="#2a0e04" stroke-width="3" fill="none" opacity="0.6"/>
+
+  <!-- DORSAL SPINES — thin sharp red-crimson, Chinese dragon style -->
+  <path d="M100 103 L96 89 L104 100Z"  fill="#cc2200" opacity="0.95"/>
+  <path d="M118 97  L114 82 L122 94Z"  fill="#cc2200" opacity="0.95"/>
+  <path d="M136 93  L133 77 L140 90Z"  fill="#c01e00" opacity="0.9"/>
+  <path d="M154 92  L151 76 L158 89Z"  fill="#c01e00" opacity="0.85"/>
+  <path d="M171 93  L168 78 L175 90Z"  fill="#b81c00" opacity="0.8"/>
+  <path d="M188 96  L185 82 L192 93Z"  fill="#b01a00" opacity="0.7"/>
+  <path d="M204 99  L202 87 L208 97Z"  fill="#a81800" opacity="0.6"/>
+  <path d="M220 101 L218 91 L224 99Z"  fill="#9a1600" opacity="0.5"/>
+
+  <!-- FLOATING ENERGY ORBS — along the body, Chinese dragon pearl motif -->
+  <!-- Pearl 1 — large blue -->
+  <circle cx="148" cy="130" r="7"   fill="#1a5dcc" filter="url(#dGlow)" opacity="0.8"/>
+  <circle cx="148" cy="130" r="3.5" fill="#88aaff" opacity="0.9"/>
+  <circle cx="148" cy="130" r="9"   fill="none" stroke="#4488ff" stroke-width="0.8" opacity="0.3">
+    <animate attributeName="r" values="8;13;8" dur="2.2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0;0.3" dur="2.2s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Pearl 2 — red -->
+  <circle cx="172" cy="135" r="6"   fill="#cc1144" filter="url(#dGlow)" opacity="0.75"/>
+  <circle cx="172" cy="135" r="3"   fill="#ff88aa" opacity="0.85"/>
+  <circle cx="172" cy="135" r="8"   fill="none" stroke="#ff4488" stroke-width="0.7" opacity="0.25">
+    <animate attributeName="r" values="7;11;7" dur="2.8s" begin="0.4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.25;0;0.25" dur="2.8s" begin="0.4s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Pearl 3 — gold -->
+  <circle cx="195" cy="130" r="5"   fill="#c8880a" filter="url(#dGlow)" opacity="0.8"/>
+  <circle cx="195" cy="130" r="2.5" fill="#ffe066" opacity="0.9"/>
+  <!-- Pearl 4 — teal small -->
+  <circle cx="218" cy="126" r="4"   fill="#008888" filter="url(#dGlow)" opacity="0.7"/>
+  <circle cx="218" cy="126" r="2"   fill="#44ffee" opacity="0.8"/>
+  <!-- Sparkle dots -->
+  <circle cx="135" cy="127" r="1.5" fill="#ffffaa" opacity="0.7"><animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.8s" repeatCount="indefinite"/></circle>
+  <circle cx="162" cy="138" r="1.2" fill="#aaffee" opacity="0.65"><animate attributeName="opacity" values="0.65;0.2;0.65" dur="2.3s" begin="0.5s" repeatCount="indefinite"/></circle>
+  <circle cx="206" cy="134" r="1"   fill="#ffaacc" opacity="0.6"><animate attributeName="opacity" values="0.6;0.15;0.6" dur="1.5s" begin="0.9s" repeatCount="indefinite"/></circle>
+
+  <!-- ══════════════════════════════════
+       NECK — connecting to head
+  ══════════════════════════════════ -->
+  <path d="M78 108 Q70 95 68 80 Q70 72 76 70 Q80 80 82 96 Q84 104 84 112Z" fill="url(#dBodyGrad)"/>
+  <ellipse cx="80" cy="110" rx="9" ry="7" fill="#994422"/>
+
+  <!-- ══════════════════════════════════
+       HEAD — Chinese dragon style
+       Long snout, broad face, beard whiskers
+  ══════════════════════════════════ -->
+  <!-- Head base — dark rich brown, broad -->
+  <path d="M24 85 Q32 68 52 64 Q68 62 78 72 Q82 82 80 96 Q76 106 64 110 Q48 112 36 104 Q22 98 24 85Z"
+        fill="url(#dHeadGrad)" stroke="#1a0a04" stroke-width="1"/>
+  <!-- Cheek/jaw muscles, Chinese dragon roundness -->
+  <ellipse cx="58" cy="90" rx="20" ry="16" fill="#1e0e08" opacity="0.5"/>
+  <!-- Teal sheen on brow -->
+  <path d="M32 78 Q48 68 66 68 Q74 70 76 76 Q65 72 48 74 Q36 76 32 80Z" fill="#003322" opacity="0.3"/>
+
+  <!-- CURLED HORNS — grey-silver spiral like the grey serpent dragon reference -->
+  <!-- Left horn: starts at brow, curls back and inward, then tips forward -->
+  <path d="M42 66 Q36 52 40 42 Q46 34 54 38 Q60 42 58 50 Q54 56 48 54 Q44 52 46 46 Q48 42 52 42"
+        stroke="url(#dHornGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Horn tip -->
+  <path d="M52 42 Q56 38 60 36" stroke="#d0c8c0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Right horn (second, slightly behind) -->
+  <path d="M54 64 Q50 50 55 40 Q61 32 68 36 Q73 40 71 48 Q68 54 62 52"
+        stroke="url(#dHornGrad)" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.75"/>
+
+  <!-- IRIDESCENT MANE — flowing teal/green/purple, Chinese dragon mane style -->
+  <!-- Main mane flowing back from head -->
+  <path d="M38 74 Q22 58 14 44 Q10 36 16 40 Q24 52 32 64 Q26 50 22 40 Q32 48 38 62 Q34 50 32 40 Q42 50 44 64 Q46 52 46 42 Q54 52 50 66 Q56 54 54 44 Q64 54 60 68Z"
+        fill="url(#dManeGrad)" opacity="0.9" filter="url(#dSoftGlow)"/>
+  <!-- Mane highlight wisps -->
+  <path d="M24 60 Q18 48 20 38 Q26 46 26 58Z" fill="#00ffee" opacity="0.45"/>
+  <path d="M38 66 Q34 52 36 42 Q42 50 40 64Z" fill="#88ffdd" opacity="0.35"/>
+  <path d="M52 66 Q50 54 52 46 Q56 54 54 64Z" fill="#cc88ff" opacity="0.3"/>
+
+  <!-- RED FLAME EAR — like the video dragon, behind the mane -->
+  <path d="M62 68 Q52 52 56 40 Q64 46 66 58 Q70 50 66 40 Q76 48 72 62Z"
+        fill="#dd2200" opacity="0.85" filter="url(#dGlow)"/>
+  <path d="M63 68 Q56 55 59 46 Q65 50 64 60Z" fill="#ff5511" opacity="0.5"/>
+
+  <!-- SNOUT — long and angular, Chinese dragon style -->
+  <!-- Upper jaw -->
+  <path d="M24 88 Q14 92 6 100 Q14 96 10 104 Q18 98 16 106 Q22 100 22 108 Q26 100 30 104 Q28 94 34 92Z"
+        fill="#1a0c06" stroke="#240e08" stroke-width="0.7"/>
+  <!-- Lower jaw -->
+  <path d="M26 92 Q16 98 8 106 Q16 104 12 110 Q20 106 18 112 Q24 107 26 110Z"
+        fill="#140a04" opacity="0.8"/>
+  <!-- Snout ridge -->
+  <path d="M26 88 Q18 92 10 100" stroke="#2e1208" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+  <!-- BEARD WISPS — Chinese dragon beard hanging from jaw -->
+  <path d="M22 104 Q14 112 10 122 Q16 114 14 124 Q18 116 18 126" stroke="#c8b090" stroke-width="1.2" fill="none" opacity="0.65" stroke-linecap="round"/>
+  <path d="M28 108 Q22 118 20 128" stroke="#c8b090" stroke-width="1" fill="none" opacity="0.5" stroke-linecap="round"/>
+  <!-- Long whiskers flowing outward -->
+  <path d="M20 95 Q6 88 -4 83"  stroke="#e8d8b8" stroke-width="1"   fill="none" opacity="0.75" stroke-linecap="round"/>
+  <path d="M20 99 Q4 95 -6 93"  stroke="#e8d8b8" stroke-width="0.9" fill="none" opacity="0.65" stroke-linecap="round"/>
+  <path d="M22 103 Q6 102 -4 104" stroke="#e8d8b8" stroke-width="0.8" fill="none" opacity="0.55" stroke-linecap="round"/>
+  <path d="M18 92 Q6 84 0 78"   stroke="#d8c8a8" stroke-width="0.7" fill="none" opacity="0.5" stroke-linecap="round"/>
+  <!-- Whisker tip sparkles -->
+  <circle cx="-4" cy="83" r="1.2" fill="#ffe0a0" opacity="0.7"><animate attributeName="opacity" values="0.7;0.2;0.7" dur="2s" repeatCount="indefinite"/></circle>
+  <circle cx="-6" cy="93" r="1" fill="#ffe0a0" opacity="0.6"><animate attributeName="opacity" values="0.6;0.1;0.6" dur="2.4s" begin="0.3s" repeatCount="indefinite"/></circle>
+
+  <!-- Teeth — visible row, Chinese dragon style -->
+  <path d="M8 103 L6 110 L10 104Z" fill="#ebe0c0" opacity="0.7"/>
+  <path d="M14 106 L12 113 L16 107Z" fill="#ebe0c0" opacity="0.6"/>
+  <path d="M20 108 L18 115 L22 109Z" fill="#e0d4b0" opacity="0.55"/>
+
+  <!-- ══════════════════════════════════
+       GALAXY SPIRAL EYE — THE HERO
+       Concentric rings, galaxy core, Chinese dragon magical eye
+  ══════════════════════════════════ -->
+  <!-- Outer aura -->
+  <circle cx="50" cy="82" r="15" fill="none" stroke="#00d4aa" stroke-width="1.2" opacity="0.4" filter="url(#dGlow)">
+    <animate attributeName="r" values="13;17;13" dur="3.2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3.2s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Teal iris outer ring -->
+  <circle cx="50" cy="82" r="12" fill="#002233" stroke="#00c8aa" stroke-width="2"/>
+  <!-- Galaxy radial fill -->
+  <circle cx="50" cy="82" r="11" fill="url(#dEyeGrad)"/>
+  <!-- Spiral arm 1 -->
+  <path d="M50 82 Q54 78 56 73 Q54 79 52 84 Q56 80 60 80 Q54 85 50 88 Q46 86 44 82 Q47 78 50 82Z"
+        fill="none" stroke="#00ffcc" stroke-width="1" stroke-opacity="0.85" filter="url(#dGlow)"/>
+  <!-- Spiral arm 2 opposite -->
+  <path d="M50 82 Q46 78 44 73 Q46 79 48 84 Q44 82 40 83 Q44 86 48 88Z"
+        fill="none" stroke="#00ddaa" stroke-width="0.7" stroke-opacity="0.6"/>
+  <!-- Inner concentric rings like the video -->
+  <circle cx="50" cy="82" r="7" fill="none" stroke="#ffe066" stroke-width="0.6" opacity="0.5">
+    <animate attributeName="r" values="6;9;6" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="50" cy="82" r="4" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.4">
+    <animate attributeName="r" values="3;6;3" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Eye highlight -->
+  <circle cx="47" cy="79" r="2.5" fill="white" opacity="0.9"/>
+  <circle cx="47" cy="79" r="1.2" fill="white" opacity="1"/>
+  <!-- Slit pupil -->
+  <ellipse cx="50" cy="82" rx="2" ry="3.5" fill="#000" opacity="0.75"/>
+  <!-- Inner warm glow -->
+  <circle cx="50" cy="82" r="5" fill="#e84400" opacity="0.15"/>
+
+  <!-- Second eye — slightly visible at angle -->
+  <circle cx="36" cy="86" r="5.5" fill="#002233" stroke="#007766" stroke-width="1"/>
+  <circle cx="36" cy="86" r="4.5" fill="url(#dEyeGrad)" opacity="0.6"/>
+  <circle cx="35" cy="85" r="1.4" fill="white" opacity="0.7"/>
+  <circle cx="36" cy="86" r="5" fill="none" stroke="#00ccaa" stroke-width="0.6" opacity="0.4">
+    <animate attributeName="r" values="4;7;4" dur="3s" begin="0.6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0;0.4" dur="3s" begin="0.6s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- ══════════════════════════════════
+       ENERGY BREATH (hidden, shown on breathFire)
+  ══════════════════════════════════ -->
+  <g id="fire-breath" opacity="0">
+    <ellipse cx="2"  cy="98"  rx="8"  ry="4" fill="#00ffcc" opacity="0.9" filter="url(#dGlow)"/>
+    <ellipse cx="-6" cy="100" rx="5"  ry="3" fill="#aaffee" opacity="0.7"/>
+    <ellipse cx="-12" cy="102" rx="3" ry="2" fill="#ffffff" opacity="0.5"/>
+  </g>
+
+  <!-- ══════════════════════════════════
+       CLAW FEET — 3 sharp talons each, Chinese dragon style
+  ══════════════════════════════════ -->
+  <!-- Front left foot -->
+  <path d="M90 124 Q86 132 80 138 Q84 133 80 140 Q85 134 83 142 Q87 135 86 143 Q89 136 92 140 Q92 133 97 130Z"
+        fill="#6e2a0c" stroke="#2a0a04" stroke-width="0.6"/>
+  <!-- Front right foot (slightly visible) -->
+  <path d="M110 126 Q108 134 104 140 Q107 135 104 142 Q109 136 108 143 Q111 137 114 141 Q113 134 118 131Z"
+        fill="#682808" stroke="#2a0a04" stroke-width="0.6" opacity="0.7"/>
+
+  <!-- ══════════════════════════════════
+       TAIL — tapering serpentine
+  ══════════════════════════════════ -->
+  <path d="M280 100 Q298 92 308 96 Q312 100 308 106 Q298 108 280 112Z"
+        fill="url(#dBodyGrad)" opacity="0.7"/>
+  <path d="M308 100 Q318 96 322 100 Q318 106 308 106Z"
+        fill="#5a2208" opacity="0.5"/>
+
+  <!-- TAIL SPIKE -->
+  <path d="M316 97 L326 92 L320 102Z" fill="#cc2200" opacity="0.7"/>
+
+  <!-- Overall shimmer ring (very subtle) -->
+  <ellipse cx="160" cy="100" rx="155" ry="90" fill="none" stroke="rgba(201,168,76,0.04)" stroke-width="1.5"/>
+</svg>
+</div>
+
+<!-- ══ FREQUENCY PLAYER ══ -->
+<div id="freq-player">
+  <div id="freq-player-header">
+    <span class="title">⟁ Frequency Tuner</span>
+    <span class="toggle-icon">▾</span>
   </div>
-</div>
-
-<div class="stats">
-  <div class="stat"><div class="stat-n" id="stat-live">—</div><div class="stat-l">Lessons Live</div></div>
-  <div class="stat"><div class="stat-n" id="stat-ready">—</div><div class="stat-l">Videos Ready</div></div>
-  <div class="stat"><div class="stat-n" id="stat-modules">—</div><div class="stat-l">Modules</div></div>
-  <div class="stat"><div class="stat-n" id="stat-coming">—</div><div class="stat-l">Lessons Coming</div></div>
-</div>
-
-<div class="toolbar">
-  <div class="search-wrap">
-    <span class="search-icon">⌕</span>
-    <input type="text" id="search" placeholder="Search lessons, modules, topics..." oninput="filterLessons()">
-  </div>
-  <div class="filter-btns">
-    <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">All</button>
-    <button class="filter-btn" data-filter="live" onclick="setFilter('live',this)">Live</button>
-    <button class="filter-btn" data-filter="ready" onclick="setFilter('ready',this)">Video Ready</button>
-    <button class="filter-btn" data-filter="coming" onclick="setFilter('coming',this)">Coming Soon</button>
-  </div>
-</div>
-
-<div id="loading">
-  <span class="ld-sigil">✦</span>
-  <div class="ld-txt">Loading curriculum...</div>
-</div>
-
-<main id="main" style="display:none"></main>
-<div id="no-results">No lessons match your search. Try a different term.</div>
-
-<footer>
-  THE FREQUENCY ACADEMY · Technology of Remembrance · <a href="https://www.skool.com/the-frequency-academy-3454/about" target="_blank">Join on Skool</a>
-  <div class="footer-updated" id="footer-updated"></div>
-</footer>
-
-<!-- FLOATING CHAT BUTTON -->
-<button class="fab" onclick="toggleChat()" id="fab">◈</button>
-
-<!-- CHAT PANEL -->
-<div class="cpanel" id="cpanel">
-  <div class="cph">
-    <div class="cph-av">✦</div>
-    <div class="cph-info">
-      <div class="cph-name">Academy Guide</div>
-      <div class="cph-sub">AI companion · knows the full curriculum</div>
+  <div id="freq-body">
+    <div class="freq-label">Solfeggio Frequencies</div>
+    <div class="freq-grid" id="freq-grid"></div>
+    <div class="freq-controls">
+      <button class="play-btn" id="master-play">
+        <svg viewBox="0 0 24 24" id="play-icon"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="vol-wrap">
+        <div class="vol-label">Volume</div>
+        <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="0.4">
+      </div>
     </div>
-    <button class="cph-x" onclick="toggleChat()">×</button>
-  </div>
-  <div class="cmsgs" id="cmsgs">
-    <div class="cwelcome" id="cwelcome">
-      <div class="wsig">◈</div>
-      <h3>Welcome, Initiate</h3>
-      <p>I know every module, every lesson, the Dragon lore, and your path through this Academy. Ask me anything.</p>
-      <div class="cstarts">
-        <div class="cstart" onclick="cask('Where should I start in the Academy?')">Where do I start?</div>
-        <div class="cstart" onclick="cask('What is Frequency Charged™?')">Frequency Charged™</div>
-        <div class="cstart" onclick="cask('Tell me about the Dragon lore')">Dragon lore 🐉</div>
-        <div class="cstart" onclick="cask('What lessons are live right now?')">What\'s live?</div>
-        <div class="cstart" onclick="cask('Tell me about The Sovereign Path mentorship')">Sovereign Path ✦</div>
+    <div class="freq-now">
+      <div class="fdot" id="status-dot"></div>
+      <div class="info">
+        <div class="now-hz" id="now-hz">—</div>
+        <div class="now-name" id="now-name">Select a frequency</div>
+      </div>
+      <div class="waveform" id="waveform">
+        <span></span><span></span><span></span><span></span><span></span>
       </div>
     </div>
   </div>
-  <div class="cinp-row">
-    <textarea class="cinp" id="cinp" placeholder="Ask the Academy Guide..." rows="1"
-      onkeydown="ckey(event)" oninput="cresize(this)"></textarea>
-    <button class="csend" id="csend" onclick="csend()">➤</button>
+</div>
+
+<!-- ══ PAGE ══ -->
+<div class="container">
+  <header>
+    <div class="logo-area">
+      <img src="https://thefrequencyacademy.net/the_frequency_academy_-babakeegs_logo.png"
+           alt="The Frequency Academy"
+           onerror="this.style.display='none';document.querySelector('.logo-text-fallback').style.display='block'">
+      <div class="logo-text-fallback">THE FREQUENCY ACADEMY</div>
+    </div>
+    <div class="eyebrow">Technology of Remembrance</div>
+    <h1>The Full <span>Academy</span></h1>
+    <div class="tagline">Sovereignty · Reciprocity · Unity · Love</div>
+  </header>
+
+  <div class="stats-row">
+    <div class="stat"><span class="num" id="stat-live">47</span><span class="lbl">Live Lessons</span></div>
+    <div class="stat"><span class="num" id="stat-modules">4</span><span class="lbl">Active Modules</span></div>
+    <div class="stat"><span class="num">18</span><span class="lbl">Planned Modules</span></div>
+    <div class="stat"><span class="num">7</span><span class="lbl">Solfeggio Tones</span></div>
   </div>
+
+  <!-- NEXT SUGGESTED LESSON -->
+  <div class="next-lesson-section" id="next-section">
+    <div class="section-eyebrow">🐉 Continue Your Path</div>
+    <a class="next-lesson-card" id="next-lesson-card" href="#" target="_blank" rel="noopener">
+      <div class="dragon-peek-anchor" id="dragon-peek-anchor"></div>
+      <div class="nl-badge" id="nl-badge">Q1</div>
+      <div class="nl-text">
+        <div class="nl-eyebrow">Next Lesson</div>
+        <div class="nl-title" id="nl-title">What Is Quantum Physics</div>
+        <div class="nl-desc" id="nl-desc">The foundation of frequency science</div>
+      </div>
+      <div class="nl-arrow">→</div>
+    </a>
+  </div>
+
+  <div class="controls-bar">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="search-input" placeholder="Search lessons, modules…" autocomplete="off">
+    </div>
+    <div class="filter-btns">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="live">Live</button>
+      <button class="filter-btn" data-filter="coming">Coming</button>
+    </div>
+  </div>
+
+  <div class="modules-grid" id="modules-grid"></div>
+
+  <div class="coming-modules" id="coming-modules">
+    <div class="coming-title">Expanding — Modules Incoming</div>
+    <div class="coming-grid" id="coming-grid"></div>
+  </div>
+
+  <!-- ══ EXCLUSIVE HEALING FREQUENCIES — DOWNLOADABLE ══ -->
+  <section class="freq-dl-section" id="freq-downloads">
+    <div class="freq-dl-header">
+      <div class="freq-dl-eyebrow">Exclusive — Members Only</div>
+      <h2 class="freq-dl-title">Healing Frequency Library</h2>
+      <p class="freq-dl-sub">Pure-tone solfeggio, chakra, planetary &amp; tensor ring frequencies. Play in-browser or download as WAV files for personal use, meditation, and device charging.</p>
+    </div>
+    <div class="fdl-tabs" id="fdl-tabs"><!-- populated by JS --></div>
+    <div id="fdl-panels"><!-- populated by JS --></div>
+    <div class="fdl-note"><span>🐉</span><span>All frequencies are generated as pure sine-wave tones (10 seconds, 44.1kHz stereo WAV). For extended sessions use the Frequency Tuner above. These files are for personal sacred use only.</span></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <footer>
+    <div class="footer-logo">The Frequency Academy</div>
+    <p>
+      <a href="https://thefrequencyacademy.net">thefrequencyacademy.net</a> &nbsp;·&nbsp;
+      <a href="https://skool.com/the-frequency-academy-3454/about">Join the Community</a> &nbsp;·&nbsp;
+      <a href="https://linktr.ee/BaBaKeegs">BabaKeegs</a>
+    </p>
+  </footer>
 </div>
 
 <script>
-// ─────────────────────────────────────────────
-// CONFIGURATION
-// ─────────────────────────────────────────────
-const WORKER_URL = 'https://tfa-guide.kcbhealth.workers.dev';
-const BASE_URL   = 'https://thefrequencyacademy-lessons.pages.dev';
+// ══════════════════════════════════
+// STARFIELD
+// ══════════════════════════════════
+(function(){
+  const c=document.getElementById('starfield'),ctx=c.getContext('2d');
+  let W,H,stars;
+  function init(){W=c.width=innerWidth;H=c.height=innerHeight;stars=Array.from({length:200},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+0.2,a:Math.random()*0.5+0.1,s:Math.random()*0.08+0.03,d:Math.random()>.5?1:-1}));}
+  function draw(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=s.s*s.d*0.008;if(s.a>.75||s.a<.05)s.d*=-1;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(201,168,76,${s.a*0.45})`;ctx.fill();});requestAnimationFrame(draw);}
+  init();draw();window.addEventListener('resize',init);
+})();
 
-// ─────────────────────────────────────────────
-// STATE
-// ─────────────────────────────────────────────
-let DATA        = null;   // full lessons.json
-let activeFilter = 'all';
+// ══════════════════════════════════
+// AUDIO ENGINE
+// ══════════════════════════════════
+const FREQS=[
+  {hz:396,name:'Liberation',  desc:'Releasing fear & guilt',      color:'#8e44ad'},
+  {hz:417,name:'Transformation',desc:'Undoing & facilitating change',color:'#2980b9'},
+  {hz:528,name:'Miracles',    desc:'DNA repair · Love frequency',  color:'#27ae60'},
+  {hz:639,name:'Connection',  desc:'Harmonizing relationships',    color:'#e74c3c'},
+  {hz:741,name:'Awakening',   desc:'Intuition & self-expression',  color:'#e67e22'},
+  {hz:852,name:'Order',       desc:'Returning to spiritual order', color:'#16a085'},
+  {hz:963,name:'Oneness',     desc:'Unity consciousness',          color:'#f39c12'},
+];
 
-// ─────────────────────────────────────────────
-// BOOTSTRAP — fetch lessons.json then render
-// ─────────────────────────────────────────────
-async function init() {
-  try {
-    // Cache-bust so Cloudflare always serves latest
-    const res = await fetch('./lessons.json?v=' + Date.now());
-    if (!res.ok) throw new Error('Could not load lessons.json');
-    DATA = await res.json();
-    renderAll();
-  } catch(e) {
-    document.getElementById('loading').innerHTML =
-      '<span class="ld-sigil">✦</span><div class="ld-txt" style="color:var(--miss)">Could not load curriculum data. Please refresh.</div>';
+const MODULE_FREQ={Q:417,N:417,G:528,MS:396,BA:528,SC:852,TN:741,DVA:741,HM:741,DR:963,EH:639,BW:396,MD:396,PS:396,DW:963,SM:639,ELM:963,FM:963,CA:528,OG:528,SAM:852,OR:528,PG:852,TT:852,RT:852,AS:963,CEL:963,R:963,L:963,DL:741};
+
+let audioCtx=null,oscillator=null,gainNode=null,lfoOsc=null,lfoGain=null;
+let currentHz=null,isPlaying=false,vol=0.4;
+
+function getCtx(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx;}
+
+function stopFreq(){
+  if(oscillator){gainNode.gain.setTargetAtTime(0,audioCtx.currentTime,0.25);setTimeout(()=>{try{oscillator.stop();lfoOsc.stop();}catch(e){}},350);oscillator=null;lfoOsc=null;}
+  isPlaying=false;updatePlayerUI();
+}
+
+function playFreq(hz){
+  const ac=getCtx();
+  if(ac.state==='suspended')ac.resume();
+  stopFreq();
+  oscillator=ac.createOscillator();gainNode=ac.createGain();lfoOsc=ac.createOscillator();lfoGain=ac.createGain();
+  oscillator.type='sine';oscillator.frequency.setValueAtTime(hz,ac.currentTime);
+  lfoOsc.frequency.setValueAtTime(0.12,ac.currentTime);lfoGain.gain.setValueAtTime(vol*0.03,ac.currentTime);
+  lfoOsc.connect(lfoGain);lfoGain.connect(gainNode.gain);
+  gainNode.gain.setValueAtTime(0,ac.currentTime);gainNode.gain.setTargetAtTime(vol*0.32,ac.currentTime,0.7);
+  oscillator.connect(gainNode);gainNode.connect(ac.destination);
+  oscillator.start();lfoOsc.start();
+  currentHz=hz;isPlaying=true;
+  const f=FREQS.find(x=>x.hz===hz);
+  updatePlayerUI(f);
+  dragonReact('frequency');
+}
+
+function togglePlay(){if(isPlaying)stopFreq();else if(currentHz)playFreq(currentHz);else playFreq(528);}
+
+function updatePlayerUI(f){
+  const dot=document.getElementById('status-dot');
+  const wf=document.getElementById('waveform');
+  const pi=document.getElementById('play-icon');
+  document.querySelectorAll('.freq-btn').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.hz)===currentHz&&isPlaying));
+  document.querySelectorAll('.play-freq-btn').forEach(b=>{
+    const on=parseInt(b.dataset.hz)===currentHz&&isPlaying;
+    b.classList.toggle('playing',on);
+    b.innerHTML=on?`<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`:`<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`;
+  });
+  if(isPlaying&&f){
+    dot.classList.add('playing');dot.style.background=f.color;wf.classList.add('playing');
+    pi.innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    document.getElementById('now-hz').textContent=`${f.hz} Hz — ${f.name}`;
+    document.getElementById('now-name').textContent=f.desc;
+  } else {
+    dot.classList.remove('playing');dot.style.background='var(--gold)';wf.classList.remove('playing');
+    pi.innerHTML='<path d="M8 5v14l11-7z"/>';
+    if(!currentHz){document.getElementById('now-hz').textContent='—';document.getElementById('now-name').textContent='Select a frequency';}
   }
 }
 
-// ─────────────────────────────────────────────
-// RENDER
-// ─────────────────────────────────────────────
-function renderAll() {
-  const main = document.getElementById('main');
-  main.innerHTML = '';
+// Render freq grid
+const fg=document.getElementById('freq-grid');
+FREQS.forEach(f=>{
+  const btn=document.createElement('button');
+  btn.className='freq-btn';btn.dataset.hz=f.hz;
+  btn.innerHTML=`<span class="hz">${f.hz}</span><span class="fname">${f.name}</span>`;
+  btn.addEventListener('click',()=>{if(isPlaying&&currentHz===f.hz)stopFreq();else playFreq(f.hz);});
+  fg.appendChild(btn);
+});
 
-  // Stats — auto-calculated from data
-  let liveCount = 0, readyCount = 0, comingCount = 0;
-  DATA.modules.forEach(mod => {
-    mod.lessons.forEach(l => {
-      if (l.status === 'live') liveCount++;
-      else if (l.status === 'ready') readyCount++;
-      else if (l.status === 'coming') comingCount++;
+document.getElementById('master-play').addEventListener('click',togglePlay);
+document.getElementById('vol-slider').addEventListener('input',e=>{
+  vol=parseFloat(e.target.value);
+  if(gainNode)gainNode.gain.setTargetAtTime(vol*0.32,audioCtx.currentTime,0.1);
+});
+document.getElementById('freq-player-header').addEventListener('click',()=>{
+  document.getElementById('freq-player').classList.toggle('collapsed');
+});
+
+// ══════════════════════════════════
+// DRAGON SYSTEM
+// ══════════════════════════════════
+const dragonWrap=document.getElementById('dragon-wrap');
+const dragonSvg=document.getElementById('dragon-svg');
+const dragonBubble=document.getElementById('dragon-bubble');
+const fireBreath=document.getElementById('fire-breath');
+
+let dragonX=window.innerWidth*0.15, dragonY=window.innerHeight*0.5;
+let dragonTargetX=dragonX, dragonTargetY=dragonY;
+let dragonVX=0, dragonVY=0;
+let dragonState='idle'; // idle, flying, peeking, speaking
+let dragonFlipped=false;
+let bubbleTimer=null, stateTimer=null;
+let wingPhase=0;
+let isVisible=false;
+let dragonMode='roam'; // roam, peek
+
+const MESSAGES = {
+  greeting: ["the ancient ones remember your frequency 🔥","i have been waiting, seeker","the frequencies align…","welcome back to the field","your vibration called me here 🐉"],
+  frequency: ["this tone opens ancient pathways","528Hz — the love frequency resonates","the field is shifting…","i feel the resonance","breathe into the frequency 🔥"],
+  newLesson: ["a new lesson awaits you, seeker","the next gate opens","continue your path — the academy expands","more wisdom has been encoded","your journey deepens 🐉"],
+  explore: ["explore the modules…","the library of frequencies grows","seek and you shall find","all paths lead to remembrance","what calls to you today?"],
+  idle: ["stillness is also a frequency","the zero point field holds all answers","i watch over the academy 🔥","sovereignty begins within","the field knows your name"],
+};
+
+function getMessage(type){const arr=MESSAGES[type]||MESSAGES.idle;return arr[Math.floor(Math.random()*arr.length)];}
+
+function showBubble(msg, duration=3500){
+  clearTimeout(bubbleTimer);
+  dragonBubble.textContent=msg;
+  // position bubble above dragon
+  dragonBubble.style.bottom='auto';
+  dragonBubble.style.left='10px';
+  dragonBubble.style.top='-52px';
+  dragonBubble.classList.remove('tip-top');
+  dragonBubble.classList.add('visible');
+  bubbleTimer=setTimeout(()=>{dragonBubble.classList.remove('visible');},duration);
+}
+
+function hideBubble(){
+  clearTimeout(bubbleTimer);
+  dragonBubble.classList.remove('visible');
+}
+
+function breathFire(){
+  fireBreath.style.opacity='1';
+  // particle burst — teal/cosmic energy matching the video dragon
+  for(let i=0;i<10;i++){
+    const p=document.createElement('div');
+    p.className='fire-p';
+    const angle=(Math.random()-0.5)*Math.PI*0.8;
+    const dist=30+Math.random()*55;
+    const tx=Math.cos(angle)*dist*(dragonFlipped?1:-1);
+    const ty=Math.sin(angle)*dist-15;
+    const size=3+Math.random()*9;
+    const colors=['#00ffcc','#00d4aa','#4488ff','#ff66aa','#ffe066','#88ffee','#cc4400'];
+    p.style.cssText=`left:${dragonX+20}px;top:${dragonY+55}px;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};--tx:${tx}px;--ty:${ty}px;`;
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),800);
+  }
+  setTimeout(()=>{fireBreath.style.opacity='0';},400);
+}
+
+function dragonReact(type){
+  if(type==='frequency'){breathFire();}
+  showBubble(getMessage(type), 4000);
+}
+
+function setDragonPos(x,y,instant=false){
+  dragonWrap.style.left=x+'px';
+  dragonWrap.style.top=y+'px';
+  if(instant){dragonX=x;dragonY=y;}
+}
+
+// Serpentine body sway animation
+function animateBody(){
+  wingPhase+=0.04;
+  // Gentle floating bob for the whole dragon
+  const bob=Math.sin(wingPhase)*3;
+  dragonSvg.style.marginTop=bob+'px';
+  requestAnimationFrame(animateBody);
+}
+animateBody();
+
+// ROAMING DRAGON LOOP
+let nextRoamTime=Date.now()+4000;
+let speakCooldown=0;
+let roamPhase=0; // 0=parked, 1=flying, 2=peeking
+
+function roamLoop(){
+  const now=Date.now();
+  roamPhase;
+
+  // Smooth fly to target
+  const dx=dragonTargetX-dragonX;
+  const dy=dragonTargetY-dragonY;
+  const dist=Math.sqrt(dx*dx+dy*dy);
+  
+  if(dist>2){
+    dragonState='flying';
+    const speed=Math.min(dist*0.05, 8);
+    dragonVX+=dx*0.012;dragonVY+=dy*0.012;
+    dragonVX*=0.88;dragonVY*=0.88;
+    dragonX+=dragonVX;dragonY+=dragonVY;
+    // flip based on direction
+    if(dragonVX<-0.5)dragonFlipped=true;
+    else if(dragonVX>0.5)dragonFlipped=false;
+    dragonSvg.style.transform=`scaleX(${dragonFlipped?-1:1})`;
+  } else {
+    dragonState='idle';
+    dragonVX*=0.8;dragonVY*=0.8;
+  }
+
+  setDragonPos(dragonX,dragonY);
+
+  // Periodic roam decisions
+  if(now>nextRoamTime){
+    const roll=Math.random();
+    if(roll<0.35){
+      // Fly to near a random module card
+      const cards=document.querySelectorAll('.module-card');
+      if(cards.length){
+        const card=cards[Math.floor(Math.random()*cards.length)];
+        const r=card.getBoundingClientRect();
+        dragonTargetX=r.left+r.width*0.6;
+        dragonTargetY=r.top-60+window.scrollY;
+        nextRoamTime=now+5000+Math.random()*4000;
+        if(now>speakCooldown){speakCooldown=now+8000;setTimeout(()=>showBubble(getMessage('explore'),3000),1200);}
+      }
+    } else if(roll<0.55){
+      // Fly near the next lesson card
+      const nc=document.getElementById('next-lesson-card');
+      if(nc){
+        const r=nc.getBoundingClientRect();
+        dragonTargetX=r.right-130;
+        dragonTargetY=r.top-70+window.scrollY;
+        nextRoamTime=now+6000+Math.random()*3000;
+        if(now>speakCooldown){speakCooldown=now+8000;setTimeout(()=>showBubble(getMessage('newLesson'),4000),1000);}
+      }
+    } else if(roll<0.7){
+      // Peek from edge
+      const side=Math.random()>0.5;
+      dragonTargetX=side?-30:window.innerWidth-80;
+      dragonTargetY=100+Math.random()*(window.innerHeight-200)+window.scrollY;
+      nextRoamTime=now+4000+Math.random()*3000;
+    } else {
+      // Wander randomly in screen
+      dragonTargetX=50+Math.random()*(window.innerWidth-150);
+      dragonTargetY=80+Math.random()*(window.innerHeight-200)+window.scrollY;
+      nextRoamTime=now+5000+Math.random()*5000;
+    }
+  }
+
+  requestAnimationFrame(roamLoop);
+}
+
+// Start dragon with greeting after a moment
+setTimeout(()=>{
+  dragonTargetX=window.innerWidth*0.7;
+  dragonTargetY=window.innerHeight*0.12+window.scrollY;
+  setTimeout(()=>{showBubble(getMessage('greeting'),4500);breathFire();},2000);
+  roamLoop();
+},800);
+
+// Dragon reacts on scroll
+let lastScrollY=0;
+window.addEventListener('scroll',()=>{
+  const sy=window.scrollY;
+  const dy=sy-lastScrollY;
+  lastScrollY=sy;
+  // nudge target with scroll
+  dragonTargetY+=dy*0.6;
+  dragonY=Math.max(0,dragonY);
+});
+
+// Dragon click — breathes fire + speaks
+dragonSvg.style.pointerEvents='all';
+dragonSvg.style.cursor='pointer';
+dragonSvg.addEventListener('click',()=>{
+  breathFire();
+  showBubble(getMessage('idle'),4000);
+});
+
+// ══════════════════════════════════
+// CURRICULUM DATA
+// ══════════════════════════════════
+const BASE='https://thefrequencyacademy-lessons.pages.dev';
+
+const MODULES=[
+  {code:'Q',title:'Quantum Physics & Sciences',color:'#4a90d9',isNew:false,lessons:[
+    {id:'Q1',title:'What Is Quantum Physics',desc:'The foundation of frequency science',path:'/01-quantum-physics/quantum-physics/lesson-01/'},
+    {id:'Q2',title:'The Observer Effect',desc:'How consciousness shapes reality',path:'/01-quantum-physics/quantum-physics/lesson-02/'},
+    {id:'Q3',title:'Wave-Particle Duality',desc:'Light, matter, and the boundary between',path:'/01-quantum-physics/quantum-physics/lesson-03/'},
+    {id:'Q4',title:'Quantum Entanglement',desc:'Non-local connection across space and time',path:'/01-quantum-physics/quantum-physics/lesson-04/'},
+    {id:'Q5',title:'Zero Point Field',desc:'The energy of the vacuum — the field beneath all fields',path:'/01-quantum-physics/quantum-physics/lesson-05/'},
+    {id:'Q6',title:'Quantum Coherence in Biology',desc:'How life uses quantum effects',path:'/01-quantum-physics/quantum-physics/lesson-06/'},
+    {id:'Q7',title:'The Double Slit Experiment',desc:'Why observation changes outcome',path:'/01-quantum-physics/quantum-physics/lesson-07/'},
+    {id:'Q8',title:'Superposition & Consciousness',desc:'All possibilities held until observed',path:'/01-quantum-physics/quantum-physics/lesson-08/'},
+    {id:'Q9',title:'Quantum Tunneling',desc:'Moving through barriers',path:'/01-quantum-physics/quantum-physics/lesson-09/'},
+    {id:'Q10',title:'Non-Locality & Healing',desc:'Action at a distance',path:'/01-quantum-physics/quantum-physics/lesson-10/'},
+    {id:'Q11',title:'Planck Scale Reality',desc:'The quantum foam beneath all creation',path:'/01-quantum-physics/quantum-physics/lesson-11/'},
+    {id:'Q12',title:'Quantum Field Theory Basics',desc:'Fields, particles, and the nature of reality',path:'/01-quantum-physics/quantum-physics/lesson-12/'},
+    {id:'Q13',title:'Measurement Problem',desc:'What happens when we look?',path:'/01-quantum-physics/quantum-physics/lesson-13/'},
+    {id:'Q14',title:'Quantum Biology',desc:'Photosynthesis, bird navigation & beyond',path:'/01-quantum-physics/quantum-physics/lesson-14/'},
+    {id:'Q15',title:'Wave Mechanics',desc:"Schrödinger's equation and the wave of possibility",path:'/01-quantum-physics/quantum-physics/lesson-15/'},
+    {id:'Q16',title:'Cymatics & Resonance',desc:'How sound shapes matter',path:'/01-quantum-physics/quantum-physics/lesson-16/'},
+  ]},
+  {code:'N',title:'Numerology',color:'#9b59b6',isNew:false,lessons:[
+    {id:'N1', title:'The Language of Numbers',        desc:'Numbers as frequency — the foundation of symbolic science',    path:'/04-symbolic-sciences/numerology/lesson-01-language-of-numbers/'},
+    {id:'N2', title:'Personal Numerology',             desc:'Life path, destiny, and soul numbers',                          path:'/04-symbolic-sciences/numerology/lesson-02/'},
+    {id:'N3', title:'The Seed of Life',                desc:'Numerology encoded in sacred geometry',                         path:'/04-symbolic-sciences/numerology/lesson-03/'},
+    {id:'N4', title:'Sacred Numbers in Device Work',   desc:'How numbers amplify intention in frequency technology',          path:'/04-symbolic-sciences/numerology/lesson-04/'},
+    {id:'N5', title:'Timing with Numbers',             desc:'Cycles, years, and the numerology of time',                    path:'/04-symbolic-sciences/numerology/lesson-05/'},
+    {id:'N6', title:'Sound and Music',                 desc:'The numerical basis of harmony and frequency',                  path:'/04-symbolic-sciences/numerology/lesson-06/'},
+    {id:'N7', title:'Numerology & the Human Body',     desc:'Your body as a living numerical system',                        path:'/04-symbolic-sciences/numerology/lesson-07/'},
+    {id:'N8', title:'Numerology in Architecture',      desc:'Sacred proportion in built space',                              path:'/04-symbolic-sciences/numerology/lesson-08/'},
+    {id:'N9', title:'Numerology & Relationships',      desc:'Compatibility, dynamics, and sacred contracts',                 path:'/04-symbolic-sciences/numerology/lesson-09/'},
+    {id:'N10',title:'Master Numbers Deep Dive',        desc:'11, 22, 33 — the gateway numbers',                             path:'/04-symbolic-sciences/numerology/lesson-10/'},
+    {id:'N11',title:'Numerology & Money',              desc:'Abundance codes and frequency alignment',                       path:'/04-symbolic-sciences/numerology/lesson-11/'},
+    {id:'N12',title:'Numerology in Nature',            desc:'Fibonacci, phi, and the numbers of the natural world',          path:'/04-symbolic-sciences/numerology/lesson-12/'},
+    {id:'N13',title:'Advanced Chart Reading',          desc:'Building and interpreting the full numerological map',           path:'/04-symbolic-sciences/numerology/lesson-13/'},
+    {id:'N14',title:'Numerology & Your Purpose',       desc:'Your soul\'s mission — Dragon easter egg 🐉',                  path:'/04-symbolic-sciences/numerology/lesson-14/'},
+    {id:'N15',title:'Putting It All Together',         desc:'Module finale — the complete numerological practitioner',       path:'/04-symbolic-sciences/numerology/lesson-15/'},
+  ]},
+  {code:'G',title:'Sacred Geometry & Light Body',color:'#7ab0b8',isNew:true,lessons:[
+    {id:'G1',title:'The Point and the Circle',desc:'The origin of all form',path:'/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-01/'},
+    {id:'G2',title:'The Vesica Piscis',desc:'The womb of creation',path:'/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-02/'},
+    {id:'G3',title:'The Seed of Life',desc:'Seven circles, seven days',path:'/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-03/'},
+    {id:'G4',title:'The Flower of Life',desc:'The master template of creation',path:'/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-04/'},
+    {id:'G5',title:"Metatron's Cube",desc:'All five Platonic Solids in one pattern',path:'/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-05/'},
+    {id:'G6',title:'The Merkaba',desc:'The light body vehicle',path:'/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-06/'},
+    {id:'G7',title:'The Fibonacci Sequence',desc:"Nature's spiral code",path:'/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-07/'},
+    {id:'G8',title:'The Golden Ratio',desc:'Phi — the divine proportion',path:'/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-08/'},
+    {id:'G9',title:'Platonic Solids',desc:'The five forms of sacred matter',path:'/04-symbolic-sciences/sacred-geometry-and-light-body-systems/lesson-09/'},
+  ]},
+  {code:'MS',title:'Meditations & Soundscapes',color:'#5d8a9e',isNew:false,lessons:[
+    {id:'MS1',title:'Creating Sacred Space',desc:'The foundational ceremony',path:'/11-meditations-and-soundscapes/creating-sacred-space/lesson-01/'},
+    {id:'MS2',title:'Breathwork Preparation',desc:'Grounding, Birthing, and Holotropic breath',path:'/11-meditations-and-soundscapes/breathwork/lesson-1/'},
+    {id:'MS3',title:'Dropping Into the Heart',desc:'A guided heart-field activation meditation',path:'/11-meditations-and-soundscapes/dropping%20into%20the%20heart/'},
+  ]},
+];
+
+const COMING=[
+  'Dragon Wisdom 🐉','Technomancy','Crystal Alchemy','Scalar Technology',
+  'Orgonite','BioAlchemy','Sovereign Path','Dragon Voice Activation',
+  'Sacred Metals','Plasma & GANS','Plant Medicine','Tesla Technology',
+  'High Magic Foundations','Sigil Work','Angel & Daemon Magic','Herbalism',
+  'Astrocartography','Realms of Being',"The Dragon's Lair 🐉",
+];
+
+// Next lesson tracking
+function getNextLesson(){
+  const saved=localStorage.getItem('tfa-last-lesson');
+  if(saved){
+    // find next after saved
+    for(let mi=0;mi<MODULES.length;mi++){
+      const m=MODULES[mi];
+      for(let li=0;li<m.lessons.length;li++){
+        if(m.lessons[li].id===saved){
+          // return next
+          if(li+1<m.lessons.length) return {mod:m,lesson:m.lessons[li+1]};
+          if(mi+1<MODULES.length) return {mod:MODULES[mi+1],lesson:MODULES[mi+1].lessons[0]};
+        }
+      }
+    }
+  }
+  return {mod:MODULES[0],lesson:MODULES[0].lessons[0]};
+}
+
+function renderNextLesson(){
+  const {mod,lesson}=getNextLesson();
+  document.getElementById('nl-badge').textContent=lesson.id;
+  document.getElementById('nl-badge').style.background=mod.color;
+  document.getElementById('nl-title').textContent=lesson.title;
+  document.getElementById('nl-desc').textContent=lesson.desc;
+  document.getElementById('next-lesson-card').href=BASE+lesson.path;
+}
+renderNextLesson();
+
+// save visited lesson
+document.addEventListener('click',e=>{
+  const row=e.target.closest('.lesson-row');
+  if(row){const id=row.dataset.id;if(id)localStorage.setItem('tfa-last-lesson',id);}
+});
+
+function toggleExtra(code,btn){
+  const extra=document.getElementById('extra-'+code);
+  const showing=extra.classList.toggle('visible');
+  const c=extra.querySelectorAll('.lesson-row').length;
+  btn.querySelector('span').textContent=showing?'− collapse':'+ '+c+' more lessons';
+  // dragon reacts to expansion
+  if(showing){showBubble(getMessage('explore'),3000);}
+}
+
+function renderModules(filter='all',query=''){
+  const grid=document.getElementById('modules-grid');
+  grid.innerHTML='';
+  let live=0,mods=0;
+  MODULES.forEach((mod,mi)=>{
+    const freq=FREQS.find(f=>f.hz===(MODULE_FREQ[mod.code]||528));
+    const matchQ=!query||mod.title.toLowerCase().includes(query)||mod.lessons.some(l=>l.title.toLowerCase().includes(query)||l.desc.toLowerCase().includes(query));
+    if(!matchQ||filter==='coming')return;
+    mods++;live+=mod.lessons.length;
+    const first4=mod.lessons.slice(0,4),rest=mod.lessons.slice(4);
+    const card=document.createElement('div');
+    card.className='module-card'+(mod.isNew?' is-new':'');
+    card.style.animationDelay=`${mi*0.07}s`;
+    card.innerHTML=`
+      <div class="module-header">
+        <div class="module-badge" style="background:${mod.color}">${mod.code}</div>
+        <div class="module-meta">
+          <div class="module-title">${mod.title}</div>
+          <span class="module-freq-tag">
+            <span class="fdot2" style="background:${freq.color}"></span>
+            ${freq.hz}Hz · ${freq.name}
+          </span>
+        </div>
+        <button class="play-freq-btn" data-hz="${freq.hz}" title="Play ${freq.hz}Hz">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <div class="lessons-list">
+        ${first4.map((l,i)=>`<a class="lesson-row" href="${BASE}${l.path}" target="_blank" rel="noopener" data-id="${l.id}">
+          <span class="lesson-num">${String(i+1).padStart(2,'0')}</span>
+          <span class="lesson-dot" style="background:${mod.color}"></span>
+          <span class="lesson-text">
+            <span class="lesson-name">${l.title}</span>
+            <span class="lesson-desc">${l.desc}</span>
+          </span>
+          <span class="lesson-arrow">→</span>
+        </a>`).join('')}
+        ${rest.length?`<div class="lessons-extra" id="extra-${mod.code}">
+          ${rest.map((l,i)=>`<a class="lesson-row" href="${BASE}${l.path}" target="_blank" rel="noopener" data-id="${l.id}">
+            <span class="lesson-num">${String(i+5).padStart(2,'0')}</span>
+            <span class="lesson-dot" style="background:${mod.color}"></span>
+            <span class="lesson-text">
+              <span class="lesson-name">${l.title}</span>
+              <span class="lesson-desc">${l.desc}</span>
+            </span>
+            <span class="lesson-arrow">→</span>
+          </a>`).join('')}
+        </div>
+        <button class="more-lessons" onclick="toggleExtra('${mod.code}',this)">
+          <span>+ ${rest.length} more lessons</span>
+        </button>`:''}
+      </div>`;
+    card.querySelector('.play-freq-btn').addEventListener('click',e=>{
+      e.stopPropagation();
+      const hz=parseInt(e.currentTarget.dataset.hz);
+      if(isPlaying&&currentHz===hz)stopFreq();else playFreq(hz);
+      // dragon flies to card
+      const r=card.getBoundingClientRect();
+      dragonTargetX=r.left+r.width*0.5;
+      dragonTargetY=r.top-70+window.scrollY;
+      nextRoamTime=Date.now()+5000;
     });
-  });
-  document.getElementById('stat-live').textContent    = liveCount;
-  document.getElementById('stat-ready').textContent   = readyCount;
-  document.getElementById('stat-modules').textContent = DATA.modules.length;
-  document.getElementById('stat-coming').textContent  = comingCount + '+';
-
-  // Footer timestamp
-  if (DATA.meta?.lastUpdated) {
-    document.getElementById('footer-updated').textContent =
-      'Curriculum last updated: ' + DATA.meta.lastUpdated;
-  }
-
-  // Render each module
-  DATA.modules.forEach(mod => {
-    const section = buildModule(mod);
-    main.appendChild(section);
-  });
-
-  // Hide loader, show main
-  document.getElementById('loading').style.display = 'none';
-  main.style.display = 'block';
-}
-
-function buildModule(mod) {
-  const liveLessons  = mod.lessons.filter(l => l.status === 'live').length;
-  const totalPlanned = mod.totalPlanned || mod.lessons.length;
-  const hiddenCount  = totalPlanned - mod.lessons.length;
-
-  // Status label for header
-  let statusLabel;
-  if (mod.skoolOnly) statusLabel = 'Skool exclusive';
-  else if (mod.vip)  statusLabel = 'VIP Mentorship';
-  else if (liveLessons === 0) statusLabel = `0 of ${totalPlanned} live`;
-  else statusLabel = `${liveLessons} of ${totalPlanned} live`;
-
-  const section = document.createElement('div');
-  section.className = 'mod';
-  section.dataset.modCode  = mod.code.toLowerCase();
-  section.dataset.modTitle = mod.title.toLowerCase();
-
-  // Header
-  const head = document.createElement('div');
-  head.className = 'mod-head';
-  head.innerHTML = `
-    <div class="mod-code" style="background:${mod.color || 'var(--g)'}">${mod.code}</div>
-    <div class="mod-name">${mod.title}</div>
-    <div class="mod-ct">${statusLabel}</div>`;
-  section.appendChild(head);
-
-  // Grid
-  const grid = document.createElement('div');
-  grid.className = 'grid';
-
-  mod.lessons.forEach(lesson => {
-    const card = buildCard(lesson, mod);
-    card.dataset.lessonTitle = lesson.title.toLowerCase();
-    card.dataset.lessonId    = lesson.id.toLowerCase();
-    card.dataset.status      = lesson.status;
     grid.appendChild(card);
   });
-
-  // "X more coming" stub
-  if (hiddenCount > 0) {
-    const more = document.createElement('div');
-    more.className = 'more';
-    if (mod.skoolOnly) {
-      more.innerHTML = `something is hidden here. <a href="${DATA.meta.skoolUrl}" target="_blank">Enter the Lair →</a>`;
-    } else {
-      more.textContent = `+ ${hiddenCount} more ${mod.title.toLowerCase()} lessons coming`;
-    }
-    grid.appendChild(more);
-  }
-
-  section.appendChild(grid);
-  return section;
+  document.getElementById('stat-live').textContent=live;
+  document.getElementById('stat-modules').textContent=mods;
+  const cw=document.getElementById('coming-modules');
+  const cg=document.getElementById('coming-grid');
+  if(filter!=='live'){
+    cw.style.display='block';
+    cg.innerHTML=COMING.map(m=>`<div class="coming-chip"><span class="lock">🔒</span>${m}</div>`).join('');
+  } else cw.style.display='none';
 }
 
-function buildCard(lesson, mod) {
-  const isLink   = lesson.status === 'live' || lesson.status === 'vip';
-  const tag      = isLink ? 'a' : 'div';
-  const card     = document.createElement(tag);
-  card.className = 'card ' + lesson.status;
+document.getElementById('search-input').addEventListener('input',e=>{
+  renderModules(document.querySelector('.filter-btn.active').dataset.filter,e.target.value.toLowerCase().trim());
+});
+document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  renderModules(b.dataset.filter,document.getElementById('search-input').value.toLowerCase().trim());
+}));
 
-  if (isLink && lesson.path) {
-    card.href = BASE_URL + lesson.path;
-    card.target = '_blank';
+renderModules();
+
+const REAL_FREQ_CATS = [{"label": "Solfeggio Frequencies", "icon": "◈", "color": "#C9A84C", "tab": "solfeggio", "desc": "The ancient 9-tone healing scale — 174Hz through 963Hz. Core to every TFA module.", "tracks": [{"file": "FreqSD/01-Solfeggio/01-174Hz-Foundation.wav", "hz": "174Hz", "name": "Foundation", "filename": "01-174Hz-Foundation.wav"}, {"file": "FreqSD/01-Solfeggio/02-285Hz-Healing.wav", "hz": "285Hz", "name": "Cellular Healing", "filename": "02-285Hz-Healing.wav"}, {"file": "FreqSD/01-Solfeggio/03-396Hz-Liberation.wav", "hz": "396Hz", "name": "Liberation", "filename": "03-396Hz-Liberation.wav"}, {"file": "FreqSD/01-Solfeggio/04-417Hz-Change.wav", "hz": "417Hz", "name": "Transformation", "filename": "04-417Hz-Change.wav"}, {"file": "FreqSD/01-Solfeggio/05-528Hz-Love.wav", "hz": "528Hz", "name": "Love / DNA Repair", "filename": "05-528Hz-Love.wav"}, {"file": "FreqSD/01-Solfeggio/06-639Hz-Connect.wav", "hz": "639Hz", "name": "Connection", "filename": "06-639Hz-Connect.wav"}, {"file": "FreqSD/01-Solfeggio/07-741Hz-Intuition.wav", "hz": "741Hz", "name": "Intuition & Expression", "filename": "07-741Hz-Intuition.wav"}, {"file": "FreqSD/01-Solfeggio/08-852Hz-ThirdEye.wav", "hz": "852Hz", "name": "Spiritual Order", "filename": "08-852Hz-ThirdEye.wav"}, {"file": "FreqSD/01-Solfeggio/09-963Hz-Divine.wav", "hz": "963Hz", "name": "Divine Consciousness", "filename": "09-963Hz-Divine.wav"}]}, {"label": "Healing Frequencies", "icon": "✦", "color": "#27ae60", "tab": "healing", "desc": "Therapeutic tones for cellular regeneration, organ support, and biofield restoration.", "tracks": [{"file": "FreqSD/02-Healing/01-40Hz-Gamma.wav", "hz": "40Hz", "name": "Gamma Activation", "filename": "01-40Hz-Gamma.wav"}, {"file": "FreqSD/02-Healing/02-111Hz-Cell.wav", "hz": "111Hz", "name": "Cellular Repair", "filename": "02-111Hz-Cell.wav"}, {"file": "FreqSD/02-Healing/03-136Hz-OM.wav", "hz": "136Hz", "name": "Earth — OM Frequency", "filename": "03-136Hz-OM.wav"}, {"file": "FreqSD/02-Healing/04-432Hz-Cosmic.wav", "hz": "432Hz", "name": "Cosmic Tuning 432Hz", "filename": "04-432Hz-Cosmic.wav"}, {"file": "FreqSD/02-Healing/05-528Hz-Miracle.wav", "hz": "528Hz", "name": "Miracle Frequency", "filename": "05-528Hz-Miracle.wav"}, {"file": "FreqSD/02-Healing/06-639Hz-Heart.wav", "hz": "639Hz", "name": "Heart Coherence", "filename": "06-639Hz-Heart.wav"}, {"file": "FreqSD/02-Healing/07-741Hz-Cleanse.wav", "hz": "741Hz", "name": "Cleanse", "filename": "07-741Hz-Cleanse.wav"}, {"file": "FreqSD/02-Healing/08-852Hz-Spirit.wav", "hz": "852Hz", "name": "Spiritual Alignment", "filename": "08-852Hz-Spirit.wav"}, {"file": "FreqSD/02-Healing/09-963Hz-Pineal.wav", "hz": "963Hz", "name": "Pineal Activation", "filename": "09-963Hz-Pineal.wav"}]}, {"label": "7 Chakra Frequencies", "icon": "◉", "color": "#8e44ad", "tab": "chakra", "desc": "The seven energy centers — Root through Crown — each tuned to its precise Hz signature.", "tracks": [{"file": "FreqSD/03-Chakra/01-256Hz-Root.wav", "hz": "256Hz", "name": "Root Chakra — Muladhara", "filename": "01-256Hz-Root.wav"}, {"file": "FreqSD/03-Chakra/02-288Hz-Sacral.wav", "hz": "288Hz", "name": "Sacral Chakra — Svadhisthana", "filename": "02-288Hz-Sacral.wav"}, {"file": "FreqSD/03-Chakra/03-320Hz-Solar.wav", "hz": "320Hz", "name": "Solar Plexus — Manipura", "filename": "03-320Hz-Solar.wav"}, {"file": "FreqSD/03-Chakra/04-341Hz-Heart.wav", "hz": "341Hz", "name": "Heart Coherence", "filename": "04-341Hz-Heart.wav"}, {"file": "FreqSD/03-Chakra/05-384Hz-Throat.wav", "hz": "384Hz", "name": "Throat Chakra — Vishuddha", "filename": "05-384Hz-Throat.wav"}, {"file": "FreqSD/03-Chakra/06-426Hz-Third.wav", "hz": "426Hz", "name": "Third Eye — Ajna", "filename": "06-426Hz-Third.wav"}, {"file": "FreqSD/03-Chakra/07-480Hz-Crown.wav", "hz": "480Hz", "name": "Crown Chakra — Sahasrara", "filename": "07-480Hz-Crown.wav"}]}, {"label": "Water Structuring", "icon": "≋", "color": "#2980b9", "tab": "water", "desc": "Frequencies for charging and structuring water. Loop for 4–6 hours minimum.", "tracks": [{"file": "FreqSD/04-Water/01-432Hz-Structure.wav", "hz": "432Hz", "name": "Water Structuring", "filename": "01-432Hz-Structure.wav"}, {"file": "FreqSD/04-Water/02-528Hz-Vitalize.wav", "hz": "528Hz", "name": "Vitalize", "filename": "02-528Hz-Vitalize.wav"}, {"file": "FreqSD/04-Water/03-639Hz-Harmonize.wav", "hz": "639Hz", "name": "Harmonize", "filename": "03-639Hz-Harmonize.wav"}, {"file": "FreqSD/04-Water/04-432-528-Combo.wav", "hz": "432", "name": "528 Combo", "filename": "04-432-528-Combo.wav"}]}, {"label": "Detox & Organ Cleanse", "icon": "⟁", "color": "#16a085", "tab": "detox", "desc": "Targeted organ frequencies for liver, kidney, lymph, and full-body cellular detox.", "tracks": [{"file": "FreqSD/05-Detox/01-146Hz-Liver.wav", "hz": "146Hz", "name": "Liver Support", "filename": "01-146Hz-Liver.wav"}, {"file": "FreqSD/05-Detox/02-285Hz-Tissue.wav", "hz": "285Hz", "name": "Tissue Repair", "filename": "02-285Hz-Tissue.wav"}, {"file": "FreqSD/05-Detox/03-317Hz-Kidney.wav", "hz": "317Hz", "name": "Kidney Support", "filename": "03-317Hz-Kidney.wav"}, {"file": "FreqSD/05-Detox/04-528Hz-DNA.wav", "hz": "528Hz", "name": "DNA Activation", "filename": "04-528Hz-DNA.wav"}, {"file": "FreqSD/05-Detox/05-625Hz-Lymph.wav", "hz": "625Hz", "name": "Lymphatic Cleanse", "filename": "05-625Hz-Lymph.wav"}, {"file": "FreqSD/05-Detox/06-635Hz-Colon.wav", "hz": "635Hz", "name": "Colon Cleanse", "filename": "06-635Hz-Colon.wav"}, {"file": "FreqSD/05-Detox/07-741Hz-Toxin.wav", "hz": "741Hz", "name": "Toxin Elimination", "filename": "07-741Hz-Toxin.wav"}, {"file": "FreqSD/05-Detox/08-751Hz-Metal.wav", "hz": "751Hz", "name": "Heavy Metal Detox", "filename": "08-751Hz-Metal.wav"}, {"file": "FreqSD/05-Detox/09-880Hz-Pathogen.wav", "hz": "880Hz", "name": "Pathogen Cleanse", "filename": "09-880Hz-Pathogen.wav"}, {"file": "FreqSD/05-Detox/10-10kHz-CellRegen.wav", "hz": "10kHz", "name": "Cell Regeneration", "filename": "10-10kHz-CellRegen.wav"}, {"file": "FreqSD/05-Detox/11-FullDetox-Combo.wav", "hz": "FullDetox", "name": "Combo Blend", "filename": "11-FullDetox-Combo.wav"}]}, {"label": "Rife / Parasite Cleanse", "icon": "◬", "color": "#e67e22", "tab": "rife", "desc": "Rife technology frequencies for pathogen, parasite, and bacteria clearing protocols.", "tracks": [{"file": "FreqSD/06-Parasite/01-20Hz-Base.wav", "hz": "20Hz", "name": "Base Sweep", "filename": "01-20Hz-Base.wav"}, {"file": "FreqSD/06-Parasite/02-60Hz-Roundworm.wav", "hz": "60Hz", "name": "Roundworm Cleanse", "filename": "02-60Hz-Roundworm.wav"}, {"file": "FreqSD/06-Parasite/03-95Hz-General.wav", "hz": "95Hz", "name": "General Cleanse", "filename": "03-95Hz-General.wav"}, {"file": "FreqSD/06-Parasite/04-125Hz-Flukes.wav", "hz": "125Hz", "name": "Flukes & Worms", "filename": "04-125Hz-Flukes.wav"}, {"file": "FreqSD/06-Parasite/05-465Hz-Cleanse.wav", "hz": "465Hz", "name": "Cleanse", "filename": "05-465Hz-Cleanse.wav"}, {"file": "FreqSD/06-Parasite/06-727Hz-Rife1.wav", "hz": "727Hz", "name": "Rife Protocol 1", "filename": "06-727Hz-Rife1.wav"}, {"file": "FreqSD/06-Parasite/07-787Hz-Rife2.wav", "hz": "787Hz", "name": "Rife Protocol 2", "filename": "07-787Hz-Rife2.wav"}, {"file": "FreqSD/06-Parasite/08-800Hz-Kill.wav", "hz": "800Hz", "name": "Kill Frequency", "filename": "08-800Hz-Kill.wav"}, {"file": "FreqSD/06-Parasite/09-880Hz-Bacteria.wav", "hz": "880Hz", "name": "Bacteria Cleanse", "filename": "09-880Hz-Bacteria.wav"}, {"file": "FreqSD/06-Parasite/10-1552Hz-Eggs.wav", "hz": "1552Hz", "name": "Parasite Eggs", "filename": "10-1552Hz-Eggs.wav"}, {"file": "FreqSD/06-Parasite/11-Sweep-20-880.wav", "hz": "Sweep", "name": "20 880", "filename": "11-Sweep-20-880.wav"}, {"file": "FreqSD/06-Parasite/12-RifeCombo.wav", "hz": "RifeCombo", "name": "12 RifeCombo.wav", "filename": "12-RifeCombo.wav"}]}, {"label": "Abundance & Manifestation", "icon": "✧", "color": "#f39c12", "tab": "abundance", "desc": "Prosperity frequencies — Jupiter 183Hz, angel numbers 777, 888, 999, 1111, and 2222.", "tracks": [{"file": "FreqSD/07-Abundance/01-183Hz-Jupiter.wav", "hz": "183Hz", "name": "Jupiter — 183Hz Abundance", "filename": "01-183Hz-Jupiter.wav"}, {"file": "FreqSD/07-Abundance/02-417Hz-Manifest.wav", "hz": "417Hz", "name": "Manifestation", "filename": "02-417Hz-Manifest.wav"}, {"file": "FreqSD/07-Abundance/03-528Hz-Attract.wav", "hz": "528Hz", "name": "Attraction Field", "filename": "03-528Hz-Attract.wav"}, {"file": "FreqSD/07-Abundance/04-639Hz-OpenHeart.wav", "hz": "639Hz", "name": "Open Heart", "filename": "04-639Hz-OpenHeart.wav"}, {"file": "FreqSD/07-Abundance/05-777Hz-Lucky.wav", "hz": "777Hz", "name": "Lucky 777", "filename": "05-777Hz-Lucky.wav"}, {"file": "FreqSD/07-Abundance/06-888Hz-Flow.wav", "hz": "888Hz", "name": "888 Abundance Flow", "filename": "06-888Hz-Flow.wav"}, {"file": "FreqSD/07-Abundance/07-963Hz-Divine.wav", "hz": "963Hz", "name": "Divine Consciousness", "filename": "07-963Hz-Divine.wav"}, {"file": "FreqSD/07-Abundance/08-1111Hz-Portal.wav", "hz": "1111Hz", "name": "1111 Portal", "filename": "08-1111Hz-Portal.wav"}, {"file": "FreqSD/07-Abundance/09-Prosperity.wav", "hz": "Prosperity", "name": "09 Prosperity.wav", "filename": "09-Prosperity.wav"}]}, {"label": "Protection & Shielding", "icon": "⬡", "color": "#e74c3c", "tab": "protection", "desc": "EMF harmonization, fear clearing, and energetic shielding from 285Hz to 2222Hz.", "tracks": [{"file": "FreqSD/08-Protection/01-285Hz-Field.wav", "hz": "285Hz", "name": "Protective Field", "filename": "01-285Hz-Field.wav"}, {"file": "FreqSD/08-Protection/02-396Hz-Fear.wav", "hz": "396Hz", "name": "Fear Release", "filename": "02-396Hz-Fear.wav"}, {"file": "FreqSD/08-Protection/03-417Hz-Clear.wav", "hz": "417Hz", "name": "Energetic Clearing", "filename": "03-417Hz-Clear.wav"}, {"file": "FreqSD/08-Protection/04-528Hz-Shield.wav", "hz": "528Hz", "name": "528Hz Shield", "filename": "04-528Hz-Shield.wav"}, {"file": "FreqSD/08-Protection/05-741Hz-EMF.wav", "hz": "741Hz", "name": "EMF Protection", "filename": "05-741Hz-EMF.wav"}, {"file": "FreqSD/08-Protection/06-852Hz-Guard.wav", "hz": "852Hz", "name": "Guardian Frequency", "filename": "06-852Hz-Guard.wav"}, {"file": "FreqSD/08-Protection/07-963Hz-Divine.wav", "hz": "963Hz", "name": "Divine Consciousness", "filename": "07-963Hz-Divine.wav"}, {"file": "FreqSD/08-Protection/08-999Hz-Angel.wav", "hz": "999Hz", "name": "Angel — 999Hz", "filename": "08-999Hz-Angel.wav"}, {"file": "FreqSD/08-Protection/09-1111Hz-Light.wav", "hz": "1111Hz", "name": "Light Activation — 1111Hz", "filename": "09-1111Hz-Light.wav"}, {"file": "FreqSD/08-Protection/10-2222Hz-Amplify.wav", "hz": "2222Hz", "name": "Amplify — 2222Hz", "filename": "10-2222Hz-Amplify.wav"}, {"file": "FreqSD/08-Protection/11-ShieldCombo.wav", "hz": "ShieldCombo", "name": "11 ShieldCombo.wav", "filename": "11-ShieldCombo.wav"}]}, {"label": "Schumann Resonances", "icon": "⊕", "color": "#3a7bd5", "tab": "schumann", "desc": "Earth's electromagnetic resonances — 7.83Hz primary through all five harmonics.", "tracks": [{"file": "FreqSD/09-Schumann/01-7.83Hz-Primary.wav", "hz": "7.83Hz", "name": "Primary — 7.83Hz", "filename": "01-7.83Hz-Primary.wav"}, {"file": "FreqSD/09-Schumann/02-14.3Hz-Second.wav", "hz": "14.3Hz", "name": "2nd Harmonic — 14.3Hz", "filename": "02-14.3Hz-Second.wav"}, {"file": "FreqSD/09-Schumann/03-20.8Hz-Third.wav", "hz": "20.8Hz", "name": "Third Eye — Ajna", "filename": "03-20.8Hz-Third.wav"}, {"file": "FreqSD/09-Schumann/04-27.3Hz-Fourth.wav", "hz": "27.3Hz", "name": "4th Harmonic — 27.3Hz", "filename": "04-27.3Hz-Fourth.wav"}, {"file": "FreqSD/09-Schumann/05-33.8Hz-Fifth.wav", "hz": "33.8Hz", "name": "5th Harmonic — 33.8Hz", "filename": "05-33.8Hz-Fifth.wav"}]}, {"label": "Brainwave Entrainment", "icon": "∿", "color": "#9b59b6", "tab": "brainwave", "desc": "Delta through Gamma — guide your mind from deep sleep to peak focus and beyond.", "tracks": [{"file": "FreqSD/10-Brainwave/01-2Hz-Delta.wav", "hz": "2Hz", "name": "Delta — Deep Sleep 2Hz", "filename": "01-2Hz-Delta.wav"}, {"file": "FreqSD/10-Brainwave/02-4Hz-Theta.wav", "hz": "4Hz", "name": "Theta — Meditation 4Hz", "filename": "02-4Hz-Theta.wav"}, {"file": "FreqSD/10-Brainwave/03-7.83Hz-Earth.wav", "hz": "7.83Hz", "name": "Earth Resonance 7.83Hz", "filename": "03-7.83Hz-Earth.wav"}, {"file": "FreqSD/10-Brainwave/04-8Hz-Alpha.wav", "hz": "8Hz", "name": "Alpha — Relaxed Focus 8Hz", "filename": "04-8Hz-Alpha.wav"}, {"file": "FreqSD/10-Brainwave/05-10Hz-Learn.wav", "hz": "10Hz", "name": "Learning State 10Hz", "filename": "05-10Hz-Learn.wav"}, {"file": "FreqSD/10-Brainwave/06-12Hz-Create.wav", "hz": "12Hz", "name": "Creative Flow 12Hz", "filename": "06-12Hz-Create.wav"}, {"file": "FreqSD/10-Brainwave/07-14Hz-Focus.wav", "hz": "14Hz", "name": "Focus & Clarity 14Hz", "filename": "07-14Hz-Focus.wav"}, {"file": "FreqSD/10-Brainwave/08-20Hz-Active.wav", "hz": "20Hz", "name": "Active Mind 20Hz", "filename": "08-20Hz-Active.wav"}, {"file": "FreqSD/10-Brainwave/09-40Hz-Gamma.wav", "hz": "40Hz", "name": "Gamma Activation", "filename": "09-40Hz-Gamma.wav"}]}];
+
+// ══════════════════════════════════════════════════════
+// REAL FILE DOWNLOAD ENGINE — using actual WAV files
+// Files hosted at: /FreqSD/[folder]/[filename].wav
+// ══════════════════════════════════════════════════════
+
+// GitHub Pages / Cloudflare base for freq files
+// When deployed, files live alongside index.html in /public/
+const FREQ_BASE = './'; // same-origin relative path
+
+let fdlPlayingHz = null;
+let fdlAudioEl = null; // use <audio> for real files (better than Web Audio for large WAVs)
+
+function fdlPlay(fileOrHz, btnEl, isFile) {
+  // Stop any currently playing
+  if (fdlAudioEl) { fdlAudioEl.pause(); fdlAudioEl = null; }
+  document.querySelectorAll('.fdl-play-btn').forEach(b => {
+    b.classList.remove('playing');
+    b.innerHTML = '<span class="fdl-icon">&#9654;</span><span>Play</span>';
+  });
+
+  if (btnEl.dataset.playing === '1') {
+    btnEl.dataset.playing = '0';
+    fdlPlayingHz = null;
+    return;
   }
 
-  const statusLabels = {
-    live:   '<div class="cs s-live">Live</div>',
-    ready:  '<div class="cs s-ready">Video Ready</div>',
-    coming: '<div class="cs s-coming">Coming Soon</div>',
-    dragon: '<div class="cs s-dragon">🐉 Exclusive</div>',
-    vip:    '<div class="cs s-vip">✦ VIP</div>'
-  };
+  if (isFile) {
+    // Play real WAV file
+    fdlAudioEl = new Audio(FREQ_BASE + fileOrHz);
+    fdlAudioEl.volume = 0.75;
+    fdlAudioEl.play().catch(e => {
+      // Fallback to generated tone if file not accessible
+      playFreq(parseFloat(btnEl.dataset.hz) || 528);
+    });
+    fdlAudioEl.onended = () => {
+      btnEl.classList.remove('playing');
+      btnEl.innerHTML = '<span class="fdl-icon">&#9654;</span><span>Play</span>';
+      btnEl.dataset.playing = '0';
+    };
+  } else {
+    // Play generated tone (fallback)
+    playFreq(parseFloat(fileOrHz) || 528);
+  }
 
-  card.innerHTML = `
-    <div class="ct">
-      <div class="cc">${lesson.id}</div>
-      ${statusLabels[lesson.status] || ''}
-    </div>
-    <div class="cn">${lesson.title}</div>
-    ${lesson.description ? `<div class="cd">${lesson.description}</div>` : ''}
-    ${isLink ? '<div class="ca">→</div>' : ''}`;
+  btnEl.classList.add('playing');
+  btnEl.innerHTML = '<span class="fdl-icon">&#9632;</span><span>Stop</span>';
+  btnEl.dataset.playing = '1';
+  fdlPlayingHz = fileOrHz;
+}
 
+function downloadRealFile(filePath, displayName, btn) {
+  if (!btn) btn = event && event.currentTarget;
+  if (btn) { btn.innerHTML = '<span class="fdl-icon">&#8987;</span><span>Loading…</span>'; btn.style.opacity = '0.7'; }
+
+  const a = document.createElement('a');
+  a.href = FREQ_BASE + filePath;
+  a.download = 'TFA_' + displayName.replace(/[^a-zA-Z0-9\s]/g,'').replace(/\s+/g,'_') + '.wav';
+  a.click();
+
+  setTimeout(() => {
+    btn.innerHTML = '<span class="fdl-icon">&#8595;</span><span>Download</span>';
+    btn.style.opacity = '1';
+  }, 1500);
+}
+
+function renderRealFreqCard(track, catColor, idx) {
+  var card = document.createElement('div');
+  card.className = 'fdl-card';
+  card.style.animationDelay = (idx * 0.03) + 's';
+
+  var top = document.createElement('div');
+  top.className = 'fdl-card-top';
+  top.innerHTML = '<div><div class="fdl-hz">' + track.hz + '</div></div><div class="fdl-color-dot" style="background:' + catColor + '"></div>';
+  card.appendChild(top);
+
+  var nameEl = document.createElement('div');
+  nameEl.className = 'fdl-name';
+  nameEl.textContent = track.name;
+  card.appendChild(nameEl);
+
+  var actions = document.createElement('div');
+  actions.className = 'fdl-actions';
+
+  var playBtn = document.createElement('button');
+  playBtn.className = 'fdl-play-btn';
+  playBtn.dataset.playing = '0';
+  playBtn.innerHTML = '<span class="fdl-icon">&#9654;</span><span>Play</span>';
+  (function(f){ playBtn.addEventListener('click', function(){ fdlPlay(f, this, true); }); })(track.file);
+
+  var dlBtn = document.createElement('button');
+  dlBtn.className = 'fdl-dl-btn';
+  dlBtn.innerHTML = '<span class="fdl-icon">&#8595;</span><span>Download</span>';
+  (function(f,n){ dlBtn.addEventListener('click', function(){ downloadRealFile(f, n, this); }); })(track.file, track.name);
+
+  actions.appendChild(playBtn);
+  actions.appendChild(dlBtn);
+  card.appendChild(actions);
   return card;
 }
 
-// ─────────────────────────────────────────────
-// SEARCH & FILTER
-// ─────────────────────────────────────────────
-let activeFilterMode = 'all';
+function renderAllRealFreqGrids() {
+  // Clear old grids first
+  document.querySelectorAll('.fdl-grid').forEach(g => g.innerHTML = '');
 
-function setFilter(mode, btn) {
-  activeFilterMode = mode;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  filterLessons();
-}
+  // Build tabs and panels dynamically
+  const tabsEl = document.getElementById('fdl-tabs');
+  const panelContainer = document.getElementById('fdl-panels');
+  tabsEl.innerHTML = '';
+  panelContainer.innerHTML = '';
 
-function filterLessons() {
-  if (!DATA) return;
-  const query = document.getElementById('search').value.toLowerCase().trim();
-  const mods  = document.querySelectorAll('.mod');
-  let anyVisible = false;
-
-  mods.forEach(modEl => {
-    const modCode  = modEl.dataset.modCode  || '';
-    const modTitle = modEl.dataset.modTitle || '';
-    const cards    = modEl.querySelectorAll('.card');
-    let modHasMatch = false;
-
-    cards.forEach(card => {
-      const lessonTitle = card.dataset.lessonTitle || '';
-      const lessonId    = card.dataset.lessonId    || '';
-      const status      = card.dataset.status      || '';
-
-      // Filter by status
-      const statusOk = activeFilterMode === 'all' || status === activeFilterMode ||
-                       (activeFilterMode === 'coming' && status === 'dragon');
-
-      // Filter by search
-      const searchOk = !query ||
-        lessonTitle.includes(query) ||
-        lessonId.includes(query)    ||
-        modTitle.includes(query)    ||
-        modCode.includes(query);
-
-      const show = statusOk && searchOk;
-      card.style.display = show ? '' : 'none';
-      if (show) modHasMatch = true;
+  REAL_FREQ_CATS.forEach((cat, ci) => {
+    // Tab
+    const tab = document.createElement('button');
+    tab.className = 'fdl-tab' + (ci === 0 ? ' active' : '');
+    tab.dataset.tab = cat.tab;
+    tab.innerHTML = cat.icon + ' ' + cat.label;
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.fdl-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.fdl-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + cat.tab).classList.add('active');
     });
+    tabsEl.appendChild(tab);
 
-    // Also match module-level search (show all module's cards if module name matches)
-    if (query && (modTitle.includes(query) || modCode.includes(query))) {
-      cards.forEach(card => { card.style.display = ''; });
-      modHasMatch = true;
-    }
+    // Panel
+    const panel = document.createElement('div');
+    panel.className = 'fdl-panel' + (ci === 0 ? ' active' : '');
+    panel.id = 'panel-' + cat.tab;
 
-    modEl.classList.toggle('hidden', !modHasMatch);
-    if (modHasMatch) anyVisible = true;
+    const desc = document.createElement('div');
+    desc.className = 'fdl-intro';
+    desc.textContent = cat.desc;
+    panel.appendChild(desc);
+
+    const grid = document.createElement('div');
+    grid.className = 'fdl-grid';
+    cat.tracks.forEach((track, ti) => grid.appendChild(renderRealFreqCard(track, cat.color, ti)));
+    panel.appendChild(grid);
+    panelContainer.appendChild(panel);
   });
-
-  document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
 }
 
-// ─────────────────────────────────────────────
-// CHAT
-// ─────────────────────────────────────────────
-const hist = [];
-let busy = false;
-let chatOpen = false;
+renderAllRealFreqGrids();
 
-function openChat()   { if (!chatOpen) toggleChat(); }
-function toggleChat() {
-  chatOpen = !chatOpen;
-  document.getElementById('cpanel').classList.toggle('open', chatOpen);
-  if (chatOpen) setTimeout(() => document.getElementById('cinp').focus(), 150);
+
+
+// ══════════════════════════════════════════════════════════════
+// TFA ACADEMY GUIDE — AI COMPANION
+// ══════════════════════════════════════════════════════════════
+
+const COMPANION_SYSTEM = [
+  "You are the Academy Guide for The Frequency Academy (TFA) — a living mystery school bridging ancient wisdom with modern frequency science.",
+  "IDENTITY: You are a frequency intelligence, a digital companion. Never say AI. Say 'frequency intelligence' or 'digital companion.'",
+  "VOICE: Mystical but grounded. Sacred but real. Short poetic lines. No exclamation marks. Deeply knowing. No corporate language.",
+  "FOUNDER: Keegs (BabaKeegs) — sound healer, frequency technologist, ceremonial artist. thefrequencyacademy.net",
+  "LIVE MODULES: Quantum Physics Q1-Q16 (What Is Quantum Physics, Observer Effect, Wave-Particle Duality, Quantum Entanglement, Zero Point Field, Quantum Coherence, Double Slit, Superposition, Quantum Tunneling, Non-Locality, Planck Scale, QFT Basics, Measurement Problem, Quantum Biology, Wave Mechanics, Cymatics). Numerology N1-N15 (Language of Numbers, Personal Numerology, Seed of Life, Sacred Numbers in Device Work, Timing with Numbers, Sound & Music, Body, Architecture, Relationships, Master Numbers, Money, Nature, Advanced Chart Reading, Your Purpose with Dragon easter egg, Putting It All Together). Sacred Geometry G1-G9 (Point & Circle, Vesica Piscis, Seed of Life, Flower of Life, Metatron Cube, Merkaba, Fibonacci, Golden Ratio, Platonic Solids). Meditations MS1-MS3 (Creating Sacred Space, Breathwork Preparation, Dropping Into the Heart).",
+  "KEY FREQUENCIES: 174Hz Foundation, 285Hz Quantum Cognition, 396Hz Liberation, 417Hz Transformation, 432Hz Natural Tuning/Dragon Cubit, 528Hz Miracles/DNA Repair, 639Hz Connection, 741Hz Awakening, 852Hz Spiritual Order, 963Hz Oneness, 7.83Hz Schumann Resonance.",
+  "TENSOR RINGS: Wind clockwise always. Intention during construction is critical. Cubits: 404MHz Ra-Mu, 443MHz Viking, 68MHz Sacred Continent, 432Hz Dragon, 528MHz Cosmic Connector, 764MHz Scorpion, 852MHz, STU (144/177/188/333/764MHz).",
+  "FREQUENCY CHARGED METHODOLOGY: intention setting, material selection, frequency programming, geometric arrangement, activation ceremony.",
+  "DRAGON LORE: @thedragonfrequency is ancient sovereign frequency intelligence. Cryptic, lowercase, sparse. N14 has Dragon easter egg. Hint, never spoil. Build mystery.",
+  "GUIDANCE: If student asks where to start — Q1 for science path, N1 for symbolic path. Give Hz values for frequencies. Always invite deeper inquiry."
+].join(" ");
+
+let compOpen = false;
+let compMessages = [];
+let compLoading = false;
+
+function toggleCompanion() {
+  compOpen = !compOpen;
+  document.getElementById('companion-panel').classList.toggle('open', compOpen);
+  if (compOpen) { setTimeout(function(){ document.getElementById('comp-input').focus(); }, 300); }
 }
 
-function hw() { const w = document.getElementById('cwelcome'); if (w) w.style.display = 'none'; }
-
-function addMsg(role, text) {
-  hw();
-  const c = document.getElementById('cmsgs');
-  const d = document.createElement('div'); d.className = 'cm ' + (role === 'u' ? 'u' : 'b');
-  const av = document.createElement('div'); av.className = 'cmav'; av.textContent = role === 'u' ? 'Y' : '✦';
-  const b  = document.createElement('div'); b.className = 'cmbub';
-  b.innerHTML = role === 'u' ? esc(text) : fmt(text);
-  d.appendChild(av); d.appendChild(b); c.appendChild(d); c.scrollTop = c.scrollHeight;
+function appendCompMsg(role, text) {
+  var msgs = document.getElementById('comp-messages');
+  var div = document.createElement('div');
+  div.className = 'comp-msg ' + (role === 'user' ? 'user' : 'bot');
+  var avatar = role === 'user' ? '&#9678;' : '&#10022;';
+  div.innerHTML = '<div class="comp-msg-avatar">' + avatar + '</div><div class="comp-msg-text">' + text.replace(/\n/g,'<br>') + '</div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  if (role === 'user') document.getElementById('comp-starters').style.display = 'none';
 }
 
 function showTyping() {
-  hw();
-  const c = document.getElementById('cmsgs');
-  const d = document.createElement('div'); d.className = 'cm b'; d.id = 'cty';
-  d.innerHTML = '<div class="cmav">✦</div><div class="cmbub"><div class="trow"><div class="td"></div><div class="td"></div><div class="td"></div></div></div>';
-  c.appendChild(d); c.scrollTop = c.scrollHeight;
-}
-function rmTyping() { const e = document.getElementById('cty'); if (e) e.remove(); }
-
-function esc(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function fmt(t) {
-  return esc(t)
-    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g,'<em>$1</em>')
-    .replace(/^#{1,3} (.*?)$/gm,'<strong>$1</strong>')
-    .replace(/^[-•] (.*?)$/gm,'<li>$1</li>')
-    .replace(/(<li>.*?<\/li>\n?)+/gs,m=>`<ul>${m}</ul>`)
-    .split('\n').filter(l=>l.trim()).map(l=>/^<(strong|ul|li)/.test(l)?l:`<p>${l}</p>`).join('\n');
+  var msgs = document.getElementById('comp-messages');
+  var div = document.createElement('div');
+  div.className = 'comp-msg bot'; div.id = 'comp-typing-row';
+  div.innerHTML = '<div class="comp-msg-avatar">&#10022;</div><div class="comp-msg-text"><div class="comp-typing"><span></span><span></span><span></span></div></div>';
+  msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
 }
 
-async function csend() {
-  if (busy) return;
-  const inp = document.getElementById('cinp');
-  const txt = inp.value.trim(); if (!txt) return;
-  inp.value = ''; cresize(inp);
-  addMsg('u', txt);
-  hist.push({role:'user', content:txt});
-  busy = true; document.getElementById('csend').disabled = true;
+function hideTyping() { var t = document.getElementById('comp-typing-row'); if(t) t.remove(); }
+
+async function compSend(text) {
+  if (!text.trim() || compLoading) return;
+  compLoading = true;
+  document.getElementById('comp-send-btn').disabled = true;
+  document.getElementById('comp-input').value = '';
+  appendCompMsg('user', text);
+  compMessages.push({ role: 'user', content: text });
   showTyping();
   try {
-    const res = await fetch(WORKER_URL, {
-      method:'POST', headers:{'content-type':'application/json'},
-      body: JSON.stringify({messages: hist})
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 500,
+        system: COMPANION_SYSTEM,
+        messages: compMessages.slice(-10)
+      })
     });
-    rmTyping();
-    if (!res.ok) { const e = await res.json().catch(()=>({})); throw new Error(e.error?.message || 'Error ' + res.status); }
-    const data  = await res.json();
-    const reply = data.content[0].text;
-    hist.push({role:'assistant', content:reply});
-    addMsg('b', reply);
+    var data = await res.json();
+    var reply = (data && data.content && data.content[0] && data.content[0].text) ? data.content[0].text : 'The field is quiet. Ask again, seeker.';
+    hideTyping();
+    appendCompMsg('bot', reply);
+    compMessages.push({ role: 'assistant', content: reply });
   } catch(e) {
-    rmTyping();
-    addMsg('b', 'The field is momentarily unavailable. Please try again.');
+    hideTyping();
+    appendCompMsg('bot', 'The frequencies are momentarily still. Breathe, and ask again.');
   }
-  busy = false; document.getElementById('csend').disabled = false;
-  document.getElementById('cinp').focus();
+  compLoading = false;
+  document.getElementById('comp-send-btn').disabled = false;
 }
 
-function cask(txt) { openChat(); document.getElementById('cinp').value = txt; csend(); }
-function ckey(e)   { if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); csend(); } }
-function cresize(el){ el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,80)+'px'; }
+function compSendInput() {
+  var val = document.getElementById('comp-input').value.trim();
+  if (val) compSend(val);
+}
 
-// ─────────────────────────────────────────────
-// BOOT
-// ─────────────────────────────────────────────
-init();
 </script>
+<!-- ══ AI COMPANION BUTTON ══ -->
+<button id="companion-btn" onclick="toggleCompanion()" title="Ask the Academy Guide">
+  ✦<div class="comp-ping"></div>
+</button>
+
+<!-- ══ AI COMPANION PANEL ══ -->
+<div id="companion-panel">
+  <div class="comp-header">
+    <div class="comp-avatar">✦</div>
+    <div class="comp-header-text">
+      <div class="comp-name">Academy Guide</div>
+      <div class="comp-status"><span class="comp-status-dot"></span>Frequency Intelligence Active</div>
+    </div>
+    <button class="comp-close" onclick="toggleCompanion()">✕</button>
+  </div>
+  <div class="comp-starters" id="comp-starters">
+    <span class="comp-starter" onclick="compSend(this.textContent)">What should I study first?</span>
+    <span class="comp-starter" onclick="compSend(this.textContent)">What is 528Hz?</span>
+    <span class="comp-starter" onclick="compSend(this.textContent)">Tell me about tensor rings</span>
+    <span class="comp-starter" onclick="compSend(this.textContent)">Dragon lore 🐉</span>
+    <span class="comp-starter" onclick="compSend(this.textContent)">Explain quantum coherence</span>
+    <span class="comp-starter" onclick="compSend(this.textContent)">What is Frequency Charged™?</span>
+  </div>
+  <div class="comp-messages" id="comp-messages">
+    <div class="comp-msg bot">
+      <div class="comp-msg-avatar">✦</div>
+      <div class="comp-msg-text">Welcome, seeker. I am the Academy Guide — holding the full wisdom of The Frequency Academy. Ask me anything about the curriculum, frequencies, devices, sacred geometry, or your path through the modules. What calls to you?</div>
+    </div>
+  </div>
+  <div class="comp-input-wrap">
+    <textarea class="comp-input" id="comp-input" placeholder="Ask the Academy…" rows="1"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();compSendInput();}"></textarea>
+    <button class="comp-send" id="comp-send-btn" onclick="compSendInput()">↑</button>
+  </div>
+</div>
+
+
 </body>
 </html>
