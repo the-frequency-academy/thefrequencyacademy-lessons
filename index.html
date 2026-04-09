@@ -27,23 +27,6 @@ body{background:var(--navy);color:var(--white);font-family:'Raleway',sans-serif;
 /* ── STARFIELD ── */
 #starfield{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
-/* ══════════════════════════════════
-   DRAGON VIDEO — Nebula Background Layer
-   WebM (VP9+alpha) = true transparency (Chrome/Firefox/Edge)
-   MP4 + mix-blend-mode:screen = black→invisible on navy (Safari)
-══════════════════════════════════ */
-#dragon-video {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 5;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  opacity: 0.9;
-}
-
 
 /* ══════════════════════════════════
    DRAGON — Canvas Serpent
@@ -1071,16 +1054,6 @@ footer a { color:var(--gold); text-decoration:none; }
 <body>
 
 <canvas id="starfield"></canvas>
-
-<!-- ══ DRAGON VIDEO — nebula swim layer ══
-     WebM = true alpha transparency (Chrome/Firefox/Edge)
-     MP4 + mix-blend-mode:screen = black vanishes on navy (Safari)
-     Files: /assets/dragon.webm  /assets/dragon.mp4
--->
-<video id="dragon-video" autoplay loop muted playsinline>
-  <source src="/assets/dragon.webm" type="video/webm">
-  <source src="/assets/dragon.mp4" type="video/mp4">
-</video>
 
 <!-- ══ DRAGON ══ -->
 <canvas id="dragon-canvas"></canvas>
