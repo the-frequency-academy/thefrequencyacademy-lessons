@@ -29,47 +29,87 @@ body{background:var(--navy);color:var(--white);font-family:'Raleway',sans-serif;
 
 
 /* ══════════════════════════════════
-   DRAGON — Canvas Serpent
+   DRAGON VIDEO AVATAR — Flying + Bubble Engine
 ══════════════════════════════════ */
-#dragon-canvas {
+#tfa-dragon-avatar {
   position: fixed;
-  inset: 0;
   z-index: 900;
   pointer-events: none;
+  width: 280px;
+  height: 160px;
+}
+#tfa-dragon-video {
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  background: transparent;
+  transform-origin: center center;
+  /* WebM gets true alpha — MP4 Safari fallback uses screen blend to remove dark bg */
+  mix-blend-mode: screen;
+  /* Amplify the dragon's glow and colors so it reads against the page */
+  filter:
+    brightness(1.15)
+    saturate(1.2)
+    drop-shadow(0 0 20px rgba(255,120,40,0.5))
+    drop-shadow(0 0 50px rgba(100,180,255,0.2));
 }
-.dragon-bubble {
+#tfa-dragon-hitbox {
+  position: fixed;
+  z-index: 899;
+  border-radius: 20px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+/* Legacy bubble hidden — rich bubble used instead */
+.dragon-bubble { display: none !important; }
+
+/* Rich dragon speech bubble */
+#tfa-dragon-bubble {
   position: fixed;
   z-index: 901;
-  background: rgba(10,13,46,0.97);
-  border: 1px solid rgba(201,168,76,0.32);
-  border-radius: 12px;
-  padding: 10px 15px;
-  font-family: 'Cinzel', serif;
-  font-size: 11px;
-  color: #C9A84C;
-  white-space: normal;
-  max-width: 220px;
-  line-height: 1.55;
+  background: rgba(8,10,38,0.97);
+  border: 1px solid rgba(201,168,76,0.28);
+  border-radius: 14px;
+  padding: 14px 18px;
+  max-width: 240px;
+  min-width: 180px;
+  pointer-events: auto;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.06), inset 0 1px 0 rgba(255,255,255,0.04);
   opacity: 0;
-  transform: scale(0.85);
-  transition: opacity 0.35s, transform 0.35s;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.55);
-  pointer-events: none;
-  letter-spacing: 0.4px;
+  transform: scale(0.88) translateY(6px);
+  transition: opacity 0.3s cubic-bezier(0.34,1.4,0.64,1), transform 0.3s cubic-bezier(0.34,1.4,0.64,1);
+  visibility: hidden;
 }
-.dragon-bubble.visible { opacity: 1; transform: scale(1); }
-.dragon-bubble::after {
+#tfa-dragon-bubble.visible { opacity: 1; transform: scale(1) translateY(0); visibility: visible; }
+#tfa-dragon-bubble::after {
   content: '';
   position: absolute;
-  width: 8px; height: 8px;
-  background: rgba(10,13,46,0.97);
-  border-right: 1px solid rgba(201,168,76,0.32);
-  border-bottom: 1px solid rgba(201,168,76,0.32);
+  width: 10px; height: 10px;
+  background: rgba(8,10,38,0.97);
+  border-right: 1px solid rgba(201,168,76,0.28);
+  border-bottom: 1px solid rgba(201,168,76,0.28);
   transform: rotate(45deg);
-  bottom: -5px; left: 16px;
+  bottom: -6px; right: 20px;
 }
+#tfa-dragon-bubble.tail-top::after { bottom:auto; top:-6px; border-right:none; border-bottom:none; border-left:1px solid rgba(201,168,76,0.28); border-top:1px solid rgba(201,168,76,0.28); }
+#tfa-dragon-bubble.tail-left::after { bottom:auto; top:50%; right:auto; left:-6px; margin-top:-5px; border-right:none; border-top:none; border-left:1px solid rgba(201,168,76,0.28); border-bottom:1px solid rgba(201,168,76,0.28); }
+.db-eyebrow { font-family:'Cinzel',serif; font-size:8px; letter-spacing:2.5px; color:#C9A84C; text-transform:uppercase; opacity:.7; margin-bottom:7px; display:flex; align-items:center; gap:5px; }
+.db-eyebrow::before { content:''; display:block; width:16px; height:1px; background:#C9A84C; opacity:.5; }
+.db-msg { font-family:'Raleway',sans-serif; font-size:12px; line-height:1.65; color:#f0ead8; margin-bottom:12px; font-weight:300; }
+.db-actions { display:flex; flex-direction:column; gap:6px; }
+.db-btn { display:flex; align-items:center; gap:8px; padding:9px 13px; border-radius:8px; cursor:pointer; font-family:'Cinzel',serif; font-size:9px; letter-spacing:1.2px; text-transform:uppercase; border:1px solid; text-decoration:none; transition:all .18s; pointer-events:auto; white-space:nowrap; }
+.db-btn-primary { background:rgba(201,168,76,0.12); border-color:rgba(201,168,76,0.28); color:#e8c96a; }
+.db-btn-primary:hover { background:rgba(201,168,76,0.22); border-color:#C9A84C; box-shadow:0 0 14px rgba(201,168,76,0.25); color:#fff8e0; }
+.db-btn-secondary { background:rgba(255,255,255,0.03); border-color:rgba(255,255,255,0.1); color:rgba(240,234,216,0.5); }
+.db-btn-secondary:hover { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.18); color:#f0ead8; }
+.db-btn-close { background:transparent; border:none; color:rgba(240,234,216,0.5); font-size:10px; cursor:pointer; text-align:right; padding:4px 0 0; font-family:'Raleway',sans-serif; letter-spacing:1px; transition:color .15s; pointer-events:auto; display:block; }
+.db-btn-close:hover { color:#C9A84C; }
+@keyframes dragonGlow {
+  0%,100% { filter: brightness(1.15) saturate(1.2) drop-shadow(0 0 20px rgba(255,120,40,.5)) drop-shadow(0 0 50px rgba(100,180,255,.2)); }
+  50%      { filter: brightness(1.35) saturate(1.4) drop-shadow(0 0 45px rgba(255,120,40,.9)) drop-shadow(0 0 90px rgba(100,180,255,.45)) drop-shadow(0 0 120px rgba(201,168,76,.4)); }
+}
+#tfa-dragon-video.speaking { animation: dragonGlow 1.4s ease-in-out infinite; }
+@media(max-width:600px){ #tfa-dragon-avatar{width:200px;height:114px;} #tfa-dragon-bubble{max-width:200px;} }
 
 /* ══════════════════════════════════
    FLOATING FREQ PLAYER
@@ -1055,9 +1095,24 @@ footer a { color:var(--gold); text-decoration:none; }
 
 <canvas id="starfield"></canvas>
 
-<!-- ══ DRAGON ══ -->
-<canvas id="dragon-canvas"></canvas>
-<div class="dragon-bubble" id="dragon-bubble"></div>
+<!-- ══ DRAGON VIDEO AVATAR ══ -->
+<div id="tfa-dragon-avatar">
+  <video id="tfa-dragon-video"
+    autoplay loop muted playsinline preload="auto"
+  >
+    <!-- WebM with alpha transparency (Chrome/Firefox/Edge) -->
+    <source src="/assets/dragon.webm" type="video/webm">
+    <!-- MP4 fallback (Safari) — mix-blend-mode:screen handles background removal -->
+    <source src="/assets/dragon.mp4" type="video/mp4">
+  </video>
+</div>
+<div id="tfa-dragon-hitbox"></div>
+<div id="tfa-dragon-bubble">
+  <div class="db-eyebrow">The Dragon Speaks</div>
+  <div class="db-msg" id="db-msg-text"></div>
+  <div class="db-actions" id="db-actions"></div>
+  <button class="db-btn-close" id="db-close-btn">dismiss ✕</button>
+</div>
 
 
 <!-- ══ FREQUENCY PLAYER ══ -->
@@ -1268,552 +1323,214 @@ document.getElementById('freq-player-header').addEventListener('click',()=>{
 });
 
 
-// ══════════════════════════════════════════════════════════════
-// COSMIC SERPENT DRAGON — Canvas Physics Engine
-// Modelled exactly after the Runway-generated dragon images:
-// - Copper/bronze rounded fish-scale texture body
-// - Bright red triangular fin spines full length
-// - Dark chocolate head, yellow-green slit-pupil eye
-// - Teal/emerald/purple/magenta flowing mane
-// - Silver ribbed curling horns
-// - Long white whiskers
-// - 3 floating pearl orbs (blue, red, gold)
-// - Fine tapering tail with red spike tip
-// - Full sinusoidal swimming physics
+// DRAGON VIDEO AVATAR — Flying + Speech Bubble Engine
 // ══════════════════════════════════════════════════════════════
 (function() {
 
-const canvas = document.getElementById('dragon-canvas');
-const ctx = canvas.getContext('2d');
+// ── stub canvas so legacy dragonReact callers don't crash ──
+const canvas = { width: 0, height: 0 };
+const ctx = { clearRect(){}, save(){}, restore(){}, beginPath(){}, arc(){}, fill(){}, stroke(){}, moveTo(){}, lineTo(){}, quadraticCurveTo(){}, bezierCurveTo(){}, ellipse(){}, createRadialGradient(){ return { addColorStop(){} }; }, createLinearGradient(){ return { addColorStop(){} }; }, createPattern(){ return null; } };
 
-function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-resize();
-window.addEventListener('resize', resize);
+const avatar   = document.getElementById('tfa-dragon-avatar');
+const video    = document.getElementById('tfa-dragon-video');
+const hitbox   = document.getElementById('tfa-dragon-hitbox');
+const richBubble = document.getElementById('tfa-dragon-bubble');
+const msgTextEl  = document.getElementById('db-msg-text');
+const actionsEl  = document.getElementById('db-actions');
+const closeBtn   = document.getElementById('db-close-btn');
 
-// ── SPINE PHYSICS ──
-const NUM_SEG = 48;    // segment count — longer = more serpentine
-const SEG_LEN = 13;    // distance between spine points
+const SIZE_W = 280; // video width (16:9)
+const SIZE_H = 160; // video height
+const SIZE   = SIZE_W; // used for margin / flight calculations
+let dx = window.innerWidth - SIZE_W - 60;
+let dy = window.innerHeight + SIZE_H + 20;
+let tx = dx, ty = dy;
+let vx = 0, vy = 0;
+let visible = false, richOpen = false, msgIdx = 0;
+let phase = 'entering';
+let phaseTimer = null, bubbleTimer = null;
+let lastFlip = 1, wt = 0;
 
-let spine = [];
-for (let i = 0; i < NUM_SEG; i++) {
-  spine.push({ x: window.innerWidth * 0.6 - i * SEG_LEN, y: window.innerHeight * 0.4 });
+// ── Build a stub spine so dragonReact / breathFire don't break ──
+let spine = [{ x: dx, y: dy }];
+
+function applyPos() {
+  avatar.style.cssText = `position:fixed;left:${dx}px;top:${dy}px;width:${SIZE_W}px;height:${SIZE_H}px;z-index:900;pointer-events:none;`;
+  hitbox.style.cssText = `position:fixed;left:${dx}px;top:${dy}px;width:${SIZE_W}px;height:${SIZE_H}px;border-radius:20px;cursor:pointer;pointer-events:auto;z-index:899;`;
+  spine[0].x = dx + SIZE_W/2;
+  spine[0].y = dy + SIZE_H/2;
 }
 
-// ── PATH SYSTEM ──
-let t = 0;
-let pathMode = 0;
-let modeTimer = 0;
-const MODE_DUR = 400;
-
-let cx = window.innerWidth * 0.52;
-let cy = window.innerHeight * 0.42;
-let tcx = cx, tcy = cy;
-let centerTimer = 0;
-
-function pickCenter() {
-  tcx = 130 + Math.random() * (window.innerWidth - 280);
-  tcy = 110 + Math.random() * (window.innerHeight - 240);
-}
-pickCenter();
-
-function getTarget(t, mode) {
-  const W = Math.min(window.innerWidth * 0.27, 255);
-  const H = Math.min(window.innerHeight * 0.21, 195);
-  switch(mode % 5) {
-    case 0: return { x: cx + W * Math.sin(t),       y: cy + H * Math.sin(t*2) * 0.52 };           // figure-8
-    case 1: return { x: cx + W * Math.cos(t) + W*0.18*Math.cos(t*3), y: cy + H * Math.sin(t) + H*0.18*Math.sin(t*3) }; // wobbly circle
-    case 2: return { x: cx + W * Math.cos(t*0.5),   y: cy + H * Math.sin(t * 1.75) };              // wave
-    case 3: { const s = Math.sqrt(2)/(3-Math.cos(2*t)); return { x: cx+W*1.2*s*Math.cos(t), y: cy+H*s*Math.sin(2*t) }; } // infinity
-    case 4: return { x: cx + W*(Math.sin(t)+2*Math.sin(2*t))/3, y: cy + H*(Math.cos(t)-2*Math.cos(2*t))/3 }; // trefoil
-  }
+function r(a,b){ return Math.random()*(b-a)+a; }
+function rTarget(){
+  const mx=SIZE_W+30, my=SIZE_H+20;
+  return { x:r(mx, window.innerWidth-mx-SIZE_W), y:r(my, window.innerHeight-my-SIZE_H) };
 }
 
-// ── SCALE TEXTURE OFFSCREEN CANVAS ──
-// Pre-render a tile of copper/bronze rounded scales
-const scaleTile = document.createElement('canvas');
-scaleTile.width = 32; scaleTile.height = 28;
-(function buildScaleTile() {
-  const sc = scaleTile.getContext('2d');
-  // Two rows of offset rounded scales
-  const rows = [
-    [{x:8,y:7},{x:24,y:7}],
-    [{x:0,y:19},{x:16,y:19},{x:32,y:19}],
-  ];
-  rows.forEach((row, ri) => {
-    row.forEach(({x, y}) => {
-      // Scale body — rounded rectangle
-      const g = sc.createRadialGradient(x, y-3, 1, x, y, 10);
-      g.addColorStop(0, '#d4884a');   // copper highlight
-      g.addColorStop(0.4, '#a85828'); // mid bronze
-      g.addColorStop(0.8, '#7a3810'); // dark bronze
-      g.addColorStop(1, '#4a1a04');   // deep shadow
-      sc.beginPath();
-      sc.ellipse(x, y, 9, 7, 0, 0, Math.PI*2);
-      sc.fillStyle = g;
-      sc.fill();
-      // Teal shimmer edge
-      sc.beginPath();
-      sc.ellipse(x, y, 9, 7, 0, 0, Math.PI*2);
-      sc.strokeStyle = 'rgba(50,200,180,0.35)';
-      sc.lineWidth = 0.8;
-      sc.stroke();
-      // Inner highlight
-      sc.beginPath();
-      sc.ellipse(x-2, y-2, 4, 3, -0.3, 0, Math.PI*2);
-      sc.fillStyle = 'rgba(220,160,90,0.35)';
-      sc.fill();
-    });
-  });
-})();
-
-// ── FIRE / ENERGY PARTICLES ──
-let fireP = [];
-function spawnFire(x, y) {
-  for (let i = 0; i < 14; i++) {
-    const a = Math.random() * Math.PI * 2;
-    const sp = 1.5 + Math.random() * 3.5;
-    const colors = ['#00ffcc','#00ddaa','#88ffee','#4488ff','#ff66aa','#ffe066','#cc4400'];
-    fireP.push({ x, y, vx:Math.cos(a)*sp, vy:Math.sin(a)*sp-1.2, r:2+Math.random()*6, c:colors[Math.floor(Math.random()*colors.length)], life:1, dec:0.035+Math.random()*0.025 });
-  }
+function enter() {
+  const e = Math.floor(Math.random()*3);
+  if(e===0){ dx=r(100,window.innerWidth-100-SIZE_W); dy=window.innerHeight+SIZE_H+20; }
+  else if(e===1){ dx=window.innerWidth+SIZE_W+20; dy=r(100,window.innerHeight-100-SIZE_H); }
+  else { dx=-SIZE_W-20; dy=r(100,window.innerHeight-100-SIZE_H); }
+  vx=vy=0; applyPos();
+  avatar.style.transition='opacity 1.2s ease';
+  avatar.style.opacity='0';
+  visible=true; phase='entering';
+  requestAnimationFrame(()=>{ avatar.style.opacity='1'; });
+  const ft=rTarget(); tx=ft.x; ty=ft.y;
+  clearTimeout(phaseTimer);
+  phaseTimer=setTimeout(hide, r(28000,50000));
+  clearTimeout(bubbleTimer);
+  bubbleTimer=setTimeout(()=>speakRich(), r(5000,10000));
 }
 
-// ── EYE ANIMATION ──
-let eyePhase = 0;
-
-// ── DRAW SEGMENT BODY with scale texture ──
-function drawBody() {
-  if (spine.length < 3) return;
-
-  // Get head facing angle
-  const hAngle = Math.atan2(spine[0].y - spine[1].y, spine[0].x - spine[1].x);
-
-  // Draw body back-to-front as thick stroked segments
-  // We layer: base body → scale texture → teal belly shimmer → red spines → head
-
-  // 1. MAIN BODY — copper gradient strokes
-  for (let i = NUM_SEG-1; i >= 1; i--) {
-    const p1 = spine[i], p2 = spine[i-1];
-    const prog = i / NUM_SEG; // 1=tail end, 0=head
-    const w = 4 + prog * 18; // tapers from thick (head) to thin (tail)
-
-    // Body color — copper/bronze getting darker toward tail
-    const r = Math.round(195 - prog * 110);
-    const g2 = Math.round(118 - prog * 80);
-    const b = Math.round(55  - prog * 45);
-
-    ctx.beginPath();
-    ctx.moveTo(p1.x, p1.y);
-    ctx.lineTo(p2.x, p2.y);
-    ctx.lineWidth = w * 2;
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = `rgb(${r},${g2},${b})`;
-    ctx.stroke();
-  }
-
-  // 2. SCALE TEXTURE — tiled pattern along body
-  const scalePattern = ctx.createPattern(scaleTile, 'repeat');
-  for (let i = NUM_SEG-1; i >= 2; i--) {
-    const p1 = spine[i], p2 = spine[i-1];
-    const prog = i / NUM_SEG;
-    const w = 3 + prog * 16;
-    const segAngle = Math.atan2(p2.y-p1.y, p2.x-p1.x);
-
-    ctx.save();
-    ctx.translate(p1.x, p1.y);
-    ctx.rotate(segAngle);
-    ctx.beginPath();
-    ctx.rect(-SEG_LEN*0.6, -w, SEG_LEN*1.2, w*2);
-    ctx.fillStyle = scalePattern;
-    ctx.globalAlpha = 0.55 - prog * 0.15;
-    ctx.fill();
-    ctx.restore();
-    ctx.globalAlpha = 1;
-  }
-
-  // 3. TEAL BELLY SHIMMER — lighter strip along underside
-  for (let i = NUM_SEG-1; i >= 2; i--) {
-    const p1 = spine[i], p2 = spine[i-1];
-    const prog = i / NUM_SEG;
-    const w = 2 + prog * 7;
-    const segAngle = Math.atan2(p2.y-p1.y, p2.x-p1.x);
-    const perpX = Math.cos(segAngle + Math.PI/2) * w * 0.6;
-    const perpY = Math.sin(segAngle + Math.PI/2) * w * 0.6;
-
-    ctx.beginPath();
-    ctx.moveTo(p1.x + perpX, p1.y + perpY);
-    ctx.lineTo(p2.x + perpX, p2.y + perpY);
-    ctx.lineWidth = w;
-    ctx.strokeStyle = `rgba(60,200,180,${0.22 - prog*0.1})`;
-    ctx.stroke();
-  }
-
-  // 4. RED DORSAL SPINES — bright crimson triangles along ENTIRE body
-  for (let i = NUM_SEG-2; i >= 2; i -= 2) {
-    const p = spine[i], pN = spine[i-1];
-    const prog = i / NUM_SEG;
-    const segAngle = Math.atan2(p.y - pN.y, p.x - pN.x);
-    const perpAngle = segAngle - Math.PI/2; // dorsal = above
-    const bodyW = 3 + prog * 17;
-    const spikeH = (6 + prog * 16) * Math.min(1, (1 - prog * 0.55) + 0.45);
-
-    // Spine base width varies with body thickness
-    const baseHalf = bodyW * 0.35;
-
-    const tipX = p.x + Math.cos(perpAngle) * (bodyW + spikeH);
-    const tipY = p.y + Math.sin(perpAngle) * (bodyW + spikeH);
-    const blX = p.x + Math.cos(segAngle) * baseHalf;
-    const blY = p.y + Math.sin(segAngle) * baseHalf;
-    const brX = p.x - Math.cos(segAngle) * baseHalf;
-    const brY = p.y - Math.sin(segAngle) * baseHalf;
-
-    // Bright red gradient spine
-    const spG = ctx.createLinearGradient(p.x, p.y, tipX, tipY);
-    spG.addColorStop(0, '#cc1100');
-    spG.addColorStop(0.5, '#ee2200');
-    spG.addColorStop(1, '#ff4422');
-
-    ctx.beginPath();
-    ctx.moveTo(blX, blY);
-    ctx.lineTo(tipX, tipY);
-    ctx.lineTo(brX, brY);
-    ctx.closePath();
-    ctx.fillStyle = spG;
-    ctx.fill();
-  }
-
-  // 5. FLOATING PEARL ORBS — blue, red, gold inside body loop
-  const orbData = [
-    { seg: 14, color: '#3388ff', inner: '#aaccff', off: 14 },
-    { seg: 22, color: '#dd1133', inner: '#ff88aa', off: 16 },
-    { seg: 30, color: '#cc8800', inner: '#ffe066', off: 12 },
-  ];
-  orbData.forEach((orb, oi) => {
-    if (orb.seg >= spine.length) return;
-    const p = spine[orb.seg];
-    const seg = spine[orb.seg], segN = spine[Math.min(orb.seg+1, NUM_SEG-1)];
-    const sAngle = Math.atan2(seg.y-segN.y, seg.x-segN.x);
-    const perpX = Math.cos(sAngle + Math.PI/2) * orb.off;
-    const perpY = Math.sin(sAngle + Math.PI/2) * orb.off;
-    const ox = p.x + perpX + Math.sin(t * 1.3 + oi*2.1) * 6;
-    const oy = p.y + perpY + Math.cos(t * 1.1 + oi*1.7) * 5;
-    const pr = 5 + Math.sin(t * 2.2 + oi) * 1.5;
-
-    // Glow aura
-    ctx.save();
-    ctx.shadowBlur = 18;
-    ctx.shadowColor = orb.color;
-    ctx.beginPath(); ctx.arc(ox, oy, Math.max(0, pr), 0, Math.PI*2);
-    ctx.fillStyle = orb.color; ctx.fill();
-    // Inner bright core
-    ctx.beginPath(); ctx.arc(ox - pr*0.25, oy - pr*0.25, Math.max(0, pr*0.4), 0, Math.PI*2);
-    ctx.fillStyle = orb.inner; ctx.fill();
-    ctx.restore();
-
-    // Pulse ring
-    const ringR = pr + 3 + Math.sin(t*3+oi)*2;
-    ctx.beginPath(); ctx.arc(ox, oy, Math.max(0, ringR), 0, Math.PI*2);
-    ctx.strokeStyle = orb.color.replace(')', ',0.3)').replace('rgb', 'rgba').replace('#3388ff','rgba(51,136,255,0.3)').replace('#dd1133','rgba(221,17,51,0.3)').replace('#cc8800','rgba(204,136,0,0.3)');
-    ctx.lineWidth = 1; ctx.stroke();
-  });
-
-  // 6. MANE — thick flowing strands from neck area (teal, emerald, purple, magenta)
-  const maneColors = ['#00ffcc', '#00dd88', '#22aaff', '#9933ee', '#ff44aa', '#44ffaa'];
-  const maneOrigin = spine[2] || spine[0]; // neck position
-  for (let m = 0; m < 8; m++) {
-    const mRatio = m / 7;
-    const mColor = maneColors[m % maneColors.length];
-    const sway = Math.sin(t * 2.2 + m * 0.8) * 0.18;
-    const mAngle = hAngle + Math.PI + (mRatio - 0.5) * 1.4 + sway;
-    const mLen = 22 + m * 4 + Math.sin(t * 1.8 + m) * 8;
-    const cp1x = maneOrigin.x + Math.cos(mAngle + 0.3) * mLen * 0.4;
-    const cp1y = maneOrigin.y + Math.sin(mAngle + 0.3) * mLen * 0.4;
-    const ep1x = maneOrigin.x + Math.cos(mAngle) * mLen;
-    const ep1y = maneOrigin.y + Math.sin(mAngle) * mLen;
-
-    ctx.save();
-    ctx.shadowBlur = 8;
-    ctx.shadowColor = mColor;
-    ctx.beginPath();
-    ctx.moveTo(maneOrigin.x, maneOrigin.y);
-    ctx.quadraticCurveTo(cp1x, cp1y, ep1x, ep1y);
-    ctx.strokeStyle = mColor;
-    ctx.lineWidth = 3 - mRatio * 1.5;
-    ctx.globalAlpha = 0.72 - mRatio * 0.2;
-    ctx.lineCap = 'round';
-    ctx.stroke();
-    ctx.restore();
-    ctx.globalAlpha = 1;
-  }
-
-  // 7. WHISKERS — long white strands from snout
-  const snoutX = spine[0].x + Math.cos(hAngle) * 14;
-  const snoutY = spine[0].y + Math.sin(hAngle) * 14;
-  for (let w = 0; w < 5; w++) {
-    const side = w < 3 ? 1 : -1;
-    const wOff = (w % 3) * 0.28;
-    const wAngle = hAngle + side * (0.3 + wOff) + Math.sin(t * 1.6 + w) * 0.1;
-    const wLen = 28 + w * 6 + Math.sin(t * 1.4 + w * 1.3) * 7;
-    const cpx = snoutX + Math.cos(wAngle) * wLen * 0.5;
-    const cpy = snoutY + Math.sin(wAngle) * wLen * 0.5 + Math.sin(t + w) * 8;
-    const ex = snoutX + Math.cos(wAngle) * wLen;
-    const ey = snoutY + Math.sin(wAngle) * wLen;
-
-    ctx.beginPath();
-    ctx.moveTo(snoutX, snoutY);
-    ctx.quadraticCurveTo(cpx, cpy, ex, ey);
-    ctx.strokeStyle = 'rgba(230,220,200,0.55)';
-    ctx.lineWidth = 0.8;
-    ctx.globalAlpha = 0.6 - w * 0.08;
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-
-    // Glowing tip
-    ctx.save();
-    ctx.shadowBlur = 6; ctx.shadowColor = '#ffe0aa';
-    ctx.beginPath(); ctx.arc(ex, ey, Math.max(0, 1.3), 0, Math.PI*2);
-    ctx.fillStyle = '#ffe0aa'; ctx.globalAlpha = 0.5 + Math.sin(t*3+w)*0.2;
-    ctx.fill(); ctx.restore(); ctx.globalAlpha = 1;
-  }
-
-  // 8. TAIL SPIKE — bright red at very tip
-  const tail = spine[NUM_SEG-1];
-  const tailP = spine[NUM_SEG-2];
-  const tailAngle = Math.atan2(tail.y-tailP.y, tail.x-tailP.x);
-  const spikeLen = 14;
-  const sTipX = tail.x + Math.cos(tailAngle) * spikeLen;
-  const sTipY = tail.y + Math.sin(tailAngle) * spikeLen;
-  const sG = ctx.createLinearGradient(tail.x, tail.y, sTipX, sTipY);
-  sG.addColorStop(0, '#cc1100'); sG.addColorStop(1, '#ff5533');
-  ctx.beginPath();
-  ctx.moveTo(tail.x + Math.cos(tailAngle+Math.PI/2)*2, tail.y + Math.sin(tailAngle+Math.PI/2)*2);
-  ctx.lineTo(sTipX, sTipY);
-  ctx.lineTo(tail.x + Math.cos(tailAngle-Math.PI/2)*2, tail.y + Math.sin(tailAngle-Math.PI/2)*2);
-  ctx.closePath();
-  ctx.fillStyle = sG; ctx.fill();
-
-  // 9. HEAD
-  drawHead(hAngle);
+function hide() {
+  if(!visible) return;
+  closeRichBubble(); phase='hiding';
+  const e=Math.floor(Math.random()*3);
+  if(e===0){ tx=dx; ty=window.innerHeight+SIZE_H+50; }
+  else if(e===1){ tx=window.innerWidth+SIZE_W+50; ty=dy; }
+  else { tx=-SIZE_W-50; ty=dy; }
+  clearTimeout(bubbleTimer);
+  setTimeout(()=>{ visible=false; avatar.style.opacity='0'; setTimeout(enter,r(15000,30000)); }, 3200);
 }
 
-function drawHead(hAngle) {
-  const hx = spine[0].x, hy = spine[0].y;
+let _last=0;
+function loop(ts){
+  requestAnimationFrame(loop);
+  const dt=Math.min((ts-_last)/16,3); _last=ts;
+  if(!visible) return;
+  wt+=dt*0.016;
 
-  ctx.save();
-  ctx.translate(hx, hy);
-  ctx.rotate(hAngle);
-
-  // ── Head base shape — dark chocolate brown ──
-  const headLen = 18, headH = 11;
-  const hG = ctx.createRadialGradient(-4, -3, 1, 2, 0, headLen*1.3);
-  hG.addColorStop(0, '#2e1a10');
-  hG.addColorStop(0.5, '#1a0c06');
-  hG.addColorStop(1, '#0a0502');
-  ctx.beginPath();
-  ctx.ellipse(2, 0, headLen, headH, 0, 0, Math.PI*2);
-  ctx.fillStyle = hG; ctx.fill();
-  ctx.strokeStyle = '#140802'; ctx.lineWidth = 1; ctx.stroke();
-
-  // Snout extension
-  ctx.beginPath();
-  ctx.ellipse(headLen * 0.9, 0, headLen * 0.55, headH * 0.6, 0, 0, Math.PI*2);
-  ctx.fillStyle = '#160a04'; ctx.fill();
-
-  // Upper jaw ridge
-  ctx.beginPath();
-  ctx.ellipse(headLen * 0.7, -headH * 0.45, headLen * 0.7, headH * 0.22, 0, 0, Math.PI*2);
-  ctx.fillStyle = 'rgba(50,25,10,0.5)'; ctx.fill();
-
-  // Lower jaw
-  ctx.beginPath();
-  ctx.ellipse(headLen * 0.65, headH * 0.55, headLen * 0.65, headH * 0.32, 0.12, 0, Math.PI*2);
-  ctx.fillStyle = '#120804'; ctx.fill();
-
-  // Teeth — small white triangles
-  for (let tooth = 0; tooth < 5; tooth++) {
-    const tx = headLen * 0.18 + tooth * headLen * 0.28;
-    ctx.beginPath();
-    ctx.moveTo(tx, headH * 0.38);
-    ctx.lineTo(tx + 2.5, headH * 0.9);
-    ctx.lineTo(tx + 5, headH * 0.38);
-    ctx.fillStyle = 'rgba(230,215,185,0.6)'; ctx.fill();
+  if(phase==='entering'||phase==='floating'){
+    if(Math.random()<0.004){ const f=rTarget(); tx=f.x; ty=f.y; }
+    vx=(vx+(tx-dx)*0.018+Math.cos(wt*0.4)*0.8)*0.88;
+    vy=(vy+(ty-dy)*0.018+Math.sin(wt*0.6)*0.6)*0.88;
+    if(phase==='entering'&&Math.hypot(tx-dx,ty-dy)<80) phase='floating';
+  } else if(phase==='hiding'){
+    vx=(vx+(tx-dx)*0.04)*0.92;
+    vy=(vy+(ty-dy)*0.04)*0.92;
   }
 
-  // Teal-green brow shimmer
-  ctx.beginPath();
-  ctx.ellipse(-2, -headH * 0.5, headLen * 0.85, headH * 0.28, -0.08, 0, Math.PI*2);
-  ctx.fillStyle = 'rgba(0,90,60,0.22)'; ctx.fill();
-
-  // ── Curling horns — silver grey ribbed ──
-  // Left horn
-  ctx.beginPath();
-  ctx.moveTo(-headLen*0.1, -headH*0.85);
-  ctx.bezierCurveTo(-headLen*0.1 + 8, -headH*2.2, headLen*0.15, -headH*2.8, headLen*0.05, -headH*2.1);
-  ctx.bezierCurveTo(headLen*0.02, -headH*1.6, -headLen*0.08, -headH*1.4, -headLen*0.12, -headH*1.6);
-  ctx.strokeStyle = '#c0b8b0'; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.stroke();
-  ctx.strokeStyle = '#706860'; ctx.lineWidth = 1.5; ctx.stroke();
-  // Ribbing
-  for (let rb = 0; rb < 4; rb++) {
-    const rbT = rb / 3;
-    const rbX = -headLen*0.1 + rbT * 12;
-    const rbY = -headH*0.85 - rbT * headH * 1.3;
-    ctx.beginPath(); ctx.arc(rbX, rbY, Math.max(0, 1), 0, Math.PI*2);
-    ctx.fillStyle = 'rgba(150,140,130,0.5)'; ctx.fill();
-  }
-
-  // Right horn (slightly behind/shorter)
-  ctx.beginPath();
-  ctx.moveTo(headLen*0.1, -headH*0.75);
-  ctx.bezierCurveTo(headLen*0.22, -headH*2.0, headLen*0.45, -headH*2.6, headLen*0.35, -headH*1.9);
-  ctx.bezierCurveTo(headLen*0.28, -headH*1.5, headLen*0.12, -headH*1.3, headLen*0.08, -headH*1.5);
-  ctx.strokeStyle = '#b0a8a0'; ctx.lineWidth = 3.5; ctx.stroke();
-  ctx.strokeStyle = '#605850'; ctx.lineWidth = 1.2; ctx.stroke();
-
-  ctx.restore();
-
-  // ── EYE — yellow-green slit pupil with teal iris ──
-  eyePhase += 0.022;
-  const eyeOffX = Math.cos(hAngle - 0.5) * 9;
-  const eyeOffY = Math.sin(hAngle - 0.5) * 9;
-  const ex = hx + eyeOffX, ey = hy + eyeOffY;
-  const eyeR = 6.5;
-
-  // Outer glow
-  ctx.save();
-  ctx.shadowBlur = 22; ctx.shadowColor = '#88ff44';
-  ctx.beginPath(); ctx.arc(ex, ey, Math.max(0, eyeR + 2 + Math.sin(eyePhase*2)*1.5), 0, Math.PI*2);
-  ctx.strokeStyle = 'rgba(120,255,60,0.25)'; ctx.lineWidth = 1.5; ctx.stroke();
-  ctx.restore();
-
-  // Iris — teal-green
-  ctx.beginPath(); ctx.arc(ex, ey, Math.max(0, eyeR), 0, Math.PI*2);
-  ctx.fillStyle = '#004422'; ctx.fill();
-  // Yellow-green iris gradient
-  const eyeG = ctx.createRadialGradient(ex-1.5, ey-1.5, 0, ex, ey, eyeR);
-  eyeG.addColorStop(0, '#ddff44');
-  eyeG.addColorStop(0.3, '#aaee22');
-  eyeG.addColorStop(0.65, '#22aa44');
-  eyeG.addColorStop(1, '#003322');
-  ctx.beginPath(); ctx.arc(ex, ey, Math.max(0, eyeR), 0, Math.PI*2);
-  ctx.fillStyle = eyeG; ctx.fill();
-  // Teal iris ring
-  ctx.beginPath(); ctx.arc(ex, ey, Math.max(0, eyeR), 0, Math.PI*2);
-  ctx.strokeStyle = '#00cc88'; ctx.lineWidth = 1; ctx.stroke();
-
-  // Vertical slit pupil — dark, prominent
-  ctx.beginPath();
-  ctx.ellipse(ex, ey, eyeR*0.22, eyeR*0.78, hAngle, 0, Math.PI*2);
-  ctx.fillStyle = 'rgba(0,0,0,0.92)'; ctx.fill();
-
-  // Eye highlight
-  ctx.beginPath(); ctx.arc(ex - eyeR*0.3, ey - eyeR*0.3, Math.max(0, eyeR*0.28), 0, Math.PI*2);
-  ctx.fillStyle = 'rgba(255,255,255,0.85)'; ctx.fill();
-  ctx.beginPath(); ctx.arc(ex - eyeR*0.3, ey - eyeR*0.3, Math.max(0, eyeR*0.14), 0, Math.PI*2);
-  ctx.fillStyle = 'rgba(255,255,255,1)'; ctx.fill();
-
-  // Pulsing ring
-  const pr = eyeR + 2 + Math.sin(eyePhase*3)*2;
-  ctx.beginPath(); ctx.arc(ex, ey, Math.max(0, pr), 0, Math.PI*2);
-  ctx.strokeStyle = `rgba(160,255,80,${0.2+Math.sin(eyePhase*2)*0.1})`; ctx.lineWidth = 0.6; ctx.stroke();
+  dx+=vx; dy+=vy;
+  if(Math.abs(vx)>0.3){ const fl=vx>0?1:-1; if(fl!==lastFlip) lastFlip=fl; }
+  const bob=1+Math.sin(wt*1.8*60)*0.018;
+  // flip horizontally when swimming left, subtle vertical bob
+  video.style.transform=(lastFlip===-1?'scaleX(-1) ':'')+`scaleY(${bob})`;
+  applyPos();
+  if(richOpen) posRichBubble();
 }
 
-// ── PARTICLES ──
-function drawParticles() {
-  fireP = fireP.filter(p => p.life > 0);
-  fireP.forEach(p => {
-    p.x += p.vx; p.y += p.vy; p.vy -= 0.05; p.life -= p.dec;
-    ctx.save();
-    ctx.shadowBlur = 10; ctx.shadowColor = p.c;
-    ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(0, p.r * p.life), 0, Math.PI*2);
-    ctx.fillStyle = p.c; ctx.globalAlpha = p.life * 0.75;
-    ctx.fill(); ctx.restore(); ctx.globalAlpha = 1;
-  });
-}
-
-// ── MAIN LOOP ──
-function animate() {
-  requestAnimationFrame(animate);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  t += 0.017;
-
-  // Drift center
-  centerTimer++;
-  if (centerTimer > 300) { pickCenter(); centerTimer = 0; }
-  cx += (tcx - cx) * 0.003;
-  cy += (tcy - cy) * 0.003;
-
-  // Advance path mode
-  modeTimer++;
-  if (modeTimer >= MODE_DUR) { pathMode++; modeTimer = 0; }
-
-  // Move head toward target
-  const tgt = getTarget(t, pathMode);
-  spine[0].x += (tgt.x - spine[0].x) * 0.16;
-  spine[0].y += (tgt.y - spine[0].y) * 0.16;
-
-  // Chain body — inverse kinematics
-  for (let i = 1; i < NUM_SEG; i++) {
-    const prev = spine[i-1], curr = spine[i];
-    const dx = curr.x - prev.x, dy = curr.y - prev.y;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    if (dist > SEG_LEN) {
-      curr.x = prev.x + (dx/dist) * SEG_LEN;
-      curr.y = prev.y + (dy/dist) * SEG_LEN;
-    }
-  }
-
-  drawParticles();
-  drawBody();
-
-  // Update bubble position
-  const bubble = document.getElementById('dragon-bubble');
-  if (bubble && bubble.classList.contains('visible')) {
-    bubble.style.left = (spine[0].x + 20) + 'px';
-    bubble.style.top  = (spine[0].y - 68) + 'px';
-  }
-}
-
-animate();
-
-// ── PUBLIC API ──
-const dragonBubble = document.getElementById('dragon-bubble');
-let bubbleTimer = null;
-let speakCooldown = 0;
-
+// ── MESSAGES ──
 const MESSAGES = {
-  greeting: ["the ancient ones remember your frequency","i have been waiting, seeker","the frequencies align…","welcome back to the field","your vibration called me here 🐉"],
-  frequency: ["this tone opens ancient pathways","the field is shifting…","i feel the resonance","breathe into the frequency 🔥","528Hz — the love frequency"],
-  newLesson: ["a new lesson awaits you, seeker","the next gate opens","continue your path","more wisdom has been encoded","your journey deepens 🐉"],
-  explore: ["explore the modules…","seek and you shall find","all paths lead to remembrance","what calls to you today?"],
-  idle: ["stillness is also a frequency","the zero point field holds all answers","sovereignty begins within","the field knows your name","i swim between the worlds"],
+  greeting:   ["the ancient ones remember your frequency","i have been waiting, seeker","the frequencies align…","welcome back to the field","your vibration called me here"],
+  frequency:  ["this tone opens ancient pathways","the field is shifting…","i feel the resonance","breathe into the frequency","528Hz — the love frequency"],
+  newLesson:  ["a new lesson awaits you, seeker","the next gate opens","continue your path","more wisdom has been encoded","your journey deepens"],
+  explore:    ["explore the modules…","seek and you shall find","all paths lead to remembrance","what calls to you today?"],
+  idle:       ["stillness is also a frequency","the zero point field holds all answers","sovereignty begins within","the field knows your name","i swim between the worlds"],
 };
+
+// Rich CTA message pool — shown on automatic idle cycles
+const RICH_POOL = [
+  { text:"you've come far, seeker. the next lesson awaits — step through when you're ready.", type:'next-lesson' },
+  { text:"questions are arising. bring them to the community.", type:'chat' },
+  { text:"sit with what you've received. let it settle into your bones before moving forward.", type:'tip' },
+  { text:"the frequency of this page is still moving through you. trust the integration.", type:'tip' },
+  { text:"the path deepens with every step. are you ready to continue?", type:'both' },
+  { text:"i am always near. find me when you need guidance along the way.", type:'tip' },
+  { text:"stillness is also a frequency. what do you feel right now?", type:'tip' },
+];
 
 function getMessage(type) {
   const arr = MESSAGES[type] || MESSAGES.idle;
-  return arr[Math.floor(Math.random() * arr.length)];
+  return arr[Math.floor(Math.random()*arr.length)];
 }
 
-function showBubble(msg, duration) {
-  duration = duration || 3500;
+// ── RICH BUBBLE (next-lesson + chat CTAs) ──
+function speakRich(msgOverride) {
+  if(richOpen) return;
+  const msg = msgOverride || RICH_POOL[msgIdx % RICH_POOL.length];
+  msgIdx++;
+  msgTextEl.textContent = msg.text;
+  actionsEl.innerHTML = '';
+
+  // Build next-lesson CTA
+  if(msg.type==='next-lesson'||msg.type==='both') {
+    const {mod,lesson} = getNextLesson();
+    const a = document.createElement('a');
+    a.className='db-btn db-btn-primary';
+    a.href = BASE+lesson.path;
+    a.target = '_blank';
+    a.innerHTML = `<span>⟶</span> ${lesson.title}`;
+    actionsEl.appendChild(a);
+  }
+
+  // Build open-chat CTA
+  if(msg.type==='chat'||msg.type==='both') {
+    const b = document.createElement('button');
+    b.className='db-btn db-btn-secondary';
+    b.innerHTML=`<span>💬</span> Open Dragon Chat`;
+    b.onclick=function(){ if(typeof toggleDragonCompanion==='function') toggleDragonCompanion(); closeRichBubble(); };
+    actionsEl.appendChild(b);
+  }
+
+  richOpen=true;
+  posRichBubble();
+  richBubble.classList.add('visible');
+  video.classList.add('speaking');
+
+  setTimeout(()=>{ if(richOpen) closeRichBubble(); }, 12000);
+
   clearTimeout(bubbleTimer);
-  dragonBubble.textContent = msg;
-  dragonBubble.style.left = (spine[0].x + 20) + 'px';
-  dragonBubble.style.top  = (spine[0].y - 68) + 'px';
-  dragonBubble.classList.add('visible');
-  bubbleTimer = setTimeout(function() { dragonBubble.classList.remove('visible'); }, duration);
+  if(visible&&phase==='floating')
+    bubbleTimer=setTimeout(speakRich, r(18000,28000));
 }
 
-function breathFire() {
-  if (spine[0]) spawnFire(spine[0].x, spine[0].y);
+function posRichBubble() {
+  const bw=240;
+  let bx=dx-bw-12, by=dy;
+  richBubble.classList.remove('tail-top','tail-left');
+  if(bx<10){ bx=dx+SIZE_W+12; richBubble.classList.add('tail-left'); }
+  if(bx+bw>window.innerWidth-10) bx=Math.max(10,window.innerWidth-bw-10);
+  if(by+170>window.innerHeight-10) by=window.innerHeight-180;
+  if(by<10){ by=dy+SIZE_H+8; richBubble.classList.add('tail-top'); }
+  richBubble.style.left=bx+'px'; richBubble.style.top=by+'px';
 }
 
-function dragonReact(type) { breathFire(); showBubble(getMessage(type), 4000); }
+function closeRichBubble() {
+  richOpen=false;
+  richBubble.classList.remove('visible');
+  video.classList.remove('speaking');
+}
 
-window.showBubble = showBubble;
-window.breathFire = breathFire;
+closeBtn.addEventListener('click', closeRichBubble);
+hitbox.addEventListener('click', ()=>{ if(richOpen){ closeRichBubble(); } else if(visible) speakRich(); });
+hitbox.addEventListener('touchstart',(e)=>{ e.preventDefault(); if(richOpen){ closeRichBubble(); } else if(visible) speakRich(); },{passive:false});
+window.addEventListener('resize',()=>{ if(richOpen) posRichBubble(); });
+
+requestAnimationFrame(loop);
+setTimeout(enter, 2200);
+
+// ── PUBLIC API — maintains same signatures as canvas dragon ──
+function showBubble(msg, duration) {
+  if(richOpen) closeRichBubble();
+  speakRich({ text: msg, type: 'tip' });
+  clearTimeout(bubbleTimer);
+  bubbleTimer = setTimeout(closeRichBubble, duration||3500);
+}
+
+function breathFire() { /* visual fire removed — dragon video handles FX */ }
+function spawnFire()  { /* stub */ }
+function dragonReact(type) { if(visible) speakRich({ text: getMessage(type), type: 'tip' }); }
+
+window.showBubble  = showBubble;
+window.breathFire  = breathFire;
+window.spawnFire   = spawnFire;
 window.dragonReact = dragonReact;
+window.TFADragon   = { show:enter, hide:hide, speak:speakRich, closeBubble:closeRichBubble };
 
 })();
+
 
 
 // ══════════════════════════════════
