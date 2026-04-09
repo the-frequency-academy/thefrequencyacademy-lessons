@@ -191,6 +191,219 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:11px; h
 /* ── LAYOUT ── */
 .container { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 32px; }
 
+/* ══════════════════════════════════
+   WELCOME VIDEO SECTION
+══════════════════════════════════ */
+#welcome-video-section {
+  margin-bottom: 60px;
+  position: relative;
+}
+
+/* ── FULL STATE ── */
+#welcome-video-full {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--gold-border);
+  box-shadow:
+    0 0 0 1px rgba(201,168,76,0.06),
+    0 8px 48px rgba(0,0,0,0.6),
+    0 0 60px rgba(201,168,76,0.06);
+  background: #000;
+  transition: opacity 0.4s, transform 0.4s;
+}
+
+/* Eyebrow label above video */
+.wv-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  opacity: 0.8;
+}
+.wv-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+.wv-eyebrow::after {
+  content: '';
+  display: block;
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(201,168,76,0.3), transparent);
+}
+
+/* 16:9 ratio wrapper */
+.wv-ratio {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+}
+.wv-ratio iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Gold shimmer bar at top */
+#welcome-video-full::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Caption / watched hint beneath video */
+.wv-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 4px 0;
+  gap: 12px;
+}
+.wv-caption-text {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.5;
+}
+.wv-minimize-btn {
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 7px 14px;
+  color: var(--muted);
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.wv-minimize-btn:hover {
+  border-color: var(--gold-border);
+  color: var(--gold);
+  background: var(--gold-dim);
+}
+
+/* ── MINIMIZED STATE ── */
+#welcome-video-mini {
+  display: none;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 0;
+}
+#welcome-video-mini:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: var(--gold-border);
+}
+#welcome-video-mini.active {
+  display: flex;
+}
+.wv-mini-thumb {
+  width: 64px;
+  height: 36px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  background: #000;
+}
+/* Dragon face crop — use object-position to show face not body */
+.wv-mini-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+}
+.wv-mini-play-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+}
+.wv-mini-play-icon svg {
+  width: 14px;
+  fill: rgba(201,168,76,0.9);
+  filter: drop-shadow(0 0 4px rgba(201,168,76,0.6));
+}
+.wv-mini-text {
+  flex: 1;
+  min-width: 0;
+}
+.wv-mini-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.wv-mini-title {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: var(--white);
+  opacity: 0.75;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wv-mini-expand {
+  flex-shrink: 0;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--gold-border);
+  border-radius: 7px;
+  padding: 6px 12px;
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.wv-mini-expand:hover {
+  background: rgba(201,168,76,0.16);
+  box-shadow: 0 0 12px rgba(201,168,76,0.2);
+}
+
+/* Watch-completed subtle glow on mini */
+#welcome-video-mini.watched {
+  border-color: rgba(201,168,76,0.18);
+}
+
+@media(max-width:600px) {
+  .wv-caption { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .wv-minimize-btn { align-self: flex-end; }
+  .wv-mini-title { font-size: 11px; }
+}
+
 /* ── HEADER ── */
 header { padding:80px 0 50px; text-align:center; }
 .logo-area { margin-bottom:28px; }
@@ -1159,6 +1372,48 @@ footer a { color:var(--gold); text-decoration:none; }
     <h1>The Full <span>Academy</span></h1>
     <div class="tagline">Sovereignty · Reciprocity · Unity · Love</div>
   </header>
+
+  <!-- ══ WELCOME VIDEO ══ -->
+  <section id="welcome-video-section">
+
+    <!-- MINIMIZED STATE (shown after full watch) -->
+    <div id="welcome-video-mini" title="Rewatch welcome transmission">
+      <div class="wv-mini-thumb">
+        <img
+          src="https://img.youtube.com/vi/23ZXQBITNP0/maxresdefault.jpg"
+          alt="Welcome to The Frequency Academy"
+          onerror="this.src='https://img.youtube.com/vi/23ZXQBITNP0/hqdefault.jpg'"
+        >
+        <div class="wv-mini-play-icon">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <div class="wv-mini-text">
+        <div class="wv-mini-label">🐉 Transmission Received</div>
+        <div class="wv-mini-title">Welcome to The Frequency Academy</div>
+      </div>
+      <button class="wv-mini-expand" onclick="expandWelcomeVideo()">Rewatch</button>
+    </div>
+
+    <!-- FULL STATE -->
+    <div id="welcome-video-full">
+      <div class="wv-eyebrow">🐉 &nbsp;Welcome Transmission</div>
+      <div class="wv-ratio">
+        <iframe
+          id="welcome-yt-iframe"
+          src="https://www.youtube.com/embed/23ZXQBITNP0?enablejsapi=1&rel=0&modestbranding=1&color=white"
+          title="Welcome to The Frequency Academy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="wv-caption">
+        <span class="wv-caption-text">watch before entering the academy — this is not a course. it is an initiation.</span>
+        <button class="wv-minimize-btn" id="wv-manual-minimize" onclick="minimizeWelcomeVideo()">minimize ↑</button>
+      </div>
+    </div>
+
+  </section>
 
   <div class="stats-row">
     <div class="stat"><span class="num" id="stat-live">47</span><span class="lbl">Live Lessons</span></div>
@@ -2232,6 +2487,65 @@ function compSendInput() {
 </div>
 
 
+
+<!-- ══ YOUTUBE IFRAME API — Welcome Video Logic ══ -->
+<script>
+// ── WELCOME VIDEO STATE ──
+const WV_WATCHED_KEY = 'tfa_welcome_watched_v1';
+
+const wvFull = document.getElementById('welcome-video-full');
+const wvMini = document.getElementById('welcome-video-mini');
+
+// On load — if already watched, start minimized
+(function initWelcomeVideo() {
+  try {
+    if (localStorage.getItem(WV_WATCHED_KEY) === '1') {
+      showWelcomeMini();
+    }
+  } catch(e) {}
+})();
+
+function showWelcomeMini() {
+  wvFull.style.display = 'none';
+  wvMini.classList.add('active');
+  wvMini.classList.add('watched');
+}
+
+function minimizeWelcomeVideo() {
+  showWelcomeMini();
+}
+
+function expandWelcomeVideo() {
+  wvFull.style.display = '';
+  wvMini.classList.remove('active');
+}
+
+// ── YOUTUBE IFRAME API ──
+(function() {
+  var tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+})();
+
+var ytWelcomePlayer;
+
+window.onYouTubeIframeAPIReady = function() {
+  ytWelcomePlayer = new YT.Player('welcome-yt-iframe', {
+    events: { 'onStateChange': onWelcomePlayerStateChange }
+  });
+};
+
+function onWelcomePlayerStateChange(event) {
+  // YT.PlayerState.ENDED = 0
+  if (event.data === 0) {
+    try { localStorage.setItem(WV_WATCHED_KEY, '1'); } catch(e) {}
+    // Slight delay so the video end registers naturally before minimizing
+    setTimeout(function() {
+      showWelcomeMini();
+    }, 2000);
+  }
+}
+</script>
 
 </body>
 </html>
